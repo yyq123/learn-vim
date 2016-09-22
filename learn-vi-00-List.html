@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>VIM学习笔记</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<style type="text/css" media="all">
+<!--
+body 	{font-size: 83%; line-height: 173%; font-family: Geneva, Arial, Helvetica, Sans-Serif}
+h1 		{font-size: 140%;}
+p 		{line-height: 165%;}
+p span {font-size: 10px; color: #333;}
+
+.nav 	{
+		padding: 0; margin: 50px 0 0 70px;
+		font-family: Arial, Helvetica, Sans-Serif;
+		overflow: visible;
+		}
+		
+.nav ul {		
+		display: block;
+		list-style: none;
+		margin: -11px 0; padding: 0;
+		border: 0;
+		}
+		
+/* HACK >>> IE 5  Positioning with position relative <ul> Part I */
+html + body .nav ul {position: relative; top: -10px;}
+
+/* HACK >>> first margin for IE 6, after voice-family the hacks for gecko-based browsers and IE 5 (Win & Mac?) */
+.nav ul li 	{
+			position: relative; top: 0px; left: -11px;
+			margin: 10px 0 5px 0; padding: 0; 
+			border: 0;
+			voice-family: "\"}\""; /* Gecko Stuff follows */
+			margin: 10px 0 5px 10px; 
+			}
+			
+/* HACK >>> IE 5  Positioning with position relativ, display: inline fixes an ugly margin-effect in IE 5 */
+html + body .nav ul li {display: inline; width: 100%; position: relative; top: 0px; left: -12px; margin: 10px 0 5px 0;}
+
+.nav a, .nav a:visited {
+				width: 18.4em; height: 1.5em;
+				display: block; 
+				margin: 0 0 0 3px; padding: 1px;
+				font-weight: bold; font-size: 110%; line-height: 1.5em; 
+				text-indent: 0.5em; text-align: left; text-decoration: none;
+				voice-family: "\"}\""; /* Gecko Stuff follows */
+				margin: 0 0 0 -10px;
+				}
+
+/* HACK >>> IE 5  (avoids an ugly effect with text-indent ) */
+html + body .nav a, html + body .nav a:visited { text-indent: 0; padding: 0 0 0 8px; }
+
+.nav ul ul {	
+			padding: 12px 0 18px 0;
+			background: none;
+			}
+
+/* HACK >>> IE 5  Positioning with position relative <ul> Part II  */
+html + body .nav ul ul {position: relative; top: 0px; }
+				
+.nav ul li li	{
+			position: relative; top: 0px; left: 10px;
+			margin: 10px 0 5px 1px; padding: 0 0 0 25px;
+			voice-family: "\"}\""; /* Gecko Stuff follows */
+			left: 0px;
+			/* margin: 10px 0 5px 1px; padding: 0 0 0 25px; */
+			}
+			
+/* HACK >>> IE 5  */
+html + body .nav ul li li {position: relative; left: 12px; margin: 10px 0 5px 0;}
+
+.nav ul li .sub-sub {
+			/* position: relative;  top: 0px; */ left: 10px;
+			margin: 10px 0 0 1px; /* padding: 0 0 0 25px;  */
+			voice-family: "\"}\"";
+			position: relative; top: 0px; left: 0px;
+			}
+
+.nav ul ul a, .nav ul ul a:visited 	{
+					width: 15.9em; height: 1.3em;
+					margin: 0; /* padding: 1px; */
+					font-size: 110%; line-height: 1.3em; font-weight: normal; text-indent: 0.4em; 
+					}
+
+.nav ul ul ul {margin: 0 0 30px 12px; padding: 12px 0 0 0;}
+
+.nav ul li li li	{
+			position: relative; top: 10px; left: 0px;
+			margin: 10px 0 5px 0; padding: 0 0 0 20px; 
+			}
+
+/* 1 Pixel Difference position relative <ul> for gecko-based Browsers */
+html>body .nav ul li li li {top: 10px;}
+
+/* HACK >>> IE 5  Positioning with position relative <ul> Part II  */
+html + body .nav ul li li li {top: 14px;}
+																		
+.nav ul ul ul a, .nav ul ul ul a:visited 	{
+					width: 14.9em;
+					padding: 1px;
+					font-size: 100%;
+					}
+					
+/* HACK >>> IE 5  (avoids an ugly effect with text-indent ) */
+html + body .nav ul ul a, html + body .nav ul ul a:visited {text-indent: 0; padding: 0 0 0 8px; }
+
+
+/* ### Global Settings >>> colors, borders and images  ### */
+.nav 	{ border: 0; border-left: 1px solid #2A71E4; }
+.nav ul li li	{color: #000; background:  url("http://image2.humyo.com/I/3516661-2831511283/300/300/0/1/1292684753?a=GyqwvENFGzM") left center no-repeat;}	
+.nav ul ul ul {border-left: 1px solid #2A71E4; }
+.nav ul li .sub-sub {background:  url("line-01.gif") top left no-repeat;}
+.nav a, .nav a:visited	{color: #4F4F4F; border: 1px solid #2A71E4; background: #FFF; }				
+.nav a:active, .nav a:hover, .nav a:focus,  a:focus .sffocus 	{color: #000; border: 1px solid #000; background: #FAFAFA;}			
+.nav ul ul a, .nav ul ul a:visited 	{color: #4F4F4F; border: 1px solid #9292A1;background: #FFF;}			
+.nav ul ul a:active, .nav ul ul a:hover, .nav ul ul a:focus	{color: #000; border: 1px solid #000;	background: #FAFAFA; }	
+
+-->
+</style>
+	
+</head>
+
+<body>
+
+	<h1>VIM学习笔记</h1>
+
+	<div class="nav">
+	<ul>	
+		
+	<li><a href="#now-here">基础操作</a>
+	<ul>
+	<li><a href="http://yyq123.blogspot.com/2009/02/vim.html">基本编辑</a></li>
+	<li><a href="http://yyq123.blogspot.com/2009/02/vim_23.html">移动和修改</a></li>
+	<li><a href="http://yyq123.blogspot.com/2009/02/vim_25.html">复制和粘贴</a></li>
+	<li><a href="http://yyq123.blogspot.com/2009/03/vim.html">查找文本</a></li>
+	<li><a href="">替换文本</a></li>
+	<li><a href="http://yyq123.blogspot.com/2010/10/vim-undo.html">撤销 (Undo)</a></li>
+	<li><a href="http://yyq123.blogspot.com/2010/08/vim-print.html">打印</a></li>
+	</ul>
+	</li>
+
+	<li><a href="#now-here">高阶操作</a>
+	<ul>
+	<li><a href="http://yyq123.blogspot.com/2009/02/vim_4321.html">在单词间移动	</a></li>
+	<li><a href="http://yyq123.blogspot.com/2009/02/vim_26.html">快速移动</a></li>
+	<li><a href="http://yyq123.blogspot.com/2009/02/vim_27.html">滚动屏幕</a></li>
+	<li><a href="http://yyq123.blogspot.com/2010/10/vim-registers.html">寄存器</a></li>
+	</ul>
+	</li>	
+
+	<li><a href="#now-here">模式详解</a>
+	<ul>
+	<li><a href="http://yyq123.blogspot.com/2010/11/vim-visual-mode.html">可视化模式</a></li>
+	</ul>
+	</li>	
+
+	<li><a href="#now-here">文字处理</a>
+	<ul>
+	<li><a href="http://yyq123.blogspot.com/2010/07/vim-line-feed.html">换行</a></li>
+	<li><a href="http://yyq123.blogspot.com/2010/07/vim-wrap.html">折行</a></li>
+	<li><a href="http://yyq123.blogspot.com/2010/10/vim-indent.html">缩进</a></li>
+	<li><a href="http://yyq123.blogspot.com/2011/01/vim-encyption.html">加密</a></li>
+	<li><a href="http://yyq123.blogspot.com/2011/03/vim-macro.html">宏(Macro)</a></li>
+	<li><a href="http://yyq123.blogspot.com/2010/07/vim-multi-encoding.html">多编码处理</a></li>
+	</ul>
+	</li>	
+	
+	<li><a href="#now-here">图形界面</a>
+	<ul>
+	<li><a href="http://yyq123.blogspot.com/2009/10/vim-statusline.html">状态行</a></li>
+	</ul>
+	</li>	
+	
+	<li><a href="#now-here">多文件操作</a>	 
+	<ul>	  
+	<li><a href="http://yyq123.blogspot.com/2009/08/vim-arguments.html">参数(Arguments)</a></li>
+	<li><a href="http://yyq123.blogspot.com/2009/07/vim-buffer.html">缓冲区 (Buffer)</a></li>
+	<li><a href="http://yyq123.blogspot.com/2009/08/vim-window.html">窗口(Window)</a></li>
+	<li><a href="http://yyq123.blogspot.com/2009/04/vim.html">标签页(Tab)</a></li>
+	<li><a href="http://yyq123.blogspot.com/2009/08/vim-edit-multi-files.html">编辑多个文件(Files)</a></li>
+	<li><a href="http://yyq123.blogspot.com/2010/09/vim-diff.html">比较文件(diff)</a></li>
+	</ul>
+	</li>
+
+	<li><a href="#now-here">自定义系统</a>
+	<ul>
+	<li><a href="http://yyq123.blogspot.com/2010/12/vim-map.html">键盘映射(Map)</a></li>
+	<li><a href="http://yyq123.blogspot.com/2010/12/vim-abbreviation.html">缩写(Abbr)</a></li>
+	</ul>
+	</li>	
+
+	<li><a href="#now-here">代码开发</a>
+	<ul>
+	<li><a href="http://yyq123.blogspot.com/2010/08/vim-template.html">模板(Template)</a></li>
+	<li><a href="http://yyq123.blogspot.com/2011/02/vim-color-scheme.html">配色方案(Color Scheme)</a></li>
+	<li><a href="http://yyq123.blogspot.com/2011/02/vim-syntax.html">语法高亮度 (Syntax)</a></li>
+	</ul>
+	</li>	
+		
+	<li><a href="#">This is the end!</a></li>
+	</ul>
+	
+	
+	</div>
+
+	<p style="margin-top:2em; color:gray">Based on <abbr title="Cascading Style Sheets">CSS</abbr>-styled <a href="http://www.zabdesign.de/bremen-kontakt.html">nested lists</a>.<br />Tested an works fine with: Mozilla 1.4 (win), Firefox 1.0 (win), Netscape 7.1 (win), Opera 7.02 (win), Internet Explorer 5, 5.5, 6 (win), Safari 1.0, 1.2 (mac)</p>
+	
+</body>
+</html>
