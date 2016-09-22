@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 滚动屏幕</title>
+</head>
+<body>
+	<p style="font-weight:bold">滚动屏幕</p>
+	<p>命令<code class="inset">CTRL-U</code>可以向上翻滚半屏，但是可以通过设置scroll选项来控制这个命令翻滚的行数。例如命令<code class="inset">:set scroll=10</code>可以使得Vim一次翻滚10行。也可以通过改变CTRL-U命令的参数来改变翻滚的行数。例如命令<code class="inset">2CTRL-U</code>可以使得Vim一次向上翻滚两行。</p>
+	<p>当光标到达窗口上端或下端时，窗口要发生滚动。我们可以通过设置scrolljump选项来控制这个翻滚行数的大小，默认情况下为1。例如命令<code class="inset">:set scrolljump=5</code>将翻滚量设为5。与其相类似的就是sidescroll选项，所不同是后者控制水平的翻滚。</p>
+	<p>通常情况下，窗口翻滚是在光标到达窗口顶部或底部时才发生的。我们可以通过scrolloff选项来控制光标与顶部或是底部有多少距离时发生。例如命令<code class="inset">:set scrolloff=3</code>将值设为3，当光标与顶部距离为三行时发生翻滚，且翻滚后光标与底部相距三行。</p>
+	<p style="font-weight:bold">放置行</p>
+	<p>有时我们希望将指定的行放在屏幕顶端。先将光标放在指定的行上，然后输入<code class="inset">z&lt;Enter&gt;</code>，这一行就会出现在屏幕的顶端了。我们还可以利用参数将指定的行置于屏幕顶端。例如命令<code class="inset">8z&lt;Enter&gt;</code>就是将第八行置于屏幕顶端。这个命令将指定的行置于顶端，并将光标移动到本行第一个非空白字符处。如果要将指定行置于顶端，并将光标保持在一行的当前位置不变，可以使用<code class="inset">zt</code>命令。</p>
+	<p>如果要将指定的行放在屏幕底部，可以使用命令<code class="inset">z-</code>或是<code class="inset">zb</code>。所不同的是，前者将光标放在这一行中第一个没有空白符的字符处，而后者是保持光标的位置不变。</p>
+	<p>命令<code class="inset">zz</code>或是<code class="inset">z.</code>可以将指定的行放在屏幕的中部。这两个命令的不同就是，前者保持光标的位置不变，而后者是将光标置于第一个非空白的字符处。</p>
+	<p><a href="https://www.flickr.com/photos/yyq123/3927615639/" title="Screen_HML by yyq123, on Flickr"><img src="https://farm3.static.flickr.com/2656/3927615639_1794e65b28.jpg" width="500" height="372" alt="Screen_HML" /></a></p>
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">CTRL-E</code></td><td>向下动滚一行</td></tr>
+		<tr><td><code class="inset">CTRL-D</code></td><td>向下翻滚半屏</td></tr>
+		<tr><td><code class="inset">CTRL-F</code></td><td colspan="1" rowspan="2">向下滚动一屏</td></tr>
+		<tr><td><code class="inset">PageDown</code></td></tr>
+		<tr><td><code class="inset">CTRL-U</code></td><td>向上翻滚半屏</td></tr>
+		<tr><td><code class="inset">CTRL-B</code></td><td colspan="1" rowspan="2">向上滚动一屏</td></tr>
+		<tr><td><code class="inset">PageUp</code></td></tr>
+		<tr><td><code class="inset">H</code></td><td>移动到屏幕顶部</td></tr>
+		<tr><td><code class="inset">M</code></td><td>移动到屏幕中间</td></tr>
+		<tr><td><code class="inset">L</code></td><td>移动到屏幕底部</td></tr>
+		<tr><td><code class="inset">zz&lt;Enter&gt;</code></td><td>将当前行置为屏幕顶部</td></tr>
+		<tr><td><code class="inset">z.</code></td><td>将当前行置为屏幕中间</td></tr>
+		<tr><td><code class="inset">z-</code></td><td>将当前行置为屏幕底部</td></tr>
+	</table>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="快速移动" href="https://yyq123.blogspot.com/2009/02/vim_26.html">上一篇</a>&nbsp;|<a title="笔记列表" href="https://cdn.rawgit.com/yyq123/learn-vim/master/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="寄存器" href="https://yyq123.blogspot.com/2010/10/vim-registers.html">下一篇</a>&gt;</span></p>
+</body>
+</html>
