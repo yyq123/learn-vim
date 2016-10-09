@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 模式(Mode)</title>
+</head>
+<body>
+	<p style="font-weight:bold"></p>
+	<p></p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+	<p>Vim一个重要的设计目标，就是使用键盘快速的操作。Vim提供的解决方案，就是在插入模式下输入文本，而在常规模式下执行命令。你可以使用键盘命令在不同模式间进行切换。而传统的图形界面，是根本无法提供如此丰富的命令；即使能够提供，其菜单也将异常复杂而难以快速调用，更无法实现多种命令组合使用的强力威力。</p>
+	<p>举例说明，假设我想要将文本中的所有&ldquo;from&rdquo;替换为&ldquo;to&rdquo;：</p>
+	<ul>
+		<li>在传统的编辑器中，你需要选择&ldquo;编辑&rdquo;菜单下的&ldquo;替换&rdquo;菜单项；然后在对话框里分别输入&ldquo;from&rdquo;和&ldquo;to&rdquo;；再点击&ldquo;全部替换&rdquo;按钮；</li>
+		<li>而在Vim中，则只下需要在常规模式下执行一个简单的<code class="inset">:%s/from/to/g</code>替换命令。</li>
+	</ul>
+	<p>试想，如果我只想替换文本前几行中的指定字符，那么又需要先鼠标选择某段文本，然后再在对话框中指定只针对选中的文本执行替换操作；而在Vim中，则只需要在替换命令中指定操作范围，<code class="inset">:0,10s/from/to/gc</code>。命令行简单直接的威力，从中可见一斑。</p>
+	<p>如果希望高效地使用vim，那么就应该You are always in normal mode, and only enter insert mode for short bursts of typing text, after which you press <kbd>Esc</kbd> to go to normal mode.而可视化模式，将帮助你快速选择大段文本。</p>
+	<ul>
+		<li><code class="inset">i</code>：进入插入模式，并定位到光标之前；</li>
+		<li><code class="inset">a</code>：进入插入模式，并定位到光标之后；</li>
+		<li><code class="inset">I</code>：进入插入模式，并定位到当前行的第一个非空字符；</li>
+		<li><code class="inset">A</code>：进入插入模式，并定位到当前行的最后一个字符；</li>
+		<li><code class="inset">o</code>：进入插入模式，并在当前行下面，插入一个新行；</li>
+		<li><code class="inset">O</code>：进入插入模式，并在当前行上面，插入一个新行；</li>
+		<li><code class="inset">r</code>：进入替换模式，替换当前字符，然后自动返回常规模式；</li>
+		<li><code class="inset">R</code>：进入替换模式，替换当前字符及之后的字符，直到使用ESC键返回常规模式；</li>
+		<li><code class="inset">s</code>：删除当前字符，并进入插入模式；</li>
+		<li><code class="inset">S</code>：删除当前行，并进入插入模式；</li>
+		<li><code class="inset">v</code>：进入字符可视化模式；</li>
+		<li><code class="inset">V</code>：进入行可视化模式；</li>
+		<li><code class="inset">Ctrl-v</code>：进入块可视化模式；</li>
+	</ul>
+
+		One other even more powerful example: let's take the 'ce' command, which is composed of 'c' and 'e'. The 'c'hange command deletes the range specified by the next motion command, and also enters insert mode. It's the same as 'd', but with the distinction that it enters insert mode, instead of staying in normal mode. The boon is that the text you type in the next (short) input session is also part of the command. So if you do 'ceHello<Esc>>', what you do is replace from the cursor to the end of the word by 'Hello', and the '.' command afterwards will work exactly like that: replace up to the end of the word with 'Hello'.
+	<p>Vim有多种模式，我们可以使用<code class="inset">:help mode</code>看到Vim的所有模式。</p>
+	<table border="1">
+		<tr><th></th><th>类型</th><th>模式</th><th>描述</th></tr>
+		<tr><td>Normal mode</td><td>常规模式（命令模式）</td><td>n</td><td>默认状态。只能输入命令，不能输入文本。</td></tr>
+		<tr><td>Insert mode</td><td>插入模式（编辑模式）</td><td>i</td><td>i进入插入模式输入文本，ESC退出</td></tr>
+		<tr><td>Replace mode</td><td>替换模式（覆盖模式）</td><td>R</td><td></td></tr>
+		<tr><td>Command-line mode</td><td>命令行模式</td><td>c</td><td>:进入命令</td></tr>
+		<tr><td rowspan="3">Visual mode</td><td rowspan="3">可视化模式</td><td>v</td><td>Visual by character</td><td>字可视化模式</td></tr>
+		<tr><td>V</td><td>Visual by line</td><td>行可视化模式</td></tr>
+		<tr><td>CTRL-Q</td><td>Visual blockwise</td><td>块可视化模式</td></tr>
+		<tr><td rowspan="3">Select mode</td><td rowspan="3">选择模式</td><td>s</td><td>Select by character</td><td></td></tr>
+		<tr><td>S</td><td>Select by line</td><td>鼠标选择</td></tr>
+		<tr><td>CTRL-S</td><td>Select blockwise</td><td></td></tr>
+		<tr><td>Ex mode</td><td></td></tr>
+		<tr><td></td><td></td></tr>
+		<tr><td></td><td></td></tr>
+	</table>
+	请使用<code class="inset">:help vim-modes-intro</code>和<code class="inset">:help mode-switching</code>命令，查看关于各种模式的帮助信息。
+	<p style="text-indent:2em"><code class="inset">:help replacing</code></p>
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+	</table>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="()" href="">上一篇</a>&nbsp;|<a title="笔记列表" href="https://cdn.rawgit.com/yyq123/learn-vim/master/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="()" href="">下一篇</a>&gt;</span></p>
+</body>
+</html>
+

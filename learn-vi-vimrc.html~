@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>保存设置</title>
+</head>
+<body>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">启用/禁用</p>
+	<p></p>
+
+	<p>如果希望保存设置，需要使用以下命令将设置写入文件中：</p>
+	<p style="text-indent:2em"><code class="inset">:mkvimrc file</code></p>
+	<p>其中，file是将要写入的文件名。也可以在配置文件中，使用<code class="inset">:source file</code>命令包含其它配置文件的内容。</p>
+	<p>在vim启动过程中，首先查找初始化文件。如果找到就会自动执行文件的内容。而这些初始化文件一般是：</p>
+	<p style="text-indent:2em"><br />$HOME/.vimrc<br />$HOME/_vimrc<br />$HOME/.exrc<br />$HOME/_exrc</p>
+	<p>在Unit/Linux系统中则是：</p>
+	<p style="text-indent:2em">
+	$HOME/.vimrc
+	</p>
+	<p>在Windows系统中则是：</p>
+	<p style="text-indent:2em">
+	$HOME/_vimrc<br />
+	$HOME/.vimrc<br />
+	$VIM/_vimrc<br />
+	$VIM/.vimrc<br />
+	$HOME/_exrc<br />
+	$HOME/.exrc<br />
+	$VIM/_exrc<br />
+	$VIM/.exrc<br />
+	</p>
+	<p>如果要执行gvim，那么$VIMRUNTIME/menu.vim也会被读进来。</p>
+	<p>利用<code class="inset">:version</code>命令，可以得到配置文件的详细信息。</p>
+	<p>例如我们可以在.vimrc中写入以下的一些语句：</p>
+	<table summary="Example of .vimrc" border="0" rules="none" cellspacing="1" cellpadding="1">
+		<tr><td>:syntax on</td><td>打开语法加亮功能</td></tr>
+		<tr><td>:set shiftwidth=4</td><td>设置缩进宽度为4</td></tr>
+	</table>
+	A single quotation mark (") introduces comments.
+	<p>修改配置文件后，需要重新启动Vim，或使用:source命令来应用新的设置：</p>
+
+	<p>User preferences take precedence over system preferences. This means that if you change an option set in the system vimrc, your preferences will be respected.</p>
+
+
+	<p style="text-indent:2em"><code class="inset">:source ~/.vimrc</code></p>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+	</table>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="()" href="">上一篇</a>&nbsp;|<a title="笔记列表" href="https://cdn.rawgit.com/yyq123/learn-vim/master/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="()" href="">下一篇</a>&gt;</span></p>
+</body>
+</html>
+
