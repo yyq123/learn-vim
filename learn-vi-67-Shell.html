@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记  运行外部命令(shell)</title>
+</head>
+<body>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">执行单个命令</p>
+	<p>使用<code class="inset">:!</code>命令，可以运行一个外部系统命令。例如，以下命令将打开终端窗口，并在其中显示当前日期：</p>
+	<p style="text-indent:2em"><code class="inset">:!date</code></p>
+
+	<p>使用<code class="inset">:!!</code>命令，可以重新执行最近一次运行过的命令。</p>
+	
+	<p>使用<code class="inset">!!</code>命令，可以运行外部命令并将输出结果做为当前行的内容。例如，输入<code class="inset">!!date</code>命令，将会把date命令的输出结果插入到文件中，当前行中的原有内容将会被覆盖。</p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">执行多个命令</p>
+	<p>使用<code class="inset">:shell</code>命令，不需要退出Vim，就可以进入命令终端执行一个或多个Shell命令。在终端中使用<code class="inset">exit</code>命令，则可以退回到Vim。</p>
+
+
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:!</code></td><td>运行外部命令</td></tr>
+		<tr><td><code class="inset">:!!</code></td><td>重新执行最近一次运行过的命令</td></tr>
+		<tr><td><code class="inset">!!</code></td><td>运行外部命令并将输出结果做为当前行的内容</td></tr>
+		<tr><td><code class="inset">:shell</code></td><td>打开shell终端</td></tr>
+	</table>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="()" href="">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="()" href="">下一篇</a>&gt;</span></p>
+</html>
+
