@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<title>Vi IMproved cheatsheet</title>
+	<meta name="author" content="Martin Bruchanov, bruxy@regnet.cz" />
+</head>
+<body>
+<style type="text/css">
+span.CS { font-family: monospace; background: cyan; }
+span.CS:before { content:":"; }
+span.CE { font-family: monospace; background: yellow; border-style:outset; border-color: yellow; }
+span.CC { font-family: monospace; background: red;    border-style:outset; border-color: red;    }
+span.CV { font-family: monospace; background: green;  border-style:outset; border-color: green;  }
+span.CSK { font-family: monospace; background: cyan; border-style:outset; border-color: cyan; }
+sub.low { padding-left:0.25em; color: #888; font-size: 6pt; font-family: sans-serif; }
+span.ss { font-family:sans-serif; }
+span.command {  color:yellow; }
+span.exkey   { color:cyan; }
+span.visual  { color:green; }
+span.edit  { color:red; }
+span.descr  { background: white; }
+li { padding-top: 0.5em; clear:both;}
+li.dotfill { padding-top: 0.5em; clear:both; background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEkAAAABCAMAAAClpnPvAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAAMUExURbu7u0RERAAAAP///6R6qhEAAAAEdFJOU////wBAKqn0AAAAGElEQVR42mJgYgYBBkYwxcgApsgSAwgwABoaALXdV9czAAAAAElFTkSuQmCC) left 85% repeat-x; }
+span.U { text-decoration: underline; }
+span.DF { float:right; background: white; }
+span.key { font-variant:small-caps; }
+body { counter-reset: chapter; }
+h3 { counter-reset: section; }
+h3:before { counter-increment: chapter; content: counter(chapter) ". "; }
+h4 { counter-reset: subsection; }
+h4:before { counter-increment: section; content: counter(chapter) "." counter(section) ". "; }
+h5:before { counter-increment: subsection; content: counter(chapter) "." counter(section) "." counter(subsection) ". "; }
+</style>
+
+
+
+
+
+<h2>Vi IMproved</h2>
+
+<p>© 2012 <a href="http://bruxy.regnet.cz/">Martin Bruchanov</a>, bruxy&#0064;regnet.cz</p>
+
+<h3>Basic control and conventions</h3>
+
+<ul>
+<li> <b> Key combination</b>&nbsp;– several keys pressed together, e.g. <span class="CE"><span class="key">Ctrl</span>+A<sub class="low">E</sub></span> means <span class="CE"><span class="key">Ctrl</span>+<span class="key">Shift</span>+a<sub class="low">E</sub></span>.</li>
+<li> <b> Key sequence</b>&nbsp;– several keys or combinations pressed gradually, e.g.. <span class="CE"><span class="key">Ctrl</span>+ww<sub class="low">E</sub></span> means a press of combination <span class="C"><span class="key">Ctrl</span>+w</span> and than a key <span class="C">w</span>.</li>
+<li> <b> Working mode</b>&nbsp;– it is displayed bottom right:</li>
+	<ul>
+<li> 		<span class="command">■</span>&nbsp;<span class="ss"> C</span>&nbsp;– basic command mode, <span class="CE"><span class="key">Esc</span><sub class="low">E</sub></span>,</li>
+<li> 		<span class="edit">■</span>&nbsp;<span class="ss"> E</span>&nbsp;– insert mode <span class="CC"><span class="key">Ins</span><sub class="low">C</sub></span>, <span class="CC">i<sub class="low">C</sub></span>, </li>
+<li> 		<span class="visual">■</span>&nbsp;<span class="ss"> V</span>&nbsp;– visual, used for highlighting of text blocks <span class="CC">v<sub class="low">C</sub></span>/<span class="CC">V<sub class="low">C</sub></span>, </li>
+<li> 		<span class="exkey">■</span>&nbsp;<span class="ss"> ex</span>&nbsp;– command line <em>ex</em>-mode <span class="CC">:<sub class="low">C</sub></span>.</li>
+	</ul>
+<li> Repeat command with typing number <em>n×</em> of repetitions before command, e.g. <span class="CC">5x<sub class="low">C</sub></span> deletes 5 chars from cursor position. Option <span class="CS">set <span class="U">s</span>how<span class="U">c</span>md</span> shows command sequence in bottom right.</li>
+<li> Help: <span class="CS">help <em>topic</em></span>, use <span class="CSK">Tab</span> for command completion.</li>
+<li> Similar commands uses same keys, e.g. <span class="CC">f<sub class="low">C</sub></span>&nbsp;/&nbsp;<span class="CC">F<sub class="low">C</sub></span>, <span class="CC">t<sub class="low">C</sub></span>&nbsp;/&nbsp;<span class="CC">T<sub class="low">C</sub></span> (see below). The difference is direction or range of operation.</li>
+<li class="dotfill"><span class="descr"> Repeat last:</span><span class="DF"> command <span class="CC">.<sub class="low">C</sub></span>, macro <span class="CC"><tt>@@</tt><sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> <b> Undo:</b></span><span class="DF"> <span class="CC">u<sub class="low">C</sub></span> &nbsp;≈&nbsp; <span class="CS"><span class="U">u</span>ndo</span>, redo <span class="CC"><span class="key">Ctrl</span>+r<sub class="low">C</sub></span>&nbsp;/&nbsp;<span class="CS"><span class="U">red</span>o</span> </span></li>
+<li> Set or unset options with <span class="CS">set <em>option</em></span> a <span class="CS">set no<em>option</em></span>. Alone <span class="CS">set</span> displays current options.</li>
+<li class="dotfill"><span class="descr"> Shortening of options:</span><span class="DF"> <span class="CS"><span class="U">se</span>t <span class="U">i</span>gnore<span class="U">c</span>ase</span> &nbsp;≈&nbsp;<span class="CS">se ic</span></span></li>
+<li> <b> Line addressing</b> of <em>ex</em>-commands:</li>
+	<ul>
+	<li class="dotfill"><span class="descr"> <span class="CS"><em>x</em>command</span></span><span class="DF">  execute on line <em>x</em>	</span></li>
+	<li class="dotfill"><span class="descr"> <span class="CS"><em>x</em>,<em>y</em>command</span></span><span class="DF"> from  <em>x</em> to line <em>y</em></span></li>
+	<li class="dotfill"><span class="descr"> <span class="CS">.,&#x24;command</span></span><span class="DF"> from actual position to the end</span></li>
+    <li class="dotfill"><span class="descr"> <span class="CS">%command</span> &nbsp;≈&nbsp; <span class="CS">1,\$command</span></span><span class="DF"> for whole file	</span></li>
+	<li class="dotfill"><span class="descr"> <span class="CS">.,+<em>x</em>comm</span> &nbsp;≈&nbsp; <em>x</em><span class="CS">comm</span></span><span class="DF"> from cursor to next <em>x</em> lines</span></li>
+	<li class="dotfill"><span class="descr"> <span class="CS">.,&#x24;–<em>x</em></span></span><span class="DF"> from current position to <em>x</em>. line from the end</span></li>
+	<li class="dotfill"><span class="descr"> <span class="CS">/<em>pattern<sub>1</sub></em>/,/<em>pattern<sub>2</sub></em>/</span></span><span class="DF"> from the first occurrence of line with <em>pattern<sub>1</sub></em> to the first <em>pattern<sub>2</sub></em></span></li>
+	</ul>
+<li class="dotfill"><span class="descr"> More <em>ex</em>-commands together:</span><span class="DF"> <span class="CS">command<sub>1</sub> | command<sub>2</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Comparison of two files:</span><span class="DF"> <tt> vimdiff <em>file<sub>1</sub></em> <em>file<sub>2</sub></em></tt></span></li>
+</ul>
+
+<h3>Edit and save</h3>
+
+<ul>
+<li class="dotfill"><span class="descr"> Edit:</span><span class="DF"> <span class="CS"><span class="U">e</span>dit <em>file</em></span></span></li>
+<li class="dotfill"><span class="descr"> Open new empty file:</span><span class="DF"> <span class="CS"><span class="U">ene</span>w</span></span></li>
+<li class="dotfill"><span class="descr"> Insert file to current position:</span><span class="DF"> <span class="CS"><span class="U">r</span>ead <em>file</em></span></span></li>
+<li class="dotfill"><span class="descr"> Insert output of system <em>command</em>:</span><span class="DF"> <span class="CS"><span class="U">r</span>ead !<em>command</em></span></span></li>
+<li class="dotfill"><span class="descr"> Save/append file:</span><span class="DF"> <span class="CS"><span class="U">w</span>rite <em>file</em></span>&nbsp;/&nbsp;<span class="CS">w >> <em>file</em></span></span></li>
+<li class="dotfill"><span class="descr"> Save/append lines <em>n</em> to <em>m</em>:</span><span class="DF"> <span class="CS"><em>n</em>,<em>m</em>w <em>file</em></span>&nbsp;/&nbsp;<span class="CS"><em>n</em>,<em>m</em>w>> <em>file</em></span></span></li>
+<li class="dotfill"><span class="descr"> Save and quit:</span><span class="DF"> <span class="CS">wq</span>, enforced <span class="CS">wq!</span></span></li>
+<li class="dotfill"><span class="descr"> Quit without save:</span><span class="DF"> <span class="CS">q!</span> &nbsp;≈&nbsp;<span class="CC">ZQ<sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Quit and save when file was changed:</span><span class="DF"> <span class="CS">x</span> &nbsp;≈&nbsp; <span class="CC">ZZ<sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Go to file under the cursos:</span><span class="DF"> <span class="CC">gf<sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Change name of current file:</span><span class="DF"> <span class="CS">f <em>jméno</em></span></span></li>
+<li class="dotfill"><span class="descr"> Insert before/after:</span><span class="DF"> char <span class="CC">i<sub class="low">C</sub></span>&nbsp;/&nbsp;<span class="CC">a<sub class="low">C</sub></span>, line <span class="CC">I<sub class="low">C</sub></span>&nbsp;/&nbsp;<span class="CC">A<sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Insert new line above/below cursor:</span><span class="DF"> <span class="CC">O<sub class="low">C</sub></span>&nbsp;/&nbsp;<span class="CC">o<sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Rewrite:</span><span class="DF"> char <span class="CC">r<sub class="low">C</sub></span>, word <span class="CC">cw<sub class="low">C</sub></span>, line <span class="CC">cc<sub class="low">C</sub></span>, text <span class="CC">R<sub class="low">C</sub></span> &nbsp;≈&nbsp; <span class="CC"><span class="key">Ins</span><span class="key">Ins</span><sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Delete char/line and continue edit:</span><span class="DF"><span class="CC">s<sub class="low">C</sub></span>&nbsp;/&nbsp;<span class="CC">S<sub class="low">C</sub></span></span></li>
+</ul>
+
+<h4>Moving throught file</h4>
+
+<ul>
+<li class="dotfill"><span class="descr"> Open <em>file</em> on 23<sup>rd</sup> line:</span><span class="DF"> <tt> vim <em>file</em> +23</tt></span></li>
+<li class="dotfill"><span class="descr"> Cursor:</span><span class="DF"> <span class="CC"><em>→</em><sub class="low">C</sub></span> &nbsp;≈&nbsp; <span class="CC">l<sub class="low">C</sub></span>, <span class="CC"><em>←</em><sub class="low">C</sub></span> &nbsp;≈&nbsp; <span class="CC">h<sub class="low">C</sub></span>, <span class="CC"><em>↑</em><sub class="low">C</sub></span> &nbsp;≈&nbsp; <span class="CC">k<sub class="low">C</sub></span>, <span class="CC"><em>↓</em><sub class="low">C</sub></span> &nbsp;≈&nbsp; <span class="CC">j<sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Paging:</span><span class="DF"> <span class="CC"><span class="key">Ctrl</span>+f<sub class="low">C</sub></span> &nbsp;≈&nbsp;<span class="CE"><span class="key">PageUp</span><sub class="low">E</sub></span>&nbsp;/&nbsp;<span class="CC"><span class="key">Ctrl</span>+b<sub class="low">C</sub></span> &nbsp;≈&nbsp;<span class="CE"><span class="key">PageDown</span><sub class="low">E</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Half-paging up/down:</span><span class="DF"> <span class="CC"><span class="key">Ctrl</span>+u<sub class="low">C</sub></span>&nbsp;/&nbsp;<span class="CC"><span class="key">Ctrl</span>+d<sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Jump to <em>n</em><sup>th</sup> line:</span><span class="DF"> <span class="CS"><em>n</em></span> &nbsp;≈&nbsp; <span class="CC"><em>n</em>G<sub class="low">C</sub></span> , the last <span class="CS">&#x24;</span> &nbsp;≈&nbsp; <span class="CC">G<sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Jump to percentual line position:</span><span class="DF"> <span class="CC"><em>n</em>%<sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Display current line number:</span><span class="DF"> <span class="CC"><span class="key">Ctrl</span>+g<sub class="low">C</sub></span>, <span class="CS">set <span class="U">nu</span>mber</span></li>
+<li class="dotfill"><span class="descr"> Display number of lines:</span><span class="DF"> <span class="CS">=</span></span></li>
+<li class="dotfill"><span class="descr"> Jump to byte position:</span><span class="DF"> <span class="CS"><span class="U">go</span>to <em>n</em></span></span></li>
+<li class="dotfill"><span class="descr"> Jump in line before char <em>a</em> forward/backward:</span><span class="DF"> <span class="CC">t<em>a<sub class="low">C</sub></span></em>&nbsp;/&nbsp;<span class="CC">T<em>a<sub class="low">C</sub></span></em></span></li>
+<li class="dotfill"><span class="descr"> Jump in line to char <em>a</em> forward/backward:</span><span class="DF"> <span class="CC">f<em>a<sub class="low">C</sub></span></em>&nbsp;/&nbsp;<span class="CC">F<em>a<sub class="low">C</sub></span></em></span></li>
+<li class="dotfill"><span class="descr"> Repeat last line search forward/backward:</span><span class="DF"> <span class="CC">;<sub class="low">C</sub></span>&nbsp;/&nbsp;<span class="CC">,<sub class="low">C</sub></span> </span></li>
+<li class="dotfill"><span class="descr"> Go to beggining of  next/previous word:</span><span class="DF"> <span class="CC">w<sub class="low">C</sub></span>&nbsp;/&nbsp;<span class="CC">b<sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Go to end of a word:</span><span class="DF"> <span class="CC">e<sub class="low">C</sub></span>, with interpunction <span class="CC">E<sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Go to declaration:</span><span class="DF"> <span class="CC">gd<sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Go to begin/end of paragraph:</span><span class="DF"> <span class="CC">{<sub class="low">C</sub></span>&nbsp;/&nbsp;<span class="CC">}<sub class="low">C</sub></span>, block: <span class="CC">[{<sub class="low">C</sub></span>&nbsp;/&nbsp;<span class="CC">]}<sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Go to begin/end of line:</span><span class="DF"> <span class="CC"><span class="key">Home</span><sub class="low">C</sub></span> &nbsp;≈&nbsp;<span class="CC"><tt>^</tt><sub class="low">C</sub></span>&nbsp;/&nbsp;<span class="CC"><span class="key">End</span><sub class="low">C</sub></span> &nbsp;≈&nbsp;<span class="CC">&#x24;<sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Go to next/previous sentence:</span><span class="DF"> <span class="CC">)<sub class="low">C</sub></span>&nbsp;/&nbsp;<span class="CC">(<sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Go to next/previous line:</span><span class="DF"> <span class="CC"><span class="key">End</span><sub class="low">C</sub></span> &nbsp;≈&nbsp;<span class="CC">+<sub class="low">C</sub></span>&nbsp;/&nbsp;<span class="CC">-<sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Go to column:</span><span class="DF"> first <span class="CC">0<sub class="low">C</sub></span> &nbsp;≈&nbsp;<span class="CC"><tt>|</tt><sub class="low">C</sub></span>; <em>n</em><sup>th</sup>  <span class="CC"><em>n</em><tt>|</tt><sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Jump to pair bracket:</span><span class="DF"> <span class="CC">%<sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Print position, number of lines and chars, etc.:</span><span class="DF"> <span class="CC">g<span class="key">Ctrl</span>+g<sub class="low">C</sub></span></span></li>
+</ul> 
+
+<h5>Marking of position</h5>
+
+<ul>
+<li class="dotfill"><span class="descr"> Insert invisible mark <em>a</em>:</span><span class="DF"> <span class="CC">ma<sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Jump to mark <em>a</em>:</span><span class="DF"> <span class="CC">'a<sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Print marks:</span><span class="DF"> <span class="CS">marks</span></span></li>
+<li class="dotfill"><span class="descr"> Erase mark <em>a</em>:</span><span class="DF"> <span class="CS"><span class="U">delm</span>arks <em>a</em></span></li>
+<li class="dotfill"><span class="descr"> Process text from mark <em>a</em> to <em>b</em>:</span><span class="DF"> <span class="CS">'a,'b <em>příkaz</em></span>, e.g. <span class="CS">'a,'b !sort</span> will use external command for sort </span></li>
+</ul>
+
+<h4>Deleting, moving and copying of text</h4>
+
+<ul>
+<li> Deletion automaticly stores text in register (for moving)</li>
+<li class="dotfill"><span class="descr"> Delete:</span><span class="DF"> char  <span class="CC">x<sub class="low">C</sub></span> &nbsp;≈&nbsp; <span class="CC"><span class="key">Del</span><sub class="low">C</sub></span>; previous char <span class="CC">X<sub class="low">C</sub></span> &nbsp;≈&nbsp; <span class="CC">d<em>←</em><sub class="low">C</sub></span> &nbsp;≈&nbsp; <span class="CC">dh<sub class="low">C</sub></span>, <span class="CE"><span class="key">Ctrl</span>+h<sub class="low">E</sub></span> &nbsp;≈&nbsp; <span class="CE"><span class="key">BackSpace</span><sub class="low">E</sub></span>; word <span class="CC">dw<sub class="low">C</sub></span> &nbsp;≈&nbsp;<span class="CE"><span class="key">Ctrl</span>+w<sub class="low">E</sub></span>; line <span class="CC">dd<sub class="low">C</sub></span>  </span></li>
+<li class="dotfill"><span class="descr"> Delete up to pair bracket:</span><span class="DF"> <span class="CC">d%<sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Delete to end/beginning of sentence:</span><span class="DF"> <span class="CC">d)<sub class="low">C</sub></span>&nbsp;/&nbsp;<span class="CC">d(<sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Delete the rest of line/file:</span><span class="DF"> <span class="CC">D<sub class="low">C</sub></span> &nbsp;≈&nbsp; <span class="CC">d&#x24;<sub class="low">C</sub></span> &nbsp;/&nbsp;<span class="CC">dG<sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Delete from cursor position to beginning:</span><span class="DF"> <span class="CC">d0<sub class="low">C</sub></span> &nbsp;≈&nbsp;<span class="CC">d^<sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Join lines: </span><span class="DF"> <span class="CC">J<sub class="low">C</sub></span> add space, <span class="CC">gJ<sub class="low">C</sub></span> without space</span></li>
+<li class="dotfill"><span class="descr"> Copy to register:</span><span class="DF"> line <span class="CC">Y<sub class="low">C</sub></span> &nbsp;≈&nbsp; <span class="CC">yy<sub class="low">C</sub></span>, word <span class="CC">yw<sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Copy to the beginning/end of line:</span><span class="DF"> <span class="CC">y0<sub class="low">C</sub></span>&nbsp;/&nbsp;<span class="CC">y&#x24;<sub class="low">C</sub></span></span></li>
+<li> More registers: press <span class="CC">"<em>k</em>…<sub class="low">C</sub></span> before command will save text to register <em>k</em>. E.g. <span class="CC">"kyy<sub class="low">C</sub></span> copies line into <tt>k</tt></li>
+<li> Paste content of last used register or last deleted text: after <span class="CC">p<sub class="low">C</sub></span>, before <span class="CC">P<sub class="low">C</sub></span> cursor, <span class="CC">"kpp<sub class="low">C</sub></span> pastes register <tt>k</tt></li>
+<li> Special register: <tt>"%</tt> – current file name, <tt>"/</tt> – last search,…</li>
+<li class="dotfill"><span class="descr"> Show content of registers:</span><span class="DF"> <span class="CS"><span class="U">reg</span>ister <em>a</em></span></li>
+<li class="dotfill"><span class="descr"> Swaps the next two chars/lines:</span><span class="DF"> <span class="CC">xp<sub class="low">C</sub></span>&nbsp;/&nbsp;<span class="CC">ddp<sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> <em>ex</em>-mode:</span><span class="DF"> delete <span class="CS">d</span>, move <span class="CS">m</span>, copy <span class="CS">co</span> &nbsp;≈&nbsp; <span class="CS">t</span></span></li>
+<li> <span class="CS">10,20m0</span> – move lines 10–20 to the beginning (0)</li>
+<li> <span class="CS">.,+5d a</span> – delete next 5 lines and store them to reg. <em>a</em></li>
+</ul>
+
+<h4>Formatting</h4>
+
+<ul>
+<li class="dotfill"><span class="descr"> Set text width:</span><span class="DF"> <span class="CS">set <span class="U">t</span>ext<span class="U">w</span>idth=<em>n</em></span></li>
+<li class="dotfill"><span class="descr"> Switch on line wrap:</span><span class="DF"> <span class="CS">set wrap</span></span></li>
+<li class="dotfill"><span class="descr"> Justify:</span><span class="DF"> <span class="CS"><span class="U">ce</span>nter</span>, <span class="CS"><span class="U">ri</span>ght</span>, <span class="CS"><span class="U">le</span>ft</span></span></li>
+<li class="dotfill"><span class="descr"> Format line:</span><span class="DF"> <span class="CC">gqq<sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Format paragraph:</span><span class="DF"> <span class="CC">gqap<sub class="low">C</sub></span> jump to end, <span class="CC">gwap<sub class="low">C</sub></span> </span></li>
+<li class="dotfill"><span class="descr"> Reverse case of char:</span><span class="DF"> <span class="CC">~<sub class="low">C</sub></span>, line <span class="CC">g~~<sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Line to upper/lower:</span><span class="DF"> <span class="CC">gUU<sub class="low">C</sub></span>&nbsp;/&nbsp;<span class="CC">Vu<sub class="low">C</sub></span> &nbsp;≈&nbsp; <span class="CC">guu<sub class="low">C</sub></span>&nbsp;/&nbsp;<span class="CC">VU<sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Whole file to upper/lower case:</span><span class="DF"> <span class="CC">gggUG<sub class="low">C</sub></span>&nbsp;/&nbsp;<span class="CC">ggguG<sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> While line/file <em>ROT13</em> encoding:</span><span class="DF"> <span class="CC">g??<sub class="low">C</sub></span>&nbsp;/&nbsp;<span class="CC">ggg?G<sub class="low">C</sub></span></span></li>
+</ul>
+
+<h5>Indentation</h5>
+
+<ul>
+<li class="dotfill"><span class="descr"> Shift line:</span><span class="DF"> <span class="CC">>><sub class="low">C</sub></span>, <span class="CE"><span class="key">Ctrl</span>+t<sub class="low">E</sub></span> of <span class="CS">set <span class="U">s</span>hift<span class="U">w</span>idth=<em>n</em></span></li>
+<li class="dotfill"><span class="descr"> Shift line leftwards:</span><span class="DF"> <span class="CC">&lt;&lt;<sub class="low">C</sub></span>, <span class="CE"><span class="key">Ctrl</span>+d<sub class="low">E</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Tabbing:</span><span class="DF"> <span class="CE"><span class="key">Tab</span><sub class="low">E</sub></span> &nbsp;≈&nbsp; <span class="CE"><span class="key">Ctrl</span>+i<sub class="low">E</sub></span> </span></li>
+<li class="dotfill"><span class="descr"> Shift line same as before:</span><span class="DF"> <span class="CC">==<sub class="low">C</sub></span></li>
+<li class="dotfill"><span class="descr"> Indent block relatively:</span><span class="DF"> <span class="CC">=a{ <sub class="low">C</sub></span></li>
+<li class="dotfill"><span class="descr"> Refresh indentation of whole file:</span><span class="DF"> <span class="CC">gg=G<sub class="low">C</sub></span></span></li>
+</ul>
+
+<h4>Complementation</h4>
+
+<ul>
+<li class="dotfill"><span class="descr"> Complement word before/after cursor:</span><span class="DF"> <span class="CE"><span class="key">Ctrl</span>+p<sub class="low">E</sub></span>&nbsp;/&nbsp;<span class="CE"><span class="key">Ctrl</span>+n<sub class="low">E</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Name of file in working directory:</span><span class="DF"> <span class="CE"><span class="key">Ctrl</span>+x <span class="key">Ctrl</span>+f<sub class="low">E</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Name of directory:</span><span class="DF"> <span class="CE"><span class="key">Ctrl</span>+x <span class="key">Ctrl</span>+d<sub class="low">E</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Whole line:</span><span class="DF"> <span class="CE"><span class="key">Ctrl</span>+x <span class="key">Ctrl</span>+l<sub class="low">E</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Word from dictionary:</span><span class="DF"> <span class="CE"><span class="key">Ctrl</span>+x <span class="key">Ctrl</span>+k<sub class="low">E</sub></span></span></li>
+<li class="dotfill"><span class="descr"> System command (reads <tt>$PATH</tt>):</span><span class="DF"> <span class="CE"><span class="key">Ctrl</span>+x <span class="key">Ctrl</span>+v<sub class="low">E</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Increase/decrease number under cursor:</span><span class="DF"> <span class="CC"><span class="key">Ctrl</span>+a<sub class="low">C</sub></span>&nbsp;/&nbsp;<span class="CC"><span class="key">Ctrl</span>+x<sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Name of current file:</span><span class="DF"> <span class="CE"><span class="key">Ctrl</span>+r%<sub class="low">E</sub></span></span></li>
+</ul>
+
+<h5>Completition at <em>ex</em>-command line</h5>
+
+<ul>
+<li class="dotfill"><span class="descr"> Insert content of register <em>a</em>:</span><span class="DF"> <span class="CSK"><span class="key">Ctrl</span>+r<em>a</em></span></span></li>
+<li class="dotfill"><span class="descr"> Insert word under the cursor:</span><span class="DF"> <span class="CSK"><span class="key">Ctrl</span>+r <span class="key">Ctrl</span>+a</span> </span></li>
+<li class="dotfill"><span class="descr"> Cancel command:</span><span class="DF"> <span class="CSK"><span class="key">Ctrl</span>+u</span></li>
+</ul>
+
+<h4>Insert special sumbols</h4>
+
+<ul>
+<li class="dotfill"><span class="descr"> Display unprintable characters:</span><span class="DF"> <span class="CS">set list</span></span></li>
+<li class="dotfill"><span class="descr"> Insert ASCII char:</span><span class="DF"> <span class="CE"><span class="key">Ctrl</span>+v <em>code</em> <span class="key">End</span><sub class="low">E</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Show ASCII/UTF-8 of char under cursor:</span><span class="DF"> <span class="CC">ga<sub class="low">C</sub></span>&nbsp;/&nbsp;<span class="CC">g8<sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Suppress control character, e.g. <span class="C"><span class="key">Tab</span></span> (<tt>^I</tt>):</span><span class="DF"> <span class="CE"><span class="key">Ctrl</span>+v <span class="key">Tab</span><sub class="low">E</sub></span> </span></li>
+<li class="dotfill"><span class="descr"> Table of Unicode digraphs:</span><span class="DF"> <span class="CS"><span class="U">dig</span>raphs</span></li>
+<li class="dotfill"><span class="descr"> Insert digraphs:</span><span class="DF"><span class="CE"><span class="key">Ctrl</span>+k <em>K<sub>1</sub> K<sub>2</sub></em><sub class="low">E</sub></span></span></li>
+<li> Digraphs: ± <tt>+-</tt>  ° <tt>DG</tt>  × <tt>*X</tt>  ÷ <tt>-:</tt>  – <tt>-N</tt>  — <tt>-M</tt>  „ <tt>:9</tt>  “ <tt>:6</tt></li>
+<li class="dotfill"><span class="descr"> Define digraphs <tt>.3</tt> for „…“ (U+2026):</span><span class="DF"> <span class="CS">dig .3 8230</span></span></li>
+</ul>
+
+
+
+<h3>Search and replace</h3>
+
+<ul>
+<li class="dotfill"><span class="descr"> Ignore case:</span><span class="DF"> <span class="CS">set <span class="U">i</span>gnore<span class="U">c</span>ase</span>, opposite <span class="CS">set noic</span></span></li>
+<li class="dotfill"><span class="descr"> Search forward/backward:</span><span class="DF"> <span class="CC">/<em>pattern</em><sub class="low">C</sub></span>&nbsp;/&nbsp;<span class="CC">?<em>pattern</em><sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Repeat last search:</span><span class="DF"> <span class="CC">/<sub class="low">C</sub></span>&nbsp;/&nbsp;<span class="CC">?<sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Ignore case:</span><span class="DF"> <span class="CC">/\c<em>pattern</em><sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Jump to next searched place:</span><span class="DF"> <span class="CC">n<sub class="low">C</sub></span> forward, <span class="CC">N<sub class="low">C</sub></span> backward</span></li>
+<li class="dotfill"><span class="descr"> Search for word under the cursor:</span><span class="DF"> <span class="CC">#<sub class="low">C</sub></span> forward, <span class="CC">*<sub class="low">C</sub></span> backward</span></li>
+<li class="dotfill"><span class="descr"> Search by ASCII code of „M“:</span><span class="DF"> <tt>%d77</tt>, <tt>%x4d</tt>, <tt>%o0115</tt> </span></li>
+<li class="dotfill"><span class="descr"> Search Unicode character „α“ (U+03B1):</span><span class="DF"> <tt>%u03b1</tt></span></li>
+<li class="dotfill"><span class="descr"> Substitution:</span><span class="DF"> <span class="CS"><span class="U">s</span>ubstitute/from/to/<em>flag</em></span>, abbr. <span class="CS">s</span></span></li>
+<li class="dotfill"><span class="descr"> Repeat last substitution:</span><span class="DF"> <span class="CS">s</span> &nbsp;≈&nbsp;<span class="CS">s//~/</span></span></li>
+<li> The delimiter <tt>/</tt> can be any char instead <tt>\</tt>, <tt>"</tt> and <tt>|</tt></li>
+<li class="dotfill"><span class="descr"> Flags:</span><span class="DF"> <tt> c</tt>&nbsp;– confirmation, <tt> g</tt>&nbsp;– for whole line, <tt> p</tt>&nbsp;– print, without flag changes only first occurence</span></li>
+<li class="dotfill"><span class="descr"> Cancel highlight:</span><span class="DF"> <span class="CS"><span class="U">noh</span>lsearch</span></li>
+<li class="dotfill"><span class="descr"> Search in more files:</span><span class="DF"><span class="CS"><span class="U">vim</span>grep /<em>pattern</em>/g <em>f</em><sub>1</sub> <em>f</em><sub>2</sub> … <em>f</em><sub>n</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Execute command on line with:</span><span class="DF"> <span class="CS"><span class="U">g</span>lobal/<em>pattern</em>/<em>command</em></span> </span></li>
+<li class="dotfill"><span class="descr"> Execute where pattern not match:</span><span class="DF"> <span class="CS">g!/<em>pattern</em>/<em>command</em></span></span></li>
+</ul>
+
+<h4>Regular expressions</h4>
+
+<ul>
+<li class="dotfill"><span class="descr"> Begin/end of:</span><span class="DF"> line <tt>^</tt>&nbsp;/&nbsp;<tt> &#x24;</tt>, word <tt>\&lt;</tt>&nbsp;/&nbsp;<tt>\></tt>, file <tt>%^</tt>&nbsp;/&nbsp;<tt>%$</tt> </span></li>
+<li class="dotfill"><span class="descr"> Last searched pattern/substitution: </span><span class="DF"> <tt>&</tt>&nbsp;/&nbsp;<tt> ~</tt></li>
+<li class="dotfill"><span class="descr"> Matches any character:</span><span class="DF"> <tt>.</tt> (dot)</span></li>
+<li class="dotfill"><span class="descr"> Or/and:</span><span class="DF"> <tt>|</tt>&nbsp;/&nbsp;<tt>\&</tt></span></li>
+<li class="dotfill"><span class="descr"> Suppress next special symbol:</span><span class="DF"> <tt>\.</tt>, <tt>\&</tt>, <tt> &#x24;</tt>, <tt>\^</tt>, <tt>\\</tt>, <tt>\*</tt> </span></li>
+<li class="dotfill"><span class="descr"> Atom:</span><span class="DF"> <tt>\(</tt>pattern<tt>\)</tt></span></li>
+<li class="dotfill"><span class="descr"> <em>N</em><sup>th</sup> reference:</span><span class="DF"> <tt> <tt>\</tt><em>N</em></tt>, first <tt>\(</tt>pattern<tt>\)</tt> = <tt>\1</tt></span></li>
+<li class="dotfill"><span class="descr"> Ranges:</span><span class="DF"> <tt>[abcd]</tt> &nbsp;≈&nbsp; <tt>[a-d]</tt>, <tt>[a-zA-Z]</tt> &nbsp;≈&nbsp; <tt> \a</tt>, <tt>[0-9]</tt> &nbsp;≈&nbsp; <tt>\d</tt></span></li>
+<li class="dotfill"><span class="descr"> Ignored chars and ranges:</span><span class="DF"> <tt>[^abcd]</tt> &nbsp;≈&nbsp; <tt>[^a-d]</tt></span></li>
+<li class="dotfill"><span class="descr"> Zero or multiple <em>z</em>:</span><span class="DF"> <tt> <em>z</em><tt>*</tt></tt> &nbsp;≈&nbsp;<tt><em>z</em><tt>\{0,\</tt></tt>}</span></li>
+<li class="dotfill"><span class="descr"> One or multiple <em>z</em>:</span><span class="DF"> <tt> <em>z</em><tt>\+</tt></tt> &nbsp;≈&nbsp;<tt><em>z</em><tt>\{1,\</tt></tt>}</span></li>
+<li class="dotfill"><span class="descr"> One or zero times:</span><span class="DF"> <tt> <em>z</em></tt><tt>\?</tt> &nbsp;≈&nbsp;<tt><em>z</em><tt>\{0,1\</tt></tt>}</span></li>
+<li class="dotfill"><span class="descr"> Repetition <em>z</em>:</span><span class="DF"> <tt>z\{n\</tt>} accurate <em>n×</em>, <tt>z\{n,\</tt>} minimal <em>n×</em>, <tt>z\{n,m\</tt>} min. <em>n</em> and max. <em>m</em> times </span></li>
+
+</ul>
+
+<h3>Folding of text blocks (<span class="CS">help folding</span>)</h3>
+
+<ul>
+<li class="dotfill"><span class="descr"> Fold text:</span><span class="DF"> <span class="CC">zf<sub class="low">C</sub></span>, selected <span class="CV">zf<sub class="low">V</sub></span> </span></li>
+<li class="dotfill"><span class="descr"> Jump to beginning/end of fold:</span><span class="DF"> <span class="CC">[z<sub class="low">C</sub></span>&nbsp;/&nbsp;<span class="CC">]z<sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Open fold under the cursor:</span><span class="DF"> <span class="CC">zo<sub class="low">C</sub></span>, recursively <span class="CC">zO<sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Open/close all:</span><span class="DF"> <span class="CC">zR<sub class="low">C</sub></span>&nbsp;/&nbsp;<span class="CC">zM<sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Switch fold-unfold:</span><span class="DF"> <span class="CC">za<sub class="low">C</sub></span>, recursively <span class="CC">zA<sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Highlight folded parts:</span><span class="DF"> <span class="CS">set <span class="U">f</span>ol<span class="U">dc</span>olumn=5</span></li>
+</ul>
+
+<h3>Edit more files, windows and tabs</h3>
+
+<h4>More files (edit buffers)</h4>
+
+<ul>
+<li class="dotfill"><span class="descr"> Start vim:</span><span class="DF"> <tt> vim file<sub>1</sub> file<sub>2</sub>…</tt></span></li>
+<li class="dotfill"><span class="descr"> Display buffers:</span><span class="DF"> <span class="CS">ls</span> &nbsp;≈&nbsp; <span class="CS">files</span> (numbered)</span></li>
+<li class="dotfill"><span class="descr"> Switch to next/previous file:</span><span class="DF"> <span class="CS"><span class="U">n</span>ext</span>&nbsp;/&nbsp;<span class="CS"><span class="U">p</span>rev</span></li>
+<li class="dotfill"><span class="descr"> Switch to first/last file:</span><span class="DF"><span class="CS"><span class="U">rew</span>ind</span> &nbsp;≈&nbsp; <span class="CS"><span class="U">fir</span>st</span>&nbsp;/&nbsp;<span class="CS"><span class="U">la</span>st</span></li>
+<li class="dotfill"><span class="descr"> Perform mass <em>command</em> for all files:</span><span class="DF"><span class="CS">bufdo <em>command</em></span></span></li>
+</ul>
+
+<h4>Windows</h4>
+
+<ul>
+<li class="dotfill"><span class="descr"> New window:</span><span class="DF"> <span class="CS">new</span> &nbsp;≈&nbsp; <span class="CC"><span class="key">Ctrl</span>+wn<sub class="low">C</sub></span> </span></li>
+<li class="dotfill"><span class="descr"> Split window:</span><span class="DF"> <span class="CS"><span class="U">sp</span>lit</span> &nbsp;≈&nbsp; <span class="CC"><span class="key">Ctrl</span>+ws<sub class="low">C</sub></span></li>
+<li class="dotfill"><span class="descr"> Vertically split window:</span><span class="DF"> <span class="CS"><span class="U">vs</span>plit</span> &nbsp;≈&nbsp; <span class="CC"><span class="key">Ctrl</span>+wv<sub class="low">C</sub></span></li>
+<li class="dotfill"><span class="descr"> Close window:</span><span class="DF"> <span class="CS"><span class="U">clo</span>se</span> &nbsp;≈&nbsp; <span class="CC"><span class="key">Ctrl</span>+wc<sub class="low">C</sub></span> </span></li>
+<li class="dotfill"><span class="descr"> Close all except current:</span><span class="DF"> <span class="CS"><span class="U">on</span>ly</span> &nbsp;≈&nbsp; <span class="CC"><span class="key">Ctrl</span>+wo<sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Jump to next window:</span><span class="DF"> <span class="CC"><span class="key">Ctrl</span>+ww<sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Shrink/large window by <em>n</em> lines:</span><span class="DF"> <span class="CC"><span class="key">Ctrl</span>+w<em>n</em>-<sub class="low">C</sub></span>&nbsp;/&nbsp;<span class="CC"><span class="key">Ctrl</span>+w<em>n</em>+<sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Shrink/large window by <em>n</em> columns:</span><span class="DF"> <span class="CC"><span class="key">Ctrl</span>+w<em>n</em><tt>&lt;</tt><sub class="low">C</sub></span>&nbsp;/&nbsp;<span class="CC"><span class="key">Ctrl</span>+w<em>n</em><tt>></tt><sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Same size for all windows:</span><span class="DF"> <span class="CC"><span class="key">Ctrl</span>+w=<sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Mass:</span><span class="DF"> write <span class="CS"><span class="U">wa</span>ll</span>, quit <span class="CS"><span class="U">qa</span>ll</span>, <span class="CS"><span class="U">wqa</span>ll</span></span></li>
+<li class="dotfill"><span class="descr"> Perform mass <em>command</em> for all windows:</span><span class="DF"> <span class="CS">windo <em>command</em></span></span></li>
+<li class="dotfill"><span class="descr"> Open name under cursor in new window:</span><span class="DF"> <span class="CC"><span class="key">Ctrl</span>+wf<sub class="low">C</sub></span></span></li>
+</ul>
+
+<h5>Moving in window</h5>
+
+<ul>
+<li class="dotfill"><span class="descr"> Jump to window line:</span><span class="DF"> top <span class="CC">H<sub class="low">C</sub></span>, middle <span class="CC">M<sub class="low">C</sub></span>, last <span class="CC">L<sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Jump to <em>n</em><sup>th</sup> line from top/bottom:</span><span class="DF"> <span class="CC"><em>n</em>H<sub class="low">C</sub></span>/<span class="CC"><em>n</em>L<sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Set actual line to:</span><span class="DF"> top <span class="CC">z<span class="key">End</span><sub class="low">C</sub></span>, center <span class="CC">z.<sub class="low">C</sub></span>, bottom <span class="CC">z-<sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Scroll window up/down by:</span><span class="DF"> line <span class="CC"><span class="key">Ctrl</span>+e<sub class="low">C</sub></span>&nbsp;/&nbsp;<span class="CC"><span class="key">Ctrl</span>+y<sub class="low">C</sub></span>, page <span class="CC"><span class="key">Ctrl</span>+b<sub class="low">C</sub></span>&nbsp;/&nbsp;<span class="CC"><span class="key">Ctrl</span>+f<sub class="low">C</sub></span>, half-page <span class="CC"><span class="key">Ctrl</span>+u<sub class="low">C</sub></span>&nbsp;/&nbsp;<span class="CC"><span class="key">Ctrl</span>+d<sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Redraw window without scrolling:</span><span class="DF"> <span class="CC"><span class="key">Ctrl</span>+l<sub class="low">C</sub></span></span></li>
+</ul>
+
+<h4>Tabs</h4>
+
+<ul>
+<li class="dotfill"><span class="descr"> Command:</span><span class="DF"> <tt> vim -p <em>f</em><sub>1</sub>, <em>f</em><sub>2</sub> …</tt> open files in tabs</span></li>
+<li class="dotfill"><span class="descr"> Create/close tab:</span><span class="DF"> <span class="CS"><span class="U">tab</span>n<span class="U">e</span>w</span>&nbsp;/&nbsp;<span class="CS">tabc</span></span></li>
+<li class="dotfill"><span class="descr"> Close all, except current tab:</span><span class="DF"> <span class="CS">tabo</span></span></li>
+<li class="dotfill"><span class="descr"> Go to next/previous:</span><span class="DF"> <span class="CS">tabn</span> &nbsp;≈&nbsp; <span class="CE"><span class="key">Ctrl</span>+<span class="key">PageDown</span><sub class="low">E</sub></span>&nbsp;/&nbsp;<span class="CS">tabp</span> &nbsp;≈&nbsp; <span class="CE"><span class="key">Ctrl</span>+<span class="key">PageUp</span><sub class="low">E</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Move after the fold <em>n</em>:</span><span class="DF"> <span class="CS">tabm <em>n</em></span></span></li>
+<li class="dotfill"><span class="descr"> Perform mass <em>command</em>:</span><span class="DF"> <span class="CS"><span class="U">tabd</span>o <em>command</em></span></span></li>
+<li class="dotfill"><span class="descr"> Change tab design:</span><span class="DF"> <span class="CS">set <span class="U">ta</span>b<span class="U">l</span>ine</span></li>
+<li class="dotfill"><span class="descr"> Open name of file under cursor in new tab:</span><span class="DF"> <span class="CC"><span class="key">Ctrl</span>+wgf<sub class="low">C</sub></span></span></li>
+</ul>
+
+<h3>Visual mode</h3>
+
+<ul>
+<li class="dotfill"><span class="descr"> Select:</span><span class="DF"> chars <span class="CC">v<sub class="low">C</sub></span>, lines <span class="CC">V<sub class="low">C</sub></span>, cursor sets range</span></li>
+<li class="dotfill"><span class="descr"> Block text selection:</span><span class="DF"> <span class="CC"><span class="key">Ctrl</span>+V<sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Change to upper/lower case:</span><span class="DF"> <span class="CV">U<sub class="low">V</sub></span>&nbsp;/&nbsp;<span class="CV">u<sub class="low">V</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Select:</span><span class="DF"> word <span class="CV">aw<sub class="low">V</sub></span>, ()/{} block <span class="CV">ab<sub class="low">V</sub></span>&nbsp;/&nbsp;<span class="CV">aB<sub class="low">V</sub></span>, no brackets <span class="CV">ib<sub class="low">V</sub></span>&nbsp;/&nbsp;<span class="CV">iB<sub class="low">V</sub></span>; XML block with marks <span class="CV">at<sub class="low">V</sub></span>, inside marks <span class="CV">it<sub class="low">V</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Perform <em>command</em> in selected range:</span><span class="DF"> <span class="CS">'&lt;,'> <em>command</em></span></span></li>
+</ul>
+
+
+<h3>Abbreviations, key maps and macros</h3>
+
+<ul>
+<li class="dotfill"><span class="descr"> Define abbreviation:</span><span class="DF"> <span class="CS"><span class="U">ab</span>reviate <em>abbr</em> <em>full expansion</em></span></span></li>
+<li class="dotfill"><span class="descr"> Abbreviations for insert/ex-mode:</span><span class="DF"> <span class="CS"><span class="U">ia</span>bbrev</span>&nbsp;/&nbsp;<span class="CS"><span class="U">ca</span>bbrev</span></li>
+<li class="dotfill"><span class="descr"> List/delete abbreviations:</span><span class="DF"> <span class="CS">ab</span>&nbsp;/&nbsp;<span class="CS">unab <em>abbreviation</em></span></span></li>
+<li class="dotfill"><span class="descr"> Map key <em>x</em>:</span><span class="DF"> <span class="CS">map <em>x</em> <em>commands</em></span></span></li>
+<li class="dotfill"><span class="descr"> Map by mode:</span><span class="DF"> <span class="CS">map</span> <span class="CS"><span class="U">im</span>ap</span> <span class="CS"><span class="U">cm</span>ap</span> <span class="CS"><span class="U">nm</span>ap</span> <span class="CS"><span class="U">vm</span>ap</span></span></li>
+<li class="dotfill"><span class="descr"> Map key for insert mode:</span><span class="DF"> <span class="CS">map! <em>x</em> <em>commands</em></span></span></li>
+<li class="dotfill"><span class="descr"> List key mapping:</span><span class="DF"> <span class="CS">map</span>/<span class="CS">map!</span></span></li>
+<li class="dotfill"><span class="descr"> Delete mapping:</span><span class="DF"> <span class="CS"><span class="U">unm</span>ap <em>x</em></span>/<span class="CS"><span class="U">unm</span>ap! <em>x</em></span></span></li>
+<li class="dotfill"><span class="descr"> Write macro to register <em>a</em>:</span><span class="DF"> <span class="CC">q<em>a</em><sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> End macro definition:</span><span class="DF"> <span class="CC">q<sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Perform macro in register <em>a</em>:</span><span class="DF"> <span class="CC"><tt>@</tt><em>a</em><sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Repeat last called macro:</span><span class="DF"> <span class="CC"><tt>@@</tt><sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Execute macro <em>a</em> as <em>ex</em>-command:</span><span class="DF"> <span class="CS">@<em>a</em></span></span></li>
+</ul>
+
+<h3>Spell checking</h3>
+
+
+
+<ul>
+<li class="dotfill"><span class="descr"> Switch on spelling:</span><span class="DF"> <span class="CS">set spell <span class="U">sp</span>e<span class="U">l</span>llang=cs,en</span></li>
+<li class="dotfill"><span class="descr"> Search next/previous mistype:</span><span class="DF"> <span class="CC">]s<sub class="low">C</sub></span>&nbsp;/&nbsp;<span class="CC">[s<sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Add to dictionary a word under cursor:</span><span class="DF"> <span class="CC">zg<sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Add temporary to dictionary:</span><span class="DF"> <span class="CC">zG<sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Set word as bad:</span><span class="DF"> <span class="CC">zw<sub class="low">C</sub></span>, temporary <span class="CC">zW<sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Suggest correctly spelled words:</span><span class="DF"> <span class="CC">z=<sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Always take the first suggestion:</span><span class="DF"> <span class="CC">1z=<sub class="low">C</sub></span></span></li>
+</ul>
+
+<h3>Programmer support</h3>
+
+<ul>
+<li class="dotfill"><span class="descr"> Run <tt> make</tt>:</span><span class="DF"> <span class="CS"><span class="U">mak</span>e</span></li>
+<li class="dotfill"><span class="descr"> Jump to next/previous error:</span><span class="DF"> <span class="CS"><span class="U">cp</span>revious</span>&nbsp;/&nbsp;<span class="CS"><span class="U">cn</span>ext</span></span></li>
+<li class="dotfill"><span class="descr"> List all errors:</span><span class="DF"> <span class="CS"><span class="U">cl</span>ist</span></span></li>
+<li class="dotfill"><span class="descr"> Add window with list of errors:</span><span class="DF"> <span class="CS"><span class="U">cope</span>n</span></span></li>
+</ul>
+
+<h3>Other</h3>
+
+<ul>
+<li class="dotfill"><span class="descr"> Start shell:</span><span class="DF"> <span class="CS"><span class="U">sh</span>ell</span></li>
+<li class="dotfill"><span class="descr"> Open manpage of command under cursor:</span><span class="DF"> <span class="CC">K<sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Open file under the cursor:</span><span class="DF"> <span class="CC">gf<sub class="low">C</sub></span></span></li>
+<li class="dotfill"><span class="descr"> Save as color HTML:</span><span class="DF"> <span class="CS"><span class="U">ru</span>ntime! syntax/2html.vim</span></span></li>
+<li> Wildcard of current file <tt>%</tt>, e.g. <span class="CS">!context %</span> process current file with ConTeXt</li>
+</ul>
+
+
+
+
+
+
+
+
+
+</body></html>
