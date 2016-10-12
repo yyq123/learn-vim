@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>learn vim 00</title>
+</head>
+<body>
+	<h1>VIM学习笔记</h1>
+	<p>一直在学，也一直在用<a href="http://www.vim.org/">Vim</a>。一直遇到问题，也一直在得到答案。慢慢的，<a href="http://www.vim.org/">Vim</a>成了我最重要的文本编辑器和网页编辑器。</p>
+	<p>某日在某Blog，下载了一个名为《vi编辑器的学习使用》的文件。打开一看&mdash;&mdash;密密麻麻的文字有一百多页。当时，觉得复杂的可怕。现在，才越来越发现它的价值。每次有所疑问，都能从这个文件中找到解答。每天花十几分钟，阅读几十行，也有不少收获。可问题是，这个文章的排版真是糟糕，命令和文字混在一起，内容也缺乏有条理的分隔，阅读起来十分吃力。所以，我在边阅读时也边整理，希望能把它以更好的形式展示出来。我将文章按主题分拆为多个章节，并尽量控制每节的信息量，以便读者消化其中的知识；每节中通过文字色彩和字体，将命令、快捷键突出显示出来；在每节结尾，提供一个命令列表，以便回顾文中介绍的重要命令。如果这些文章能对喜欢<a href="http://www.vim.org/">Vim</a>的朋友有所益处，我将不胜荣幸。</p>
+	<p><strong>1976</strong>年，Bill Joy开发了<strong>vi</strong>，他也是伯克利大学的毕业生，后来他跟其他人一起成立了 Sun Microsystems公司并成为了Sun的首席科学家。一开始Bill开发了ex，尔后开发了vi作为 ex的visual interface，也就是说vi允许一次能看到一屏的文本而非一行，vi也因此得名。</p>
+	<p><strong>1988</strong>年，Bram在Amiga计算机上改进一个叫Stevie的VI版本，他称之为“Vi IMitation”。
+	<p><strong>1991年11月2日</strong>，Vim的首个版本1.14g公开发布。Vim既是开源软件（Opensource），也是慈善软件（Charityware）的概念，你可以自由地使用Vim，但鼓励用户通过<a href="http://iccf-holland.org/">ICCF Holland</a>为乌干达的孤儿做出捐助。 </p>
+	<p><strong>1992</strong>，随着功能逐渐丰富的1.22版本发布，<strong>VIM</strong>的名称也想要改成了“Vi IMproved”。相比原始的VI，VIM增加的一项最重要的功能便是多级撤销，VI只支持一级撤销。</p>
+
+
+	* Vim is everywhere. Mac上有MacVim，Windows上有GVim, Linux上有Vim. I also have an Apache server up on Amazon with vi that I can use over SSH! Each (aside from my server) uses my same plugin/configuration set so I’m at home on any one of them, coding in an environment I know and love.
+	* Vim is forever. The damn thing has been around since the dawn of time – and it will no doubt be around long after we’re dust. The skills you pick up now will last you for many, many years – and you’ll only get faster.
+	* There’s a plugin for that. Code formatting, automatic comments, Rails-specific navigation and generation. Unit testing with RSpec or Cucumber. Git and Github. Syntax highlighting and code completion (using CTRL-n – check it out it’s awesome!), and Code snippets. All of this, and a whole lot more can be mixxed and matched to create an environment that’s just right for you.
+	<p>Modal editing with sophisticated keyboard shortcuts: Vim has separate interaction modes for text input and text editing. Insert mode behaves largely as you would expect a regular text editor to work—commands are performed with conventional keyboard shortcuts and characters are appended to the buffer as you press the associated keys. In the “normal” mode, however, sequences of key presses perform commands. The most useful commands allow you to quickly navigate and manipulate the text in the buffer. You can extensively customize the behavior of the bindings to create custom shortcuts and commands.</p>
+	<p>强大的搜索功能: Vim has some very sophisticated tools for automated search and replace, including extensive support for regular expressions. It also has a built-in version of the grep command, which integrates with Vim’s enormously convenient quickfix feature—a special buffer that shows you a list of results and allows you to conveniently jump between them.</p>
+	<p>不提网上浩如烟海的Vim文档，只是内置的在线帮助 “:help” 就已经完整的令人发指！</p>
+	<p>Vim起初是为在终端中使用而设计的，但现如今已有多种图形界面提供菜单、工具栏和滚动条.</p>
+
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">版本历史</p>
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>Timeline</caption>
+		<tr><td><code class="inset">1988</code></td><td>Vim 1.0</td><td>Vi IMitation on the Amiga</td></tr>
+		<tr><td><code class="inset">1991</code></td><td>Vim 1.14</td><td>First public release (on Fred Fish disk #591)</td></tr>
+		<tr><td><code class="inset">1992</code></td><td>Vim 1.22</td><td>Port to Unix, renamed to Vi IMproved</td></tr>
+		<tr><td><code class="inset">1994</code></td><td>Vim 3.0</td><td>Multiple windows</td></tr>
+		<tr><td><code class="inset">1996</code></td><td>Vim 4.0</td><td>GUI</td></tr>
+		<tr><td><code class="inset">1998</code></td><td>Vim 5.0</td><td>Syntax highlighting</td></tr>
+		<tr><td><code class="inset">2001</code></td><td>Vim 6.0</td><td>Folding, multi-language</td></tr>
+		<tr><td><code class="inset">2006</code></td><td>Vim 7.0</td><td>On the fly spell checker, support for tabs</td></tr>
+		<tr><td><code class="inset">2016</code></td><td>Vim 8.0</td><td>Jobs, Timers, Partial, Packages</td></tr>
+	</table>
+	<p style="font-weight: bold">目录</p>
+	<p>第一部分 基础知识</p>
+	<ol start="1">
+		<li><a href="http://yyq123.journalspace.com/?entryid=191">基本编辑命令</a></li>
+		<li><a href="http://yyq123.journalspace.com/?entryid=192">移动和修改命令</a></li>
+		<li><a href="http://yyq123.journalspace.com/?entryid=193">复制和粘贴命令</a></li>
+		<li><a href="http://yyq123.journalspace.com/?entryid=194">查找文本</a></li>
+		<li><a href="http://yyq123.journalspace.com/?entryid=195">替换文本</a></li>
+	</ol>
+	<p>第二部分 编辑多个文件</p>
+	<ol start="6">
+		<li><a href="http://yyq123.journalspace.com/?entryid=230">使用多标签页</a></li>
+	</ol>
+</body>
+</html>
+
