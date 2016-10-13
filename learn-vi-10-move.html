@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 快速移动</title>
+</head>
+<body>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">移动的历史记录</p>
+	<p>Vim可以记录你曾经到过的地方，并且可以使你回到前一次到过的地方。例如在编辑文件时执行了下面的命令，从而到过不同的行：<code class="inset">1G</code>到第一行；<code class="inset">10G</code>到第十行；<code class="inset">20G</code>到第二十行。现在执行<code class="inset">:jumps</code>命令，就会看到一个曾到过的行的列表。使用命令<code class="inset">CTRL-O</code>跳转到移动记录列表中上一个位置。而命令<code class="inset">CTRL-I</code>跳转到移动记录列表中下一个位置。你不但可以在当前文件内跳转，甚至还可以移动到曾经涉足过的其它文件。</p>
+	<p><a href="https://www.flickr.com/photos/yyq123/29665041673/in/dateposted/" title="jumps"><img src="https://c1.staticflickr.com/9/8131/29665041673_cfe85c53d8_o.png" width="361" height="111" alt="jumps"></a></p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">显示位置信息</p>
+	<p>命令<code class="inset">CTRL-G</code>可在屏幕的下端显示当前所在位置的信息。我们还可以在CTRL-G命令加上一个数字参数，这个数字越大得到的信息就越详细。命令<code class="inset">1CTRL-G</code>会显示文件的全路径。命令<code class="inset">2CTRL-G</code>会同时显示缓冲区的数字标号。</p>
+	<p><a href="https://www.flickr.com/photos/yyq123/29665109363/in/dateposted/" title="info_CtrlG"><img src="https://c2.staticflickr.com/6/5746/29665109363_9f2976235a_o.png" width="608" height="44" alt="info_CtrlG"></a></p>
+	<p>命令<code class="inset">gCTRL-G</code>可显示出当前文件中的字符数的信息。主要显示出当前行数（Line）、列数（Col）、字数（Word）、字符数（Char）和字节数（Byte）等信息。</p>
+	<p><a  href="https://www.flickr.com/photos/yyq123/29665109203/in/photostream/" title="info_gCtrlG"><img src="https://c1.staticflickr.com/9/8278/29665109203_f825ac8782_o.png" width="617" height="61" alt="info_gCtrlG"></a></p>
+	<p>命令<code class="inset">:set ruler</code>可以打开标尺选项(ruler option)。将在屏幕右下角，显示当前所在的行和列，以及相对于整个文件所处的位置。</p>
+	<p><a href="https://www.flickr.com/photos/yyq123/29665133933/in/dateposted/" title="set_ruler"><img src="https://c1.staticflickr.com/9/8270/29665133933_23232f877d_o.png" width="608" height="28" alt="set_ruler"></a></p>
+<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+<caption>命令小结</caption>
+<tr><td><code class="inset">^</code></td><td colspan="1" rowspan="3">移动到当前行的第一个非空字符处</td></tr>
+<tr><td><code class="inset">g^</code></td></tr>
+<tr><td><code class="inset">_</code></td></tr>
+<tr><td><code class="inset">&lt;Home&gt;</code></td><td  colspan="1" rowspan="4">移动到当前行的第一个字符处</td></tr>
+<tr><td><code class="inset">g&lt;Home&gt;</code></td></tr>
+<tr><td><code class="inset">0</code></td></tr>
+<tr><td><code class="inset">g0</code></td></tr>
+<tr><td><code class="inset">g_</code></td><td>移动到当前行的最后一个非空字符处</td></tr>
+<tr><td><code class="inset">&lt;End&gt;</code></td><td  colspan="1" rowspan="4">移动到当前行的最后一个字符处</td></tr>
+<tr><td><code class="inset">g&lt;End&gt;</code></td></tr>
+<tr><td><code class="inset">$</code></td></tr>
+<tr><td><code class="inset">g$</code></td></tr>
+<tr><td><code class="inset">gm</code></td><td>移动到当前的中间处</td></tr>
+<tr><td><code class="inset">count|</code></td><td>移动到count列</td></tr>
+<tr><td><code class="inset">counth</code></td><td>向左移动count个字符</td></tr>
+<tr><td><code class="inset">countl</code></td><td>向右移动count个字符</td></tr>
+<tr><td><code class="inset">countgo</code></td><td>移动到第count个字符处</td></tr>
+<tr><td><code class="inset">-</code></td><td>移动到上一行的第一个非空字符处</td></tr>
+<tr><td><code class="inset">+</code></td><td>移动到下一行的第一个非空字符处</td></tr>
+<tr><td><code class="inset">)</code></td><td>向前移动一个句子</td></tr>
+<tr><td><code class="inset">(</code></td><td>向后移动一个句子</td></tr>
+<tr><td><code class="inset">}</code></td><td>向前移动一个段落</td></tr>
+<tr><td><code class="inset">{</code></td><td>向后移动一个段落</td></tr>
+<tr><td><code class="inset">G</code></td><td>移动到文件末尾</td></tr>
+<tr><td><code class="inset">gg</code></td><td>移动到文件开头</td></tr>
+<tr><td><code class="inset">`.</code></td><td>移动到上次编辑处</td></tr>
+</table>
+<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.1</span><span>&lt;<a title="在单词间移动" href="http://yyq123.blogspot.com/2009/02/vim_4321.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="滚动屏幕" href="http://yyq123.blogspot.com/2009/02/vim_27.html">下一篇</a>&gt;</span></p>
+</body>
+</html>
