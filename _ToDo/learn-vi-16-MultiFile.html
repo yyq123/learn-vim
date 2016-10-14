@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 编辑多个文件(Edit Multi Files)</title>
+</head>
+<body>
+	<p style="font-weight:bold">拷贝</p>
+	<p>使用传统的Vi风格命令在不同窗口之间拷贝文本，可以使用如下方法：</p>
+	<ol>
+		<li>编辑第一文件</li>
+		<li>执行命令<code class="inset">:split second_file</code>打开另一个窗口并开始编辑第二个文件</li>
+		<li>使用命令<code class="inset">ctrl+Wp</code>回到含有原始文件的前一个窗口</li>
+		<li>将光标移动到要拷贝文本的第一行</li>
+		<li>用命令<code class="inset">ma</code>标记这一行</li>
+		<li>移动到要拷贝文本的最后一行</li>
+		<li>执行命令<code class="inset">y'a</code>来复制当前光标位置到所做标记之间的文本</li>
+		<li>使用命令<code class="inset">ctrl+Wp</code>回到将要放置文本的文件</li>
+		<li>将光标移到将要插入文本的地方</li>
+		<li>使用命令<code class="inset">P</code>将复制的文本粘贴到文件中</li>
+	</ol>
+	<p>使用可视化方式在不同窗口之间拷贝文本，可以使用如下方法：</p>
+	<ol>
+		<li>编辑第一文件</li>
+		<li>执行命令<code class="inset">:split second_file</code>打开另一个窗口并开始编辑第二个文件</li>
+		<li>使用命令<code class="inset">ctrl+Wp</code>p回到含有原始文件的前一个窗口</li>
+		<li>将光标移动到要拷贝文本的第一行</li>
+		<li>执行命令<code class="inset">V</code>进入可视化模式</li>
+		<li>移动到将要复制文本的最后一行，被选中的文本将会被高亮显示</li>
+		<li>执行命令<code class="inset">y</code>复制选中的文本</li>
+		<li>使用命令<code class="inset">ctrl+Wp</code>回到将要放置文本的文件</li>
+		<li>使用命令<code class="inset">P</code>将复制的文本粘贴到文件中</li>
+	</ol>
+
+	<p style="font-weight:bold">读取</p>
+	<p>使用<code class="inset">:read filename</code>命令，可读进一个文件并将内容插在当前行的后面。</p>
+	
+	<p style="font-weight:bold">写入</p>
+	<p>命令<code class="inset">:write</code>用来写入文件，可以保存当前文件。我们也可以用命令<code class="inset">:write newfile</code>将当前的文件内容写入一个新的文件。一般情况下:write命令并不会覆盖已经存在的文件。我们可以用强制操作（!）选项，来覆盖已经存在的文件。而这个命令对于分拆文件也很有用。可以用可视化模式选定一个范围，然后将这个选定的范围写入新的文件，从而实现分拆文件的目的。</p>
+	<p>命令<code class="inset">:write &gt;&gt; logfile</code>将文本写入到目标文件的末尾。这样实现了文件添加功能，免去了拷贝，编辑的过程。</p>
+	<p>命令<code class="inset">:wall</code>可以保存所有已经修改过的文件（包括隐藏缓冲区中的文件）。</p>
+
+	<p style="font-weight:bold">退出</p>
+	<p><code class="inset">:quit</code>可以退出当前文件。如果同时打开了多个窗口,可以用<code class="inset">:qall</code>命令退出所有文件。如果文件进行了修改但是没有保存，在执行这个命令时会给出警告信息。如果想要放弃所做的修改而强行退出，可以使用<code class="inset">:qall!</code>命令。我们还可以将这个两个命令进行组合，实现对所有文件的保存并退出的命令<code class="inset">:wqall</code>。</p>
+
+	<p style="font-weight:bold">参数/缓冲区/窗口 命令对照</p>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>参数和缓冲区命令对照</caption>
+		<tr><td><code class="inset">:next</code></td><td>切换到下一文件</td><td><code class="inset">:bnext</code></td></tr>
+		<tr><td><code class="inset">:previous</code></td><td rowspan="2">切换到上一文件</td><td><code class="inset">:bprevious</code></td></tr>
+		<tr><td><code class="inset">:Next</code></td><td><code class="inset">:bNext</code></td></tr>
+		<tr><td><code class="inset">:first</code></td><td>切换到第一个文件</td><td><code class="inset">:bfirst</code></td></tr>
+		<tr><td><code class="inset">:last</code></td><td>切换到最后一个文件</td><td><code class="inset">:blast</code></td></tr>
+		<tr><td><code class="inset">:args</code></td><td>显示正在编辑的文件名</td><td><code class="inset">:buffers</code></td></tr>
+		<tr><td><code class="inset">:argument [N]</code></td><td>切换至第N号文件</td><td><code class="inset">:buffer [N]</code></td></tr>
+	</table>
+	<p></p>
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>缓冲区和窗口命令对照</caption>
+		<tr><td><code class="inset">:snext</code></td><td>分割并切换到下一文件</td><td><code class="inset">:sbnext</code></td></tr>
+		<tr><td><code class="inset">:sprevious</code></td><td rowspan="2">分割并切换到上一文件</td><td><code class="inset">:sbprevious</code></td></tr>
+		<tr><td><code class="inset">:sNext</code></td><td><code class="inset">:sbNext</code></td></tr>
+		<tr><td><code class="inset">:sfirst</code></td><td>切换到第一个文件</td><td><code class="inset">:sbfirst</code></td></tr>
+		<tr><td><code class="inset">:slast</code></td><td>分割并切换到最后一个文件</td><td><code class="inset">:sblast</code></td></tr>
+		<tr><td><code class="inset">:sall</code></td><td>分割并显示所有文件</td><td><code class="inset">:sball</code></td></tr>
+		<tr><td><code class="inset">:sargument [N]</code></td><td>分割并切换至第N号文件</td><td><code class="inset">:sbuffer [N]</code></td></tr>
+	</table>
+
+	<p>Technorati Tags: <a href="http://www.technorati.com/tags/vi" rel="tag">vi</a>,<a href="http://www.technorati.com/tags/vim" rel="tag">vim</a>,<a href="http://www.technorati.com/tags/gvim" rel="tag">gvim</a></p>
+</body>
+</html>
+

@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 语法高亮度 (Syntax)</title>
+</head>
+<body>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">启用/禁用</p>
+	<p>我们可以使用<code class="inset">:syntax enable</code>命令，启用语法高亮度。Vim将会自动识别关键字、字符串以及其他语法元素，并以不同的颜色显示出来。如果不希望高亮显示语法元素，可以使用<code class="inset">:syntax clear</code>命令关闭此功能。</p>
+	<p>以上命令只在当前文件中有效。而以下命令则对所有缓冲区中的文件立刻生效。</p>
+	<p>我们可以使用<code class="inset">set syntax=off</code>命令关闭语法高亮度；使用<code class="inset">:syntax on</code>命令打开语法高亮度。</p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">识别文件</p>
+	<p>Vim通过识别文件的扩展名来选择相应的语法高亮显示。如果没有使用传统的扩展名，那么就需要设置filetype选项，来告诉Vim正在编辑的文件类型。例如使用以下命令，告诉Vim我们正在编辑一个C程序文件：</p>
+	<p><code class="inset">:set filetype=c</code></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">修改语法文件</p>
+	<p>语法高亮显示，是由位于<em>$VIMRUNTIME/syntax/language.vim</em>中的语法文件来控制的。主要经过两步来实现：首先，确定需要格式化的字符；然后，定义如何显示这些字符（请参看<a href="http://yyq123.blogspot.com/2011/02/vim-color-scheme.html" title="colorscheme">配色方案</a>）。</p>
+	<p>例如可以使用以下命令，将所有FIX和ENDFIX关键字显示为特定颜色：</p>
+	<p style="text-indent:2em"><code class="inset">:syntax match cscFix "FIX\|ENDFIX"</code></p>
+	<p style="text-indent:2em"><code class="inset">:highlight cscFix ctermfg=cyan guifg=#00FFFF</code></p>
+	<p>其中，第一条命令，创建名为cscFix的匹配模式；第二条命令，使用青色显示匹配的文本。</p>
+
+	<p>而以下命令，将使用预定义的格式来显示文本：</p>
+	<p style="text-indent:2em"><code class="inset">sy keyword cscCondition IF ELSE ENDIF ELSEIF</code></p>
+	<p style="text-indent:2em"><code class="inset">hi def link cscCondition	Statement</code></p>
+	<p>其中，第一条命令，定义包含特定关键字的匹配模式；第二条命令，链接该模式到已存在的格式设置。</p>
+
+	<p>通过以下命令，可以获得语法高亮度的帮助信息：</p>
+	<p style="text-indent:2em"><code class="inset">:help syntax</code></p>
+	<p style="text-indent:2em"><code class="inset">:help usr_44.txt</code></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">语法文件实例</p>
+	<p>使用以下命令，匹配代码的开头和结尾，可用于识别代码注释：</p>
+	<p style="text-indent:2em"><code class="inset">:syntax region myComments start=/\/\*/ end=/\*\//</code></p>
+	<p>即使在限定的区域内，我们仍然可以使用以下命令，来格式化特定的语法元素：</p>
+	<p style="text-indent:2em"><code class="inset">:syntax keyword myToDo FIXME TODO</code></p>
+	<p style="text-indent:2em"><code class="inset">:syntax region myComments start=/\/\*/ end=/\*\// contains=myToDo</code></p>
+	<p>其中，第一条命令，定义包含TODO关键字的匹配模式；第二条命令，说明在注释中包含高亮显示的待办事宜。</p>
+	<p><a href="http://www.flickr.com/photos/yyq123/5368344517/" title="Syntax_contains by yyq123, on Flickr"><img src="http://farm6.static.flickr.com/5205/5368344517_da0555ec46.jpg" width="260" height="67" alt="Syntax_contains" /></a></p>
+	<p>当然，在<em>contains</em>中可以指定用逗号分隔的多个包含项。这些语法组因而被允许包含在本项目里。这使得匹配和区域的递归嵌套成为可能。在contains参数中，还可以包含以下特殊关键字：</p>
+	<p><strong>contains=ALL</strong> 如果唯一在包含列表里出现的名字是"ALL"，那么本项目里可以包含所有的组；</p>
+	<p><strong>contains=ALLBUT,{group-name}...</strong> 如果包含列表的第一个名字是"ALLBUT"，那么除了列出的组以外，所有其它的组都可以出现在本项目里。</p>
+	<p><strong>contains=CONTAINED</strong> 如果包含列表的第一个名字是 "CONTAINED"，那么所有包含"contained" 参数的组都可以接受。</p>
+	<p><strong>contains=TOP</strong> 如果包含列表的第一个名字是"TOP"，那么所有不包含"contained"参数的组都可以接受。</p>
+	<p>例如，以下命令将选择myComments以外的所有组：</p>
+	<p style="text-indent:2em"><code class="inset">:syntax region myCodeblock start=/{/ end=/}/ contains=ALLBUT,myComments</code></p>
+	<p>我们还可以使用以下命令，将多个group组合成一个cluster：</p>
+	<p style="text-indent:2em"><code class="inset">:syntax cluster myCluster contains=myKeywords,myConditions</code></p>
+	<p>通过在cluster名称之前加上@符号，就可以在命令中引用它们：</p> 
+	<p style="text-indent:2em"><code class="inset">:syntax region myComments start=/\/\*/ end=/\*\// contains=@myCluster</code></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">新增语法定义</p>
+	<p>如果需要为已有的语法设置增加内容，当然你可以直接修改内置的语法文件。而更好的方法是，利用Vim的后期处理功能（post-processing）：你可以将自定义的语法文件，放入$VIMHOME/after/syntax目录（如果该目录不存在，请手工创建）。当Vim载入脚本、语法和配色时，它也会查找after目录，如果找到相同名称的文件（比如c.vim），那么将会用after目录中文件的内容覆盖原有的设置。</p>	
+	<p>请使用以下命令，查看后期处理的帮助信息：</p>
+	<p style="text-indent:2em"><code class="inset">:help after-directory</code></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">新增语法类型</p>
+	<p>如果想要使用Vim未知的文件类型，那么需要在$VIMHOME/filetype.vim文件中进行注册：</p>
+	<p style="text-indent:2em"><code class="inset">augroup filetypedetect</code></p>
+	<p style="text-indent:2em"><code class="inset">autocmd BufNewFile,BufRead *.my setfiletype my</code></p>
+	<p style="text-indent:2em"><code class="inset">augroup END</code></p>
+	<p>在filetype.vim文件中增加以上命令后，Vim就能够自动识别新的文件类型并匹配相应的语法高亮度。</p>
+	<p>使用以下命令，可以查看关于新增文件类型的帮助信息：</p>
+	<p style="text-indent:2em"><code class="inset">:help new-filetype</code></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">网页显示语法高亮度</p>
+	<p>使用<code class="inset">:TOhtml</code>命令，可以按照当前的颜色定义，将文件转化成(X)HTML文件，以通过网页形式展现高亮显示的代码：</p>
+	<p><a href="http://www.flickr.com/photos/yyq123/5432765546/" title="TOhtml by yyq123, on Flickr"><img src="http://farm6.static.flickr.com/5256/5432765546_64c6baba08.jpg" width="373" height="458" alt="TOhtml" /></a></p>
+	<p>请使用以下命令，查看HTML转换的帮助信息：</p>
+	<p><code class="inset">help 2html.vim</code></p>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:syntax enable</code></td><td rowspan="2">启用语法高亮度</td></tr>
+		<tr><td><code class="inset">:syntax on</code></td></tr>
+		<tr><td><code class="inset">:syntax clear</code></td><td rowspan="2">关闭语法高亮度</td></tr>
+		<tr><td><code class="inset">:syntax off</code></td></tr>
+		<tr><td><code class="inset">:set filetype</code></td><td>设置文件类型</td></tr>
+		<tr><td><code class="inset">:syntax</code></td><td>识别语法元素</td></tr>
+		<tr><td><code class="inset">:highlight</code></td><td>格式化语法元素</td></tr>
+		<tr><td><code class="inset">:set filetype</code></td><td>设置文件类型</td></tr>
+		<tr><td><code class="inset">:TOhtml</code></td><td>转换为HTML文件</td></tr>
+	</table>
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="模板(Template)" href="http://yyq123.blogspot.com/2010/08/vim-template.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://www.humyo.com/CHYfCqR/Blog/Vim/learn-vi-00-List.html?a=0tz81ab6hx8">&nbsp;目录&n

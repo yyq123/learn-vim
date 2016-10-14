@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 缩进 (Indent)</title>
+</head>
+<body>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">手动缩进</p>
+	<p>在Normal Mode下，命令<code class="inset">&gt;&gt;</code>将对当前行增加缩进，而命令<code class="inset">&lt;&lt;</code>则将对当前行减少缩进。我们可以在命令前使用数字，来指定命令作用的范围。例如以下命令，将减少5行的缩进：</p>
+	<p style="text-indent:2em"><code class="inset">5&lt;&lt;</code></p>
+	<p>在Insert/Replace Mode下，<kbd>Ctrl-Shift-t</kbd>可以增加当前行的缩进，而<kbd>Ctrl-Shift-d</kbd>则可以减少当前行的缩进。使用<kbd>0-Ctrl-Shift-d</kbd>命令，将移除所有缩进。需要注意的是，当我们输入命令中的&ldquo;0&rdquo;时，Vim会认为我们要在文本中插入一个0，并在屏幕上显示输入的&ldquo;0&rdquo;；然后当我们执行命令<kbd>0-Ctrl-Shift-d</kbd>时，Vim就会意识到我们要做的是减少缩进，这时0会就会从屏幕上消失。</p>
+	<p>缩进宽度默认为8个空格。我们可以使用以下命令，来修改缩进宽度：</p>
+	<p style="text-indent:2em"><code class="inset">:set shiftwidth=4</code></p>
+	<p>通过以下设置，每次点击<kbd>Tab</kbd>键，将增加宽度为8列的Tab缩进。</p>
+	<p style="text-indent:2em"><code class="inset">:set tabstop=8</code></p>
+	<p style="text-indent:2em"><code class="inset">:set softtabstop=8</code></p>
+	<p style="text-indent:2em"><code class="inset">:set shiftwidth=8</code></p>
+	<p style="text-indent:2em"><code class="inset">:set noexpandtab</code></p>
+	<p>使用以下设置，每次点击<kbd>Tab</kbd>键，增加的缩进将被转化为4个空格。</p>
+	<p style="text-indent:2em"><code class="inset">:set tabstop=4</code></p>
+	<p style="text-indent:2em"><code class="inset">:set softtabstop=4</code></p>
+	<p style="text-indent:2em"><code class="inset">:set shiftwidth=4</code></p>
+	<p style="text-indent:2em"><code class="inset">:set expandtab</code></p>
+	<p>其中，<em>expandtab</em>选项，用来控制是否将Tab转换为空格。但是这个选项并不会改变已经存在的文本，如果需要应用此设置将所有Tab转换为空格，需要执行以下命令：</p>
+	<p style="text-indent:2em"><code class="inset">:retab!</code></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">自动缩进</p>
+	<p>在Vim中还可以进行自动缩进，主要有cindent、smartindent和autoindent三种。</p>
+	<p><strong>cindent</strong> Vim可以很好的识别出C和Java等结构化程序设计语言，并且能用C语言的缩进格式来处理程序的缩进结构。可以使用以下命令，启用cindent缩进结构：</p>
+	<p style="text-indent:2em"><code class="inset">:set cindent</code></p>
+	<p><strong>smartindent</strong> 在这种缩进模式中，每一行都和前一行有相同的缩进量，同时这种缩进形式能正确的识别出花括号，当遇到右花括号（}），则取消缩进形式。此外还增加了识别C语言关键字的功能。如果一行是以#开头的，那么这种格式将会被特殊对待而不采用缩进格式。可以使用以下命令，启用smartindent缩进结构：</p>
+	<p style="text-indent:2em"><code class="inset">:set smartindent</code></p>
+	<p><strong>autoindent</strong> 在这种缩进形式中，新增加的行和前一行使用相同的缩进形式。可以使用以下命令，启用autoindent缩进形式。也可以点击<kbd>==</kbd>键进行缩进。</p>
+	<p style="text-indent:2em"><code class="inset">:set autoindent</code></p>
+
+	<p>使用<code class="inset">:e $VIMRUNTIME/indent</code>命令，</p>
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">&gt;&gt;</code></td><td rowspan="2">增加缩进</td></tr>
+		<tr><td><code class="inset">Ctrl-Shift-t</code></td></tr>
+		<tr><td><code class="inset">&lt;&lt;</code></td><td rowspan="2">减少缩进</td></tr>
+		<tr><td><code class="inset">Ctrl-Shift-d</code></td></tr>
+		<tr><td><code class="inset">:set shiftwidth=n</code></td><td>设置缩进宽度</td></tr>
+		<tr><td><code class="inset">:set cindent</code></td><td>启用cindent缩进结构</td></tr>
+		<tr><td><code class="inset">:set autoindent</code></td><td>启用autoindent缩进结构</td></tr>
+		<tr><td><code class="inset">:set smartindent</code></td><td>启用smartindent缩进结构</td></tr>
+	</table>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.1</span><span>&lt;<a title="换行" href="http://tiny.cc/vim-LF">上一篇</a>&nbsp;|<a title="笔记列表" href="http://tiny.cc/learn-vim">&nbsp;目录&nbsp;</a>|&nbsp;<a title="缩进" href="http://tiny.cc/vim-indent">下一篇</a>&gt;</span></p>
+</body>
+</html>
+

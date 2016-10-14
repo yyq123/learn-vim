@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 加密</title>
+</head>
+<body>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">算法</p>
+	<p>如果<code class="inset">:version</code>命令的输出信息中包含了<em>+cryptv </em>选项， 那么说明你安装的Vim已经启用了加密功能。对于Vim 7.3内置使用Blowfish加密算法，而7.3之前的版本则提供PkZip兼容的加密算法。</p>
+	<p><a href="http://www.flickr.com/photos/yyq123/5301392131/" title="version-cryptv by yyq123, on Flickr"><img src="http://farm6.static.flickr.com/5242/5301392131_4b0fa6f121.jpg" width="455" height="152" alt="version-cryptv" /></a></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">加密</p>
+	<p>我们可以使用Vim的-x启动参数，创建加密文件：</p>
+	<p style="text-indent:2em"><code class="inset">vim -x filename</code></p> 
+	<p>Vim会要求你重复输入两次密钥。而当我们完成编辑并退出时，Vim就会对文本进行加密处理。此后，如果使用其它软件查看加密后的文件，那么将只会看到无意义的乱码；而如果使用Vim打开加密文件，则会要求你输入密钥以正确显示内容。 </p>
+	
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">解密</p>
+	<p>使用以下命令将选项key置空，解除加密:</p>
+	<p style="text-indent:2em"><code class="inset">:set key=</code></p>
+	<p>我们也可以通以下命令，重置密钥：</p>
+	<p style="text-indent:2em"><code class="inset">:set key=secret</code></p>
+	<p>但以上命令将会以明文显示输入的密码，显然不够安全。而使用以下命令，则会以星号*显示输入的密码，所以更加安全。</p>
+	<p style="text-indent:2em"><code class="inset">:X</code></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">安全</p>
+	<p>我们必须注意的是，在编辑文件时所使用的交换文件(swap file)并没有经过加密。因此，一个拥有超级权限的用户，可以通过查看交换文件获得加密的内容。我们可以在命令行中指定-n参数，指定不使用交换文件：</p>
+	<p style="text-indent:2em"><code class="inset">vim -x -n filename</code></p>
+	<p>注意：不使用交换文件，我们也就不能够通过交换文件来恢复文件了。</p>
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="缩进" href="http://yyq123.blogspot.com/2010/10/vim-indent.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://www.humyo.com/CHYfCqR/Blog/Vim/learn-vi-00-List.html?a=0tz81ab6hx8">&nbsp;目录&nbsp;</a>|&nbsp;<a title="多编码处理" href="http://yyq123.blogspot.com/2010/07/vim-multi-encoding.html">下一篇</a>&gt;</span></p>
+</body>
+</html>
+

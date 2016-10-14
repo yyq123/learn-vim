@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 模板(Template)</title>
+</head>
+<body>
+	<p>在新建文件时，如果有针对该文件扩展名的模板存在，那么模板中的内容，将被自动插入进新文档中。</p>
+	<p>首先，<strong>创建模板文件</strong>（Skeleton Document）。例如，包含以下内容的<a href="http://www.webstandards.org/learn/reference/templates/xhtml10s/">XHTML 1.0 Strict</a>模板。</p>
+	<p><script src="http://gist.github.com/518419.js?file=XHTML%201.0%20Strict.html" type="text/javascript"></script></p>
+	<p style="color:gray">注：你可以从<a href="http://www.webstandards.org/">Web Standards Project</a>获得更多类型的<a href="http://www.webstandards.org/learn/reference/templates/">HTML/XHTML</a>模板。</p>
+	<p>然后，将模板以正确的扩展名，保存至Vim的<strong>skel目录</strong>中。如果没有skel目录，则需要手工创建。在Windows中，将模板<em>Template.html</em>保存到<em>C:\Program Files\Vim\vimfiles\skel</em>目录下；而在Mac/Liunx/Unix中，则保存模板为<em>~/.vim/skel/Template.html</em>。</p>
+	<p>最后，<strong>vimrc文件</strong>中，添加以下命令：</p>
+	<p>Windows:</p>
+	<p><code class="inset">autocmd! BufNewFile * silent! 0r $VIM/vimfiles/skel/Template.%:e</code></p>
+	<p>Mac/Liunx/Unix:</p>
+	<p><code class="inset">autocmd! BufNewFile * silent! 0r ~/.vim/skel/Template.%:e</code></p>
+	<p>当你使用<code class="inset">:new test.html</code>命令新建一个HTML文档时，模板中的代码就会被自动添加到新建的页面中。这无疑，非常便于我们创建标准化的网页。</p>
+	<p>Technorati Tags: <a href="http://www.technorati.com/tags/vi" rel="tag">vi</a>,<a href="http://www.technorati.com/tags/vim" rel="tag">vim</a>,<a href="http://www.technorati.com/tags/gvim" rel="tag">gvim</a></p>
+</body>
+</html>
+

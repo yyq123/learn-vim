@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 比较文件(diff)</title>
+</head>
+<body>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">比较</p>
+	<p>可以从命令行调用以下命令，来打开两个文件进行比较：</p>
+	<p style="text-indent:2em"><code class="inset">vim -d file1 file2</code></p>
+	<p>如果已经打开了文件file1，那么可以在Vim中用以下命令，再打开另一个文件file2进行比较：</p>
+	<p style="text-indent:2em"><code class="inset">:diffsplit file2</code></p>
+	<p>如果已经使用split打开了两个文件，那么可以分别在两个窗口里面输入以下命令，进行比较：</p>
+	<p style="text-indent:2em"><code class="inset">:diffthis</code></p>
+	<p>屏幕将被水平分隔，分别显示一个文件，其中不同的部分将被高亮显示。</p>
+	<ul>
+		<li>只在某一文件中存在的行，显示为<span style="color:white; background-color:blue">蓝色</span>；</li>
+		<li>而在另一文件中的对应位置的行，显示为<span style="color:white; background-color:green">绿色</span>；</li>
+		<li>在两个文件中都存在的行，显示为<span style="color:white; background-color:purple">紫色</span></li>
+		<li>行中不相同的字符，显示为<span style="color:white; background-color:red">红色</span>；</li>
+		<li>相同的行，没有高亮显示并且会被折叠。</li>
+	</ul>
+	<p>如果想要垂直比较两个文件，可以使用以下命令：</p>
+	<p style="text-indent:2em"><code class="inset">:vert diffsplit file2</code></p>
+	<p><a href="http://www.zooomr.com/photos/yyq123/9432091/" title="Photo Sharing"><img src="http://static.zooomr.com/images/9432091_dfe7768713.jpg" width="500" height="347" alt="diff" style="border:1px solid gray" /></a></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">折叠</p>
+	<p>使用<code class="inset">zo</code>命令，可以展开被折叠的相同的文本行；而<code class="inset">zc</code>命令，则可以重新折叠相同的行。</p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">查看</p>
+	<p>比较文件时，经常需要结合上下文来确定最终要采取的操作。缺省情况下，是会把不同之处上下各6行的文本显示出来以供参考。其他的相同的文本行被自动折叠。如果希望修改缺省的上下文行数为3行，可以使用以下命令：</p>
+	<p style="text-indent:2em"><code class="inset">:set diffopt=context:3</code></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">滚动</p>
+	<p>如果你在一个文件中滚动屏幕，那么另一个文件也会自动滚动以显示相同的位置。你可以使用以下命令，取消联动：</p>
+	<p style="text-indent:2em"><code class="inset">:set noscrollbind</code></p>
+	<p>使用以下命令，将重新绑定联动：</p>
+	<p style="text-indent:2em"><code class="inset">:set scrollbind</code></p>
+	<p>利用以下命令，可以定义滚动方式：</p>
+	<p style="text-indent:2em"><code class="inset">:set scrollopt ver,hor,jump</code></p>
+	<p>其中：选项<em>ver </em>，启用垂直同步滚动；选项<em>hor </em>，启用水平同步滚动；而<em>jump </em>选项，则在切换窗口时，使垂直滚动始终同步。</p>
+	<p>如果光标停留在两个文件的不同位置，那么可以使用下面的命令同步滚动：</p>
+	<p style="text-indent:2em"><code class="inset">:syncbind</code></p>
+	
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">更新</p>
+	<p>如果更改了某个文件的内容，vim又没有自动更新diff检查，那么可以使用如下命令更新：</p>
+	<p style="text-indent:2em"><code class="inset">:diffupdate</code></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">跳转</p>
+	<p>你可以用<code class="inset">[c</code>命令；跳转到前一个不同点；或者用<code class="inset">]c</code>命令，跳转到后一个不同点。</p>
+
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:diffsplit</code></td><td>分隔窗并比较文件</td></tr>
+		<tr><td><code class="inset">:diffthis</code></td><td>比较文件</td></tr>
+		<tr><td><code class="inset">:diffupdate</code></td><td>更新比较结果</td></tr>
+		<tr><td><code class="inset">zo</code></td><td>展开</td></tr>
+		<tr><td><code class="inset">zc</code></td><td>折叠</td></tr>
+		<tr><td><code class="inset">[c</code></td><td>跳转到前一个不同点</td></tr>
+		<tr><td><code class="inset">]c</code></td><td>跳转到后一个不同点</td></tr>
+	</table>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.1</span><span>&lt;<a title="标签页(Tab)" href="http://yyq123.blogspot.com/2009/04/vim.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://www.humyo.com/CHYfCqR/Blog/Vim/learn-vi-00-List.html?a=0tz81ab6hx8">&nbsp;目录&nbsp;</a>|&nbsp;<a title="编辑多个文件(Files)" href="http://yyq123.blogspot.com/2009/08/vim-edit-multi-files.html">下一篇</a>&gt;</span></p>
+
+</body>
+</html>
+

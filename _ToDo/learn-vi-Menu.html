@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>菜单</title>
+</head>
+<body>
+	
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">启用/禁用菜单</p>
+	<p>使用以下命令，可以隐藏菜单栏：</p>
+	<p style="text-indent:2em"><code class="inset">:set guioptions-=m</code></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">查看菜单映射</p>
+	<p>使用以下命令，可以列出所有菜单映射：</p>
+	<p style="text-indent:2em"><code class="inset">:menu</code></p>
+	<p>如果只需要显示特定的菜单内容，那么可以使用以下命令：</p>
+	<p style="text-indent:2em"><code class="inset">:menu File</code></p>
+	<p>而以下命令，则可以列出指定菜单项的内容：</p>
+	<p style="text-indent:2em"><code class="inset">:menu File.Save</code></p>
+	<p>在这个命令的执行结果的每一行的首个字母指明了这个命令的模式.这里的字符是与我们前面提到的mode参数相一致的.</p>
+
+	<p></p>
+	<p>Vim编辑器所使用的菜单是由文件$VIMRUNTIME/menu.vim定义的.</p>
+	<p>定义一个菜单内容,可以使用:menu命令.基本形式如下:</p>
+	:menu menu-item command-string
+	<p>这里的menu-item描述了在哪里放置菜单内容.比如File.Save，就表明Save菜单在File菜单下。而&amp;号则是表明这是一个快捷键，例如在gvim中,我们可以用Alt-F来选择File菜单而用s来选择保存菜单(这里没有看明白).所以这里的menu-item看起来就是这样的&amp;File.&amp;Save.</p>
+	<p>而事实上File.Save的定义如下:</p>
+	:menu 10.340 &amp;File.&amp;Save:w        :confirm w
+	<p>这里的数字被称为优先级(priority)数.他可以用来决定编辑器如何放置菜单内容.第一个数字10表明了在菜单栏上的位置.小数字靠近左侧,而大数字靠近右侧.第二个数字则是决定了下拉菜单的位置.小数字在上部,而大数字在下部.<p>
+	<p>在这个例子中我们还可以看出很重要的一点就是menu-item必须是一个词.如果我们要在名字中加入空格或是Tab,我们就要用到&lt;&gt;或是.例如:</p>
+	:menu 10.340 &amp;File.&amp;Dolt:exit
+	<p>最后我们还可以为一定的模式来定义菜单.这个命令的一般形式如下:</p>
+	:[mode]menu [priority]menu-item command-string
+	mode是下列中的一种:
+	a    正常(Normal),可视(Visual),运算符操作(Operator-pending)
+	n    正常(Normal)
+	v    可视(Visual)
+	o    运算符操作(Operator-pending)
+	i    插入(Insert)
+	c    命令行
+	
+	<p>在图形界面的Vim中还有一个有趣的特性，当我们点开一个菜单时就会发在子菜单的第一行有一条虚线，点击此虚线就可以将这个菜单弹出并移动到其他地方。关闭后，菜单结构又恢复到正常的状态了。在GTK版本和Windows版本中的图形界面还有一个工具栏，这些工具可以快速的完成我们的工作。</p>
+
+下面的命令可以执行一个菜单的内容就像我们的从菜单中选中一样:
+:emenu menu-item
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">移除菜单</p>
+下面的命令可以从菜单中移除菜单项:
+:[mode]unmenu menu-item
+如果我们使用*,那么整个菜单都会被清除.
+
+		<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset">:set lines?</code></td><td>以显示当前窗口的行数</td></tr>
+		<tr><td><code class="inset">:set lines=lines</code></td><td>设置行数</td></tr>
+		<tr><td><code class="inset">:set columns=columns</code></td><td>设置列数</td></tr>
+		<tr><td><code class="inset">:set guioptions+=b</code></td><td>显示水平滚动条</td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+	</table>
+
+	<p>Tags: <a href="http://www.technorati.com/tags/vi" rel="tag">vi</a>,<a href="http://www.technorati.com/tags/vim" rel="tag">vim</a></p>
+</body>
+</html>
+

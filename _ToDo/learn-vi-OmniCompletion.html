@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 全能补全(Omnicompletion)</title>
+</head>
+<body>
+	<p style="font-weight:bold">vim7新特性－全能补全</p>
+	<p>比如我正在编写HTML代码，并且已经存盘为.html为后缀名的文件，那么Vim将有能力自动为我完成代码。</p>
+	<p>在插入状态下，输入HTML标签的前几个字母（例如下图所示&ldquo;&lt;p cl&rdquo;），按下<kbd>Ctrl+x</kbd>和<kbd>Ctrl+o</kbd>组合键，将显示出一个可能匹配的弹出列表，利用<kbd>Ctrl+o</kbd>或<kbd>Ctrl+n</kbd>选择下一个条目，利用<kbd>Ctrl+p</kbd>选择上一个条目。</p>
+p
+	<p><a href="http://www.zooomr.com/photos/yyq123/9336671/" title="Photo Sharing"><img src="http://static.zooomr.com/images/9336671_8cd2a22f2c_o.png" width="332" height="120" alt="OmniCompletion_HTML" /></a></p>
+	<p>全能补全（Omni Completion）特性，现在支持8种语言，包括C, (X)HTML with CSS, JavaScript, PHP, Python, Ruby, SQL和XML。</p>
+Vim accomplishes this via ftplugins, specifically the ones by the name ftplugin/<language>complete.vim such as pythoncomplete.vim.
+
+	<p>建议将以下命令，加入vimrc配置文件的:filetype命令之后，以更好地利用全能补全功能：</p>
+	<p><script src="https://gist.github.com/751037.js?file=gistfile1.vim"></script></p>
+	
+	<p style="text-indent:2em"><code class="inset">:help new-omni-completion</code></p>
+	
+</body>
+</html>
+

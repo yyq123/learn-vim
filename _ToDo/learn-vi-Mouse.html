@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>图形界面</title>
+</head>
+<body>
+	<p style="font-weight:bold">鼠标</p>
+	<p>在Windows和X Window系统中我们都有一个系统来使用鼠标，但是这两种标准是不同的。幸运的是，我们可以定制Vim编辑器。我们可以使得Vim中的鼠标的行为看起来像是X Window系统中的鼠标的行为。命令<code class="inset">:behave xterm</code>设置使用X Window风格的鼠标行为。而命令<code class="inset">:behave mswin</code>则启用Windows风格的鼠标行为。</p>
+	<p>为了控制鼠标的行为，命令<code class="inset">:behave</code>有以下这些选项：</p>
+	<table summary="Options of :behave" border="1" rules="all" cellspacing="0" cellpadding="2">
+		<tr><th>Option</th><th>:behave mswin</th><th>:behave xterm</th></tr>
+		<tr><td>'selectmode'</td><td>mouse,key</td><td>&nbsp;</td></tr>
+		<tr><td>'mousemodel'</td><td>popup</td><td>extend</td></tr>
+		<tr><td>'keymodel'</td><td>startsel,stopsel</td><td>&nbsp;</td></tr>
+		<tr><td>'selection'</td><td>exclusive</td><td>inclusive</td></tr>
+	</table>
+	<p>xterm的鼠标行为主要有以下一些：</p>
+	<table>
+		<tr><td>左键：</td><td>移动光标</td></tr>
+		<tr><td>拉动左键：</td><td>在可视化模式下选择文本</td></tr>
+		<tr><td>右键：</td><td>选中光标到右键点击处的文本</td></tr>
+		<tr><td>中键：</td><td>在光标处粘贴选中的文本</td></tr>
+	</table>
+	<p>Windows的鼠标行为主要有以下一些：</p>
+	<table>
+		<tr><td>左键：</td><td>移动光标</td></tr>
+		<tr><td>拉动左键：</td><td>在选择模式下选中文本</td></tr>
+		<tr><td>右键：</td><td>显示弹出菜单</td></tr>
+		<tr><td>中键：</td><td>将系统剪切板中的文本粘贴到文件</td></tr>
+	</table>
+	<p>选项mousetime可以定义双击之间的最大时间间隔。这个命令的形式如下:</p>
+	<p style="text-indent:2em"><code class="inset">:set mousetime=time</code></p>
+	<p>这里的时间以毫秒为单位，在默认情况下为半秒（500ms）。</p>
+	<p>在图形界面下编辑时，我们要同时处理文本光标和鼠标光标。如果认为鼠标光标的存在会打扰你的工作，可以设置在没有鼠标时隐藏鼠标光标。</p>
+	<p style="text-indent:2em"><code class="inset">:set mousehide</code></p>
+	<p>这样设置后，当我们键盘输入时鼠标就会隐藏，而移动光标时鼠标就会再出现。</p>
+	<p>使用以下命令，可以设置鼠标的模式：</p>
+	<p style="text-indent:2em"><code class="inset">:set mousemodel=mode</code></p>
+	<p>有三种可能的模式:extend,popup,popup_setpos
+
+在所有的模式中,鼠标左键移动光标,拉动左键可以选择文本.
+在extend模式中,右键可以扩展文本而右键可以粘贴文本.
+在popup模式中,右键可以显示弹出菜单.
+popup_setpos模式与popup模式相类似,所不同的只是当我们按下鼠标右键时文本的光标会移动到鼠标点击处,然后显示弹出菜单.
+	
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:behave</code></td><td>控制鼠标的行为</td></tr>
+		<tr><td><code class="inset">:set lines?</code></td><td>以显示当前窗口的行数</td></tr>
+		<tr><td><code class="inset">:set lines=lines</code></td><td>设置行数</td></tr>
+		<tr><td><code class="inset">:set columns=columns</code></td><td>设置列数</td></tr>
+		<tr><td><code class="inset">:set guioptions+=b</code></td><td>显示水平滚动条</td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+	</table>
+	
+</body>
+</html>
+

@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记  非可见字符(Listchars)</title>
+</head>
+<body>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">显示/隐藏</p>
+	<p>默认情况下，Vim是不会显示space,tabs,newlines,trailing space,wrapped lines等不可见字符的。但是我们可以打开<em>list'</em>选项，来显示非可见字符：</p>
+	<p style="text-indent:2em"><code class="inset">:set list</code></p>
+	<p>如下图所示，制表符被显示为&ldquo;^I&rdquo;，而行尾则标识为&ldquo;$&rdquo;。</p>
+	<p><a href="http://www.flickr.com/photos/yyq123/6302038254/" title="set_list_default by yyq123, on Flickr"><img src="http://farm7.static.flickr.com/6105/6302038254_3ae1010e96.jpg" width="500" height="124" alt="set_list_default" /></a></p>
+	<p>我们也可以使用以下命令，重新隐藏不可见字符：</p>
+	<p style="text-indent:2em"><code class="inset">:set nolist</code></p>
+	<p>通常我们会利用用以下命令，切换显示或隐藏不可见字符：</p>
+	<p style="text-indent:2em"><code class="inset">:set list!</code></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">显示符号</p>
+	<p>通过修改<em>listchars</em>选项，可以配置使用何种符号来显示不可见字符。例如以下命令，将制表符显示为&hellip;；将尾部空格显示为&middot;；将左则超出屏幕范围部分标识为&laquo;；将右侧超出屏幕范围部分标识为&raquo;。</p>
+	<p><a href="http://www.flickr.com/photos/yyq123/6336582531/" title="set listchars by yyq123, on Flickr"><img src="http://farm7.static.flickr.com/6227/6336582531_2e8588a60b.jpg" width="451" height="19" alt="set listchars" /></a></p>
+	<p>其中，特殊符号是在插入状态下，点击快捷键<kbd>Ctrl-k</kbd>，然后键入编码来输入的。比如，中点是由<kbd>.M</kbd>输入；左书名号是由<kbd>&lt;&lt;</kbd>输入，右书名号是由<kbd>&gt;&gt;</kbd>输入。</p>
+	<p>可以使用以下命令，查看可以输入的特殊字符：</p>
+	<p style="text-indent:2em"><code class="inset">:digraph</code></p>
+	<p><a href="http://www.flickr.com/photos/yyq123/6337374430/" title="digraph by yyq123, on Flickr"><img src="http://farm7.static.flickr.com/6097/6337374430_352df5b958.jpg" width="388" height="238" alt="digraph" /></a></p>
+	<p>如下图所示，通过选择合适的符号和色彩，非可见符号被低调的显示出来&ndash;&ndash;即没有影响实际的文本内容，又能展示容易被忽视的重要信息：</p>
+	<p><a href="http://www.flickr.com/photos/yyq123/6337350304/" title="set listchars_result by yyq123, on Flickr"><img src="http://farm7.static.flickr.com/6229/6337350304_0e3437c1dd.jpg" width="448" height="136" alt="set listchars_result" /></a></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">显示颜色</p>
+	<p>非可见字符&quot;eol&quot;、&quot;extends&quot;、&quot;precedes&quot;是由<em>NonText</em>高亮组来控制显示颜色的，而&quot;nbsp&quot;、&quot;tab&quot;、&quot;trail&quot;则是由"SpecialKey"高亮组来定义的。</p>	
+	<p>我们可以使用以下命令，来设置非可见字符的显示颜色和格式：</p>
+	<p><a href="http://www.flickr.com/photos/yyq123/6336634973/" title="hi NonText SpecialKey by yyq123, on Flickr"><img src="http://farm7.static.flickr.com/6116/6336634973_8a816416c0.jpg" width="489" height="38" alt="hi NonText SpecialKey" /></a></p>
+
+	<p>请使用以下命令，查看关于非可见字符的帮助信息：</p>
+	<p style="text-indent:2em"><code class="inset">:help 'listchars'</code></p>
+	<p style="text-indent:2em"><code class="inset">:help 'list'</code></p>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:set list</code></td><td>显示非可见字符</td></tr>
+		<tr><td><code class="inset">:set nolist</code></td><td>隐藏非可见字符</td></tr>
+		<tr><td><code class="inset">:set listchars</code></td><td>设置非可见字符的显示模式</td></tr>
+	</table>
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="语法高亮度 (Syntax)" href="http://yyq123.blogspot.com/2011/02/vim-syntax.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://www.humyo.com/CHYfCqR/Blog/Vim/learn-vi-00-List.html?a=0tz81ab6hx8">&nbsp;目录&nbsp;</a>|&nbsp;<a title="折叠 (Fold)" href="http://yyq123.blogspot.com/2011/09/vim-fold.html">下一篇</a>&gt;</span></p>
+</body>
+</html>
+

@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记  操作文件(Manipulate File)</title>
+</head>
+<body>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">保存文件</p>
+	<p>使用<code class="inset">:write</code>（可简写为<code class="inset">:w</code>）命令，可以保存文件或文件中指定范围的文本。</p>
+	<p>例如，使用以下命令将保存文本到文件collect.txt中：</p>
+	<p style="text-indent:2em"><code class="inset">:write collect.txt</code></p>
+	<p>如果这个文件已经存在，那么就会显示错误信息。如果要强行保存，可以使用!选项：</p>
+	<p style="text-indent:2em"><code class="inset">:write! collect.txt</code></p>
+	<p>我们也可以向已有文件中追加内容。例如，使用以下命令将正编辑的文件内容追加到collect.txt中:</p>
+	<p style="text-indent:2em"><code class="inset">:write &gt;&gt; collect.txt</code></p>
+	<p>如果这个文件不存在，那么就会显示错误信息。可以使用!选项，强行创建并保存新文件：</p>
+	<p style="text-indent:2em"><code class="inset">:write! &gt;&gt; collect.txt</code></p>
+	<p>我们还可以导出文件中的部分内容到其它文件中。首先进入可视化模式并选择内容，然后使用以下命令写入其它文件：</p>
+	<p style="text-indent:2em"><code class="inset">:'&lt;,'&gt; write collet.txt</code></p>
+	<p>使用写入命令不仅可以保存文件，而且还可以将文件重定向到其他程序。在Linux系统中，我们可以使用以下命令将文件发送到打印机：</p>
+	<p style="text-indent:2em"><code class="inset">:write !lpr</code></p>
+	<p>注意：命令<code class="inset">:write! lpr</code>与<code class="inset">:write !lpr</code>是不同的，前者是强行保存文件，而后者则是将文件发送到打印机。</p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">查看文件</p>
+	<p>使用<code class="inset">:view file</code>命令，将以只读方式打开文件。你在文件中进行的任何修改，都无法保存。当然我们也可以使用<code class="inset">:write!</code>命令，来强制保存文件。</p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">新建文件</p>
+	<p>我们可以使用<code class="inset">:vi file</code>命令，在新建缓冲区中编辑名为file的新文件。如果当前文件没有保存，那么将会显示警告信息，此时可以输入<code class="inset">:write</code>命令，来保存当前文件；或者使用<code class="inset">:vi! file</code>命令，不保存当前文件而强制开始编辑新文件。</p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">另存文件</p>
+	<p>使用以下命令，可以将当前文件另存为以name命名的新文件，并在当前缓冲区中开始编辑新文件：</p>
+	<p style="text-indent:2em"><code class="inset">:file name</code></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">读入文件</p>
+	<p>使用<code class="inset">:read</code>（可简写为<code class="inset">:r</code>）命令，可以读入其它文件内容并插入到当前行以下。例如，以下命令会将名为file的文件读入并且插入在line后面。如果没有指定文件，那么就会使用当前文件；如果没有指定行，那么就会使用当前行。</p>
+	<p style="text-indent:2em"><code class="inset">:line read file</code></p>
+	<p>我们甚至可以使用以下命令，读入外部命令的输出并插入到当前行的后面：</p>
+	<p style="text-indent:2em"><code class="inset">:line read !command</code></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">文件信息</p>
+	<p>使用以下命令，可以显示当前文件的名字及与行相关的信息：</p>
+	<p style="text-indent:2em"><code class="inset">:file</code></p>
+	<p><span style="background-color:black; color:white">"test.txt" [Modified] 134 lines --55%--</span></p>
+	<p>使用以下命令，则可以显示当前文件的总行数：</p>
+	<p style="text-indent:2em"><code class="inset">:=</code></p>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:vi</code></td><td>新建文件</td></tr>
+		<tr><td><code class="inset">:view</code></td><td>以只读方式打开文件</td></tr>
+		<tr><td><code class="inset">:write</code></td><td>保存文件</td></tr>
+		<tr><td><code class="inset">:read</code></td><td>读入文件</td></tr>
+		<tr><td><code class="inset">:file</code></td><td>查看文件信息</td></tr>
+	</table>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="比较文件(diff)" href="http://yyq123.blogspot.com/2010/09/vim-diff.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="编辑多个文件()" href="http://yyq123.blogspot.com/2009/08/vim-edit-multi-files.html">下一篇</a>&gt;</span></p>
+</body>
+</html>
+

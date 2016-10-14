@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>匹配括号</title>
+</head>
+<body>
+	<p>我们可以使用<code class="inset">%</code>命令，自动将光标移动到匹配的括号处：将光标定位在括号处，然后点击<code class="inset">%</code>键，光标就会定位到与其相匹配的括号处。</p>
+	<p>如果想要缩进整段程序，那么可以先将光标定位在第一个或最后一个括号处，然后执行<code class="inset">&gt;%</code>命令；执行此命令括号也会随着代码一起缩进，如果只是想要缩进代码，那么可以使用<code class="inset">:&gt;i{</code>命令。</p>
+	<p>
+% End of construct 13
+[[ Backwards to the beginning of the current function.
+][ Forwards to the beginning of the current function.
+}[ Beginning of the current block.
+}] End of the current block.
+}[ Beginning of the current comment block.
+}] End of the current comment block.
+gd First usage of the current variable name (Occurrences in comments are ignored.) (Mnemonic: go to definition).
+gD Go to the first global 15 usage of the current variable name.
+
+(gd looks for the definition closest to your current position, thus respecting the lexical scoping rules of many languages. gD starts searching from the first line of the file, so prefers variables with a global scope.)
+
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:set background?</code></td><td>显示当前背景方案</td></tr>
+		<tr><td><code class="inset">:set background=light</code></td><td>设置背景为浅色</td></tr>
+		<tr><td><code class="inset">:set background=dark</code></td><td>设置背景为深色</td></tr>
+		<tr><td><code class="inset">:set filetype=c</code></td><td>设置当前文件类型</td></tr>
+		<tr><td><code class="inset">&lt;&lt;</code></td><td>向左缩进</td></tr>
+		<tr><td><code class="inset">&gt;&gt;</code></td><td>向右缩进</td></tr>
+		<tr><td><code class="inset">:set shiftwidth=n<code class="inset"></code></td><td>设置缩进宽度</td></tr>
+		<tr><td><code class="inset">:set cindent</code></td><td>启用cindent缩进结构</td></tr>
+		<tr><td><code class="inset">:set autoindent</code></td><td>启用autoindent缩进结构</td></tr>
+		<tr><td><code class="inset">%</code></td><td>确定匹配的括号</td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+	</table>
+</body>
+</html>
+

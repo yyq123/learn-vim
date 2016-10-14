@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 替换模式()</title>
+</head>
+<body>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px"></p>
+	<p>：</p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+
+
+	<p style="font-weight:bold">替换模式</p>
+	<p>当替换的文本中有Tab键时，他也会将Tab替换为相应的字符，这样就影响了文本的缩进。在这种情况下，可以使用<code class="inset">gr</code>命令来进行替换。如果光标下的字符是Tab的一部分，那么就会跳过而替换别的字符，这样就不会影响文本的缩进了。我们还可以使用<code class="inset">gR</code>命令进入虚替换模式(virtual replace mode)，这时我们输入的字符就会替换屏幕空白处的一个字符。</p>
+
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:substitute</code></td><td>替换字符</td></tr>
+		<tr><td><code class="inset">R</code></td><td>进入替换模式</td></tr>
+		<tr><td><code class="inset">gR</code></td><td>进入虚替换模式</td></tr>
+	</table>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="()" href="">上一篇</a>&nbsp;|<a title="笔记列表" href="http://www.humyo.com/CHYfCqR/Blog/Vim/learn-vi-00-List.html?a=0tz81ab6hx8">&nbsp;目录&nbsp;</a>|&nbsp;<a title="()" href="">下一篇</a>&gt;</span></p>
+</body>
+</html>
+

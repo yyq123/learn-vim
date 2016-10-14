@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 窗口(Window)</title>
+</head>
+<body>
+	<p>窗口（Window）被用来查看缓冲区（Buffer）里的内容。你可以用多个窗口察看同一个缓冲区，也可以用多个窗口察看不同的缓冲区。</p>
+	<p>Vim主窗口可以容纳多个分割的窗口。此外还有标签页（tab-page），每个标签页也能容纳多个窗口。</p>
+	<p>在默认情况下，与Vi类似，Vim启动后只打开一个窗口。参数 "-o" 和 "-O" 可以让Vim为参数列表里的每一个文件打开一个窗口。参数 "-o" 水平分割窗口；参数 "-O" 垂直分割窗口。如果 "-o" 和 "-O" 都用了，那么最后一个参数决定分割的方向。例如，下面的例子打开三个水平分割的窗口。</p>
+	<p><code class="inset">vim -o file1 file2 file3</code></p>
+	
+	<p style="font-weight:bold">分割窗口</p>
+	<p><code class="inset">:split</code>命令，会将当前窗口平分为两个。并且在这两个窗口中同时显示当前文件。如果你在其中一个窗口进行编辑，那么另一个窗口也会同步显示出你所做的工作。</p>
+	<p>我们通常并不是要在两个窗口中显示同一个文件，而是要在两个窗口中编辑不同的两个文件。使用<code class="inset">:split file</code>命令，就可以在另一个窗口中打开文件file了。</p>
+	<p>命令<code class="inset">:new</code>可以直接打开一个新窗口，并对新文件进行编辑。</p>
+	<p><code class="inset">:sview</code>是:split和:view两个命令的组合，它可以分隔出一个新窗口，并以只读方式打开指定的文件。</p>
+	<p style="text-align:center"><a href="http://www.flickr.com/photos/yyq123/3748996872/" title="Windows_Split by yyq123, on Flickr"><img src="http://farm3.static.flickr.com/2543/3748996872_4dfeb7c615.jpg" width="500" height="372" alt="Windows_Split" /></a></p>
+
+	<p style="font-weight:bold">切换窗口</p>
+	<p>在gvim中，只要用鼠标点击就可以进入不同的窗口。而在vim中，则需要用<kbd>ctrl+Ww</kbd>命令在多个窗口中进行切换。</p>
+	<p>命令<kbd>ctrl+Wj</kbd>可以将光标定位在下一个窗口中；<kbd>ctrl+Wk</kbd>可以将光标定位在上一个窗口中；<kbd>ctrl+Wt</kbd>切换到顶部的窗口；<kbd>ctrl+Wb</kbd>切换到底部的窗口。<kbd>ctrl+Wp</kbd>切换到进行切换操作以前所在的窗口。</p>
+
+	<p style="font-weight:bold">移动窗口</p>
+	<p><kbd>ctrl+Wr</kbd>命令可以使得窗口向下进行循环移动。这个命令可以带一个数字作为参数，指明向下循环移动所执行的次数。与其相类似的<kbd>ctrl+WR</kbd>命令，可以使得窗口向上循环移动。</p>
+	<p>命令<kbd>ctrl+Wx</kbd>，可以将当前窗口与下一窗口进行位置对换。如果当前窗口在底部，则没有下一个窗口，这时命令将当前窗口与上一个窗口进行位置对换。</p>
+	<p>利用<kbd>ctrl+WK</kbd>可以将当前窗口放到最顶端；而<kbd>ctrl+WJ</kbd>可以把当前窗口放到最底部。</p>
+
+	<p style="font-weight:bold">关闭窗口</p>
+	<p>可以使用<code class="inset">ZZ</code>或是<code class="inset">:q</code>命令或<kbd>ctrl+Wc</kbd>关闭窗口。</p>
+	<p>命令<kbd>ctrl+Wo</kbd>可以使得当前窗口成为屏幕上的唯一窗口，而其他窗口全部关闭。系统会认为我们在其他的每一个窗口中都执行了<code class="inset">:quit</code>命令。</p>
+
+	<p style="font-weight:bold">控制窗口大小</p>
+	<p>在输入split命令时，可以加入参数来指定打开窗口的大小。例如命令<code class="inset">:3 split file</code>，将在一个大小为三行的新窗口中打开文件file。我们也可以将这个命令中的空格去掉，写成<code class="inset">:3split file</code>。</p>
+	<p>在多文本窗口中进行操作时，可以用<kbd>ctrl+W+</kbd>命令增大窗口，默认增量为1；用<kbd>ctrl+W-</kbd>命令减小窗口，默认值为1。<kbd>ctrl+W=</kbd>命令可以将几个窗口的大小变为相等。而命令<kbd>countCtrl+W_</kbd>可以使得当前窗口变得count这样高。如果没有指定count,将会使得当前窗口变得尽可能的最大。</p>
+	<p>当然，你也可以用鼠标上下拖动状态行来改变窗口的高度。</p>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:split</code></td><td>新建一个窗口并显示当前文件</td></tr>
+		<tr><td><code class="inset">:new</code></td><td>新建一个窗口并开始新文件</td></tr>
+		<tr><td><code class="inset">:sview</code></td><td>新建一个窗口并只读打开文件</td></tr>
+		<tr><td><code class="inset">ctrl+Ww</code></td><td>切换窗口</td></tr>
+		<tr><td><code class="inset">ctrl+Wj</code></td><td>切换至下一窗口</td></tr>
+		<tr><td><code class="inset">ctrl+Wk</code></td><td>切换至上一窗口</td></tr>
+		<tr><td><code class="inset">ctrl+Wt</code></td><td>切换至顶部的窗口</td></tr>
+		<tr><td><code class="inset">ctrl+Wb</code></td><td>切换至底部的窗口</td></tr>
+		<tr><td><code class="inset">ctrl+Wp</code></td><td>切换至刚才所在的窗口</td></tr>
+		<tr><td><code class="inset">ctrl+Wr</code></td><td>向下循环移动窗口</td></tr>
+		<tr><td><code class="inset">ctrl+WR</code></td><td>向上循环移动窗口</td></tr>
+		<tr><td><code class="inset">ctrl+Wx</code></td><td>将当前窗口与下一窗口位置对换</td></tr>
+		<tr><td><code class="inset">ctrl+WK</code></td><td>将当前窗口放到最顶端</td></tr>
+		<tr><td><code class="inset">ctrl+WJ</code></td><td>将当前窗口放到最底部</td></tr>
+		<tr><td><code class="inset">ctrl+Wc</code></td><td>关闭当前窗口</td></tr>
+		<tr><td><code class="inset">ctrl+Wo</code></td><td>关闭其他所有窗口</td></tr>
+		<tr><td><code class="inset">ctrl+W+</code></td><td>增大窗口</td></tr>
+		<tr><td><code class="inset">ctrl+W-</code></td><td>减小窗口</td></tr>
+		<tr><td><code class="inset">ctrl+W=</code></td><td>等分窗口</td></tr>
+		<tr><td><code class="inset">Ctrl+W_</code></td><td>最大化窗口</td></tr>
+	</table>
+	<p>Technorati Tags: <a href="http://www.technorati.com/tags/vi" rel="tag">vi</a>,<a href="http://www.technorati.com/tags/vim" rel="tag">vim</a>,<a href="http://www.technorati.com/tags/gvim" rel="tag">gvim</a></p>
+</body>
+</html>
+

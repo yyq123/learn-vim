@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 折行(Wrap)</title>
+</head>
+<body>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">折行显示</p>
+	<p>在默认情况下，Vim会自动折行&ndash;&ndash;将超出屏幕范围的文本打断并显示在下一行。我们也可以通过以下命令，取消自动折行&ndash;&ndash;超出屏幕范围的文本将不会被显示，你需要向句末移动光标，以使屏幕水平滚动，查看一行的完整内容。</p>
+	<p style="text-indent:2em"><code class="inset">:set nowrap</code></p>
+	<p>可以使用以下命令，恢复Vim的自动折行：</p>
+	<p style="text-indent:2em"><code class="inset">:set wrap</code></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">折行形式</p>
+	<p>我们可以告诉Vim在合适的地方折行：</p>
+	<p style="text-indent:2em"><code class="inset">:set linebreak</code></p>
+	<p>所谓合适的地方，是由<em>breakat</em>选项中的字符来确定的。在默认的情况下，这些字符是&ldquo;^I!@*-+_;:,./?&rdquo;。如果我们不希望在下划线处打断句子，只要用下面的命令将&ldquo;_&rdquo;从这个列表移除就可以了：</p>
+	<p style="text-indent:2em"><code class="inset">:set breakat-=_</code></p>
+	<p>如果一行被打断，Vim可能不会在句子连接处显示任何内容。我们可以通过设置<em>showbreak</em>选项，来显示所希望的指示信息：</p>
+	<p style="text-indent:2em"><code class="inset">:set showbreak=-&gt;</code></p>
+	<p>我们可以使用以下命令，取消自定义折行：</p>
+	<p style="text-indent:2em"><code class="inset">:set nolinebreak</code></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">在折行内移动</p>
+	<p>如果设置了wrap选项，那么很长的行将被折回并连续显示在屏幕上。但使用<code class="inset">j</code>命令，将移动屏幕上显示为多行的一行；而如果希望在折行内向下移动，则需要使用<code class="inset">gj</code>或<code class="inset">g&lt;Down&gt;</code>命令。同理，<code class="inset">gk</code>或<code class="inset">g&lt;Up&gt;</code>命令，用于向上移动。</p>
+	<p><a href="http://www.flickr.com/photos/yyq123/5495434173/" title="j-gj by yyq123, on Flickr"><img src="http://farm6.static.flickr.com/5013/5495434173_f2cc3255ba.jpg" width="500" height="118" alt="j-gj" /></a></p>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:set wrap</code></td><td>启用自动折行</td></tr>
+		<tr><td><code class="inset">:set nowrap</code></td><td>取消自动折行</td></tr>
+		<tr><td><code class="inset">:set linebreak</code></td><td>自定义折行</td></tr>
+	</table>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.1</span><span>&lt;<a title="换行" href="http://tiny.cc/vim-LF">上一篇</a>&nbsp;|<a title="笔记列表" href="http://tiny.cc/learn-vim">&nbsp;目录&nbsp;</a>|&nbsp;<a title="缩进" href="http://tiny.cc/vim-indent">下一篇</a>&gt;</span></p>
+</body>
+</html>

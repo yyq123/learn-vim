@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 可视化模式 (Visual Mode)</title>
+</head>
+<body>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">可视化模式的种类</p>
+	<p>在可视化模式下，可以对一个文本块的整体进行操作。例如，首先高亮选中一部分文本，然后用d命令删除这个文本块。可视化模式的好处在于，你可以在做改动之前，就看到操作将影响的文本。可视化模式可以分为以下三种：</p>
+	<ol>
+	<li>用<code class="inset">v</code>命令进入的字符可视化模式（Characterwise visual mode)。文本选择是以字符为单位的。</li>
+	<li>用<code class="inset">V</code>命令进入的行可视化模式（Linewise visual mode)。文本选择是以行为单位的。</li>
+	<li>用<code class="inset">ctrl-V</code>进入的块可视化模式（Blockwise visual mode）。可以选择一个矩形内的文本。（注意：在Windows中，<code class="inset">ctrl-V</code>可能已经被影射为粘贴操作，可以使用<code class="inset">ctrl-Q</code>进入块可视化模式。）</li>
+	</ol>
+	
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">切换可视化模式</p>
+	<p>通过输入相应的可视化命令，就可以切换到不同的可视化模式。例如现在字符可视化模式下，如果想要切换到块可视化模式，那么只需要输入<kbd>ctrl-V</kbd>即可。当然，我们也可以先用<kbd>ESC</kbd>关闭当前的可视化模式，然后再进入其它可视化模式。</p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">在可视化模式下选择</p>
+	<p>使用命令<code class="inset">v</code>进入<strong>字符可视化模式</strong>。在此模式下，用命令移动光标，光标起始位置和当前位置之间的文本将会以高亮显示。这时就可以对这些高亮显示的文本进行整体的操作。例如：在字符可视化模式中，首先用<code class="inset">6l</code>命令选中光标右侧的6个字符，然后输入<code class="inset">d</code>命令删除高亮显示的文本。</p>
+	<p><a href="http://www.flickr.com/photos/yyq123/5100794499/" title="VisualMode_Char by yyq123, on Flickr"><img src="http://farm5.static.flickr.com/4125/5100794499_a8e12dbfaf.jpg" width="266" height="87" alt="VisualMode_Char" /></a></p>
+	<p>使用命令<code class="inset">V</code>进入<strong>行可视化模式</strong>。在此模式下，我们使用<code class="inset">2j</code>命令，就可以选中当前行及其随后2行。</p>
+	<p><a href="http://www.flickr.com/photos/yyq123/5100818807/" title="VisualMode_Line by yyq123, on Flickr"><img src="http://farm5.static.flickr.com/4110/5100818807_654901eb04.jpg" width="266" height="87" alt="VisualMode_Line" /></a></p>
+	<p>使用命令<code class="inset">ctrl-Q</code>进入<strong>块可视化模式</strong>。在此模式下，我们使用<code class="inset">2l</code>命令向右移动，然后使用<code class="inset">3j</code>命令向下移动，就可以选中4行2列的文本块。</p>	
+	<p><a href="http://www.flickr.com/photos/yyq123/5100856819/" title="VisualMode_Block by yyq123, on Flickr"><img src="http://farm5.static.flickr.com/4107/5100856819_81acfbf1fa.jpg" width="266" height="87" alt="VisualMode_Block" /></a></p>
+	<p>命令<code class="inset">gv</code>可以重复前一次可视化模式时选中的文本。如果已经在可视化模式下，执行该命令会选中前一次选择的文本。如果重复行执gv命令，就会在当前选中的文本和前一次选中的文本之间进行切换。</p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">在可视化模式下移动</p>
+	<p>如果你已经在可视化模式下选择了若干文本，并且希望移动到已选择文本的另一结尾处，那么可以使用<code class="inset">o</code>命令。</p>
+	<p><a href="http://www.flickr.com/photos/yyq123/445669722/" title="Photo Sharing"><img src="http://farm1.static.flickr.com/181/445669722_203b4b2927.jpg" width="500" height="349" alt="VisualMode_o_1" /></a></p>
+	<p>如果你使用的是块可视化模式，那么已选择的区域将有四个角落。<code class="inset">o</code>命令只能移动到对面的一个角落，这时你可以使用<code class="inset">O</code>命令移动到同一行的另一个角落。</p>
+	<p><a href="http://www.flickr.com/photos/yyq123/445669724/" title="Photo Sharing"><img src="http://farm1.static.flickr.com/231/445669724_d04cc4cf52.jpg" width="500" height="349" alt="VisualMode_o_2" /></a></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">在可视化模式下编辑</p>
+	<p>在可视化模式下，我们可以进行各种编辑操作。如<code class="inset">d</code>命令可以删除高亮显示的文本，而<code class="inset">D</code>命令则会删除一行，即使这一行中只有部分文本是高亮显示的。类似的，<code class="inset">y</code>命令将复制高亮显示的文本，而<code class="inset">Y</code>命令会复制整行。<code class="inset">c</code>命令可以将高亮显示的文本删除并进入编辑模式，而<code class="inset">C</code>命令会删除一行文本并进入编辑状态。</p>
+	<p>针对高亮显示的文本块，我们可以用命令<code class="inset">~</code>进行大小写转换。用命令<code class="inset">&gt;</code>增加缩进，或用命令<code class="inset">&lt;</code>减少缩进。</p>
+	<p>我们还可以利用可视化模式，来合并多行文本。<code class="inset">J</code>命令可以将高亮显示的文本内容合并为一行，同时以空格来分隔各行。如果不希望在行间插入空格，那么可以使用<code class="inset">gJ</code>命令。</p>
+	<p>使用<code class="inset">g?</code>命令，可以使用rot 13算法来加密高亮显示的文本。针对同一个文本再次执行加密命令，就可以进行文本解密。</p>
+	<p>在可视化模式下，按下<kbd>:</kbd>键就可以对选定范围进行操作。例如：我们先在可视化模式下选中文本，然后执行<code class="inset">:write block.txt</code>命令，就可以将文本块写入另一文件中。选择多行，然后执行<code class="inset">:sort</code>命令，则可以对选中的文本进行排序。</p>
+	<p>利用块可视化模式，我们可以快速地对选中的文本进行操作。比如先用<code class="inset">^命令，移动到行首；然后使用<code class="inset">ctrl-Q</code>进入块可视化模式；再利用<code class="inset">j</code>命令选中多行；而后使用<code class="inset">I--</code>命令，就可以在每行开头增加注释符。</p>
+	<p>VisualMode_Edit.gif<a href="http://www.flickr.com/photos/yyq123/445669724/" title="Photo Sharing"><img src="http://farm1.static.flickr.com/231/445669724_d04cc4cf52.jpg" width="500" height="349" alt="VisualMode_o_2" /></a></p>
+http://yannesposito.com/Scratch/en/blog/Learn-Vim-Progressively/
+	
+	<p>如果想要查看可视化相关的帮助信息，可以在所希望帮助的名称前加v_前缀。例如使用<code class="inset">:help v_d</code>命令，可以得到关于在可视模式下进行删除操作的帮助信息。</p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">退出可视化模式</p>
+	<p>当我们想要退出可视化模式时，可以按<kbd>ESC</kbd>键或<kbd>ctrl+c</kbd>键。</p>
+	
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">v</code></td><td>进入字符可视化模式</td></tr>
+		<tr><td><code class="inset">V</code></td><td>进入行可视化模式</td></tr>
+		<tr><td><code class="inset">ctrl-V</code></td><td rowspan="2">进入块可视化模式</td></tr>
+		<tr><td><code class="inset">ctrl-Q</code></td></tr>
+		<tr><td><code class="inset">gv</code></td><td>选中前一次可视化模式时选择的文本</td></tr>
+		<tr><td><code class="inset">o</code></td><td>光标移动到选中文本的另一结尾</td></tr>
+		<tr><td><code class="inset">O</code></td><td>光标移动到选中文本的另一角落</td></tr>
+	</table>
+	<p>Technorati Tags: <a href="http://www.technorati.com/tags/vi" rel="tag">vi</a>,<a href="http://www.technorati.com/tags/vim" rel="tag">vim</a>,<a href="http://www.technorati.com/tags/gvim" rel="tag">gvim</a></p>
+</body>
+</html>
+

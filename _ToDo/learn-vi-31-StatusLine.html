@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 状态行(statusline)</title>
+</head>
+<body>
+	<p>默认的状态行，左侧显示当前打开的文件名，右侧显示当前所处的行列位置。当你执行Vim命令时，状态行将消失并显示命令输入及输出。</p>
+	<p>通常状态行用反色显示。你可以通过修改highlight选项中的s字符来改变。例如，sb设置为粗体字。如果状态行没有启用高亮 (sn)，那么字符^表示当前窗口，字符=表示其它窗口。如果支持鼠标并且已经通过设置mouse选项使之启动，那么你可以用鼠标拖动状态行以改变窗口的大小。</p>
+
+	<p style="font-weight:bold">定制状态行</p>
+	<p>我们可以使用以下命令来定义状态行：</p>	
+	<p><code class="inset">:set statusline format</code></p>
+	<p>例如下面的命令：</p>
+	<p><code class="inset">:set statusline=The file is"%f"</code></p>
+	<p>其中，%用来指明一个特殊区域。例如%f，将在状行中包含文件名。</p>
+	<p>选项包含printf风格的%项目，中间可以间杂普通文本。内容默认为右对齐，如果希望左对齐，那么可以在%后面加上-。数字内容是忽略开头0显示的，如果需要显示前导0，那么可以在%后加上一个"0"。单个百分号可以用"%%"给出。最多可给出80个项目。</p>
+	<p>如果此选项以 "%!" 开始，它用作表达式。计算此表达式的结果用作选项值。</p>
+
+	<table summary="" border="0" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>参数列表</caption>
+		<tr><td>%(...%)</td><td>定义一个项目组。</td></tr>          
+		<tr><td>%{n}*</td><td>%对其余的行使用高亮显示组Usern，直到另一个%n*。数字n必须从1到9。用%*或%0*可以恢复正常的高亮显示。</td></tr>
+		<tr><td>%&lt;</td><td>如果状态行过长，在何处换行。缺省是在开头。</td></tr>
+		<tr><td>%=</td><td>左对齐和右对齐项目之间的分割点。</td></tr>
+		<tr><td>%</td><td>字符%</td></tr>
+		<tr><td>%B</td><td>光标下字符的十六进制形式</td></tr>
+		<tr><td>%F</td><td>缓冲区的文件完整路径</td></tr>
+		<tr><td>%H</td><td>如果为帮助缓冲区则显示为HLP</td></tr>
+		<tr><td>%L</td><td>缓冲区中的行数</td></tr>
+		<tr><td>%M</td><td>如果缓冲区修改过则显示为+</td></tr>
+		<tr><td>%N</td><td>打印机页号</td></tr>
+		<tr><td>%O</td><td>以十六进制方式显示文件中的字符偏移</td></tr>
+		<tr><td>%P</td><td>文件中光标前的%</td></tr>
+		<tr><td>%R</td><td>如果缓冲区只读则为RO</td></tr>
+		<tr><td>%V</td><td>列数。如果与%c相同则为空字符串</td></tr>
+		<tr><td>%W</td><td>如果窗口为预览窗口则为PRV</td></tr>
+		<tr><td>%Y</td><td>缓冲区的文件类型，如vim</td></tr>
+		<tr><td>%a</td><td>如果编辑多行文本，这个字行串就是({current} of {arguments})，例如：(5 of 18)。如果在命令行中只有一行，这个字符串为空</td></tr>
+		<tr><td>%b</td><td>光标下的字符的十进制表示形式</td></tr>
+		<tr><td>%c</td><td>列号</td></tr>
+		<tr><td>%f</td><td>缓冲区的文件路径</td></tr>
+		<tr><td>%h</td><td>如果为帮助缓冲区显示为[Help]</td></tr>
+		<tr><td>%l</td><td>行号</td></tr>
+		<tr><td>%m</td><td>如果缓冲区已修改则表示为[+]</td></tr>
+		<tr><td>%n</td><td>缓冲区号</td></tr>
+		<tr><td>%o</td><td>在光标前的字符数（包括光标下的字符）</td></tr>
+		<tr><td>%p</td><td>文件中所在行的百分比</td></tr>
+		<tr><td>%r</td><td>如果缓冲区为只读则表示为[RO]</td></tr>
+		<tr><td>%t</td><td>文件名(无路径)</td></tr>
+		<tr><td>%v</td><td>虚列号</td></tr>
+		<tr><td>%w</td><td>如果为预览窗口则显示为[Preview]</td></tr>
+		<tr><td>%y</td><td>缓冲区的文件类型，如[vim]</td></tr>
+		<tr><td>%{expr}</td><td>表达式的结果</td></tr>
+	</table>          
+
+	<p style="font-weight:bold">显示状态行</p>
+	<p>即使已经使用以上命令设置选项，状态行还是保持原样，这是因为Vim在默认情况下是不显示状态行的，而仅显示命令缓冲区等极少的信息。我们可以使用以下命令，将状态行显示在窗口底部倒数第二行：</p>
+	<p><code class="inset">:set laststatus=2</code></p>
+	<p>你也可以使用以下命令，移去状态行：</p>
+	<p><code class="inset">:set laststatus=0</code></p>
+
+	<p style="font-weight:bold">状态行实例</p>
+	<p>利用以下命令，可以在状态行中显示：当前文件名，文件格式(DOS, Unix)，文件类型 (XHTML)，当前位置和文件总行数。</p>
+	<p><code class="inset">:set statusline=%F%m%r%h%w\ [FORMAT=%{&amp;ff}]\ [TYPE=%Y]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]</code></p>
+	<p>实际效果如下图所示：</p>
+	<p><a href="http://www.flickr.com/photos/yyq123/4045806924/" title="statusline_1 by yyq123, on Flickr"><img src="http://farm4.static.flickr.com/3490/4045806924_a6fa3a31c3.jpg" width="500" height="11" alt="statusline_1" /></a></p>
+	<p>除了显示的内容，你还可以使用以下命令定义显示的颜色。</p>
+	<p><code class="inset">:set statusline=%2*%n%m%r%h%w%*\ %F\ %1*[FORMAT=%2*%{&amp;ff}:%{&amp;fenc!=''?&amp;fenc:&amp;enc}%1*]\ [TYPE=%2*%Y%1*]\ [COL=%2*%03v%1*]\ [ROW=%2*%03l%1*/%3*%L(%p%%)%1*]\</code></p>
+	<p>需要使用以下命令，自定义高亮显示颜色。</p>
+	<p><code class="inset">hi User1 guifg=gray</code></p>
+	<p><code class="inset">hi User2 guifg=red</code></p>
+	<p><code class="inset">hi User3 guifg=white</code></p>
+	<p>实际效果如下图所示：</p>
+	<p><a href="http://www.flickr.com/photos/yyq123/4049383896/" title="statusline_Color by yyq123, on Flickr"><img src="http://farm3.static.flickr.com/2764/4049383896_8e6821338a.jpg" width="500" height="16" alt="statusline_Color" /></a></p>
+	<p>你还可以通过在_vimrc文件中包括以下命令，使状态行根据状态的不同，显示不同的颜色。</p>
+	<p><code class="inset">function! InsertStatuslineColor(mode)</code></p>
+	<p><code class="inset">if a:mode == 'i'</code></p>
+	<p style="text-indent: 2em;"><code class="inset">hi statusline guibg=peru</code></p>
+	<p><code class="inset">elseif a:mode == 'r'</code></p>
+	<p style="text-indent: 2em;"><code class="inset">hi statusline guibg=blue</code></p>
+	<p><code class="inset">else</code></p>
+	<p style="text-indent: 2em;"><code class="inset">hi statusline guibg=black</code></p>
+	<p><code class="inset">endif</code></p>
+	<p><code class="inset">endfunction</code></p>
+	<p><code class="inset">au InsertEnter * call InsertStatuslineColor(v:insertmode)</code></p>
+	<p><code class="inset">au InsertLeave * hi statusline guibg=orange guifg=white</code></p>
+	<p><code class="inset">hi statusline guibg=black</code></p>
+	<p>如下图所示，状态行的文件名部分，在插入状态时显示为橘色背景，这样就能很明显地提醒我们所处的状态：</p>
+	<p><a href="http://www.flickr.com/photos/yyq123/4051790529/" title="statusline_Mode by yyq123, on Flickr"><img src="http://farm4.static.flickr.com/3480/4051790529_04ed298547.jpg" width="500" height="17" alt="statusline_Mode" /></a></p>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:set statusline format</code></td><td>定制状态行</td></tr>
+		<tr><td><code class="inset">:set laststatus</code></td><td>显示/取消状态行</td></tr>
+	</table>
+	
+	<p>Technorati Tags: <a href="http://www.technorati.com/tags/vi" rel="tag">vi</a>,<a href="http://www.technorati.com/tags/vim" rel="tag">vim</a>,<a href="http://www.technorati.com/tags/gvim" rel="tag">gvim</a></p>
+</body>
+</html>
+

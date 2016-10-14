@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 </title>
+</head>
+<body>
+	<p style="font-weight:bold"></p>
+	<p></p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+	<p>$VIM代表，/usr/share/vim或/usr/local/share/vim</p>
+	:echo $vim
+
+vimfiles目录中的设置，会覆盖runtime目录中的设置。
+for example, if you have vimfiles/plugin/myplug.vim and
+$VIMRUNTIME/plugin/myplug.vim, the one in vimfiles is
+loaded. Directory structure under vimfiles should indeed
+mimick that under $VIMRUNTIME
+
+ :help runtimepath
+
+
+The $VIM\vimfilel\ directory (DOS) and the $HOME/.vim/
+directory (unix) are for any customizations that should not be
+over-written when upgrading to a new version of vim.
+
+The question of which file overrides which is a little
+complicated. For example, on my W95 machine, 'runtimepath' includes the
+directories
+
+D:\VIM/vimfiles (a.k.a. $VIM\fimfiles)
+D:\VIM\vim61 (a.k.a. $VIMRUNTIME)
+D:\VIM/vimfiles/after
+
+in that order, which determines search order. Now, if I use :runtime,
+then the first file found is used; it overrides the other(s). If I use
+:runtime!, however, all found files are :source'd, so the last one found
+overrides the others. (This is why we have the after/ directory!) Some
+files check for the existence of a variable; if it exists, they bail
+out. In this case, first file wins again.
+
+
+:help :runtime
+:help ftplugin-overrule
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+	</table>
+	<p>Technorati Tags: <a href="http://www.technorati.com/tags/vi" rel="tag">vi</a>,<a href="http://www.technorati.com/tags/vim" rel="tag">vim</a>,<a href="http://www.technorati.com/tags/gvim" rel="tag">gvim</a></p>
+</body>
+</html>
+

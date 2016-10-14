@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>learn vi 01</title>
+</head>
+<body>
+	<h1>第一节　基本编辑命令</h1>
+	在查询中，点（.）可以代表任意一个字符。<code class="inset">/.</code> and you'll see that it matches, literally, everything -- letters, numbers, whitespace, the whole kit and kaboodle.
+
+插入符号（^）一行的开头；美元符号（$）一行的结尾。. For instance, to find any line in a bash script that begins with a comment, you could use ^#. To find empty lines, just use ^$ which will match any line without any characters.
+
+To match whitespace, use the \s operator. If you wanted to find empty lines that contain nothing but whitespace, you could use ^\s.*$. This will match lines with whitespace, but no other characters -- it won't match empty lines without white space. By contrast, the \S operator will match non-whitespace characters.
+
+The \d operator will match any digit in a search, while the \D operator will match any non-digit in a search. To match any uppercase character, use \u, while \l will match any lowercase character. Using \U will match any non-uppercase character, and \L will match any non-lowercase character.
+
+There's a subtle difference between matching any lowercase character and matching any non-uppercase character, and matching any uppercase character and matching any non-lowercase character. If you use \u it will only match an uppercase letter -- but if you use \L it will match any uppercase letter and any other character that's not a lowercase character; so it would match whitespace, digits, punctuation, and so on.
+
+What happens when you actually want to search for a special character, such as a dollar sign or caret? Special characters can be escaped with the backslash character, so use \$ to search for a dollar sign in your file, or \^ to search for the caret, and so forth. Note that the backslash character is itself a special character, so you'd need to use two backslashes together.
+
+
+	<p></p>
+	<p></p>
+	<p></p>
+	<p></p>
+	<p></p>
+	<p></p>
+	<p></p>
+	<p></p>
+	<p style="font-weight:bold">substitute命令</p>
+	<p>我们使用只有一行的文件来测试这些命令。先用命令将整个文件打印出来:</p>
+	<p style="text-indent:2em"><code class="inset">:%print</code></p>
+	<p>命令的执行结果如下:</p>
+	<p>Test aaa* aa* a*</p>
+	<p>然后我们设置magic选项并且执行替换命令。p标记打印出所改变的行:</p>
+	<p style="text-indent:2em"><code class="inset">:set magic</code></p>
+	<p style="text-indent:2em"><code class="inset">:1 substitute /a*/b/p</code></p>
+	<p>命令的执行结果如下:</p>
+	<p>bTest aaa* aa* a*</p>
+	<p>这个命令只是改变了一行开始的部分。为什么会将Test变为b*Test呢？这是因为*可以匹配0次或是多次，而Test正是以0个a开始的。但是为什么只是替换了一次呢？这是因为:substitute命令中是改变第一个出现的地方，如果我们使用g标记就可以替换全部的匹配项了。</p>
+	<p>我们撤销刚才的命令并执行下面的命令:</p>
+	<p style="text-indent:2em"><code class="inset">:undo</code></p>
+	<p style="text-indent:2em"><code class="inset">:1 substitute /a*/b/pg</code></p>
+	<p>命令的执行结果如下:</p>
+	<p>bTest b*b b*b b*</p>
+	<p>现在我们在关闭magic选项的情况下再做一次:</p>
+	<p style="text-indent:2em"><code class="inset">:undo</code></p>
+	<p style="text-indent:2em"><code class="inset">:set nomagic</code></p>
+	<p style="text-indent:2em"><code class="inset">:1 substitute /a*/b/pg</code></p>
+	<p>命令的执行结果如下:</p>
+	<p>Test aab ab b</p>
+	<p style="font-weight:bold">smgic命令</p>
+	<p>在没有设置magic的情况下，*仅是一个*。而:smagic命令则是在执行替换命令时强制转换*以及其他一些字符的意义。例如我们执行下面的命令:</p>
+	<p style="text-indent:2em"><code class="inset">:smagic /a*/b/pg</code></p>
+	<p>命令的执行结果如下:</p>
+	<p>bTest b*b b*b b*</p>
+	<p>而相类似的是命令:snomagic选项强行关掉magic选项:</p>
+	<p style="text-indent:2em"><code class="inset">:snomagic /a*/b/pg</code></p>
+	<p>命令的执行结果如下:</p>
+	<p>Test aab ab b</p>
+	<p>在一般的情况下，:substitute命令只是改变一行中第一个出现的字符串，除非我们使用了g标记。如果希望g标记能成为默认的设置，那么可以使用<code class="inset">:set gdefault</code>命令。</p>
+	
+	<p style="font-weight:bold">&amp;命令</p>
+	<p>&amp;命令可以重复执行替换。这个命令可以保存旧的from和to的字符串，但是允许使用不同的范围(range)和标记(flags)。</p>
+	<p>这个命令的形式如下:</p>
+	<p style="text-indent:2em"><code class="inset">:range &amp; flags count</code></p>
+	<p>例如我们执行下面的命令:</p>
+	<p style="text-indent:2em"><code class="inset">:1 substitute /a+/b/p</code></p>
+	<p>命令的执行结果如下:</p>
+	<p>Test b* aa* a*</p>
+	<p>这个命令可以改变第一个出现from所指的字符的地方.但是我们希望是的整个一行都要发生相应的替换,这时我们可以重复这一次替换命令:</p>
+	<p style="text-indent:2em"><code class="inset">:&amp;g</code></p>
+	<p>命令的执行结果如下:</p>
+	<p>Test b* b* b*</p>
+	<p>命令:&amp;和命令:substitute在没有指定替换字符串的情况下作用相同，都可以执行上一次的替换命令。</p>
+	<p>例如我们执行下面的命令将第五行中的字符manager变为idiot:</p>
+	<p style="text-indent:2em"><code class="inset">:5 substitute /manager/idiot/</code></p>
+	<p>如果在正常的命令模式下，我们执行命令&amp;，那么这一行中的下一个manager字符串也会被替换。如果下移一行然后执行命令&amp;，那么这一行也会发生相应的变化。如果在这个命令中指定了count，那么这个命令就可以作用多行。</p>
+	<p>命令<code class="inset">:~</code>与<code class="inset">&amp;g</code>相类似，所不同的是前者使用的字符是上一次使用/或是?查找时使用的字符串，而不是上一次:substitute命令中的字符串。这个命令的一般格式如下:</p>
+	<p style="text-indent:2em"><code class="inset">:range~ flags count</code></p>
+	<p style="font-weight:bold">global命令</p>
+	<p>如果我们希望改变含有特定类型的行，这时就城要用到<code class="inset">:global</code>命令了。这个命令的一般形式如下:</p>
+	<p style="text-indent:2em"><code class="inset">:range global /pattern/command</code></p>
+	<p>这个命令可以告诉Vim编辑器，对在指定的范围内包含有指定的类型的所有行执的操作。例如我们要打印出一个文件中所有包含单词Professor的行，可以使用下面的命令:</p>
+	<p style="text-indent:2em"><code class="inset">:%global /Professor/ print</code></p>
+	<p>而命令<code class="inset">:global!</code>将对所有的行执行指定的命令。</p>
+
+	<p>删除行尾空格:其中“$”匹配行尾换行符。这条命令有一个特殊之处，它们没用常见的“/”字符作为“:s”命令各个参数的分隔符，而是使用了“=”字符。这种用法在查找或替换的内容中包含“/”字符时非常有用。</p>
+	<p style="text-indent:2em"><code class="inset">:%s=  *$==</code></p>
+
+	<p>:</p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+	</table>
+</body>
+</html>
+

@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 折叠 (Fold)</title>
+</head>
+<body>
+	<p>当我们查看很长的文本时（比如程序代码），可以使用<code class="inset">:set foldenable</code>命令来启动折叠。首先将内容按照其结构折叠起来，查看文件的大纲，然后再针对待定的行展开折叠，显示文本的详细内容。</p>
+	<p><a href="http://www.flickr.com/photos/yyq123/6085387758/" title="fold_close by yyq123, on Flickr"><img src="http://farm7.static.flickr.com/6073/6085387758_06438c5d9f.jpg" width="500" height="109" alt="fold_close" /></a></p>
+	<p>Vim将折叠等同于行来对待&mdash;&mdash;你可以使用j或k命令，移动跳过包含多行的整个折叠；也可以使用y或d命令，复制或删除某个折叠。</p>
+	<p>通常在折叠处向左或向右移动光标，或者进入插入模式，都将会自动打开折叠。我们也可以使用以下命令定义快捷键，使用空格键关闭当前打开的折叠，或者打开当前关闭的折叠。</p>
+	<p style="text-indent:2em"><code class="inset">:nnoremap &lt;space&gt; za</code></p>
+	<p>按照折叠所依据的规则，可以分为Manual（手工折叠）、Indent（缩进折叠）、Marker（标记折叠）和Syntax（语法折叠）等几种。</p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">Manual Fold</p>
+	<p>使用以下命令，启用手工折叠。</p>
+	<p style="text-indent:2em"><code class="inset">:set foldmethod=manual</code></p>
+	<p>在可视化模式下，使用以下命令，将折叠选中的文本：</p>
+	<p style="text-indent:2em"><code class="inset">zf</code></p>
+	<p>通过组合使用移动命令，可以折叠指定的行。例如：使用<code class="inset">zf70j</code>命令，将折叠光标之后的70行；使用<code class="inset">5zF</code>命令，将当前行及随后4行折叠起来；使用<code class="inset">zf7G</code>命令，将当前行至全文第7行折叠起来。</p>
+	<p>我们也可以使用以下命令，折叠括号（比如()、[]、{}、&gt;&lt;等）包围的区域：</p>
+	<p style="text-indent:2em"><code class="inset">zfa(</code></p>
+	<p>Vim并不会自动记忆手工折叠。但你可以使用以下命令，来保存当前的折叠状态：</p>
+	<p style="text-indent:2em"><code class="inset">:mkview</code></p>
+	<p>在下次打开文档时，使用以下命令，来载入记忆的折叠信息：</p>
+	<p style="text-indent:2em"><code class="inset">:loadview</code></p>
+	<p>可以使用以下命令，查看关于手工折叠的帮助信息：</p>
+	<p style="text-indent:2em"><code class="inset">:help fold-manual</code></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">Indent Fold</p>
+	<p>使用以下命令，启用缩进折叠。所有文本将按照（选项<em>shiftwidth </em>定义的）缩进层次自动折叠。 </p>
+	<p style="text-indent:2em"><code class="inset">:set foldmethod=indent</code></p>
+	<p>使用<code class="inset">zm</code>命令，可以手动折叠缩进；而利用<code class="inset">zr</code>命令，则可以打开折叠的缩进。</p>
+	<p>使用以下命令，将可以根据指定的级别折叠缩进：</p>
+	<p style="text-indent:2em"><code class="inset">:set foldlevel=1</code></p>
+	<p>可以使用以下命令，查看关于缩进折叠的帮助信息：</p>
+	<p style="text-indent:2em"><code class="inset">:help fold-indent</code></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">Syntax Fold</p>
+	<p>使用以下命令，启用语法折叠。所有文本将按照语法结构自动折叠。</p>
+	<p style="text-indent:2em"><code class="inset">:set foldmethod=syntax</code></p>
+	<p>可以使用以下命令，查看关于语法折叠的帮助信息：</p>
+	<p style="text-indent:2em"><code class="inset">:help fold-syntax</code></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">Marker Fold</p>
+	<p>使用以下命令，启用标记折叠。所有文本将按照特定标记（默认为{{{和}}}）自动折叠。</p>
+	<p style="text-indent:2em"><code class="inset">:set foldmethod=marker</code></p>
+	<p>我们可以利用标记折叠，在文本中同时体现结构和内容，并且能够快速跳转到文件的不同部分。</p>
+	<p><a href="http://www.flickr.com/photos/yyq123/6109171480/" title="fold_marker by yyq123, on Flickr"><img src="http://farm7.static.flickr.com/6210/6109171480_0bf7993d5a.jpg" width="500" height="152" alt="fold_marker" /></a></p>
+	<p>可以使用以下命令，查看关于标记折叠的帮助信息：</p>
+	<p style="text-indent:2em"><code class="inset">:help fold-marker</code></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">折叠选项</p>
+	<p>使用<code class="inset">:set foldcolumn=W</code>命令（<em>W</em>是一个0-12的整数），将在屏幕左侧显示一个折叠标识列，分别用&ldquo;-&rdquo;和&ldquo;+&rdquo;而表示打开和关闭的折叠。</p>
+	<p><a href="http://www.flickr.com/photos/yyq123/5581281414/" title="foldcolumn by yyq123, on Flickr"><img src="http://farm6.static.flickr.com/5067/5581281414_b97d376b32.jpg" width="272" height="119" alt="foldcolumn" /></a></p>
+
+	<p>使用以下命令，可以查看关于折叠的帮助信息：</p>
+	<p style="text-indent:2em"><code class="inset">:help folding</code></p>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">zc</code></td><td>关闭当前打开的折叠</td></tr>
+		<tr><td><code class="inset">zo</code></td><td>打开当前的折叠</td></tr>
+		<tr><td><code class="inset">zm</code></td><td>关闭所有折叠</td></tr>
+		<tr><td><code class="inset">zM</code></td><td>关闭所有折叠及其嵌套的折叠</td></tr>
+		<tr><td><code class="inset">zr</code></td><td>打开所有折叠</td></tr>
+		<tr><td><code class="inset">zR</code></td><td>打开所有折叠及其嵌套的折叠</td></tr>
+		<tr><td><code class="inset">zd</code></td><td>删除当前折叠</td></tr>
+		<tr><td><code class="inset">zE</code></td><td>删除所有折叠</td></tr>
+		<tr><td><code class="inset">zj</code></td><td>移动至下一个折叠</td></tr>
+		<tr><td><code class="inset">zk</code></td><td>移动至上一个折叠</td></tr>
+		<tr><td><code class="inset">zn</code></td><td>禁用折叠</td></tr>
+		<tr><td><code class="inset">zN</code></td><td>启用折叠</td></tr>
+	</table>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="配色方案" href="http://tiny.cc/vim-color">上一篇</a>&nbsp;|<a title="笔记列表" href="http://tiny.cc/learn-vim">&nbsp;目录&nbsp;</a>|&nbsp;<a title="语法高亮度" href="http://tiny.cc/vim-syntax">下一篇</a>&gt;</span></p>
+</body>
+</html>

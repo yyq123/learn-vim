@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>语法高亮度显示</title>
+</head>
+<body>
+<p style="font-weight:bold">HTML</p>
+HTML语法文件使用下面的高亮标记:
+htmlTitle
+htmlH1
+htmlH2
+htmlH3
+htmlH4
+htmlH5
+htmlH6
+htmlBold
+htmlBoldUnderline
+htmlBoldUnderlineItalic
+htmlUnderline
+htmlUnderlineItalic
+htmlItalic
+htmlLink
+如果我们要关闭语法加亮可以用下面的命令:
+:let html_no_rendering=1
+如果我们要为这些内容定义我们自己的颜色,我们可以将颜色设置的命令放在我们的VIMRC中然后使用下面的命令:
+:let html_my_rendering=1
+在一些文件中包含<!--和--!>或是<!和!>作为注释.如果我们希望这些注释高亮显示,我们可以用下面的命令:
+:let html_wrong_comments=1
+	<p></p>
+Inserting Closing Tags
+closetag.vim
+
+Character Codes
+snipMate.vim
+KeysInsertForCommentamp&amp;&ampersandlt&lt;<less-than signgt&gt;>greater-than signmiddot&middot;·middle dot (decimal point)dash&#8212;—em-dash
+
+
+</body>
+</html>
+

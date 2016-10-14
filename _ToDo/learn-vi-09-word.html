@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+<title>VIM学习笔记 在单词间移动</title>
+</head>
+<body>
+	<p style="font-weight:bold">在word间移动</p>
+	<p>命令<code class="inset">w</code>使得光标向前移到一个单词；命令<code class="inset">b</code>向后移动一个单词；命令<code class="inset">e</code>也是向前移到一个单词，但是将光标定位在单词的结尾处；命令<code class="inset">ge</code>则是向后移到一个单词并到达前一个单词的结尾处。</p>
+	<p>那么怎么样来定义一个单词呢？我们都知道单词是一系列字母的组合。然而在C程序中size56却会被认为是一个单词，因为在C程序中我们是通过字母、数字和下划线来组成一个单词的。但是LISP程序中可以在变量名中使用-，这时会认为total-size是一个单词，而在C程序中这却会被认为是两个单词。我们如何来解决这样的冲突呢？Vim的解决办法是，用选项来定义哪些是一个单词中的，而哪些又不是。例如下面的命令定义了属于一个单词中的字母：</p>
+	<p style="text-indent:2em"><code class="inset">:set iskeyword=specification</code></p>
+	<p>查看当前选项，可以使用下面的命令：</p>
+	<p style="text-indent:2em"><code class="inset">:set iskeyword?</code></p>
+	<p>命令会返回一组用用逗号分隔的值：</p>
+	<p style="text-indent:2em">iskeyword=@,48-57,_,192_255</p>
+	<p>如果我们想要单词中的字母是专一的元音，可以使用下面的命令：</p>
+	<p style="text-indent:2em"><code class="inset">:set iskeyword=a,e,i,o,u</code></p>
+	<p>我们还可以使用横线来指定字母的范围。如果要指定所有的小写字母，可以用下面的命令：</p>
+	<p style="text-indent:2em"><code class="inset">:set iskeyword=a-z</code></p>
+	<p>对于那些不能直接指定的字符，可以使用十进制的数字来表示。如果我们要指定小写字母和下划线为一个单词，可以使用下面的命令：</p>
+	<p style="text-indent:2em"><code class="inset">:set iskeyword=a-z,45</code></p>
+	<p>排除某一个字符，可以在这个字符前加上一个前缀^。例如我们可以定义一个单词由除了q以外的小写字符组成：</p>
+	<p style="text-indent:2em"><code class="inset">:set iskeyword=@,^q</code></p>
+	<p>iskeyword（命令iskeyword可以简记为isk）选项使用以下特殊字符：</p>
+	<table summary="word" border="0">
+		<tr><td>a</td><td>&nbsp;&nbsp;字符a</td></tr>
+		<tr><td>a-z</td><td>&nbsp;&nbsp;所有由a到z的字符</td></tr>
+		<tr><td>@</td><td>&nbsp;&nbsp;由函数isalpha()所定义的所有字符</td></tr>
+		<tr><td>@-@</td><td>&nbsp;&nbsp;字符@</td></tr>
+		<tr><td>^x</td><td>&nbsp;&nbsp;除了x以外的字符</td></tr>
+		<tr><td>^a-c</td><td>&nbsp;&nbsp;除了a到c以外的字符</td></tr>
+	</table>
+	<p style="font-weight:bold">在WORD间移动</p>
+	<p>除了word之外，Vim还有一种概念WORD。虽然这只是大小写的不同，但是他们却代表了两种不同的事物。word是指由iskeyword选项定义的字符串；而WORD则是指用空白符分隔的字符串。与WORD相关的一些命令如下:</p>
+	<table summary="WORD" border="0">
+		<tr><td><code class="inset">[count]B</code></td><td>&nbsp;&nbsp;向后移动count个WORDS</td></tr>
+		<tr><td><code class="inset">[count]E</code></td><td>&nbsp;&nbsp;向前移动count个WORDS,并且将光标置于WORD的末尾.</td></tr>
+		<tr><td><code class="inset">[count]gE</code></td><td>&nbsp;&nbsp;向后移动count个WORDS,并且将光标置于WORD的末尾.</td></tr>
+		<tr><td><code class="inset">[count]W</code></td><td>&nbsp;&nbsp;向前移动count个WORDS.</td></tr>
+	</table>
+	<br />
+	<p>:help word-motions</p>
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">w</code></td><td rowspan="2">向前移动一个word</td></tr>
+		<tr><td><code class="inset">e</code></td></tr>
+		<tr><td><code class="inset">b</code></td><td>向后移动一个word</td></tr>
+		<tr><td><code class="inset">set iskeyword</code></td><td>定义word选项</td></tr>
+		<tr><td><code class="inset">W</code></td><td rowspan="2">向前移动一个WORD</td></tr>
+		<tr><td><code class="inset">E</code></td></tr>
+		<tr><td><code class="inset">B</code></td><td>向后移动一个WORD</td></tr>
+	</table>
+	<p>Technorati Tags: <a href="http://www.technorati.com/tags/vi" rel="tag">vi</a>,<a href="http://www.technorati.com/tags/vim" rel="tag">vim</a>,<a href="http://www.technorati.com/tags/gvim" rel="tag">gvim</a></p>
+</body>
+</html>

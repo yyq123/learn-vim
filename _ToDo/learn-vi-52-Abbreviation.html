@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 缩写 (Abbreviation)</title>
+</head>
+<body>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">设置缩写</p>
+	<p>利用:ab[breviate]缩写命令，我们可以用一个缩写来代替一组字符，此后只要输入缩写，就可以自动插入其代表的字符串。</p>
+	<p>使用以下命令，将定义ad来代替advertisement：</p>
+	<p style="text-indent:2em"><code class="inset">:abbreviate ad advertisement</code></p>
+	<p>当想要输入advertisement时，只要输入ad，然后<kbd>Ctrl-]</kbd>键就可以输入advertisement了；如果点击<kbd>Esc</kbd>键，将插入扩展字符并返回命令模式；如果按下<kbd>Space</kbd>或<kbd>Enter</kbd>键，那么将在插入扩展字符后，自动增加空格或回车。</p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">不同模式下的缩写</p>
+	<p>使用下表中不同形式的abbreviate命令，可以针对特定的模式设置缩写：</p>
+	<table summary="Map in diffent mode" border="1" rules="all" cellspacing="0" cellpadding="2" style="text-align:center">
+		<tr><td>Command<br />命令</td><td>Insert Only<br />插入模式</td><td>Command Line<br />命令行模式</td></tr>
+		<tr><td><code class="inset">:abbreviate</code></td><td>y</td><td>y</td></tr>
+		<tr><td><code class="inset">:iabbrev</code></td><td>y</td><td></td></tr>
+		<tr><td><code class="inset">:cabbrev</code></td><td></td><td>y</td></tr>
+	</table>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">缩写实例</p>
+	<p>我们可以为多个单词设置缩写。例如以下命令，将设置Jack Berry的缩写为JB。</p>
+	<p style="text-indent:2em"><code class="inset">:abbreviate JB Jack Berry</code></p>
+	<p>如果你编写程序，那么利用以下设置，可以加快添加注释的速度：</p>
+	<p style="text-indent:2em"><code class="inset">:abbreviate #b /**********************</code></p>
+	<p style="text-indent:2em"><code class="inset">:abbreviate #e **********************/</code></p>
+	<p>如果你设计网页，那么利用以下缩写可以快速增加标签。其中&lt;CR&gt;&lt;LF&gt;将在标签间自动插入换行，以方便你继续输入内容。</p>
+	<p style="text-indent:2em"><code class="inset">:iabbrev p &lt;p&gt;&lt;CR&gt;&lt;LF&gt;&lt;/p&gt;</code></p>
+	<p>利用以下命令，我们甚至还可以定位光标所处的位置：</p>
+	<p style="text-indent:2em"><code class="inset">:iabbrev icode &lt;code class="inset"&gt;!cursor!&lt;/code&gt;&lt;Esc&gt;:call search('!cursor!','b')&lt;CR&gt;cf!</code></p>
+	<p>我们还可定义命令缩写。例如以下命令，将在新的标签页中显示帮助信息：</p>
+	<p style="text-indent:2em"><code class="inset">:cabbrev h tab h</code></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">查看缩写</p>
+	<p><a href="http://www.flickr.com/photos/yyq123/5259132341/" title="abbreviate by yyq123, on Flickr"><img src="http://farm6.static.flickr.com/5008/5259132341_033e0662fe.jpg" width="500" height="68" alt="abbreviate" /></a></p>
+	<p>使用<code class="inset">:abbreviate</code>命令，将列出所有缩写定义，其中第一列显示缩写的类型：</p>
+	<table summary="Abbreviate in diffent mode" border="1" rules="all" cellspacing="0" cellpadding="2" style="text-align:center">
+		<tr><td>标记</td><td>模式</td></tr>
+		<tr><td>!</td><td>插入模式，命令行模式</td></tr>
+		<tr><td>i</td><td>插入模式</td></tr>
+		<tr><td>c</td><td>命令模式</td></tr>
+	</table>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">取消缩写</p>
+	<p>可以使用以下命令，移除某个缩写：</p>
+	<p style="text-indent:2em"><code class="inset">:unabbreviate ad</code></p>
+	<p>针对不同模式下的缩写，需要使用与其相对应的unabbreviate命令。例如：使用<code class="inset">:iunabbreviate</code>命令，取消插入模式下的缩写，而<code class="inset">:iabclear</code>命令则会清除所有插入模式的缩写定义；依此类推，取消和清除命令行模式下的缩写，则需要使用<code class="inset">:cunabbreviate</code>和<code class="inset">:cabclear</code>命令。</p>
+	<p>如果想要清除所有缩写，可以使用以下命令：</p>
+	<p style="text-indent:2em"><code class="inset">:abclear</code></p>
+
+	<p>Technorati Tags: <a href="http://www.technorati.com/tags/vi" rel="tag">vi</a>,<a href="http://www.technorati.com/tags/vim" rel="tag">vim</a>,<a href="http://www.technorati.com/tags/gvim" rel="tag">gvim</a></p>
+</body>
+</html>

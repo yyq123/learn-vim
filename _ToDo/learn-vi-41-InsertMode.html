@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 插入模式 (Insert Mode)</title>
+</head>
+<body>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">开始插入模式</p>
+	<p>在常规模式下执行<code class="inset">i</code>命令，或者使用<code class="inset">:startinsert</code>命令，可以进入插入模式。</p>
+	<p>灵活使用以下命令，可以直接在你想要位置进入插入模式，以加快输入文字的速度：</p>
+	<table border="0">
+		<tr><td><code class="inset">i</code></td><td>在光标之前插入文字</td></tr>
+		<tr><td><code class="inset">I</code></td><td>在本行开头插入文字</td></tr>
+		<tr><td><code class="inset">a</code></td><td>在光标之后插入文字</td></tr>
+		<tr><td><code class="inset">A</code></td><td>在本行结尾插入文字</td></tr>
+	</table>
+	
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">在插入模式中编辑</p>
+	<p>在插入模式下，我们也可以执行各种命令。例如：使用<kbd>ctrl-U</code>命令，删除光标之前的所有文字；而<kbd>strl-W</kbd>命令，则会删除光标前面的一个字符。注意：在插入模式下，不可以使用h，j，k，l命令来移动光标，而必须使用光标移动键。</p>
+	<p>使用<code class="inset">CTRL-O</code>命令，可以进入命令模式执行Vim命令，然后重新回到插入模式中。例如，使用<p style="text-indent:2em"><code class="inset">CTRL-Odw</code></p>命令，Vim将会进入命令模式执行dw命令，在执行完毕后重新回到插入模式，这样就省去了多次切换模式的繁琐。</p>
+	
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">退出插入模式</p>
+	<p>按下<kbd>ESC</kbd>键就可以离开插入模式，回到正常模式。</p>
+	
+	<p>你可以使用以下命令，查看关于插入模式的帮助信息：</p>
+	<p style="text-indent:2em"><code class="inset">:help inserting</code></p>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+	</table>
+</body>
+</html>
+

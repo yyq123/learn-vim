@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>图形界面</title>
+</head>
+<body>
+	<p style="font-weight:bold">启动</p>
+	<p>使用gvim file命令，就可以打开图形界面来编辑文本了。</p>
+	<p>图形界面的外观因你所用的操作系统的不同而有所不同，就是同样的操作系统也会因你所使用的工具集不同（Motif,Athena,GTK）而会呈现不同的外观。</p>
+	<p>我们可以使用-geometry标记来指定启动的vim的位置和大小.这个选项的一般形式如下:
+-geometry width+x heightx_offset-y_offset
+这里的width和height以字符数指定了窗口的大小.而x_offset和y_offset则是指定了窗口的位置.x_offset以像素数指定了屏幕的左边和窗口的左边的距离.如果这个值是一个负数,则是指定编辑器的左边和屏幕的右边的距离.与此相类似,y_offset则是指定了上边缘,如果为负数,则是指定了下边缘的空白大小.所以如果我们要在屏幕的左上角启动gvim,可以用下面的命令:
+$ gvim -geometry +0+0
+参数width和height则是指定了所启动的窗口的大小,也就是所具有的行数和列数.例如如果我们需要一个80x24的编辑窗口我们可以用下面的命令:
+$ gvim -geometry 80x24
+我们在图形界面下可以用下面的命令来得到当前窗口所在的位置:
+:winpos(以左上角为标准)
+如果我们要移动到指定的位置,我们可以用下面的命令形式:
+:winpos X Y
+例如如果我们要将当前的窗口移动到(20,30)处,我们可以用下面的命令:
+:winpos 20 30
+
+
+	<p style="font-weight:bold">GUI控制命令</p>
+	<p>我们可以用guioptions选项来控制许多GUI特征。命令形式如下：</p>
+	<p style="text-indent:2em"><code class="inset">:set guioptions=options</code></p>
+	<p>其中options是一个字母集合，每一个是一个选项：</p>
+	<table summary="GUI Options" border="1" rules="all" cellspacing="2" cellpadding="4">
+		<tr><td>a</td><td>Autoselect</td><td>如果设定了这个选项，当我们在可视化模式下选择了文本，Vim会将所选的文本放在系统的全局寄存器中。这就意味着，可以在这个Vim中选择文本然后用命令"*p将这些文本粘贴到另一个Vim中。如果没有这个选项，那么就要用命令"*y将所选择的文本复制到系统寄存器中。在系统寄存中的文本可以被其他程序所使用。</td></tr>
+		<tr><td>f</td><td>Foreground</td><td>在UNIX系统上，gvim命令可以执行fork()命令，让编辑器在后台运行。我们可以设置此选项来防止这样的事情发生。如果要编辑一个脚本程序，需要执行gvim命令使得用户可以编辑文件而且要等待到编辑工作结束，这样的选项就会显得更为有用。（注意：这个选项要在初始文件中进行设置）</td></tr>
+		<tr><td>i</td><td>Icon</td><td>如果设置了这个选项，gvim就会在X Windows系统上运行而且最小化时会显示一个图标。如果没有设置这个选项，只会显示正在编辑的文件名称而不会显示图标。</td></tr>
+		<tr><td>m</td><td>Menu</td><td>显示菜单栏</td></tr>
+		<tr><td>M</td><td>Nomenu</td><td>如果设置了这个选项，那么系统菜单的定义文件$VIMRUNTIME/menu.vim就不会被读入。（注意：这个选项要在初始文件中进行设置）</td></tr>
+		<tr><td>g</td><td>Gray</td><td>将不可用的菜单显示为灰色。如果没有设置这个选项，那么不可用的菜单就会从菜单栏或是工具栏中移除。</td></tr>
+		<tr><td>t</td><td>Tear off</td><td>打开tear off菜单</td></tr>
+		<tr><td>T</td><td>Tool bar</td><td>显示工具栏</td></tr>
+		<tr><td>r</td><td>Always Right scrollbar</td><td>总是在编辑器右侧放置滚动条</td></tr>
+		<tr><td>R</td><td>Display Right scrollbar</td><td>如果窗口垂直分隔，将在编辑器右侧放置滚动条</td></tr>
+		<tr><td>l</td><td>Always Left scrollbar</td><td>在编辑器左侧放置滚动条</td></tr>
+		<tr><td>L</td><td>Display Left scrollbar</td><td>如果窗口垂直分隔，将在编辑器左侧放置滚动条</td></tr>
+		<tr><td>b</td><td>Bottom scrollbar</td><td>在编辑器底部放置滚动条</td></tr>
+		<tr><td>v</td><td>Vertical dialog boxes</td><td>在对话框中采用垂直的排列顺序</td></tr>
+		<tr><td>p</td><td>Pointer callback fix</td><td>可以用这个选项来处理当X11窗口管理器发生问题时的情况。这样可以使用程序可以产生定点回溯。（注意：这个选项要在初始文件中进行设置）</td></tr>
+		<tr><td></td><td></td><td></td></tr>
+	</table>
+	<p>例如，我们可以使用以下命令隐藏菜单栏、工具栏和滚动条，以获得更大的屏幕空间：</p>
+	<p style="text-indent:2em"><code class="inset">:set guioptions-=mTrlb</code></p>
+	<p>如果想要重新显示隐藏的窗口部件，可以使用以下命令：</p>
+	<p style="text-indent:2em"><code class="inset">:set guioptions+=T</code></p>
+	
+
+	<p style="font-weight:bold">行数</p>
+	<p>使用<code class="inset">:set lines?</code>命令可以显示当前编辑窗口的行数。利用<code class="inset">:set lines=n</code>命令可以改变行数，这里的n就是我们希望具有的行数。与此类似，如果我们要改变当前窗口的列数，可以用<code class="inset">:set columns=columns</code>命令。</p>
+	
+	<p style=font-weight:bold">行宽</p>
+	<p>当行过宽时，vim会自动进行回折以适应屏幕的宽度。如果设置了nowrap选项，则Vim不会自动折行，这时超出屏幕的部分将不会被显示出来。在默认的情况下，Vim也不会显示水平滚动条。我们可以使用<code class="inset">:set guioptions+=b</code>命令来显示水平滚动条。</p>
+	
+	<p style=font-weight:bold">字体</p>
+	<p>我们可以使用<code class="inset">:set guifont=font</code>命令更改当前使用的字体。这里的font是字体名称。在X Windows系统中，可以用命令xlsfonts列出所有可用的字体；在Windows系统中，可以在控制面板中检查字体列表。我们还可以用<code class="inset">:set guifont=*</code>命令打开一个字体选择列表，从中选择字体。</p>
+Linux
+The font name and size are space separated.
+Spaces and commas need to be backslash escaped.
+For example: :set guifont=Andale\ Mono\ 11.
+
+Mac
+The font name and size are colon separated.
+The size is prefixed with a h.
+Spaces and commas need to be backslash escaped.
+For example: :set guifont=Monaco:h11.
+
+Windows
+The font name and size are colon separated.
+The size is prefixed with a h.
+Spaces in font names can be replaced with underscores (_).
+For example: :set guifont=Andale_Mono:h11.
+
+If the font you've specified can not be found, Vim complains. To avoid this you can specify multiple fonts in order of preference with a comma separated list. The first valid font is
+loaded. For example: :set guifont=Screen15,\ 7x13. This approach is particularly useful if you use your Vim configuration on multiple computers, or if you simply want it to be portable.
+
+
+	<p style=font-weight:bold">颜色</p>
+	<p></p>
+	
+	<p style="font-weight:bold">工具栏</p>
+	<p>可以通过toolbar选项来控制工具栏的外观：</p>
+	<ul>
+		<li>icon&nbsp;&nbsp;显示工具栏图标</li>
+		<li>text&nbsp;&nbsp;显示文本<li>
+		<li>tooltips&nbsp;&nbsp;当光标位于图标上时显示的文字</li>
+	</ul>
+	<p>默认设置是<code class="inset">:set toolbar=icons,tooltips</code>。如果我们要关掉工具栏，不是将这个选项设为空字符串，而是要用<code class="inset">:set guioptions-=T</code>命令。</p>
+	
+	<p style="font-weight:bold">标题栏</p>
+	<p>如果要将当前窗口的标题改为正在编辑的文件名，可以使用以下命令：</p>
+	<p style="text-indent:2em">:set title</p>
+
+	<p>默认情况下，窗口标题将显示当前编辑的文件名，随后是一个状态标识码，以及文件路径。其中，状态标识码有以下几种：</p>
+-
+File can't be modified
++
+File has been modified
+=
+File is read-only
+=+
+File is read-only and has been modified
+	
+	<p>有时文件全名会很长，我们可以用以下命令来改变文件名可以占用的空间：</p>
+	<p style="text-indent:2em">:set titlelen=85</p>
+	<p>在这种情况下，标题的文本可以占用标题栏85%的空间。
+	<p>我们还可以用以下命令改变标题：</p>
+	<p style="text-indent:2em">:set titlestring=Hello World!</p>
+:help titlestring
+	
+	<p></p>
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset">:set lines?</code></td><td>以显示当前窗口的行数</td></tr>
+		<tr><td><code class="inset">:set lines=lines</code></td><td>设置行数</td></tr>
+		<tr><td><code class="inset">:set columns=columns</code></td><td>设置列数</td></tr>
+		<tr><td><code class="inset">:set guioptions+=b</code></td><td>显示水平滚动条</td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+	</table>
+	
+	<p>Tags: <a href="http://www.technorati.com/tags/vi" rel="tag">vi</a>,<a href="http://www.technorati.com/tags/vim" rel="tag">vim</a></p>
+</body>
+</html>
+
