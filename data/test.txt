@@ -14,16 +14,19 @@ a range or visual to title case i.e.
 
 A Range Or Visual To Title Case I.E. 
 
-xxxxxx¡¡×óÉÏ½Ç¡¡xxxxxxxxxx ÓÒÉÏ½Ç
-xxxxxx¡¡xxxxxx¡¡xxxxxxxxxx xxxxxx
-xxxxxx¡¡xxxxxx¡¡xxxxxxxxxx xxxxxx
-xxxxxx¡¡xxxxxx¡¡xxxxxxxxxx xxxxxx
-xxxxxx¡¡×óÉÏ½Ç¡¡xxxxxxxxxx ÓÒÏÂ½Ç
+xxxxxxã€€å·¦ä¸Šè§’ã€€xxxxxxxxxx å³ä¸Šè§’
+xxxxxxã€€xxxxxxã€€xxxxxxxxxx xxxxxx
+xxxxxxã€€xxxxxxã€€xxxxxxxxxx xxxxxx
+xxxxxxã€€xxxxxxã€€xxxxxxxxxx xxxxxx
+xxxxxxã€€å·¦ä¸Šè§’ã€€xxxxxxxxxx å³ä¸‹è§’
 
 The public sucks
 
 Here is George Carlin's view on voting.  He says it's not the politicians that suck but rather the public that votes them in.  
 
-´óÏó
-µ±Ç°ÈÕÆÚ: 2016/10/10 ÖÜÒ» 
-ÊäÈëÐÂÈÕÆÚ: (ÄêÔÂÈÕ) 
+å¤§è±¡
+å½“å‰æ—¥æœŸ: 2016/10/10 å‘¨ä¸€ 
+è¾“å…¥æ–°æ—¥æœŸ: (å¹´æœˆæ—¥) 
+
+
+        This is a test ...more...text.      
