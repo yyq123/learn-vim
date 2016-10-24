@@ -3,56 +3,57 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIMѧϰ�ʼ� �����ı�</title>
+	<title>VIM学习笔记 查找文本</title>
 </head>
 <body>
-	<p style="font-weight:bold">�����ַ�</p>
-	<p>����<code class="inset">f</code>�����ڱ�������ǰ����������<code class="inset">fx</code>����ǰ��Forward��������ĸx��������<code class="inset">F</code>�����Backward������������<code class="inset">Fx</code>�����������ĸx����f��F�����������Ƶ���t��T���<code class="inset">t</code>����������f��ǰ�����������ͬ����t������ʱ�����ǽ����ͣ��Ŀ���ַ��ϣ�����ͣ��Ŀ���ַ���ǰһ���ַ��ϡ��������Ĺ����У����ǿ���ʹ��<kbd>ESC</kbd>���˳���������ʼ�µĹ�����</p>
-	<p>���������ĸ�����������ǿ����ظ�ִ����Щ����������<code class="inset">;</code>�ǰ���ǰһ�εĲ��ҷ���������ң����Ҫ���෴�ķ�����ҿ���ʹ��<code class="inset">,</code>���������Щ����ֻ�����б����ڽ��У������Ὣ����ƶ����������С�</p>
-	<p style="font-weight:bold">�����ַ���</p>
-	<p>���ǿ���ʹ��<code class="inset">/string</code>��������ǰ��Forward�������ַ���string�����»س��󣬹�����������ȷ�ĵط�������������У�/����ַ���������Ҫ���ҵ��ַ������س��������������Ľ�����</p>
-	<p>��ʱ��Ҫ���ҵ����ݲ�������һ�������ǿ��������������н��в��ң�<code class="inset">/</code>���Լ����ղŵĲ��Ҳ��������ǻ�����ʹ��<code class="inset">n</code>�����������ղŵĲ����������������ܴﵽͬ����Ч����</p>
-	<p>����Ҳ����ʹ��<code class="inset">?string</code>�������Backward�����ҡ�<code class="inset">N</code>Ҳ������������������ʵ������������ҡ�</p>
-	<p>���������Ҫֹͣ��һ���ң�����ʹ��<kbd>ctrl+C</kbd>����������Windowsϵͳ�У���Ҫʹ��<kbd>ctrl+Break</kbd>���</p>
-	<p>vi���м�¼����������ʷ�Ĺ��ܣ������Ͳ����ظ�������������ˡ�������ղ����������β��ҷֱ��ǣ�/one��/two��/three������������/��Ȼ�󰴷�������ϻ����¾Ϳ����ղŲ��ҵ�������ʾ��vi�����棬��ʱֻҪ���»س��ͻ��ҵ���Ҫ�������ˡ�</p>
-	<p style="font-weight:bold">ָ��������λ��</p>
-	<p>��Ĭ������£�����ʱVim�Ὣ�����ڵ�һ��ƥ��Ľ���Ŀ�ʼ��������Ҳ����ָ�����ҽ����󣬹��������λ�á�������ǰ���ҵ�������ǿ�����б�ߺ���������ָ�����������λ�ã�����<code class="inset">/set/2</code>������ڲ��ҽ����󽫹����ڵ�һ��set�ַ���֮��ڶ��еĿ�ʼ���������е����ֿ���������Ҳ�����Ǹ������������һ���򵥵����֣����ᱻ���ڵ�һ��ƥ���ַ���֮���֮ǰ��������ָ�����еĿ�ʼ����������󣬸�������ǰ�����б�ߺ���b�����֣���ô�ڲ��ҽ����󣬹�꽫����ڵ�һ��ƥ���ַ����Ŀ�ʼ����Ȼ������������ƶ�n���ַ��������n��Ϊ������ָ�����������Ϊ�������������ƶ�������Ǹ��������������ƶ�������<code class="inset">/set/b2</code>���������ʹ����ڲ��ҽ�������ڵ�һ��ƥ���ַ��Ŀ�ʼ����Ȼ�������ƶ������ַ���Ҳ����˵������λ�ڵ�һ��ƥ���ַ����е�t��λ�á���b��ΪsҲ��һ����Ч����������e��ʹ�ù����ڵ�һ��ƥ���ַ����Ľ�β����ͬ������Ҳ������������ָ�����һ��������ƶ�����Լ��ƶ����ַ���������<code class="inset">/set/e</code>�����ʹ�����ڵ�һ��ƥ���ַ����Ľ�β������������Ϊ<code class="inset">/set/e2</code>���Ὣ�����ڵ�һ��ƥ���ַ����Ľ�β����Ȼ�������ƶ�2���ַ����������������������������ƣ����Ϊ�����������ơ�</p>
-	<p>����<code class="inset">/set/e+2</code>���ڲ���set�ַ��������󣬽������ڵ�һ��ƥ���ַ����Ľ�β����Ȼ�������ƶ������ַ������������ǽ�������ֳ�Ϊƫ���������Ҫ�ظ���һ�εĲ��ң�������Ҫ��ͬ��ƫ������������<code class="inset">//5</code>�����ʹ��ƫ����ʱ������ָ��һ���յ�ƫ��������<code class="inset">//</code>���<code class="inset">/</code>����ظ�ǰһ�εĲ��ң�ʹ����ͬ��ƫ������</p>
-	<p>��������<code class="inset">?</code>Ҳ����ʵ�����ƵĹ��ܡ�����<code class="inset">?set?b5</code>����ǽ����������һ��ƥ���ַ����Ŀ�ͷ���֣�Ȼ�������ƶ�5���ַ���<code class="inset">??-2</code>��������ǰһ�εĲ����������ʹ���µ�ƫ������<code class="inset">??</code>����Ǽ���ǰһ�εĲ���������ǲ�ʹ��ƫ������</p>
-	<p style="font-weight:bold">��ʱ�����ַ���</p>
-	<p>�����������ٲ��ҵ�ǰ����µ��ַ���������ʹ������<code class="inset">*</code>��������������ǰ�����뵱ǰ����µ��ַ���ȷƥ����ַ�����������<code class="inset">#</code>�����������뵱ǰ����µ��ַ���ȷƥ����ַ����������ǰ����µ��ַ���Ϊword����ִ��*�������ʱ��������Word��ƥ�䡣�������ʱ�������������Ƶľ���<code class="inset">g*</code>�������������ϸ��ƥ�䡣������������������word����ô���п��ܺ�Word��ƥ�䡣��<code class="inset">g#</code>����������ͬ��ֻ�����������෴�ķ�����в���ƥ�䡣</p>
-	<p style="font-weight:bold">���ò���ѡ��</p>
-	<p>���ǿ���ѡ�������ʾ���ҵ��ı�������Ϊ��<code class="inset">:set hlsearch</code>���رո�����ʾ������Ϊ��<code class="inset">:set nohlsearch</code>�������ص��ղŸ�����ʾ�Ľ��������ʹ��<code class="inset">:nohlsearch</code>���</p>
-	<p>ʹ��<code class="inset">:set incsearch</code>�������ƥ�����ѡ��ڽ��в���ʱ�ͻ���ʾ������ƥ��Ĺ��̡�����������ҵ�������include���ڴ����ѡ��󣬵�������/i����궨λ��i�ϣ��ټ�������n��궨λ��in�ϣ����ֱ�������Ҫ������ݡ��ر����ѡ�������Ϊ��<code class="inset">:set noincsearch</code>��</p>
-	<p>��Ĭ�ϵ�����£�Vim�Ǵ�Сд���еġ����һ���ļ��������������ַ�����include,INCLUDE,Include��������ʹ������<code class="inset">/include</code>�������ַ���ʱ��ֻ��include�ַ��ᱻ������ʾ���������������<code class="inset">:set ignorecase</code>�����ignorecaseѡ������е����Ƶ��ַ����ᱻ������ʾ����������Ĳ��ҽ��������������Ҫ��,����ʹ��<code class="inset">:set noignorecase</code>����ر����ѡ�</p>
-	<p>���������ignorecaseѡ���������Ҫ�����ַ���word����ƥ����������word��Word��WORD���������Ҫ�����ַ���WORD��ƥ��Ľ���Ҳ��һ���ġ��������������<code class="inset">:set ignorecase</code>��<code class="inset">:set smartcase</code>�����ִ�н���ͻ��ò�һ���ˣ���������������Сд�ַ�����ô�ͻ�ƥ����ֿ��ܵ���ϣ���ʱ��������ignorecase�������ͬ�����������������������һ����д�ַ�����ô��ʱ�ͱ���˾�ȷ���ң���������noignorecase�������ͬ��</p>
-	<p>������ִ�в�������ʱ��Ҳ���������η������ƴ�Сд���С��������м������η�\C������Vimִ�д�Сд���еĲ�ѯ������<code class="inset">?\Cword</code>�����ֻƥ�䵥��word�����������м������η�\c��ִ�к��Դ�Сд�Ĳ�ѯ��</p>
-	<p>��Ĭ�ϵ����£���������Ҫ���ҵ��ַ�����vim�Ǵӵ�ǰ��괦��ǰ���ң�ֱ���ļ��Ľ�β�����û���ҵ�����ô�ͻ���ļ��Ŀ�ͷ��ʼ���ң�ֱ�����������λ�á����ǿ���ͨ��<code class="inset">:set nowrapscan</code>�������ֹ����ѭ�����ҵķ�ʽ����������Ѿ����ҵ��ļ��ĵײ�ʱ���ͻ��ڵײ���ʾ��һ��������Ϣ�����������Ҫ�ص�������״̬������ʹ��<code class="inset">:set wrapscan</code>���</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">查找字符</p>
+	<p>命令<code class="inset">f</code>用于在本行内向前搜索。例如<code class="inset">fx</code>是向前（Forward）搜索字母x。而命令<code class="inset">F</code>是向后（Backward）搜索。例如<code class="inset">Fx</code>是向后搜索字母x。与f和F这两个相类似的是t和T命令。<code class="inset">t</code>命令类似于f向前搜索命令，所不同的是t搜索到时并不是将光标停在目标字符上，而是停在目标字符的前一个字符上。而<code class="inset">T</code>命令类似于F向后搜索命令，所不同的是T搜索到时并不是将光标停在目标字符上，而是停在目标字符的后一个字符上。</p>
+	<p>在搜索的过程中，我们可以使用<kbd>ESC</kbd>键来退出搜索并返回到常规模式。</p>
+	<p>对于以上四个查找命令，我们可以重复执行这些操作。命令<code class="inset">;</code>是按照前一次的查找方向继续查找，如果要向相反的方向查找可以使用<code class="inset">,</code>命令。但是这些查找只是在行本行内进行，并不会将光标移动到其它的行。</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">查找字符串</p>
+	<p>我们可以使用<code class="inset">/string</code>命令来向前（Forward）查找字符串string，按下回车后，光标就能跳到正确的地方。在这个命令中，/后的字符是我们想要查找的字符，而回车键则表明了命令的结束。</p>
+	<p>有时想要查找的内容并不仅在一处，我们可以在整个文章中进行查找：<code class="inset">/</code>可以继续刚才的查找操作。我们还可以使用<code class="inset">n</code>命令来继续刚才的查找命令。这两个命令都能达到同样的效果。</p>
+	<p>我们也可以使用<code class="inset">?string</code>命令向后（Backward）查找。<code class="inset">N</code>也是逆向查找命令，他可以实现立即反向查找。</p>
+	<p>如果我们想要停止这一查找，可以使用<kbd>ctrl+C</kbd>命令，如果是在Windows系统中，则要使用<kbd>ctrl+Break</kbd>命令。</p>
+	<p>vi具有记录查找命令历史的功能，这样就不用重复输入查找命令了。例如你刚才做过的三次查找分别是：/one，/two，/three。而现在输入/，然后按方向键的上或是下就看到刚才查找的内容显示在vi的下面，这时只要按下回车就会找到想要的内容了。</p>
+	<p style="font-weight:bold">指定光标放置位置</p>
+	<p>在默认情况下，查找时Vim会将光标放在第一个匹配的结果的开始处。我们也可以指定查找结束后，光标所处的位置。对于向前查找的命令，我们可以在斜线后用数字来指明光标所处的位置，例如<code class="inset">/set/2</code>命令会在查找结束后将光标放在第一个set字符串之后第二行的开始处。命令中的数字可以是正数也可以是负数。如果仅是一个简单的数字，光标会被放在第一个匹配字符串之后或之前的数字所指定的行的开始处。正是向后，负数是向前。如果斜线后是b和数字，那么在查找结束后，光标将会放在第一个匹配字符串的开始处，然后向左或是右移动n个字符，这里的n即为数字所指定的数。如果为正数则是向右移动，如果是负数，则是向左移动。例如<code class="inset">/set/b2</code>，这个命令使光标在查找结束后放在第一个匹配字符的开始处，然后向右移动两个字符，也就是说最后光标会位于第一个匹配字符串中的t的位置。将b改为s也是一样的效果。而参数e会使得光标放在第一个匹配字符串的结尾处。同样我们也可以用数字来指定向右还是向左移动光标以及移动的字符数。例如<code class="inset">/set/e</code>命令会使光标放在第一个匹配字符处的结尾处。如果命令改为<code class="inset">/set/e2</code>，会将光标放在第一个匹配字符串的结尾处，然后向右移动2个字符。这里的数字如果是正数则向右移，如果为负数则向左移。</p>
+	<p>命令<code class="inset">/set/e+2</code>是在查找set字符串结束后，将光标放在第一个匹配字符串的结尾处，然后向右移动两个字符。在这里我们将这个数字称为偏移量。如果要重复上一次的查找，但是需要不同的偏移量，可以用<code class="inset">//5</code>命令。不使用偏移量时，可以指明一个空的偏移量，如<code class="inset">//</code>命令。<code class="inset">/</code>命令，重复前一次的查找，使用相同的偏移量。</p>
+	<p>查找命令<code class="inset">?</code>也可以实现类似的功能。例如<code class="inset">?set?b5</code>命令，是将光标放在最后一个匹配字符串的开头部分，然后向右移动5个字符。<code class="inset">??-2</code>命令，则继续前一次的查找命令，但是使用新的偏移量。<code class="inset">??</code>命令，是继续前一次的查找命令，但是不使用偏移量。</p>
+	<p style="font-weight:bold">立时查找字符串</p>
+	<p>如果我们想快速查找当前光标下的字符串，可以使用命令<code class="inset">*</code>，这个命令可以向前查找与当前光标下的字符精确匹配的字符串。而命令<code class="inset">#</code>，则向后查找与当前光标下的字符精确匹配的字符串。如果当前光标下的字符串为word，在执行*命令查找时并不会与Word相匹配。与这个立时查找命令相类似的就是<code class="inset">g*</code>命令。他不会进行严格的匹配。如果用这个命令来查找word，那么就有可能和Word相匹配。而<code class="inset">g#</code>命令与其相同，只不过他是向相反的方向进行查找匹配。</p>
+	<p style="font-weight:bold">设置查找选项</p>
+	<p>我们可以选择高亮显示查找的文本，命令为：<code class="inset">:set hlsearch</code>，关闭高亮显示的命令为：<code class="inset">:set nohlsearch</code>。如果想关掉刚才高亮显示的结果，可以使用<code class="inset">:nohlsearch</code>命令。</p>
+	<p>使用<code class="inset">:set incsearch</code>命令，将打开匹配查找选项。在进行查找时就会显示出不断匹配的过程。例如你想查找的内容是include，在打开这个选项后，当你输入/i，光标定位在i上，再继续输入n光标定位在in上，如此直到查打到所要求的内容。关闭这个选项的命令为：<code class="inset">:set noincsearch</code>。</p>
+	<p>在默认的情况下，Vim是大小写敏感的。如果一个文件中有这样几个字符串：include,INCLUDE,Include。当我们使用命令<code class="inset">/include</code>来查找字符串时，只有include字符会被高亮显示。但是如果我们用<code class="inset">:set ignorecase</code>命令打开ignorecase选项后，所有的类似的字符都会被高亮显示。如果这样的查找结果并不是我们想要的,可以使用<code class="inset">:set noignorecase</code>命令关闭这个选项。</p>
+	<p>如果设置了ignorecase选项后，我们想要查找字符串word，而匹配的则可能是word、Word，WORD。如果我们要查找字符串WORD，匹配的结里也是一样的。但是如果设置了<code class="inset">:set ignorecase</code>和<code class="inset">:set smartcase</code>两项后，执行结果就会变得不一样了：如果我们输入的是小写字符，那么就会匹配各种可能的组合，这时与设置了ignorecase的情况相同，但是如果我们在输入中有一个大写字符，那么这时就变成了精确查找，与设置了noignorecase的情况相同。</p>
+	<p>我们在执行查找命令时，也可以用修饰符来控制大小写敏感。在命令中加入修饰符\C将告诉Vim执行大小写敏感的查询，比如<code class="inset">?\Cword</code>命令就只匹配单词word。而在命令中加入修饰符\c则执行忽略大小写的查询。</p>
+	<p>在默认的情下，我们输入要查找的字符串，vim是从当前光标处向前查找，直到文件的结尾，如果没有找到，那么就会从文件的开头开始查找，直到光标所处的位置。我们可以通过<code class="inset">:set nowrapscan</code>命令，来禁止这种循环查找的方式，这样如果已经查找到文件的底部时，就会在底部显示出一条错误信息。如果我们想要回到正常的状态，可以使用<code class="inset">:set wrapscan</code>命令。</p>
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
-		<caption>����С��</caption>
-		<tr><td><code class="inset">f</code></td><td>��ǰ�����������ͣ����Ŀ���ַ���</td></tr>
-		<tr><td><code class="inset">F</code></td><td>��������������ͣ����Ŀ���ַ���</td></tr>
-		<tr><td><code class="inset">;</code></td><td>�ظ��ղŵĲ���</td></tr>
-		<tr><td><code class="inset">,</code></td><td>�����ظ��ղŵĲ���</td></tr>
-		<tr><td><code class="inset">t</code></td><td>��ǰ�����������ͣ����Ŀ���ַ���ǰһ���ַ���</td></tr>
-		<tr><td><code class="inset">T</code></td><td>��������������ͣ����Ŀ���ַ��ĺ�һ���ַ���</td></tr>
-		<tr><td><code class="inset">/</code></td><td>��ǰ����</td></tr>
-		<tr><td><code class="inset">?</code></td><td>������</td></tr>
-		<tr><td><code class="inset">n</code></td><td>��������</td></tr>
-		<tr><td><code class="inset">N</code></td><td>�������</td></tr>
-		<tr><td><code class="inset">*</code></td><td>��ǰ�����뵱ǰ������ַ���ȷƥ����ַ���</td></tr>		
-		<tr><td><code class="inset">#</code></td><td>�������뵱ǰ������ַ���ȷƥ����ַ���</td></tr>		
-		<tr><td><code class="inset">:set hlsearch</code></td><td>�򿪸�����ʾ���ҵ��ı�</td></tr>
-		<tr><td><code class="inset">:set nohlsearch</code></td><td>�رո�����ʾ���ҵ��ı�</td></tr>
-		<tr><td><code class="inset">:nohlsearch</code></td><td>�رյ�ǰ������ʾ�Ľ��</td></tr>
-		<tr><td><code class="inset">:set incsearch</code></td><td>����ʾ����ƥ�����</td></tr>
-		<tr><td><code class="inset">:set noincsearch</code></td><td>�ر���ʾ����ƥ�����</td></tr>
-		<tr><td><code class="inset">:set ignorecase</code></td><td>���Դ�Сд</td></tr>		
-		<tr><td><code class="inset">:set noignorecase</code></td><td>��ȷƥ���Сд</td></tr>		
-		<tr><td><code class="inset">:set nowrapscan</code></td><td>��ֹѭ�����ҷ�ʽ</td></tr>		
-		<tr><td><code class="inset">:set wrapscan</code></td><td>����ѭ�����ҷ�ʽ</td></tr>		
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">f</code></td><td>向前搜索并将光标停留在目标字符上</td></tr>
+		<tr><td><code class="inset">F</code></td><td>向后搜索并将光标停留在目标字符上</td></tr>
+		<tr><td><code class="inset">;</code></td><td>重复刚才的查找</td></tr>
+		<tr><td><code class="inset">,</code></td><td>反向重复刚才的查找</td></tr>
+		<tr><td><code class="inset">t</code></td><td>向前搜索并将光标停留在目标字符的前一个字符上</td></tr>
+		<tr><td><code class="inset">T</code></td><td>向后搜索并将光标停留在目标字符的后一个字符上</td></tr>
+		<tr><td><code class="inset">/</code></td><td>向前查找</td></tr>
+		<tr><td><code class="inset">?</code></td><td>向后查找</td></tr>
+		<tr><td><code class="inset">n</code></td><td>继续查找</td></tr>
+		<tr><td><code class="inset">N</code></td><td>反向查找</td></tr>
+		<tr><td><code class="inset">*</code></td><td>向前查找与当前光标下字符精确匹配的字符串</td></tr>		
+		<tr><td><code class="inset">#</code></td><td>向后查找与当前光标下字符精确匹配的字符串</td></tr>		
+		<tr><td><code class="inset">:set hlsearch</code></td><td>打开高亮显示查找的文本</td></tr>
+		<tr><td><code class="inset">:set nohlsearch</code></td><td>关闭高亮显示查找的文本</td></tr>
+		<tr><td><code class="inset">:nohlsearch</code></td><td>关闭当前高亮显示的结果</td></tr>
+		<tr><td><code class="inset">:set incsearch</code></td><td>打开显示查找匹配过程</td></tr>
+		<tr><td><code class="inset">:set noincsearch</code></td><td>关闭显示查找匹配过程</td></tr>
+		<tr><td><code class="inset">:set ignorecase</code></td><td>忽略大小写</td></tr>		
+		<tr><td><code class="inset">:set noignorecase</code></td><td>精确匹配大小写</td></tr>		
+		<tr><td><code class="inset">:set nowrapscan</code></td><td>禁止循环查找方式</td></tr>		
+		<tr><td><code class="inset">:set wrapscan</code></td><td>启用循环查找方式</td></tr>		
 	</table>
 	<p>Technorati Tags: <a href="http://www.technorati.com/tags/vi" rel="tag">vi</a>,<a href="http://www.technorati.com/tags/vim" rel="tag">vim</a>,<a href="http://www.technorati.com/tags/gvim" rel="tag">gvim</a></p>
 </body>
