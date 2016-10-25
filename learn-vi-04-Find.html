@@ -19,13 +19,15 @@
 	<p>Vim具有自动记录查找命令历史的功能，这样就不用重复输入查找命令了。例如你刚才做过的三次查找分别是：/one，/two，/three。而现在输入<code class="inset">/</code>，然后按上下方向键，就可以在屏幕底部看到刚才查找命令，这时只要按下回车就能够再次执行之前的查找命令了。</p>
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">指定光标放置位置</p>
 	<p>在默认情况下，Vim会将光标放在第一个匹配结果的开始处。例如你查找字符串set，光标将会停留在字母s之上。我们可以在命令中指定查找结束后光标停留的位置。</p>
-	<p>对于向前查找的命令，可以在斜线后用数字来指明光标所处的位置，例如<code class="inset">/set/2</code>命令会在查找结束后将光标放在第一个set字符串之后第二行的开始处。命令中的数字可以是正数也可以是负数。如果仅是一个简单的数字，光标会被放在第一个匹配字符串之后或之前的数字所指定的行的开始处。正数表示是向后，而负数表示是向前。如果斜线后是b和数字，那么在查找结束后，光标将会放在第一个匹配字符串的开始处，然后向左或是右移动n个字符，这里的n即为数字所指定的数。如果为正数则是向右移动，如果是负数则是向左移动。例如<code class="inset">/set/b2</code>命令，将使光标在查找结束后放在第一个匹配字符的开始处，然后向右移动两个字符，也就是说最后光标会位于第一个匹配字符串中的t的位置。将b改为s也是一样的效果。</p>
+	<p>对于向前查找的命令，可以在斜线后用数字来指明光标所处的位置，例如<code class="inset">/set/2</code>或<code class="inset">/set/+2</code>命令都会在查找结束后将光标放在第一个set字符串之后第二行的开始处。命令中的数字可以是正数也可以是负数。如果仅是一个简单的数字，光标会被放在第一个匹配字符串之后或之前的数字所指定的行的开始处。正数表示是向后，而负数表示是向前。</p>
+	<p>参数b（begin）或s（start）会使得光标放在第一个匹配字符串的开头处。如果斜线后是b和数字，那么在查找结束后，光标将会放在第一个匹配字符串的开始处，然后向左或是右移动n个字符，这里的n即为数字所指定的数。如果为正数则是向右移动，如果是负数则是向左移动。例如<code class="inset">/set/b2</code>或<code class="inset">/set/s+2</code>命令，将使光标在查找结束后放在第一个匹配字符的开始处，然后向右移动两个字符，也就是说最后光标会位于第一个匹配字符串中的t的位置。将b改为s也是一样的效果。</p>
 	<p>而参数e会使得光标放在第一个匹配字符串的结尾处。同样我们也可以用数字来指定向右还是向左移动光标以及移动的字符数。例如<code class="inset">/set/e</code>命令会使光标放在第一个匹配字符处的结尾处。如果命令改为<code class="inset">/set/e2</code>，会将光标放在第一个匹配字符串的结尾处，然后向右移动2个字符。这里的数字如果是正数则向右移，如果为负数则向左移。</p>
 	<p>我们还可以在命令中指定偏移量。例如命令<code class="inset">/set/e+2</code>是在查找set字符串结束后，将光标放在第一个匹配字符串的结尾处，然后向右移动两个字符。<code class="inset">/</code>命令，将使用相同的偏移量重复前一次的查找。如果要重复前一次的查找，但是需要不同的偏移量，那么可以使用<code class="inset">//5</code>命令。如果不使用偏移量，则可以指明一个空的偏移量，如<code class="inset">//</code>命令。</p>
 	<p>查找命令<code class="inset">?</code>也可以实现类似的功能。例如<code class="inset">?set?b5</code>命令，是将光标放在最后一个匹配字符串的开头部分，然后向右移动5个字符。<code class="inset">??-2</code>命令，则继续前一次的查找命令，但是使用新的偏移量。<code class="inset">??</code>命令，是继续前一次的查找命令，但是不使用偏移量。</p>
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">立时查找字符串</p>
 	<p>如果我们想快速查找当前光标下的字符串，可以使用命令<code class="inset">*</code>，这个命令可以向前查找与当前光标下的字符精确匹配的字符串。而命令<code class="inset">#</code>，则向后查找与当前光标下的字符串精确匹配的结果。</p>
 	<p>如果当前光标下的字符串为word，在执行*命令查找时并不会与Word相匹配。如果使用相类似的<code class="inset">g*</code>命令，来查找word，则不会要求严格的精确匹配，那么就有可能和Word相匹配。而<code class="inset">g#</code>命令与其相同，只不过他是向相反的方向进行查找匹配。</p>
+	<p><a href="https://www.flickr.com/photos/yyq123/30256078580/in/dateposted/" title="Find_Direction"><img src="https://c2.staticflickr.com/6/5766/30256078580_f38b36df81_o.png" width="525" height="220" alt="Find_Direction"></a></p>
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">大小写敏感</p>
 	<p>在默认情况下，Vim是大小写敏感的。如果文件中包含有include,INCLUDE,Include等多个字符串。当我们使用命令<code class="inset">/include</code>来查找时，则只有include字符会被高亮显示。但是如果我们使用<code class="inset">:set ignorecase</code>命令，设置为忽略大小写，则include,INCLUDE,Include所有字符串都会被高亮显示。当然我们也可以使用<code class="inset">:set noignorecase</code>命令，重新设置为大小写敏感。</p>
 	<p>在设置了ignorecase选项后，我们查找字符串word，则会同时匹配word、Word，WORD等；如果我们查找字符串WORD，匹配的结里也是一样的。但是如果设置了<code class="inset">:set ignorecase</code>和<code class="inset">:set smartcase</code>两项之后，就会执行不同的匹配模式：如果输入的是小写字符，那么就会匹配各种可能的组合，与ignorecase选项的情况相同；但是如果在输入中有一个大写字符，那么这时就会转变为精确查找，与noignorecase选项的情况相同。</p>
@@ -59,7 +61,7 @@
 		<tr><td><code class="inset">:set nowrapscan</code></td><td>禁止循环查找方式</td></tr>		
 		<tr><td><code class="inset">:set wrapscan</code></td><td>启用循环查找方式</td></tr>		
 	</table>
-	<p>Technorati Tags: <a href="http://www.technorati.com/tags/vi" rel="tag">vi</a>,<a href="http://www.technorati.com/tags/vim" rel="tag">vim</a>,<a href="http://www.technorati.com/tags/gvim" rel="tag">gvim</a></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="复制和粘贴(Yank)" href="http://yyq123.blogspot.com/2009/02/vim_25.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="替换 (Substitute)" href="http://yyq123.blogspot.com/2011/10/vim-substitute.html">下一篇</a>&gt;</span></p>
 </body>
 </html>
 
