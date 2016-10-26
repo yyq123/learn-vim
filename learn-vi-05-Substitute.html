@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 替换(Substitute)</title>
+</head>
+<body>
+	<p>利用<code class="inset">:substitute</code>命令，可以将指定的字符替换成其他字符。通常，我们会使用命令的缩写形式<code class="inset">:s</code>，格式如下：</p>
+	<p style="text-indent:2em"><code class="inset">:[range] s/search/replace/[flags] [count]</code></p>
+	<p>其中，<em>range</em>是指定范围，也就是在哪些行里做替换。而后是将字符串from替换成字符串to。</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">替换标记</p>
+	<p>在默认情况下，替换命令仅将本行中第一个出现的的字符替换成给定字符。如果我们想要将所有出现的字符都替换成给定字符，可以在命令中使用<em>g</em>（global）标记：</p>
+	<p style="text-indent:2em"><code class="inset">:%s/from/to/g</code></p>
+	<p>其他的标记（flags）包括：<em>p</em>（print），是要求打印所做的改动；<em>c</em>（confirm），是要求在做出改动以前先询问；<em>i</em>（ignorecase），是不区分大小写。我们可以组合使用标记，比如以下命令，将会显示将要做改动的文本并要求确认：</p>
+	<p style="text-indent:2em"><code class="inset">:1,$ s/Professor/Teacher/gc</code></p>
+	<p style="color:#2E8B57; text-indent:2em;">replace with Teacher (y/n/a/q/l/^E/^Y)?</p>
+	<p>这时你可以做出以下回答：</p>
+	<ul>
+		<li><span style="color:#2E8B57">y</span> Yes：执行这个替换</li>
+		<li><span style="color:#2E8B57">n</span> No：取消这个替换</li>
+		<li><span style="color:#2E8B57">a</span> All：执行所有替换而不要再询问</li>
+		<li><span style="color:#2E8B57">q</span> Quit：退出而不做任何改动</li>
+		<li><span style="color:#2E8B57">l</span> Last：替换完当前匹配点后退出</li>
+		<li><span style="color:#2E8B57">CTRL-E</span> 向上翻滚一行</li>
+		<li><span style="color:#2E8B57">CTRL-Y</span> 向下翻滚一行</li>
+	</ul>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">指定范围</p>
+	<p>如果没有在命令中指定范围，那么将只会在当前行进行替换操作。以下命令将把当前行中的I替换为We。命令中的/i标记，用于指定区分大小写。</p>
+	<p style="text-indent:2em"><code class="inset">:s/I/We/gi</code></p>
+	<p>以下命令将文中所有的字符串idiots替换成managers：</p>
+	<p style="text-indent:2em"><code class="inset">:1,$s/idiots/manages/g</code></p>
+	<p>通常我们会在命令中使用%指代整个文件做为替换范围：</p>
+	<p style="text-indent:2em"><code class="inset">:%s/search/replace/g</code></p>
+	<p>以下命令指定只在第5至第15行间进行替换:</p>
+	<p style="text-indent:2em"><code class="inset">:5,15s/dog/cat/g</code></p>
+	<p>以下命令指定只在当前行在内的以下4行内进行替换：</p>
+	<p style="text-indent:2em"><code class="inset">:s/helo/hello/g4</code></p>
+	<p>以下命令指定只在当前行至文件结尾间进行替换:</p>
+	<p style="text-indent:2em"><code class="inset">:.,$s/dog/cat/g</code></p>
+	<p>以下命令指定只在后续9行内进行替换:</p>
+	<p style="text-indent:2em"><code class="inset">:.,.+8s/dog/cat/g</code></p>
+	<p>你还可以将特定字符做为替换范围。比如，将SQL语句从FROM至分号部分中的所有等号（=）替换为不等号（&lt;&gt;）：</p>
+	<p style="text-indent:2em"><code class="inset">:/FROM/,/;/s/=/&lt;&gt;/g</code></p>
+	<p>在<a href="http://yyq123.blogspot.com/2010/11/vim-visual-mode.html">可视化模式</a>下，首先选择替换范围, 然后输入<code class="inset">:</code>进入命令模式，就可以利用<code class="inset">s</code>命令在选中的范围内进行文本替换。</p>
+	<p><a href="http://www.flickr.com/photos/yyq123/6223026782/" title="Substitute_VisualMode by yyq123, on Flickr"><img src="http://farm7.static.flickr.com/6235/6223026782_65cf102e60.jpg" width="442" height="119" alt="Substitute_VisualMode" /></a></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">精确替换</p>
+	<p>在搜索<em>sig</em>时，也将匹配<em>sig</em>, <em>signature</em>, <em>signing</em>等多个单词。如果希望精确替换某个单词，可以使用&ldquo;\&lt;&rdquo;来匹配单词的开头，并用&ldquo;\&gt;&rdquo;来匹配单词的结尾：</p>
+	<p style="text-indent:2em"><code class="inset">:s/\&lt;term\&gt;/replace/gc</code></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">多项替换</p>
+	<p>如果想要将单词<em>Kang</em>和<em>Kodos</em>都替换为<em>alien</em>，那么可以使用<code class="inset">|</code>进行多项替换。 </p>
+	<p style="text-indent:2em"><code class="inset">:%s/Kang\|Kodos/alien/gc</code></p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">变量替换</p>
+	<p>使用以下命令可以将文字替换为变量的内容：</p>
+	<p style="text-indent:2em"><code class="inset">:%s!\~!\= expand($HOME)!g</code></p>
+	<p><a href="https://www.flickr.com/photos/yyq123/29944735894/in/dateposted/" title="Substitute_ExpandVar"><img src="https://c2.staticflickr.com/6/5716/29944735894_cf59932dd9_o.png" width="309" height="125" alt="Substitute_ExpandVar"></a></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.1</span><span>&lt;<a title="查找(Search)" href="http://yyq123.blogspot.com/2009/03/vim.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="打印(Print)" href="http://yyq123.blogspot.com/2010/08/vim-print.html">下一篇</a>&gt;</span></p>
+</body>
+</html>
