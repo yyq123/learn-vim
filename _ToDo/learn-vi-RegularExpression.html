@@ -15,19 +15,20 @@
 	<p>星号（*）通配符，表示一个字符可以匹配0次或是多次。所以通用表达式<code class="inset">te*</code>可以匹配te,tee,teee等等。甚至还可以匹配t，因为在这里e可以匹配0次。</p>
 	<p>加号（+）通配符，表示一个字符可以匹配一次或是多次。所以表达式te+可以匹配te,tee,teee等等。但是不可以再匹配t了,因为这里e最少要匹配一次。</p>
 	<p>等号（=）通配符，表示一个字符匹配0次或是一次。所以表达te=可以匹配t,te，但是不可以匹配tee，因为这个表达式只能匹配两个字符</p>
-还有一些特殊的字符可以来匹配一定范围的字符.如a匹配一个字符,而d匹配任何数字.所以表达式aaa可以匹配任意三个字符.例如下面的命令可以查找任意四个数字:
-/dddd
-我们还可以用下面的命令来查找任意后带一个下划线的三个字符:
-/aaa_ 
+	<p>还有一些特殊的字符：如a匹配一个字符,而d匹配任何数字。所以表达式aaa可以匹配任意三个字符。而dddd则可以查找任意四个数字。而/aaa_则查找任意后带一个下划线的三个字符</p>
+
 a可以匹配所有的字符(小写的或是大写的).但是假如我们现在只要匹配元音字符又该如何来做呢?这时我们可以使用范围作用符[].范围作用符可以匹配一系字符中的一个.例如[aeiou]只匹配一个小写元音字符.所以表达式t[aeiou]n可以匹配tan,ten,tin,ton,tun.
-我们还可以通过短横线来在括号内指明字符的范围.例如[0-9]可以匹配0到9中的任一字符.
-我们还可以组合其他的字符.例如[0-9aeiou]可以匹配任意一个数字或是小写的元音字符.
+	<p>在括号内，可以通过短横线来指明包括字符或数字的范围。例如[0-9]可以匹配0到9中的任一字符。我们还可以组合其他的字符.例如[0-9aeiou]可以匹配任意一个数字或是小写的元音字符</p>
 而修饰符^可以指代除本身以外的所有字符.
 下面列出一些匹配的情况:
 表达式        匹配结果
 one[-]way    one-way
 2^4        2^4
 2[^*]4        2^4,2*4
+
+<p><code class="inset">acme[^0-9]</code>匹配所有包含acme，后跟一个非数字字符的行。但不会匹配以acme结尾的行，因为模式中的acme之后必须有一个字符。</p>
+<p><code class="inset">^[^a-zA-Z]</code>匹配以非字母开头的行，但不会匹配空行，因为行中必须有一个非字母字符存在。</p>
+
 如果我们要指找所有的大写字符又应如何来做呢?一个办法就是使用表达式[A-Z].还有一个办法就是我们可以使用预先定义的字符类.[:upper:]可以匹配大写字符.所以我们要指找大写字符也可以这样的来写:[[:upper:]].我们可以使用字符类来写出所有的字符:
 [[:upper:][:lower:]].
 在Vim中还有许多不同的字符类定义
@@ -37,22 +38,25 @@ one[-]way    one-way
 如果我们在数字前加了一个负号(-),那么Vim在查找时就会尽可能少的进行匹配.
 例如a{-3,5}匹配3到5个a,但是会尽可能少的进行匹配.事实上这个表达式仅会匹配3个a,哪怕是我们的文件中用aaaaa,Vim也只会尽可能少的进行匹配.
 表达式a{-3,}匹配三个或是更多个a,并且尽可以少地的进行匹配.而表达式a{-,5}可以匹配0到五个字符.表达式a{-}可以匹配0到无穷大个字符.在通常情况下这个表达式匹配0个符,除非在他的后面还有字符或是表达式.例如[a-z]{-}x将会匹配.cxcx中的cx.而表达式[a-z]*x将会匹配整个cxcx.最后表达式a{-5}将会精确的匹配5个字符.
-我们还可以使用运算符(和)定义一个组.例如表达式a*b可以匹配b,ab,aab,aaab等等.而表达式a(XY)*b可以匹配ab,aXYb,aXYXYb,aXYXYXYb等等.
 <p>我们还可以用或运算运符|来查找两个或是多个可能的匹配。例如通用表达式foo|bar可以查找foo或是bar。比如我们可以用<code class="inset">:%s/Larry\|Moe\|Curly/Stooge/gc</code>命令Stooge替换Larry、Moe和Curly。</p>
-现在我们知道了这样多的表达式的表示方法,那么我们如何来应用他们呢?例如我们现在要查的内容为1MGU103.这个字符串是由1个数字,3个大写字符,3个数字组成的.可以有几种方法来表示:
-一是先表示前面的一个数字:[0-9],然后加入大写字符后就成为了:[0-9][A-Z].因为有三个大写字符我们可以加入精确匹配的数字:[0-9][A-Z]{3}.最后我们再加入最后面的三个数字.所以最后的结果就成了:[0-9][A-Z]{3}[0-9]{3}
+<p>例如要查找的内容为1MGU103，这个字符串由1个数字，3个大写字符和3个数字组成。我可以有以下几种方法来表示：</p>
+<ul>
+	<li>[0-9][A-Z]{3}[0-9]{3}<br />先用[0-9]表示前面的一个数字，然后加入[A-Z]大写字符，因为有三个大写字符，所以加入精确匹配的数字{3}，最后再加入末尾的三个数字。</li>
+</ul>
 另一种利用d指任何的数字,而u指任何的大写字符.所以用这样的方法写成的表达示就为:
 du{3}d{3}.
 从这里我们可以看到用这样的方式来查找要比第一种方法快得多.如果我们编辑的文件在采用这两种方法进行查找时会看出差别,那么我们的文件也许就是太大了.
 我们还可以用这样的表达示:duuuddd,这个也可以找到我们想要的内容.
 最后我们还可以用字符类来写出我们的表达式:
 [[:digit:]][[:upper:]]{3}[[:digit:]]{3}
-这四种方法都可以很好的来完成我们的工作,我们只要记住一种我们容易记住的就可以了
+这四种方法都可以很好的来完成我们的工作
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">magic选项</p>
 到现在我们所有的讨论和方法都是在认为我们已经打开magic选项的基础上来做的.如果这个选项被关闭了,那么我们在通用表达式中的许多的特殊字符就失去了他们神奇的魔力,我们只有通过字符转义才可以正常的来使用.
 关闭magic的选项命令为:
 :set nomagic
 这时*,.,[,]就都被认为只是平常的字符了.如果我们还想用*来指0次或是更多次就要用到转义:*.
 所以我们应保证magic选项是打开的,这样我们也才可以使用Vim强大的搜索能力,而这也正是Vim默认情况下所做的.
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">偏移(Offset)</p>
 一些常用的偏移(Offset)定义:
 +[num]        光标置于第一个匹配字符下第num行的开始处.
 -[num]        光标置于第一个匹配字符上第num行的开始处.
@@ -75,6 +79,14 @@ s[num]
 </table>
 <p>例如：<code class="inset">^acme</code>，将匹配以acme开始的行。注意：除非出现在模式的开头，否则音调符号^就不是一个代表行开头的通配符，而会代表其他的含义。<code class="inset">2^4</code>，将匹配包含"2^4"的所有行。如果要查找以“^”开头的行，则需要使用<code class="inset">^^</code>模式。其中第一个^是通配符用于指示一行的开头，而第二个^则是实际的音调符号。如果要指明前导^是一个实际的音调符号而不是表示一行开头的通配符，那么就需要在其前面加一个转义的反斜杠（\）组成<code class="inset">\^acme</code>模式。同理：<code class="inset">acme$</code>，将匹配以acme结尾的行。<code class="inset">^acme$</code>，将匹配只包含acme一个单词的行。而<code class="inset">^$</code>，则会匹配所有空行。</p>
 <p><code class="inset">dog.bone</code>，将匹配dog-bone，dog bone，dog/bone，但不会匹配dogbone，因为dog和bone之间并没有分隔符。</p>
+<p>要指示任何字符出现的次数，可以同时使用句点和星号（.*），例如<code class="inset">dog.*bone</code>将匹配以下字符串：</p>
+<ul>
+	<li><code class="inset">dogbone</code></li>
+	<li><code class="inset">dog-bone</code></li>
+	<li><code class="inset">doggy bone</code></li>
+	<li><code class="inset">My dog has a bone</code></li>
+</ul>
+<p>但上面的模式不会匹配dog在一行而bone在另一行的情况。</p>
 <table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 	<caption>范围运算符:</caption>
 	<tr><td><code class="inset">[abc]</code></td><td>匹配a,b或是c</td></tr>
@@ -91,6 +103,15 @@ s[num]
 	<tr><td><code class="inset"></code></td><td></td></tr>
 	<tr><td><code class="inset"></code></td><td></td></tr>
 </table>
+To match whitespace, use the \s operator. If you wanted to find empty lines that contain nothing but whitespace, you could use ^\s.*$. This will match lines with whitespace, but no other characters -- it won't match empty lines without white space. By contrast, the \S operator will match non-whitespace characters.
+The \d operator will match any digit in a search, while the \D operator will match any non-digit in a search. To match any uppercase character, use \u, while \l will match any lowercase character. Using \U will match any non-uppercase character, and \L will match any non-lowercase character.
+There's a subtle difference between matching any lowercase character and matching any non-uppercase character, and matching any uppercase character and matching any non-lowercase character. If you use \u it will only match an uppercase letter -- but if you use \L it will match any uppercase letter and any other character that's not a lowercase character; so it would match whitespace, digits, punctuation, and so on.
+
+What happens when you actually want to search for a special character, such as a dollar sign or caret? Special characters can be escaped with the backslash character, so use \$ to search for a dollar sign in your file, or \^ to search for the caret, and so forth. Note that the backslash character is itself a special character, so you'd need to use two backslashes together.
+
+Finally, you can use \{-} to tell Vim to match as little as possible. Let's say you're trying to match HTML tags in a file. use <.\{-}>. This would tell Vim to match <, then match any character up to the > character and then stop.
+
+
 字符类:
 [:alnum:]    匹配所有的字符和数字
 [:alpha:]    匹配所有的字符
@@ -163,6 +184,7 @@ X    非十六进制数字
 {-}    匹配0次到多次,尽可能少的进行匹配
 str1|str2    匹配str1或是str2
 
+http://vimregex.com/
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
 		<tr><td><code class="inset"></code></td><td></td></tr>
