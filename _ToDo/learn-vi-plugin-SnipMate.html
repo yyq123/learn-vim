@@ -14,10 +14,16 @@
 
 	<p><a href="http://www.vim.org/scripts/script.php?script_id=2540" title="TextMate-style snippets for Vim ">snipMate</a>提供类似于<a href="http://macromates.com/">Textmate</a>的代码自动补全功能。</p>
 	<p>比如，在编辑HTML文档时，只要输入&ldquo;table&rdquo;，然后按下<kbd>Tab</kbd>键，一段表格代码就会被自动插入进来了。</p> 	 
-	<p>其中，你输入的&ldquo;table&rdquo;是一个触发器（trigger）, 而自动插入的则是预先定义的代码片段（snippet）。</p> 	 
+	<p>其中，你输入的&ldquo;table&rdquo;是一个触发器（trigger）, 而自动插入的则是预先定义的代码片段（snippet）。</p>
+In :help SnipMate-mappings
+The mappings SnipMate uses can be customized with the :map commands.For example, to change the key that triggers snippets and moves to the next tab stop, >
+    :imap <C-J> <Plug>snipMateNextOrTrigger
+    :smap <C-J> <Plug>snipMateNextOrTrigger
+	<p></p>
+	
 	<p>snipMate is distributed with a collection of snippets for common file types. To see a list of snippets available for the current buffer execute <kbd>Ctrl-R</kbd> <kbd>Tab</kbd>.
-	<p>在自动插入代码后，你还可以在用<kbd>Tab</kbd>键快速移动到需要继续输入的地方。</p>	
-	<p><a href="http://www.zooomr.com/photos/yyq123/9387898/" title="Photo Sharing"><img src="http://static.zooomr.com/images/9387898_2dd75ea930_o.png" width="280" height="88" alt="snipMate" /></a></p>	
+	<p>在自动插入代码后，你还可以在用<kbd>Tab</kbd>键快速移动到需要继续输入的地方。</p>
+	<p><a href="https://www.flickr.com/photos/yyq123/30660141231/in/dateposted/" title="snipMate"><img src="https://c2.staticflickr.com/6/5555/30660141231_c8ef2e2484_o.png" width="280" height="88" alt="snipMate"></a></p>
 	<p>在上图中，数字（1,2,3,4)标志了<kbd>Tab</kbd>移动的路径。 例如：输入&ldquo;table&rdquo;；然后按下<kbd>Tab</kbd>键插入代码，这时光标将停留在位置1，等待你输入边框宽度；当你再次按下<kbd>Tab</kbd>键，光标将移动到位置2，这时你就可以继续输入表格的标题了。依次类推，snipMate将帮助你快速完成全部代码。
 Some constructs require user-entered text to appear multiple times. For instance, HTML
 authors may want to enter an <option> element like the following:
@@ -26,14 +32,14 @@ In this example, placeholder is placeholder text that needs to be entered twice.
 lets you enter the text in value="placeholder">, and have it copied into
 >placeholder< as you type.
 
+	<p>SnipMate does not ship with any snippets out of the box. We suggest looking at the <a href="https://github.com/honza/vim-snippets">vim-snippets#</a>  repository.</p>	
 	<p></p>	
 	<p></p>	
 	<p></p>	
 	<p></p>	
-	<p></p>	
-	<p></p>	
+	<p>If you need to define your own snippets (which you most likely will need), create a new file named “language-foo.snippets” in the “snippets” directory. For example, to define your own snippets for C language, you’d create a file called “c-foo.snippets” and place snippets in it</p>
 	<p style="text-indent:2em"><code class="inset">:help snipMate</code></p>
-	
+	<p>snippet 文件中如果有空行，也会被做为代码加入文件中。</p>
 	
 <table border="0">
 	<tr><th>Header</th></tr>

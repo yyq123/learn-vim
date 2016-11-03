@@ -3,23 +3,13 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
 	<title>learn vi 01</title>
 </head>
 <body>
-	<h1>µÚÒ»½Ú¡¡»ù±¾±à¼­ÃüÁî</h1>
-	ÔÚ²éÑ¯ÖĞ£¬µã£¨.£©¿ÉÒÔ´ú±íÈÎÒâÒ»¸ö×Ö·û¡£<code class="inset">/.</code> and you'll see that it matches, literally, everything -- letters, numbers, whitespace, the whole kit and kaboodle.
 
-²åÈë·ûºÅ£¨^£©Ò»ĞĞµÄ¿ªÍ·£»ÃÀÔª·ûºÅ£¨$£©Ò»ĞĞµÄ½áÎ²¡£. For instance, to find any line in a bash script that begins with a comment, you could use ^#. To find empty lines, just use ^$ which will match any line without any characters.
 
-To match whitespace, use the \s operator. If you wanted to find empty lines that contain nothing but whitespace, you could use ^\s.*$. This will match lines with whitespace, but no other characters -- it won't match empty lines without white space. By contrast, the \S operator will match non-whitespace characters.
-
-The \d operator will match any digit in a search, while the \D operator will match any non-digit in a search. To match any uppercase character, use \u, while \l will match any lowercase character. Using \U will match any non-uppercase character, and \L will match any non-lowercase character.
-
-There's a subtle difference between matching any lowercase character and matching any non-uppercase character, and matching any uppercase character and matching any non-lowercase character. If you use \u it will only match an uppercase letter -- but if you use \L it will match any uppercase letter and any other character that's not a lowercase character; so it would match whitespace, digits, punctuation, and so on.
-
-What happens when you actually want to search for a special character, such as a dollar sign or caret? Special characters can be escaped with the backslash character, so use \$ to search for a dollar sign in your file, or \^ to search for the caret, and so forth. Note that the backslash character is itself a special character, so you'd need to use two backslashes together.
 
 
 	<p></p>
@@ -30,72 +20,69 @@ What happens when you actually want to search for a special character, such as a
 	<p></p>
 	<p></p>
 	<p></p>
-	<p style="font-weight:bold">substituteÃüÁî</p>
-	<p>ÎÒÃÇÊ¹ÓÃÖ»ÓĞÒ»ĞĞµÄÎÄ¼şÀ´²âÊÔÕâĞ©ÃüÁî¡£ÏÈÓÃÃüÁî½«Õû¸öÎÄ¼ş´òÓ¡³öÀ´:</p>
+	<p style="font-weight:bold">substituteå‘½ä»¤</p>
+	<p>æˆ‘ä»¬ä½¿ç”¨åªæœ‰ä¸€è¡Œçš„æ–‡ä»¶æ¥æµ‹è¯•è¿™äº›å‘½ä»¤ã€‚å…ˆç”¨å‘½ä»¤å°†æ•´ä¸ªæ–‡ä»¶æ‰“å°å‡ºæ¥:</p>
 	<p style="text-indent:2em"><code class="inset">:%print</code></p>
-	<p>ÃüÁîµÄÖ´ĞĞ½á¹ûÈçÏÂ:</p>
+	<p>å‘½ä»¤çš„æ‰§è¡Œç»“æœå¦‚ä¸‹:</p>
 	<p>Test aaa* aa* a*</p>
-	<p>È»ºóÎÒÃÇÉèÖÃmagicÑ¡Ïî²¢ÇÒÖ´ĞĞÌæ»»ÃüÁî¡£p±ê¼Ç´òÓ¡³öËù¸Ä±äµÄĞĞ:</p>
+	<p>ç„¶åæˆ‘ä»¬è®¾ç½®magicé€‰é¡¹å¹¶ä¸”æ‰§è¡Œæ›¿æ¢å‘½ä»¤ã€‚pæ ‡è®°æ‰“å°å‡ºæ‰€æ”¹å˜çš„è¡Œ:</p>
 	<p style="text-indent:2em"><code class="inset">:set magic</code></p>
 	<p style="text-indent:2em"><code class="inset">:1 substitute /a*/b/p</code></p>
-	<p>ÃüÁîµÄÖ´ĞĞ½á¹ûÈçÏÂ:</p>
+	<p>å‘½ä»¤çš„æ‰§è¡Œç»“æœå¦‚ä¸‹:</p>
 	<p>bTest aaa* aa* a*</p>
-	<p>Õâ¸öÃüÁîÖ»ÊÇ¸Ä±äÁËÒ»ĞĞ¿ªÊ¼µÄ²¿·Ö¡£ÎªÊ²Ã´»á½«Test±äÎªb*TestÄØ£¿ÕâÊÇÒòÎª*¿ÉÒÔÆ¥Åä0´Î»òÊÇ¶à´Î£¬¶øTestÕıÊÇÒÔ0¸öa¿ªÊ¼µÄ¡£µ«ÊÇÎªÊ²Ã´Ö»ÊÇÌæ»»ÁËÒ»´ÎÄØ£¿ÕâÊÇÒòÎª:substituteÃüÁîÖĞÊÇ¸Ä±äµÚÒ»¸ö³öÏÖµÄµØ·½£¬Èç¹ûÎÒÃÇÊ¹ÓÃg±ê¼Ç¾Í¿ÉÒÔÌæ»»È«²¿µÄÆ¥ÅäÏîÁË¡£</p>
-	<p>ÎÒÃÇ³·Ïú¸Õ²ÅµÄÃüÁî²¢Ö´ĞĞÏÂÃæµÄÃüÁî:</p>
+	<p>è¿™ä¸ªå‘½ä»¤åªæ˜¯æ”¹å˜äº†ä¸€è¡Œå¼€å§‹çš„éƒ¨åˆ†ã€‚ä¸ºä»€ä¹ˆä¼šå°†Testå˜ä¸ºb*Testå‘¢ï¼Ÿè¿™æ˜¯å› ä¸º*å¯ä»¥åŒ¹é…0æ¬¡æˆ–æ˜¯å¤šæ¬¡ï¼Œè€ŒTestæ­£æ˜¯ä»¥0ä¸ªaå¼€å§‹çš„ã€‚ä½†æ˜¯ä¸ºä»€ä¹ˆåªæ˜¯æ›¿æ¢äº†ä¸€æ¬¡å‘¢ï¼Ÿè¿™æ˜¯å› ä¸º:substituteå‘½ä»¤ä¸­æ˜¯æ”¹å˜ç¬¬ä¸€ä¸ªå‡ºç°çš„åœ°æ–¹ï¼Œå¦‚æœæˆ‘ä»¬ä½¿ç”¨gæ ‡è®°å°±å¯ä»¥æ›¿æ¢å…¨éƒ¨çš„åŒ¹é…é¡¹äº†ã€‚</p>
+	<p>æˆ‘ä»¬æ’¤é”€åˆšæ‰çš„å‘½ä»¤å¹¶æ‰§è¡Œä¸‹é¢çš„å‘½ä»¤:</p>
 	<p style="text-indent:2em"><code class="inset">:undo</code></p>
 	<p style="text-indent:2em"><code class="inset">:1 substitute /a*/b/pg</code></p>
-	<p>ÃüÁîµÄÖ´ĞĞ½á¹ûÈçÏÂ:</p>
+	<p>å‘½ä»¤çš„æ‰§è¡Œç»“æœå¦‚ä¸‹:</p>
 	<p>bTest b*b b*b b*</p>
-	<p>ÏÖÔÚÎÒÃÇÔÚ¹Ø±ÕmagicÑ¡ÏîµÄÇé¿öÏÂÔÙ×öÒ»´Î:</p>
+	<p>ç°åœ¨æˆ‘ä»¬åœ¨å…³é—­magicé€‰é¡¹çš„æƒ…å†µä¸‹å†åšä¸€æ¬¡:</p>
 	<p style="text-indent:2em"><code class="inset">:undo</code></p>
 	<p style="text-indent:2em"><code class="inset">:set nomagic</code></p>
 	<p style="text-indent:2em"><code class="inset">:1 substitute /a*/b/pg</code></p>
-	<p>ÃüÁîµÄÖ´ĞĞ½á¹ûÈçÏÂ:</p>
+	<p>å‘½ä»¤çš„æ‰§è¡Œç»“æœå¦‚ä¸‹:</p>
 	<p>Test aab ab b</p>
-	<p style="font-weight:bold">smgicÃüÁî</p>
-	<p>ÔÚÃ»ÓĞÉèÖÃmagicµÄÇé¿öÏÂ£¬*½öÊÇÒ»¸ö*¡£¶ø:smagicÃüÁîÔòÊÇÔÚÖ´ĞĞÌæ»»ÃüÁîÊ±Ç¿ÖÆ×ª»»*ÒÔ¼°ÆäËûÒ»Ğ©×Ö·ûµÄÒâÒå¡£ÀıÈçÎÒÃÇÖ´ĞĞÏÂÃæµÄÃüÁî:</p>
+	<p style="font-weight:bold">smgicå‘½ä»¤</p>
+	<p>åœ¨æ²¡æœ‰è®¾ç½®magicçš„æƒ…å†µä¸‹ï¼Œ*ä»…æ˜¯ä¸€ä¸ª*ã€‚è€Œ:smagicå‘½ä»¤åˆ™æ˜¯åœ¨æ‰§è¡Œæ›¿æ¢å‘½ä»¤æ—¶å¼ºåˆ¶è½¬æ¢*ä»¥åŠå…¶ä»–ä¸€äº›å­—ç¬¦çš„æ„ä¹‰ã€‚ä¾‹å¦‚æˆ‘ä»¬æ‰§è¡Œä¸‹é¢çš„å‘½ä»¤:</p>
 	<p style="text-indent:2em"><code class="inset">:smagic /a*/b/pg</code></p>
-	<p>ÃüÁîµÄÖ´ĞĞ½á¹ûÈçÏÂ:</p>
+	<p>å‘½ä»¤çš„æ‰§è¡Œç»“æœå¦‚ä¸‹:</p>
 	<p>bTest b*b b*b b*</p>
-	<p>¶øÏàÀàËÆµÄÊÇÃüÁî:snomagicÑ¡ÏîÇ¿ĞĞ¹ØµômagicÑ¡Ïî:</p>
+	<p>è€Œç›¸ç±»ä¼¼çš„æ˜¯å‘½ä»¤:snomagicé€‰é¡¹å¼ºè¡Œå…³æ‰magicé€‰é¡¹:</p>
 	<p style="text-indent:2em"><code class="inset">:snomagic /a*/b/pg</code></p>
-	<p>ÃüÁîµÄÖ´ĞĞ½á¹ûÈçÏÂ:</p>
+	<p>å‘½ä»¤çš„æ‰§è¡Œç»“æœå¦‚ä¸‹:</p>
 	<p>Test aab ab b</p>
-	<p>ÔÚÒ»°ãµÄÇé¿öÏÂ£¬:substituteÃüÁîÖ»ÊÇ¸Ä±äÒ»ĞĞÖĞµÚÒ»¸ö³öÏÖµÄ×Ö·û´®£¬³ı·ÇÎÒÃÇÊ¹ÓÃÁËg±ê¼Ç¡£Èç¹ûÏ£Íûg±ê¼ÇÄÜ³ÉÎªÄ¬ÈÏµÄÉèÖÃ£¬ÄÇÃ´¿ÉÒÔÊ¹ÓÃ<code class="inset">:set gdefault</code>ÃüÁî¡£</p>
+	<p>åœ¨ä¸€èˆ¬çš„æƒ…å†µä¸‹ï¼Œ:substituteå‘½ä»¤åªæ˜¯æ”¹å˜ä¸€è¡Œä¸­ç¬¬ä¸€ä¸ªå‡ºç°çš„å­—ç¬¦ä¸²ï¼Œé™¤éæˆ‘ä»¬ä½¿ç”¨äº†gæ ‡è®°ã€‚å¦‚æœå¸Œæœ›gæ ‡è®°èƒ½æˆä¸ºé»˜è®¤çš„è®¾ç½®ï¼Œé‚£ä¹ˆå¯ä»¥ä½¿ç”¨<code class="inset">:set gdefault</code>å‘½ä»¤ã€‚</p>
 	
-	<p style="font-weight:bold">&amp;ÃüÁî</p>
-	<p>&amp;ÃüÁî¿ÉÒÔÖØ¸´Ö´ĞĞÌæ»»¡£Õâ¸öÃüÁî¿ÉÒÔ±£´æ¾ÉµÄfromºÍtoµÄ×Ö·û´®£¬µ«ÊÇÔÊĞíÊ¹ÓÃ²»Í¬µÄ·¶Î§(range)ºÍ±ê¼Ç(flags)¡£</p>
-	<p>Õâ¸öÃüÁîµÄĞÎÊ½ÈçÏÂ:</p>
+	<p style="font-weight:bold">&amp;å‘½ä»¤</p>
+	<p>&amp;å‘½ä»¤å¯ä»¥é‡å¤æ‰§è¡Œæ›¿æ¢ã€‚è¿™ä¸ªå‘½ä»¤å¯ä»¥ä¿å­˜æ—§çš„fromå’Œtoçš„å­—ç¬¦ä¸²ï¼Œä½†æ˜¯å…è®¸ä½¿ç”¨ä¸åŒçš„èŒƒå›´(range)å’Œæ ‡è®°(flags)ã€‚</p>
+	<p>è¿™ä¸ªå‘½ä»¤çš„å½¢å¼å¦‚ä¸‹:</p>
 	<p style="text-indent:2em"><code class="inset">:range &amp; flags count</code></p>
-	<p>ÀıÈçÎÒÃÇÖ´ĞĞÏÂÃæµÄÃüÁî:</p>
+	<p>ä¾‹å¦‚æˆ‘ä»¬æ‰§è¡Œä¸‹é¢çš„å‘½ä»¤:</p>
 	<p style="text-indent:2em"><code class="inset">:1 substitute /a+/b/p</code></p>
-	<p>ÃüÁîµÄÖ´ĞĞ½á¹ûÈçÏÂ:</p>
+	<p>å‘½ä»¤çš„æ‰§è¡Œç»“æœå¦‚ä¸‹:</p>
 	<p>Test b* aa* a*</p>
-	<p>Õâ¸öÃüÁî¿ÉÒÔ¸Ä±äµÚÒ»¸ö³öÏÖfromËùÖ¸µÄ×Ö·ûµÄµØ·½.µ«ÊÇÎÒÃÇÏ£ÍûÊÇµÄÕû¸öÒ»ĞĞ¶¼Òª·¢ÉúÏàÓ¦µÄÌæ»»,ÕâÊ±ÎÒÃÇ¿ÉÒÔÖØ¸´ÕâÒ»´ÎÌæ»»ÃüÁî:</p>
+	<p>è¿™ä¸ªå‘½ä»¤å¯ä»¥æ”¹å˜ç¬¬ä¸€ä¸ªå‡ºç°fromæ‰€æŒ‡çš„å­—ç¬¦çš„åœ°æ–¹.ä½†æ˜¯æˆ‘ä»¬å¸Œæœ›æ˜¯çš„æ•´ä¸ªä¸€è¡Œéƒ½è¦å‘ç”Ÿç›¸åº”çš„æ›¿æ¢,è¿™æ—¶æˆ‘ä»¬å¯ä»¥é‡å¤è¿™ä¸€æ¬¡æ›¿æ¢å‘½ä»¤:</p>
 	<p style="text-indent:2em"><code class="inset">:&amp;g</code></p>
-	<p>ÃüÁîµÄÖ´ĞĞ½á¹ûÈçÏÂ:</p>
+	<p>å‘½ä»¤çš„æ‰§è¡Œç»“æœå¦‚ä¸‹:</p>
 	<p>Test b* b* b*</p>
-	<p>ÃüÁî:&amp;ºÍÃüÁî:substituteÔÚÃ»ÓĞÖ¸¶¨Ìæ»»×Ö·û´®µÄÇé¿öÏÂ×÷ÓÃÏàÍ¬£¬¶¼¿ÉÒÔÖ´ĞĞÉÏÒ»´ÎµÄÌæ»»ÃüÁî¡£</p>
-	<p>ÀıÈçÎÒÃÇÖ´ĞĞÏÂÃæµÄÃüÁî½«µÚÎåĞĞÖĞµÄ×Ö·ûmanager±äÎªidiot:</p>
+	<p>å‘½ä»¤:&amp;å’Œå‘½ä»¤:substituteåœ¨æ²¡æœ‰æŒ‡å®šæ›¿æ¢å­—ç¬¦ä¸²çš„æƒ…å†µä¸‹ä½œç”¨ç›¸åŒï¼Œéƒ½å¯ä»¥æ‰§è¡Œä¸Šä¸€æ¬¡çš„æ›¿æ¢å‘½ä»¤ã€‚</p>
+	<p>ä¾‹å¦‚æˆ‘ä»¬æ‰§è¡Œä¸‹é¢çš„å‘½ä»¤å°†ç¬¬äº”è¡Œä¸­çš„å­—ç¬¦managerå˜ä¸ºidiot:</p>
 	<p style="text-indent:2em"><code class="inset">:5 substitute /manager/idiot/</code></p>
-	<p>Èç¹ûÔÚÕı³£µÄÃüÁîÄ£Ê½ÏÂ£¬ÎÒÃÇÖ´ĞĞÃüÁî&amp;£¬ÄÇÃ´ÕâÒ»ĞĞÖĞµÄÏÂÒ»¸ömanager×Ö·û´®Ò²»á±»Ìæ»»¡£Èç¹ûÏÂÒÆÒ»ĞĞÈ»ºóÖ´ĞĞÃüÁî&amp;£¬ÄÇÃ´ÕâÒ»ĞĞÒ²»á·¢ÉúÏàÓ¦µÄ±ä»¯¡£Èç¹ûÔÚÕâ¸öÃüÁîÖĞÖ¸¶¨ÁËcount£¬ÄÇÃ´Õâ¸öÃüÁî¾Í¿ÉÒÔ×÷ÓÃ¶àĞĞ¡£</p>
-	<p>ÃüÁî<code class="inset">:~</code>Óë<code class="inset">&amp;g</code>ÏàÀàËÆ£¬Ëù²»Í¬µÄÊÇÇ°ÕßÊ¹ÓÃµÄ×Ö·ûÊÇÉÏÒ»´ÎÊ¹ÓÃ/»òÊÇ?²éÕÒÊ±Ê¹ÓÃµÄ×Ö·û´®£¬¶ø²»ÊÇÉÏÒ»´Î:substituteÃüÁîÖĞµÄ×Ö·û´®¡£Õâ¸öÃüÁîµÄÒ»°ã¸ñÊ½ÈçÏÂ:</p>
+	<p>å¦‚æœåœ¨æ­£å¸¸çš„å‘½ä»¤æ¨¡å¼ä¸‹ï¼Œæˆ‘ä»¬æ‰§è¡Œå‘½ä»¤&amp;ï¼Œé‚£ä¹ˆè¿™ä¸€è¡Œä¸­çš„ä¸‹ä¸€ä¸ªmanagerå­—ç¬¦ä¸²ä¹Ÿä¼šè¢«æ›¿æ¢ã€‚å¦‚æœä¸‹ç§»ä¸€è¡Œç„¶åæ‰§è¡Œå‘½ä»¤&amp;ï¼Œé‚£ä¹ˆè¿™ä¸€è¡Œä¹Ÿä¼šå‘ç”Ÿç›¸åº”çš„å˜åŒ–ã€‚å¦‚æœåœ¨è¿™ä¸ªå‘½ä»¤ä¸­æŒ‡å®šäº†countï¼Œé‚£ä¹ˆè¿™ä¸ªå‘½ä»¤å°±å¯ä»¥ä½œç”¨å¤šè¡Œã€‚</p>
+	<p>å‘½ä»¤<code class="inset">:~</code>ä¸<code class="inset">&amp;g</code>ç›¸ç±»ä¼¼ï¼Œæ‰€ä¸åŒçš„æ˜¯å‰è€…ä½¿ç”¨çš„å­—ç¬¦æ˜¯ä¸Šä¸€æ¬¡ä½¿ç”¨/æˆ–æ˜¯?æŸ¥æ‰¾æ—¶ä½¿ç”¨çš„å­—ç¬¦ä¸²ï¼Œè€Œä¸æ˜¯ä¸Šä¸€æ¬¡:substituteå‘½ä»¤ä¸­çš„å­—ç¬¦ä¸²ã€‚è¿™ä¸ªå‘½ä»¤çš„ä¸€èˆ¬æ ¼å¼å¦‚ä¸‹:</p>
 	<p style="text-indent:2em"><code class="inset">:range~ flags count</code></p>
-	<p style="font-weight:bold">globalÃüÁî</p>
-	<p>Èç¹ûÎÒÃÇÏ£Íû¸Ä±äº¬ÓĞÌØ¶¨ÀàĞÍµÄĞĞ£¬ÕâÊ±¾Í³ÇÒªÓÃµ½<code class="inset">:global</code>ÃüÁîÁË¡£Õâ¸öÃüÁîµÄÒ»°ãĞÎÊ½ÈçÏÂ:</p>
+	<p style="font-weight:bold">globalå‘½ä»¤</p>
+	<p>å¦‚æœæˆ‘ä»¬å¸Œæœ›æ”¹å˜å«æœ‰ç‰¹å®šç±»å‹çš„è¡Œï¼Œè¿™æ—¶å°±åŸè¦ç”¨åˆ°<code class="inset">:global</code>å‘½ä»¤äº†ã€‚è¿™ä¸ªå‘½ä»¤çš„ä¸€èˆ¬å½¢å¼å¦‚ä¸‹:</p>
 	<p style="text-indent:2em"><code class="inset">:range global /pattern/command</code></p>
-	<p>Õâ¸öÃüÁî¿ÉÒÔ¸æËßVim±à¼­Æ÷£¬¶ÔÔÚÖ¸¶¨µÄ·¶Î§ÄÚ°üº¬ÓĞÖ¸¶¨µÄÀàĞÍµÄËùÓĞĞĞÖ´µÄ²Ù×÷¡£ÀıÈçÎÒÃÇÒª´òÓ¡³öÒ»¸öÎÄ¼şÖĞËùÓĞ°üº¬µ¥´ÊProfessorµÄĞĞ£¬¿ÉÒÔÊ¹ÓÃÏÂÃæµÄÃüÁî:</p>
+	<p>è¿™ä¸ªå‘½ä»¤å¯ä»¥å‘Šè¯‰Vimç¼–è¾‘å™¨ï¼Œå¯¹åœ¨æŒ‡å®šçš„èŒƒå›´å†…åŒ…å«æœ‰æŒ‡å®šçš„ç±»å‹çš„æ‰€æœ‰è¡Œæ‰§çš„æ“ä½œã€‚ä¾‹å¦‚æˆ‘ä»¬è¦æ‰“å°å‡ºä¸€ä¸ªæ–‡ä»¶ä¸­æ‰€æœ‰åŒ…å«å•è¯Professorçš„è¡Œï¼Œå¯ä»¥ä½¿ç”¨ä¸‹é¢çš„å‘½ä»¤:</p>
 	<p style="text-indent:2em"><code class="inset">:%global /Professor/ print</code></p>
-	<p>¶øÃüÁî<code class="inset">:global!</code>½«¶ÔËùÓĞµÄĞĞÖ´ĞĞÖ¸¶¨µÄÃüÁî¡£</p>
-
-	<p>É¾³ıĞĞÎ²¿Õ¸ñ:ÆäÖĞ¡°$¡±Æ¥ÅäĞĞÎ²»»ĞĞ·û¡£ÕâÌõÃüÁîÓĞÒ»¸öÌØÊâÖ®´¦£¬ËüÃÇÃ»ÓÃ³£¼ûµÄ¡°/¡±×Ö·û×÷Îª¡°:s¡±ÃüÁî¸÷¸ö²ÎÊıµÄ·Ö¸ô·û£¬¶øÊÇÊ¹ÓÃÁË¡°=¡±×Ö·û¡£ÕâÖÖÓÃ·¨ÔÚ²éÕÒ»òÌæ»»µÄÄÚÈİÖĞ°üº¬¡°/¡±×Ö·ûÊ±·Ç³£ÓĞÓÃ¡£</p>
-	<p style="text-indent:2em"><code class="inset">:%s=  *$==</code></p>
+	<p>è€Œå‘½ä»¤<code class="inset">:global!</code>å°†å¯¹æ‰€æœ‰çš„è¡Œæ‰§è¡ŒæŒ‡å®šçš„å‘½ä»¤ã€‚</p>
 
 	<p>:</p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
 
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
-		<caption>ÃüÁîĞ¡½á</caption>
+		<caption>å‘½ä»¤å°ç»“</caption>
 		<tr><td><code class="inset"></code></td><td></td></tr>
 		<tr><td><code class="inset"></code></td><td></td></tr>
 		<tr><td><code class="inset"></code></td><td></td></tr>
