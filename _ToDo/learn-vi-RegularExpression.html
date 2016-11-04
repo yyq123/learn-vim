@@ -50,12 +50,8 @@ du{3}d{3}.
 最后我们还可以用字符类来写出我们的表达式:
 [[:digit:]][[:upper:]]{3}[[:digit:]]{3}
 这四种方法都可以很好的来完成我们的工作
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">magic选项</p>
-到现在我们所有的讨论和方法都是在认为我们已经打开magic选项的基础上来做的.如果这个选项被关闭了,那么我们在通用表达式中的许多的特殊字符就失去了他们神奇的魔力,我们只有通过字符转义才可以正常的来使用.
-关闭magic的选项命令为:
-:set nomagic
-这时*,.,[,]就都被认为只是平常的字符了.如果我们还想用*来指0次或是更多次就要用到转义:*.
-所以我们应保证magic选项是打开的,这样我们也才可以使用Vim强大的搜索能力,而这也正是Vim默认情况下所做的.
+
+
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">偏移(Offset)</p>
 一些常用的偏移(Offset)定义:
 +[num]        光标置于第一个匹配字符下第num行的开始处.

@@ -15,13 +15,9 @@
 	<p></p>
 	<p></p>
 	<p></p>
-	<p></p>
-	<p></p>
-	<p></p>
-	<p></p>
-	<p></p>
-	<p style="font-weight:bold">substitute命令</p>
-	<p>我们使用只有一行的文件来测试这些命令。先用命令将整个文件打印出来:</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">magic选项</p>
+	<p>默认情况下，magic选项是打开的。如果这个选项被关闭了,那么我们在通用表达式中的许多的特殊字符就失去了他们神奇的魔力，而变成了普通的字符。</p>
+	<p>我们使用只有一行的文件来测试magic选项。先用命令将整个文件打印出来:</p>
 	<p style="text-indent:2em"><code class="inset">:%print</code></p>
 	<p>命令的执行结果如下:</p>
 	<p>Test aaa* aa* a*</p>
@@ -30,28 +26,27 @@
 	<p style="text-indent:2em"><code class="inset">:1 substitute /a*/b/p</code></p>
 	<p>命令的执行结果如下:</p>
 	<p>bTest aaa* aa* a*</p>
-	<p>这个命令只是改变了一行开始的部分。为什么会将Test变为b*Test呢？这是因为*可以匹配0次或是多次，而Test正是以0个a开始的。但是为什么只是替换了一次呢？这是因为:substitute命令中是改变第一个出现的地方，如果我们使用g标记就可以替换全部的匹配项了。</p>
+	<p>这个命令只是改变了一行开始的部分。为什么会将Test变为b*Test呢？这是因为*可以匹配0次或是多次，而Test正是以0个a开始的。但是为什么只是替换了一次呢？这是因为:substitute命令中是改变第一个出现的地方，如果我们使用g标记就可以替换全部的匹配项了。如果希望g标记成为默认设置，那么可以使用<code class="inset">:set gdefault</code>命令。</p>
 	<p>我们撤销刚才的命令并执行下面的命令:</p>
 	<p style="text-indent:2em"><code class="inset">:undo</code></p>
 	<p style="text-indent:2em"><code class="inset">:1 substitute /a*/b/pg</code></p>
 	<p>命令的执行结果如下:</p>
 	<p>bTest b*b b*b b*</p>
-	<p>现在我们在关闭magic选项的情况下再做一次:</p>
+	<p>如果我们关闭magic选项的情况下再做一次:</p>
 	<p style="text-indent:2em"><code class="inset">:undo</code></p>
 	<p style="text-indent:2em"><code class="inset">:set nomagic</code></p>
 	<p style="text-indent:2em"><code class="inset">:1 substitute /a*/b/pg</code></p>
 	<p>命令的执行结果如下:</p>
 	<p>Test aab ab b</p>
-	<p style="font-weight:bold">smgic命令</p>
-	<p>在没有设置magic的情况下，*仅是一个*。而:smagic命令则是在执行替换命令时强制转换*以及其他一些字符的意义。例如我们执行下面的命令:</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">smgic命令</p>
+	<p>:smagic命令，可以在执行替换命令时强制转换*等特殊字符的意义。例如我们执行以下命令:</p>
 	<p style="text-indent:2em"><code class="inset">:smagic /a*/b/pg</code></p>
 	<p>命令的执行结果如下:</p>
 	<p>bTest b*b b*b b*</p>
-	<p>而相类似的是命令:snomagic选项强行关掉magic选项:</p>
+	<p>:snomagic命令，强行关掉magic选项:</p>
 	<p style="text-indent:2em"><code class="inset">:snomagic /a*/b/pg</code></p>
 	<p>命令的执行结果如下:</p>
 	<p>Test aab ab b</p>
-	<p>在一般的情况下，:substitute命令只是改变一行中第一个出现的字符串，除非我们使用了g标记。如果希望g标记能成为默认的设置，那么可以使用<code class="inset">:set gdefault</code>命令。</p>
 	
 	<p style="font-weight:bold">&amp;命令</p>
 	<p>&amp;命令可以重复执行替换。这个命令可以保存旧的from和to的字符串，但是允许使用不同的范围(range)和标记(flags)。</p>
@@ -71,12 +66,6 @@
 	<p>如果在正常的命令模式下，我们执行命令&amp;，那么这一行中的下一个manager字符串也会被替换。如果下移一行然后执行命令&amp;，那么这一行也会发生相应的变化。如果在这个命令中指定了count，那么这个命令就可以作用多行。</p>
 	<p>命令<code class="inset">:~</code>与<code class="inset">&amp;g</code>相类似，所不同的是前者使用的字符是上一次使用/或是?查找时使用的字符串，而不是上一次:substitute命令中的字符串。这个命令的一般格式如下:</p>
 	<p style="text-indent:2em"><code class="inset">:range~ flags count</code></p>
-	<p style="font-weight:bold">global命令</p>
-	<p>如果我们希望改变含有特定类型的行，这时就城要用到<code class="inset">:global</code>命令了。这个命令的一般形式如下:</p>
-	<p style="text-indent:2em"><code class="inset">:range global /pattern/command</code></p>
-	<p>这个命令可以告诉Vim编辑器，对在指定的范围内包含有指定的类型的所有行执的操作。例如我们要打印出一个文件中所有包含单词Professor的行，可以使用下面的命令:</p>
-	<p style="text-indent:2em"><code class="inset">:%global /Professor/ print</code></p>
-	<p>而命令<code class="inset">:global!</code>将对所有的行执行指定的命令。</p>
 
 	<p>:</p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
