@@ -8,27 +8,28 @@
 	<title>VIM学习笔记 换行</title>
 </head>
 <body>
-	<p style="font-weight:bold">换行方式</p>
-	<p>在早期的打印机时代，开始新的一行要占用两个字符的时间。如果到了一行的结尾处，你要快速回到新的一行的开头，需要打印针头在纸面上飞快地掠过，常常会在纸面上留下污点。解决这个问题的办法就是，用两个字符：一个字符&lt;Return&gt;来移到第一列，另一个字符&lt;Line feed&gt;来新增一行。计算机产生以后，存储较为昂贵，在如何解决回车换行这个老问题上，人们产生了不同的意见。UNIX人认为在到达一行的结尾时新增一行&lt;Line feed&gt; (LF)，而Mac人则认同&lt;Return&gt; (CR)的解决办法，MS则坚持古老的&lt;Return&gt;&lt;Line feed&gt; (CRLF)的方法。这就意味着如果你将一个文件从一个系统转移到另一个系统，就面临着回车换行的问题。而Vim编辑器则会自动的认出这种文件格式方面的区别，并做出相应处理。</p>
-	<p>fileformats选项，用于处理文件格式问题。以下命令，告诉vim将UNIX文件格式做为第一选择，而将MS-DOS的文件格式做为第二选择：</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">换行方式</p>
+	<p>在早期的打印机时代，开始新的一行要占用两个字符的时间。如果到了一行的结尾处，你要快速回到新的一行的开头，需要打印针头在纸面上飞快地掠过，常常会在纸面上留下污点。解决这个问题的办法就是，用两个字符：一个字符&lt;Return&gt;来移到第一列，另一个字符&lt;Line feed&gt;来新增一行。</p>
+	<p>计算机产生以后，存储较为昂贵，在如何解决回车换行这个老问题上，人们产生了不同的意见。UNIX人认为在到达一行的结尾时新增一行&lt;Line feed&gt; (LF)，而Mac人则认同&lt;Return&gt; (CR)的解决办法，MS则坚持古老的&lt;Return&gt;&lt;Line feed&gt; (CRLF)的方法。这就意味着如果你将一个文件从一个系统转移到另一个系统，就面临着回车换行的问题。而Vim编辑器则会自动的认出这种文件格式方面的区别，并做出相应处理。</p>
+	<p>fileformats选项，用于处理文件格式。以下命令告诉vim将UNIX文件格式做为第一选择，而将MS-DOS的文件格式做为第二选择：</p>
 	<p style="text-indent:2em"><code class="inset">:set fileformats=unix,dos</code></p>
 	<p>检测到的文件格式会被存放在fileformat选项中，我们可以用以下命令来查询：</p>
 	<p style="text-indent:2em"><code class="inset">:set fileformat?</code></p>
-	<p>我们还可以利用fileformat选项，来转换种文件格式。例如，使用以下命令将名为readme.txt的MS-DOS格式的文件，转换为UNIX格式的文件。</p>
+	<p>我们还可以利用fileformat选项，来转换各种文件格式。例如，使用以下命令将名为readme.txt的MS-DOS格式的文件，转换为UNIX格式的文件。</p>
 	<p style="text-indent:2em"><code class="inset">:set fileformat=unix</code></p>
 	<p>在默认情况下，Vim认为文件是由行组成的，并且文件最后一行是以&lt;EOL&gt;为结束符的。如果你想设置文件以&lt;EOL&gt;结束符结尾，则可以用以下命令：</p>
 	<p style="text-indent:2em"><code class="inset">:set endofline</code></p>
 	<p>如果你想设置文件不以&lt;EOL&gt;结束符来结尾，则可以使用以下命令：</p>
 	<p style="text-indent:2em"><code class="inset">:set noendofline</code></p>
-
-	<p style="font-weight:bold">显示换行</p>
-	<p>如果你使用以下命令进入&lt;list mode&gt;，那么就可以清楚的看到以&ldquo;$&rdquo;表示的换行符和以&ldquo;^I&rdquo;表示的制表符。 </p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">显示换行</p>
+	<p>使用以下命令进入&lt;list mode&gt;，那么就可以清楚的看到以&ldquo;$&rdquo;表示的换行符和以&ldquo;^I&rdquo;表示的制表符。 </p>
 	<p style="text-indent:2em"><code class="inset">:set list</code></p>
-	<p><a href="http://www.zooomr.com/photos/yyq123/9308375/" title="Photo Sharing"><img src="http://static.zooomr.com/images/9308375_80a8f8718f_o.png" width="338" height="97" alt="line_feed" /></a></p>
+	<p><a href="https://www.flickr.com/photos/yyq123/30829767385/in/photostream/" title="line_feed"><img src="https://c2.staticflickr.com/6/5487/30829767385_4e9a84ec54_o.png" width="338" height="97" alt="line_feed"></a></p>
 	<p>你可以使用以下命令退出&lt;list mode&gt;：</p>
 	<p style="text-indent:2em"><code class="inset">:set nolist</code></p>
 
-	<p style="font-weight:bold">删除换行</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">删除换行</p>
+	<p><a href="https://www.flickr.com/photos/yyq123/30713020392/" title="line_feed_Ctrl_M"><img src="https://c2.staticflickr.com/6/5580/30713020392_38ab811e01_o.png" width="586" height="72" alt="line_feed_Ctrl_M"></a></p>
 	<p>可以用以下命令删除换行符：</p>
 	<p style="text-indent:2em"><code class="inset">:%s/\n//g</code></p>
 	<p>可以用以下命令删除DOS文件中的回车符&ldquo;^M&rdquo;：</p>
@@ -41,19 +42,17 @@
 	<p style="text-indent:2em"><code class="inset">:%s/^\n\{3}//</code></p>
 	<p>可以用以下命令将连续的两个空行替换成一个空行：</p>
 	<p style="text-indent:2em"><code class="inset">:%s/\n\n/\r/g</code></p>
-
-	<p style="font-weight:bold">自动换行</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">自动换行</p>
 	<p>在默认情况下，Vim是不会自动换行的，也就是说我们需要自己决定回车的位置。但是我们也可以通过指定textwidth选项，让Vim自动在指定位置换行。例如，使用以下命令指定在30列时自动换行。由于在遇到空格时才会自动换行，所以换行的精确位置可能会小于你指定的列宽。</p>
 	<p style="text-indent:2em"><code class="inset">:set textwidth=29</code></p>
 	<p>而以下命令告诉Vim从右面算起当达到10个字符的空格时要换行：</p>
 	<p style="text-indent:2em"><code class="inset">:set wrapmargin=10</code></p>
-	<p>在指定了文本宽度的情况下，当我们将一行中的前几个文字删掉时，Vim并不会将后面行中的文本移动上来，而是形成了一些长短不一的段落，这样看起来不是很好。可以有几种方法处理这个问题：</p>
-	<p>一种方法是，在可视化模式下选中这些文本，然后用<code class="inset">gp</code>命令来格式化选中的段落。另一种方法是，使用<code class="inset">gqmotion</code>命令来完成格式。例如要格式化5行，就可以用命令<code class="inset">:gq4j</code>。这个命令告诉Vim要格式化本行，同时要格式化下面的4行，这样就达到了格式化5行的目的。如果要格式化整个段落，可以将光标放在段落的第一行上，然后执行命令<code class="inset">gq}</code>。而使用命令<code class="inset">gqip</code>可以格式化当前段落，而且并不必要将光标放在段落的第一行上。</p>
-	<p><a href="http://www.zooomr.com/photos/yyq123/9308379/" title="Photo Sharing"><img src="http://static.zooomr.com/images/9308379_ea49653ec7_o.png" width="418" height="70" alt="line_feed_gq" /></a></p>
-	<p>如果要想格式化一行，可以使用命令<code class="inset">gqgq</code>，也可以简记为<code class="inset">gqq</code>。</p>
 	<p>注意：选项textwidth优先于wrapmargin。如果要使wrapmargin选项生效，必须将textwidth设置为0（这也是默认值）。</p>
-
-	<p style="font-weight:bold">合并行</p>
+	<p>在指定了文本宽度的情况下，当我们将一行中的前几个文字删掉时，Vim并不会将后面行中的文本移动上来，而是形成了一些长短不一的段落，这样看起来不是很好。可以有几种方法处理这个问题：</p>
+	<p>一种方法是，在可视化模式下选中这些文本，然后用<code class="inset">gq</code>命令来格式化选中的段落。<p>
+	<p><a href="https://www.flickr.com/photos/yyq123/30713020192/in/dateposted/" title="line_feed_gq"><img src="https://c2.staticflickr.com/6/5650/30713020192_ccb956e13f_o.png" width="418" height="70" alt="line_feed_gq"></a></p>
+	<p>另一种方法是，使用<code class="inset">gqmotion</code>命令来完成格式。例如要格式化5行，就可以用命令<code class="inset">:gq4j</code>。这个命令告诉Vim要格式化本行，同时要格式化下面的4行，这样就达到了格式化5行的目的。如果要格式化整个段落，可以将光标放在段落的第一行上，然后执行命令<code class="inset">gq}</code>。而使用命令<code class="inset">gqip</code>可以格式化当前段落，而且并不必要将光标放在段落的第一行上。如果要想格式化一行，可以使用命令<code class="inset">gqgq</code>，也可以简记为<code class="inset">gqq</code>。</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">合并行</p>
 	<p>命令<code class="inset">J</code>使两行合并为一行，同时用空格分隔这两行。</p>
 	<p>通过设置joinspace选项，可以控制合并两行时的分隔符（如果一行是以标点符号来结尾）。如果设置<code class="inset">:set nojoinspaces</code>，用J命令合并两行时会用一个空格来分隔；如果设置<code class="inset">:set joinspaces</code>，用J命令合并两行时会用两个空格来分隔。如果不希望用空格来分隔合并的行，可以使用<code class="inset">gJ</code>命令。</p>
 	<p>我们也可以使用<code class="inset">:join</code>命令，将几行合并为一行并使用空格来分隔各行。如果不希望加入空格，那么可以使用<code class="inset">:join!</code>命令。</p>
@@ -68,9 +67,10 @@
 		<tr><td><code class="inset">:%s/\n//g</code></td><td>删除换行符</td></tr>
 		<tr><td><code class="inset">:set textwidth</code></td><td>设置行宽</td></tr>
 		<tr><td><code class="inset">:set textwidth</code></td><td>设置行边距</td></tr>
+		<tr><td><code class="inset">:gq</code></td><td>格式化文本</td></tr>
 		<tr><td><code class="inset">:join</code></td><td>合并多行</td></tr>
 		<tr><td><code class="inset">J</code></td><td>合并两行</td></tr>
 	</table>
-	<p>Technorati Tags: <a href="http://www.technorati.com/tags/vi" rel="tag">vi</a>,<a href="http://www.technorati.com/tags/vim" rel="tag">vim</a>,<a href="http://www.technorati.com/tags/gvim" rel="tag">gvim</a></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="()" href="">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="()" href="">下一篇</a>&gt;</span></p>
 </body>
 </html>

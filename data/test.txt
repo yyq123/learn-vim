@@ -14,20 +14,11 @@ a range or visual to title case i.e.
 
 A Range Or Visual To Title Case I.E. 
 
-xxxxxx　左上角　xxxxxxxxxx 右上角
-xxxxxx　xxxxxx　xxxxxxxxxx xxxxxx
-
-
-
-
-xxxxxx　xxxxxx　xxxxxxxxx  xxxxxx  xxxxxx
-
-
-
-
-
-xxxxxx　xxxxxx　xxxxxxxxxx xxxxxx
-xxxxxx　左上角　xxxxxxxxxx 右下角
+左上角 xxxxxxxxxx 右上角
+xxxxxx xxxxxxxxxx xxxxxx
+xxxxxx xxxxxxxxxx xxxxxx
+xxxxxx xxxxxxxxxx xxxxxx
+左下角 xxxxxxxxxx 右下角
 
 
 	xxxxxx　xxxxxx　xxxxxxxxxx
