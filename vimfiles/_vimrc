@@ -1,4 +1,5 @@
 ﻿set nocompatible	"disable backwards-compatible with vi
+filetype off                  " required
 
 source $VIMRUNTIME/vimrc_example.vim
 source $VIMRUNTIME/mswin.vim
@@ -30,7 +31,9 @@ function MyDiff()
 endfunction
 
 set backup " make backup files
-set backupdir=c:/temp " where to put backup files
+set backupdir=C:\Temp " where to put backup files
+set noswapfile     " no swap files
+set undodir=C:\Temp
 
 "If you search for an all-lowercase string your search will be case-insensitive, but if one or more characters is uppercase the search will be case-sensitive.
 set ignorecase    " ignore case when searching
@@ -51,15 +54,20 @@ set wildmode=list:longest,full
 
 
 " Handle long lines
-set nowrap " don't wrap lines
+set wrap " don't wrap lines
 map <F2> <Esc>:set nowrap<CR>
 map <S-F2> <Esc>:set wrap<CR>
-nnoremap j gj
-nnoremap k gk
+"nnoremap j gj
+"nnoremap k gk
+"This makes gj/gk move by virtual lines when used without a count, and by physical lines when used with a count.
+noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
+noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
+
 "set colorcolumn=85	"show a colored column at 85 characters (so I can see when I write a too-long line of code)
 set pastetoggle=<F5>	"Vim will switch to paste mode, disabling all kinds of smartness and just pasting a whole buffer of text. When in paste-mode auto indent will be turned off.
 
-set nu
+set number
+set relativenumber
 set ruler
 set guioptions+=b
 set guioptions-=T
@@ -115,17 +123,25 @@ hi User2 guifg=red
 hi User3 guifg=white
 "hi User5 guibg=#C2BFA5 guifg=#666666 
 
-" font
-set guifont=Courier\ New:h11:cANSI
-set guifontwide=Fixedsys:12:cANSI
-"\ Consolas\ Hybrid:h10
+" Font 设置字体。
+" 如果字体名称中含有空格，
+" 需要在空格前面加上一个反斜杠，如下：
+" 这是 Linux 风格的字体设置语法
+"set guifont=Bitstream\ Vera\ Sans\ Mono\ 9
+" 这是 Windows 风格的字体设置语法
+"set guifont=Bitstream_Vera_Sans_Mono:h9:cANSI
 
+set guifont=Courier\ New:h11:cANSI
+"set guifontwide=Fixedsys:h11
 
 " Maps
 "nmap <tab> V>
 "nmap <s-tab> V<
 "vmap <tab> >gv
 "vmap <s-tab> <gv
+" Stay in visual mode when indenting. 
+vnoremap < <gv
+vnoremap > >gv
 
 map <F10> <Esc>:tabnew<CR>
 
@@ -140,11 +156,15 @@ function ToggleHLSearch()
 	endif 
 endfunction
 
+" let mapleader=";"
 nmap <silent> <leader><space> <Esc>:call ToggleHLSearch()<CR>
+inoremap <leader>\ <C-x><C-o>
 
 " Quickly edit/reload the vimrc file
 "nmap <silent> <leader>ev :e $MYVIMRC<CR> 
 "nmap <silent> <leader>sv :so $MYVIMRC<CR>
+autocmd BufWritePost $MYVIMRC source $MYVIMRC
+
 
 " Abbreviations
 abbreviate #b /**********************
@@ -162,23 +182,80 @@ set foldcolumn=0
 
 " Show invisible characters
 set list
-set listchars=tab:\|.,extends:»,trail:·
-"set listchars=tab:\|.,extends:»,trail:·,nbsp:.
+set listchars=tab:\|.,trail:,nbsp:.,extends:⇔
+" Enter the middle-dot by pressing Ctrl-k then .M
+" Enter the right-angle-quote by pressing Ctrl-k then >>
+" Enter the Pilcrow mark by pressing Ctrl-k then PI
+" The command :dig displays other digraphs you can use.
 
-set history=1000 " remember more commands and search history
+set history=1000 " remember more commands and<LeftMouse> search history
 set undolevels=1000 " use many muchos levels of undo
 
-au FocusLost * :wa	"save on losing focus
+"au FocusLost * :wa	"save on losing focus
 
-" Plugin
-" Use pathogen to easily modify the runtime path to include all
-" plugins under the ~/.vim/bundle directory
-"->call pathogen#helptags()
-"->call pathogen#runtime_append_all_bundles()
 
-nnoremap <silent> <F9> :YRShow<cr>
-inoremap <silent> <F9> <ESC>:YRShow<cr>
+":au Filetype html,xml,xsl source $VIM/vimfile/plugin/closetag.vim
 
-filetype plugin indent on
 
-:au Filetype html,xml,xsl source $VIM/vimfile/plugin/closetag.vim
+" Vundle
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" set the runtime path to include Vundle and initialize
+set rtp+=$VIM/vimfiles/bundle/Vundle.vim/
+call vundle#begin('$VIM/vimfiles/bundle/')
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+"Plugin 'mattn/emmet-vim'
+Plugin 'lilydjwg/colorizer'
+Plugin 'kshenoy/vim-signature'
+Plugin 'landonb/dubs_html_entities'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+Plugin 'honza/vim-snippets'
+Plugin 'yyq123/HTML-Editor'
+" plugin from http://vim-scripts.org/vim/scripts.html
+"Plugin 'L9'
+" Git plugin not hosted on GitHub
+"Plugin 'https://github.com/wincent/command-t.git'
+" git repos on your local machine (i.e. when working on your own plugin)
+"Plugin 'file:///home/gmarik/path/to/plugin'
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
+"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Install L9 and avoid a Naming conflict if you've already installed a
+" different version somewhere else.
+"Plugin 'ascenator/L9', {'name': 'newL9'}
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+
+" vim-signature 配置
+hi SignColumn guibg=NONE
+hi SignColumn ctermbg=NONE
+hi SignatureMarkText ctermbg=NONE
+
+" vim-sinpmate 配置 
+" Alt+Space
+imap <M-space> <Plug>snipMateNextOrTrigger
+smap <M-space> <Plug>snipMateNextOrTrigger
+xmap <M-space> <Plug>snipMateVisual

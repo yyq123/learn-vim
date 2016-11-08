@@ -53,7 +53,7 @@
 	<p><a href="https://www.flickr.com/photos/yyq123/30713020192/in/dateposted/" title="line_feed_gq"><img src="https://c2.staticflickr.com/6/5650/30713020192_ccb956e13f_o.png" width="418" height="70" alt="line_feed_gq"></a></p>
 	<p>另一种方法是，使用<code class="inset">gqmotion</code>命令来完成格式。例如要格式化5行，就可以用命令<code class="inset">:gq4j</code>。这个命令告诉Vim要格式化本行，同时要格式化下面的4行，这样就达到了格式化5行的目的。如果要格式化整个段落，可以将光标放在段落的第一行上，然后执行命令<code class="inset">gq}</code>。而使用命令<code class="inset">gqip</code>可以格式化当前段落，而且并不必要将光标放在段落的第一行上。如果要想格式化一行，可以使用命令<code class="inset">gqgq</code>，也可以简记为<code class="inset">gqq</code>。</p>
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">合并行</p>
-	<p>命令<code class="inset">J</code>使两行合并为一行，同时用空格分隔这两行。</p>
+	<p>命令<code class="inset">J</code>可以将本行和下一行合并为一行，同时用空格分隔这两行。我们也可以使用数字前缀来使几行合并为一行。例如<code class="inset">3J</code>就可以将当前行下的三行（包括当前行）合并为一行。</p>
 	<p>通过设置joinspace选项，可以控制合并两行时的分隔符（如果一行是以标点符号来结尾）。如果设置<code class="inset">:set nojoinspaces</code>，用J命令合并两行时会用一个空格来分隔；如果设置<code class="inset">:set joinspaces</code>，用J命令合并两行时会用两个空格来分隔。如果不希望用空格来分隔合并的行，可以使用<code class="inset">gJ</code>命令。</p>
 	<p>我们也可以使用<code class="inset">:join</code>命令，将几行合并为一行并使用空格来分隔各行。如果不希望加入空格，那么可以使用<code class="inset">:join!</code>命令。</p>
 
