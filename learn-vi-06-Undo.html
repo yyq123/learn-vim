@@ -20,7 +20,7 @@
 	<p>以下述操作为例：新建文件并输入&ldquo;大象&rdquo;，然后在新的一行中输入&ldquo;小牛&rdquo;，返回Normal mode并按下<code class="inset">u</code>命令。这时输入&ldquo;小牛&rdquo;的操作被撤消，文件将只包含&ldquo;大象&rdquo;。接着输入&ldquo;猩猩&rdquo;，然后返回Normal mode并按下<code class="inset">u</code>命令，此时将撤消输入&ldquo;猩猩&rdquo;的操作，文件仍然只包含&ldquo;大象&rdquo;。所以你的&ldquo;小牛&rdquo;就再也找不回来了。而撤消分支（Undo branches）就可以解决这个问题。使用<code class="inset">g-</code>可以使文件重新包含入&ldquo;大象&rdquo;和&ldquo;小牛&rdquo;。此过程如下图所示：</p>
 	<p><a href="https://cacoo.com/diagrams/nXHwxXFypk48081Z" title="Undo Branches"><img src="https://cacoo.com/diagrams/nXHwxXFypk48081Z-BB438.png" alt="Undo Branches" /></a></p>
 	<p>如果你先撤销了若干改变，然后又进行了一些其它的改变。此时，被撤销的改变就成为一个分支。我们可以使用<code class="inset">:undolist</code>命令查看修改的各个分支。</p>
-	<p><a href="http://www.zooomr.com/photos/yyq123/9541227/" title="Photo Sharing"><img src="http://static.zooomr.com/images/9541227_cef614ef17_o.png" width="372" height="96" alt="UndoBranch_list" /></a></p>
+	<p><a href="https://www.flickr.com/photos/yyq123/30221763784/in/dateposted/" title="UndoBranch_list"><img src="https://c2.staticflickr.com/6/5702/30221763784_2fcdcc9e99_o.png" width="372" height="96" alt="UndoBranch_list"></a></p>
 	<ul>
 		<li>"编号" 列是改变号。这个编号持续增加，用于标识特定可撤销的改变。</li>
 		<li>"改变" 列是根结点到此叶结点所需的改变数目。</li>
