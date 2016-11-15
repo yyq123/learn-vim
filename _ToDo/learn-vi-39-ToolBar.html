@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 工具栏 (ToolBar)</title>
+</head>
+<body>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">启用/禁用</p>
+	<p>可以通过toolbar选项来控制工具栏的外观：</p>
+	<ul>
+		<li>icon&nbsp;&nbsp;显示工具栏图标</li>
+		<li>text&nbsp;&nbsp;显示文本<li>
+		<li>tooltips&nbsp;&nbsp;当光标位于图标上时显示的文字</li>
+	</ul>
+	<p>Vim默认设置是显示工具栏的。如果我们要关掉工具栏，不是将这个选项设为空字符串，而是要用<code class="inset">:set guioptions-=T</code>命令。</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">工具栏按钮</p>
+	<p>工具栏（ToolBar）是使用图标来调用菜单的图形界面元素。例如名为ToolBar.New的menu-item是在工具栏上的New图标。Vim编辑器中的每一个基本图标都有两个名字，例如New图标可以用ToolBar.New或是ToolBar.builtin00来表示。你可以使用<code class="inset">:help builtin-tools</code>命令，查看关于基本图标的帮助信息。</p>
+New,Open,Save,Undo,Redo,Cut,Copy,Paste,Print,Help,Find,SaveAll,SaveSesn,NewSesn,LoadSesn,RunScript,Replace,
+WinClose,WinMax,WinMin,WinSplit,Shell,FindPrev,FindNext,FindHelp,
+Make,TagJump,RunCtags.
+如果图标并不与基本的图标相匹配,编辑器就会在$VIMRUNTIME/bitmaps目录中进行查找.在UNIX系统中图标大小为20x20像素.
+	<p>使用以下命令，可以查看工具栏上的按钮名称：</p>
+	<p style="text-indent:2em"><code class="inset">:aunmenu ToolBar.&lt;Tab&gt;</code></p>
+	<p><a data-flickr-embed="true"  href="https://www.flickr.com/photos/yyq123/30975957485/in/dateposted/" title="Toolbar_Icons_Tab"><img src="https://c6.staticflickr.com/6/5449/30975957485_99c79989c9.jpg" width="500" height="217" alt="Toolbar_Icons_Tab"></a></p>
+	<p>使用左右方向键，可以选择某个图标项（其中，"|"用于表示分隔符）, 按下<kbd>Enter</kbd>将从工具栏上移除此按钮，按下<kbd>Esc</kbd>则可以取消选择。</p>
+	<p><a data-flickr-embed="true"  href="https://www.flickr.com/photos/yyq123/30975957315/in/photostream/" title="Toolbar_Icons_Tab_Item"><img src="https://c4.staticflickr.com/6/5494/30975957315_45368da2f5.jpg" width="500" height="217" alt="Toolbar_Icons_Tab_Item"></a></p>
+当我们将光标放在图标上时工具栏会显示一个小提示.要定义这个提示,我们可使用下面的命令:
+:tmenu menu-itme tip
+例如下面的命令可以使得当光标放在打开图标上时会显示Open file字样:
+:tmenu ToolBar.Open Open file
+	<p>可以使用以下命令，移除工具栏的提示信息：</p>
+	<p style="text-indent:2em"><code class="inset">:tunmenu menu-itme</code></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">移除工具栏按钮</p>
+You can hide some of the default gvim ToolBar buttons by adding lines like the following to your vimrc:
+	<p style="text-indent:2em"><code class="inset">aunmenu ToolBar.FindNext</code></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">新增工具栏按钮</p>
+	<p>新增工具栏按钮：</p>
+	<p style="text-indent:2em"><code class="inset">an icon=WinMax 1.410 ToolBar.Maximize &lt;C-w&gt;_</code></p>
+	<p>其中，1.410表示按钮在工具栏上的位置；icon=Maximize用于指定按钮图标的文件名（不需要指明bmp后缀名)；最后是点击按钮所执行的命令。 </p>
+	<p>新增工具栏分隔符：</p>
+	<p style="text-indent:2em"><code class="inset">an 1.400 ToolBar.-sep8- &lt;Nop&gt;</code></p>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
+		<tr><td><code class="inset">:</code></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+	</table>
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="()" href="">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="()" href="">下一篇</a>&gt;</span></p>
+</body>
+</html>
+

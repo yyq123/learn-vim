@@ -74,32 +74,6 @@ $ gvim -geometry 80x24
 	<p style=font-weight:bold">颜色</p>
 	<p></p>
 	
-	<p style="font-weight:bold">工具栏</p>
-	<p>可以通过toolbar选项来控制工具栏的外观：</p>
-	<ul>
-		<li>icon&nbsp;&nbsp;显示工具栏图标</li>
-		<li>text&nbsp;&nbsp;显示文本<li>
-		<li>tooltips&nbsp;&nbsp;当光标位于图标上时显示的文字</li>
-	</ul>
-	<p>Vim默认设置是显示工具栏的。如果我们要关掉工具栏，不是将这个选项设为空字符串，而是要用<code class="inset">:set guioptions-=T</code>命令。</p>
-	<p>工具栏（ToolBar）是使用图标来调用菜单的图形界面元素。例如名为ToolBar.New的menu-item是在工具栏上的New图标。Vim编辑器中的每一个基本图标都有两个名字，例如New图标可以用ToolBar.New或是ToolBar.builtin00来表示。你可以使用<code class="inset">:help builtin-tools</code>命令，查看关于基本图标的帮助信息。</p>
-New,Open,Save,Undo,Redo,Cut,Copy,Paste,Print,Help,Find,SaveAll,SaveSesn,NewSesn,LoadSesn,RunScript,Replace,
-WinClose,WinMax,WinMin,WinSplit,Shell,FindPrev,FindNext,FindHelp,
-Make,TagJump,RunCtags.
-如果图标并不与基本的图标相匹配,编辑器就会在$VIMRUNTIME/bitmaps目录中进行查找.在UNIX系统中图标大小为20x20像素.
-	<p>使用以下命令，可以查看工具栏上的按钮名称：</p>
-	<p style="text-indent:2em"><code class="inset">:aunmenu ToolBar.&lt;Tab&gt;</code></p>
-	<p><a data-flickr-embed="true"  href="https://www.flickr.com/photos/yyq123/30975957485/in/dateposted/" title="Toolbar_Icons_Tab"><img src="https://c6.staticflickr.com/6/5449/30975957485_99c79989c9.jpg" width="500" height="217" alt="Toolbar_Icons_Tab"></p>
-	<p> then <Right> <Left> to select (if you stop on a | you'll see the actual "menu separator" name on the command line), <Esc> to cancel, <Enter> to remove that toolbar button </p>
-	<p><a data-flickr-embed="true"  href="https://www.flickr.com/photos/yyq123/30975957315/in/photostream/" title="Toolbar_Icons_Tab_Item"><img src="https://c4.staticflickr.com/6/5494/30975957315_45368da2f5.jpg" width="500" height="217" alt="Toolbar_Icons_Tab_Item"></a></p>
-当我们将光标放在图标上时工具栏会显示一个小提示.要定义这个提示,我们可使用下面的命令:
-:tmenu menu-itme tip
-例如下面的命令可以使得当光标放在打开图标上时会显示Open file字样:
-:tmenu ToolBar.Open Open file
-	<p>可以使用以下命令，移除工具栏的提示信息：</p>
-	<p style="text-indent:2em"><code class="inset">:tunmenu menu-itme</code></p>
-You can hide some of the default gvim ToolBar buttons by adding lines like the following to your vimrc:
-	<p style="text-indent:2em"><code class="inset">aunmenu ToolBar.FindNext</code></p>
 	
 	<p style="font-weight:bold">标题栏</p>
 	<p>如果要将当前窗口的标题改为正在编辑的文件名，可以使用以下命令：</p>
