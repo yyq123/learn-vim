@@ -3,44 +3,44 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>���ǩҳ</title>
+	<title>VIM学习笔记 多标签页（Tabs）</title>
 </head>
 <body>
-	<p style="font-weight:bold">VIMѧϰ�ʼ� ���ǩҳ</p>
-	<p style="font-weight:bold">�½���ǩҳ</p>
-	<p>ʹ��<code class="inset">:tabe</code>������ļ����������������±�ǩҳ�д�ָ�����ļ���Ҳ����ʹ��<code class="inset">:tabnew</code>������±�ǩҳ�б༭�µ��ļ�������<code class="inset">:tab split</code>�����±�ǩҳ�У��򿪵�ǰ�������е��ļ���</p>
-	<p>����<code class="inset">:tabf</code>�������ڵ�ǰĿ¼�����ļ��������±�ǩҳ�д򿪡���������򿪵�ǰĿ¼�µ�img.txt�ļ�����ô�Ϳ���ʹ��<code class="inset">:tabf img.*</code>�����ע�⣬������ֻ�ܴ�һ���ļ���������������ƥ���ļ�������ʾ�㡰�ļ������ࡱ����ʱ����Ҫ��������ȷ�����������Դ��ļ���</p>
-	<p>VimĬ�����ֻ�ܴ�10����ǩҳ���������<code class="inset">set tabpagemax=15</code>�ı�������ơ�</p>
+	<p>Vim 7.0开始引入了多标签页（Tabs）概念，用于同时编辑多个文件，每一个标签也可以包含多个缓冲区或窗口。What makes tabs special is the commands that you would normally execute on all open buffers / windows (such as :bufdo, :windo, :all, and :ball) are limited to only the windows and buffers in the current tab page.</p>
+	<p style="font-weight:bold">新建标签页</p>
+	<p>使用<code class="inset">:tabe</code>命令和文件名参数，可以在新标签页中打开指定的文件。也可以使用<code class="inset">:tabnew</code>命令，在新标签页中编辑新的文件。命令<code class="inset">:tab split</code>将在新标签页中，打开当前缓冲区中的文件。</p>
+	<p>命令<code class="inset">:tabf</code>允许你在当前目录搜索文件，并在新标签页中打开。比如我想打开当前目录下的img.txt文件，那么就可以使用<code class="inset">:tabf img.*</code>命令。请注意，此命令只能打开一个文件，如果搜索出多个匹配文件，将提示你“文件名过多”，这时你需要给出更精确的搜索条件以打开文件。</p>
+	<p>Vim默认最多只能打开10个标签页。你可以用<code class="inset">set tabpagemax=15</code>改变这个限制。</p>
 	<p><a href="http://www.flickr.com/photos/yyq123/390976092/" title="Photo Sharing"><img src="http://farm1.static.flickr.com/147/390976092_4b98eadb08_o.png" width="414" height="118" alt="Tabs_new" /></a></p>
-	<p style="font-weight:bold">��ʾ��ǩҳ</p>
-	<p>����<code class="inset">:tabs</code>������ʾ�Ѵ򿪱�ǩҳ���б�������&ldquo;&gt;&rdquo;��ʶ����ǰҳ�棬��&ldquo;+&rdquo;��ʶ���Ѹ��ĵ�ҳ�档</p>
+	<p style="font-weight:bold">列示标签页</p>
+	<p>命令<code class="inset">:tabs</code>可以显示已打开标签页的列表，并用&ldquo;&gt;&rdquo;标识出当前页面，用&ldquo;+&rdquo;标识出已更改的页面。</p>
 	<p><a href="http://www.flickr.com/photos/yyq123/390976091/" title="Photo Sharing"><img src="http://farm1.static.flickr.com/174/390976091_f2ce87f68b_o.png" width="412" height="129" alt="Tabs_list" /></a></p>
-	<p style="font-weight:bold">�رձ�ǩҳ</p>
-	<p>����<code class="inset">:tabc</code>���Թرյ�ǰ��ǩҳ��������<code class="inset">:tabo</code>���ر����еı�ǩҳ��</p>
-	<p style="font-weight:bold">�л���ǩҳ</p>
-	<p>����<code class="inset">:tabn</code>��<code class="inset">gt</code>�����ƶ�����һ����ǩҳ��������<code class="inset">:tabp</code>��<code class="inset">gT</code>���ƶ�����һ����ǩҳ������Ѿ�������������ǰ��ı�ǩҳ�������Զ�ת��ѭ����</p>
+	<p style="font-weight:bold">关闭标签页</p>
+	<p>命令<code class="inset">:tabc</code>可以关闭当前标签页。而命令<code class="inset">:tabo</code>将关闭所有的标签页。</p>
+	<p style="font-weight:bold">切换标签页</p>
+	<p>命令<code class="inset">:tabn</code>或<code class="inset">gt</code>可以移动到下一个标签页。而命令<code class="inset">:tabp</code>或<code class="inset">gT</code>将移动到上一个标签页。如果已经到达最后面或最前面的标签页，将会自动转向循环。</p>
 	<p><a href="http://www.flickr.com/photos/yyq123/3442899619/" title="Tabs_gt_gT by yyq123, on Flickr"><img src="http://farm4.static.flickr.com/3308/3442899619_8d07f51e32_o.png" width="407" height="137" alt="Tabs_gt_gT" /></a></p>
-	<p>�������˺ܶ��ǩҳ����ô����ʹ��<code class="inset">:tabfirst</code>��<code class="inset">:tabr</code>����ƶ�����һ����ǩҳ��ʹ��<code class="inset">:tablast</code>����ƶ������һ����ǩҳ��</p>
-	<p style="font-weight:bold">�ƶ���ǩҳ</p>
-	<p>�����ϣ������ָ���Ĵ������б�ǩҳ����ô�����ʹ��<code class="inset">:tabm</code>�����ע�⣬��ǩҳ�����Ǵ�0��ʼ�����ġ���������<code class="inset">:tabm 1</code>���ѵ�ǰ��ǩҳ�ƶ�����2��λ�á������û��Ϊ<code class="inset">:tabm</code>����ָ����������ô��ǰ��ǩҳ���ᱻ�ƶ������</p>
-	<p style="font-weight:bold">���ñ�ǩҳ</p>
-	<p>Ĭ������£�ֻ���û��½��˱�ǩҳ�Ż��ڴ����Ϸ���ʾ��ǩ����������ѡ��<code class="inset">set showtabline=1</code>�����ġ��������ϣ��������ʾ��ǩ������ô������<code class="inset">set showtabline=2</code>���������á��������ϣ����ȫ����ʾ��ǩ������ô����ʹ��<code class="inset">set showtabline=0</code>�����á�</p>
-	<p style="font-weight:bold">���ǩҳ����</p>
-	<p>ʹ��<code class="inset">:tabdo</code>������ǿ���ͬʱ�ڶ����ǩҳ��ִ������������Ǵ��˶����ǩҳ����Ҫ����Щ�ļ��еġ�food�����滻�ɡ�drink������ô�Ϳ���ʹ��<code class="inset">:tabdo %s/food/drink/g</code>���һ����ɶ������ļ����滻���������������ÿ���ļ��ظ�������</p>
-	<p style="font-weight:bold">ͼ�ν���</p>
-	<p>�����ʹ�õ��Ǵ���ͼ�ν����gVim����ô�½����رպʹ򿪱�ǩҳ�Ĳ�����������ͨ���ڱ�ǩҳ���һ������ɡ�ֻ��Ҫ�����Ӧ��ǩ���Ϳ����ڲ�ͬ�ı�ǩҳ���л���</p>
-	<p>ͨ��<code class="inset">:help tab-page-intro</code>������Ի�ù��ڱ�ǩҳʹ�õĸ�����Ϣ��</p>
+	<p>如果你打开了很多标签页，那么可以使用<code class="inset">:tabfirst</code>或<code class="inset">:tabr</code>命令，移动到第一个标签页。使用<code class="inset">:tablast</code>命令，移动到最后一个标签页。</p>
+	<p style="font-weight:bold">移动标签页</p>
+	<p>如果你希望按照指定的次序排列标签页，那么你可以使用<code class="inset">:tabm</code>命令。请注意，标签页次序是从0开始计数的。比如命令<code class="inset">:tabm 1</code>将把当前标签页移动到第2的位置。如果你没有为<code class="inset">:tabm</code>命令指定参数，那么当前标签页将会被移动到最后。</p>
+	<p style="font-weight:bold">配置标签页</p>
+	<p>默认情况下，只有用户新建了标签页才会在窗口上方显示标签栏，这是由选项<code class="inset">set showtabline=1</code>决定的。如果我们希望总是显示标签栏，那么可以用<code class="inset">set showtabline=2</code>命令来设置。如果我们希望完全不显示标签栏，那么可以使用<code class="inset">set showtabline=0</code>来设置。</p>
+	<p style="font-weight:bold">多标签页命令</p>
+	<p>使用<code class="inset">:tabdo</code>命令，我们可以同时在多个标签页中执行命令。比如我们打开了多个标签页，需要把这些文件中的“food”都替换成“drink”，那么就可以使用<code class="inset">:tabdo %s/food/drink/g</code>命令，一次完成对所有文件的替换操作，而不用针对每个文件重复操作。</p>
+	<p style="font-weight:bold">图形界面</p>
+	<p>如果你使用的是带有图形界面的gVim，那么新建、关闭和打开标签页的操作，都可以通过在标签页上右击鼠标完成。只需要点击相应标签，就可以在不同的标签页间切换。</p>
+	<p>通过<code class="inset">:help tab-page-intro</code>命令，可以获得关于标签页使用的更多信息。</p>
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
-		<caption>����С��</caption>
-		<tr><td><code class="inset">:tabnew</code></td><td>�½���ǩҳ</td></tr>
-		<tr><td><code class="inset">:tabs</code></td><td>��ʾ�Ѵ򿪱�ǩҳ���б�</td></tr>
-		<tr><td><code class="inset">:tabc</code></td><td>�رյ�ǰ��ǩҳ</td></tr>
-		<tr><td><code class="inset">:tabn</code></td><td>�ƶ�����һ����ǩҳ</td></tr>
-		<tr><td><code class="inset">:tabp</code></td><td>�ƶ�����һ����ǩҳ</td></tr>
-		<tr><td><code class="inset">:tabfirst</code></td><td>�ƶ�����һ����ǩҳ</td></tr>
-		<tr><td><code class="inset">:tablast</code></td><td>�ƶ������һ����ǩҳ</td></tr>
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:tabnew</code></td><td>新建标签页</td></tr>
+		<tr><td><code class="inset">:tabs</code></td><td>显示已打开标签页的列表</td></tr>
+		<tr><td><code class="inset">:tabc</code></td><td>关闭当前标签页</td></tr>
+		<tr><td><code class="inset">:tabn</code></td><td>移动到下一个标签页</td></tr>
+		<tr><td><code class="inset">:tabp</code></td><td>移动到上一个标签页</td></tr>
+		<tr><td><code class="inset">:tabfirst</code></td><td>移动到第一个标签页</td></tr>
+		<tr><td><code class="inset">:tablast</code></td><td>移动到最后一个标签页</td></tr>
 	</table>
 	<p>Technorati Tags: <a href="http://www.technorati.com/tags/vi" rel="tag">vi</a>,<a href="http://www.technorati.com/tags/vim" rel="tag">vim</a>,<a href="http://www.technorati.com/tags/gvim" rel="tag">gvim</a></p>
 </body>
