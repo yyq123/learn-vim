@@ -5,7 +5,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记 打印</title>
+	<title>VIM学习笔记 打印（Print）</title>
 </head>
 <body>
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">打印到屏幕</p>
@@ -14,17 +14,21 @@
 	<p style="text-indent:2em"><code class="inset">:1,5 print</code></p>
 	<p>如果仅仅想打印第5行，可以使用以下命令：</p>
 	<p style="text-indent:2em"><code class="inset">:5 print</code></p>
-	<p>如果想要打印整个文件，那么可以使用一些特殊的标记。例如字符$是指最后一行，因而可以使用<code class="inset">:1,$ print</code>命令来打印全文。而字符%是指整篇文章（1,$），因而可以使用<code class="inset">:% print</code>命令来打印整篇文章。</p>
+	<p>如果想要打印整个文件，可以使用以下命令：</p>
+	<p style="text-indent:2em"><code class="inset">:% print</code></p>
 	<p>我们还可以选择显示包含指定内容的行。例如使用以下命令，可以打印出含有&ldquo;ex&rdquo;的行，并会高亮显示&ldquo;ex&rdquo;。</p>
 	<p style="text-indent:2em"><code class="inset">:/ex/ print</code></p>
 	<p>我们可以组合使用标记命令m与print命令。例如：在一个地方用命令<code class="inset">ma</code>做上标记；然后在其他的地方用命令<code class="inset">mb</code>也打上标记；最后用以下命令打印这两个标记之间的内容：</p>
 	<p style="text-indent:2em"><code class="inset">:'a,'b print</code></p>
-	<p>命令<code class="inset">:#</code>在没有打开number选项时，也可以显示出当前行及其行号。</p>
+	<p>命令<code class="inset">:number</code>和<code class="inset">:#</code>不仅可以显示选定范围的内容，同时还会其行号。</p>
 	<p>命令<code class="inset">:list</code>也可以列出指定的行，而且能够显示出回车，Tab等不可见的字符。</p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">打印到打印机</p>
 	<p>使用<code class="inset">:hardcopy</code>命令，将调出打印对话框，并将文本按照显示在Vim中的原样输出到打印机上。</p>
+	<p>使用<code class="inset">:hardcopy!</code>命令，则不会调出打印对话框，而是直接将文本输出到默认打印机上。</p>
 	<p>如果想要打印指定范围的行，可以使用以下命令：</p>
+	<p style="text-indent:2em"><code class="inset">:1,100 hardcopy</code></p>
+	<p>我们也可以进入可视化模式，然后选择指定的范围进行打印：</p>
 	<p style="text-indent:2em"><code class="inset">v100j:hardcopy</code></p>
 	<p>其中，命令v进入可视模式，100j向下移动100行，这些行将被高亮显示。然后用:hardcopy命令，打印出选中的行。</p>
 	<p>我们也可以使用命令<code class="inset">V</code>进入可视化模式，并选定一段内容，这时输入:就会在Vim的底部显示&lt;,&gt;两个字符，这两个字符分别指选定内容的开头和结束部分。然后就可以用:hardcopy命，令打印出选择的部分了。</p>
@@ -42,11 +46,11 @@
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
 		<tr><td><code class="inset">:print</code></td><td>打印到屏幕</td></tr>
-		<tr><td><code class="inset">:#</code></td><td>带行号打印</td></tr>
+		<tr><td><code class="inset">:number</code></td><td>带行号打印</td></tr>
 		<tr><td><code class="inset">:list</code></td><td>打印不可见字符</td></tr>
 		<tr><td><code class="inset">:hardcopy</code></td><td>打印到打印机</td></tr>
 		<tr><td><code class="inset">set printoptions</code></td><td>设置打印选项</td></tr>
 	</table>
-	<p>Technorati Tags: <a href="http://www.technorati.com/tags/vi" rel="tag">vi</a>,<a href="http://www.technorati.com/tags/vim" rel="tag">vim</a>,<a href="http://www.technorati.com/tags/gvim" rel="tag">gvim</a></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="撤销 (Undo)" href="http://yyq123.blogspot.com/2010/10/vim-undo.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="帮助信息(Help)" href="http://yyq123.blogspot.com/2012/04/vim-help.html">下一篇</a>&gt;</span></p>
 </body>
 </html>
