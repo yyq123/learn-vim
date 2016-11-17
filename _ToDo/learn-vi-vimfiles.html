@@ -8,43 +8,37 @@
 	<title>VIM学习笔记 </title>
 </head>
 <body>
-	<p style="font-weight:bold"></p>
-	<p></p>
-	<p style="text-indent:2em"><code class="inset"></code></p>
+	<p><a data-flickr-embed="true"  href="https://www.flickr.com/photos/yyq123/30932779851/in/dateposted/" title="vim_directory"><img src="https://c2.staticflickr.com/6/5742/30932779851_30e0bbac18_o.png" width="92" height="93" alt="vim_directory"></a></p>
+	<ul>
+		<li>vimXX：带上版本号的程序文件夹，可以让不同版本共存。</li>
+		<li>vimfiles 是用户文件夹，你自己装的插件等东西最好放在这里。</li>
+	</ul>
+	<p>以上文件夹是运行时文件夹，vim通常会搜索以下三个目录下的运行时文件夹：</p>
+	<ul>
+		<li>$HOME/vimfiles（windows上是你的用户文件夹根目录下的vimfiles ）</li>
+		<li>$VIM/vimfiles ( vim下的vimfiles)</li>
+		<li>$VIMRUNTIME (vimxx，比如vim72)</li>
+	</ul>
+
+这样可以在不同的状况加载不同的插件和设置（比如多人共同使用，每个人可以有自己的vim设置）
+你可以在命令模式下运行
+   :set rtp?
+来查看本机运行时目录设置
+你可以通过直接修改 rtp 来增加/修改运行时目录,如
+   :set runtimepath+=c:/blahblah/vimfiles
+这样你也可以把插件等文件夹放在一个完全不同的地方。
+ :help rtp
+:help dos-locations
+<p style="text-indent:2em"><code class="inset"></code></p>
 	<p>$VIM代表，/usr/share/vim或/usr/local/share/vim</p>
 	:echo $vim
 
-vimfiles目录中的设置，会覆盖runtime目录中的设置。
-for example, if you have vimfiles/plugin/myplug.vim and
-$VIMRUNTIME/plugin/myplug.vim, the one in vimfiles is
-loaded. Directory structure under vimfiles should indeed
-mimick that under $VIMRUNTIME
+vimfiles目录中的设置，会覆盖runtime目录中的设置。例如，vimfiles/plugin/myplug.vim 将优先于 $VIMRUNTIME/plugin/myplug.vim 而被载入。
 
- :help runtimepath
+在Windows下的 $VIM\vimfilel\ 目录，以及Unix下的 $HOME/.vim/ 目录 are for any customizations that should not be over-written when upgrading to a new version of vim.
 
 
-The $VIM\vimfilel\ directory (DOS) and the $HOME/.vim/
-directory (unix) are for any customizations that should not be
-over-written when upgrading to a new version of vim.
 
-The question of which file overrides which is a little
-complicated. For example, on my W95 machine, 'runtimepath' includes the
-directories
-
-D:\VIM/vimfiles (a.k.a. $VIM\fimfiles)
-D:\VIM\vim61 (a.k.a. $VIMRUNTIME)
-D:\VIM/vimfiles/after
-
-in that order, which determines search order. Now, if I use :runtime,
-then the first file found is used; it overrides the other(s). If I use
-:runtime!, however, all found files are :source'd, so the last one found
-overrides the others. (This is why we have the after/ directory!) Some
-files check for the existence of a variable; if it exists, they bail
-out. In this case, first file wins again.
-
-
-:help :runtime
-:help ftplugin-overrule
 
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
@@ -63,7 +57,7 @@ out. In this case, first file wins again.
 		<tr><td><code class="inset"></code></td><td></td></tr>
 		<tr><td><code class="inset"></code></td><td></td></tr>
 	</table>
-	<p>Technorati Tags: <a href="http://www.technorati.com/tags/vi" rel="tag">vi</a>,<a href="http://www.technorati.com/tags/vim" rel="tag">vim</a>,<a href="http://www.technorati.com/tags/gvim" rel="tag">gvim</a></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="()" href="">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="()" href="">下一篇</a>&gt;</span></p>
 </body>
 </html>
 

@@ -9,6 +9,8 @@
 </head>
 <body>
 	<p>Vim 7.0开始引入了多标签页（Tabs）概念，用于同时编辑多个文件，每一个标签也可以包含多个缓冲区或窗口。What makes tabs special is the commands that you would normally execute on all open buffers / windows (such as :bufdo, :windo, :all, and :ball) are limited to only the windows and buffers in the current tab page.</p>
+	<p>Tab的标签默认显示当前缓冲区的文件名。如果在同一标签页中打开了多个缓冲区，那么标签也会显示打开缓冲区的总共数目。"+" 表示已经修改过的页面。而"2+" 则表示有3个窗口，其中一个已经更改。</p>
+	<p><a data-flickr-embed="true"  href="https://www.flickr.com/photos/yyq123/30905931782/in/dateposted/" title="Tabs_Label"><img src="https://c2.staticflickr.com/6/5452/30905931782_8d156cccce_o.png" width="405" height="33" alt="Tabs_Label"></a></p>
 	<p style="font-weight:bold">新建标签页</p>
 	<p>使用<code class="inset">:tabe</code>命令和文件名参数，可以在新标签页中打开指定的文件。也可以使用<code class="inset">:tabnew</code>命令，在新标签页中编辑新的文件。命令<code class="inset">:tab split</code>将在新标签页中，打开当前缓冲区中的文件。</p>
 	<p>命令<code class="inset">:tabf</code>允许你在当前目录搜索文件，并在新标签页中打开。比如我想打开当前目录下的img.txt文件，那么就可以使用<code class="inset">:tabf img.*</code>命令。请注意，此命令只能打开一个文件，如果搜索出多个匹配文件，将提示你“文件名过多”，这时你需要给出更精确的搜索条件以打开文件。</p>
@@ -42,7 +44,7 @@
 		<tr><td><code class="inset">:tabfirst</code></td><td>移动到第一个标签页</td></tr>
 		<tr><td><code class="inset">:tablast</code></td><td>移动到最后一个标签页</td></tr>
 	</table>
-	<p>Technorati Tags: <a href="http://www.technorati.com/tags/vi" rel="tag">vi</a>,<a href="http://www.technorati.com/tags/vim" rel="tag">vim</a>,<a href="http://www.technorati.com/tags/gvim" rel="tag">gvim</a></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="()" href="">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="()" href="">下一篇</a>&gt;</span></p>
 </body>
 </html>
 
