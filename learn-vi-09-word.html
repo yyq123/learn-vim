@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+<title>VIM学习笔记 在词间移动（Word Movement）</title>
+</head>
+<body>
+	<p>Vim有单词（word）和字串（WORD）两种概念。word是指由iskeyword选项定义的字符串；而WORD则是指用空白符分隔的字符串。可以使用<code class="inset">:help word</code>和<code class="inset">:help WORD</code>命令，查看更多帮助信息。</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">在word间移动</p>
+	<table summary="WORD" border="0">
+		<tr><td><code class="inset">[count]b</code></td><td>&nbsp;&nbsp;向后移动count个words</td></tr>
+		<tr><td><code class="inset">[count]e</code></td><td>&nbsp;&nbsp;向前移动count个words,并且将光标置于word的末尾.</td></tr>
+		<tr><td><code class="inset">[count]ge</code></td><td>&nbsp;&nbsp;向后移动count个words,并且将光标置于WORD的末尾.</td></tr>
+		<tr><td><code class="inset">[count]w</code></td><td>&nbsp;&nbsp;向前移动count个words.</td></tr>
+	</table>
+	<p>按照通常的定义，单词是一系列字母的组合。然而在C程序中，则认为字母、数字和下划线来组成一个单词，比如size56就会被认为是一个单词。但是在LISP程序中，可以在变量名中使用-，这时会认为total-size是一个单词，而在C程序中这却会被认为是两个单词。那么如何来解决这些定义的差异呢？Vim的解决方案是，使用以下选项来定义哪些是一个单词的，而哪些又不是。</p>
+	<p style="text-indent:2em"><code class="inset">:set iskeyword=specification</code></p>
+	<p>查看当前选项，可以使用下面的命令：</p>
+	<p style="text-indent:2em"><code class="inset">:set iskeyword?</code></p>
+	<p>命令会返回一组用逗号分隔的值（以下是在Windows下的默认值）：</p>
+	<p style="text-indent:2em">iskeyword=@,48-57,_,192_255</p>
+	<p>如果我们想要单词中的字母是专一的元音，可以使用以下命令：</p>
+	<p style="text-indent:2em"><code class="inset">:set iskeyword=a,e,i,o,u</code></p>
+	<p>我们还可以使用横线来指定字母的范围。如果要指定所有的小写字母，可以用下面的命令：</p>
+	<p style="text-indent:2em"><code class="inset">:set iskeyword=a-z</code></p>
+	<p>对于那些不能直接指定的字符，可以使用十进制的数字来表示。如果我们要指定小写字母和下划线为一个单词，可以使用下面的命令：</p>
+	<p style="text-indent:2em"><code class="inset">:set iskeyword=a-z,45</code></p>
+	<p>排除某一个字符，可以在这个字符前加上一个前缀^。例如我们可以定义一个单词由除了q以外的小写字符组成：</p>
+	<p style="text-indent:2em"><code class="inset">:set iskeyword=@,^q</code></p>
+	<p>iskeyword（命令iskeyword可以简记为isk）选项使用以下特殊字符：</p>
+	<table summary="word" border="0">
+		<tr><td>a</td><td>&nbsp;&nbsp;字符a</td></tr>
+		<tr><td>a-z</td><td>&nbsp;&nbsp;所有由a到z的字符</td></tr>
+		<tr><td>@</td><td>&nbsp;&nbsp;由函数isalpha()所定义的所有字符</td></tr>
+		<tr><td>@-@</td><td>&nbsp;&nbsp;字符@</td></tr>
+		<tr><td>^x</td><td>&nbsp;&nbsp;除了x以外的字符</td></tr>
+		<tr><td>^a-c</td><td>&nbsp;&nbsp;除了a到c以外的字符</td></tr>
+	</table>
+	<p>可以使用<code class="inset">:help iskeyword</code>命令，查看更多帮助信息。</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">在WORD间移动</p>
+	<table summary="WORD" border="0">
+		<tr><td><code class="inset">[count]B</code></td><td>&nbsp;&nbsp;向后移动count个WORDS</td></tr>
+		<tr><td><code class="inset">[count]E</code></td><td>&nbsp;&nbsp;向前移动count个WORDS,并且将光标置于WORD的末尾.</td></tr>
+		<tr><td><code class="inset">[count]gE</code></td><td>&nbsp;&nbsp;向后移动count个WORDS,并且将光标置于WORD的末尾.</td></tr>
+		<tr><td><code class="inset">[count]W</code></td><td>&nbsp;&nbsp;向前移动count个WORDS.</td></tr>
+	</table>
+	<p>可以使用<code class="inset">:help word-motions</code>命令，查看在词间移动的更多帮助信息。</p>
+	<p><a data-flickr-embed="true"  href="https://www.flickr.com/photos/yyq123/31577075526/in/dateposted/" title="Movement_wordWORD"><img src="https://c7.staticflickr.com/1/600/31577075526_256b57f9fa.jpg" width="500" height="271" alt="Movement_wordWORD"></a></p>
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">w</code></td><td rowspan="2">向前移动一个word</td></tr>
+		<tr><td><code class="inset">e</code></td></tr>
+		<tr><td><code class="inset">b</code></td><td>向后移动一个word</td></tr>
+		<tr><td><code class="inset">set iskeyword</code></td><td>定义word选项</td></tr>
+		<tr><td><code class="inset">W</code></td><td rowspan="2">向前移动一个WORD</td></tr>
+		<tr><td><code class="inset">E</code></td></tr>
+		<tr><td><code class="inset">B</code></td><td>向后移动一个WORD</td></tr>
+	</table>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="()" href="">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="()" href="">下一篇</a>&gt;</span></p>
+</body>
+</html>
