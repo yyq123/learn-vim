@@ -23,12 +23,16 @@
 	<li><code class="inset">as</code> &#8230;a sentence</li>
 	<li><code class="inset">ip</code> &#8230;inner paragraph</li>
 	<li><code class="inset">ap</code> &#8230;a paragraph</li>
+	<li><code class="inset">it</code> &#8230;inner tag</li>
+	<li><code class="inset">at</code> &#8230;a tag</li>
 	<li><code class="inset">i(</code> or <code class="inset">i)</code> &#8230;inner block</li>
 	<li><code class="inset">a(</code> or <code class="inset">a)</code> &#8230;a block</li>
 	<li><code class="inset">i&lt;</code> or <code class="inset">i&gt;</code> &#8230;inner block</li>
-	<li><code class="inset">a&lt;</code> or <code class="inset">i&gt;</code> &#8230;a block</li>
+	<li><code class="inset">a&lt;</code> or <code class="inset">a&gt;</code> &#8230;a block</li>
 	<li><code class="inset">i{</code> or <code class="inset">i}</code> &#8230;inner block</li>
 	<li><code class="inset">a{</code> or <code class="inset">a}</code> &#8230;a block</li>
+	<li><code class="inset">i[</code> or <code class="inset">i]</code> &#8230;inner block</li>
+	<li><code class="inset">a[</code> or <code class="inset">a]</code> &#8230;a block</li>
 	<li><code class="inset">i"</code> &#8230;inner block</li>
 	<li><code class="inset">a"</code> &#8230;a block</li>
 	<li><code class="inset">i`</code> &#8230;inner block</li>
@@ -97,6 +101,15 @@
 		<td>some <span style="color: red">[</span><span style="background-color: yellow">{ code block }</span><span style="color: red">]</span> </td>
 	</tr>
 	<tr>
+		<td><code class="inset">i[</code> or <code class="inset">i]</code></td>
+		<td>some [<span style="color: red">[</span><span style="background-color: yellow"> code block </span><span style="color: red">]</span>] </td>
+	</tr>
+	<tr>
+		<td><code class="inset">a[</code> or <code class="inset">a]</code></td>
+		<td>some <span style="color: red">[</span><span style="background-color: yellow">[ code block ]</span><span style="color: red">]</span> </td>
+	</tr>
+
+	<tr>
 		<td><code class="inset">i"</code></td>
 		<td>The &quot;<span style="color: red">[</span><span style="background-color: yellow">best</span><span style="color: red">]</span>&quot; </td>
 	</tr>
@@ -119,11 +132,14 @@
 	<p><a href="http://www.flickr.com/photos/yyq123/6207162246/" title="dt by yyq123, on Flickr"><img src="http://farm7.static.flickr.com/6179/6207162246_20ed82f530_m.jpg" width="150" height="102" alt="dt"></a></p>
 	<p>与d命令相类似是的<code class="inset">c</code>更改命令，他在删除一个字符的同时进入插入状态。<code class="inset">cw</code>命令删除一个单词并进入插入状态。<code class="inset">cc</code>命令删除本行上的所有内容并进入插入状态，而且还会保持当前的行缩进。命令<code class="inset">c$</code>将删除从光标处到行尾的所有内容并进入插入状态。</p>
 	<p>命令<code class="inset">s</code>相当于命令<code class="inset">cl</code>的简写，它将删除光标右侧的一个字符并进入插入状态。而命令<code class="inset">S</code>相当于命令<code class="inset">cc</code>的简写，它将删除一行并进入插入状态。</p>
+	<p>使用<code class="inset">cit</code>命令，你甚至不用将光标移动到Tag之内，就可以快速修改其中的内容。</p>
+	<p><a data-flickr-embed="true"  href="https://www.flickr.com/photos/yyq123/31635643735/in/dateposted/" title="cit"><img src="https://c1.staticflickr.com/1/587/31635643735_f3a54a1248_o.png" width="211" height="113" alt="cit"></a></p>
 
 	<p>我们还可以用<code class="inset"></code>命令进行。</p>
 	<p>命令<code class="inset">.</code>可以重复执行刚才执行的命令，大提高操作的速度。</p>
 
-	<p>在某个开括号上，点击<code class="inset">%</code>键，光标将可以自动移动到相对应的闭括号上。例如，通过与编辑命令组合，<code class="inset">c%</code>可以实现与<code class="inset">ca)</code>相同的功能。使用<code class="inset">%</code>命令，必须将光标放在括号之上；而使用<code class="inset">a)</code>命令，则光标可以在括号之上或括号内的任何位置。而且<code class="inset">%</code>命令，也是无法实现用<code class="inset">i)</code>命令效果的。</p>
+	<p>在某个开括号上，点击<code class="inset">%</code>键，光标将可以自动移动到相对应的闭括号上。通过与编辑命令组合，<code class="inset">c%</code>可以实现与<code class="inset">ca)</code>相同的功能。使用<code class="inset">%</code>命令，必须将光标放在括号之上；而使用<code class="inset">a)</code>命令，则光标可以在括号之上或括号内的任何位置。而且<code class="inset">%</code>命令，也是无法实现用<code class="inset">i)</code>命令效果的。</p>
+	<p><a data-flickr-embed="true"  href="https://www.flickr.com/photos/yyq123/31488462042/in/dateposted/" title="ca"><img src="https://c3.staticflickr.com/6/5591/31488462042_27b0a4c75f.jpg" width="500" height="117" alt="ca"></a></p>
 <p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.1</span><span>&lt;<a title="在单词间移动" href="http://yyq123.blogspot.com/2009/02/vim_4321.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="滚动屏幕" href="http://yyq123.blogspot.com/2009/02/vim_27.html">下一篇</a>&gt;</span></p>
 </body>
 </html>

@@ -52,7 +52,7 @@ XXX  XXX_XXXXXXX_XXX  XXX
 WORD
 XXX  XXX .XXXXXXX.XXX  XXX
 
-Text Object
+Text Objects
 -------------------------------------------------
 puts 'Hello "world"'
 
@@ -62,3 +62,13 @@ Project.all(:conditions => { :published => true })
 
 
 Project.all
+
+some [ code block ]
+
+<h2>Sample Title</h2>
+
+
+
+<h2></h2>
+
+x = (var_1,var_2);
