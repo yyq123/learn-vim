@@ -49,5 +49,16 @@ Here is George Carlin's view on voting.  He says it's not the politicians that s
 word
 XXX  XXX_XXXXXXX_XXX  XXX
 
-
+WORD
 XXX  XXX .XXXXXXX.XXX  XXX
+
+Text Object
+-------------------------------------------------
+puts 'Hello "world"'
+
+Project.all(:conditions => { :published => true })
+
+
+
+
+Project.all

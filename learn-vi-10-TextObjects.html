@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 文本对象（text object）</title>
+</head>
+<body>
+
+<p>在Vim中，相比针对单个字符进行操作，对于单词、句子和段落等更大范围的文本对象（<strong>text-objects</strong> ）执行命令则更有效率。Vim的命令结构示例如下：</p>
+<p style="text-indent:2em"><code class="inset">[number]&lt;command&gt;[text object or motion]</code></p>
+<p>其中：<strong>number</strong>是指命令作用在几个文本对象之上。比如3个单词；<strong>command</strong>是指执行的具体命令。比如删除或复制；<strong>text object or motion</strong>是指具体的文本对象。比如单词、句子或段落。</p>
+<p><strong>inner word</strong>: <code class="inset">iw</code>. To select the current word, just type <code>viw</code> (<code>v</code> for selection mode, and <code>iw</code> for the <strong>inner word</strong>), similar for deletion: <code>diw</code>.</p>
+<p><strong>a word</strong>that the inner variant selects only the contents like the characters of the word (no blank afterwards) or the contents of the parentheses but not the parentheses. The a-variant selects the parentheses or a blank after a word too.</p>
+<ul>
+	<li><code class="inset">iw</code> &#8230;inner word</li>
+	<li><code class="inset">aw</code> &#8230;a word</li>
+	<li><code class="inset">iW</code> &#8230;inner <span class="caps">WORD</span></li>
+	<li><code class="inset">aW</code> &#8230;a <span class="caps">WORD</span></li>
+	<li><code class="inset">is</code> &#8230;inner sentence</li>
+	<li><code class="inset">as</code> &#8230;a sentence</li>
+	<li><code class="inset">ip</code> &#8230;inner paragraph</li>
+	<li><code class="inset">ap</code> &#8230;a paragraph</li>
+	<li><code class="inset">i(</code> or <code class="inset">i)</code> &#8230;inner block</li>
+	<li><code class="inset">a(</code> or <code class="inset">a)</code> &#8230;a block</li>
+	<li><code class="inset">i&lt;</code> or <code class="inset">i&gt;</code> &#8230;inner block</li>
+	<li><code class="inset">a&lt;</code> or <code class="inset">i&gt;</code> &#8230;a block</li>
+	<li><code class="inset">i{</code> or <code class="inset">i}</code> &#8230;inner block</li>
+	<li><code class="inset">a{</code> or <code class="inset">a}</code> &#8230;a block</li>
+	<li><code class="inset">i"</code> &#8230;inner block</li>
+	<li><code class="inset">a"</code> &#8230;a block</li>
+	<li><code class="inset">i`</code> &#8230;inner block</li>
+	<li><code class="inset">a`</code> &#8230;a block</li>
+</ul>
+<p>Here a quick visualisation of the commands the color and the <span style="color: red">[ ]</span> mark the selected text:</p>
+<table>
+	<tr>
+		<th>Command </th>
+		<th>Text Object </th>
+	</tr>
+	<tr>
+		<td><code class="inset">iw</code></td>
+		<td>This is a <span style="color: red">[</span><span style="background-color: yellow">test</span><span style="color: red">]</span> sentence. </td>
+	</tr>
+	<tr>
+		<td><code class="inset">aw</code></td>
+		<td>This is a <span style="color: red">[</span><span style="background-color: yellow">test </span><span style="color: red">]</span>sentence. </td>
+	</tr>
+	<tr>
+		<td><code class="inset">iW</code></td>
+		<td>This is a <span style="color: red">[</span><span style="background-color: yellow">&#8230;test&#8230;</span><span style="color: red">]</span> sentence. </td>
+	</tr>
+	<tr>
+		<td><code class="inset">aW</code></td>
+		<td>This is a <span style="color: red">[</span><span style="background-color: yellow">&#8230;test&#8230; </span><span style="color: red">]</span>sentence. </td>
+	</tr>
+	<tr>
+		<td><code class="inset">is</code></td>
+		<td>&#8230;sentence. <span style="color: red">[</span><span style="background-color: yellow">This is a sentence.</span><span style="color: red">]</span> This&#8230; </td>
+	</tr>
+	<tr>
+		<td><code class="inset">as</code></td>
+		<td>&#8230;sentence. <span style="color: red">[</span><span style="background-color: yellow">This is a sentence. </span><span style="color: red">]</span>This&#8230; </td>
+	</tr>
+	<tr>
+		<td><code class="inset">ip</code></td>
+		<td>End of previous paragraph.<br/><br/><span style="color: red">[</span><span style="background-color: yellow">This is a paragraph. It has two sentences.</span><span style="color: red">]</span><br/><br/>The next. </td>
+	</tr>
+	<tr>
+		<td><code class="inset">ap</code></td>
+		<td>End of previous paragraph.<br/><br/><span style="color: red">[</span><span style="background-color: yellow">This is a paragraph. It has two sentences.<br/><br/></span><span style="color: red">]</span>The next. </td>
+	</tr>
+	<tr>
+		<td><code class="inset">i(</code> or <code class="inset">i)</code></td>
+		<td>1 * (<span style="color: red">[</span><span style="background-color: yellow">2 + 3</span><span style="color: red">]</span>) </td>
+	</tr>
+	<tr>
+		<td><code class="inset">a(</code> or <code class="inset">a)</code></td>
+		<td>1 * <span style="color: red">[</span><span style="background-color: yellow">(2 + 3)</span><span style="color: red">]</span> </td>
+	</tr>
+	<tr>
+		<td><code class="inset">i&lt;</code> or <code class="inset">i&gt;</code></td>
+		<td>The &lt;<span style="color: red">[</span><span style="background-color: yellow">tag</span><span style="color: red">]</span>&gt; </td>
+	</tr>
+	<tr>
+		<td><code class="inset">a&lt;</code> or <code class="inset">i&gt;</code></td>
+		<td>The <span style="color: red">[</span><span style="background-color: yellow">&lt;tag&gt;</span><span style="color: red">]</span> </td>
+	</tr>
+	<tr>
+		<td><code class="inset">i{</code> or <code class="inset">i}</code></td>
+		<td>some {<span style="color: red">[</span><span style="background-color: yellow"> code block </span><span style="color: red">]</span>} </td>
+	</tr>
+	<tr>
+		<td><code class="inset">a{</code> or <code class="inset">a}</code></td>
+		<td>some <span style="color: red">[</span><span style="background-color: yellow">{ code block }</span><span style="color: red">]</span> </td>
+	</tr>
+	<tr>
+		<td><code class="inset">i"</code></td>
+		<td>The &quot;<span style="color: red">[</span><span style="background-color: yellow">best</span><span style="color: red">]</span>&quot; </td>
+	</tr>
+	<tr>
+		<td><code class="inset">a"</code></td>
+		<td>The<span style="color: red">[</span><span style="background-color: yellow"> &#8220;best&#8221;</span><span style="color: red">]</span> </td>
+	</tr>
+	<tr>
+		<td><code class="inset">i`</code></td>
+		<td>The `<span style="color: red">[</span><span style="background-color: yellow">best</span><span style="color: red">]</span>` </td>
+	</tr>
+	<tr>
+		<td><code class="inset">a`</code></td>
+		<td>The<span style="color: red">[</span><span style="background-color: yellow"> `best`</span><span style="color: red">]</span> </td>
+	</tr>
+</table>
+<p>Try them out and remember the ones you need regularly (in my case <code class="inset">iw</code> and <code>i(</code>) they are the real time-savers!</p>
+	
+	<p>使用<code class="inset">d^</code>命令，可以删除从当前位置到行首的所有内容。而<code class="inset">dw</code>命令，则可以删除一个词。通过与数字组合，可以快速删除多个文字。例如<code class="inset">d3w</code>一次删除3个词，而<code class="inset">3dw</code>则是指一次删除一个词，而这样的操作进行3次，即总的是也是删掉3个字符。命令<code class="inset">d$</code>或<code class="inset">D</code>可以删除从当前位置到行尾的所有内容。命令<code class="inset">dt)</code>可以删除从当前位置到&ldquo;)&rdquo;之前的所有字符。</p>
+	<p><a href="http://www.flickr.com/photos/yyq123/6207162246/" title="dt by yyq123, on Flickr"><img src="http://farm7.static.flickr.com/6179/6207162246_20ed82f530_m.jpg" width="150" height="102" alt="dt"></a></p>
+	<p>与d命令相类似是的<code class="inset">c</code>更改命令，他在删除一个字符的同时进入插入状态。<code class="inset">cw</code>命令删除一个单词并进入插入状态。<code class="inset">cc</code>命令删除本行上的所有内容并进入插入状态，而且还会保持当前的行缩进。命令<code class="inset">c$</code>将删除从光标处到行尾的所有内容并进入插入状态。</p>
+	<p>命令<code class="inset">s</code>相当于命令<code class="inset">cl</code>的简写，它将删除光标右侧的一个字符并进入插入状态。而命令<code class="inset">S</code>相当于命令<code class="inset">cc</code>的简写，它将删除一行并进入插入状态。</p>
+
+	<p>我们还可以用<code class="inset"></code>命令进行。</p>
+	<p>命令<code class="inset">.</code>可以重复执行刚才执行的命令，大提高操作的速度。</p>
+
+	<p>在某个开括号上，点击<code class="inset">%</code>键，光标将可以自动移动到相对应的闭括号上。例如，通过与编辑命令组合，<code class="inset">c%</code>可以实现与<code class="inset">ca)</code>相同的功能。使用<code class="inset">%</code>命令，必须将光标放在括号之上；而使用<code class="inset">a)</code>命令，则光标可以在括号之上或括号内的任何位置。而且<code class="inset">%</code>命令，也是无法实现用<code class="inset">i)</code>命令效果的。</p>
+<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.1</span><span>&lt;<a title="在单词间移动" href="http://yyq123.blogspot.com/2009/02/vim_4321.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="滚动屏幕" href="http://yyq123.blogspot.com/2009/02/vim_27.html">下一篇</a>&gt;</span></p>
+</body>
+</html>
