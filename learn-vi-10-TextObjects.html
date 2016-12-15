@@ -5,15 +5,14 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记 文本对象（text object）</title>
+	<title>VIM学习笔记 文本对象（Text Objects）</title>
 </head>
 <body>
 
 <p>在Vim中，相比针对单个字符进行操作，对于单词、句子和段落等更大范围的文本对象（<strong>text-objects</strong> ）执行命令则更有效率。Vim的命令结构示例如下：</p>
 <p style="text-indent:2em"><code class="inset">[number]&lt;command&gt;[text object or motion]</code></p>
 <p>其中：<strong>number</strong>是指命令作用在几个文本对象之上。比如3个单词；<strong>command</strong>是指执行的具体命令。比如删除或复制；<strong>text object or motion</strong>是指具体的文本对象。比如单词、句子或段落。</p>
-<p><strong>inner word</strong>: <code class="inset">iw</code>. To select the current word, just type <code>viw</code> (<code>v</code> for selection mode, and <code>iw</code> for the <strong>inner word</strong>), similar for deletion: <code>diw</code>.</p>
-<p><strong>a word</strong>that the inner variant selects only the contents like the characters of the word (no blank afterwards) or the contents of the parentheses but not the parentheses. The a-variant selects the parentheses or a blank after a word too.</p>
+<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">文本对象的类型</p>
 <ul>
 	<li><code class="inset">iw</code> &#8230;inner word</li>
 	<li><code class="inset">aw</code> &#8230;a word</li>
@@ -38,12 +37,12 @@
 	<li><code class="inset">i`</code> &#8230;inner block</li>
 	<li><code class="inset">a`</code> &#8230;a block</li>
 </ul>
-<p>Here a quick visualisation of the commands the color and the <span style="color: red">[ ]</span> mark the selected text:</p>
+
+<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">文本对象的作用范围</p>
+<p><code class="inset">iw</code>表示<strong>inner word</strong>。如果键入<code class="inset">viw</code>命令，那么首先<code class="inset">v</code>将进入选择模式，然后<code class="inset">iw</code>将选中当前单词。</p>
+<p><code class="inset">aw</code>表示<strong>a word</strong>，它不但会选中当前单词，还会包含当前单词之后的空格。</p>
+<p>以下实例中的红色 <span style="color: red">[ ]</span> 表示作用范围：</p>
 <table>
-	<tr>
-		<th>Command </th>
-		<th>Text Object </th>
-	</tr>
 	<tr>
 		<td><code class="inset">iw</code></td>
 		<td>This is a <span style="color: red">[</span><span style="background-color: yellow">test</span><span style="color: red">]</span> sentence. </td>
@@ -126,20 +125,15 @@
 		<td>The<span style="color: red">[</span><span style="background-color: yellow"> `best`</span><span style="color: red">]</span> </td>
 	</tr>
 </table>
-<p>Try them out and remember the ones you need regularly (in my case <code class="inset">iw</code> and <code>i(</code>) they are the real time-savers!</p>
-	
-	<p>使用<code class="inset">d^</code>命令，可以删除从当前位置到行首的所有内容。而<code class="inset">dw</code>命令，则可以删除一个词。通过与数字组合，可以快速删除多个文字。例如<code class="inset">d3w</code>一次删除3个词，而<code class="inset">3dw</code>则是指一次删除一个词，而这样的操作进行3次，即总的是也是删掉3个字符。命令<code class="inset">d$</code>或<code class="inset">D</code>可以删除从当前位置到行尾的所有内容。命令<code class="inset">dt)</code>可以删除从当前位置到&ldquo;)&rdquo;之前的所有字符。</p>
-	<p><a href="http://www.flickr.com/photos/yyq123/6207162246/" title="dt by yyq123, on Flickr"><img src="http://farm7.static.flickr.com/6179/6207162246_20ed82f530_m.jpg" width="150" height="102" alt="dt"></a></p>
-	<p>与d命令相类似是的<code class="inset">c</code>更改命令，他在删除一个字符的同时进入插入状态。<code class="inset">cw</code>命令删除一个单词并进入插入状态。<code class="inset">cc</code>命令删除本行上的所有内容并进入插入状态，而且还会保持当前的行缩进。命令<code class="inset">c$</code>将删除从光标处到行尾的所有内容并进入插入状态。</p>
-	<p>命令<code class="inset">s</code>相当于命令<code class="inset">cl</code>的简写，它将删除光标右侧的一个字符并进入插入状态。而命令<code class="inset">S</code>相当于命令<code class="inset">cc</code>的简写，它将删除一行并进入插入状态。</p>
+
+<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">文本对象的应用实例</p>
+	<p>使用<code class="inset">ci)</code>命令，可以删除括号内的所有内容，但保留括号本身。而<code class="inset">ca)</code>命令，则可以删除括号内的所有内容，以及括号本身。</p>
+	<p></p><a data-flickr-embed="true"  href="https://www.flickr.com/photos/yyq123/31510001262/in/dateposted/" title="ci("><img src="https://c1.staticflickr.com/1/713/31510001262_856698438c_o.png" width="511" height="137" alt="ci("></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+	<p>在某个开括号上，点击<code class="inset">%</code>键，光标将可以自动移动到相对应的闭括号上。通过与编辑命令组合，<code class="inset">c%</code>可以实现与<code class="inset">ca)</code>相同的功能。使用<code class="inset">%</code>命令，必须将光标放在括号之上；而使用<code class="inset">a)</code>命令，则光标可以在括号之上或括号内的任何位置。而且<code class="inset">%</code>命令，也是无法实现用<code class="inset">i)</code>命令效果的。</p>
+	<p><a data-flickr-embed="true"  href="https://www.flickr.com/photos/yyq123/31488462042/in/dateposted/" title="ca"><img src="https://c3.staticflickr.com/6/5591/31488462042_27b0a4c75f.jpg" width="500" height="117" alt="ca"></a></p>
 	<p>使用<code class="inset">cit</code>命令，你甚至不用将光标移动到Tag之内，就可以快速修改其中的内容。</p>
 	<p><a data-flickr-embed="true"  href="https://www.flickr.com/photos/yyq123/31635643735/in/dateposted/" title="cit"><img src="https://c1.staticflickr.com/1/587/31635643735_f3a54a1248_o.png" width="211" height="113" alt="cit"></a></p>
 
-	<p>我们还可以用<code class="inset"></code>命令进行。</p>
-	<p>命令<code class="inset">.</code>可以重复执行刚才执行的命令，大提高操作的速度。</p>
-
-	<p>在某个开括号上，点击<code class="inset">%</code>键，光标将可以自动移动到相对应的闭括号上。通过与编辑命令组合，<code class="inset">c%</code>可以实现与<code class="inset">ca)</code>相同的功能。使用<code class="inset">%</code>命令，必须将光标放在括号之上；而使用<code class="inset">a)</code>命令，则光标可以在括号之上或括号内的任何位置。而且<code class="inset">%</code>命令，也是无法实现用<code class="inset">i)</code>命令效果的。</p>
-	<p><a data-flickr-embed="true"  href="https://www.flickr.com/photos/yyq123/31488462042/in/dateposted/" title="ca"><img src="https://c3.staticflickr.com/6/5591/31488462042_27b0a4c75f.jpg" width="500" height="117" alt="ca"></a></p>
 <p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.1</span><span>&lt;<a title="在单词间移动" href="http://yyq123.blogspot.com/2009/02/vim_4321.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="滚动屏幕" href="http://yyq123.blogspot.com/2009/02/vim_27.html">下一篇</a>&gt;</span></p>
 </body>
 </html>
