@@ -8,7 +8,7 @@
 	}}}
 }}}
 
-a range or visual to title case i.e. 
+Change a range or visual to title case i.e. 
 
 
 

@@ -45,22 +45,6 @@
 :set lmap=ch1ch2,ch1ch2
 :set langmap=ch1ch2,ch1ch2
 
-	<p style="font-weight:bold">大小写转换</p>
-	<p>命令<code class="inset">~</code>可以改变字母的大小写，命令的执行结果是由选项tildeop来控制的。默认设置下，只会对单个字符进行大小转换。</p>
-	<p style="text-indent:2em"><code class="inset">:set notildeop</code></p>
-	<p>如果设置了tildeop选项，那么命令就变成了~motion的形式：</p>
-	<p style="text-indent:2em"><code class="inset">:set tildeop</code></p>
-	<p>例如，在下面的句子中:</p>
-	<p style="text-indent:2em">this is a test</p>
-	<p>我们将光标放在第一个t上并执行<code class="inset">~ft</code>命令，则结果为：</p>
-	<p style="text-indent:2em">THIS IS A Test</p>
-	<p>命令使得当前光标以后第一个t和光标间的字符全部转换为大写，如果这个句子中还有小写字符，那么这个命令还可以执行第二次，直到句子中的字符全部为大写为止。这个命令还可以指定字符转换的个数和方向。例如命令<code class="inset">3~l</code>是从当前字符开始向右3个字符进行大小写的转换。</p>
-	<p>命令<code class="inset">g~g~</code>和<code class="inset">g~~</code>可以转换整行的大小写。而且并不依赖于tildeop选项的设置。</p>
-	<p>在可视化模式下，可以使用<code class="inset">u</code>命令，将选中的字母转换为小写；也可以使用<code class="inset">U</code>命令，将选中的字母转换为大写。</p>
-	<p>命令<code class="inset">gUmotion</code>使得当前光标处到motino所指处的字符全部变为大写。而<code class="inset">gUU</code>和<code class="inset">gUgU</code>命令，则将整行字符转换为大写。如果指定了参数count，则可对指定行数进行转换。而<code class="inset">gumotion</code>,<code class="inset">guu</code>,<code class="inset">gugu</code>命令，则是用于将字符变为小写。</p>
-	<p>选中文本，然后进入命令行模式并使用以下命令，可以将选中的文本转换为首字母大写（title case / initial capitals）。你也可以使用<a href="http://www.vim.org/scripts/script.php?script_id=439" title="Convert range or visual to titlecase">titlecase.vim</a>插件，进行转换。</p>
-	<p style="text-indent:2em"><code class="inset">s/\&lt;\(\w\)\(\w*\)\&gt;/\u\1\L\2/g</code></p>
-	<p><a href="http://www.zooomr.com/photos/yyq123/9314429/" title="Photo Sharing"><img src="http://static.zooomr.com/images/9314429_12c9583e35_o.png" width="320" height="85" alt="Title_Case" /></a></p>
 	
 	<p style="font-weight:bold">交换字符</p>
 	How to swap two characters? Press xp.
