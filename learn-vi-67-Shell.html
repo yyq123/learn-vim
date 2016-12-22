@@ -20,7 +20,9 @@
 	<p>使用<code class="inset">:shell</code>命令，不需要退出Vim，就可以进入命令终端执行一个或多个Shell命令。在终端中使用<code class="inset">exit</code>命令，则可以退回到Vim。</p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">读取命令结果</p>
-	<p></p>
+	<p>在常规模式下，输入以下命令，可以读取命令执行的结果，并在下一行中插入当前日期。</p>
+	<p style="text-indent:2em"><code class="inset">:read!date</code> (For Linux)</p>
+	<p style="text-indent:2em"><code class="inset">:read!date /t</code> (For Windows)</p>
 
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
