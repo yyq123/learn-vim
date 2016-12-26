@@ -5,16 +5,16 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>learn vi 01</title>
+	<title>VIM学习笔记 正则表达式（Regular Expression）</title>
 </head>
 <body>
-	<h1>第一节　正则表达式</h1>
-	<p>Vim使用通用的表达式(regular expressions)来进行逻辑查找。这里将要看到的通用字符串查找要强大得多。然而这种强大的功能也是要付出一定的代价的。通用表达式是神秘的和简洁的，也许我们要花上很长的一段时间才会习惯和掌握这种查找方式。</p>
-	<p>一个通用表达式是由一些元素组成的，这些元素是通用表达式中最小的匹配单位。一个元素可以是一个字符或者是一个特殊字符。</p>
-	<p>在通用表达式中，我们用&lt;来匹配一个单词的开始，用&gt;来匹配一个单词的结束。也就是说，将我们想要查找的字符串放在这两个中间，就可以更精确的查找字符串。例如在文件中有Californian和Unfortunately。如果用命令<code class="inset">/for</code>来查找，那么就会找到这两个单词。而如果用通用表达式<code class="inset">/\&lt;for\&gt;</code>来进行查找，则只会精确的查找到for，而不会出现其他的匹配情况。</p>
-	<p>星号（*）通配符，表示一个字符可以匹配0次或是多次。所以通用表达式<code class="inset">te*</code>可以匹配te,tee,teee等等。甚至还可以匹配t，因为在这里e可以匹配0次。</p>
-	<p>加号（+）通配符，表示一个字符可以匹配一次或是多次。所以表达式te+可以匹配te,tee,teee等等。但是不可以再匹配t了,因为这里e最少要匹配一次。</p>
-	<p>等号（=）通配符，表示一个字符匹配0次或是一次。所以表达te=可以匹配t,te，但是不可以匹配tee，因为这个表达式只能匹配两个字符</p>
+	<p>Vim使用正则表达式(regular expressions)来进行逻辑查找。正则达式是神秘和简洁的，然而这种强大的功能也必须要以大量的学习才能够习惯和掌握。</p>
+	<p>一个正则表达式是由一些元素组成的，一个元素可以是一个字符或者是一个特殊字符。</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">启用/禁用</p>
+	<p>在通用表达式中，我们用<strong>&lt;</strong>来匹配一个单词的开始，用<strong>&gt;</strong>来匹配一个单词的结束。也就是说，将我们想要查找的字符串放在这两个中间，就可以更精确的查找字符串。例如在文件中有Californian和Unfortunately。如果用命令<code class="inset">/for</code>来查找，那么就会找到这两个单词。而如果用通用表达式<code class="inset">/\&lt;for\&gt;</code>来进行查找，则只会精确的查找到for，而不会出现其他的匹配情况。</p>
+	<p>星号（<strong>*</strong>）通配符，作用于其之前的一个元素，表示可以匹配0次或是多次。所以通用表达式<code class="inset">te*</code>可以匹配te,tee,teee等等。甚至还可以匹配t，因为在这里e可以匹配0次。如果需要匹配一个字符串，那么必须使用"\("和"\)"进行限定。例如，命令<code class="inset">/\(ab\)*</code>，将可以匹配 "ab", "abab", "ababab", 和""等等。</p>
+	<p>加号（<strong>+</strong>）通配符，表示一个字符可以匹配一次或是多次。所以表达式te+可以匹配te,tee,teee等等。但是不可以再匹配t了,因为这里e最少要匹配一次。</p>
+	<p>等号（<strong>=</strong>）通配符，表示一个字符匹配0次或是一次。所以表达te=可以匹配t,te，但是不可以匹配tee，因为这个表达式只能匹配不多于两个字符。</p>
 	<p>还有一些特殊的字符：如a匹配一个字符,而d匹配任何数字。所以表达式aaa可以匹配任意三个字符。而dddd则可以查找任意四个数字。而/aaa_则查找任意后带一个下划线的三个字符</p>
 
 a可以匹配所有的字符(小写的或是大写的).但是假如我们现在只要匹配元音字符又该如何来做呢?这时我们可以使用范围作用符[].范围作用符可以匹配一系字符中的一个.例如[aeiou]只匹配一个小写元音字符.所以表达式t[aeiou]n可以匹配tan,ten,tin,ton,tun.
@@ -32,14 +32,15 @@ one[-]way    one-way
 如果我们要指找所有的大写字符又应如何来做呢?一个办法就是使用表达式[A-Z].还有一个办法就是我们可以使用预先定义的字符类.[:upper:]可以匹配大写字符.所以我们要指找大写字符也可以这样的来写:[[:upper:]].我们可以使用字符类来写出所有的字符:
 [[:upper:][:lower:]].
 在Vim中还有许多不同的字符类定义
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">匹配次数</p>
+	<p><strong>{minimum,maximum}</strong>表达式指出一个字符重复的次数。例如表达式<code class="inset">a{3,5}</code>可以匹配3到5个a。在表达式中，最小次数是可以省略的，即默认最小次数为0，所以表达式<code class="inset">a{,5}</code>可以匹配0到5个a。最大次数也是可以省略的，即默认匹配无穷大，所以表达式<code class="inset">a{3,}</code>最少可以匹配3个a，最多个数没有限制。</p>
+	<p><strong>{number}</strong>表达式只指定一个数字，Vim就会精确的匹配相应的次数。例如<code class="inset">a{5}</code>只会精确的匹配5次。</p>
+	<p><strong>{-minimum,maximum}</strong>在数字前增加一个负号(-)，那么Vim在查找时就会尽可能少的进行匹配（Matching as little as possible）。例如<code class="inset">ab\{-1,3}</code>将只匹配 "abbb"中的"ab"。表达式<code class="inset">a{-3,}</code>匹配三个或是更多个a，但尽可能少地的进行匹配。而表达式<code class="inset">a{-,5}</code>可以匹配0到5个字符。表达式<code class="inset">a{-}</code>可以匹配0到无穷多个字符，在通常情况下这个表达式匹配0个符，除非在它的后面还有字符或是表达式。例如<code class="inset">[a-z]{-}x</code>将会匹配.cxcx中的cx。而表达式<code class="inset">[a-z]*x</code>将会匹配整个cxcx。表达式<code class="inset">a{-5}</code>将会精确的匹配5个字符。</p>
+	<p><a data-flickr-embed="true"  href="https://www.flickr.com/photos/yyq123/31042807084/in/dateposted/" title="RegularExpression_Matching as little as possible"><img src="https://c1.staticflickr.com/1/709/31042807084_415a4b4996_o.png" width="58" height="71" alt="RegularExpression_Matching as little as possible"></a></p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">或操作</p>
+	<p>或运算运符（<strong>|</strong>）用于查找两个或是多个可能的匹配。例如表达式<code class="inset">foo|bar</code>可以找到foo或是bar。我们可以连接使用多个或运算符，例如表达式<code class="inset">Larry\|Moe\|Curly</code>将找到Larry、Moe和Curly。</p>
 
-<p>我们可以通过{minimum,maximum}表达来指出一个字符重复的次数。例如表达式<code class="inset">a{3,5}</code>可以匹配3到5个a。在表达式中，最小次数是可以省略的，即默认最小次数为0，所以表达式<code class="inset">a{,5}</code>可以匹配0到5个a。最大次数也是可以省略的，即默认匹配无穷大，所以表达式<code class="inset">a{3,}</code>最少可以匹配3个a，最多个数没有限制。</p>
-<p>如果只指定一个数字,那么Vim就会精确的匹配相应的次数。例如<code class="inset">a{5}</code>只会精确的匹配5次。</p>
-如果我们在数字前加了一个负号(-),那么Vim在查找时就会尽可能少的进行匹配.
-例如a{-3,5}匹配3到5个a,但是会尽可能少的进行匹配.事实上这个表达式仅会匹配3个a,哪怕是我们的文件中用aaaaa,Vim也只会尽可能少的进行匹配.
-表达式a{-3,}匹配三个或是更多个a,并且尽可以少地的进行匹配.而表达式a{-,5}可以匹配0到五个字符.表达式a{-}可以匹配0到无穷大个字符.在通常情况下这个表达式匹配0个符,除非在他的后面还有字符或是表达式.例如[a-z]{-}x将会匹配.cxcx中的cx.而表达式[a-z]*x将会匹配整个cxcx.最后表达式a{-5}将会精确的匹配5个字符.
-<p>我们还可以用或运算运符|来查找两个或是多个可能的匹配。例如通用表达式foo|bar可以查找foo或是bar。比如我们可以用<code class="inset">:%s/Larry\|Moe\|Curly/Stooge/gc</code>命令Stooge替换Larry、Moe和Curly。</p>
-<p>例如要查找的内容为1MGU103，这个字符串由1个数字，3个大写字符和3个数字组成。我可以有以下几种方法来表示：</p>
+	<p>例如要查找的内容为1MGU103，这个字符串由1个数字，3个大写字符和3个数字组成。我可以有以下几种方法来表示：</p>
 <ul>
 	<li>[0-9][A-Z]{3}[0-9]{3}<br />先用[0-9]表示前面的一个数字，然后加入[A-Z]大写字符，因为有三个大写字符，所以加入精确匹配的数字{3}，最后再加入末尾的三个数字。</li>
 </ul>
