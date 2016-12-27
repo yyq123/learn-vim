@@ -17,8 +17,21 @@
 	<p>等号（<strong>=</strong>）通配符，表示一个字符匹配0次或是一次。所以表达te=可以匹配t,te，但是不可以匹配tee，因为这个表达式只能匹配不多于两个字符。</p>
 	<p>还有一些特殊的字符：如a匹配一个字符,而d匹配任何数字。所以表达式aaa可以匹配任意三个字符。而dddd则可以查找任意四个数字。而/aaa_则查找任意后带一个下划线的三个字符</p>
 
-a可以匹配所有的字符(小写的或是大写的).但是假如我们现在只要匹配元音字符又该如何来做呢?这时我们可以使用范围作用符[].范围作用符可以匹配一系字符中的一个.例如[aeiou]只匹配一个小写元音字符.所以表达式t[aeiou]n可以匹配tan,ten,tin,ton,tun.
-	<p>在括号内，可以通过短横线来指明包括字符或数字的范围。例如[0-9]可以匹配0到9中的任一字符。我们还可以组合其他的字符.例如[0-9aeiou]可以匹配任意一个数字或是小写的元音字符</p>
+a可以匹配所有的字符(小写的或是大写的).
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">范围</p>
+	<p>方括号（<strong>[]</strong>）通配符，表示只可以匹配方括号内列表的字符。例如<code class="inset">t[aeiou]n</code>只匹配一个小写元音字符，可以找到tan,ten,tin,ton,tun。</p>
+	<p>在方括号内，可以通过短横线来指明包括字符或数字的范围。例如<code class="inset">[0-9]</code>可以匹配0到9中的任一数字。我们还可以组合其他的字符。例如<code class="inset">[0-9aeiou]</code>可以匹配任意一个数字或是小写的元音字符。</p>
+To match the "-" character itself make it the first or last one in the
+range.  These special characters are accepted to make it easier to use them
+inside a [] range (they can actually be used anywhere in the search
+pattern):
+
+	\e	<Esc>
+	\t	<Tab>
+	\r	<CR>
+	\b	<BS>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">排除</p>
 而修饰符^可以指代除本身以外的所有字符.
 下面列出一些匹配的情况:
 表达式        匹配结果
@@ -38,20 +51,24 @@ one[-]way    one-way
 	<p><strong>{-minimum,maximum}</strong>在数字前增加一个负号(-)，那么Vim在查找时就会尽可能少的进行匹配（Matching as little as possible）。例如<code class="inset">ab\{-1,3}</code>将只匹配 "abbb"中的"ab"。表达式<code class="inset">a{-3,}</code>匹配三个或是更多个a，但尽可能少地的进行匹配。而表达式<code class="inset">a{-,5}</code>可以匹配0到5个字符。表达式<code class="inset">a{-}</code>可以匹配0到无穷多个字符，在通常情况下这个表达式匹配0个符，除非在它的后面还有字符或是表达式。例如<code class="inset">[a-z]{-}x</code>将会匹配.cxcx中的cx。而表达式<code class="inset">[a-z]*x</code>将会匹配整个cxcx。表达式<code class="inset">a{-5}</code>将会精确的匹配5个字符。</p>
 	<p><a data-flickr-embed="true"  href="https://www.flickr.com/photos/yyq123/31042807084/in/dateposted/" title="RegularExpression_Matching as little as possible"><img src="https://c1.staticflickr.com/1/709/31042807084_415a4b4996_o.png" width="58" height="71" alt="RegularExpression_Matching as little as possible"></a></p>
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">或操作</p>
-	<p>或运算运符（<strong>|</strong>）用于查找两个或是多个可能的匹配。例如表达式<code class="inset">foo|bar</code>可以找到foo或是bar。我们可以连接使用多个或运算符，例如表达式<code class="inset">Larry\|Moe\|Curly</code>将找到Larry、Moe和Curly。</p>
+	<p>或运算运符（<strong>|</strong>）用于查找两个或是多个可能的匹配。例如表达式<code class="inset">foo|bar</code>可以找到foo或是bar。我们可以连接使用多个或运算符，例如表达式<code class="inset">Larry\|Moe\|Curly</code>将找到Larry、Moe和Curly。而表达式<code class="inset">/end\(if\|while\|for\)</code>则可以匹配"endif", "endwhile" 和 "endfor"几个不同的元素组合。</p>
+	<p>如果希望匹配多次，那么可以组合使用加号和括号运算符。例如以下表达式可以匹配 "foo", "foobar", "foofoo", "barfoobar"等等。</p>
+	<p style="text-indent:2em"><code class="inset">/\(foo\|bar\)\+</code></p>
 
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">综合应用</p>
 	<p>例如要查找的内容为1MGU103，这个字符串由1个数字，3个大写字符和3个数字组成。我可以有以下几种方法来表示：</p>
 <ul>
 	<li>[0-9][A-Z]{3}[0-9]{3}<br />先用[0-9]表示前面的一个数字，然后加入[A-Z]大写字符，因为有三个大写字符，所以加入精确匹配的数字{3}，最后再加入末尾的三个数字。</li>
 </ul>
 另一种利用d指任何的数字,而u指任何的大写字符.所以用这样的方法写成的表达示就为:
 du{3}d{3}.
-从这里我们可以看到用这样的方式来查找要比第一种方法快得多.如果我们编辑的文件在采用这两种方法进行查找时会看出差别,那么我们的文件也许就是太大了.
+从这里我们可以看到用这样的方式来查找要比第一种方法快得多.
 我们还可以用这样的表达示:duuuddd,这个也可以找到我们想要的内容.
 最后我们还可以用字符类来写出我们的表达式:
 [[:digit:]][[:upper:]]{3}[[:digit:]]{3}
 这四种方法都可以很好的来完成我们的工作
 
+<p>表达式<code class="inset"><.\{-}></code>，可以匹配以&lt;开头以&gt;结尾的所有HTML代码标签。</p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">偏移(Offset)</p>
 一些常用的偏移(Offset)定义:
@@ -105,10 +122,9 @@ To match whitespace, use the \s operator. If you wanted to find empty lines that
 <p>There's a subtle difference between matching any lowercase character and matching any non-uppercase character, and matching any uppercase character and matching any non-lowercase character. If you use \u it will only match an uppercase letter -- but if you use \L it will match any uppercase letter and any other character that's not a lowercase character; so it would match whitespace, digits, punctuation, and so on.</p>
 <p>What happens when you actually want to search for a special character, such as a dollar sign or caret? Special characters can be escaped with the backslash character, so use \$ to search for a dollar sign in your file, or \^ to search for the caret, and so forth. Note that the backslash character is itself a special character, so you'd need to use two backslashes together.</p>
 
-Finally, you can use \{-} to tell Vim to match as little as possible. Let's say you're trying to match HTML tags in a file. use <.\{-}>. This would tell Vim to match <, then match any character up to the > character and then stop.
 
 
-字符类:
+
 [:alnum:]    匹配所有的字符和数字
 [:alpha:]    匹配所有的字符
 [:ascii:]    匹配所有的ASCII字符
@@ -183,6 +199,7 @@ str1|str2    匹配str1或是str2
 http://vimregex.com/
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
+		<tr><td colspan="2">字符类:</td></tr>
 		<tr><td><code class="inset"></code></td><td></td></tr>
 		<tr><td><code class="inset"></code></td><td></td></tr>
 		<tr><td><code class="inset"></code></td><td></td></tr>
