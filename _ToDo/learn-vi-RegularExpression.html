@@ -32,19 +32,11 @@ pattern):
 	\b	<BS>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">排除</p>
-而修饰符^可以指代除本身以外的所有字符.
-下面列出一些匹配的情况:
-表达式        匹配结果
-one[-]way    one-way
-2^4        2^4
-2[^*]4        2^4,2*4
+	<p>脱字符（<strong>^</strong>）通配符，可以排除指定的字符。</p>
+	<p><code class="inset">acme[^0-9]</code>匹配所有包含acme，后跟一个非数字字符的行。但不会匹配以acme结尾的行，因为模式中的acme之后必须有一个字符。</p>
+	<p><code class="inset">^[^a-zA-Z]</code>匹配以非字母开头的行，但不会匹配空行，因为行中必须有一个非字母字符存在。</p>
 
-<p><code class="inset">acme[^0-9]</code>匹配所有包含acme，后跟一个非数字字符的行。但不会匹配以acme结尾的行，因为模式中的acme之后必须有一个字符。</p>
-<p><code class="inset">^[^a-zA-Z]</code>匹配以非字母开头的行，但不会匹配空行，因为行中必须有一个非字母字符存在。</p>
 
-如果我们要指找所有的大写字符又应如何来做呢?一个办法就是使用表达式[A-Z].还有一个办法就是我们可以使用预先定义的字符类.[:upper:]可以匹配大写字符.所以我们要指找大写字符也可以这样的来写:[[:upper:]].我们可以使用字符类来写出所有的字符:
-[[:upper:][:lower:]].
-在Vim中还有许多不同的字符类定义
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">匹配次数</p>
 	<p><strong>{minimum,maximum}</strong>表达式指出一个字符重复的次数。例如表达式<code class="inset">a{3,5}</code>可以匹配3到5个a。在表达式中，最小次数是可以省略的，即默认最小次数为0，所以表达式<code class="inset">a{,5}</code>可以匹配0到5个a。最大次数也是可以省略的，即默认匹配无穷大，所以表达式<code class="inset">a{3,}</code>最少可以匹配3个a，最多个数没有限制。</p>
 	<p><strong>{number}</strong>表达式只指定一个数字，Vim就会精确的匹配相应的次数。例如<code class="inset">a{5}</code>只会精确的匹配5次。</p>
@@ -58,11 +50,9 @@ one[-]way    one-way
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">综合应用</p>
 	<p>例如要查找的内容为1MGU103，这个字符串由1个数字，3个大写字符和3个数字组成。我可以有以下几种方法来表示：</p>
 <ul>
-	<li>[0-9][A-Z]{3}[0-9]{3}<br />先用[0-9]表示前面的一个数字，然后加入[A-Z]大写字符，因为有三个大写字符，所以加入精确匹配的数字{3}，最后再加入末尾的三个数字。</li>
+	<li><code class="inset">[0-9][A-Z]{3}[0-9]{3}</code><br />先用[0-9]表示前面的一个数字，然后加入[A-Z]大写字符，因为有三个大写字符，所以加入精确匹配的数字{3}，最后再加入末尾的三个数字。</li>
+	<li><code class="inset">du{3}d{3}</code><br />利用d指任何的数字，而u指任何的大写字符，这种方式的查找效率要比第一种方法快得多。</li>
 </ul>
-另一种利用d指任何的数字,而u指任何的大写字符.所以用这样的方法写成的表达示就为:
-du{3}d{3}.
-从这里我们可以看到用这样的方式来查找要比第一种方法快得多.
 我们还可以用这样的表达示:duuuddd,这个也可以找到我们想要的内容.
 最后我们还可以用字符类来写出我们的表达式:
 [[:digit:]][[:upper:]]{3}[[:digit:]]{3}
@@ -117,13 +107,41 @@ s[num]
 	<tr><td><code class="inset"></code></td><td></td></tr>
 	<tr><td><code class="inset"></code></td><td></td></tr>
 </table>
-To match whitespace, use the \s operator. If you wanted to find empty lines that contain nothing but whitespace, you could use ^\s.*$. This will match lines with whitespace, but no other characters -- it won't match empty lines without white space. By contrast, the \S operator will match non-whitespace characters.
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">预定义字符</p>
+	<p>如果需要找出包含空格的空行，那么可以使用<code class="inset">^\s.*$</code>表达式；如果需要找到没有空格的空行，则可以使用<code class="inset">\S</code></p>
+		
 <p>The \d operator will match any digit in a search, while the \D operator will match any non-digit in a search. To match any uppercase character, use \u, while \l will match any lowercase character. Using \U will match any non-uppercase character, and \L will match any non-lowercase character.</p>
-<p>There's a subtle difference between matching any lowercase character and matching any non-uppercase character, and matching any uppercase character and matching any non-lowercase character. If you use \u it will only match an uppercase letter -- but if you use \L it will match any uppercase letter and any other character that's not a lowercase character; so it would match whitespace, digits, punctuation, and so on.</p>
-<p>What happens when you actually want to search for a special character, such as a dollar sign or caret? Special characters can be escaped with the backslash character, so use \$ to search for a dollar sign in your file, or \^ to search for the caret, and so forth. Note that the backslash character is itself a special character, so you'd need to use two backslashes together.</p>
+	<p>请注意，以上预定义字符是不能内嵌在[]中使用的。例如，表达式[\d\l]是错误的，应使用<code class="inset">\(\d\|\l\)</code>表达式匹配数字或小写字符。</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">转义符</p>
+	<p>如果需要查找某些特殊符号（比如美元符号），那么可以使用反斜杠backslash（\）进行转义。例如：表达式<code class="inset">\$</code>可以匹配美元符号（$），而表达式<code class="inset">\^</code>则可以匹配脱字符（^）。需要注意的是，Note that the backslash character is itself a special character, so you'd need to use two backslashes together.</p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">匹配换行</p>
+	<p>如果你想要查找的内容之中包含换行符，那么可以使用"<strong>\n</strong>"通配符。执行以下命令，将匹配以"the"结尾的行，和以"word"开头的下一行：</p>
+	<p style="text-indent:2em"><code class="inset">/the\nword</code></p>
+	<p>如果希望同时匹配包含换行，以及不包含换行（但包含一个空格）的"the word"，那么可以使用"\_s"匹配空格或换行：</p>
+	<p style="text-indent:2em"><code class="inset">/the\_sword</code></p>
+	<p>如果还希望同时匹配包含多个空格以及换行的"the word"，那么可以使用以下命令：</p>
+	<p style="text-indent:2em"><code class="inset">/the\_s\+word</code></p>
+	<p>Similarly, "\a" matches an alphabetic character, and "\_a" matches an alphabetic character or a line break.  The other character classes and
+ranges can be modified in the same way by inserting a "_".
+
+Many other items can be made to match a line break by prepending "\_".  For
+example: "\_." matches any character or a line break.
+
+Note: "\_.*" matches everything until the end of the file.  Be careful with
+this, it can make a search command very slow.
+
+Another example is "\_[]", a character range that includes a line break:
+
+<p style="text-indent:2em"><code class="inset">/"\_[^"]*"</code></p>
+
+This finds a text in double quotes that may be split up in several lines.
 
 
-
+如果我们要指找所有的大写字符又应如何来做呢?一个办法就是使用表达式[A-Z].还有一个办法就是我们可以使用预先定义的字符类.[:upper:]可以匹配大写字符.所以我们要指找大写字符也可以这样的来写:[[:upper:]].我们可以使用字符类来写出所有的字符:
+[[:upper:][:lower:]].
+在Vim中还有许多不同的字符类定义
 
 [:alnum:]    匹配所有的字符和数字
 [:alpha:]    匹配所有的字符
@@ -149,11 +167,11 @@ To match whitespace, use the \s operator. If you wanted to find empty lines that
 2        与1相类似,但是是使用第二个子表达式
 9        与1相类似,但是是使用第九个子表达式
 特殊字符:
-a    大小写字母字符
+a    大小写字母字符 [a-zA-Z]
 A    除了a-zA-Z以外的字母字符
 b    <BS>
-d    数字字符
-D    非数字字符
+d    数字字符 [0-9]
+D    非数字字符 [^0-9]
 e    <ESC>
 f    由isfname选项定义的文件名字符
 F    文件名字符,但是不包含数字
@@ -163,22 +181,22 @@ i    由isdent选项定义的字符
 I    定义的字符,但是不包括数字
 k    由iskeyword选项定义的关键字字符
 K    关键字字符,但是不包括数字
-l    小字字符(a-z)
-L    非小写字符(除了a-z以外的字符)
+l    小字字符 [a-z]
+L    非小写字符 [^a-z]
 o    八进制数字
 O    非八进制数字
 p    由isprint选项定义的可打印字符
 P    可打印字符,但是不包括数字
 r    <CR>
-s    空白符<Space>和<Tab>
-S    非空白符
+s    空白符<Space>和<Tab> [ 	]
+S    非空白符 [^ 	]
 t    <Tab>
-u    大写字母字符(A-Z)
-U    非大写字母字符
+u    大写字母字符 [A-Z]
+U    非大写字母字符 [^A-Z]
 w    单词字符(0-9A-Za-z)
 W    非单词字符
-x    十六进制数字
-X    非十六进制数字
+x    十六进制数字 [0-9a-fA-F]
+X    非十六进制数字 [^0-9a-fA-F]
 ~    匹配最后指定的字符串
 修饰符:
 *    匹配0次或是多次,尽可能多的匹配

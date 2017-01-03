@@ -52,6 +52,7 @@ XXX  XXX_XXXXXXX_XXX  XXX
 WORD
 XXX  XXX .XXXXXXX.XXX  XXX
 
+-------------------------------------------------
 Text Objects
 -------------------------------------------------
 puts 'Hello "world"'
@@ -72,3 +73,22 @@ some [ code block ]
 <h2></h2>
 
 x = (var_1,var_2);
+
+
+-------------------------------------------------
+Search
+-------------------------------------------------
+the word
+
+the   word
+
+the
+word
+
+the   
+word
+
+" blockquote   blockquote   blockquote
+  blockquote   blockquote   blockquote
+  blockquote   blockquote   blockquote "
+
