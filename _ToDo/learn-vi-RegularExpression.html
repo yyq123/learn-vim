@@ -166,38 +166,8 @@ This finds a text in double quotes that may be split up in several lines.
 例如表达式([a-z])1可以匹配aa,bb或是类似的.
 2        与1相类似,但是是使用第二个子表达式
 9        与1相类似,但是是使用第九个子表达式
-特殊字符:
-a    大小写字母字符 [a-zA-Z]
-A    除了a-zA-Z以外的字母字符
-b    <BS>
-d    数字字符 [0-9]
-D    非数字字符 [^0-9]
-e    <ESC>
-f    由isfname选项定义的文件名字符
-F    文件名字符,但是不包含数字
-h    单词的头字符(A-Za-z)
-H    不是单词的头字符(A-Za-z)
-i    由isdent选项定义的字符
-I    定义的字符,但是不包括数字
-k    由iskeyword选项定义的关键字字符
-K    关键字字符,但是不包括数字
-l    小字字符 [a-z]
-L    非小写字符 [^a-z]
-o    八进制数字
-O    非八进制数字
-p    由isprint选项定义的可打印字符
-P    可打印字符,但是不包括数字
-r    <CR>
-s    空白符<Space>和<Tab> [ 	]
-S    非空白符 [^ 	]
-t    <Tab>
-u    大写字母字符 [A-Z]
-U    非大写字母字符 [^A-Z]
-w    单词字符(0-9A-Za-z)
-W    非单词字符
-x    十六进制数字 [0-9a-fA-F]
-X    非十六进制数字 [^0-9a-fA-F]
-~    匹配最后指定的字符串
+
+
 修饰符:
 *    匹配0次或是多次,尽可能多的匹配
 +    匹配1次或是多次,尽可能多的匹配
@@ -218,11 +188,41 @@ http://vimregex.com/
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
 		<tr><td colspan="2">字符类:</td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
+
+
+
+		<tr><td colspan="2">特殊字符:</td></tr>
+		<tr><td><code class="inset">a</code></td><td>大小写字母字符 [a-zA-Z]</td></tr>
+		<tr><td><code class="inset">A</code></td><td>除了a-zA-Z 以外的字母字符</td></tr>
+		<tr><td><code class="inset">b</code></td><td>&lt;BS&gt;</td></tr>
+		<tr><td><code class="inset">d</code></td><td>数字字符 [0-9]</td></tr>
+		<tr><td><code class="inset">D</code></td><td>非数字字符 [^0-9]</td></tr>
+		<tr><td><code class="inset">e</code></td><td>&lt;ESC&gt;</td></tr>
+		<tr><td><code class="inset">f</code></td><td>由isfname选项定义的文件名字符</td></tr>
+		<tr><td><code class="inset">F</code></td><td>文件名字符,但是不包含数字</td></tr>
+		<tr><td><code class="inset">h</code></td><td>单词的头字符(A-Za-z)</td></tr>
+		<tr><td><code class="inset">H</code></td><td>不是单词的头字符(A-Za-z)</td></tr>
+		<tr><td><code class="inset">i</code></td><td>由isdent选项定义的字符</td></tr>
+		<tr><td><code class="inset">I</code></td><td>定义的字符,但是不包括数字</td></tr>
+		<tr><td><code class="inset">k</code></td>由iskeyword选项定义的关键字字符<td></td></tr>
+		<tr><td><code class="inset">K</code></td><td>关键字字符,但是不包括数字</td></tr>
+		<tr><td><code class="inset">l</code></td><td>小字字符 [a-z]</td></tr>
+		<tr><td><code class="inset">L</code></td><td>非小写字符 [^a-z]</td></tr>
+		<tr><td><code class="inset">o</code></td><td>八进制数字</td></tr>
+		<tr><td><code class="inset">O</code></td><td>非八进制数字</td></tr>
+		<tr><td><code class="inset">p</code></td><td>由isprint选项定义的可打印字符</td></tr>
+		<tr><td><code class="inset">P</code></td><td>可打印字符,但是不包括数字</td></tr>
+		<tr><td><code class="inset">r</code></td><td>&lt;CR&gt;</td></tr>
+		<tr><td><code class="inset">s</code></td><td>空白符<Space>和<Tab> [ 	]</td></tr>
+		<tr><td><code class="inset">S</code></td><td>非空白符 [^ 	]</td></tr>
+		<tr><td><code class="inset">t</code></td><td>&lt;Tab&gt;</td></tr>
+		<tr><td><code class="inset">u</code></td><td>大写字母字符 [A-Z]</td></tr>
+		<tr><td><code class="inset">U</code></td><td>非大写字母字符 [^A-Z]</td></tr>
+		<tr><td><code class="inset">w</code></td><td>单词字符(0-9A-Za-z)</td></tr>
+		<tr><td><code class="inset">W</code></td><td>非单词字符</td></tr>
+		<tr><td><code class="inset">x</code></td><td>十六进制数字 [0-9a-fA-F]</td></tr>
+		<tr><td><code class="inset">X</code></td><td>非十六进制数字 [^0-9a-fA-F]</td></tr>
+		<tr><td><code class="inset">~</code></td><td>匹配最后指定的字符串</td></tr>
 		<tr><td><code class="inset"></code></td><td></td></tr>
 		<tr><td><code class="inset"></code></td><td></td></tr>
 		<tr><td><code class="inset"></code></td><td></td></tr>
