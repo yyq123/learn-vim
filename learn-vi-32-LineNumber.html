@@ -8,19 +8,28 @@
 	<title>VIM学习笔记 行号(Line Number)</title>
 </head>
 <body>
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">显示行号</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">绝对行号</p>
 	<p>可以用以下命令显示绝对行号（Absolute Line Number）：</p>
-	<p style="text-indent:2em"><code class="inset">set number</code></p>
+	<p style="text-indent:2em"><code class="inset">:set number</code></p>
 	<p><a href="https://www.flickr.com/photos/yyq123/30533293920/in/dateposted/" title="LineNumber_AbsoluteNumber"><img src="https://c2.staticflickr.com/6/5487/30533293920_8c4a871fa0_o.png" width="407" height="251" alt="LineNumber_AbsoluteNumber"></a></p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">行号显示效果</p>
+	<p>行号默认右对齐显示在每行的左侧，占据4个空格的空间：其中3个空间用于显示行号，另1个为空格。当行数超过999时，行号显示区域将自动进行扩展。可以通过以下命令，改变行号所占用的空间（其中n为空间大小）：</p>
+	<p style="text-indent:2em"><code class="inset">:set numberwidth=n</code></p>
+	<p>使用以下命令，可以定制行号的显示效果：</p>
+	<p style="text-indent:2em"><code class="inset">:highlight LineNr guibg=#1874cd ctermbg=#1874cd</code></p>
+	<p>使用以下命令，则可以定制当前行号的显示效果：</p>
+	<p style="text-indent:2em"><code class="inset">:highlight CursorLineNr guifg=#050505</code></p>
 	<p>可以用以下命令隐藏绝对行号：</p>
-	<p style="text-indent:2em"><code class="inset">set nonumber</code></p>
+	<p style="text-indent:2em"><code class="inset">:set nonumber</code></p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">相对行号</p>
 	<p>可以用以下命令显示相对行号（Relative Line Number）：</p>
-	<p style="text-indent:2em"><code class="inset">set relativenumber</code></p>
+	<p style="text-indent:2em"><code class="inset">:set relativenumber</code></p>
 	<p><a href="https://www.flickr.com/photos/yyq123/30533293580/in/photostream/" title="LineNumber_RelativeNumber"><img src="https://c2.staticflickr.com/6/5834/30533293580_5073b4fb53_o.png" width="407" height="251" alt="LineNumber_RelativeNumber"></a></p>
 	<p>可以用以下命令隐藏相对行号：</p>
-	<p style="text-indent:2em"><code class="inset">set norelativenumber</code></p>
+	<p style="text-indent:2em"><code class="inset">:set norelativenumber</code></p>
 	<p>如果我们使用以下命令，同时显示绝对行号和相对行号，那么Vim将显示当前行的绝对行号，而其他行则显示相对行号：</p>
-	<p style="text-indent:2em"><code class="inset">set number</code><br /><code class="inset">set relativenumber</code></p>
+	<p style="text-indent:2em; margin:0"><code class="inset">:set number</code></p>
+	<p style="text-indent:2em; margin:0"><code class="inset" style="text-indent:2em">:set relativenumber</code></p>
 	<p><a href="https://www.flickr.com/photos/yyq123/30533293700/in/photostream/" title="LineNumber_BothNumber"><img src="https://c2.staticflickr.com/6/5567/30533293700_7dfcf324d7_o.png" width="407" height="251" alt="LineNumber_BothNumber"></a></p>
 	<p>在Vim中，很多命令都可以使用数字前缀。例如，命令<code class="inset">10j</code>既是向下移动10行。ine, you can use . To move 4 lines above the current line, use 4k. To indent the current line and 2 lines below, use >2j. You get the idea. 显示相对行号，你就可以清楚地看到命令所覆盖的范围。如果显示绝对行号，则需要你手动计算行之间的距离。The use of relative numbers alleviates the need to do math in your head.</p>
 
