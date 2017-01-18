@@ -12,13 +12,6 @@
 	<p>可以用以下命令显示绝对行号（Absolute Line Number）：</p>
 	<p style="text-indent:2em"><code class="inset">:set number</code></p>
 	<p><a href="https://www.flickr.com/photos/yyq123/30533293920/in/dateposted/" title="LineNumber_AbsoluteNumber"><img src="https://c2.staticflickr.com/6/5487/30533293920_8c4a871fa0_o.png" width="407" height="251" alt="LineNumber_AbsoluteNumber"></a></p>
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">行号显示效果</p>
-	<p>行号默认右对齐显示在每行的左侧，占据4个空格的空间：其中3个空间用于显示行号，另1个为空格。当行数超过999时，行号显示区域将自动进行扩展。可以通过以下命令，改变行号所占用的空间（其中n为空间大小）：</p>
-	<p style="text-indent:2em"><code class="inset">:set numberwidth=n</code></p>
-	<p>使用以下命令，可以定制行号的显示效果：</p>
-	<p style="text-indent:2em"><code class="inset">:highlight LineNr guibg=#1874cd ctermbg=#1874cd</code></p>
-	<p>使用以下命令，则可以定制当前行号的显示效果：</p>
-	<p style="text-indent:2em"><code class="inset">:highlight CursorLineNr guifg=#050505</code></p>
 	<p>可以用以下命令隐藏绝对行号：</p>
 	<p style="text-indent:2em"><code class="inset">:set nonumber</code></p>
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">相对行号</p>
@@ -31,18 +24,25 @@
 	<p style="text-indent:2em; margin:0"><code class="inset">:set number</code></p>
 	<p style="text-indent:2em; margin:0"><code class="inset" style="text-indent:2em">:set relativenumber</code></p>
 	<p><a href="https://www.flickr.com/photos/yyq123/30533293700/in/photostream/" title="LineNumber_BothNumber"><img src="https://c2.staticflickr.com/6/5567/30533293700_7dfcf324d7_o.png" width="407" height="251" alt="LineNumber_BothNumber"></a></p>
-	<p>在Vim中，很多命令都可以使用数字前缀。例如，命令<code class="inset">10j</code>既是向下移动10行。ine, you can use . To move 4 lines above the current line, use 4k. To indent the current line and 2 lines below, use >2j. You get the idea. 显示相对行号，你就可以清楚地看到命令所覆盖的范围。如果显示绝对行号，则需要你手动计算行之间的距离。The use of relative numbers alleviates the need to do math in your head.</p>
-
+	<p>在Vim中，很多命令都可以使用数字前缀。例如，命令<code class="inset">10j</code>既是向下移动10行；命令<code class="inset">&gt;2j</code>则可以缩进当前行以及其下2行。通过显示相对行号，你就可以清楚地看到命令所覆盖的范围。如果仅仅显示绝对行号，那么就需要你手动计算行之间的距离。</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">行号显示效果</p>
+	<p>行号默认右对齐显示在每行的左侧，占据4个空格的空间：其中3个空间用于显示行号，另1个空格作为于文本的间隔。当行数超过999时，行号显示区域将自动进行扩展。可以通过以下命令，改变行号所占用的空间（其中n为空间大小）：</p>
+	<p style="text-indent:2em"><code class="inset">:set numberwidth=n</code></p>
+	<p>使用以下命令，可以定制行号（LineNr）的显示效果：</p>
+	<p style="text-indent:2em"><code class="inset">:highlight LineNr guibg=#1874cd ctermbg=#1874cd</code></p>
+	<p>使用以下命令，则可以定制当前行号（CursorLineNr）的显示效果：</p>
+	<p style="text-indent:2em"><code class="inset">:highlight CursorLineNr guifg=#050505</code></p>
+	
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
-		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
-		<tr><td><code class="inset">:</code></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:set number</code></td><td>显示绝对行号</td></tr>
+		<tr><td><code class="inset">:set nonumber</code></td><td>隐藏绝对行号</td></tr>
+		<tr><td><code class="inset">:set relativenumber</code></td><td>显示相对行号</td></tr>
+		<tr><td><code class="inset">:set norelativenumber</code></td><td>隐藏相对行号</td></tr>
+		<tr><td><code class="inset">:set numberwidth=n</code></td><td>设置行号显示宽度</td></tr>
 	</table>
 
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="()" href="">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="()" href="">下一篇</a>&gt;</span></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="状态行(Status Line)" href="http://yyq123.blogspot.com/2009/10/vim-statusline.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="光标(Cursor)" href="http://yyq123.blogspot.com/2012/01/vim-cursor.html">下一篇</a>&gt;</span></p>
 </body>
 </html>
 
