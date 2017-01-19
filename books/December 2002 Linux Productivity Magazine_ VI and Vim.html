@@ -1,0 +1,5377 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<!-- saved from url=(0071)http://www.troubleshooters.com/lpm/200212/200212.htm#_VI_Life_Preserver -->
+<html class="gr__troubleshooters_com"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+   
+  
+  
+  
+  
+  
+
+
+
+
+
+   
+  
+  
+  
+  
+  <meta name="Author" content="Steve Litt">
+
+
+
+
+
+   
+  
+  
+  
+  
+  <meta name="GENERATOR" content="Mozilla/4.78 [en] (X11; U; Linux 2.4.18-6mdksmp i686) [Netscape]">
+
+
+
+
+
+   
+  
+  
+  
+  
+  <meta name="Description" content="Using the Zope Portal Building Software">
+
+
+
+
+
+   
+  
+  
+  
+  
+  <meta name="Keywords" content="Zope,website,websites,portal,portals,web portal,web authoring,web authoring tool,web authoring tools,web app,web application,web applications,Python,Zope Corporation,Digital Creations"><title>December 2002 Linux Productivity Magazine: VI and Vim</title><style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+.en-markup-crop-options {
+    top: 18px !important;
+    left: 50% !important;
+    margin-left: -100px !important;
+    width: 200px !important;
+    border: 2px rgba(255,255,255,.38) solid !important;
+    border-radius: 4px !important;
+}
+
+.en-markup-crop-options div div:first-of-type {
+    margin-left: 0px !important;
+}
+</style><script type="text/javascript" src="./December 2002 Linux Productivity Magazine_ VI and Vim_files/scoop.js.download"></script><link type="text/css" rel="stylesheet" href="./December 2002 Linux Productivity Magazine_ VI and Vim_files/bklet_external_scpWindow.css" media="screen"></head><body text="#000000" bgcolor="#ffffff" link="#0000ee" vlink="#551a8b" alink="#ff0000" data-gr-c-s-loaded="true" data-pinterest-extension-installed="cr2.0.5"><iframe id="iframeUnderDivToShowOverFlash" frameborder="0" allowtransparency="true" class=" scoopit-hulk" style="display: none; height: 24303px;" src="./December 2002 Linux Productivity Magazine_ VI and Vim_files/saved_resource.html"></iframe><div id="sc_bookmarklet" class="scoopit-hulk v4" style="height: 24303px; display: none;"><div id="sc_main" style="top: 17274.8px;" class=" scoopitWindowSuccessBookmarklet">    <iframe id="sc_iframe" frameborder="0" name="sc_bookmarklet_iframe" src="./December 2002 Linux Productivity Magazine_ VI and Vim_files/bookmarklet.html"></iframe>        &nbsp;    </div></div>
+<a name="starthdr"></a>
+<center><b><font size="+2"><a href="http://www.troubleshooters.com/troubleshooters.htm">Troubleshooters.Com
+Presents</a></font></b></center>
+
+
+
+
+
+
+<p><br>
+</p>
+
+
+
+
+<center><table border="4" cellpadding="8" bgcolor="#000066" nosave="">
+<tbody><tr nosave="">
+<td nosave="">
+<center><font size="+4"><b><font color="#ffffee">Linux Productivity Magazine</font></b>
+</font><p><font size="+4"><font size="+1"><b><font color="#eeffff">Volume 1 Issue 5, December 2002</font></b></font>
+<br><b><font color="#eeffff"><font size="+2">VI and Vim</font></font></b></font></p></center>
+</td>
+</tr>
+</tbody></table></center>
+
+
+
+
+
+
+<center>
+<p><b><font size="-2">Copyright (C) 2002 by Steve Litt. All rights reserved.
+Materials from guest authors copyrighted by them and licensed for perpetual
+use to Linux Productivity Magazine. All rights reserved to the copyright
+holder, except for items specifically marked otherwise (certain free software
+source code, GNU/GPL, etc.). All material herein provided "As-Is". User
+assumes all risk and responsibility for any outcome.</font></b></p></center>
+
+
+
+
+
+
+<p><br>
+</p>
+
+
+
+
+<center><table border="5" cellspacing="0" cellpadding="5" width="96%" bgcolor="#fffff0" nosave="">
+<tbody><tr nosave="">
+<td nosave="">
+<center><b>See also <font size="+1"><a href="http://www.troubleshooters.com/bookstore/ttech.htm">Troubleshooting
+Techniques of the Successful Technologist</a></font></b>
+<br><b>and <font size="+1"><a href="http://www.troubleshooters.com/bookstore/rl.htm">Rapid Learning:
+Secret Weapon of the Successful Technologist</a></font></b>
+<br><b>by Steve Litt</b></center>
+</td>
+</tr>
+</tbody></table></center>
+
+
+
+
+
+
+<center>
+<p><b><font size="-1">[ <a href="http://www.troubleshooters.com/troubleshooters.htm">Troubleshooters.Com</a>
+| <a href="http://www.troubleshooters.com/lpm/archive.htm">Back Issues</a> ]</font></b>
+<br>
+</p><hr></center>
+
+
+
+
+
+
+<center><table border="1" cols="1" width="80%" bgcolor="#cccccc">
+<caption>&nbsp;</caption>
+
+<tbody><tr>
+<td>
+<center><b><font color="#000099">In pursuit of the dubious goal of producing
+idiot-proof, zero-learning-curve programs, even programs intended for heavy-duty
+use such as editors--arguably the most important piece of software you'll
+use--have been turned into children's toys, effectively expert-proofed.</font></b><b><font color="#000066">
+-- Tom Christiansen</font></b><b><font color="#000066"><br>
+      </font></b><font color="#000066">(discussing alternatives to VI in his article,&nbsp; "Zenclavier: Extreme Keyboarding")</font><font color="#000066"></font></center>
+</td>
+</tr>
+</tbody></table></center>
+
+
+
+
+
+
+<p><b><font size="+2">CONTENTS</font></b>
+<table>
+<tbody><tr>
+<td bgcolor="#f0ffff">
+<ul>
+<li><b><a href="http://www.troubleshooters.com/lpm/200212/200212.htm#_editors_desk">Editor's Desk</a></b></li>
+<li><b><a href="http://www.troubleshooters.com/lpm/200212/200212.htm#_The_Accuracy_of_This_Document">The Accuracy of This Document<br> </a></b></li>
+<li><b><a href="http://www.troubleshooters.com/lpm/200212/200212.htm#_gnulinux">GNU/Linux</a></b></li>
+<li><b><a href="http://www.troubleshooters.com/lpm/200212/200212.htm#_thanks">Thanks</a></b></li>
+<li><b><a href="http://www.troubleshooters.com/lpm/200212/200212.htm#_VI_Life_Preserver">VI Life Preserver</a></b></li>
+<li><b><a href="http://www.troubleshooters.com/lpm/200212/200212.htm#_Elementary_Search_and_Replace_and_Global_Commands">Search and Replace: Substitute and Global Commands</a></b></li>
+<li><b><a href="http://www.troubleshooters.com/lpm/200212/200212.htm#_Regular_Expressions">Regular Expressions</a></b></li>
+<li><b><a href="http://www.troubleshooters.com/lpm/200212/200212.htm#_Advanced_Searches_with_Groups">Advanced Searches with Groups</a></b></li>
+<li><b><a href="http://www.troubleshooters.com/lpm/200212/200212.htm#_Registers_Cut_and_Paste">Registers, Cut and Paste</a></b></li>
+<li><b><a href="http://www.troubleshooters.com/lpm/200212/200212.htm#_Maps_and_Abbreviations">Maps and Abbreviations</a></b></li>
+<li><b><a href="http://www.troubleshooters.com/lpm/200212/200212.htm#_Macros_and_Scripts">Macros and Scripts</a></b></li>
+<li><b><a href="http://www.troubleshooters.com/lpm/200212/200212.htm#_Programmers_Helpers">Programmers Helpers</a></b></li>
+<li><b><a href="http://www.troubleshooters.com/lpm/200212/200212.htm#_Vim">Vim</a></b></li>
+<li><b><a href="http://www.troubleshooters.com/lpm/200212/200212.htm#_VimOutliner">VimOutliner</a></b></li>
+<li><b><a href="http://www.troubleshooters.com/lpm/200212/200212.htm#_lifeAfterWindows">Life After Windows: Linux is a Wishing Well</a></b></li>
+<li><b><a href="http://www.troubleshooters.com/lpm/200212/200212.htm#_letters_to_editor">Letters to the Editor</a></b></li>
+<li><b><a href="http://www.troubleshooters.com/lpm/200212/200212.htm#_submit_article">How to Submit an Article</a></b></li>
+<li><b><a href="http://www.troubleshooters.com/lpm/200212/200212.htm#_trademarks">Trademarks</a></b></li>
+<li><b><a href="http://www.troubleshooters.com/lpm/200212/200212.htm#_urls_mentioned">URLs Mentioned in this Issue</a></b></li>
+</ul>
+</td>
+</tr>
+</tbody></table>
+
+</p>
+
+
+
+
+<h1>
+<a name="_editors_desk"></a>Editor's Desk</h1>
+
+
+
+
+
+
+<h5>
+By Steve Litt</h5>
+
+I hated VI the first time I used it. So to avoid using VI, I created a script
+to ftp a file from the HP9000 down to my Win98 box, edit it with a Windows editor,
+and ftp it back up. VI's arcane and non-intuitive keystrokes, plus its silly two mode construction were productivity killers.<br>
+
+
+<br>
+
+
+A couple years later I started using Linux, and naturally chose a different
+editor -- the Wordstar like Joe. That might have continued forever if Dillon
+Jones hadn't bragged about Vim, the VI workalike common on Linux boxes.<br>
+
+
+<br>
+
+
+Dillon was a fellow LUG member, and every chance he got he showed off a new
+script, function or trick in Vim. He had a script to convert Vim to an HTML
+authoring tool. With a few keystrokes he could convert a directory listing
+into a data file or a computer program. I decided to reinvestigate VI.<br>
+
+
+<br>
+
+
+And fell in love. I've used all sorts of editors, but VI is by far the fastest
+and most powerful. And this fact is one of the world's best kept secrets.
+All too many people draw the conclusion I originally drew -- that VI was
+some silly kludge hacked together by 1970's spaghetti programmers.<br>
+
+
+<br>
+
+
+It's an easy conclusion to draw. Who would guess to press "l" to go right.
+Shouldn't "l" go left? What in the world is the rationale for using "h" to
+go left? One would think "h" would mean "higher" or some such thing. "j"
+and "k" for down and up respectively is just plain weird. And how strange
+is the 2 mode system, where the insert mode is for typing, and the command
+mode is for editing, necessitating constant switching between them. Many
+VI implementations cannot even facilitate a mouse, nor can they highlight
+text with the Shift+Arrow hotkey, nor skip words with Ctrl+Arrow. As a modern
+software developer I've been trained to make my apps intuitive.<br>
+
+
+<br>
+
+
+But anyone who has been around the block a few times knows there's a tradeoff
+between beginner's intuitiveness and master's productivity. VI has been optimized
+entirely for the touch typist. l, h, j and k are easily touch typing home
+position accessible. Cursor (arrow) keys are not. In the time you can move
+your hand from the keyboard to the mouse, a VI master can cut the current
+paragraph and move it above the preceding paragraph. (Keystrokes <tt>{d}{P</tt>). VI is built exclusively for speed. Well, <i>almost</i> exclusively.<br>
+
+
+<br>
+
+
+VI is built for power too. By combining VI's range enabled global commands,
+range enabled search and replace commands, regular expressions, macros and
+scripts, &nbsp;you can effect almost any conceivable transformation on a
+file. If &nbsp;the transformation can be described in English, it can be
+done with VI. And in VI it usually can be done in 1/10 the time required
+to write a program to perform the same transformation. <br>
+
+
+<br>
+
+
+Speed and power. Life can't get any better.<br>
+
+
+<br>
+
+
+OH YES IT CAN! You can also have ubiquity. Every system with UNIX, a UNIX
+variant or a UNIX workalike operating system has VI installed. Once you're
+good at VI, you can walk into any UNIX installation and get to work, without
+the need to learn a new editor or install your favorite editor. And once
+you're really good at VI, it will probably become your favorite editor.<br>
+
+
+<br>
+
+
+Speed, Power and Ubiquity. This issue of Linux Productivity Magazine details
+everything you need to know to achieve top notch speed and power with this
+ubiquitous editor. Also discussed is the ultra-powerful Vim superset of VI.
+Vim has a programming language all its own, including functions. Vim is so
+powerful that a professional grade outline processor, called VimOutliner,
+has been created using a few Perl scripts and some Vim scripts. One article
+of this magazine is devoted to VimOutliner. <br>
+
+
+<br>
+
+
+So kick back, relax, and learn how to make VI, Vim and VimOutliner work their
+magic. And remember, if you use Open Source or free software, this is your
+magazine.<br>
+
+
+
+
+
+<h5>
+Steve Litt is the author of <a href="http://www.troubleshooters.com/bookstore/su.htm">Samba Unleashed</a>.&nbsp;&nbsp;
+Steve can be reached at <a href="http://www.troubleshooters.com/email_steve_litt.htm">Steve Litt's email address</a>.</h5>
+
+
+<h1><a name="_The_Accuracy_of_This_Document"></a>The Accuracy of This Document<br>
+</h1>
+
+<h5>
+By Steve Litt</h5>
+
+The biggest problem in writing this magazine is the fact that there are many
+different implementations of VI, and 98% of my VI use has been with the Vim
+implementation (HP9000 UNIX VI and Elvis make up the other 2%). So I'm sure
+some of the features I attribute to VI are really Vim specific.<br>
+
+<br>
+
+I had a choice to make with my limited time. The magazine could describe
+a tiny subset of VI functionality and rigorously check various VI versions,
+or it could document a much larger functionality set while I tried my best
+to remember whether other VI implementations support the various features.<br>
+
+<br>
+
+I chose the latter. First, Vim is probably the most used VI implementation.
+And second, most readers can forgive a few described features not available
+in their VI implementation in order to learn VI's powerhouse techniques.<br>
+
+<br>
+
+So if your VI doesn't support a particular feature (the \| alternative in
+regular expressions, for instance), try to find another way to do it (macros,
+for instance).<br>
+
+<h5>Steve Litt is the author of "<a href="http://www.troubleshooters.com/bookstore/ttech.htm"> Troubleshooting
+Techniques of the Successful Technologist</a>".&nbsp; Steve can be reached
+at <a href="http://www.troubleshooters.com/email_steve_litt.htm">Steve Litt's email address</a>
+.</h5>
+
+
+
+
+
+
+
+
+
+<h1>
+</h1>
+
+
+
+
+
+
+
+
+
+
+
+<h1>
+</h1>
+
+<h1>
+<a name="_gnulinux"></a>GNU/Linux</h1>
+
+
+<h5>
+By Steve Litt</h5>
+<p>GNU/Linux is comprised of the Linux kernel originally crafted by Linus
+Torvalds, plus many, many utilities, a large number of which were utilities
+from the original GNU project. "GNU/Linux" is probably the most accurate
+moniker one can give to the operating system. Please be aware that in <b>all
+of Troubleshooters.Com</b>, when I say "Linux" I really mean "GNU/Linux".
+I completely believe that without the GNU project, without the GNU Manifesto
+and the GNU/GPL license it spawned, the operating system the press calls
+"Linux" never would have happened.
+</p>
+<p>I'm part of the press and there are times when it's easier to say "Linux"
+than explain to certain audiences that "GNU/Linux" is the same as what
+the press calls "Linux". So I abbreviate. Additionally, I abbreviate in
+the same way one might abbreviate the name of a multi-partner law firm.
+But make no mistake about it. In any article in Linux Productivity
+Magazine, in the whole of Troubleshooters.Com, and even in the technical
+books I write, when I say "Linux", I mean "GNU/Linux".
+</p>
+<p>There are those who think FSF is making too big a deal of this. Nothing
+could be farther from the truth. The GNU General Public License is the only
+reason we can enjoy this wonderful alternative to proprietary operating systems,
+and competition from Free Software is the only reason proprietary operating
+systems aren't even more flaky than they are now. Last but not least, it's
+significant to note that in Infoworld's October 6, 2000 article entitled
+"E-business innovators", author Mark Leon named GNU's Richard Stallman as
+the innovator associated with GNU/Linux.</p>
+<h5>
+Steve Litt is the author of <a href="http://www.troubleshooters.com/bookstore/rl.htm">Rapid Learning:
+Secret Weapon of the Successful Technologist</a>. He can be reached at
+<a href="http://www.troubleshooters.com/email_steve_litt.htm">Steve Litt's email address</a>.</h5>
+
+
+
+
+<h1><a name="_thanks"></a>Thanks</h1>
+
+
+
+<h1>
+</h1>
+
+<h5>
+By Steve Litt</h5>
+
+We all stand on the shoulders of those who came before us, and this Linux
+Productivity Magazine is a perfect example. Certainly Ken Thompson deserves
+thanks for creating UNIX, the original platform on which VI originated. Had
+Richard Stallman not created the GNU Manifesto and GNU GPL license, GNU/Linux
+wouldn't exist and I'd still be using PFE shareware on Windows. For the same
+reason, Linus Tovalds must be thanked.<br>
+
+<br>
+
+Thanks to Bram Moolenaar for creating the Vim implementation of VI. Vim is
+standard on all Red Hat and Mandrake &nbsp;systems, and probably many others.
+Vim is one of VI's greatest ambassadors, running on Linux, Windows, Mac,
+OS/2, UNIX, and even the Amiga. And Vim's feature set is so great that, frankly,
+I'm spoiled.<br>
+
+<br>
+
+Thanks to the entire Open Source community for making such great software.
+And a big thankyou to my fellow VimOutliner developers, Noel Henson and Matej
+Cepl, for taking VimOutliner from an "army surplus" app to a full featured
+outline processor.<br>
+
+<h5>Steve Litt documented the <a href="http://www.troubleshooters.com/tuni.htm">Universal Troubleshooting Process</a>. Steve can be reached at <a href="http://www.troubleshooters.com/email_steve_litt.htm">Steve Litt's email address</a>.</h5>
+
+
+
+
+<h1><a name="_VI_Life_Preserver"></a>VI Life Preserver</h1>
+
+
+
+
+
+
+
+<h5>
+By Steve Litt</h5>
+
+This article is designed for the person who has never
+before used VI. Specifically, the newbie using this article won't get caught
+in a situation where he can't get out of the program. And he'll be able to
+open and save files, maneuver around the file, and perform basic edits. The
+person familiar with this article can go to any VI equipped computer and edit
+files, although such editing won't be particularly efficient. Subsequent
+articles bestow efficiency.<br>
+
+
+<h2>Getting In and Out of VI</h2>
+
+
+Getting into VI is easy. At the command prompt, just type <tt>vi</tt> and press Enter. Or, if you want to use VI to edit a specific file called <tt>myfile</tt>, at the command prompt type <tt>vi myfile</tt> and press the Enter key. Once in VI, the following commands are available to retrieve files, save files, get help and get out:<br>
+
+
+<br>
+
+
+<table cellpadding="2" cellspacing="2" border="1" width="100%">
+
+
+  <tbody>
+    <tr>
+      <td valign="top" width="20%">Esc<br>
+      </td>
+      <td valign="top">Gets you out of insert mode. Commands must be performed
+from command mode, not from insert mode. Pressing Esc while in command mode
+does nothing and is harmless. Be sure you're in command mode before trying
+the following commands. When in command mode the cursor is fat and covers
+one character. When in insert mode the cursor is skinny and is between two
+characters.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">:q!</td>
+      <td valign="top">Gets you out of VI no matter what. No files are saved.</td>
+    </tr>
+    <tr>
+      <td valign="top">:wq<br>
+      </td>
+      <td valign="top">Saves the file and quits VI.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">:w<br>
+      </td>
+      <td valign="top">Saves the file and keeps you in the VI editor.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">:q<br>
+      </td>
+      <td valign="top">Quits VI if the file is up to date. If there are unsaved changes you are kept in VI.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">:e myfile<br>
+      </td>
+      <td valign="top">Places file <tt>myfile</tt> in the VI editor<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">:h<br>
+      </td>
+      <td valign="top">Goes into help mode. You get out of help mode with the <tt>:q</tt> command.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">:h myfeature<br>
+      </td>
+      <td valign="top">Goes into help mode and looks up any help on feature <tt>myfeature.</tt> If there's no help on myfeature, it errors out and doesn't go into help mode.<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<br>
+
+
+The preceding commands are all you need to get into VI, get back out, and edit a specific file.<br>
+
+
+<h2>Moving Through the File</h2>
+
+
+Before you can do any real editing, you must be able to move through the
+file. The following is a small subset of the commands with which you can
+move through the file. Remember once again you must be in command mode to
+run these commands. You can move from insert mode to command mode with the
+Esc key.<br>
+
+
+<br>
+
+
+<table cellpadding="2" cellspacing="2" border="1" width="100%">
+
+
+  <tbody>
+    <tr>
+      <td valign="top" width="15%">l (lower case L)<br>
+      </td>
+      <td valign="top">Cursor one character right<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">h<br>
+      </td>
+      <td valign="top">Cursor one character left<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">j<br>
+      </td>
+      <td valign="top">Cursor one line down, staying in the current column.
+In other words, if you were on the 14th character of line 5 when you pressed
+j, the cursor would end up on the 14th character of line 6. If line 6 has
+less than 14 characters, the cursor will be on the last character in line
+6.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">k<br>
+      </td>
+      <td valign="top">Cursor up one line. The <tt>k</tt> command works the same as <tt>j</tt> only up instead of down.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">w<br>
+      </td>
+      <td valign="top">Cursor one word right. This command wraps at the end of a line.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">b<br>
+      </td>
+      <td valign="top">Cursor one word left. This command wraps at the beginning of a line.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">G<br>
+      </td>
+      <td valign="top">Cursor to end of file<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">gg<br>
+      </td>
+      <td valign="top">Cursor to start of file. On VI implementations without the gg command, use 1G<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">100j<br>
+      </td>
+      <td valign="top">Cursor down 100 lines. Naturally, that number can be any number you choose. You can also precede <tt>k</tt> with a number to move up that many lines. This same technique can be used to move several characters (<tt>100l</tt> or <tt>100h</tt>), or several words (<tt>100w</tt> or <tt>100b</tt>).<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">Ctrl+G<br>
+      </td>
+      <td valign="top">Tells you your current line number, so you can estimate how far you need to jump or move.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">52G<br>
+      </td>
+      <td valign="top">Cursors to line 52 from anywhere in the file. Naturally,
+that number can be any desired destination line. Note that on some implementations
+you can do this as <tt>52gg</tt>, which might be easier for some keyboarders.<br>
+      </td>
+    </tr><tr>
+      <td valign="top">Ctrl+F<br>
+      </td>
+      <td valign="top">Move down (forward) one screenful of lines.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">Ctrl+B<br>
+      </td>
+      <td valign="top">Move up (backward) one screenful of lines.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">Ctrl+D<br>
+      </td>
+      <td valign="top">Move down 1/2 screenful of lines.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">Ctrl+U<br>
+      </td>
+      <td valign="top">Move up 1/2 screenful of lines.<br>
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+
+<br>
+
+
+The preceding is a list of basic, essential moves. There are many more. In Vim, use the <tt>:h motion.txt</tt> command to learn the rich variety of motion commands. And there are moves based on searches.
+The next section of this article covers basic searches.<br>
+
+
+<h2>Basic Searches</h2>
+
+
+This section covers VERY basic searches. VI searches can be incredibly powerful and complex, because they incorporate <i>regular expressions</i>.
+This article does not cover search and replace, because in VI search and
+replace is extremely powerful, and is implemented differently from plain
+searches.<br>
+
+
+<table cellpadding="2" cellspacing="2" border="1" width="100%">
+
+
+  <tbody>
+    <tr>
+      <td valign="top" width="20%">:set ic<br>
+      </td>
+      <td valign="top">Sets VI to ignore case in all searches and replaces. All subsequent searches are case insensitive.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">:set noic<br>
+      </td>
+      <td valign="top">Sets VI to consider case in all searches and replaces. All subsequent searches are case sensitive.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">/Steve<br>
+      </td>
+      <td valign="top">Search for the next instance of <tt>Steve</tt> in the file. In other words, search down from the cursor.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">?Steve<br>
+      </td>
+      <td valign="top">Search for the previous instance of <tt>Steve</tt> in the file. In other words, search up from the cursor.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">/web *master<br>
+      </td>
+      <td valign="top">Search for <tt>webmaster</tt>, <tt>web master</tt>, or <tt>web &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;master</tt>.
+This is a very basic regular expression that means "look for web, followed
+by zero or more spaces, followed by master. Such regular expressions also
+can be used with the <tt>?</tt>
+to search backwards. The asterisk means "zero or more of the preceding character",
+and the preceding character in this case is a space.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">/<br>
+      </td>
+      <td valign="top">Search down for the next occurrence of whatever you searched for last.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">?<br>
+      </td>
+      <td valign="top">Search up for the next occurrence of whatever you searched for last.</td>
+    </tr>
+    <tr>
+      <td valign="top">n<br>
+      </td>
+      <td valign="top">Repeat the previous search, in the direction of the previous search.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">N<br>
+      </td>
+      <td valign="top">Repeat the previous search, in the opposite direction of the previous search.<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<br>
+
+
+As an added benefit, many VI implementations including the Vim VI implementation
+give you a search history. Press the slash key (<tt>/</tt>) followed by the
+up arrow, and you'll see the history of all your searches, both forward and
+backward. If you want to search backwards for something in your history,
+press the question mark (<tt>?</tt>) and then the up arrow. If you go too
+far with the up arrow, you can return with the down arrow. If you're familiar
+with the command history provided by the bash shell, it's very similar.<br>
+
+
+<br>
+
+
+This section has provided you with a minimal set of search commands with which you can maneuver the file.<br>
+
+
+<h2>Inserting Text</h2>
+
+
+There are probably 20 commands to insert text, and the truly efficient VI
+user knows and regularly uses most of them. However, only a few are necessary.
+Strictly speaking, you could do everything with the <tt>i</tt> command (Insert
+before the current character). You could navigate to the character before
+which you want to insert, and the press <tt>i</tt> &nbsp;key. Use of only the <tt>i</tt> key would preclude easily inserting at the end of a line. What you'd need to do is navigate to the end of the line, press the <tt>i</tt>
+key, insert the character previously at the end of the line, insert text
+you want to insert, return from insert mode, and then delete the extra end
+character. Ugh!<br>
+
+
+<br>
+
+
+That's why VI has the insert after (<tt>a</tt>) command, which inserts after the current key. So you'd maneuver to the end of the line, press the <tt>a</tt> key, and type what you want at the end of the line.<br>
+
+
+<br>
+
+
+Here is a summary of enough insert commands to make your life easy:<br>
+
+
+<br>
+
+
+<br>
+
+
+<table cellpadding="2" cellspacing="2" border="1" width="100%">
+
+
+  <tbody>
+    <tr>
+      <td valign="top">Esc<br>
+      </td>
+      <td valign="top">Return from insert mode to command mode.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">i<br>
+      </td>
+      <td valign="top">Insert before the current character. Observe that this gives you no convenient way to insert at the end of the line.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">a<br>
+      </td>
+      <td valign="top">Insert after the current character. Observe that this gives you no convenient way to insert at the beginning of the line.</td>
+    </tr>
+    <tr>
+      <td valign="top">I<br>
+      </td>
+      <td valign="top">Insert at the beginning of the line.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">A<br>
+      </td>
+      <td valign="top">Insert at the end of the line. This is needed often and is a real time saver.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">o<br>
+      </td>
+      <td valign="top">Open a brand new empty line below the current one, and position the cursor at the start of that line, in insert mode.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">O<br>
+      </td>
+      <td valign="top">Open a brand new empty line above the current one, and position the cursor at the start of that line, in insert mode.</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<br>
+
+
+The preceding set of commands is by no means exhaustive, but it's enough to work with some efficiency in VI.<br>
+
+
+<h2>Deleting Text</h2>VI gives you two ways to delete -- You Asked For It,
+You Got It (YAFIYGI) and What You See Is What You Get (WYSIWYG). Each has
+its benefits. In general, go YAFIYGI for small deletions, and WYSIWYG for
+large or complex ones. Obviously, WYSIWYG is safer, and YAFIYGI is often
+faster. I use both regularly. Remember also that almost all VI implementations
+have at least one level of undo, so it usually isn't the end of the world
+if you blow a delete.<br>
+
+
+<h3>You Asked For It, You Got It</h3>
+
+
+Here are some of the most used YAFIYGI commands:<br>
+
+
+<br>
+
+
+<table cellpadding="2" cellspacing="2" border="1" width="100%">
+
+
+  <tbody>
+    <tr>
+      <td valign="top">u<br>
+      </td>
+      <td valign="top">Undo the previous command. Very handy to correct a
+blown delete. Many VI implementations have multiple levels of undo. Some
+such implementations use a succession of u commands to do more undos, and
+Ctrl+R commands for redos in case you undo too far. Other implementations
+use u for the first undo, and Ctrl+R commands for subsequent undos. The latter,
+although bizarre, is the "true VI way". Your best bet is to be alert enough
+that you never need more than a single level of undo.<br>
+      <br>
+Note that if you save often, you can always revert to the last saved version.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">:e!<br>
+      </td>
+      <td valign="top">Revert to the last saved version of the current file.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">x<br>
+      </td>
+      <td valign="top">Delete the character under the cursor. The cursor
+comes to rest on the character following the deleted one, or if the deleted
+character was the final character on the line, the character before the deleted
+one.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">X<br>
+      </td>
+      <td valign="top">Delete the character to the left of the cursor. The cursor stays on the current character. <br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">dd</td>
+      <td valign="top">Delete the current line so that the cursor is placed on the line following the one deleted.</td>
+    </tr>
+    <tr>
+      <td valign="top">D</td>
+      <td valign="top">Delete current character and everything to the end of the current line.</td>
+    </tr>
+    <tr>
+      <td valign="top">d^<br>
+      </td>
+      <td valign="top">Delete everything to the left of the cursor.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">dG<br>
+      </td>
+      <td valign="top">Delete the current line and everything below. (Careful!)<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">dgg<br>
+      </td>
+      <td valign="top">Delete the current line and everything above. (Careful!)</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<h3>What You See Is What You Get</h3>
+
+
+WYSIWYG deletes are safer because you can review what you'll do before you
+do it. Here are the commands to perform WYSIWYG deletion:<br>
+
+
+<br>
+
+
+<table cellpadding="2" cellspacing="2" border="1" width="100%">
+
+
+  <tbody>
+    <tr>
+      <td valign="top">V<br>
+      </td>
+      <td valign="top">Begin highlighting lines of text. Use <tt>j</tt>, <tt>k</tt>, or other move commands discussed previously to extend the highlighting.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">d<br>
+      </td>
+      <td valign="top">Delete the highlighted text<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<h2>Summary</h2>
+
+
+
+VI is an incredibly rich and powerful editor. There's no way to learn the
+whole thing at once. But by mastering how to start VI, how to quit it, how
+to load, save and quit files, and a few commands to move around, insert text
+and delete text, you'll be able to get into the game. By mastering the contents
+of this article, you'll be able to walk into any UNIX shop and use the editor
+without looking like a total newbie.<br>
+
+
+<br>
+
+
+That being said, VI offers MUCH more. Its power is almost magical. Read on...<br>
+
+
+
+
+
+
+<h5>
+Steve Litt is the author of the <a href="http://www.troubleshooters.com/utp/tcourses.htm">Universal
+Troubleshooting Process courseware</a>.&nbsp;&nbsp; Steve can be reached
+at <a href="http://www.troubleshooters.com/email_steve_litt.htm">Steve Litt's email address</a>.</h5>
+
+
+
+
+
+
+<h1>
+<a name="_Elementary_Search_and_Replace_and_Global_Commands"></a>Search and Replace: Substitute and Global Commands</h1>
+
+
+
+
+
+
+
+<h5>
+By Steve Litt</h5>
+
+
+This article reviews the mechanics of the search and replace commands: Substitute
+commands, Global commands, and combinations of the two. To keep it simple,
+this article contains no regular expressions, so naturally all its examples
+are academic rather than real-world. An article later in this magazine details
+regular expressions, which, when combined with the information in this article,
+gives you complete power over a file.<br>
+
+
+<br>
+
+
+The simplest search and replace occurs on a single line. For instance, to
+replace the first instance of "Windows" with "Linux", use the following command:<br>
+
+
+<pre>:s/Windows/Linux/<br></pre>
+
+
+The colon puts you in EX mode, which is what you use for search and replace, as well as global commands and many other commands.<br>
+
+
+<br>
+
+
+ 
+<table cellpadding="2" cellspacing="2" border="1" width="50%" align="center">
+
+
+  <tbody>
+    <tr>
+      <td valign="top">
+      <div align="center"><font size="+1"><b>NOTE</b></font><br>
+      </div>In some VI implementations, the EX mode has a history feature similar to the bash shell. After pressing
+the colon character, you can use the up arrow to recall previous commands,
+and the down arrow to go back to later commands if you go too far back.<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<br>
+
+
+The <tt>s</tt> stands for "substitute", because that's what you're doing. The first
+forward slash signifies the beginning of the search expression. The second
+backslash signifies the end of the search expression and the beginning of
+the replace expression. The third backslash signifies the end of the replace
+expression.<br>
+
+
+<br>
+
+
+
+<br>
+
+
+
+ 
+<table cellpadding="2" cellspacing="2" border="1" width="50%" align="center">
+
+
+
+  <tbody>
+    <tr>
+      <td valign="top">
+      <div align="center"><font size="+1"><b>NOTE</b></font><br>
+      </div>In
+many VI implementations you don't need to use the slash character as the
+expression delimiter. You can use most non-alphanumeric characters (but not
+\, " or |). This is very handy when working with UNIX filenames, as in the
+following example:<br>
+      <pre>:s+/usr/local/+/opt/+</pre>
+Whatever character follows the :s is defined to be the delimiter character.
+If your implementation doesn't support this, you can represent slashes in
+search and replace expressions by escaping them with backslashes, as follows:<br>
+
+      <pre>:s/\/usr\/local\//\/opt\//</pre>
+As you can see, the escaping method is much less readable, so if you can use alternative delimiter characters, it's a good idea.<br>
+<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+<br>
+
+
+Recalling the substitute command:<br>
+
+
+<pre>:s/Windows/Linux/<br></pre>
+
+
+The preceding simple command replaces only the first instance on the line.
+Sometimes that's what you want, and sometimes it isn't. Often you want to
+replace all occurrences on the line. In that case, append the letter g (stands
+for Global) after the close of the replace expression, as follows:
+<pre>:s/Windows/Linux/g</pre>
+
+
+Perhaps you're replacing ten or so instances, and you want to make sure you
+really want to replace each one. In most VI implementations you can use the
+letter c (stands for Confirm) at the end, in which case before each replacements
+you'll be asked yes or no:<br>
+
+
+<pre>:s/Windows/Linux/gc</pre>
+
+
+<h2><a name="Ranges"></a>Ranges</h2>
+
+
+So far we've discussed search and replace on a single line, which is pretty
+useless because on a single line it might be faster to search and replace
+manually. The real power comes when you search and replace over a <i>range</i>
+of lines. You declare the range before the <tt>s</tt> command. By far the most common
+range is "all lines in the file", which is represented by the percent sign,
+as follows:<br>
+
+
+
+<pre>:%s/Windows/Linux/gc<br></pre>
+
+
+Due to the percent sign before the <tt>s</tt>, the preceding replaces every instance
+of "Windows" with "Linux" throughout the entire file. Please remember, the
+<tt>g</tt> on the end means "every instance on the line", and the percent sign at
+the beginning means "every line in the file", so combined they mean "every
+occurrence on every line", which works out to "every occurrence in the file".
+Either the <tt>%</tt> and <tt>g</tt> can be used without the other, or they can both be used
+together.<br>
+
+
+<br>
+
+
+You can use other ranges, as described in the following table:<br>
+
+
+<table cellpadding="2" cellspacing="2" border="1">
+
+
+  <tbody>
+    <tr>
+      <td valign="top" bgcolor="#cccccc">Range<br>
+      </td>
+      <td valign="top" bgcolor="#cccccc">Example<br>
+      </td>
+      <td valign="top" bgcolor="#cccccc">Explanation<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">4,7<br>
+      </td>
+      <td valign="top">:4,7s/Windows/Linux/<br>
+      </td>
+      <td valign="top">Runs the substitution command on lines 4 through 7 inclusive.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">4;7<br>
+      </td>
+      <td valign="top">:4;7s/Windows/Linux/</td>
+      <td valign="top">Runs the substitution command on line 4, and the 7
+lines following it. Note the distinction between the semicolon version, which
+calculates the second value relative to the first.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">4<br>
+      </td>
+      <td valign="top">:4s/Windows/Linux/</td>
+      <td valign="top">Runs the substitution command on line 4 only.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">4,$<br>
+      </td>
+      <td valign="top">:4,$s/Windows/Linux/</td>
+      <td valign="top">Runs the substitution command on lines 4 through the
+file's last line, inclusive. In line ranges, the &nbsp;$ character represents
+the last line in the file.</td>
+    </tr>
+    <tr>
+      <td valign="top">4,.<br>
+      </td>
+      <td valign="top">:4,.s/Windows/Linux/</td>
+      <td valign="top">Runs the substitution command on lines 4 through the line the cursor is on, inclusive.
+In line ranges, the . character represents the current line.</td>
+    </tr>
+    <tr>
+      <td valign="top">.,2000<br>
+      </td>
+      <td valign="top">:.,2000s/Windows/Linux/</td>
+      <td valign="top">Runs the substitution command on the current line
+through line 2000 inclusive. This shows that the dot can be used as the beginning,
+or as the end of a range.</td>
+    </tr>
+    <tr>
+      <td valign="top">.,.+3<br>
+      </td>
+      <td valign="top">:.,.+3s/Windows/Linux/</td>
+      <td valign="top">Runs the substitution command on the current line
+through the line three below the current line inclusive. In other words,
+this line plus the next three. In general, you add and subtract from a range
+value by appending a plus and number, or a minus and number. Be careful not
+to go too far or too short by one -- it's easy to do.</td>
+    </tr>
+    <tr>
+      <td valign="top">.,+3</td>
+      <td valign="top">:.,+3s/Windows/Linux/</td>
+      <td valign="top">CAREFUL!!! This produces the identical result to the
+preceding example, even though we removed the dot in the range end expression.
+In a + or - expression, if what it's relative is not explicitly declared,
+it defaults to "current line". This can lead to confusion. Use the version
+with the dot.<br>
+      </td>
+    </tr>
+    
+    <tr>
+      <td valign="top"><small><small>/My_Opinion/,$</small></small><br>
+      </td>
+      <td valign="top"><small><small>:/My_Opinion/,$s/Windows/Linux/</small></small></td>
+      <td valign="top">Search forward for the next occurrence of My_Opinion,
+and run the substitution on that line through the end of file, inclusive.
+Note that the search will not find matches on the current line.</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<h3>Searches in Ranges</h3>
+
+
+The final example in the preceding table shows a search in a range. This
+makes VI incredibly powerful, and if done casually incredibly dangerous.
+But here let's discuss the power. A search can appear in either the range
+start expression, the range end expression, or both. The search can be forward
+or backward. The line found by the search can be added to or subtracted from.<br>
+
+
+<br>
+
+
+<table cellpadding="2" cellspacing="2" border="1" width="50%" align="center">
+
+
+  <tbody>
+    <tr>
+      <td valign="top">
+      <div align="center"><font size="+1" color="#cc0000"><b>WARNING</b></font><br>
+      </div>
+If you have wrapscan set, searches in ranges can do some strange things.
+A forward search can fail to find the string by end of file, wrap back up,
+and find one above where you are. Likewise, a backward search can wrap around
+the top and find a match below you. These typically are not what you want.<br>
+      <br>
+To make your results more predictable, before running commands with searches
+in ranges, turn off wrapscan with the following command:<br>
+      <pre>:set nowrapscan</pre>
+Later, if you want to restore wrapscan so you can find a pattern anywhere in the file, restore it with this command:<br>
+      <pre>:set wrapscan</pre>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<br>
+
+
+Remembering to set nowrapscan, see the following examples:<br>
+
+
+<br>
+
+
+<table cellpadding="2" cellspacing="2" border="1">
+
+
+  <tbody>
+    <tr>
+      <td valign="top" bgcolor="#cccccc">Range<br>
+      </td>
+      <td valign="top" bgcolor="#cccccc">Function<br>
+      </td>
+      <td valign="top" bgcolor="#cccccc">Explanation<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">:/My_Opinion/,$s/Windows/Linux/</td>
+      <td valign="top">Search forward<br>
+      </td>
+      <td valign="top">Search forward from the current line to the next line
+containing "My_Opinion", and from that line to the end of file substitute
+"Linux" for "Windows". The search WILL NOT match any "My_Opinion" on the
+current line, and instead will match the next downward occurrence of "My_Opinion".</td>
+    </tr>
+    <tr>
+      <td valign="top">:?My_Opinion?,$s/Windows/Linux/</td>
+      <td valign="top">Search backward<br>
+      </td>
+      <td valign="top">Search backward from the current line to the next line up containing "My_Opinion",
+and from that line to the end of file substitute "Linux" for "Windows". The
+search WILL NOT match any "My_Opinion" on the current line.
+The search WILL NOT match any "My_Opinion" on the current line, and instead
+will match the next upward occurrence of "My_Opinion".</td>
+    </tr>
+    <tr>
+      <td valign="top">:1+/My_Opinion/,$s/Windows/Linux/</td>
+      <td valign="top">Search forward from line 1<br>
+      </td>
+      <td valign="top">The previous searches started from the current line,
+which may or may not be what you want. If starting the command with a known
+state is important to you, use this command form to start from line 1. Note
+that this will not find a match on line 1, so if that's an issue you'll need
+to run an additional command to get the lines you missed.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">:2+?My_Opinion?;/My_Opinion/-1s/Windows/Linux/<br>
+      </td>
+      <td valign="top">See comment<br>
+      </td>
+      <td valign="top">If the first line contains "My_Opinion", the preceding
+command did not substitute on that line or any lines until the next occurrence
+of "My_Opinion". You probably want those lines substituted. This command
+does that. Starting at line 2, it goes backward (you did set nowrapscan to
+prevent search wrapping, didn't you?), and if it finds "My_Opinion" on line
+1, it alters line 1 and every line until, and including, the line before
+the next "My_Opinion", which presumably was fixed by the preceding command.<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<h3>WYSIWYG Ranges</h3>
+
+
+Consider the preceding range substitution:<br>
+
+
+<pre>:2+?My_Opinion?;/My_Opinion/-1s/Windows/Linux/</pre>
+
+
+Can you glance at that command and tell what it does? Not unless you're a true VimMeister. Personally, I'm not that good.<br>
+
+
+<br>
+
+
+The classic early 1980's post titled "Real Men Don't Use Pascal" discusses
+the wonders of "You asked for it, you got it" (YAFIYGI) editors like DEC's
+TECO, in which a single wrong character can destroy the file. The preceding
+command just might involve just a little too much "you asked for it, you got it" risk for
+someone on a tight deadline.<br>
+
+
+<br>
+
+
+When you need to play it safe, many VI implementations have something called
+Visual Mode, in which you can highlight a certain range of lines, and run
+a simple substitution on that range. For instance, in the Vim implementation,
+you'd go to the first line you want to change, press Shift+V, then use motion
+commands, such as j or a search, to move to the end of the range. Once the
+desired range is highlighted, you simply press the colon key, and then type
+<tt>s/Windows/Linux/</tt> to make the change in the highlighted area.<br>
+
+
+<br>
+
+
+Generally speaking, when you're making range changes in realtime, if you
+have Visual Mode available, you'll use it to simplify ranges.<br>
+
+
+<br>
+
+
+And of course, when you want to show off at your LUG, you use the YAFIYGI
+method. After all, real men use TECO when they can, and if TECO isn't available,
+they use VI recklessly.<br>
+
+
+<h2>Global Commands</h2>
+
+
+Real men and quiche-eating Pascal programmers alike love VI's Global commands.
+The real man can destroy an entire file with this 8 character command:<br>
+
+
+<pre>:g/the/d<br></pre>
+
+
+Or he can hide his tracks from quiche-eating Pascal Programmers by combining
+it with an obfuscatory substitute command like this:<br>
+
+
+<pre>:1+/friend/;/lover/g/Madonna/+2s/singer/singer,actress/<br></pre>
+
+
+If you're a Pascal Programmer (or the modern equivalent, a Java Jockey) interested in knowing what the preceding command does, <a href="http://www.troubleshooters.com/lpm/200212/quiche_answer.htm">click here</a>. To real men the preceding is intuitively obvious to the most casual observer.<br>
+
+
+<br>
+
+
+Quiche eaters also love Global commands. When the boss expects the huge production
+produced by quiche-eating rapid development techniques, your editing needs
+to be lightning quick. Consider how often you need to pick out only lines
+containing "whatever" from a huge file. Edit a duplicate copy of the file
+with VI, and run the following command:<br>
+
+
+<pre>:g!/whatever/d<br></pre>
+
+
+The preceding command deletes every line not containing "whatever". But what
+if you need only lines containing "whatever" and "whichever"? Watch this:<br>
+
+
+<pre>:g/whatever/.w&gt;&gt;w.txt<br>:g/whichever/.w&gt;&gt;w.txt<br></pre>
+
+
+Try it. Create a data file with lines consisting of either "whatever", "whichever"
+or "whyever". Then, so you can be assured that all lines are copied in the
+order they're found, prepend line numbers to every line with the following
+command:<br>
+
+
+<pre>:%!cat -n<br></pre>
+
+
+Global commands are also an excellent way to perform a substitution on only
+a certain class of lines. The following changes the word "judgment" to "ripoff"
+on any line containing "microsoft antitrust":<br>
+
+
+<pre>:g/microsoft antitrust/s/judgment/ripoff/<br></pre>
+
+
+The cool thing about the preceding is the word "judgment" can appear anywhere
+in relation to the word "microsoft antitrust", and yet the deed will be done.
+Perhaps you want to make the change anywhere near the word "microsoft antitrust",
+where "anywhere near" is defined as the line, or anything within 2 lines
+before it or 2 lines after it. Watch this:<br>
+
+
+<pre>:g/microsoft antitrust/-2,+2s/judgment/ripoff/c<br></pre>
+
+
+You notice the c (for confirm) at the end? Any time you do anything as adventurous
+as the preceding, you want to check your work. It would be terrible to write
+an article and inadvertently change "I used my best judgment" to "I used
+my best ripoff".<br>
+
+
+<h3>The Anatomy of a Global Command</h3>
+
+
+The following are how a global command is built. The first runs the command
+on every line within the range that matches the pattern. The second runs
+the command on every line within the range that DOESN'T match the pattern:<br>
+
+
+<pre>:[range]g/{pattern}/[command]</pre>
+
+
+<pre>:[range]g!/{pattern}/[command]</pre>
+
+
+If the range is not given (and it usually is not), the default range is every
+line in the file. The concept is simple enough. The command is run on every
+matching (or non-matching with the exclamation point form) line. Where it
+gets more complex is when the command gets complex.<br>
+
+
+<h3>Real Life Global Commands</h3>
+
+
+Certainly the simplest command is the delete command:<br>
+
+
+<pre>:g/#/d</pre>
+
+
+The preceding deletes every line with a pound sign. The following deletes every line that DOES NOT contain the pound sign:<br>
+
+
+<pre>:g!/#/d</pre>
+
+
+The global command is often used to move certain classes of lines to a second file:<br>
+
+
+<pre>:g!/^\t\t/.w&gt;&gt;top2levels.otl</pre>
+
+
+The preceding command appends all lines that don't start with 2 tabs. In
+a tab-indented outline, that would be the top 2 levels. The carat at the
+start of the pattern is a wildcard representing start of line, as will be
+explained in the <a href="http://www.troubleshooters.com/lpm/200212/200212.htm#_Regular_Expressions">article on regular expressions</a>.<br>
+
+
+<br>
+
+
+Another common command used with the Global command is the substitute command.
+In this case the substitute command substitutes based on a criteria totally
+different from the criteria by which the line is chosen. Typically the pattern
+by which the line is chosen can occur anywhere on the line in relation to
+the substitute command, so you cannot include the selection criteria in a
+single substitute command. Even when the selection criteria is predictable,
+the global command often simplifies it. Which would you rather do:<br>
+
+
+<pre>:g/^master_/s/slave/SLAVE/g<br></pre>
+
+
+or<br>
+
+
+<pre>:%s/^\(master_.*\)slave/\1SLAVE/g<br></pre>
+
+
+The latter command uses groups to "remember" the match, and places that remembered text in the replace text in the form of <tt>\1</tt>.
+Even the somewhat convoluted second form is not completely accurate, because
+if there are multiple instances of the word "slave", VI's native long matching
+will cause it to only change the last instance of "slave" on each line. Long
+and short matching are explained in the <a href="http://www.troubleshooters.com/lpm/200212/200212.htm#_Regular_Expressions">article on regular expressions</a>.<br>
+
+
+<h2>Summary</h2>
+
+
+Substitute and Global commands offer immense power, but that fact is not
+obvious from this article. After all, most examples in this article simply
+looked for one string and replaced it with another. Ranges added some power,
+and so did the one-two punch of a Global command whose command upon match is a Substitute command. <br>
+
+
+<br>
+
+
+But until you introduce Regular Expressions, the Global and Substitute commands
+are just parlor tricks of a second rate magician. Regular Expressions transmogrify
+these commands into wizardry. Read on...<br>
+
+
+<h5>Steve Litt is the author of "<a href="http://www.troubleshooters.com/bookstore/ttech.htm"> Troubleshooting
+Techniques of the Successful Technologist</a>".&nbsp; Steve can be reached
+at <a href="http://www.troubleshooters.com/email_steve_litt.htm">Steve Litt's email address</a>
+.</h5>
+
+
+
+
+
+
+
+
+<h1>
+</h1>
+
+
+
+
+
+
+
+
+
+
+<h1>
+<a name="_Regular_Expressions"></a>Regular Expressions</h1>
+
+
+
+
+
+
+<h5>
+By Steve Litt</h5>
+
+VI is the most powerful editor I've seen. It absolutely
+dwarfs the WordPerfect editor I loved for so many years. The person truly adept
+at VI can accomplish file translations and conversions typically requiring
+a computer program. Indeed, I've written Vim scripts that convert a VimOutliner
+outline to an htmlslides presentation. Another script reads an issue of Troubleshooting
+Professional Magazine or Linux Productivity Magazine and creates a table
+of contents that can be pasted into the magazine. Yet another converts a
+tab-indented outline into a LyX document. Yet another formats data pasted
+from my sales database into mailing labels. These are very simple scripts
+-- not a one is more than 20 lines.<br>
+
+
+<br>
+
+
+Better yet, VI can be used on the fly to do work usually requiring programming.
+I've taken data files and converted them to a program to produce them. I've
+added, deleted and reordered fields in fixed length and comma delimited data
+files. <br>
+
+
+<br>
+
+
+Regular expressions are a fundamental component of this power. Simply put,
+regular expressions are searchable expressions that match a class of strings
+in the file. As a basic example, the following VI search command:<br>
+
+
+<pre>/web\s*master</pre>
+
+
+matches "webmaster", or "web master", or "web &nbsp; &nbsp; &nbsp;master",
+because \s represents a single character of any whitespace, and an asterisk
+means "zero or more of the preceding character". Here are some other examples:<br>
+
+
+<br>
+
+
+<table cellpadding="2" cellspacing="2" border="1" width="100%">
+
+
+  <tbody>
+    <tr>
+      <td valign="top" width="50%"><b><tt>/[aeiouAEIOU]</tt></b><br>
+      </td>
+      <td valign="top">Find the next vowel.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><b><tt>/[^aeiouAEIOU[:space:][:punct:][:digit:]]</tt></b><br>
+      </td>
+      <td valign="top">Find the next non-vowel letter.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><b><tt>:%s/Windows/Linux/g</tt></b><br>
+      </td>
+      <td valign="top">Replace all instances of "Windows" with "Linux".<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><b><tt>:%s/\([^,]*\),\([^,]*\),\(.*\)/\2,\1,\3/</tt></b><br>
+      </td>
+      <td valign="top">Exchange the first two fields in each row of a file of comma delimited records.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><b><tt>:s/\&lt;\(.\)\([^[:space:][:punct:]]*\)\&gt;/\u\1\2/g</tt></b>
+      </td>
+      <td valign="top">Capitalizes the first letter of every word on a line (title case converter)<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<br>
+
+
+That's some pretty serious power for the person expert at creating regular
+expressions. Entire books have been written about regular expressions. However,
+this article will give you the 10% to do 90% of what you need to do in VI.<br>
+
+
+<h2>Character Sets</h2>
+
+
+A character set is a wildcard. When compared to a character, there is a match
+if the character is one of those in the character set. There are several
+types of character sets, but the most basic is a list of matching characters
+inside of brackets. For example, <tt>[aeiou]</tt> matches any lower case vowel. The list could be a range like <tt>[0-9]</tt>, which matches any decimal digit. The brackets can contain a combination. For instance, <tt>[0-9.]</tt> matches any decimal digit or a decimal point (within brackets a dot is NOT a wildcard).<br>
+
+
+<br>
+
+
+If the characters inside of the brackets start with a carat (<tt>^</tt>), the character set matches anything except the characters inside the brackets. So <tt>[^a-zA-Z]</tt>
+matches any character except a letter in the alphabet. If you actually want
+to match a carat, simply make it not the first character, as in <tt>[@^#]</tt>, which matches either an at sign, a carat, or a pound sign.<br>
+
+
+<br>
+
+
+<table cellpadding="2" cellspacing="2" border="1" width="50%" align="center">
+
+
+  <tbody>
+    <tr>
+      <td valign="top">
+      <div align="center"><b><font size="+1">IMPORTANT</font></b><br>
+      </div>
+      <br>
+A character set matches only a single character. It cannot match a phrase.
+It is only when character sets are grouped with other character sets, other
+characters, and iterators, that they can match phrases.<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<br>
+
+
+<br>
+
+
+Many character sets are so common that VI shortcuts are provided for them. Here are some character set shortcuts:<br>
+
+
+<br>
+
+
+<table border="1" cellpadding="3" nosave="">
+
+
+
+<tbody><tr nosave="">
+<td nosave="" bgcolor="#cccccc"><b><tt>Shortcut</tt></b></td>
+
+<td bgcolor="#cccccc"><b><tt>Equivalent
+      <br>
+Character
+      <br>
+Set</tt></b></td>
+
+<td bgcolor="#cccccc">What it matches</td>
+</tr>
+
+<tr>
+<td><b><tt>\d</tt></b></td>
+
+<td><b><tt>[0-9]</tt></b></td>
+
+<td>digit</td>
+</tr>
+
+<tr>
+<td><b><tt>\D</tt></b></td>
+
+<td><b><tt>[^0-9]</tt></b></td>
+
+<td>Any character except a digit</td>
+</tr>
+
+<tr>
+<td><b><tt>\s</tt></b></td>
+
+<td><b><tt>[ \t\n\r]</tt></b></td>
+
+<td>whitespace</td>
+</tr>
+
+<tr>
+<td><b><tt>\S</tt></b></td>
+
+<td><b><tt>[^ \t\n\r]</tt></b></td>
+
+<td>Any character that is not whitespace</td>
+</tr>
+
+<tr>
+<td><b><tt>\w</tt></b></td>
+
+<td><b><tt>[a-zA-Z0-9]</tt></b></td>
+
+<td>"word char" : i.e. alphanumeric, not space or punctuation</td>
+</tr>
+
+<tr>
+<td><b><tt>\W</tt></b></td>
+
+<td><b><tt>[^a-zA-Z0-9]</tt></b></td>
+
+<td>"word separator" : i.e. space or punctuation, also
+not EOL or BOL</td>
+</tr><tr>
+      <td valign="top">\l<br>
+      </td>
+      <td valign="top">[a-z]<br>
+      </td>
+      <td valign="top">Lowercase
+letter. In the search expression it matches any lower case letter. In the
+replace expression it lowercases the character or character representer following
+it.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">\L<br>
+      </td>
+      <td valign="top">[^a-z]<br>
+      </td>
+      <td valign="top">In the search expression \L matches any character except except a lowercase letter.
+In the replace expression it makes everything that follows it, to the end
+of the replace expression, lower case. However, a later \U in the replace
+expression ends its effect.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">\u<br>
+      </td>
+      <td valign="top">[A-Z]<br>
+      </td>
+      <td valign="top">Uppercase
+letter.  In the search expression it matches any lower case letter. In the
+replace expression it capitalizes the character following it.       </td>
+    </tr>
+    <tr>
+      <td valign="top">\U<br>
+      </td>
+      <td valign="top">[^A-Z]<br>
+      </td>
+      <td valign="top">In the search expression \U matches any character except except an uppercase letter.
+In the replace expression it makes everything that follows it, to the end
+of the replace expression, upper case. However, a later \L in the replace
+expression ends its effect.
+      </td>
+    </tr>
+
+</tbody>
+</table>
+
+
+<br>
+
+
+What do you do if you need to match a control character like &nbsp;a newline,
+carriage return, escape character or tab? In the UNIX world you could construct
+the unprintable by pressing Ctrl+V followed by the control character (Ctrl+M
+for the carriage return character, for instance). But that's ugly. A much
+better solution is to use the following character representers:<br>
+
+
+<br>
+
+
+<table cellpadding="2" cellspacing="2" border="1">
+
+
+  <tbody>
+    <tr>
+      <td valign="top" bgcolor="#cccccc">Character Representer<br>
+      </td>
+      <td valign="top" bgcolor="#cccccc">What it represents<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">\e<br>
+      </td>
+      <td valign="top">The Escape character (decimal 27)<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">\t<br>
+      </td>
+      <td valign="top">The Tab character<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">\r<br>
+      </td>
+      <td valign="top">The carriage return character (looks like ^M in VI)<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">\b<br>
+      </td>
+      <td valign="top">The Backspace character<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">\n<br>
+      </td>
+      <td valign="top">The end of line character<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">.<br>
+      </td>
+      <td valign="top">Any character<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<br>
+
+
+There are also special strings that represent positions in a line instead of characters:<br>
+
+
+<br>
+
+
+<table cellpadding="2" cellspacing="2" border="1">
+
+
+  <tbody>
+    <tr>
+      <td valign="top" bgcolor="#cccccc">Positional<br>
+Representer<br>
+      </td>
+      <td valign="top" bgcolor="#cccccc">Example<br>
+      </td>
+      <td valign="top" bgcolor="#cccccc">Meaning<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><tt><b>^<br>
+      </b></tt></td>
+      <td valign="top"><tt><b>:s/^/cp /</b></tt></td>
+      <td valign="top"><tt>^</tt> Means beginning of line. This example "replaces"
+the beginning of line with cp followed by a space, creating a copy command
+from a directory listing. Note that when you "replace" a positional representer,
+there's nothing to replace, so you simply put the replaced text in the position
+represented by the positional representer.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><tt><b>$<br>
+      </b></tt></td>
+      <td valign="top"><tt><b>:s/$/ backupdir/</b></tt></td>
+      <td valign="top"><tt>$</tt> means end of line. This example puts a space followed by <tt>backupdir</tt> at the end of the line, finishing the copy command you started with the carat example.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><tt><b>\&lt;<br>
+      </b></tt></td>
+      <td valign="top"><tt><b>:s/\&lt;sed/awk/g</b></tt></td>
+      <td valign="top"><tt>\&lt;</tt> means a the word's beginning boundary.
+It is neither the first character of the word, nor the whitespace or punctuation
+before it, but instead an imaginary position between the two, or in the case
+where the word is at the start of the line, it exactly overlays <tt>^</tt>. This example finds every word starting with the string <tt>sed</tt> and replaces that string with <tt>awk</tt>. But, for instance, it would leave the word "ba<i>sed</i>" unharmed, because the string <tt>sed</tt> is not at the beginning of the word.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><tt><b>\&gt;<br>
+      </b></tt></td>
+      <td valign="top"><tt><b>:s/\&lt;sed\&gt;/awk/g</b></tt></td>
+      <td valign="top"><tt>\&gt;</tt> means a the word's ending boundary. It is neither the last
+character of the word, nor the whitespace or punctuation after it, but instead
+an imaginary position between the two, or in the case where the word is at
+the end of the line, it exactly overlays <tt>$</tt>. This example finds every word <tt>sed</tt> and replaces that word with <tt>awk</tt>. But, for instance, it would leave the word "ba<i>sed</i>" unharmed, and also the word "<i>sed</i>iment", because the string <tt>sed</tt> is not at both the beginning and end of the search pattern.</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<br>
+
+
+<br>
+
+
+Because many characters are used as character representers, character set
+shortcuts, and other constructs, they are not available in regular expressions
+unless they're escaped. Here's a partial list of characters that must be
+escaped:<br>
+
+
+<br>
+
+
+<table cellpadding="2" cellspacing="2" border="1" width="100%">
+
+
+  <tbody>
+    <tr>
+      <td valign="top">\.<br>
+      </td>
+      <td valign="top">A literal period<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">\\<br>
+      </td>
+      <td valign="top">A literal backslash<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">\/<br>
+      </td>
+      <td valign="top">A literal forward slash. Note that because of the
+forward slash's role in regular expressions, this escape pattern must be
+used even in the replace section of search and replace regular expressions.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">\^<br>
+      </td>
+      <td valign="top">A literal carat. Normally a carat represents "beginning of line".<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">\$<br>
+      </td>
+      <td valign="top">A literal dollar sign. Normally a dollar sign represents "end of line".<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<br>
+
+
+The VI character set shortcuts discussed so far are handy, but in addition
+to those, many VI implementations recognize Posix character set shortcuts,
+as shown in the following table:<br>
+
+
+<br>
+
+
+<table cellspacing="0" cellpadding="0" nosave="">
+
+
+
+<tbody><tr>
+<td><b>[[:alnum:]]</b></td>
+
+<td>&nbsp;</td>
+
+<td><b>letters and digits</b></td>
+</tr>
+
+<tr>
+<td><b>[[:alpha:]]</b></td>
+
+<td><br>
+</td>
+
+<td><b>letters</b></td>
+</tr>
+
+<tr nosave="">
+<td nosave=""><b>[[:blank:]]</b></td>
+
+<td><br>
+</td>
+
+<td><b>space and tab characters</b></td>
+</tr>
+
+<tr nosave="">
+<td><b>[[:cntrl:]]</b></td>
+
+<td><br>
+</td>
+
+<td nosave=""><b>control characters</b></td>
+</tr>
+
+<tr nosave="">
+<td><b>[[:digit:]]</b></td>
+
+<td><br>
+</td>
+
+<td nosave=""><b>decimal digits</b></td>
+</tr>
+
+<tr>
+<td><b>[[:graph:]]</b></td>
+
+<td><br>
+</td>
+
+<td><b>printable characters excluding space</b></td>
+</tr>
+
+<tr>
+<td><b>[[:lower:]]</b></td>
+
+<td><br>
+</td>
+
+<td><b>lowercase letters (all letters when 'ignorecase' is used)</b></td>
+</tr>
+
+<tr>
+<td><b>[[:print:]]</b></td>
+
+<td><br>
+</td>
+
+<td><b>printable characters including space</b></td>
+</tr>
+
+<tr>
+<td><b>[[:punct:]]</b></td>
+
+<td><br>
+</td>
+
+<td><b>punctuation characters</b></td>
+</tr>
+
+<tr>
+<td><b>[[:space:]]</b></td>
+
+<td><br>
+</td>
+
+<td><b>whitespace characters</b></td>
+</tr>
+
+<tr>
+<td><b>[[:upper:]]</b></td>
+
+<td><br>
+</td>
+
+<td><b>uppercase letters (all letters when 'ignorecase' is used)</b></td>
+</tr>
+
+<tr>
+<td><b>[[:xdigit:]]</b></td>
+
+<td><br>
+</td>
+
+<td><b>hexadecimal digits</b></td>
+</tr>
+
+<tr>
+<td><b>[[:return:]]</b></td>
+
+<td><br>
+</td>
+
+<td><b>the &lt;CR&gt; character</b></td>
+</tr>
+
+<tr>
+<td><b>[[:tab:]]</b></td>
+
+<td><br>
+</td>
+
+<td><b>the &lt;Tab&gt; character</b></td>
+</tr>
+
+<tr>
+<td><b>[[:escape:]]</b></td>
+
+<td><br>
+</td>
+
+<td><b>the &lt;Esc&gt; character</b></td>
+</tr>
+
+<tr>
+<td><b>[[:backspace:]]</b></td>
+
+<td><br>
+</td>
+
+<td><b>the &lt;BS&gt; character</b></td>
+</tr>
+</tbody>
+</table>
+
+
+<br>
+
+
+Remember, a character set is a wildcard against which you can match a single
+character. You cannot use it to match a string or phrase, unless you use
+enumerators...<br>
+
+
+<h2>Enumerators</h2>
+
+
+Enumerators apply to a single character -- the character or character set
+that precedes them in the regular expression. An enumerator declares how
+many of the preceding character will match. <br>
+
+
+<br>
+
+
+The most general form of an iterator is:
+<pre>\{n,m}</pre>
+
+
+
+The first number (n), is the minimum number of the preceding character needed to create a match. For instance, <br><tt>
+
+
+A\{2, 4}</tt> matches AA, AAA, or even AAAAAAAAA, but it does not match a single A not followed or preceded by an additional A.<br>
+
+
+<br>
+
+
+So you might wonder what the second number is. The second number is how far
+you skip before trying to find another match. For instance, take a string
+with 13 A characters in a row, preceded and followed by a space.<br>
+
+
+<pre>/A\{2,4} the first time<br>AAAAAAAAAAAAA<br>^<br><br><br>/A\{2,4} the second time<br>AAAAAAAAAAAAA<br>    ^<br><br><br>/A\{2,4} the third time<br>AAAAAAAAAAAAA<br>        ^<br><br><br>/A\{2,4} the fourth time (no match, because only 1 A remains)<br>AAAAAAAAAAAAA<br>            <br></pre>
+
+
+The first time it matches the first 4 letters. The second time it matches
+the second four. The third time it matches the third four. Now it gets interesting.
+It doesn't match the last A because there's only one left. If there had been
+14 A's instead of 13, it would have matched the last 2. So the last number
+is the maximum match, and the number it skips ahead to begin trying for the
+next match.<br>
+
+
+<br>
+
+
+Remember also that the character being enumerated can be a character set.
+For instance, the following finds strings of 2 to 100 instances of whitespace
+(presumably to convert them to nothing, thereby squeezing out repeated spaces)<br>
+
+
+<pre>\s\{2,100}<br></pre>
+
+
+That brings up a good point. You really wanted 2 to infinity, not 2 to 100.
+Another way of saying 2 to infinity is 2 or more, and the enumerator for
+that is <tt>\{2,}</tt>. That matches 2 or more consecutive A characters,
+and matches all of them, so that subsequent matches won't match any more
+of that consecutive run.<br>
+
+
+<br>
+
+
+Perhaps you want to match exactly two of a character. The enumerator for that is <tt>\{2}</tt>. <br>
+
+
+<br>
+
+
+There are shortcuts for the most common enumerators, namely, 0 or more, 1 or more, and 0 or 1:<br>
+
+
+<br>
+
+
+<table cellpadding="2" cellspacing="2" border="1">
+
+
+  <tbody>
+    <tr>
+      <td valign="top" bgcolor="#cccccc">Shortcut<br>
+      </td>
+      <td valign="top" bgcolor="#cccccc">Equivalent enumerator<br>
+      </td>
+      <td valign="top" bgcolor="#cccccc">Meaning<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">*<br>
+      </td>
+      <td valign="top">\{0,}<br>
+      </td>
+      <td valign="top">0 or more<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">\+<br>
+      </td>
+      <td valign="top">\{1,}<br>
+      </td>
+      <td valign="top">1 or more<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">\?<br>
+      </td>
+      <td valign="top">\{0,1}<br>
+      </td>
+      <td valign="top">0 or 1<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<br>
+
+
+The following matches a traditional 10 digit phone number:<br>
+
+
+<pre>/(\d\{3})[-[:space:]]\?\d\{3}-\d\{4}<br></pre>
+
+
+The preceding is read as follows:<br>
+
+
+<br>
+
+
+An opening paren, followed by exactly three digits, followed by a closing paren, followed by zero or one
+instance of either a whitespace character or a dash, followed by exactly
+three digits, followed by a dash, followed by exactly four digits.<br>
+
+
+<br>
+
+
+Armed with character sets and enumerators, you can search and successfully
+find simple to moderately complex patterns. But some things, like locating
+phone numbers whether or not they have area codes, and parsing of delimited
+lines, require more. Read on...<br>
+
+
+<h2><a name="Using_Matched_Text_as_Replacement_Text"></a>Using Matched Text as Replacement Text</h2>
+
+
+Something that comes up with surprising regularity is the need to switch
+2 parts of every line. For instance, consider a comma delimited data file.
+What if you need to switch the first and second fields? Here's how you do
+it:<br>
+
+
+<pre>:%s/\([^,]*\),\([^,]*\),\(.*\)/\2,\1,\3/<br></pre>
+
+
+Your first reaction might be that the preceding is ugly. That's true, but
+compare it to writing a program or creating a macro like you need to do in
+so many other editors.<br>
+
+
+<br>
+
+
+Here's a character by character explanation of the preceding command:<br>
+
+
+<table cellpadding="3">
+
+
+  <tbody>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>:%s</b></pre>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">Substitute&nbsp;on every line<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right"><b>/<br>
+      </b></td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">Begin search expression<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>\(</b></pre>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">Begin a group. The group is ended by \). Everything
+inside a search expression group is remembered such that it can be used within
+the replace text.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>[^,]</b></pre>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">A character set that matches everything EXCEPT a comma.
+In a comma delimited file, this is how you implement short matching so the
+match ends on the first comma.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right"><b><tt>*</tt><br>
+      </b></td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">An enumerator indicating zero or more of the character
+or character set that preceded it. In this case, it means zero or more non-commas.
+Those zero or more non-commas correspond to the first field in the line.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>\)</b></pre>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">Ends the first group.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right"><b><tt>,</tt><br>
+      </b></td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">Matches a comma, which is the field delimiter in a comma delimited file.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>\(</b></pre>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">Begins the second group<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>[^,]*</b></pre>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">Zero or more non-commas corresponding to the second field<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>\)</b></pre>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">Ends the second group<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right"><b><tt>,</tt><br>
+      </b></td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">Matches the comma that separates the second field from the third field<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>\(</b></pre>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">Begins the third group</td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>.*</b></pre>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">Zero or more characters of any type. This represents
+the rest of the line. Because the only fields you're modifying are the first
+and second, you can group the third, fourth, ... fields together into one
+group -- the third group.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>\)</b></pre>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">Ends the third group<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right"><b>/<br>
+      </b></td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">Ends the search expression and begins the replace expression<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>\2</b></pre>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">The text that was matched by the second group of the
+search expression, which, in fact, was the second field, which we are now
+putting first<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right"><b><tt>,</tt><br>
+      </b></td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">Literal comma to separate the first and second fields in the replaced text.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>\1</b></pre>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">Text matched by the first group in the search expression, which we are now putting second.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>,</b></pre>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">Literal comma to separate the new second field from the third<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>\3</b></pre>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">Text matched by the third group in the search expression, which in fact represented all fields after the first two<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>/</b></pre>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">Ends the replace expression<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<br>
+
+
+Study the preceding information. Once you understand the preceding, you understand
+most of what it takes to use search information in the replace expression.
+Here's another example -- a titlecase converter:<br>
+
+
+<pre><b>:%s/\&lt;\(.\)\([^[:space:][:punct:]]*\)\&gt;/\u\1\2/g</b><b><tt><br></tt></b></pre>
+
+
+You might use this in a VI based book outline in order to titlecase all headings
+for later use as parts, sections, subsections, etc. Let's quickly analyze:<br>
+
+
+<table cellpadding="3">
+
+
+  <tbody>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>:s</b></pre>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">Substitute on every line<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>/</b></pre>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">Start search expression<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>\&lt;</b></pre>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">Matches position at beginning of word (between the
+space or punctuation preceding the word and the first alphanumeric of the
+word<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>\(.\)</b></pre>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">Group containing the first character of the word<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>\(</b></pre>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">Begin second group<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>[^[:space:][:punct:]]*</b></pre>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">Series
+(zero or more) characters that are neither whitespace nor punctuation. This
+makes up the remainder of the word. This is discussed further in the <a href="http://www.troubleshooters.com/lpm/200212/200212.htm#Short_Matching">Short Matching</a> section of this article.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>\)</b></pre>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">End second group<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>\&gt;</b></pre>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">Matches position at end of word (between the last alphanumeric of the word and the punctuation or space following the word)<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>/</b></pre>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">Ends the search expression and begins the replace expression<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>\u</b></pre>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">Means the next character or metacharacter will be capitalized<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>\1</b></pre>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">The text that matched the first group of the search
+expression. In this case that means the first character of the word, which
+due to the \u before it in the replace expression, means it's capitalized.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>\2</b></pre>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">The text that matched the second group of the search expression. In this case that means the remainder of the word.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>/</b></pre>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">Ends the replace expression<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>g</b></pre>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">Means global, meaning that you don't quit on the first
+match. This is what enables this title case converter to work on every word
+of the line.<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<br>
+
+
+
+Once again, review the preceding, especially noting the use of \&lt; and \&gt; to delineate words, the use of <br>
+
+
+<tt>[^[:space:][:punct:]]*</tt> to represent the remainder of a word, and the use of \u to uppercase the next item in the replace expression.<br>
+
+
+<br>
+
+
+The following table lists several pieces of syntax used when you use matched text in the replacement:<br>
+
+
+<table cellpadding="2" cellspacing="2" border="1">
+
+
+  <tbody>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>\(.....\)</b></pre>
+      </td>
+      <td valign="top">Delineates
+a group. Whatever matches the expression inside the \( and \) is remembered
+and available in the replace expression. In this example, any series of 5
+characters matches the expression inside the \( and \).</td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>\1</b></pre>
+      </td>
+      <td valign="top">Used inside the replace expression, this is replaced by the text matched by the first group in the search expression.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>\2<br></b></pre>
+      </td>
+      <td valign="top">Used inside the replace expression, this is replaced
+by the text matched by the second group in the search expression. Likewise
+\3 is replaced by the text matched by the third group, \4 by the text matched
+by the 4th group, all the way up to \9.</td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>\u</b></pre>
+      </td>
+      <td valign="top">Used in the search expression, this matches any upper
+case letter. Used in the replace expression, this uppercases the next single
+item in the replacement expression.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>\l</b></pre>
+      </td>
+      <td valign="top">Used in the search expression, this matches any lower case letter. Used in
+the replace expression, this lowercases the next single item in the replacement
+expression.</td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>\U</b></pre>
+      </td>
+      <td valign="top">Used in the search expression, this matches any character that IS NOT an upper case letter. Used in
+the replace expression, this uppercases the remainder of the replacement
+expression. However, a later \L in the replace expression will "turn off" the \U at the point of appearance of the \L.</td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>\L</b></pre>
+      </td>
+      <td valign="top">Used in the search expression, this matches any character that IS NOT a lower case letter. Used in
+the replace expression, this lowercases the remainder of the replacement
+expression. However, a later \U in the replace expression will "turn off" the \L at the point of appearance of the \U.</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<br>
+
+
+Using matched text is one of VI's most powerful features. Many other word
+processors require you to write a macro in order to accomplish similar things.
+Of course you could write the same types of macros in VI, but once you get
+used to regular expressions it takes only 1/4 to 1/10 the time.<br>
+
+
+<h2><a name="Short_Matching"></a>Short Matching<br>
+</h2>
+
+
+
+Consider the following sentence:<br>
+
+
+<br>
+
+
+<i>I will roll the wheel from the whalebelly to the well.</i><br>
+
+
+<br>
+
+
+Let's say you want to find every string that begins with w and ends with
+ll, replacing it with XXX. You want the line changed to the following:<br>
+
+
+<br>
+
+
+<i>I XXX roll the wheel from the XXXy to the XXX.</i><br>
+
+
+<br>
+
+
+How bout this:<br>
+
+
+<pre>s/w.*ll/XXX/g<br></pre>
+
+
+The <tt>g</tt> on the end means global, meaning keep finding and replacing
+after finding the first one. Unfortunately, the preceding regex will instead
+produce the following:<br>
+
+
+<br>
+
+
+<i>I XXX.<br>
+</i><br>
+
+What happened? Unless told otherwise, regular expressions match as
+much as possible. So it found the first w (the one in will), and the last
+ll (the one in well), and replaced them, and everything in between, with
+XXX. How would you make the matches as short as possible? &nbsp;Some environments,
+such as Perl, have special modifiers enabling enumerators to match as short
+as possible. This isn't available in many VI &nbsp;implementations.<br>
+
+
+<br>
+
+
+What's needed is a way to limit the scope of the enumerator. Consider the following:<br>
+
+
+<pre>:s/w[^l]*ll/XXX/g<br></pre>
+
+
+
+This is much closer, producing the following:<br>
+
+
+<br>
+
+
+<i>I XXX roll the wheel from the whalebelly to the XXX.</i><br>
+
+
+<br>
+
+
+It found "will" and "well", but missed "whalebell". What happened is the
+first "l" in "whalebelly" reset the search, so that the search went back
+to searching for "w", moving all the way to the last word of the line.<br>
+
+
+<br>
+
+
+If we can agree that we should match long on a per word basis (in other words,
+"wellwall" will be replaced by XXX and not XXXXXX), we can limit by word
+boundaries instead of the "l" character:<br>
+
+
+<pre>:s/w[^[:space:][:punct:]]*ll/XXX/g<br></pre>
+
+
+The preceding produces the desired:<br>
+
+
+<br>
+
+
+<i>I XXX roll the wheel from the XXXy to the XXX.</i><br>
+
+
+<br>
+
+
+If you want full short matching ("wellwall" replaced by XXXXXX), you need to use advanced techniques involving groups.<br>
+<h5>
+Steve Litt is the author of <a href="http://www.troubleshooters.com/bookstore/rl.htm">Rapid Learning:
+Secret Weapon of the Successful Technologist</a> . He can be reached at
+<a href="http://www.troubleshooters.com/email_steve_litt.htm">Steve Litt's email address</a>.</h5>
+
+
+
+
+
+
+
+
+
+
+<h1><a name="_Advanced_Searches_with_Groups"></a>Advanced Searches with Groups</h1>
+
+
+<h5>By Steve Litt</h5>
+
+
+I wouldn't blame you for skipping this article. It's brutal, and for 90%
+of your editing activities you won't need its power. Indeed, what you can
+do with groups in a regular expression would be difficult for a good programmer
+using C (unless he was using regular expressions).<br>
+
+
+<br>
+
+
+Let's say you want to find a phone number. Look at all the ways phone numbers can be written:<br>
+
+
+<ul>
+
+
+  <li>(800)555-1212</li>
+  <li>(800) 555-1212</li>
+  <li>(800)-555-1212</li>
+  <li>800-555-1212</li>
+  <li>555-1212</li>
+</ul>
+
+
+These don't include putting 1- in front -- it can be done but I want to keep this
+example understandable. How can you write a single search
+expression to find all of these different methods?<br>
+
+
+<br>
+
+
+The first thing to notice is that everything except the area code is simple:<br>
+
+
+<pre>/\d\{3}-\d\{4}<br></pre>
+
+
+As things get hairy, it's important to note that the last 8 characters are a "gimme".<br>
+
+
+<br>
+
+
+If you notice, either you have an area code plus optional dash or space between
+it and the exchange, or you don't. So you make a group to hold the area code,
+its parens or lack thereof, and option dash or space. We already discussed
+groups in the <a href="http://www.troubleshooters.com/lpm/200212/200212.htm#Using_Matched_Text_as_Replacement_Text">Using Matched Text as Replacement Text</a>
+section of this article, where we used it to capture text for later use in
+the replace expression. The more powerful use is to create incredibly versatile
+searches, such as detecting all these different phone number formats.<br>
+
+
+<br>
+
+
+So anyway, we can start by dreaming of a group containing area code, optional
+parens, and an optional trailing separator, and prepending it onto the search
+for the exchange and 4 digit number:<br>
+
+
+<pre>/\(area_code_group\)\?\d\{3}-\d\{4}<br></pre>
+
+
+Following in the footsteps of programmers since the dawn of time, let's simply
+forget about the last 7 digits and concentrate on the area code group.<br>
+
+
+<br>
+
+
+One thing you know is the area code has it has parentheses or it doesn't.
+The other punctuation depends on whether it has parentheses. If it has parentheses
+you look for this:<br>
+
+
+<pre>/(\d\{3})[- ]\?</pre>
+
+
+That's an opening paren, exactly three digits, a closing paren, and one or
+zero iterations of either a space or a dash. Obviously if there are zero
+iterations it matches a string where the paren buts up against the telephone
+exchange.<br>
+
+
+<br>
+
+
+If there are no parens, it's even simpler because you must have a dash after the area code. <br>
+
+
+<pre>\d\{3}-</pre>
+
+
+We'll use the \| operator to represent alternatives. In truth I don't know
+whether many VI implementations offer the \| operator, but I know that Vim
+does. By the way, in case you haven't noticed, Vim is my favorite VI implementation,
+though I like all VI's. Anyway, here's the first step in representing the
+area code:<br>
+
+
+<pre>/(\d\{3})[- ]\?\|\d\{3}-&nbsp; </pre>
+
+
+This matches area codes with or without parens. Remembering phone numbers
+can have one or zero area codes, together with the area code's parens and
+optional trailing dash or space, we put that in a group that can happen zero
+or one time, and append the regex for the last 7 digits of the phone number:<br>
+
+
+<pre><b><font size="+1"><font color="#330033">/</font><font color="#330033">\(</font><font color="#330033">(\d\{3})[- ]\?</font><font color="#330033">\|</font><font color="#330033">\d\{3}-</font><font color="#330033">\)</font><font color="#330033">\?</font><font color="#993399"><font color="#330033">\d\{3}-\d\{4}</font></font></font></b></pre>
+
+
+To make this clearer, let's color code it:<br>
+
+
+<pre><font size="+1"><b>/<font color="#cc0000">\(</font><font color="#006600">(\d\{3})[- ]\?</font><font color="#ff6600">\|</font><font color="#000099">\d\{3}-</font><font color="#cc0000">\)</font><font color="#339999">\?</font><font color="#993399">\d\{3}-\d\{4}</font></b></font><br></pre>
+
+
+<br>
+
+
+<table cellpadding="2" cellspacing="2" border="1">
+
+
+  <tbody>
+    <tr>
+      <td valign="middle" align="right" bgcolor="#cccccc"><b>Color<br>
+      </b></td>
+      <td valign="middle" align="center" bgcolor="#cccccc">
+      <pre><b>Regex<br></b></pre>
+      </td>
+      <td valign="middle" bgcolor="#cccccc"><b>Explanation<br>
+      </b></td>
+    </tr>
+    <tr>
+      <td valign="middle" align="right"><b><font color="#cc0000">red<br>
+      </font></b></td>
+      <td valign="middle" align="center">
+      <pre><b><font color="#cc0000">\( to \)<br></font></b></pre>
+      </td>
+      <td valign="middle"><b><font color="#cc0000">Group &nbsp;consisting of all area code and trailing punctuation alternatives</font><br>
+      </b></td>
+    </tr>
+    <tr>
+      <td valign="middle" align="right"><b><font color="#00cccc">turquoise<br>
+      </font></b></td>
+      <td valign="middle" align="center">
+      <pre><b><font color="#00cccc">\?<br></font></b></pre>
+      </td>
+      <td valign="middle"><b><font color="#00cccc">Signifies 0 or 1 instances of the area code group.<br>
+      </font></b></td>
+    </tr>
+    <tr>
+      <td valign="middle" align="right"><b><font color="#993399">magenta</font></b></td>
+      <td valign="middle" align="center">
+      <pre><b><font size="+1"><font color="#993399">\d\{3}-\d\{4}</font></font></b></pre>
+      </td>
+      <td valign="middle"><b><font color="#993399">Phone number without area code</font></b></td>
+    </tr>
+    <tr>
+      <td valign="middle" align="right"><b><font color="#ff6600">orange</font></b></td>
+      <td valign="middle" align="center">
+      <pre><b><font size="+1"><font color="#ff6600">\|</font></font></b></pre>
+      </td>
+      <td valign="middle"><b><font color="#ff6600">Signifies that the element on its left and on its right are either/or alternatives</font></b></td>
+    </tr>
+    <tr>
+      <td valign="middle" align="right"><b><font color="#006600">green</font></b></td>
+      <td valign="middle" align="center">
+      <pre><b><font size="+1"><font color="#006600">(\d\{3})[- ]\?</font></font></b></pre>
+      </td>
+      <td valign="middle"><b><font color="#006600">Structure (with options) of area code with parens</font></b></td>
+    </tr>
+    <tr>
+      <td valign="middle" align="right"><b><font color="#000099">blue</font></b></td>
+      <td valign="middle" align="center">
+      <pre><b><font size="+1"><font color="#000099">\d\{3}-</font></font></b></pre>
+      </td>
+      <td valign="middle"><b><font color="#000099">Structure of the area code without parens</font><br>
+      </b></td>
+    </tr>
+  </tbody>
+</table>
+
+
+<br>
+
+
+Groups can be nested, and nested, and nested some more. In VI implementations
+that allow it, alternative groups can be specified with the \| operator (or
+possibly a different operator in a different VI implementation).<br>
+
+
+<br>
+
+
+If your head doesn't hurt too badly, for extra credit try to make a substitute
+expression that converts all these phone number formats to a single format.
+I can't do it in a single step, but I can do it in a 2 step process. The
+first substitute finds all valid phone numbers and surrounds them with <tt>pho_</tt> on one side and <tt>_ohp</tt>
+on the other. The second finds such surrounded strings and picks off the
+digits. This 2 stage approach frees the second replace from worrying about
+punctuation, or mixing detection and validation with substitution.<br>
+
+
+<br>
+
+
+To do this, step 1 must surround the ENTIRE search expression with \( and
+\) to make it a single group, and place it in a substitute:<br>
+
+
+<br>
+
+
+<pre><b>:%s/\(\((\d\{3})[- ]\?\|\d\{3}-\)\?\d\{3}-\d\{4}\)/pho_\1_ohp/</b></pre>
+
+
+Step 2 formats all resulting strings that include area codes in a standard format:<br>
+
+
+<pre><b>:%s/pho_\D*\(\d\d\d\)\D*\(\d\d\d-\d\d\d\d\)_ohp/(\1)-\2/</b><br></pre>
+You'll notice that all phone numbers that didn't include an area code were
+not converted. To convert them you need to run a second, much simpler substitute
+command.<br>
+<br>
+
+
+I think you know where I'm going with this. If we can recognize all forms
+of phone numbers, and we can also remember matched text for use in the replace
+expression, then it's pretty obvious we can make a regular expression to
+"standardize" phone numbers. In this case we need to surround the digits
+of the phone number with slash parens. It's made more difficult because those
+slash parens are nested in a major group and are alternatives. <br>
+
+
+<h2>Summary</h2>
+
+Regular expressions are huge. Master them and you can do
+in 5 minutes what others take hours to do. One of the most powerful regular
+expression techniques is the use of groups. By using groups, you can search
+for various alternatives, and for phrases that may or may not be there or
+may be repeated. Groups can be nested.<br>
+
+
+
+
+
+
+<h5>
+Steve Litt is the author of <a href="http://www.troubleshooters.com/bookstore/rl.htm">Rapid Learning:
+Secret Weapon of the Successful Technologist</a> . He can be reached at
+<a href="http://www.troubleshooters.com/email_steve_litt.htm">Steve Litt's email address</a>
+.</h5>
+
+
+
+
+
+
+<h1><a name="_Registers_Cut_and_Paste"></a>Registers, Cut and Paste</h1>
+
+
+
+
+
+<h5>By Steve Litt</h5>
+
+The most significant factor in a software developer's
+success is his or her design process. Next comes his or her debugging process,
+including use of tools such as debuggers. Obviously, a good memory or skillful
+use of reference material play an important part also.<br>
+
+
+<br>
+
+
+And for those of us without total recall, cut and paste plays a vital role
+in our software development productivity. The ability to copy documentation
+and paste it into our code, to copy a function declaration to the code that
+uses the function, and many other cut and paste tasks speed our productivity
+immensely.<br>
+
+
+<br>
+
+
+VI's cut and paste is richer than most other editors because of VI's vast
+array of registers. A register is simply a place to store text.<br>
+
+
+<br>
+
+
+The simplest cut and paste operation is to delete a single line and paste it elsewhere. The line delete is accomplished by the <tt>dd</tt> key sequence, which deletes the current line and places it in the default register, the <tt>""</tt> register. You can then move to another location, and press the <tt>p</tt> key, which pastes the contents of the <tt>""</tt> register below the current line.<br>
+
+
+<br>
+
+
+If you had wanted to copy the line instead of cut it, you could have used the <tt>yy</tt> keystroke sequence to "yank" the line into the <tt>""</tt> register, and then moved and used the <tt>p</tt> keystroke to paste it below the current line.<br>
+
+
+<br>
+
+
+By the way, if you want to paste above the current line instead of below it, you'd use the <tt>P</tt> keystroke instead of the <tt>p</tt> keystroke.<br>
+
+
+<br>
+
+
+Anyway, the <tt>""</tt> register always contains the text of your last deletion
+or yank, meaning it will quickly be be overwritten by the next delete or
+yank. To save a delete or yank, delete it or yank it into a specific register.
+For instance, to delete the current line and save it in the <tt>"b</tt> register, use the <tt>"bdd</tt> keystroke sequence. To yank (copy without delete) a line into register <tt>"c</tt> use the <tt>"cyy</tt>
+keystroke sequence. In general, you save any deletion or yank to a named
+register by preceding the delete or yank command with a doublequote and the
+register letter.<br>
+
+
+<br>
+
+
+To paste from a specific register, prepend a doublequote and the register letter to the paste command. Thus <tt>"bp</tt> pastes the contents of the <tt>"b</tt> register after the current position, while <tt>"eP</tt> pastes the contents of the <tt>"e</tt> register before the current position.<br>
+
+
+<br>
+
+
+To see a list of all the registers and their contents, use the <tt>:reg</tt> command.<br>
+
+
+<h2>The System Clipboard Register</h2>
+
+
+Some VI implementations have a special register whose contents are those
+of the system clipboard. Vim is one such implementation, and in Vim that
+register is the <tt>"*</tt> register. So in Linux, if you want to paste part
+of a browser hosted help file into the file you're editing, highlight the
+material in the browser, switch to Vim and type the <tt>"*p</tt> keystroke sequence.<br>
+
+
+<br>
+
+
+Likewise, to move a line from Vim to Mozilla Composer, press <tt>"*yy</tt>,
+switch to Mozilla Composer, press the middle mouse button, and watch the
+line appear in Mozilla Composer. A single line isn't particularly impressive,
+but with techniques discussed later in this article you can copy entire subroutines.<br>
+
+
+<h2>Various Delete and Yank Commands<br>
+</h2>
+
+
+Sometimes you want to delete only part of a line, instead of the complete
+line. To delete to the end of the current word, you'd use the <tt>dw</tt> keystroke sequence. To copy the remainder of the current word you'd use the <tt>yw</tt> keystroke sequence. When you delete or yank a line fragment, the <tt>p</tt> and <tt>P</tt> commands act differently, in that they paste before or after the current character instead of the current line.<br>
+
+
+<br>
+
+
+In general, deletion commands have corresponding yank commands. The following table lists several such commands:<br>
+
+
+<br>
+
+
+<table cellpadding="2" cellspacing="2" border="1">
+
+
+  <tbody>
+    <tr>
+      <td valign="top" bgcolor="#cccccc">Text to copy or cut<br>
+
+      </td>
+      <td valign="top" bgcolor="#cccccc">Delete<br>
+
+      </td>
+      <td valign="top" bgcolor="#cccccc">Yank<br>
+
+      </td>
+      <td valign="top" bgcolor="#cccccc">Char or Line<br>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">Current line<br>
+      </td>
+      <td valign="top">dd<br>
+      </td>
+      <td valign="top">yy<br>
+      </td>
+      <td valign="top">L<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">Current plus next 2 lines<br>
+      </td>
+      <td valign="top">3dd<br>
+      </td>
+      <td valign="top">3yy<br>
+      </td>
+      <td valign="top">L<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">Current word<br>
+      </td>
+      <td valign="top">dw<br>
+      </td>
+      <td valign="top">yw<br>
+      </td>
+      <td valign="top">C<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">Current plus next 2 words<br>
+      </td>
+      <td valign="top">2dw or d2w<br>
+      </td>
+      <td valign="top">2yw or y2w<br>
+      </td>
+      <td valign="top">C<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">Current plus previous 2 words<br>
+      </td>
+      <td valign="top">2db<br>
+      </td>
+      <td valign="top">2yb<br>
+      </td>
+      <td valign="top">C<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">Current char to end of line<br>
+      </td>
+      <td valign="top">D or d$<br>
+      </td>
+      <td valign="top">y$<br>
+      </td>
+      <td valign="top">C<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">Preceding char to beginning of line<br>
+      </td>
+      <td valign="top">d0<br>
+      </td>
+      <td valign="top">y0<br>
+      </td>
+      <td valign="top">C<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">Character under cursor<br>
+      </td>
+      <td valign="top">x<br>
+      </td>
+      <td valign="top">&nbsp;<br>
+      </td>
+      <td valign="top">C<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">Character before cursor<br>
+      </td>
+      <td valign="top">X<br>
+      </td>
+      <td valign="top">&nbsp;<br>
+      </td>
+      <td valign="top">C<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">Remainder of paragraph<br>
+      </td>
+      <td valign="top">d}<br>
+      </td>
+      <td valign="top">y}<br>
+      </td>
+      <td valign="top">C<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">Earlier part of paragraph<br>
+      </td>
+      <td valign="top">d{<br>
+      </td>
+      <td valign="top">y{<br>
+      </td>
+      <td valign="top">C<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">Current char to start of <tt>searchtext</tt><br>
+      </td>
+      <td valign="top">d/searchtext<br>
+      </td>
+      <td valign="top">y/searchtext<br>
+      </td>
+      <td valign="top">C<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">Preceding char to start of  <tt>searchtext</tt></td>
+      <td valign="top">d?searchtext</td>
+      <td valign="top">y?searchtext</td>
+      <td valign="top">C<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">To end of sentence (not counting the period)<br>
+      </td>
+      <td valign="top">d\/.<br>
+      </td>
+      <td valign="top">y\/.<br>
+      </td>
+      <td valign="top">C<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<br>
+
+
+Notice in the preceding that many of the commands are composed by appending a motion command to the end of the &nbsp;<tt>d</tt> or <tt>y</tt>. The motion command can be a built in one like <tt>w</tt> or <tt>}</tt>, or it can be a search. Either way, all the characters traversed in the motion are deleted or yanked.<br>
+
+
+<h2>WYSIWYG Cut and Paste</h2>
+
+
+Many VI implementations, including Vim, allow visual mode highlighting, in which case simply pressing the <tt>d</tt> or <tt>y</tt>
+key will delete or yank the highlighted text. For instance, in Vim you can
+highlight line by line by pressing &nbsp;the <tt>V</tt> key and then moving with motion commands
+such as <tt>j</tt>, <tt>k</tt>, <tt>}</tt> or a search. You can start&nbsp; highlighting character by character with the <tt>v</tt> key. <br>
+
+
+<br>
+
+
+And in Vim, you can start rectangular highlighting with the Ctrl+v keystroke
+combination. This extremely powerful capability allows you to switch fields
+around in a fixed length sequential record file. You can also build up such
+a file field by field by typing a field's contents on each line, and then
+rectangular cut and paste that onto the end of the preceding fields.<br>
+
+
+<br>
+
+
+Rectangular delete is excellent for deleting the first several characters
+from several lines or all lines in the file, or for deleting past a certain
+column.<br>
+
+
+<h2>Summary</h2>VI offers a wide variety of delete, cut, copy and paste techniques
+that are keyboard easy. The practitioner knowing the techniques listed in
+this article will be able to edit quickly. Your VI implementation will probably
+have many additional techniques not discussed in this article, giving you
+the opportunity to be even faster.<br>
+
+
+<br>
+
+
+In VI the concepts of "cut" and "delete" are identical -- deleting text always sends it to the <tt>""</tt>
+register, which could be thought of as "the VI clipboard". This concept is
+called "delete" in VI, and is implemented with various keystroke sequences
+starting with <tt>d</tt>. The concept of "copy" is called "yank" in VI, and is typically implemented with a various keystroke sequences starting with <tt>y</tt>.<br>
+
+
+<br>
+
+
+Deletes and yanks can either be character by character or line by line. The distinction is important when pasting.<br>
+
+
+<br>
+
+
+VI has two paste commands, <tt>p</tt> and <tt>P</tt>. The lower case paste
+command pastes after the current position, while the upper case version pastes
+before the current position. If the previously deleted or yanked material
+was line by line, the pasted material goes in new lines opened either after
+(<tt>p</tt>) or before (<tt>P</tt>) the current line. If the previously deleted
+or yanked material was character by character, the new material starts on
+the current line either after (<tt>p</tt>) or before (<tt>P</tt>) the character over which the cursor resides.<br>
+
+
+<h5>Steve Litt is the author of <a href="http://www.troubleshooters.com/bookstore/rl.htm">Rapid Learning:
+Secret Weapon of the Successful Technologist</a> . He can be reached at
+<a href="http://www.troubleshooters.com/email_steve_litt.htm">Steve Litt's email address</a>
+.</h5>
+
+
+<h1><a name="_Maps_and_Abbreviations"></a>Maps and Abbreviations</h1>
+
+
+<h5>
+By Steve Litt</h5>
+
+
+You can map substantial commands to simple keystrokes using the <tt>:map</tt> command. For instance:<br>
+
+
+<pre>map ,,1 :set foldlevel=1&lt;CR&gt;</pre>
+
+
+Note: if your VI implementation does not accept &lt;CR&gt; as a carriage
+return equivalent, just make the real thing with Ctrl+V followed by Ctrl+M.<br>
+
+
+<br>
+
+
+After the preceding command, any time that within command mode you press
+the keystroke sequence <tt>,,1</tt> your foldlevel gets set to 1. But what if you
+want it to work within insert mode also? In that case you might do something
+like this:<br>
+
+
+<pre>:map! ,,1 &lt;ESC&gt;:set foldlevel=1&lt;CR&gt;a</pre>
+
+
+Once again, if your implementation doesn't recognize the text "&lt;ESC&gt;"
+use Ctrl+V followed by the Esc key to place a literal Esc character.<br>
+
+
+<br>
+
+
+The exclamation point after the word "map" indicates this mapping should
+be in insert mode, not in command mode. So the command first does the &lt;Esc&gt;
+command to get out of insert mode, then sets the foldlevel, and then runs
+the append command (a) to get back into insert mode. To the user it seems
+like <tt>,,1</tt> set the foldlevel from within insert mode.<br>
+
+
+<br>
+
+
+An abbreviation is very similar to a map! command. It works from within insert
+mode only. Maps render instantly, but abbreviations do not render until another
+character is pressed. So for instance, <br>
+
+
+<pre>map! sl Steve Litt</pre>
+
+
+after the preceding command, sl expands to Steve Litt as soon as the l is pressed. On the other hand, <br>
+
+
+<pre>abbr sl Steve Litt</pre>
+
+
+after the preceding command, sl expands to Steve Litt only after the sl is
+followed by a space or punctuation. If it's followed, by, let's say, ant,
+the word "slant" is the result. Abbreviations are usually used to abbreviate
+common phrases, while map! commands are typically used to run commands.<br>
+
+
+<br>
+
+
+Maps and abbreviations can greatly speed productivity. Maps are often used to provide a quick entry to macros and scripts...<br>
+<h5>Steve Litt documented the <a href="http://www.troubleshooters.com/tuni.htm">Universal Troubleshooting Process</a>. Steve can be reached at <a href="http://www.troubleshooters.com/email_steve_litt.htm">Steve Litt's email address</a>.</h5>
+
+
+
+
+
+<h5><a href="http://www.troubleshooters.com/email_steve_litt.htm"></a></h5>
+
+
+
+
+
+
+
+<h1>
+</h1>
+
+
+
+
+
+
+
+<h1>
+<a name="_Macros_and_Scripts"></a>Macros and Scripts</h1>
+
+
+
+
+
+
+<h5>
+By Steve Litt</h5>
+
+A macro is a sequence of keystrokes to accomplish
+a task. A script is a sequence of commands to accomplish a task. In Scripts
+are usually EX mode commands (the kind of commands that start with a colon
+(:)), while macros are usually command mode commands such as <tt>dd</tt>, <tt>i</tt>, and typed in text.&nbsp; Macros are stored in registers, while scripts are stored in files. Macros are run by typing <tt>@</tt> and then the register letter, such as <tt>@b</tt>. Scripts are run by typing <tt>:source</tt> followed by the filename of the file containing the macro:<br>
+
+
+<pre>:source myscriptfile</pre>
+
+
+Macros are recorded by pressing the <tt>q</tt> key followed by a letter representing the register in which to store the macro. The recording process is ended when a second <tt>q</tt> is pressed <i>while in command mode</i>.
+So, just like so many other editors, VI enables you to construct a macro
+interactively in real time, and then later play the macro back. Macros assume
+even more power when you include a multiple by prepending the number of times
+to do it. For instance, if you wanted to append the word "Done" to 10 lines,
+you could create the following macro in register b:<br>
+
+
+<pre>A Done^[j0</pre>
+
+
+The preceding appends the word <tt>Done</tt> to the end of the line, types an Esc
+character to &nbsp;get back into command mode, goes to the next line and
+then goes to the beginning of the line. So you've appended "Done" and then
+gone to the beginning of the next line. If you then the type <tt>10@b</tt> keystroke sequence, the current line and the next 9 have the word "Done" appended to them. Better yet, if you type <tt>1000@b</tt>
+and there are only 20 lines in the file, the current line and every succeeding
+line is appended, but at end of file the other 980 iterations are ignored.<br>
+
+
+<br>
+
+
+Macros are the way editors without regular expressions do much of their magic,
+and in fact, VI can do the same type of magic with macros.<br>
+
+
+<br>
+
+
+Let's review some distinctions between macros and scripts:<br>
+
+
+<br>
+
+
+<table cellpadding="2" cellspacing="2" border="1" width="100%">
+
+
+  <tbody>
+    <tr>
+      <td valign="top" bgcolor="#cccccc">Property<br>
+      </td>
+      <td valign="top" bgcolor="#cccccc">Macro<br>
+      </td>
+      <td valign="top" bgcolor="#cccccc">Script<br>
+      </td>
+      
+    </tr>
+    <tr>
+      <td valign="top">What it is<br>
+      </td>
+      <td valign="top">A series of command mode character commands<br>
+      </td>
+      <td valign="top">A series of EX mode colon commands<br>
+      </td>
+      
+    </tr>
+    <tr>
+      <td valign="top">Where it's stored<br>
+      </td>
+      <td valign="top">In a register<br>
+      </td>
+      <td valign="top">In a file<br>
+      </td>
+      
+    </tr>
+    <tr>
+      <td valign="top">How it's recorded<br>
+      </td>
+      <td valign="top">Interactively following the q command<br>
+      </td>
+      <td valign="top">Programatically by a text editor<br>
+      </td>
+      
+    </tr>
+    <tr>
+      <td valign="top">How recording is stopped<br>
+      </td>
+      <td valign="top">A q command within command mode<br>
+      </td>
+      <td valign="top">n/a<br>
+      </td>
+      
+    </tr>
+    <tr>
+      <td valign="top">How it's run<br>
+      </td>
+      <td valign="top">@ followed by the register letter<br>
+      </td>
+      <td valign="top">:source followed by the filename<br>
+      </td>
+      
+    </tr>
+    <tr>
+      <td valign="top">How it's run multiple times<br>
+      </td>
+      <td valign="top">Precede the @ with a multiplier<br>
+      </td>
+      <td valign="top">n/a<br>
+      </td>
+      
+    </tr>
+    <tr>
+      <td valign="top">How to append to it<br>
+      </td>
+      <td valign="top">Typing q followed by the upper case register letter appends to the existing register macro.<br>
+      </td>
+      <td valign="top">In a text editor.<br>
+      </td>
+      
+    </tr>
+    <tr>
+      <td valign="top">How to edit it<br>
+      </td>
+      <td valign="top">
+      <ol>
+        <li>For example, assume register b contains the macro<br>
+        </li>
+        <li>Open a blank line in VI</li>
+        <li><tt>"bP</tt> to insert the register b macro procedures on the line</li>
+        <li>Edit the line as desired</li>
+        <li>Move to the beginning of the line<br>
+        </li>
+        <li>"bD to delete the line to register b<br>
+        </li>
+      </ol>
+      </td>
+      <td valign="top">In a text editor.</td>
+      
+    </tr>
+    <tr>
+      <td valign="top">Running one from the other<br>
+      </td>
+      <td valign="top">Include <tt>:source filename&lt;CR&gt;</tt> in the macro while in command mode<br>
+      </td>
+      <td valign="top">:normal @b<br>
+(see note)<br>
+      </td>
+      
+    </tr>
+  </tbody>
+</table>
+
+
+<table cellpadding="2" cellspacing="2" border="1" width="40%" align="right">
+  <tbody>
+    <tr>
+      <td valign="top">
+      <div align="center"><font size="+1"><b>NOTE</b></font><br>
+      </div>
+      <br>
+The <tt>:normal @b</tt> syntax works only in Vim, and possibly a few other
+VI implementations. It doesn't work in the "standard" VI from the UNIX world.<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+
+
+<h2>Scripts</h2>
+
+
+At the dawn of computerized civilization, before the invention of the VI
+full screen editor, there was a line editor called EX. EX was incredibly
+powerful, but being a line editor with a command line, it was spectacularly
+unproductive. Then somebody built VI as a full-screen front end to EX. The
+authors of VI left several ways to access the underlying EX. Some of the
+more common ones are:<br>
+
+
+<ol>
+
+
+  <li>You can run a single EX command by preceding it with the colon character</li>
+  <li>You can put a series of EX commands in a script and run it with the <tt>:source</tt> command.<br>
+  </li>
+  <li>You can go into EX mode by running VI with the <tt>-e</tt> option.</li>
+</ol>
+
+
+#3 is rarely used today and won't be discussed. #1 has been mentioned frequently
+so far in this magazine. #2 is the subject of this section.<br>
+
+<br>
+
+The following is a very abbreviated list of EX commands you can use in scripts:<br>
+
+<table cellpadding="2" cellspacing="2" border="1">
+
+  <tbody>
+    <tr>
+      <td valign="top" bgcolor="#cccccc">
+      <pre>COMMAND</pre>
+      </td>
+      <td valign="top" bgcolor="#cccccc">EFFECT<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">
+      <pre><b>:q</b></pre>
+      </td>
+      <td valign="top">Quit VI<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">
+      <pre><b>:q!</b></pre>
+      </td>
+      <td valign="top">Quit even if there are unsaved changes<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">
+      <pre><b>:e filename</b></pre>
+      </td>
+      <td valign="top">Edit a different file<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">
+      <pre><b>:e! filename</b></pre>
+      </td>
+      <td valign="top">Edit a different file even if this one has unsaved changes<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">
+      <pre><b>:e!</b></pre>
+      </td>
+      <td valign="top">Edit the disk version of this file, even if there
+are unsaved changes in the memory version. &nbsp;This is basically a revert
+command.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">
+      <pre><b>:bn</b></pre>
+      </td>
+      <td valign="top">Go to the next buffer. For each file opened with an
+:e command there is a buffer, so you can switch from buffer to buffer, as
+long as the current one is saved. This command wraps, meaning once you pass the last buffer, you go back to the first one<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">
+      <pre><b>:bp</b></pre>
+      </td>
+      <td valign="top">Go to the previous buffer. For each file opened with an :e command there is a
+buffer, so you can switch from buffer to buffer, as long as the current one
+is saved. This command wraps, meaning once you pass the first buffer, you go back to the last (highest numbered) one</td>
+    </tr>
+    <tr>
+      <td valign="top">
+      <pre><b>:b3</b></pre>
+      </td>
+      <td valign="top">Go
+to buffer # 3. Obviously you can put any number in there to go to its corresponding
+buffer. If you put a number higher than the last buffer, you get an error
+message.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">
+      <pre><b>:bl</b></pre>
+      </td>
+      <td valign="top">Go to the last (highest number) in the buffer list.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">
+      <pre><b>:bd</b></pre>
+      </td>
+      <td valign="top">Delete the current buffer, so the file is no longer in memory (but it's still on disk).
+If the buffer deleted is #5, the former #6 becomes #5, and all higher numbered
+buffers are renumbered to be one less than their former values, so there
+are no "holes" in the list of buffers.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">
+      <pre><b>:buffers</b></pre>
+      </td>
+      <td valign="top">Lists all buffers -- by number, with filename<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">
+      <pre><b>:/search</b></pre>
+      </td>
+      <td valign="top">Search forward and goto the first matching line<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">
+      <pre><b>:?search</b></pre>
+      </td>
+      <td valign="top">Search backward and goto the first matching line<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">
+      <pre><b>:s/search/repl/</b></pre>
+      </td>
+      <td valign="top">The substitute command. Can be used with ranges as discussed <a href="http://www.troubleshooters.com/lpm/200212/200212.htm#Ranges">Ranges</a> section of the <a href="http://www.troubleshooters.com/lpm/200212/200212.htm#_Elementary_Search_and_Replace_and_Global_Commands">Search and Replace: Substitute and Global Commands</a> article.</td>
+    </tr>
+    <tr>
+      <td valign="top">
+      <pre><b>:g/search/cmd</b></pre>
+      </td>
+      <td valign="top">The global command. Can be used with ranges as discussed <a href="http://www.troubleshooters.com/lpm/200212/.htm#Ranges">Ranges</a> section of the <a href="http://www.troubleshooters.com/lpm/200212/200212.htm#_Elementary_Search_and_Replace_and_Global_Commands">Search and Replace: Substitute and Global Commands</a> article.</td>
+    </tr>
+    <tr>
+      <td valign="top">
+      <pre><b>:set</b></pre>
+      </td>
+      <td valign="top">Sets a VI property<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">
+      <pre><b>:let x = 1</b></pre>
+      </td>
+      <td valign="top">Variable assignment<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">
+      <pre><b>:d</b></pre>
+      </td>
+      <td valign="top">Delete line. Can be used with ranges as discussed <a href="http://www.troubleshooters.com/lpm/200212/200212.htm#Ranges">Ranges</a> section of the <a href="http://www.troubleshooters.com/lpm/200212/200212.htm#_Elementary_Search_and_Replace_and_Global_Commands">Search and Replace: Substitute and Global Commands</a> article.</td>
+    </tr>
+    <tr>
+      <td valign="top">:put<br>
+      </td>
+      <td valign="top">Paste the content from the last delete or yank. Can be used with an optional line number and an optional register. See <tt>:h :put</tt> for details.<br>
+      </td>
+    </tr>
+<tr>
+      <td valign="top">
+      <pre><b>:!sysCmd</b></pre>
+      </td>
+      <td valign="top">Filters lines through an operating system command. Can be used with ranges as discussed <a href="http://www.troubleshooters.com/lpm/200212/200212.htm#Ranges">Ranges</a> section of the <a href="http://www.troubleshooters.com/lpm/200212/200212.htm#_Elementary_Search_and_Replace_and_Global_Commands">Search and Replace: Substitute and Global Commands</a> article. The lines in the range are sent to the command, and are replaced by the output of the command. Common examples:<br>
+      <table cellpadding="2" cellspacing="2" border="1">
+        <tbody>
+          <tr>
+            <td valign="top" bgcolor="#cccccc">sysCmd<br>
+            </td>
+            <td valign="top" bgcolor="#cccccc">RESULT<br>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top">:%sort<br>
+            </td>
+            <td valign="top">Sort the file<br>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top">:%sort -n<br>
+            </td>
+            <td valign="top">Sort file numerically<br>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top">:%sort -u<br>
+            </td>
+            <td valign="top">Sort unique -- delete dups<br>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top">:cat -n<br>
+            </td>
+            <td valign="top">Prepend line numbers to each line<br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">
+      <pre><b>:r filename</b></pre>
+      </td>
+      <td valign="top">Inserts the contents of <tt>filename</tt> below the current line.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">
+      <pre><b>:r!sysCmd</b></pre>
+      </td>
+      <td valign="top">Inserts the output of sysCmd below the current line. A few common examples:<br>
+      <table cellpadding="2" cellspacing="2" border="1">
+        <tbody>
+          <tr>
+            <td valign="top" bgcolor="#cccccc">sysCmd<br>
+            </td>
+            <td valign="top" bgcolor="#cccccc">RESULT<br>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top">/sbin/ifconfig<br>
+            </td>
+            <td valign="top">Inserts network information<br>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top">ls -l<br>
+            </td>
+            <td valign="top">Inserts a directory listing <br>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top">galeon --help<br>
+            </td>
+            <td valign="top">Inserts Galeon's usage information<br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">
+      <pre><b>:w</b></pre>
+      </td>
+      <td valign="top">Saves the current file<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">
+      <pre><b>:w filename</b></pre>
+      </td>
+      <td valign="top">Saves the current file as filename. WARNING!!! The
+buffer you are editing is the old filename, not the new one. To edit the
+new filename, perform the <tt>:e!</tt> command immediately after <tt>:w filename</tt>.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">
+      <pre><b>:4,8w filename</b></pre>
+      </td>
+      <td valign="top">Saves lines 4 through 8 of the current file to filename.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">
+      <pre><b>:4,8w&gt;&gt;filename</b></pre>
+      </td>
+      <td valign="top">Appends lines 4 through 8 to filename.<br>
+      </td>
+    </tr><tr>
+      <td valign="top"><b><tt>:normal ddp</tt></b><br>
+      </td>
+      <td valign="top">Example to the left switches the current line with the one below it. <tt>:normal</tt> runs a command mode Vim command from the EX prompt. This is not in VI, but it is in Vim and possibly other implementations.<br>
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+<h3>Convenient Set Commands</h3>
+
+
+
+<table cellpadding="2" cellspacing="2" border="1">
+
+  <tbody>
+    <tr>
+      <td valign="top" bgcolor="#cccccc">
+      <pre>SET_COMMAND</pre>
+      </td>
+      <td valign="top" bgcolor="#cccccc">EFFECT<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">
+      <pre><b>:set textwidth=0</b></pre>
+      </td>
+      <td valign="top">Turn off wordwrap during typing, but the <tt>gq</tt> command still changes line ends.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">
+      <pre><b>:set textwidth=99999</b></pre>
+      </td>
+      <td valign="top">Turns off wordwrap during typing, and forces the gq
+command to concatenate all adjacent nonblank lines. If you previously composed
+an email with textwidth 65, and want to paste it into a WYSIWYG mail client
+like kmail, you'd use :set textwidth=99999 and then gq commands to crunch
+all adjacent nonblank lines into a single line so that kmail can wrap the
+line.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">
+      <pre><b>:set ai</b></pre>
+      <pre><b>:set noai</b></pre>
+      </td>
+      <td valign="top">Set or unset autoindent. Autoindent causes new lines to start at the same column position as the line above them.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">
+      <pre><b>:set ic</b></pre>
+      <pre><b>:set noic</b></pre>
+      </td>
+      <td valign="top">Set or unset ignorecase. When ignorecase is set, searches,
+substitutes and global commands match in a case insensitive manner. When
+it's unset, searches, substitutes and global commands are case sensitive
+in matching.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">
+      <pre><b>:set fileformat=unix</b></pre>
+      <pre><b>:set fileformat=dos</b></pre>
+      </td>
+      <td valign="top">Puts the proper line endings on lines, according to operating system. DOS lines end with crlf, while UNIX lines end with lf.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">
+      <pre><b>:syntax off</b></pre>
+      <pre><b>:syntax on</b></pre>
+      </td>
+      <td valign="top">Sets or unsets syntax specific editing (coloration, etc)<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">
+      <pre><b>:set syntax=perl</b></pre>
+      </td>
+      <td valign="top">Sets the syntax language. Perl, C, Java, HTML, and many more languages are supported.<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+<h3>Functions</h3>
+
+In Vim, and probably some other VI implementations, your scripts can have
+functions. This provides power to accomplish almost any task, including turning
+VI into a different product (like an outliner). In Vim scripts, functions look something
+like this:<br>
+<br>
+
+<table cellpadding="2" cellspacing="2" border="1" bgcolor="#ccffff">
+
+  <tbody>
+    <tr>
+      <td valign="top">
+      <pre>function MakeChars(count,char)<br>	let i = 0<br>	let chars=""<br>	while i &lt; a:count<br>		let chars = chars . a:char<br>		let i = i + 1<br>	endwhile<br>	return chars<br>endfunction<br></pre>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<br>
+In the preceding, you see functions are delineated by their declaration, and by the word <tt>endfunction</tt>. Arguments are defined in the declaration, and the return statement is what you'd expect. Assignment is via the <tt>let</tt> statement, and you have loops and branching.<br>
+<br>
+One thing not obvious is functions must not be defined multiple times, so
+function definitions and declarations must be surrounded by code to prevent
+multiple definition. It looks something like this:<br>
+<br>
+<table cellpadding="2" cellspacing="2" border="1" bgcolor="#ccffff">
+  <tbody>
+    <tr>
+      <td valign="top">
+      <pre>if !exists("loaded_vimoutliner_functions")<br>  let loaded_vimoutliner_functions=1<br><br>  function MakeSpaces(count)<br>      let spaces = MakeChars(a:count," ")<br>      return spaces<br>  endfunction<br><br>  function MakeDashes(count)<br>      let dashes = MakeChars(a:count,"-")<br>      return dashes<br>  endfunction<br><br>endif<br></pre>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+For more about functions, use the <tt>:h functions</tt> command to see info about built in functions, and the <tt>:h func</tt> command to see function definition syntax.<br>
+<h5>Steve Litt is the author of "<a href="http://www.troubleshooters.com/bookstore/ttech.htm"> Troubleshooting
+Techniques of the Successful Technologist</a>".&nbsp; Steve can be reached
+at <a href="http://www.troubleshooters.com/email_steve_litt.htm">Steve Litt's email address</a>.</h5>
+
+
+
+
+
+
+
+
+
+
+<h1>
+</h1>
+
+
+
+
+
+
+
+
+
+
+
+
+<h1>
+</h1>
+<h5></h5>
+
+
+
+<h1><a name="_Programmers_Helpers"></a>Programmers Helpers</h1>
+
+<h5>By Steve Litt</h5>
+
+Like most other editors, VI has features to help editing source code. This
+article lists the ones common to most VI implementations. The <a href="http://www.troubleshooters.com/lpm/200212/200212.htm#_Vim">Vim</a> article later in this magazine discusses some Vim extensions making source code editing even easier.<br>
+
+<br>
+
+These programmers helpers are common to most VI implementations<br>
+
+<ul>
+
+  <li>Autoindent<br>
+  </li>
+  <li>Bracket matching</li>
+  <li>Tags<br>
+  </li>
+</ul>
+
+<h2>Autoindent</h2>
+
+You turn on autoindent with the <tt>:set ai</tt> command. You turn it off with the <tt>:set noai</tt>
+command. With autoindent on, every time you press Enter in insert mode, the
+cursor comes to rest below the beginning of the last line, making programming
+indentation much easier. <br>
+
+<br>
+
+Various VI implementations have other indentation settings designed to "help"
+the programmer, and in my opinion most of them are best turned off. There
+are settings which convert spaces to equivalent tabs and tabs to equivalent
+spaces, which to me is incredibly confusing. Whether you indent using tabs
+or spaces, you want it consistent. I therefore suggest the following:<br>
+
+<pre>:set ai <br>:set noexpandtab <br>:set nosmarttab <br>:set softtabstop=0 <br>:set nosmartindent <br>:set nocindent</pre>
+
+The preceding uses autoindent, but none of the other "helpful" options that
+can end up giving your lines arbitrary combinations of tabs and spaces. Also,
+it tells VI not to impose its own indentation rules, but rather to follow
+your rules and assist you by assuming a new line starts at the same position
+as the one above it.<br>
+
+<br>
+
+When using autoindent you'll find some indenting commands handy:<br>
+
+<table cellpadding="2" cellspacing="2" border="1">
+
+  <tbody>
+    <tr>
+      <td valign="top" bgcolor="#cccccc">COMMAND<br>
+      </td>
+      <td valign="top" bgcolor="#cccccc">EFFECT<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">
+      <pre><b>&gt;&gt;</b></pre>
+      </td>
+      <td valign="top">Indent in command mode<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">
+      <pre><b>&lt;&lt;</b></pre>
+      </td>
+      <td valign="top">Exdent in command mode<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">
+      <pre><b>Tab</b></pre>
+      </td>
+      <td valign="top">Indent in insert mode (when at start of line)<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">
+      <pre><b>Ctrl+T</b></pre>
+      </td>
+      <td valign="top">Indent in insert mode (from any point on the line)<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">
+      <pre><b>Ctrl+D</b></pre>
+      </td>
+      <td valign="top">Extent in insert mode (from any point on the line)<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>
+  </h2>
+
+<h2>Bracket Matching</h2>
+
+In an ideal world we'd all indent and document so well that matching beginning
+and ending brackets, braces and parens would be intuitively obvious to the
+most casual observer. In that ideal world, all maintenance programmers would
+retain the obvious matching, and even during development indentation would
+be perfect and brackets, braces and parens would never accidentally be omitted.<br>
+
+<br>
+
+For those of us not living in the ideal world, there's bracket matching.
+In command mode, simply place the cursor on a square bracket, curly brace
+or paren, and press the percent key (<tt>%</tt>). The cursor will jump to
+the complementary square bracket, curly brace or paren. This is a 5 second
+test to see whether your source code is doing what you really think it is.<br>
+
+<br>
+
+This is a great debugging technique to find the missing or extra brace that
+throws off everything else. Better yet, it's a quality control test. If,
+upon finishing a subroutine, you bracket match the beginning brace with the
+ending brace, you will have removed a large percentage of problems before
+testing your code.<br>
+
+<br>
+
+Some VI implementations, such as Vim, have syntax highlighting, which makes
+a blown brace instantly visible. But bracket matching is the conclusive test.<br>
+
+<h2>
+  </h2>
+
+<h2>Tags</h2>
+
+"Now what were the arguments to that function again?" Sound familiar? Like
+most modern professional grade editors, VI has a facility such that when
+you encounter a subroutine usage, you can jump to other places where it's
+used, as well as where it's declared and where it's defined. This is done
+by tagging.<br>
+
+<br>
+
+Here's the simplest way to implement tagging on a project. Find a directory
+with a programming project. C is ideal, C++ will probably work, as will Perl
+and some other languages. From within that directory, run the following command:<br>
+
+<pre>ctags *</pre>
+
+That will create a new file called <tt>tags</tt>. If you were to look at
+the new file you'd notice it's a list of many of your project's variables,
+functions and classes, along with the files containing their definitions
+and some other information. Once that file is created, go into one of your
+source files (not a header file), find a function call, put the cursor over
+the function name, and press the Ctrl+] key. You'll be brought to the definition
+of the function. Press the Ctrl+T key and you'll be returned to where you
+came from. This works for function names, global variables, class names,
+and even <tt>#ifdef</tt> constants.<br>
+
+<br>
+
+The preceding discussion is the simplest possible use of tagging. For real
+life projects I recommend you review information on the <tt>ctags</tt> program, keeping in mind there are other programs that construct tag files. Pick the best program and options for your needs.<br>
+
+
+
+<h5>
+Steve Litt is the author of the <a href="http://www.troubleshooters.com/utp/tcourses.htm">Universal
+Troubleshooting Process courseware</a>.&nbsp;&nbsp; Steve can be reached
+at
+<a href="http://www.troubleshooters.com/email_steve_litt.htm">Steve Litt's email address</a>.</h5>
+
+
+
+
+
+
+<h1>
+<a name="_Vim"></a>Vim</h1>
+
+
+
+
+
+
+<h5>By Steve Litt</h5>
+
+If you use Redhat or Mandrake, the <tt>vi</tt> command is symlinked to Vim.
+Vim is a VI implementation, or to be absolutely correct, a VI workalike,
+where VI is the editor originally packaged with UNIX. But given the fact
+that today there are so many VI variations, it's tough to talk of VI as if
+it's a distinct program or a standard.<br>
+
+<br>
+
+I've used VI on an HP-9000, and I've used Tiny-Elvis (another VI implementation)
+on an old Debian version, and I can tell you that Vim is hugely more useful.
+Not that you can't use HP-9000 VI or Tiny-Elvis to edit source code and/or
+construct/edit huge data files -- you can. But Vim goes farther, by adding
+enough functionality that you can configure it as an html editor, or an outline
+processor, or pretty much anything your imagination can conceive.<br>
+
+<br>
+
+Vim is a rather large VI implementation -- certainly more resource intensive
+than Tiny-Elvis, for instance. That being said, modern computers have more
+than enough RAM and processor power to easily run Vim. Here's a top command
+from my machine, which at the time was running Mozilla, Mozilla Composer,
+Galeon, UMENU, a couple shells and 4 graphical Vim sessions. <br>
+
+<br>
+
+<table cellpadding="2" cellspacing="2" border="1">
+
+  <tbody>
+    <tr>
+      <td valign="top">
+      <pre><b><font size="-1">  PID USER     PRI  NI  SIZE  RSS SHARE STAT %CPU %MEM   TIME COMMAND<br> 7365 slitt     16   0 37456  35M 13476 S     7.6  7.0  13:18 mozilla-bin<br> 7367 slitt      9   0 37456  35M 13476 S     0.0  7.0   0:00 mozilla-bin<br> 7368 slitt      9   0 37456  35M 13476 S     0.0  7.0   0:00 mozilla-bin<br> 7369 slitt      9   0 37456  35M 13476 S     0.0  7.0   0:00 mozilla-bin<br> 7371 slitt      9   0 37456  35M 13476 S     0.0  7.0   0:06 mozilla-bin<br>11042 slitt      9   0 37456  35M 13476 S     0.0  7.0   0:00 mozilla-bin<br> 7554 slitt      9   0 21788  21M 14344 S     0.0  4.2   0:07 galeon-bin<br> 7565 slitt      9   0 21788  21M 14344 S     0.0  4.2   0:00 galeon-bin<br> 7566 slitt      9   0 21788  21M 14344 S     0.0  4.2   0:00 galeon-bin<br> 7567 slitt      9   0 21788  21M 14344 S     0.0  4.2   0:00 galeon-bin<br> 7568 slitt      9   0 21788  21M 14344 S     0.0  4.2   0:00 galeon-bin<br> 7573 slitt      9   0 21788  21M 14344 S     0.0  4.2   0:00 galeon-bin<br> 3456 root      18   0 96200  13M  3280 S     3.3  2.6  19:26 X<br>11033 slitt      9   0  7108 7108  4424 S     0.0  1.3   0:07 gvim<br> 7912 slitt      9   0  6352 6352  4200 S     0.0  1.2   0:21 gvim<br> 2697 sympa      9   0  9768 6200  1904 S     0.0  1.2   0:09 sympa.pl</font></b><br></pre>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<br>
+
+You can see that the Vim sessions consumed less memory than the browsers
+and X. So if you have enough memory to run a graphical browser, you have
+more than enough memory to run Vim, graphical or CLI.<br>
+
+<br>
+
+Vim can be run on the command line, or it can be run as a graphical application
+with menus. The graphical version has complete mouse selection and is useful
+even to those knowing little VI. But of course, if you need to reach for
+the mouse, you're slowing yourself down.<br>
+
+<h2>Extra Features<br>
+</h2>
+
+
+Here are some of the extra features that Vim brings to the table:<br>
+
+<ul>
+
+  <li>Functions</li>
+  <li>Folding</li>
+  <li>Graphical interface</li><li>Windowing<br>
+  </li>
+
+  <li>Extra Commands<br>
+  </li>
+</ul>
+<h3>Functions</h3>
+
+
+Vim's commands go far beyond traditional EX mode. Vim scripts can actually
+contain functions, which can be called in a wide variety of circumstances.
+There's even an autocommand (<tt>au</tt>) which runs a command specified
+by you (typically a function) upon a specific event for a file with a specific
+pattern (such as <tt>*.html</tt>). This extra functionality enables Vim to
+be configured as a completely different type of app. Indeed, the VimOutliner
+project is primarily a configuration of Vim.<br>
+
+<h3>Folding</h3>
+
+Vim has <i>folding</i>. Folding is a feature by which some lines of a file
+become invisible, replaced by a marker. This can be used, for instance, to
+view only the declarations of functions within a file. Within a hierarchy,
+it can be used to hide lower levels for a "big picture" view. The VimOutliner
+project uses folding to implement expand and collapse.<br>
+
+<h3>Graphical interface</h3>
+
+Traditional VI is a CLI (Command Line Interface) application. Many VI implementations
+have GUI interfaces, and Vim is one. Vim's GUI interface facilitates easy
+cut and paste within Vim and with other GUI apps. The GUI interface sports
+a menu, making Vim more approachable for the newbie. And Vim's menus are
+configurable, enabling it to be used in specialized circumstances (such as
+VimOutliner).<br>
+
+<h3>Windowing</h3>Many VI implementations allow multiple windows, and Vim
+is one of them. Vim has a very rich set of windowing commands. Use the <tt>:h
+windows</tt> command to learn more about using multiple windows in Vim. One incredible extension is the <tt>:normal</tt> command. Look it up with the <tt>h: :normal</tt> command.<br>
+
+<h2>
+  </h2>
+
+<h2>
+  </h2>
+
+<h3>Extra Commands</h3>
+
+Here's where Vim really shines. Whether the desired feature is regular expressions,
+or text selection, or a host of other needs, Vim has extra commands to make
+the desired task easy.<br>
+
+<h2>Learning Vim</h2>
+
+Even if you're a VI expert, you're using only a subset of Vim's functionality.
+Like every other app, the best immersion learning technique is to take the
+tutorial. To take the Vim tutorial, get into Vim and run the <tt>:h&nbsp;tutor</tt> command. Go through the tutorial and follow the instructions.<br>
+<br>
+Once armed with knowledge from the tutorial, use the extensive help facility.
+The most general way to use the help facility is the <tt>:h</tt> command,
+which presents the highest level of the help system, including a table of
+contents (you must scroll down to see it). This is the preferred way of searching
+the help system, as there's no real search mechanism.<br>
+<br>
+The table of contents is actually multilevel, using tagging to move to new levels. When you see text between vertical bars (<tt>|</tt>),
+that text is a link (tag, actually). Press the Ctrl+] key combination to
+go to the new level, and use the Ctrl+T key combination to come back.<br>
+<br>
+If you know the exact Vim designation for the subject you're looking for,
+you can go directly to it by appending the subject to the <tt>:h</tt> command. For
+instance, <tt>:h folding</tt> takes you directly to the help text on folding.<br>
+<br>
+<table cellpadding="2" cellspacing="2" border="1" width="50%" align="center">
+  <tbody>
+    <tr>
+      <td valign="top">NOTE<br>
+      <br>
+If you're looking up an EX command (one done at the colon prompt), don't
+forget to include the colon in the help command. For instance:<br>
+      <pre>h: :d<br></pre>
+not<br>
+      <br>
+      <pre>h: d<br></pre>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<br>
+Finally, if you need a true search facility, you can use grep. First you
+need to find out what directory contains your help text. Perform the <tt>:h</tt> command to bring up <tt>help.txt</tt>,
+and press the Ctrl+G key combination to see what directory it's in. Then,
+at the bash prompt, go to that directory, and run a grep command. For instance,
+if you want help on "matching", try this:<br>
+<pre>grep -i -C5 match * | less</pre>
+
+Then you can search the retrieved information to discover which help file
+would help you, and within Vim access that help file with the <tt>:h filename</tt> command, where <tt>filename</tt> is the name of the help file.<br>
+
+
+
+<h5>
+Steve Litt is the author of the <a href="http://www.troubleshooters.com/utp/tcourses.htm">Universal
+Troubleshooting Process courseware</a>.&nbsp;&nbsp; Steve can be reached
+at <a href="http://www.troubleshooters.com/email_steve_litt.htm">Steve Litt's email address</a>.</h5>
+
+
+
+
+
+
+<h1>
+<a name="_VimOutliner"></a>VimOutliner</h1>
+
+
+
+
+
+
+<h5>
+By Steve Litt</h5>
+Much of our world is hierarchical. Object oriented computer programs have
+"isa" and "hasa" hierarchies. Structured computer programs have hierarchies
+of subroutines. Projects are hierarchies of tasks and subtasks. Todo lists
+are lists of projects, hence a hierarchy. Your shopping list is best kept
+as an outline, with stores being the top level. As food runs out, put it
+in the proper place on the outline. That way your shopping trip can be efficient
+at each store.<br>
+<br>
+
+<table cellpadding="5" cellspacing="0" border="1" align="center">
+
+  <tbody>
+    <tr>
+      <td valign="top">
+      <pre><b>Grocery Store<br>	Cereal<br>		Trail mix<br>		Sugary cereal<br>	Meat<br>		4 lbs ground beef<br>		1 chicken<br>	Household<br>		Toilet paper<br>		Laundry detergent<br>Vegetable Stand<br>	Bananas<br>	Green peppers<br>Pharmacy<br>	Prescription<br>	Video tapes</b><br></pre>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+The classic use of outlines is the structuring of a book or other large document.
+My outline for "Samba Unleashed" was over 2800 lines. Anyone writing a
+nonfiction book will most likely fail to finish if they don't start with
+an outline, and even if they finish, the book will be full of chapter interdependencies,
+forward references and redundancy -- in other words, it will be terrible.<br>
+<br>
+Who needs outlining? Anyone who is too busy to waste time correcting mistakes.
+Outlines are a planning tool that help you do the job right the first time.<br>
+<br>
+25 years ago, creating an outline was a&nbsp; cumbersome job in and of itself,
+requiring constant writing, erasing, and rewriting on paper. Rearranging
+your outline back required either filling your outline with long, looping
+arrows, or more likely, a complete rewrite.<br>
+<br>
+Then outliner processors were invented. An outline processor is a software
+program enabling the user to quickly construct outlines, and better yet,
+to correct and rearrange the outline. Keeping in mind that lines of an outline
+are called "headlines", outline processors typically have the following capabilities:<br>
+<br>
+<table cellpadding="2" cellspacing="2" border="1" width="100%">
+  <tbody>
+    <tr>
+      <td valign="top" bgcolor="#cccccc"><b>Capability<br>
+      </b></td>
+      <td valign="top" bgcolor="#cccccc"><b>Meaning<br>
+      </b></td>
+      <td valign="top" bgcolor="#cccccc"><b>VimOutliner Implementation<br>
+      </b></td>
+    </tr>
+    <tr>
+      <td valign="top">Insertion<br>
+      </td>
+      <td valign="top">Add a headline.<br>
+      </td>
+      <td valign="top">Vim Insertion commands<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">Deletion<br>
+      </td>
+      <td valign="top">Delete a headline, possibly including all the headlines subservient to the headline.<br>
+      </td>
+      <td valign="top">Vim line deletion commands<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">Demotion<br>
+      </td>
+      <td valign="top">Make a headline subservient to the one above it<br>
+      </td>
+      <td valign="top">Tab key, VI <tt>&gt;&gt;</tt> command, or Ctrl+T within insert mode<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">Promotion<br>
+      </td>
+      <td valign="top">Make a headline equal or superior to the one above it <br>
+      </td>
+      <td valign="top">VI deletions on beginning tabs, <tt>&lt;&lt;</tt> command, or Ctrl+D within insert mode<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">Rearrangement<br>
+      </td>
+      <td valign="top">Move a headline or an entire tree to a different location in the outline<br>
+      </td>
+      <td valign="top">VI
+delete followed immediately by a VI paste in the new location. Soon will
+also be implemented with "move up one place" and "move down one place" keystrokes<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">Copying<br>
+      </td>
+      <td valign="top">Copy a headline or tree to another location in the outline<br>
+      </td>
+      <td valign="top">VI yank  followed immediately by a VI paste in the new location</td>
+    </tr>
+    <tr>
+      <td valign="top">Collapse<br>
+      </td>
+      <td valign="top">Make every headline in the tree below the headline
+of interest invisible. This is good for getting the "big picture". When the
+entire headline is collapsed to a certain level, this also facilitates quick
+location of the tree of interest<br>
+      </td>
+      <td valign="top">Vim
+folding, together with specialized Vim functions to facilitate visually pleasing
+collapsing. Collapsing on a single tree or whole outline basis facilitated
+by Vim folding commands.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">Expand<br>
+      </td>
+      <td valign="top">The opposite of collapsing, expanding makes collapsed
+headlines visible again. Expanding can be all the way down the tree, or only
+to a certain level, such that below that level the headlines are still collapsed.<br>
+      </td>
+      <td valign="top">Vim folding, together with specialized Vim functions
+to facilitate visually pleasing collapsing. Expanding on a single tree or
+whole outline basis facilitated by Vim folding commands.</td>
+    </tr>
+    <tr>
+      <td valign="top">Spawning<br>
+      </td>
+      <td valign="top">Running a program or command directly from a specially
+configured headline. Typical use is to bring up an html file in a browser
+or an OpenOffice document in OpenOffice. Having this capability enables you
+to have a true single-tree knowledge base.<br>
+      </td>
+      <td valign="top">Not yet in VimOutliner (as of 0.2.0), but the team has successfully prototyped it and expect it to be in the next version.<br>
+      </td>
+    </tr>
+<tr>
+      <td valign="top">Body text<br>
+      </td>
+      <td valign="top">A lowest level entity that word wraps. Having this enables a substantial part of a document's writing process to occur within the outline.<br>
+      </td>
+      <td valign="top">Not yet in VimOutliner (as of 0.2.0), but the team has successfully prototyped it and expect it to be in the next version.
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">Headline numbering<br>
+      </td>
+      <td valign="top">Numbering of the outline's headlines, typically III, C, 3, c, etc.<br>
+      </td>
+      <td valign="top">Not implemented in VimOutliner. However, scripts exist to export VimOutliner outlines into a numbered outline.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">Interoutline linking</td>
+      <td valign="top">Links between outlines similar to links on web pages. Interoutline links
+are used to create "superhierarchies" where a master outline links to suboutlines,
+themselves linked to sub-suboutlines, and so on. Conceptually this enables
+you to place all your knowledge in a single hierarchy for quick and easy
+recording and retrieval.<br>
+      </td>
+      <td valign="top">Vim tags and the <tt>ctags</tt> program<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">Headline appearance by level<br>
+      </td>
+      <td valign="top">Outlines are much easier to read if headlines at different
+levels have different appearances. The distinct appearance is typically the
+result of a different font or a different color.<br>
+      </td>
+      <td valign="top">Vim syntax facilities to color leveled colors. Scripts
+could be written to export an outline to html, with various fonts, for printing.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">Hoisting and dehoisting<br>
+      </td>
+      <td valign="top">The ability to temporarily treat a subtree as a main
+outline, with the subheadlines at the top level. This facilitates greater
+focus on a small area of interest.<br>
+      </td>
+      <td valign="top">Not yet implemented in VimOutliner, but it's being discussed.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">Groupware<br>
+      </td>
+      <td valign="top">The
+ability for many people to simultaneously work on the outline, thus "brainstorming"
+together. Few if any outline processors feature groupware.<br>
+      </td>
+      <td valign="top">Not yet implemented in VimOutliner, but it's being discussed.
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">Diagramming<br>
+      </td>
+      <td valign="top">The ability to turn an outline into a diagram.<br>
+      </td>
+      <td valign="top">Not specifically implemented, but doable with perl scripts.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">Cloning<br>
+      </td>
+      <td valign="top">The
+ability to have one headline be a reference to another, such that when one
+changes the other changes identically. This feature is useful in rapid-fire
+associative thinking, and in computer program design.<br>
+      </td>
+      <td valign="top">Not yet implemented in VimOutliner.
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">Fast retrieval<br>
+      </td>
+      <td valign="top">The ability to retrieve anything in the outline quickly with a minimum of keystrokes.<br>
+      </td>
+      <td valign="top">Implemented with VI's search command. Further quick lookup features might later be added.<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2>Obtaining VimOutliner</h2>
+VimOutliner is free software that can be downloaded from http://www.troubleshooters.com/vimoutliner/.
+The current version is 0.2.0, and is downloaded as a 25K (that's Kilobyte)
+file. Simply extract the tarball in the directory above where you want its
+executables to reside, and the tarball will create an <tt>otlbin</tt> directory under it. Within the <tt>otlbin</tt> directory, while logged in as the user who will be using VimOutliner, run the <tt>./install.pl</tt> script. The script asks 3 questions, and if you answer "yes" to all 3, VimOutliner is automatically installed for that user.<br>
+<br>
+The current VimOutliner is known to work on Linux. We have every reason to
+believe it will work on any UNIX clone or workalike, including BSD and OS/X.
+We suspect it can be adapted to Windows usage, but have not yet made the
+port.<br>
+<h2>Summary</h2>
+
+Because so much of the world around us, and so much of human thinking, is
+hierarchical in nature, the outline has always been the design tool of choice
+for writers, and the planning tool of people too busy to work by trial and
+error. Outlining is so powerful that even before computers, when outlining
+was a painful pencil and paper process involving writing, marking up, and
+rewriting, outlines were used extensively.<br>
+<br>
+With the advent of computerized outline processors, the cost of outlining
+has plunged. In the pencil and paper days creating a finished 200 headline
+outline could have taken several days. Today, assuming most of the the research
+and though have been completed, a 200 headline outline would take between
+2 and 6 hours.<br>
+<br>
+With different features and keystroke interfaces, computerized outline processors
+vary widely in their productivity. Due to the incredibly efficient VI keyset,
+VimOutliner is probably the most productive outline creation tools. The current
+version (0.2.0, released 12/3/2002) has the following fully developed features:<br>
+<ul>
+  <li>Insertion/Deletion</li>
+  <li>Demotion/Promotion</li>
+  <li>Rearrangement</li>
+  <li>Copying</li>
+  <li>Collapse/Expand</li>
+  <li>Interoutline linking</li>
+  <li>Level based coloration</li>
+  <li>Fast retrieval</li>
+</ul>
+Two additional important features, <i>spawning</i> and <i>body text</i>,
+have already been prototyped by the VimOutliner team, and almost certainly
+be added to the next version (after 0.2.0). Other features such as <i>hoisting/dehoisting</i>, <i>spellcheck</i>, <i>user friendly menu interface</i>, <i>level aware sorting</i>, and <i>single step rearrangement</i>
+are being actively developed, and some of these features are likely to make
+the next version. It's very likely that the next VimOutliner version will
+be more featureful than commercial outliners.<br>
+<br>
+Perhaps most intriguing is the fact that the VimOutliner team has discussed
+techniques to add groupware capability to VimOutliner. When that feature
+is in place, VimOutliner can be expected to be the best of breed outline
+processor, for any price, on any kind of computer.<br>
+<br>
+If you are a busy person you need an outline processor. If you use Linux
+and are at all familiar with VI, VimOutliner is likely the most productive
+outline processor you can get.<br>
+<h5>Steve Litt is the author of "<a href="http://www.troubleshooters.com/bookstore/ttech.htm"> Troubleshooting
+Techniques of the Successful Technologist</a>".&nbsp; Steve can be reached
+at <a href="http://www.troubleshooters.com/email_steve_litt.htm">Steve Litt's email address</a>
+.</h5>
+
+
+
+
+
+
+
+<h1>
+<a name="_lifeAfterWindows"></a>Life After Windows: Linux is a Wishing Well</h1>
+
+
+
+
+
+
+<h5>
+<i>Life After Windows</i> is a regular Linux Productivity Magazine column,
+by Steve Litt, bringing you observations and tips subsequent to Troubleshooters.Com's
+Windows to Linux conversion.</h5>
+<h5>By Steve Litt</h5>
+
+
+
+<i>
+My family bought a house when I was 7. My parents liked the neighborhood, the school system, and
+the house. I liked <b>the wishing well</b>.
+</i>
+<p><i>Of course it wasn't a real wishing well. It was just a 15 foot deep, 3 foot wide space
+between the garage and the fence. Densely overgrown with thorny weeds, it inspired
+fear and curiosity. I went in, and kept going in. Because every time I
+went in, I came out holding something cool. A marble, a ball, whatever
+I wanted. Once I wished for a scooter, and sure enough there it was, 10
+feet back in a heretofore unexplored section of the wishing well.
+</i></p>
+<p><i>Any adult knows what happened. The last several owners had
+children, each of whom left things behind. I was a teenager when we moved
+out of that house. Surely the child of the new owner found the cool toys
+I abandoned in that overgrown space.
+</i></p>
+<p><i>Only a kid could think of it as a wishing well. A magical source of
+found dreams. It was the magic of childhood, all too brief -- never recaptured.
+</i></p>
+<p><i>Until I found Linux.
+</i></p>-:-:-:-:-:-:-:-<br>
+<br>
+After purchasing a copy of Red Hat Linux 5.1 in October 1998, Linux remained
+a cute toy while my work continued in Windows 98. That lasted a couple weeks,
+until real life needs began incrementally transferring my work to Linux.
+One day someone sent me a uuencoded email message, and I needed to decode
+it. I could purchase a Windows uudecode program, or maybe download a shareware
+one and feel guilty.<br>
+<br>
+Then the lightbulb went off. Uuencode came from the UNIX world, so perhaps
+there would be a uudecode utility in Linux. A quick apropos command and some
+man pages led the way to the Linux <tt>uuencode</tt> and <tt>uudecode</tt> commands, and from then on all my <tt>uudecode</tt> work was done in Linux.<br>
+<br>
+The preceding paragraph was my first of many experiences where I'd wish for something, and find it in Linux.<br>
+<br>
+I'd always wished to have a web server on my Windows box so to really test
+web pages, but Windows web servers were either underfeatured or expensive,
+or didn't run on Win98. The Apache software that ships with every Linux distro
+took care of that, enabling me to upload web pages to create a duplicate
+of my web host.<br>
+<br>
+Novell Netware was sooooo cool, but priced way out of my league. Armed with my discoveries of <tt>uudecode</tt>
+and Apache, I researched file servers on Linux, and discovered Samba. Here
+was, for my purposes, a Novell Netware replacement I could use, for free,
+in my own office, or the offices of my customers.<br>
+<br>
+Now in possession of a kewl file server, I <i>wished</i> it to plug in any
+old computer to the network and have it work. I went on in and found DHCP.
+Now any old computer could be connected to my system, and work flawlessly
+on my network.<br>
+<br>
+I <i>wished</i> for the ability to write database enabled apps, and discovered dbi::dbd and postgreSQL
+to make a web app.<br>
+<br>
+Sometimes the wishing well grants wishes oddly. In the words of the Stones,
+"you can't always get what you want, and if you try sometimes, you just might
+find, you get what you need". When converting my business to the Linux desktop,
+all the wishing in the world didn't produce a decent outline processor. Nothing
+came on the distributions, and web research showed the few attempts at Linux
+based outliners were embrionic at best. A serious impediment to productivity,
+but for reasons discussed in the April 2001 Troubleshooting Professional
+Magazine (basically, "who owns your data") I had to move forward with the Windows
+to Linux conversion.<br>
+<br>
+My wish had not been granted. The wishing well had failed.<br>
+<h2>You Get What You Need<br>
+</h2>
+Or had it? Within a month of the conversion, a thread on LEAPLIST made me
+aware that Vim version 6 had come out, that it had a feature called "folding",
+and that "folding" could be used to simulate an outline processor's collapse/expand
+capability. That capability was the only outlining feature lacking in Vim. A week's experimentation with Vim6 produced
+a series of scripts and config files to turn Vim6 into a crude outline processor.
+A few weeks later I refined the scripts, added a feature to link outlines,
+and packaged the scripts and configurations as the VimOutliner outline processor,
+licensed with the GNU General Public License.<br>
+<br><i>
+And sometimes you get what you hadn't thought to wish for. </i><br>
+<br>
+The original VimOutliner's collapse/expand feature was somewhat dysfunctional
+for an outliner. Instead of hiding all of a headline's subheadings, it placed
+a line below the main heading showing, in gray background, the first subservient
+heading, and the number of lines hidden. It was ugly, counterintuitive, and
+slowed productivity to some extent, but I had no idea how to code a real
+collapse/expand capability. I was satisfied with the kludge.<br>
+<br>
+In June of 2002, VimOutliner user Matej Cepl wrote to ask if I could fix
+VimOutliner's collapse/expand feature. I replied that I didn't have time
+to fix it. On October 13 Matej wrote me back and asked if VimOutliner was
+officially dead, or should he keep holding his breath. <br>
+<br>
+Timing is everything. On October 18, 2002, Noel Henson emailed to congratulate
+me on the IceWM content of the 9/2002 Linux Productivity Magazine. As an
+aside he thanked me for VimOutliner, which he uses every day. Remembering
+Matej's question, I responded to Noel with a question about how to make collapse/expand
+be more outliner like, and less Vim like.<br>
+<br>
+Noel quickly came back with a substantially changed <tt>outliner.vim</tt> file which implemented collapse/expand correctly, though it had some bugs. After a few days of back and forth with Noel's new <tt>outliner.vim</tt>, we started sending the messages to Matej also.<br>
+<br>
+Two is company, three is a project. We now had critical mass, complete with
+suggestions, feedback and testing. LEAP President Phil Barnett arranged for
+Billy Knight, owner of FiberHosting.Com, to donate a mailing list. Thanks
+Phil and Billy! Armed with our mailing list, progress was quick and sure.
+The new VimOutliner 0.2.0, sporting correct collapse/expand, level based
+color coding, sorting, and several other handy commands, came out on 12/3/2002.
+<br>
+<br>
+The next version is already under discussion. It will have facilities for
+headlines that are links to executable programs, so you can link from an
+outline to an html page, a Gimp graphic, an Xmms sound file, or a OpenOffice
+document. This opens the door for a true single-tree knowledge base. The next version will
+also have body text -- the last basic outlining feature missing from VimOutliner.<br>
+<br>
+Noel is
+working on hoisting, dehoisting, a menu driven interface for VI newbies,
+and improved sorting and rearranging techniques. Matej is helping with documentation,
+and is researching some esoteric and powerful features of professional products
+that we could add to VimOutliner in order to make it into a thought processor.
+We've all discussed the possibility of making a VimOutliner-based groupware
+product, and the possibility isn't as remote as might be imagined.<br>
+<h2>The Wishing Well isn't Magic</h2>
+My back yard wishing well seemed magic, but adult logic showed it to be a
+natural result of an overgrown area of a yard long inhabited by kids. My
+Linux wishing well seems magic, but is in fact the natural result of a community
+of computer user/developers empowered by the GNU GPL and other free software
+licenses.<br>
+<br>
+Free software always starts with an itch to scratch. I desperately needed
+a Linux-based outline processor. That was the itch. I scratched it by making
+VimOutliner, and the GNU GPL license enabled me to give it to the world without
+the possibility of someone changing it, making it proprietary, and making
+me pay for it.<br>
+<br>
+Matej and Noel needed an outliner, and scratched that itch by downloading
+VimOutliner. Matej had an additional itch -- he wanted intuitive collapse/expand
+instead of the Vim folding kludge I'd used. Soon the itch belonged to the
+three of us, and Noel, who has the best knowledge of the Vim scripting language,
+made it happen, with plenty of help from Matej and myself.<br>
+<br>
+In every respect except the lack of body text, VimOutliner 0.2.0 is a highly
+respectable outline processor. And from an authoring standpoint, I believe
+it to be the fastest outlining environment ever created.<br>
+<br>
+Emboldened by this victory we've started going after other itches. Body text.
+Hoisting. Sorting. Groupware. And some thoughtware functionalities I don't understand
+(but I'm sure Matej will explain them). There's an excellent chance that
+a year from now VimOutliner will outshine even the expensive proprietary
+outline processors.<br>
+<br>
+From the day that Richard Stallman inked the GNU Manifesto and the GNU General Public License, the wishing well
+has been our destiny. It's not magic. It's
+simply another example that the pen is mightier than the sword. <br>
+<br><i>
+Or the campaign contribution.</i> <br>
+<br>
+Microsoft can pull all the strings they want in order to evade antitrust laws.
+They can attempt to make free software illegal. But The Wishing Well is just
+too powerful, producing superior software at a phenomenal rate. It produces
+useful software, rather than producing a collection of features
+calculated to capture market share or lock competitors out of the market.<br>
+<br>
+-:-:-:-:-:-:-:-<br>
+<br>
+<i>Unlike their fairy tale counterparts, real life wishing wells have thorns.
+Some thorns are brambles that scratch you bloody as you triumphantly emerge
+clutching a scooter. And some thorns take the form of a huge corporation
+creating booby traps attempting to prevent you from using the dream software
+found in the wishing well. <br>
+<br>
+Challenge is good. Fairy tale wishing wells are welfare;&nbsp; real life wishing wells are a triumph of the human spirit.<br>
+<br>
+The wishing well with free software is a download away. Wonderful software
+you've barely dared dream of. Software to ease your life and boost your productivity.
+Software not encumbered by proprietary license usage restrictions. Its real.
+Millions have already partaken, but the wishing well's bounties are limitless
+and growing.  <br>
+<br>
+It's yours for the asking, if you dare to laugh at the thorns and go on in.</i><br>
+<h5>Steve Litt is the author of the <a href="http://www.troubleshooters.com/utp/tcourses.htm">course</a>
+on the Universal Troubleshooting Process.&nbsp; He can be reached at <a href="http://www.troubleshooters.com/email_steve_litt.htm">Steve Litt's email address</a>
+.</h5>
+
+
+
+
+
+
+<h1>
+<a name="_letters_to_editor"></a>Letters to the Editor</h1>
+
+
+
+
+
+
+<h6>
+All letters become the property of the publisher (Steve Litt), and may
+be edited for clarity or brevity. <b>We especially welcome additions, clarifications,
+corrections or flames from vendors whose products have been reviewed in
+this magazine. </b>We reserve the right to not publish letters we deem
+in bad taste (bad language, obscenity, hate, lewd, violence, etc.).</h6>
+
+
+
+
+
+
+<h6>
+Submit letters to the editor to Steve Litt's email address, and be sure
+the subject reads "Letter to the Editor". We regret that we cannot return
+your letter, so please make a copy of it for future reference.</h6>
+
+
+
+
+
+
+<h1>
+<a name="_submit_article"></a>How to Submit an Article</h1>
+
+
+
+
+
+We anticipate two to five articles per issue, with issues coming out monthly.
+We look for articles that pertain to the Linux or Open Source. This can
+be done as an essay, with humor, with a case study, or some other literary
+device. A Troubleshooting poem would be nice. Submissions may mention a
+specific product, but must be useful without the purchase of that product.
+Content must greatly overpower advertising. Submissions should be between
+250 and 2000 words long.
+<p>Any article submitted to Linux Productivity Magazine must be licensed
+with the Open Publication License, which you can view at http://opencontent.org/openpub/.
+At your option you may elect the option to prohibit substantive modifications.
+However, in order to publish your article in Linux Productivity Magazine,
+you must decline the option to prohibit commercial use, because Linux Productivity
+Magazine is a commercial publication.
+</p>
+
+
+
+
+<p>Obviously, you must be the copyright holder and must be legally able
+to so license the article. We do not currently pay for articles.
+</p>
+
+
+
+
+<p>Troubleshooters.Com reserves the right to edit any submission for clarity
+or brevity, within the scope of the Open Publication License. If you elect
+to prohibit substantive modifications, we may elect to place editors notes
+outside of your material, or reject the submission, or send it back for
+modification. Any published article will include a two sentence description
+of the author, a hypertext link to his or her email, and a phone number
+if desired. Upon request, we will include a hypertext link, at the end
+of the magazine issue, to the author's website, providing that website
+meets the Troubleshooters.Com <a href="http://www.troubleshooters.com/tlnktrad.htm">criteria for
+links</a> and that the author's website first links to Troubleshooters.Com.
+Authors: please understand we can't place hyperlinks inside articles. If
+we did, only the first article would be read, and we can't place every
+article first.
+</p>
+
+
+
+
+<p>Submissions should be emailed to Steve Litt's email address, with subject
+line Article Submission. The first paragraph of your message should read
+as follows (unless other arrangements are previously made in writing):
+</p>
+
+
+
+
+<p><b><font size="-1">Copyright (c) 2001 by &lt;your name&gt;. This material
+may be distributed only subject to the terms and conditions set forth in
+the Open Publication License, version&nbsp; Draft v1.0, 8 June 1999 (Available
+at http://www.troubleshooters.com/openpub04.txt/ (wordwrapped for readability
+at http://www.troubleshooters.com/openpub04_wrapped.txt). The latest version
+is presently available at&nbsp; http://www.opencontent.org/openpub/).</font></b>
+</p>
+
+
+
+
+<p><b><font size="-1">Open Publication License Option A [ is | is not] elected,
+so this document [may | may not] be modified. Option B is not elected,
+so this material may be published for commercial purposes.</font></b>
+</p>
+
+
+
+
+<p>After that paragraph, write the title, text of the article, and a two
+sentence description of the author.
+</p>
+
+
+
+
+<h2>
+Why not Draft v1.0, 8 June 1999 OR LATER</h2>
+
+
+
+
+
+The Open Publication License recommends using the word "or later" to describe
+the version of the license. That is unacceptable for Troubleshooting Professional
+Magazine because we do not know the provisions of that newer version, so
+it makes no sense to commit to it. We all hope later versions will be better,
+but there's always a chance that leadership will change. We cannot take
+the chance that the disclaimer of warranty will be dropped in a later version.
+<br>
+
+
+
+
+&nbsp;
+<br>
+
+
+
+
+&nbsp;
+<h1>
+<a name="_trademarks"></a>Trademarks</h1>
+
+
+
+
+
+All trademarks are the property of their respective owners. Troubleshooters.Com<sup>(R)</sup> is a registered trademark of Steve Litt.
+<h1>
+<a name="_urls_mentioned"></a>URLs Mentioned in this Issue</h1>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+<li>
+MISC URLs</li>
+
+<ul>
+<li>
+<a href="http://www.troubleshooters.com/">http://www.troubleshooters.com</a>
+: The website administered by Linux Productivity Magazine author Steve
+Litt.</li>
+
+<li>
+<a href="http://www.troubleshooters.com/bookstore/">http://www.troubleshooters.com/bookstore/</a>
+: Home of Steve Litt's books, <a href="http://www.troubleshooters.com/bookstore/rl.htm">"Rapid Learning:
+Secret Weapon of the Successful Technologist"</a> and <a href="http://www.troubleshooters.com/bookstore/ttech.htm">"Troubleshooting
+Techniques of the Successful Technologist"</a>.</li>
+
+
+
+
+
+<li>
+<a href="http://www.microsoft.com/">http://www.microsoft.com:</a> Home of
+Microsoft, producer of many ineffective roadblocks to Linux usage.</li><li><a href="http://www.practical-tech.com/archives-history/realmenpascal.htm">http://www.practical-tech.com/archives-history/realmenpascal.htm</a>: Real
+Men Don't Use Pascal, the early 1980's classic proclaiming the glory of gotos,
+self-modifying code, deliberate array boundary violations, and most important,
+the TECO character editor.</li>
+</ul><li>GNU URLs<br>
+  </li>
+  <ul>
+
+
+
+<li>
+<a href="http://www.gnu.org/">http://www.gnu.org</a>: Website of the GNU
+project, makers of many of the programs making up the GNU/Linux operating
+system.</li><li><a href="http://www.gnu.org/gnu/manifesto.html">http://www.gnu.org/gnu/manifesto.html</a>:
+The GNU Manifesto. This single document, and the GNU General Public License
+it spawned, prevented a complete monopolization of software, and will ultimately
+cause the demise of the current monopolist.<br>
+    </li>
+    <li><a href="http://www.gnu.org/licenses/gpl.txt">http://www.gnu.org/licenses/gpl.txt</a>: The GNU General Public License (GPL), the license guaranteeing perpetual freedom for your software.<br>
+    </li>
+  </ul>
+  <li>VI URLs<br>
+    </li>
+  <ul>
+
+    <li><a href="http://www.vim.org/">http://www.vim.org</a>: Home page of the Vim VI implementation.<br>
+</li><li><a href="http://www.oreilly.com/news/zenclavier_1299.html">http://www.oreilly.com/news/zenclavier_1299.html</a>: Perl guru Tom Christiansen's famous article, "Zenclavier: Extreme Keyboarding".
+This article discusses "becoming one with the computer", and uses VI as an
+example of a computer program allowing you to do so.<br>
+    </li>
+
+    <li><a href="http://www.troubleshooters.com/projects/vimoutliner/">http://www.troubleshooters.com/projects/vimoutliner/</a>:
+Home page of the VimOutliner project -- IMHO the best outline processor available
+under Linux, and the fastest outline authoring tool available anywhere.<br>
+    </li>
+    
+  </ul>
+<ul>
+
+
+  </ul>
+
+</ul>
+
+
+<br>
+
+
+<br>
+
+
+<br>
+
+
+<br>
+
+
+<br>
+
+
+<br>
+
+
+<br>
+
+
+<br>
+
+
+<br>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+</body><style type="text/css">embed[type*="application/x-shockwave-flash"],embed[src*=".swf"],object[type*="application/x-shockwave-flash"],object[codetype*="application/x-shockwave-flash"],object[src*=".swf"],object[codebase*="swflash.cab"],object[classid*="D27CDB6E-AE6D-11cf-96B8-444553540000"],object[classid*="d27cdb6e-ae6d-11cf-96b8-444553540000"],object[classid*="D27CDB6E-AE6D-11cf-96B8-444553540000"]{	display: none !important;}</style></html>

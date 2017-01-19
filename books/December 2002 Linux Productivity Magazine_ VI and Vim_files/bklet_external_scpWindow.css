@@ -1,0 +1,94 @@
+/* CSS to be added to the HEAD of the page containing the bookmarklet */
+
+#iframeUnderDivToShowOverFlash {
+    width: 580px;
+    height: 100%;
+    position: fixed;
+    *position: absolute;
+    z-index: 2147483647;
+    right: 0;
+    top: 0px;
+    border: none;
+    background-color: transparent;
+}
+
+#sc_bookmarklet {
+    height: 100%;
+    position: fixed;
+    *position: absolute;
+    right: 0;
+    top: 0;
+    width: 538px;
+    z-index: 2147483647;
+}
+
+#iframeUnderDivToShowOverFlash.scoopit-hulk {
+	left:0;
+	width: 100%;
+	position: absolute;
+}
+
+#sc_bookmarklet.scoopit-hulk {
+    left:0;
+	width: 100%;
+    background-color: rgba(0,0,0,0.5);
+    position: absolute;
+}
+#sc_bookmarklet.scoopit-hulk #sc_main {
+	width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+#iframeUnderDivToShowOverFlash.scoopit-hulk  {
+	width: 920px;
+}
+
+#sc_bookmarklet.ios8 {
+	right: auto;
+	left: 0;
+}
+
+#iframeUnderDivToShowOverFlash.ios8 {
+	right: auto;
+	left: 0;
+}
+
+#sc_main {
+    background-color: transparent;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    position: relative;
+    padding: 5px;
+    height: 100%;
+}
+
+
+#sc_close {
+    background-image: url("/resources/img/v3/close_block.png");
+    height: 14px;
+    right: 22px;
+    position: absolute;
+    text-decoration: none;
+    top: 25px;
+    width: 14px;
+    z-index: 999;
+}
+
+.v4 #sc_close {
+	width: 12px;
+	height: 12px;
+	right:30px;
+	top:36px;
+	background-image: url("/resources/img/V4/popup/close.png");
+}
+.v4.blue #sc_close {
+	background-image: url("/resources/img/V4/popup/close_black.png");
+}
+
+#sc_iframe {
+    height: 100% !important;
+    width: 100%;
+    position: relative;
+    left: 0;
+    z-index: 0;
+}

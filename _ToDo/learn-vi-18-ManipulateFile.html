@@ -25,7 +25,8 @@
 	<p>注意：命令<code class="inset">:write! lpr</code>与<code class="inset">:write !lpr</code>是不同的，前者是强行保存文件，而后者则是将文件发送到打印机。</p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">查看文件</p>
-	<p>使用<code class="inset">:view file</code>命令，将以只读方式打开文件。你在文件中进行的任何修改，都无法保存。当然我们也可以使用<code class="inset">:write!</code>命令，来强制保存文件。</p>
+	<p>使用<code class="inset">:view file</code>命令，将以只读方式打开文件。使用<code class="inset">:set ro</code>命令，会将当前文件置为只读状态。你在文件中进行的任何修改，都无法保存。当然我们也可以使用<code class="inset">:write!</code>命令，来强制保存文件。</p>
+	<p>使用<code class="inset">:set noma</code>命令，可以将当前文件置为不可修改状态，Vim会阻止任何修改操作。</p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">新建文件</p>
 	<p>我们可以使用<code class="inset">:vi file</code>命令，在新建缓冲区中编辑名为file的新文件。如果当前文件没有保存，那么将会显示警告信息，此时可以输入<code class="inset">:write</code>命令，来保存当前文件；或者使用<code class="inset">:vi! file</code>命令，不保存当前文件而强制开始编辑新文件。</p>
