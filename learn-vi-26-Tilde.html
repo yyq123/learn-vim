@@ -25,6 +25,7 @@
 	<p>在可视化模式下，可以使用<code class="inset">u</code>命令，将选中的字母转换为小写；也可以使用<code class="inset">U</code>命令，将选中的字母转换为大写。</p>
 	<p><code class="inset">gUU</code>和<code class="inset">gUgU</code>命令，都可以将整行字符转换为大写。如果指定了数字参数，例如<code class="inset">3gUU</code>则可对指定行数进行转换。</p>
 	<p>相对应的<code class="inset">guu</code>和<code class="inset">gugu</code>命令，则是用于将整行字符转化为小写。</p>
+	<p>命令<code class="inset">ggguG</code>可以将整个文件转化为小写；而命令<code class="inset">gggUG</code>则可以将整个文件转化为大写。</p>
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">首字母大写</p>
 	<p>选中文本，然后进入命令行模式并使用以下命令，可以将选中的文本转换为首字母大写（title case / initial capitals）。</p>
 	<p style="text-indent:2em"><code class="inset">:s/\&lt;\(\w\)\(\w*\)\&gt;/\u\1\L\2/g</code></p>
