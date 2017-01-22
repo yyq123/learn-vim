@@ -1,9 +1,15 @@
 ﻿set nocompatible	"disable backwards-compatible with vi
-filetype off                  " required
+filetype off
 
 source $VIMRUNTIME/vimrc_example.vim
 source $VIMRUNTIME/mswin.vim
 behave mswin
+
+if has('win32') || has ('win64')
+	let $VIMFILES = '""' . $VIM . '\vimfiles"'
+else
+	let $VIMFILES = $HOME."/.vim"
+endif
 
 set diffexpr=MyDiff()
 function MyDiff()
@@ -30,27 +36,28 @@ function MyDiff()
   silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
 endfunction
 
-set backup " make backup files
+set backup            " make backup files
 set backupdir=C:\Temp " where to put backup files
-set noswapfile     " no swap files
+set noswapfile        " no swap files
+set undofile          " make undo files
 set undodir=C:\Temp
 
-"If you search for an all-lowercase string your search will be case-insensitive, but if one or more characters is uppercase the search will be case-sensitive.
 set ignorecase    " ignore case when searching
-set smartcase     " ignore case if search pattern is all lowercase,                  "    case-sensitive otherwise
-set smarttab      " insert tabs on the start of a line according to                  "    shiftwidth, not tabstop
+set smartcase     " ignore case if search pattern is all lowercase, case-sensitive otherwise
 
-set backspace=indent,eol,start                  " allow backspacing over everything in insert mode
+set smarttab      " insert tabs on the start of a line according to shiftwidth, not tabstop
+
+set backspace=indent,eol,start        " allow backspacing over everything in insert mode
 set autoindent    " always set autoindenting on
 set copyindent    " copy the previous indentation on autoindenting
+set gdefault      " applies substitutions globally on lines 
 set showmatch     " set show matching parenthesis
 set incsearch     " show search matches as you type
-set visualbell		" Silence the bell, use a flash instead
-set showcmd			" Show (partial) command in status line
+set visualbell    " Silence the bell, use a flash instead
+set showcmd       " Show (partial) command in status line
 set showmode
 set wildmenu
 set wildmode=list:longest,full
-
 
 
 " Handle long lines
@@ -63,20 +70,16 @@ map <S-F2> <Esc>:set wrap<CR>
 noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
 noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 
+colorscheme xoria256
+
 "set colorcolumn=85	"show a colored column at 85 characters (so I can see when I write a too-long line of code)
 set pastetoggle=<F5>	"Vim will switch to paste mode, disabling all kinds of smartness and just pasting a whole buffer of text. When in paste-mode auto indent will be turned off.
-
-set number
-set relativenumber
-set ruler
-set guioptions+=b
-set guioptions-=T
 
 set paste
 
 set cursorline cursorcolumn
-
-colorscheme xoria256
+highlight Cursor guifg=white guibg=#1874cd
+highlight iCursor guifg=white guibg=#1874cd
 
 " set the menu & the message to English
 set langmenu=en_US
@@ -84,11 +87,134 @@ let $LANG = 'en_US'
 source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
 
+"" Contents of the ToolBar {{{
+" Do not install the ToolBar if it is already done.
+"if !exists("did_install_custom_toolbar")
+"    let did_install_custom_toolbar = 1
+
+    "" Buttons and icons {{{
+    amenu 1.10 ToolBar.New :new<CR>
+    amenu 1.20 ToolBar.Open :browse confirm e<CR>
+"    an <silent> icon=~/.gvim/bitmaps/16/document-save.png 1.30 ToolBar.Save :if expand("%") == ""<Bar>browse confirm w<Bar>else<Bar>confirm w<Bar>endif<CR>
+"    an icon=~/.gvim/bitmaps/16/system-floppy.png 1.40 ToolBar.SaveAll :browse confirm wa<cr>
+
+"    an 1.45 ToolBar.-sep1- <Nop>
+
+"    an icon=$VIMFILES/bitmaps/16/edit-undo.png 1.50 ToolBar.Undo u
+"    an icon=$VIMFILES/bitmaps/16/edit-redo.png 1.60 ToolBar.Redo <C-R>
+
+"    an 1.65 ToolBar.-sep2- <Nop>
+
+"    vnoremenu icon=~/.gvim/bitmaps/16/edit-cut.png 1.70 ToolBar.Cut "+x
+"    vnoremenu icon=~/.gvim/bitmaps/16/edit-copy.png 1.80 ToolBar.Copy "+y
+"    cnoremenu icon=~/.gvim/bitmaps/16/edit-copy.png 1.80 ToolBar.Copy <C-Y>
+"    nnoremenu icon=~/.gvim/bitmaps/16/edit-paste.png 1.90 ToolBar.Paste "+gP
+"    cnoremenu icon=~/.gvim/bitmaps/16/edit-paste.png ToolBar.Paste <C-R>+
+"    exe 'vnoremenu <script> ToolBar.Paste ' . paste#paste_cmd['v']
+"    exe 'inoremenu <script> ToolBar.Paste ' . paste#paste_cmd['i']
+
+	aunmenu ToolBar.-sep6-
+	aunmenu ToolBar.Make
+	aunmenu ToolBar.RunCtags
+	aunmenu ToolBar.TagJump
+
+	an 1.400 ToolBar.-sep8- <Nop>
+	"an icon=~/.gvim/bitmaps/16/preferences-system-windows.png 1.300 ToolBar.MiniBufExplorer :TMiniBufExplorer<CR>
+	an icon=WinMax 1.410 ToolBar.Maximize <C-w>_
+	an icon=WinVSplit 1.420 ToolBar.ResizeEqual <C-w>=
+
+"an icon=~/.gvim/bitmaps/16/stock_spellcheck.png 1.130 ToolBar.Syntastic :SyntasticCheck<CR>
+    "an icon=~/.gvim/bitmaps/16/document-revert.png 1.140 ToolBar.Alternate :A<CR>
+
+    "an 1.195 ToolBar.-sep4- <Nop>
+
+    "an icon=~/.gvim/bitmaps/16/accessories-dictionary.png 1.200 ToolBar.Tagbar :TagbarToggle<CR>
+    "if version >= 703
+    "    an 1.210 ToolBar.Undotree :UndotreeToggle<CR>
+    "endif
+    "an icon=~/.gvim/bitmaps/16/system-file-manager.png 1.220 ToolBar.FileExplorer :NERDTreeToggle<CR>
+
+    "an 1.395 ToolBar.-sep6- <Nop>
+    "if version >= 703
+    "    an icon=~/.gvim/bitmaps/16/applications-engineering.png 1.400 ToolBar.Numbers :NumbersToggle<CR>
+    "endif
+    "nmenu icon=~/.gvim/bitmaps/16/format-text-direction-ltr.png 1.410 ToolBar.Comment gcc
+    "vmenu icon=~/.gvim/bitmaps/16/format-text-direction-ltr.png 1.410 ToolBar.Comment gc
+    "imenu icon=~/.gvim/bitmaps/16/format-text-direction-ltr.png 1.410 ToolBar.Comment <C-O>gcc
+    "nmenu icon=~/.gvim/bitmaps/16/format-indent-more.png 1.420 ToolBar.IndentMore >>
+    "vmenu icon=~/.gvim/bitmaps/16/format-indent-more.png 1.420 ToolBar.IndentMore >
+    "imenu icon=~/.gvim/bitmaps/16/format-indent-more.png 1.420 ToolBar.IndentMore <C-O>>>
+    "nmenu icon=~/.gvim/bitmaps/16/format-indent-less.png 1.430 ToolBar.IndentLess <<
+    "vmenu icon=~/.gvim/bitmaps/16/format-indent-less.png 1.430 ToolBar.IndentLess <
+    "imenu icon=~/.gvim/bitmaps/16/format-indent-less.png 1.430 ToolBar.IndentLess <C-O><<
+
+    "if !has("gui_athena")
+    "    an 1.895 ToolBar.-sep7- <Nop>
+
+"        an icon=~/.gvim/bitmaps/16/edit-find-replace.png 1.900 ToolBar.Replace :promptrepl<CR>
+"        vunmenu ToolBar.Replace
+"        vnoremenu icon=~/.gvim/bitmaps/16/edit-find-replace.png ToolBar.Replace y:promptrepl <C-R>=<SID>FixFText()<CR><CR>
+"        an icon=~/.gvim/bitmaps/16/go-next.png 1.910 ToolBar.FindNext n
+"        an icon=~/.gvim/bitmaps/16/go-previous.png 1.920 ToolBar.FindPrev N
+"    endif
+    "}}}
+
+    "" ToolTips {{{
+    tmenu 1.10 ToolBar.New New
+    tmenu 1.20 ToolBar.Open Open
+    tmenu 1.30 ToolBar.Save Save
+    tmenu 1.40 ToolBar.SaveAll Save All
+    tmenu 1.50 ToolBar.Print Print
+    tmenu 1.60 ToolBar.Undo Undo
+    tmenu 1.70 ToolBar.Redo Redo
+    tmenu 1.80 ToolBar.Cut Cut
+    tmenu 1.90 ToolBar.Copy Copy
+    tmenu 1.100 ToolBar.Paste Paste
+    tmenu ToolBar.RunScript Run Script
+    tmenu ToolBar.Help Help
+    tmenu ToolBar.FindHelp Find Help
+
+    "tmenu 1.200 ToolBar.Tagbar Afficher les tags
+    "if version >= 703
+    "    tmenu 1.210 ToolBar.Undotree Afficher l'historique d'édition
+    "endif
+
+    "tmenu 1.300 ToolBar.MiniBufExplorer Afficher le mini explorateur de tampons
+    tmenu 1.310 ToolBar.Maximize Maximize Buffer
+    tmenu 1.320 ToolBar.ResizeEqual Resize Equal Buffer
+
+    if version >= 703
+        tmenu 1.400 ToolBar.Numbers Alterner entre affichage classique et relatif des numéros de lignes
+    endif
+    tmenu 1.410 ToolBar.Comment Commenter
+    tmenu 1.420 ToolBar.IndentMore Indenter
+    tmenu 1.430 ToolBar.IndentLess Désindenter
+
+    if !has("gui_athena")
+        tmenu 1.900 ToolBar.Replace Replace
+        tmenu 1.910 ToolBar.FindNext Find Nex
+        tmenu 1.920 ToolBar.FindPrev Find Previous
+    endif
+    "}}}
+"endif
+"}}}
+
 set fileencoding=utf-8
 set encoding=utf-8
 set tenc=utf-8
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
-"language message zh_CN.UTF-8
+language message en_US.UTF-8
+
+set number
+set relativenumber
+hi CursorLineNr guifg=silver
+
+set ruler
+set guioptions+=b
+"set guioptions-=T
+nnoremap <C-F1> :if &go=~#'m'<Bar>set go-=m<Bar>else<Bar>set go+=m<Bar>endif<CR>
+nnoremap <C-F2> :if &go=~#'T'<Bar>set go-=T<Bar>else<Bar>set go+=T<Bar>endif<CR>
+nnoremap <C-F3> :if &go=~#'r'<Bar>set go-=r<Bar>else<Bar>set go+=r<Bar>endif<CR>
 
 filetype plugin on
 
@@ -100,7 +226,7 @@ autocmd Filetype *
 endif
 
 " statusline
-set laststatus=2
+set laststatus=2 "enable status line always
 set statusline=%2*%n%m%r%h%w%*\ %F\ %1*[FORMAT=%2*%{&ff}:%{&fenc!=''?&fenc:&enc}%1*]\ [TYPE=%2*%Y%1*]\ [COL=%2*%03v%1*]\ [ROW=%2*%03l%1*/%3*%L(%p%%)%1*]\    
 "set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
 
@@ -116,7 +242,7 @@ endfunction
 
 au InsertEnter * call InsertStatuslineColor(v:insertmode)
 au InsertLeave * hi statusline guibg=orange guifg=white
-hi statusline guibg=black
+hi statusline guibg=black "default the statusline to green when entering Vim
 
 hi User1 guifg=gray
 hi User2 guifg=red
@@ -130,9 +256,11 @@ hi User3 guifg=white
 "set guifont=Bitstream\ Vera\ Sans\ Mono\ 9
 " 这是 Windows 风格的字体设置语法
 "set guifont=Bitstream_Vera_Sans_Mono:h9:cANSI
+if has("gui_win32")
+    :set guifont=Consolas:h11,Courier\ New:h11:cANSI
+endif
 
-set guifont=Courier\ New:h11:cANSI
-"set guifontwide=Fixedsys:h11
+:set nospell
 
 " Maps
 "nmap <tab> V>
@@ -143,10 +271,23 @@ set guifont=Courier\ New:h11:cANSI
 vnoremap < <gv
 vnoremap > >gv
 
+" 显示/禁止行列光标
+nmap <silent> <F6> <Esc>:call ToggleCursor()<CR>
+
+" Determining the highlight group that the word under the cursor belongs to
+nmap <silent> <F7>   :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 map <F10> <Esc>:tabnew<CR>
 
+function! ToggleCursor()
+     if &cursorcolumn
+          set nocursorline nocursorcolumn
+     else
+          set cursorline cursorcolumn
+     endif
+endfunction
+
 " clear highlighted searches
-" nmap <silent> ,/ :nohlsearch<CR>
+nmap <silent> ,/ :nohlsearch<CR>
 "
 function ToggleHLSearch() 
 	if &hls
@@ -156,22 +297,22 @@ function ToggleHLSearch()
 	endif 
 endfunction
 
-" let mapleader=";"
+" let mapleader=";" "Default \
 nmap <silent> <leader><space> <Esc>:call ToggleHLSearch()<CR>
 inoremap <leader>\ <C-x><C-o>
 
 " Quickly edit/reload the vimrc file
-"nmap <silent> <leader>ev :e $MYVIMRC<CR> 
-"nmap <silent> <leader>sv :so $MYVIMRC<CR>
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>sv :so $MYVIMRC<CR>
 autocmd BufWritePost $MYVIMRC source $MYVIMRC
 
 
 " Abbreviations
 abbreviate #b /**********************
 abbreviate #e **********************/
-"iabbrev pcode <p style="text-indent:2em"><code class="inset"></code></p>
-"iabbrev icode <code class="inset">!cursor!</code><Esc>:call search('!cursor!','b')<cr>cf!
-cabbrev h tab h
+iabbrev pcode <p style="text-indent:2em"><code class="inset"></code></p>
+iabbrev icode <code class="inset">!cursor!</code><Esc>:call search('!cursor!','b')<cr>cf!
+"cabbrev h tab h
 
 " Template
 autocmd! BufNewFile * silent! 0r $VIM/vimfiles/skel/Template.%:e
@@ -195,6 +336,20 @@ set undolevels=1000 " use many muchos levels of undo
 
 
 ":au Filetype html,xml,xsl source $VIM/vimfile/plugin/closetag.vim
+
+" visually select text then press ~ to convert the text to  UPPER CASE, 
+" then to lower case, then to Title Case.
+function! TwiddleCase(str)
+  if a:str ==# toupper(a:str)
+    let result = tolower(a:str)
+  elseif a:str ==# tolower(a:str)
+    let result = substitute(a:str,'\(\<\w\+\>\)', '\u\1', 'g')
+  else
+    let result = toupper(a:str)
+  endif
+  return result
+endfunction
+vnoremap ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgvl
 
 
 " Vundle
