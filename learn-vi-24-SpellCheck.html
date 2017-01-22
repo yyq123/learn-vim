@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 拼写检查(Spell Check)</title>
+</head>
+<body>
+	<p>从版本7开始，Vim内置了拼写检查功能，但是在默认情况下并没有打开。</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">启用</p>
+	<p>首先，你需要使用<code class="inset">:echo &amp;spelllang</code>命令确认当前使用哪种语言。比如：&ldquo;en&rdquo;代表英语。如果想要改语言，可以使用<code class="inset">:set spelllang=en_GB.UTF-8</code>命令。也可以用逗号分隔制定检查<code class="inset">set spelllang=en_us,nl,medical</code>多种语言。</p>
+	<p>然后，你可以通过菜单：<em>工具 -&gt; 拼写检查 -&gt; 打开拼写检查</em>，来启用拼写检查功能。GVim将用红色的波浪线标识出错误的拼写。你也可以使用<code class="inset">:set spell</code>命令打开拼写检查，使用<code class="inset">:set nospell</code>命令关闭拼写检查。</p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">检查</p>
+	<p>如果在文件中有很多拼写错误，可以用<code class="inset">]s</code>命令移动到下一个拼写错误处，用<code class="inset">[s</code>命令移动到上一个拼写错误处。</p>
+	<p><a href="https://www.flickr.com/photos/yyq123/32329364091/in/dateposted/" title="SpellCheck_1"><img src="https://c1.staticflickr.com/1/381/32329364091_01548c96b0.jpg" width="500" height="379" alt="SpellCheck_1" /></a></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">纠正</p>
+	<p>如果想要纠正错误的拼写：首先将光标移至错误的单词上，然后执行<code class="inset">z=</code>命令列出一组相近的单词，你可以在其中选择正确的拼写。</p>
+	<p><a href="https://www.flickr.com/photos/yyq123/32450478175/in/photostream/" title="SpellCheck_2"><img src="https://c1.staticflickr.com/1/580/32450478175_8b26cc4669.jpg" width="500" height="379" alt="SpellCheck_2" /></a></p>
+	<p>有些特殊单词（比如图中的"Gvim"）也会被标识为错误拼写，如果你希望Vim能够承认它们为正确的拼写，可以使用<code class="inset">zg</code>命令。还可以用<code class="inset">zw</code>命令取消用户做的拼写识别。</p>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:set spell</code></td><td>启用拼写检查</td></tr>
+		<tr><td><code class="inset">:set nospell</code></td><td>关闭拼写检查</td></tr>
+		<tr><td><code class="inset">]s</code></td><td>移动到下一个拼写错误处</td></tr>
+		<tr><td><code class="inset">[s</code></td><td>移动到上一个拼写错误处</td></tr>
+		<tr><td><code class="inset">z=</code></td><td>选择正确的拼写</td></tr>
+		<tr><td><code class="inset">zg</code></td><td>添加用户拼写</td></tr>
+		<tr><td><code class="inset">zw</code></td><td>删除用户拼写</td></tr>
+	</table>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="折行(Wrap)" href="http://yyq123.blogspot.com/2010/07/vim-wrap.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="大小写转换(Tilde)" href="http://yyq123.blogspot.com/2016/12/vim-tilde.html">下一篇</a>&gt;</span></p>
+</body>
+</html>
