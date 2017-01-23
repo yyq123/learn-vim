@@ -3,59 +3,58 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIMÑ§Ï°±Ê¼Ç »º³åÇø (Buffer)</title>
+	<title>VIMå­¦ä¹ ç¬”è®° ç¼“å†²åŒº (Buffer)</title>
 </head>
 <body>
-	<p>»º³åÇø£¨Buffer£©ÊÇÒ»¿éÄÚ´æÇøÓò£¬ÀïÃæ´æ´¢×ÅÕýÔÚ±à¼­µÄÎÄ¼þ¡£Èç¹ûÃ»ÓÐ°Ñ»º³åÇøÀïµÄÎÄ¼þ´æÅÌ£¬ÄÇÃ´Ô­Ê¼ÎÄ¼þ²»»á±»¸ü¸Ä¡£¿ÉÒÔÊ¹ÓÃ<code class="inset">:help buffers</code>ÃüÁî£¬²é¿´¹ØÓÚ»º³åÇøµÄ°ïÖúÐÅÏ¢¡£</p>
-	
-	<p style="font-weight:bold">ÁÐÊ¾»º³åÇø</p>
-	<p><code class="inset">:buffers</code>ÃüÁî½«»áÁÐ³öµ±Ç°±à¼­ÖÐËùÓÐµÄ»º³åÇø×´Ì¬¡£ÔÚÕâ¸ö×´Ì¬ÁÐ±íÖÐ£¬Ç°ÃæµÄÊý×ÖÊÇ»º³åÇøµÄÊý×Ö±ê¼Ç£¬µÚ¶þ¸ö±ê¼Ç¾ÍÊÇ»º³åÇøµ±Ç°µÄ×´Ì¬£¬½ô½Ó×ÅÊÇÓë»º³åÇøËù¹ØÁªµÄÎÄ¼þÃû¡£ÓÐÈçÏÂ¼¸ÖÖ×´Ì¬£º</p>
+	<p>ç¼“å†²åŒºï¼ˆBufferï¼‰æ˜¯ä¸€å—å†…å­˜åŒºåŸŸï¼Œé‡Œé¢å­˜å‚¨ç€æ­£åœ¨ç¼–è¾‘çš„æ–‡ä»¶ã€‚å¦‚æžœæ²¡æœ‰æŠŠç¼“å†²åŒºé‡Œçš„æ–‡ä»¶å­˜ç›˜ï¼Œé‚£ä¹ˆåŽŸå§‹æ–‡ä»¶ä¸ä¼šè¢«æ›´æ”¹ã€‚å¯ä»¥ä½¿ç”¨<code class="inset">:help buffers</code>å‘½ä»¤ï¼ŒæŸ¥çœ‹å…³äºŽç¼“å†²åŒºçš„å¸®åŠ©ä¿¡æ¯ã€‚</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">åˆ—ç¤ºç¼“å†²åŒº</p>
+	<p><code class="inset">:buffers</code>å’Œ<code class="inset">:ls</code>å‘½ä»¤å°†ä¼šåˆ—å‡ºå½“å‰ç¼–è¾‘ä¸­æ‰€æœ‰çš„ç¼“å†²åŒºçŠ¶æ€ã€‚åœ¨è¿™ä¸ªçŠ¶æ€åˆ—è¡¨ä¸­ï¼Œå‰é¢çš„æ•°å­—æ˜¯ç¼“å†²åŒºçš„æ•°å­—æ ‡è®°ï¼Œç¬¬äºŒä¸ªæ ‡è®°å°±æ˜¯ç¼“å†²åŒºå½“å‰çš„çŠ¶æ€ï¼Œç´§æŽ¥ç€æ˜¯ä¸Žç¼“å†²åŒºæ‰€å…³è”çš„æ–‡ä»¶åã€‚æœ‰å¦‚ä¸‹å‡ ç§çŠ¶æ€ï¼š</p>
 	<p>
-	- £¨·Ç»î¶¯µÄ»º³åÇø£©<br />
-	a £¨¼¤»î»º³åÇø£©<br />
-	h £¨Òþ²ØµÄ»º³åÇø£©<br />
-	% £¨µ±Ç°µÄ»º³åÇø£©<br />
-	# £¨½»»»»º³åÇø£©<br />
-	= £¨Ö»¶Á»º³åÇø£©<br />
-	+ £¨ÒÑ¾­¸ü¸ÄµÄ»º³åÇø£©
+	- ï¼ˆéžæ´»åŠ¨çš„ç¼“å†²åŒºï¼‰<br />
+	a ï¼ˆæ¿€æ´»ç¼“å†²åŒºï¼‰<br />
+	h ï¼ˆéšè—çš„ç¼“å†²åŒºï¼‰<br />
+	% ï¼ˆå½“å‰çš„ç¼“å†²åŒºï¼‰<br />
+	# ï¼ˆäº¤æ¢ç¼“å†²åŒºï¼‰<br />
+	= ï¼ˆåªè¯»ç¼“å†²åŒºï¼‰<br />
+	+ ï¼ˆå·²ç»æ›´æ”¹çš„ç¼“å†²åŒºï¼‰
 	</p>
-	<p style="text-align:center"><a href="http://www.flickr.com/photos/yyq123/3751683098/" title="Buffers by yyq123, on Flickr"><img src="http://farm3.static.flickr.com/2616/3751683098_80d3979da8_o.png" width="385" height="103" alt="Buffers" /></a></p>
+	<p style="text-align:center"><a href="https://www.flickr.com/photos/yyq123/3751683098/" title="Buffers by yyq123, on Flickr"><img src="https://farm3.static.flickr.com/2616/3751683098_80d3979da8_o.png" width="385" height="103" alt="Buffers" /></a></p>
 
-	<p style="font-weight:bold">´ò¿ª»º³åÇø</p>
-	<p>Èç¹ûÒªÑ¡ÔñÒ»¸ö»º³åÇø£¬¿ÉÒÔÊ¹ÓÃ<code class="inset">:buffer number</code>ÃüÁî£¬number¾ÍÊÇ»º³åÇø×´Ì¬ÁÐ±íÖÐËùÏÔÊ¾µÄÊý×Ö¡£ÎÒÃÇÒ²¿ÉÒÔÓÃÎÄ¼þÃûÀ´Ñ¡Ôñ»º³åÇø£º<code class="inset">:buffer file</code>¡£</p>
-	<p>ÎÒÃÇ¿ÉÒÔÓÃ<code class="inset">:sbuffer number</code>ÃüÁî£¬À´·Ö¸îµ±Ç°´°¿Ú¿ªÊ¼±à¼­Ò»¸ö»º³åÇø¡£Èç¹ûÖ¸Ã÷ÁËÊý×Ö£¬ÄÇÃ´µ±Ç°´°¿Ú¾Í»áÏÔÊ¾Êý×ÖËù±ê¼ÇµÄ»º³åÇøÖÐµÄÄÚÈÝ£»Èç¹ûÃ»ÓÐÖ¸Ã÷Êý×Ö£¬ÄÇÃ´¾Í»áÏÔÊ¾µ±Ç°»º³åÇøµÄÄÚÈÝ¡£µ±È»£¬Õâ¸öÃüÁîÒ²¿ÉÒÔÓÃÎÄ¼þÃûÀ´×öÎª²ÎÊý¡£</p>
-	<p>Ê¹ÓÃ<code class="inset">:ball</code>ÃüÁî¿ÉÒÔÎªÃ¿Ò»¸ö»º³åÇø´ò¿ªÒ»¸ö´°¿Ú¡£</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">æ‰“å¼€ç¼“å†²åŒº</p>
+	<p>å¦‚æžœè¦é€‰æ‹©ä¸€ä¸ªç¼“å†²åŒºï¼Œå¯ä»¥ä½¿ç”¨<code class="inset">:buffer number</code>å‘½ä»¤ï¼Œnumberå°±æ˜¯ç¼“å†²åŒºçŠ¶æ€åˆ—è¡¨ä¸­æ‰€æ˜¾ç¤ºçš„æ•°å­—ã€‚æˆ‘ä»¬ä¹Ÿå¯ä»¥ç”¨æ–‡ä»¶åæ¥é€‰æ‹©ç¼“å†²åŒºï¼š<code class="inset">:buffer file</code>ã€‚</p>
+	<p>æˆ‘ä»¬å¯ä»¥ç”¨<code class="inset">:sbuffer number</code>å‘½ä»¤ï¼Œæ¥åˆ†å‰²å½“å‰çª—å£å¼€å§‹ç¼–è¾‘ä¸€ä¸ªç¼“å†²åŒºã€‚å¦‚æžœæŒ‡æ˜Žäº†æ•°å­—ï¼Œé‚£ä¹ˆå½“å‰çª—å£å°±ä¼šæ˜¾ç¤ºæ•°å­—æ‰€æ ‡è®°çš„ç¼“å†²åŒºä¸­çš„å†…å®¹ï¼›å¦‚æžœæ²¡æœ‰æŒ‡æ˜Žæ•°å­—ï¼Œé‚£ä¹ˆå°±ä¼šæ˜¾ç¤ºå½“å‰ç¼“å†²åŒºçš„å†…å®¹ã€‚å½“ç„¶ï¼Œè¿™ä¸ªå‘½ä»¤ä¹Ÿå¯ä»¥ç”¨æ–‡ä»¶åæ¥åšä¸ºå‚æ•°ã€‚</p>
+	<p>ä½¿ç”¨<code class="inset">:ball</code>å‘½ä»¤å¯ä»¥ä¸ºæ¯ä¸€ä¸ªç¼“å†²åŒºæ‰“å¼€ä¸€ä¸ªçª—å£ã€‚</p>
 
-	<p style="font-weight:bold">ÇÐ»»»º³åÇø</p>
-	<p><code class="inset">:bnext</code>µ½ÏÂÒ»¸ö»º³åÇø£»<code class="inset">:bprevious</code>»ò<code class="inset">:bNext</code>µ½Ç°Ò»¸ö»º³åÇø£»<code class="inset">:blast</code>µ½×îºóÒ»¸ö»º³åÇø£»<code class="inset">:bfirst</code>µ½µÚÒ»¸ö»º³åÇø¡£</p>
-	<p>¸ù¾ÝÄ¬ÈÏÉèÖÃ£¬ÔÚÇÐ»»µ½ÁíÒ»»º³åÇøÖ®Ç°£¬Vim½«ÌáÊ¾Äã±£´æµ±Ç°»º³åÇø¡£ÄãÒ²¿ÉÒÔÊ¹ÓÃ<code class="inset">:set hidden</code>ÃüÁî£¬ÔÊÐíÔÚÎ´±£´æµÄÇé¿öÏÂÇÐ»»»º³åÇø¡£</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">åˆ‡æ¢ç¼“å†²åŒº</p>
+	<p><code class="inset">:bnext</code>åˆ°ä¸‹ä¸€ä¸ªç¼“å†²åŒºï¼›<code class="inset">:bprevious</code>æˆ–<code class="inset">:bNext</code>åˆ°å‰ä¸€ä¸ªç¼“å†²åŒºï¼›<code class="inset">:blast</code>åˆ°æœ€åŽä¸€ä¸ªç¼“å†²åŒºï¼›<code class="inset">:bfirst</code>åˆ°ç¬¬ä¸€ä¸ªç¼“å†²åŒºã€‚</p>
+	<p>æ ¹æ®é»˜è®¤è®¾ç½®ï¼Œåœ¨åˆ‡æ¢åˆ°å¦ä¸€ç¼“å†²åŒºä¹‹å‰ï¼ŒVimå°†æç¤ºä½ ä¿å­˜å½“å‰ç¼“å†²åŒºã€‚ä½ ä¹Ÿå¯ä»¥ä½¿ç”¨<code class="inset">:set hidden</code>å‘½ä»¤ï¼Œå…è®¸åœ¨æœªä¿å­˜çš„æƒ…å†µä¸‹åˆ‡æ¢ç¼“å†²åŒºã€‚</p>
 
-	<p style="font-weight:bold">Ôö¼Ó»º³åÇø</p>
-	<p>ÔÚ±à¼­µÄ¹ý³ÌÖÐ£¬¿ÉÒÔÓÃ<code class="inset">:badd filename</code>ÃüÁîÐÂÔöÒ»¸ö»º³åÇø¡£Ö¸¶¨µÄÎÄ¼þ»á±»¼Óµ½»º³åÇøÁÐ±íÖÐ£¬¶ÔÕâ¸öÎÄ¼þµÄ±à¼­¹ý³ÌÖ»ÓÐÇÐ»»µ½ÄÇ¸ö»º³åÇøÊ±²Å»á¿ªÊ¼¡£ÔÚÕâ¸öÃüÁîÖÐ£¬»¹¿ÉÒÔÖ¸Ã÷ÎªÕâ¸ö»º³åÇø´ò¿ª´°¿ÚÊ±£¬¹â±êËù´¦µÄÎ»ÖÃ<code class="inset">:badd +linenum filename</code>¡£</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">å¢žåŠ ç¼“å†²åŒº</p>
+	<p>åœ¨ç¼–è¾‘çš„è¿‡ç¨‹ä¸­ï¼Œå¯ä»¥ç”¨<code class="inset">:badd filename</code>å‘½ä»¤æ–°å¢žä¸€ä¸ªç¼“å†²åŒºã€‚æŒ‡å®šçš„æ–‡ä»¶ä¼šè¢«åŠ åˆ°ç¼“å†²åŒºåˆ—è¡¨ä¸­ï¼Œå¯¹è¿™ä¸ªæ–‡ä»¶çš„ç¼–è¾‘è¿‡ç¨‹åªæœ‰åˆ‡æ¢åˆ°é‚£ä¸ªç¼“å†²åŒºæ—¶æ‰ä¼šå¼€å§‹ã€‚åœ¨è¿™ä¸ªå‘½ä»¤ä¸­ï¼Œè¿˜å¯ä»¥æŒ‡æ˜Žä¸ºè¿™ä¸ªç¼“å†²åŒºæ‰“å¼€çª—å£æ—¶ï¼Œå…‰æ ‡æ‰€å¤„çš„ä½ç½®<code class="inset">:badd +linenum filename</code>ã€‚</p>
 
-	<p style="font-weight:bold">É¾³ý»º³åÇø</p>
-	<p>¿ÉÒÔÊ¹ÓÃ<code class="inset">:bdelete filename</code>¡¢<code class="inset">:bdelete 3</code>»ò<code class="inset">:3 bdelete</code>ÃüÁîÀ´É¾³ýÒ»¸ö»º³åÇø¡£Ò²¿ÉÒÔÓÃ<code class="inset">:1,3 bdelete</code>ÃüÁîÀ´É¾³ýÖ¸¶¨·¶Î§µÄ»º³åÇø¡£</p>
-	<p>Èç¹û»º³åÇø±»¸Ä¶¯¹ý£¬ÄÇÃ´¸ÃÃüÁî½«Ê§°Ü£¬³ý·ÇÊ¹ÓÃ!Ñ¡Ïî¡£Èç¹ûÊ¹ÓÃÁË´ø!Ñ¡ÏîµÄ<code class="inset">:bdelete! filename</code>ÃüÁî£¬ÄÇÃ´ÔÚ»º³åÇøÖÐµÄËùÓÐ¸Ä¶¯¶¼»á±»·ÅÆú¡£</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">åˆ é™¤ç¼“å†²åŒº</p>
+	<p>å¯ä»¥ä½¿ç”¨<code class="inset">:bdelete filename</code>ã€<code class="inset">:bdelete 3</code>æˆ–<code class="inset">:3 bdelete</code>å‘½ä»¤æ¥åˆ é™¤ä¸€ä¸ªç¼“å†²åŒºã€‚ä¹Ÿå¯ä»¥ç”¨<code class="inset">:1,3 bdelete</code>å‘½ä»¤æ¥åˆ é™¤æŒ‡å®šèŒƒå›´çš„ç¼“å†²åŒºã€‚</p>
+	<p>å¦‚æžœç¼“å†²åŒºè¢«æ”¹åŠ¨è¿‡ï¼Œé‚£ä¹ˆè¯¥å‘½ä»¤å°†å¤±è´¥ï¼Œé™¤éžä½¿ç”¨!é€‰é¡¹ã€‚å¦‚æžœä½¿ç”¨äº†å¸¦!é€‰é¡¹çš„<code class="inset">:bdelete! filename</code>å‘½ä»¤ï¼Œé‚£ä¹ˆåœ¨ç¼“å†²åŒºä¸­çš„æ‰€æœ‰æ”¹åŠ¨éƒ½ä¼šè¢«æ”¾å¼ƒã€‚</p>
 
-	<p style="font-weight:bold">Ð¶ÔØ»º³åÇø</p>
-	<p>ÃüÁî<code class="inset">:bunload</code>»á´ÓÄÚ´æÖÐÐ¶ÔØÒ»¸ö»º³åÇø£¬ËùÓÐÎªÕâ¸ö»º³åÇø´ò¿ªµÄ´°¿ÚÒ²»á¹Ø±Õ¡£µ«ÊÇÕâ¸öÎÄ¼þÃûÈÔÈ»»á´æÔÚÓÚ»º³åÇøÁÐ±íÖÐ¡£Èç¹û»º³åÇø±»¸Ä¶¯¹ý£¬ÄÇÃ´¸ÃÃüÁî½«Ê§°Ü£¬³ý·ÇÊ¹ÓÃ!Ñ¡Ïî£¬µ«ÊÇÕâÑùËùÓÐµÄ¸Ä¶¯¶¼»á¶ªÊ§¡£</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">å¸è½½ç¼“å†²åŒº</p>
+	<p>å‘½ä»¤<code class="inset">:bunload</code>ä¼šä»Žå†…å­˜ä¸­å¸è½½ä¸€ä¸ªç¼“å†²åŒºï¼Œæ‰€æœ‰ä¸ºè¿™ä¸ªç¼“å†²åŒºæ‰“å¼€çš„çª—å£ä¹Ÿä¼šå…³é—­ã€‚ä½†æ˜¯è¿™ä¸ªæ–‡ä»¶åä»ç„¶ä¼šå­˜åœ¨äºŽç¼“å†²åŒºåˆ—è¡¨ä¸­ã€‚å¦‚æžœç¼“å†²åŒºè¢«æ”¹åŠ¨è¿‡ï¼Œé‚£ä¹ˆè¯¥å‘½ä»¤å°†å¤±è´¥ï¼Œé™¤éžä½¿ç”¨!é€‰é¡¹ï¼Œä½†æ˜¯è¿™æ ·æ‰€æœ‰çš„æ”¹åŠ¨éƒ½ä¼šä¸¢å¤±ã€‚</p>
 
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
-		<caption>ÃüÁîÐ¡½á</caption>
-		<tr><td><code class="inset">:buffers</code></td><td>ÁÐÊ¾»º³åÇø×´Ì¬</td></tr>
-		<tr><td><code class="inset">:buffer</code></td><td>±à¼­Ö¸¶¨»º³åÇø</td></tr>
-		<tr><td><code class="inset">:ball</code></td><td>±à¼­ËùÓÐ»º³åÇø</td></tr>
-		<tr><td><code class="inset">:bnext</code></td><td>µ½ÏÂÒ»»º³åÇø</td></tr>
-		<tr><td><code class="inset">:bprevious</code></td><td>µ½Ç°Ò»»º³åÇø</td></tr>
-		<tr><td><code class="inset">:blast</code></td><td>µ½×îºóÒ»¸ö»º³åÇø</td></tr>
-		<tr><td><code class="inset">:bfirst</code></td><td>µ½µÚÒ»¸ö»º³åÇø</td></tr>
-		<tr><td><code class="inset">:badd</code></td><td>Ôö¼Ó»º³åÇø</td></tr>
-		<tr><td><code class="inset">:bdelete</code></td><td>É¾³ý»º³åÇø</td></tr>
-		<tr><td><code class="inset">:bunload</code></td><td>Ð¶ÔØ»º³åÇø</td></tr>
+		<caption>å‘½ä»¤å°ç»“</caption>
+		<tr><td><code class="inset">:buffers</code></td><td>åˆ—ç¤ºç¼“å†²åŒºçŠ¶æ€</td></tr>
+		<tr><td><code class="inset">:buffer</code></td><td>ç¼–è¾‘æŒ‡å®šç¼“å†²åŒº</td></tr>
+		<tr><td><code class="inset">:ball</code></td><td>ç¼–è¾‘æ‰€æœ‰ç¼“å†²åŒº</td></tr>
+		<tr><td><code class="inset">:bnext</code></td><td>åˆ°ä¸‹ä¸€ç¼“å†²åŒº</td></tr>
+		<tr><td><code class="inset">:bprevious</code></td><td>åˆ°å‰ä¸€ç¼“å†²åŒº</td></tr>
+		<tr><td><code class="inset">:blast</code></td><td>åˆ°æœ€åŽä¸€ä¸ªç¼“å†²åŒº</td></tr>
+		<tr><td><code class="inset">:bfirst</code></td><td>åˆ°ç¬¬ä¸€ä¸ªç¼“å†²åŒº</td></tr>
+		<tr><td><code class="inset">:badd</code></td><td>å¢žåŠ ç¼“å†²åŒº</td></tr>
+		<tr><td><code class="inset">:bdelete</code></td><td>åˆ é™¤ç¼“å†²åŒº</td></tr>
+		<tr><td><code class="inset">:bunload</code></td><td>å¸è½½ç¼“å†²åŒº</td></tr>
 	</table>
-	<p>Technorati Tags: <a href="http://www.technorati.com/tags/vi" rel="tag">vi</a>,<a href="http://www.technorati.com/tags/vim" rel="tag">vim</a>,<a href="http://www.technorati.com/tags/gvim" rel="tag">gvim</a></p>
+		<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="()" href="">ä¸Šä¸€ç¯‡</a>&nbsp;|<a title="ç¬”è®°åˆ—è¡¨" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;ç›®å½•&nbsp;</a>|&nbsp;<a title="()" href="">ä¸‹ä¸€ç¯‡</a>&gt;</span></p>
 </body>
 </html>
 
