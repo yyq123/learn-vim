@@ -1,0 +1,311 @@
+    +---------------------------------------------------------------------+
+    |=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|
+    +---------------------------------------------------------------------+
+    |                                                                     |
+    |          T h e  R e a l  S h o r t  L i s t  o f  V i m ' s         |
+    |               N o r m a l - M o d e  C o m m a n d s                |
+    |                                                                     |
+    +---------------------------------------------------------------------+
+    |=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|
+    +---------------------------------------------------------------------+
+                    List compiled by Charles E Campbell, Jr.
+                               December 22, 1999
+
+ ---------------------------------------------------------------------
+!{cmd}{filter}  send {motion} text through external program {filter}
+ "              store in register 
+ #              same as "*", but search backwards
+ $              end of line 
+ %              find match of current parenthesis, brace, or bracket 
+ ---------------------------------------------------------------------
+ &              synonym for ":s//~/" (repeat last substitute)
+ '              goto beginning of line with mark 
+ (              previous sentence 
+ )              next sentence 
+ *              search forward for [count]'th occurent of word nearest cursor
+ ---------------------------------------------------------------------
+ +              first character of next line 
+ ,              reverse direction of last f, F, t, or T 
+ -              first character of previous line 
+ .              repeat last command
+ /              search forward 
+ ---------------------------------------------------------------------
+ 0              beginning of line 
+ :              go to ex-mode 
+ ;              repeat last f, F, t, or T
+={motion}      filter {motion} lines through 'equalprg' external program
+ ?              search backward 
+ ---------------------------------------------------------------------
+ @              execute command in register
+ [(             goto previous unmatched '('
+ [[             previous section
+ []             go backwards count sections or to previous '}' in 1st column
+ [{             goto previous unmatched '{'
+ ---------------------------------------------------------------------
+ [#             goto previous unmatched "#if" or "#else"
+ [*             goto previous start of a C comment (/*)
+ [i             display 1st line tha contains keyword under cursort
+ [I             display all lines that contain keyword under cursor
+ [^I            jump to 1st line that contains keyword under cursor
+ ---------------------------------------------------------------------
+ [d             display 1st macro definition that contains macro under cursor
+ [D             display all macro definition that contain macro under cursor
+ [^D            jump to 1st macro definition  that contains keyword under cursor
+ ][             go forwards  count sections to to next '}' in 1st column
+ ]]             next section 
+ ---------------------------------------------------------------------
+ ]}             goto next unmatched '}'
+ ]#             goto next unmatched "#if" or "#else"
+ ]*             goto next end of a C comment (*/)
+ ]i             like '[i', but start at current cursor positiont
+ ]I             like '[I', but start at current cursor position
+ ---------------------------------------------------------------------
+ ]^I            like '[^I', but start at current cursor position
+ ]d             like '[d', but start at current cursor position
+ ]D             like '[D', but start at current cursor position
+ ^              first non-whitespace character
+ _              move (count-1) lines downard on first non-blank character
+ ---------------------------------------------------------------------
+ `              goto mark 
+ {              previous paragraph 
+ |              to screen column [count] in current line
+ }              next paragraph 
+ ~              switch case of current character
+ ---------------------------------------------------------------------
+!!{filter}      filter [count] lines through the external program {filter}
+''              go to start of line of previous mark or location before search
+``              return to previous mark or location before a search 
+(return)        next line 
+(spacebar)      next character 
+ ---------------------------------------------------------------------
+<%              shift text until matching (, [, or { to the left
+<<              shift paragraph one shiftwidth to the left 
+>%              shift text until matching (, [, or { to the right 
+>>              shift paragraph one shiftwidth to the right 
+ a              append after the current location 
+ ---------------------------------------------------------------------
+ A              append at the end of the line
+^a              add [count] to the number at or after the cursor
+ b              beginning of previous word 
+ B              beginning of previous word, ignore punctuation 
+^b              scroll back one screen
+ ---------------------------------------------------------------------
+ c              delete {motion} text (into register) and begin insert
+ C              change to end of line 
+^c              ends insert mode, unused in command mode
+ d{motion}      delete text covered by a {motion}
+ D              delete to end of line 
+^d              scroll down half a window
+ ---------------------------------------------------------------------
+ e              end of word 
+ E              end of word, ignore punctuation 
+^e              scroll screen down one line
+ fx             find given character by searching forwards
+ F              find given character by searching backwards
+ ---------------------------------------------------------------------
+^f              scroll forward one screen
+ g ^a           dump memory profile
+ g ^g           show information about current cursor position
+ g ^h           start Select block mode
+ g ^]           :tjump to tag under the cursor
+ ---------------------------------------------------------------------
+ g#             like "#", but without using "\<" and "\>"
+ g$             wrap off: goto rightmost onscreen character of current line
+ g*             like "*", but without using "\<" and "\>"
+ g0             wrap off: goto leftmost onscreen character of current line
+ g?             rot13 encoding operator
+ ---------------------------------------------------------------------
+ g??            rot13 encode current line
+ g?g?           rot13 encode current line
+ gD             goto definition of word under cursor in current file
+ gE             go backwards to end of previous WORD
+ gH             start Select line mode
+ ---------------------------------------------------------------------
+ gI             like "I", but always start in column 1
+ gJ             join lines without inserting space (like :j!)
+ ["x]gP         put text (from register x) N times
+ gR             enter virtual replace mode
+ gU{motion}     make Nmove text uppercase
+ ---------------------------------------------------------------------
+ gV             don't reselect previous Visual area (maps, menus) in Select mode
+ g]             :tselect on tag under cursor
+ g^             wrap off: goto leftmost non-white onscreen char on current line
+ ga             print ascii value of character under cursor
+ gd             goto definition of word under cursor in current function
+ ---------------------------------------------------------------------
+ ge             go backwards to end of previous word
+ gf             start editing file whose name is under cursor
+ gg             cursor to line N (default: 1) ; start Select mode
+ gh             start Select mode
+ gj             wrap on: like "j", but go N screen lines down
+ ---------------------------------------------------------------------
+ gk             wrap on: like "k", but go N screen lines up
+ gm             goto character at middle of screenline
+ go             cursor to byte N in buffer
+ ["x]gp         put text (from register x) after cursor N times
+ gq{motion}     format text
+ ---------------------------------------------------------------------
+ gr{char}       virtual replace N chars with given char
+ gs             goto sleep for N (1) seconds
+ gu{motion}     make Nmove text lowercase
+ gv             reselect previous Visual area
+ g~{motion}     swap case for Nmove text
+ ---------------------------------------------------------------------
+ g<Down>        same as gj
+ g<End>         same as g$
+ g<Home>        same as g0
+ g<LeftMouse>   same as <ctrl-LeftMouse>
+ g<RightMouse>  same as <ctrl-RightMouse>
+ g<Up>          same as gk
+ ---------------------------------------------------------------------
+ G              ...Goto  [defaults to end of file] 
+^g              show status line
+ h              left 
+ H              first line on screen 
+^h              backspace in insert mode, left in command mode
+ ---------------------------------------------------------------------
+ i              insert before current location 
+ I              insert before first non-whitespace character on line 
+^i              goto [count] newer cursor position in jump list
+ j              down 
+ J              join next line with current line 
+ ---------------------------------------------------------------------
+^j              down in command, create newline in insert
+ k              up 
+ K              use keywordprg (kp option) to lookup keyword under cursor
+^k xx           enter digraph specified by two characters
+ l              right 
+ ---------------------------------------------------------------------
+ L              last line on screen 
+^l              redraw screen
+ m              mark position into register 
+ M              middle of screen 
+^m              carriage return
+ ---------------------------------------------------------------------
+ n              repeat last search 
+ N              repeat last search, reverse direction 
+^n              down in command
+ o              open line below current 
+ O              open line above current 
+ ---------------------------------------------------------------------
+^o              goto older cursor position in jump list
+ p              put below current line 
+ P              put above current line 
+^p              up in command
+ qx             record typed characters into given register x
+ ---------------------------------------------------------------------
+ q              stop macro recording
+ Q              quit and run ex 
+^q              same as ctrl-v
+ r              replace current character 
+ R              replace characters until insert mode is left 
+ ---------------------------------------------------------------------
+^r              redraw screen in command mode
+ s              substitute 
+ S              substitute entire line 
+^s              split current window into two
+ t              to...  
+ ---------------------------------------------------------------------
+ T              backward to...  
+^t              moves to next shiftwidth.
+ u              undo last change 
+ U              undo changes to current line 
+^u              scroll up half a window
+ ---------------------------------------------------------------------
+ v              start Visual mode at given character
+ V              start linewise Visual mode
+^v              start blockwise Visual mode
+ w              beginning of next word 
+ W              beginning of next word, ignore punctuation 
+ ---------------------------------------------------------------------
+^W ^B           same as "^W b"
+^W ^C           same as "^W c"
+^W ^D           same as "^W d"
+^W ^F           same as "^W f"
+^W ^G           same as "^W g .."
+ ---------------------------------------------------------------------
+^W ^I           same as "^W i"
+^W ^J           same as "^W j"
+^W ^K           same as "^W k"
+^W ^N           same as "^W n"
+^W ^O           same as "^W o"
+ ---------------------------------------------------------------------
+^W ^P           same as "^W p"
+^W ^Q           same as "^W q"
+^W ^R           same as "^W r"
+^W ^S           same as "^W s"
+^W ^T           same as "^W t"
+ ---------------------------------------------------------------------
+^W ^W           same as "^W w"
+^W ^X           same as "^W x"
+^W ^Z           same as "^W z"
+^W ^]           same as "^W ]"
+^W ^^           same as "^W ^"
+ ---------------------------------------------------------------------
+^W ^_           same as "^W _"
+^W +            increase current window height N lines
+^W -            decrease current window height N lines
+^W =            make all windows the same height
+^W R            rotate windows upwards N times
+ ---------------------------------------------------------------------
+^W S            same as "^W s"
+^W W            go to N previous window (wrap around)
+^W ]            split window and jump to tag under cursor
+^W ^            split current window and edit alternate file N
+^W _            set current window height to N (default: very high)
+ ---------------------------------------------------------------------
+^W b            go to bottom window
+^W c            close current window (like |:close|)
+^W d            split window and jump to definition under the cursor
+^W f            split window and edit file name under the cursor
+^W g ^]         split window and do |:tjump| to tag under cursor
+ ---------------------------------------------------------------------
+^W g ]          split window and do |:tselect| for tag under cursor
+^W g }          do a |:ptjump| to the tag under the cursor
+^W i            split window & jump to declaration of identifier under cursor
+^W j            go to N next window (stop at last window)
+^W k            go to N previous window (stop at first window)
+ ---------------------------------------------------------------------
+^W n            open new window, N lines high
+^W o            close all but current window (like |:only|)
+^W p            go to previous (last accessed) window
+^W q            quit current window (like |:quit|)
+^W r            rotate windows downwards N times
+ ---------------------------------------------------------------------
+^W s            split current window in two parts, new window N lines high
+^W t            go to top window
+^W w            go to N next window (wrap around)
+^W x            exchange current window with window N (default: next window)
+^W z            close preview window
+ ---------------------------------------------------------------------
+^W }            show tag under cursor in preview window
+^W <Down>       same as "^W j"
+^W <Up>         same as "^W k"
+ x              delete current character 
+ X              delete previous character 
+ ---------------------------------------------------------------------
+^x              unused
+ y              yank...  
+ Y              yank current line 
+^y              scroll screen up one line
+ z              redraw with line [count] at top-of-window
+ ---------------------------------------------------------------------
+ zt             like "z<cr>" but leave cursor in same column
+ z{height}<CR>  redraw window {height} lines tall
+ z.             redraw with line [count] at center of window
+ zz             like "z." but cursor left at same column
+ z-             redraw with line [count] at bottom of window
+ ---------------------------------------------------------------------
+ zb             like "z-" but leave cursor in same column
+ z<Right>       wrap off: scroll screen [count] characters to left
+ zl             same as "z<Right>"
+ z<Left>        scroll screen [count] characters to right
+ zh             same as "z<Left>"
+ ---------------------------------------------------------------------
+ zL             scroll screen half a screenwidth to left
+ zH             scroll screen half a screenwidth to right
+ zs             scroll text&cursor horizontally so cursor on right of screen
+ ze             scroll text&cursor horizontally so cursor on left of screen
+ZZ              write (only if changes have been made) and quit 
+ ---------------------------------------------------------------------
+^z              suspend Vim
