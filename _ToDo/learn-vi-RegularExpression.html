@@ -109,8 +109,12 @@ s[num]
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">预定义字符</p>
 	<p>如果需要找出包含空格的空行，那么可以使用<code class="inset">^\s.*$</code>表达式；如果需要找到没有空格的空行，则可以使用<code class="inset">\S</code></p>
 		
-<p>The \d operator will match any digit in a search, while the \D operator will match any non-digit in a search. </p>
+	<p>操作符<code class="inset">\d</code>可以匹配任意数字；而<code class="inset">\D</code>则可以匹配任意非数字。 </p>
 <p>To match any uppercase character, use \u, while \l will match any lowercase character. Using \U will match any non-uppercase character, and \L will match any non-lowercase character.</p>
+	<p>使用以下三种命令，都可以精确匹配四位数字：</p>
+	<p style="text-indent:2em"><code class="inset">/\&lt;\d\d\d\d\&gt;</code></p>
+	<p style="text-indent:2em"><code class="inset">/\D\d\d\d\d\D</code></p>
+	<p style="text-indent:2em"><code class="inset">/\&lt;\d\{4}\&gt;</code></p>
 	<p>使用以下命令，可以将整篇文本替换为大写字母：</p>
 	<p style="text-indent:2em"><code class="inset">:%s/.*/\U&amp;/</code></p>
 	<p>请注意，以上预定义字符是不能内嵌在[]中使用的。例如，表达式[\d\l]是错误的，应使用<code class="inset">\(\d\|\l\)</code>表达式匹配数字或小写字符。</p>
