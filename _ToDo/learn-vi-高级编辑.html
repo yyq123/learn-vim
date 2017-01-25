@@ -64,7 +64,17 @@
 	<p>如果要使Vim只识别出八进制数，我们可使用下面的命令：</p>
 	<p style="text-indent:2em">:set nrformats=octal</p>
 
+" Retrieving last command line command for copy pasting into text
+i<c-r>:
+" Retrieving last Search Command for copy  pasting into text
+i<c-r>/
 
+g;               : cycle thru recent changes (oldest first)
+g,               : reverse direction 
+:changes
+:h changelist    : help for above
+<C-O>            : retrace your movements in file (starting from most recent)
+<C-I>            : retrace your movements in file (reverse direction)
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">统计字数</p>
 	<p>使用<code class="inset">g-Ctrl-g</code>命令，将在状态栏下方显示整个文档的字数和行数，以及当前所处的位置。</p>
