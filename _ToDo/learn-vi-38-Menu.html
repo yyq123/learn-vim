@@ -3,62 +3,65 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>²Ëµ¥</title>
+	<title>VIMå­¦ä¹ ç¬”è®° èœå•(Menu)</title>
 </head>
 <body>
 	
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">ÆôÓÃ/½ûÓÃ²Ëµ¥</p>
-	<p>Ê¹ÓÃÒÔÏÂÃüÁî£¬¿ÉÒÔÒþ²Ø²Ëµ¥À¸£º</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">å¯ç”¨/ç¦ç”¨èœå•</p>
+	<p>ä½¿ç”¨ä»¥ä¸‹å‘½ä»¤ï¼Œå¯ä»¥éšè—èœå•æ ï¼š</p>
 	<p style="text-indent:2em"><code class="inset">:set guioptions-=m</code></p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">²é¿´²Ëµ¥Ó³Éä</p>
-	<p>Ê¹ÓÃÒÔÏÂÃüÁî£¬¿ÉÒÔÁÐ³öËùÓÐ²Ëµ¥Ó³Éä£º</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">æŸ¥çœ‹èœå•æ˜ å°„</p>
+	<p>ä½¿ç”¨ä»¥ä¸‹å‘½ä»¤ï¼Œå¯ä»¥åˆ—å‡ºæ‰€æœ‰èœå•æ˜ å°„ï¼š</p>
 	<p style="text-indent:2em"><code class="inset">:menu</code></p>
-	<p>Èç¹ûÖ»ÐèÒªÏÔÊ¾ÌØ¶¨µÄ²Ëµ¥ÄÚÈÝ£¬ÄÇÃ´¿ÉÒÔÊ¹ÓÃÒÔÏÂÃüÁî£º</p>
+	<p>å¦‚æžœåªéœ€è¦æ˜¾ç¤ºç‰¹å®šçš„èœå•å†…å®¹ï¼Œé‚£ä¹ˆå¯ä»¥ä½¿ç”¨ä»¥ä¸‹å‘½ä»¤ï¼š</p>
 	<p style="text-indent:2em"><code class="inset">:menu File</code></p>
-	<p>¶øÒÔÏÂÃüÁî£¬Ôò¿ÉÒÔÁÐ³öÖ¸¶¨²Ëµ¥ÏîµÄÄÚÈÝ£º</p>
+	<p>è€Œä»¥ä¸‹å‘½ä»¤ï¼Œåˆ™å¯ä»¥åˆ—å‡ºæŒ‡å®šèœå•é¡¹çš„å†…å®¹ï¼š</p>
 	<p style="text-indent:2em"><code class="inset">:menu File.Save</code></p>
-	<p>ÔÚÕâ¸öÃüÁîµÄÖ´ÐÐ½á¹ûµÄÃ¿Ò»ÐÐµÄÊ×¸ö×ÖÄ¸Ö¸Ã÷ÁËÕâ¸öÃüÁîµÄÄ£Ê½.ÕâÀïµÄ×Ö·ûÊÇÓëÎÒÃÇÇ°ÃæÌáµ½µÄmode²ÎÊýÏàÒ»ÖÂµÄ.</p>
+	<p>åœ¨è¿™ä¸ªå‘½ä»¤çš„æ‰§è¡Œç»“æžœçš„æ¯ä¸€è¡Œçš„é¦–ä¸ªå­—æ¯æŒ‡æ˜Žäº†è¿™ä¸ªå‘½ä»¤çš„æ¨¡å¼.è¿™é‡Œçš„å­—ç¬¦æ˜¯ä¸Žæˆ‘ä»¬å‰é¢æåˆ°çš„modeå‚æ•°ç›¸ä¸€è‡´çš„.</p>
 
-	<p></p>
-	<p>Vim±à¼­Æ÷ËùÊ¹ÓÃµÄ²Ëµ¥ÊÇÓÉÎÄ¼þ$VIMRUNTIME/menu.vim¶¨ÒåµÄ.</p>
-	<p>¶¨ÒåÒ»¸ö²Ëµ¥ÄÚÈÝ,¿ÉÒÔÊ¹ÓÃ:menuÃüÁî.»ù±¾ÐÎÊ½ÈçÏÂ:</p>
-	:menu menu-item command-string
-	<p>ÕâÀïµÄmenu-itemÃèÊöÁËÔÚÄÄÀï·ÅÖÃ²Ëµ¥ÄÚÈÝ.±ÈÈçFile.Save£¬¾Í±íÃ÷Save²Ëµ¥ÔÚFile²Ëµ¥ÏÂ¡£¶ø&amp;ºÅÔòÊÇ±íÃ÷ÕâÊÇÒ»¸ö¿ì½Ý¼ü£¬ÀýÈçÔÚgvimÖÐ,ÎÒÃÇ¿ÉÒÔÓÃAlt-FÀ´Ñ¡ÔñFile²Ëµ¥¶øÓÃsÀ´Ñ¡Ôñ±£´æ²Ëµ¥(ÕâÀïÃ»ÓÐ¿´Ã÷°×).ËùÒÔÕâÀïµÄmenu-item¿´ÆðÀ´¾ÍÊÇÕâÑùµÄ&amp;File.&amp;Save.</p>
-	<p>¶øÊÂÊµÉÏFile.SaveµÄ¶¨ÒåÈçÏÂ:</p>
-	:menu 10.340 &amp;File.&amp;Save:w        :confirm w
-	<p>ÕâÀïµÄÊý×Ö±»³ÆÎªÓÅÏÈ¼¶(priority)Êý.Ëû¿ÉÒÔÓÃÀ´¾ö¶¨±à¼­Æ÷ÈçºÎ·ÅÖÃ²Ëµ¥ÄÚÈÝ.µÚÒ»¸öÊý×Ö10±íÃ÷ÁËÔÚ²Ëµ¥À¸ÉÏµÄÎ»ÖÃ.Ð¡Êý×Ö¿¿½ü×ó²à,¶ø´óÊý×Ö¿¿½üÓÒ²à.µÚ¶þ¸öÊý×ÖÔòÊÇ¾ö¶¨ÁËÏÂÀ­²Ëµ¥µÄÎ»ÖÃ.Ð¡Êý×ÖÔÚÉÏ²¿,¶ø´óÊý×ÖÔÚÏÂ²¿.<p>
-	<p>ÔÚÕâ¸öÀý×ÓÖÐÎÒÃÇ»¹¿ÉÒÔ¿´³öºÜÖØÒªµÄÒ»µã¾ÍÊÇmenu-item±ØÐëÊÇÒ»¸ö´Ê.Èç¹ûÎÒÃÇÒªÔÚÃû×ÖÖÐ¼ÓÈë¿Õ¸ñ»òÊÇTab,ÎÒÃÇ¾ÍÒªÓÃµ½&lt;&gt;»òÊÇ.ÀýÈç:</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">å®šä¹‰æ–°èœå•</p>
+	<p>Vimç¼–è¾‘å™¨æ‰€ä½¿ç”¨çš„èœå•æ˜¯ç”±æ–‡ä»¶$VIMRUNTIME/menu.vimå®šä¹‰çš„.</p>
+	<p>å®šä¹‰ä¸€ä¸ªèœå•å†…å®¹,å¯ä»¥ä½¿ç”¨:menuå‘½ä»¤.åŸºæœ¬å½¢å¼å¦‚ä¸‹:</p>
+	<p style="text-indent:2em"><code class="inset">:menu [priority] menu-item command-string</code></p>
+	<p>å…¶ä¸­ï¼Œmenu-itemæè¿°äº†æ”¾ç½®èœå•é¡¹çš„è·¯å¾„ï¼Œæ¯”å¦‚<em>File.Save</em>è¡¨æ˜ŽSaveèœå•åœ¨Fileèœå•ä¸‹ï¼›&amp;å·ç”¨äºŽæŒ‡å®šå¿«æ·é”®ï¼Œä¾‹å¦‚<em>&amp;File.&amp;Save</em>å¯ä»¥è¡¨æ˜Žç”¨<kbd>Alt-F</kbd>é”®æ¥é€‰æ‹©Fileèœå•ï¼Œè€Œç”¨<kbd>S</kbd>é”®æ¥é€‰æ‹©ä¿å­˜èœå•ã€‚å¯ä»¥ä¾æ¬¡åˆ›å»ºå­èœå•ï¼Œä¾‹å¦‚<em>Tabs.Navigation.Next</em>ã€‚èœå•å®šä¹‰å‘½ä»¤ç¤ºä¾‹å¦‚ä¸‹ï¼š</p>
+	<p style="text-indent:2em"><code class="inset">:menu 10.340 &amp;File.&amp;Save:w        :confirm w</code></p>
+	<p>å…¶ä¸­ï¼Œæ•°å­—ä¸ºä¼˜å…ˆçº§(priority)ï¼Œç”¨äºŽç¡®å®šæ”¾ç½®èœå•é¡¹çš„ä½ç½®ã€‚ç¬¬ä¸€ä¸ªæ•°å­—<em>10</em>è¡¨æ˜Žåœ¨èœå•æ ä¸Šçš„ä½ç½®ã€‚æ•°å­—è¶Šå°è¶Šé è¿‘å·¦ä¾§ï¼Œè€Œæ•°å­—è¶Šå¤§åˆ™è¶Šé è¿‘å³ä¾§ï¼›ç¬¬äºŒä¸ªæ•°å­—<em>340</em>åˆ™å†³å®šäº†ä¸‹æ‹‰èœå•çš„ä½ç½®ã€‚æ•°å­—è¶Šå°è¶Šé è¿‘ä¸Šéƒ¨ï¼Œè€Œæ•°å­—è¶Šå¤§åˆ™è¶Šé è¿‘ä¸‹éƒ¨ã€‚<p>
+	<p>åœ¨è¿™ä¸ªä¾‹å­ä¸­æˆ‘ä»¬è¿˜å¯ä»¥çœ‹å‡ºå¾ˆé‡è¦çš„ä¸€ç‚¹å°±æ˜¯menu-itemå¿…é¡»æ˜¯ä¸€ä¸ªè¯.å¦‚æžœæˆ‘ä»¬è¦åœ¨åå­—ä¸­åŠ å…¥ç©ºæ ¼æˆ–æ˜¯Tab,æˆ‘ä»¬å°±è¦ç”¨åˆ°&gt;æˆ–æ˜¯.ä¾‹å¦‚:</p>
 	:menu 10.340 &amp;File.&amp;Dolt:exit
-	<p>×îºóÎÒÃÇ»¹¿ÉÒÔÎªÒ»¶¨µÄÄ£Ê½À´¶¨Òå²Ëµ¥.Õâ¸öÃüÁîµÄÒ»°ãÐÎÊ½ÈçÏÂ:</p>
-	:[mode]menu [priority]menu-item command-string
-	modeÊÇÏÂÁÐÖÐµÄÒ»ÖÖ:
-	a    Õý³£(Normal),¿ÉÊÓ(Visual),ÔËËã·û²Ù×÷(Operator-pending)
-	n    Õý³£(Normal)
-	v    ¿ÉÊÓ(Visual)
-	o    ÔËËã·û²Ù×÷(Operator-pending)
-	i    ²åÈë(Insert)
-	c    ÃüÁîÐÐ
-	
-	<p>ÔÚÍ¼ÐÎ½çÃæµÄVimÖÐ»¹ÓÐÒ»¸öÓÐÈ¤µÄÌØÐÔ£¬µ±ÎÒÃÇµã¿ªÒ»¸ö²Ëµ¥Ê±¾Í»á·¢ÔÚ×Ó²Ëµ¥µÄµÚÒ»ÐÐÓÐÒ»ÌõÐéÏß£¬µã»÷´ËÐéÏß¾Í¿ÉÒÔ½«Õâ¸ö²Ëµ¥µ¯³ö²¢ÒÆ¶¯µ½ÆäËûµØ·½¡£¹Ø±Õºó£¬²Ëµ¥½á¹¹ÓÖ»Ö¸´µ½Õý³£µÄ×´Ì¬ÁË¡£ÔÚGTK°æ±¾ºÍWindows°æ±¾ÖÐµÄÍ¼ÐÎ½çÃæ»¹ÓÐÒ»¸ö¹¤¾ßÀ¸£¬ÕâÐ©¹¤¾ß¿ÉÒÔ¿ìËÙµÄÍê³ÉÎÒÃÇµÄ¹¤×÷¡£</p>
+	<p>ä½¿ç”¨ä»¥ä¸‹å‘½ä»¤ï¼Œå°†æ–°å»º<em>Tabs.Next</em>èœå•ï¼š</p>
+	<p style="text-indent:2em"><code class="inset">:menu Tabs.Next &lt;Esc&gt;:tabnext&lt;cr&gt;</code></p>
+	<p>å…¶ä¸­ï¼Œ&lt;Esc&gt;ç”¨äºŽè¿›å…¥å¸¸è§„æ¨¡å¼ï¼›&lt;cr&gt;ç”¨äºŽæ‰§è¡Œå‘½ä»¤ã€‚</p>
 
-ÏÂÃæµÄÃüÁî¿ÉÒÔÖ´ÐÐÒ»¸ö²Ëµ¥µÄÄÚÈÝ¾ÍÏñÎÒÃÇµÄ´Ó²Ëµ¥ÖÐÑ¡ÖÐÒ»Ñù:
+	<p>æˆ‘ä»¬è¿˜å¯ä»¥ä½¿ç”¨ä»¥ä¸‹æŒ‡å®šæ¨¡å¼çš„èœå•å®šä¹‰å‘½ä»¤ï¼š</p>
+	<ul>
+		<li><code class="inset">:amenu</code>&nbsp;æ­£å¸¸(Normal),å¯è§†(Visual),è¿ç®—ç¬¦æ“ä½œ(Operator-pending)</li>
+		<li><code class="inset">:nmenu</code>&nbsp;æ­£å¸¸(Normal)</li>
+		<li><code class="inset">:vmenu</code>&nbsp;å¯è§†(Visual)</li>
+		<li><code class="inset">:omenu</code>&nbsp;è¿ç®—ç¬¦æ“ä½œ(Operator-pending)</li>
+		<li><code class="inset">:imenu</code>&nbsp;æ’å…¥(Insert)</li>
+		<li><code class="inset">:cmenu</code>&nbsp;å‘½ä»¤è¡Œ</li>
+	</ul>
+	
+	<p>åœ¨å›¾å½¢ç•Œé¢çš„Vimä¸­è¿˜æœ‰ä¸€ä¸ªæœ‰è¶£çš„ç‰¹æ€§ï¼Œå½“æˆ‘ä»¬ç‚¹å¼€ä¸€ä¸ªèœå•æ—¶å°±ä¼šå‘åœ¨å­èœå•çš„ç¬¬ä¸€è¡Œæœ‰ä¸€æ¡è™šçº¿ï¼Œç‚¹å‡»æ­¤è™šçº¿å°±å¯ä»¥å°†è¿™ä¸ªèœå•å¼¹å‡ºå¹¶ç§»åŠ¨åˆ°å…¶ä»–åœ°æ–¹ã€‚å…³é—­åŽï¼Œèœå•ç»“æž„åˆæ¢å¤åˆ°æ­£å¸¸çš„çŠ¶æ€äº†ã€‚åœ¨GTKç‰ˆæœ¬å’ŒWindowsç‰ˆæœ¬ä¸­çš„å›¾å½¢ç•Œé¢è¿˜æœ‰ä¸€ä¸ªå·¥å…·æ ï¼Œè¿™äº›å·¥å…·å¯ä»¥å¿«é€Ÿçš„å®Œæˆæˆ‘ä»¬çš„å·¥ä½œã€‚</p>
+
+ä¸‹é¢çš„å‘½ä»¤å¯ä»¥æ‰§è¡Œä¸€ä¸ªèœå•çš„å†…å®¹å°±åƒæˆ‘ä»¬çš„ä»Žèœå•ä¸­é€‰ä¸­ä¸€æ ·:
 :emenu menu-item
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">ÒÆ³ý²Ëµ¥</p>
-ÏÂÃæµÄÃüÁî¿ÉÒÔ´Ó²Ëµ¥ÖÐÒÆ³ý²Ëµ¥Ïî:
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">ç§»é™¤èœå•</p>
+ä¸‹é¢çš„å‘½ä»¤å¯ä»¥ä»Žèœå•ä¸­ç§»é™¤èœå•é¡¹:
 :[mode]unmenu menu-item
-Èç¹ûÎÒÃÇÊ¹ÓÃ*,ÄÇÃ´Õû¸ö²Ëµ¥¶¼»á±»Çå³ý.
+å¦‚æžœæˆ‘ä»¬ä½¿ç”¨*,é‚£ä¹ˆæ•´ä¸ªèœå•éƒ½ä¼šè¢«æ¸…é™¤.
 
 		<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
-		<caption>ÃüÁîÐ¡½á</caption>
+		<caption>å‘½ä»¤å°ç»“</caption>
 		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset">:set lines?</code></td><td>ÒÔÏÔÊ¾µ±Ç°´°¿ÚµÄÐÐÊý</td></tr>
-		<tr><td><code class="inset">:set lines=lines</code></td><td>ÉèÖÃÐÐÊý</td></tr>
-		<tr><td><code class="inset">:set columns=columns</code></td><td>ÉèÖÃÁÐÊý</td></tr>
-		<tr><td><code class="inset">:set guioptions+=b</code></td><td>ÏÔÊ¾Ë®Æ½¹ö¶¯Ìõ</td></tr>
+		<tr><td><code class="inset">:set lines?</code></td><td>ä»¥æ˜¾ç¤ºå½“å‰çª—å£çš„è¡Œæ•°</td></tr>
+		<tr><td><code class="inset">:set lines=lines</code></td><td>è®¾ç½®è¡Œæ•°</td></tr>
+		<tr><td><code class="inset">:set columns=columns</code></td><td>è®¾ç½®åˆ—æ•°</td></tr>
+		<tr><td><code class="inset">:set guioptions+=b</code></td><td>æ˜¾ç¤ºæ°´å¹³æ»šåŠ¨æ¡</td></tr>
 		<tr><td><code class="inset"></code></td><td></td></tr>
 		<tr><td><code class="inset"></code></td><td></td></tr>
 		<tr><td><code class="inset"></code></td><td></td></tr>

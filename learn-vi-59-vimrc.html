@@ -15,16 +15,18 @@
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">配置文件位置</p>
 	<p><strong>vimrc</strong>是主配置文件，它有全局和用户两种版本。</p>
-	<p>全局vimrc文件，存放在Vim的安装目录中。可以使用以下命令，确定Vim的安装目录：</p>
+	<p>全局global vimrc文件，存放在Vim的安装目录中。可以使用以下命令，确定Vim的安装目录：</p>
 	<p style="text-indent:2em"><code class="inset">:echo $VIM</code></p>
 	<p>默认情况下，系统vimrc存放在以下位置：</p>
 	<p style="text-indent:2em">Linux: /usr/share/vim/vimrc</p>
-	<p style="text-indent:2em">Windows: c:\program files\vimrc</p>
-	<p>用户vimrc文件，存放在用户主目录中。可以使用以下命令，确定用户主目录：</p>
+	<p style="text-indent:2em">Windows: c:\program files\vim\vimrc</p>
+	<p>用户personal vimrc文件，存放在用户主目录中。可以使用以下命令，确定用户主目录：</p>
 	<p style="text-indent:2em"><code class="inset">:echo $HOME</code></p>
 	<p>默认情况下，用户vimrc存放在以下位置：</p>
 	<p style="text-indent:2em">Linux: /home/username/.vimrc</p>
 	<p style="text-indent:2em">Windows: c:\documents and settings\username\_vimrc</p>
+	<p>用户personal vimrc文件，可以使用以下命令确定：</p>
+	<p style="text-indent:2em"><code class="inset">:echo $MYVIMRC</code></p>
 	<p>注意：用户配置文件优先于系统配置文件。</p>
 
 	<p><strong>gvimrc</strong>是GVIM的配置文件，它也有全局和用户两种版本，并且存放在与vimrc相同的目录中。</p>
