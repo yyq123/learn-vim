@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 配色方案(Color Scheme)</title>
+</head>
+<body>
+	<p>Vim通过配色方案（Color Scheme）来定义使用不同颜色显示不同的语法元素。</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">识别背景色</p>
+	<p>Vim有两种显示模式：一种是背景为浅色，而另一种是背景为深色。在启动时，Vim会检测使用的是哪一种背景颜色，然后再应用语法高亮的配色方案。我们可以使用<code class="inset">:set background?</code>命令，查看当前使用的背景颜色。也可以使用<code class="inset">:set background=light</code>或<code class="inset">:set background=dark</code>命令，来指定背景颜色。注意：必须在启用语法高亮之前，设置背景色彩。</p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">安装配色方案</p>
+	<p>你可以先在<a href="http://vimcolors.com/" title="Vim Color Scheme Test">http://vimcolors.com/</a>网站中，预览各种配色方案的效果，然后再选择下载安装。</p>
+	<p>你也可以在<a href="http://www.vim.org/" title="Anchor">Vim.org</a>中，<a href="http://www.vim.org/scripts/script_search_results.php?keywords=&script_type=color+scheme&order_by=rating&direction=descending&search=search" title="Anchor">查找</a>并下载喜欢的配色方案。你甚至可以下载<a href="http://www.vim.org/scripts/script.php?script_id=625" title="Color Sampler Pack">Color Sampler Pack</a>，然后从其中包含的100个最受欢迎配色方案里慢慢挑选。</p>
+	<p>请将下载的配色方案文件<em>name.vim</em>，放入<em>$VIMRUNTIME/colors</em>目录中。</p>
+
+		<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">使用配色方案</p>
+	<p>输入<code class="inset">:colorscheme</code>命令，紧接着一个空格后，然后点击<kbd>Tab</kbd>键，将可以遍历所有已安装的配色方案，按下<kbd>Enter</kbd>键可以应用选中的配色方案。</p>
+	<p><a href="https://www.flickr.com/photos/yyq123/32755146482/in/dateposted/" title="ColorScheme_Tab"><img src="https://c1.staticflickr.com/4/3782/32755146482_bc538ca7f4.jpg" width="500" height="84" alt="ColorScheme_Tab" /></a></p>
+	<p>如果你希望在Vim启动时启用指定的配色方案，那么可以在<a title="vimrc" href="http://yyq123.blogspot.com/2012/01/vim-vimrc.html">vimrc</a>文件中使用以下命令：</p>
+	<p style="text-indent:2em"><code class="inset">:colorscheme name</code></p>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:set background</code></td><td>设置背景颜色</td></tr>
+		<tr><td><code class="inset">:colorscheme</code></td><td>设置配色方案</td></tr>
+	</table>
+	
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="语法高亮度 (Syntax)" href="http://yyq123.blogspot.com/2011/02/vim-syntax.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.io/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="模板(Template)" href="http://yyq123.blogspot.com/2010/08/vim-template.html">下一篇</a>&gt;</span></p>
+</body>
+</html>
+
