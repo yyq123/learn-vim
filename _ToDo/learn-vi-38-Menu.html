@@ -24,17 +24,15 @@
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">定义新菜单</p>
 	<p>Vim编辑器所使用的菜单是由文件$VIMRUNTIME/menu.vim定义的.</p>
-	<p>定义一个菜单内容,可以使用:menu命令.基本形式如下:</p>
+	<p>可以使用以下:menu命令，定义新的菜单内容：</p>
 	<p style="text-indent:2em"><code class="inset">:menu [priority] menu-item command-string</code></p>
-	<p>其中，menu-item描述了放置菜单项的路径，比如<em>File.Save</em>表明Save菜单在File菜单下；&amp;号用于指定快捷键，例如<em>&amp;File.&amp;Save</em>可以表明用<kbd>Alt-F</kbd>键来选择File菜单，而用<kbd>S</kbd>键来选择保存菜单。可以依次创建子菜单，例如<em>Tabs.Navigation.Next</em>。菜单定义命令示例如下：</p>
+	<p>其中，menu-item描述了放置菜单项的路径，比如<em>File.Save</em>表明Save菜单在File菜单下；还可以依次创建子菜单，例如<em>Tabs.Navigation.Next</em>。菜单定义命令示例如下：</p>
 	<p style="text-indent:2em"><code class="inset">:menu 10.340 &amp;File.&amp;Save:w        :confirm w</code></p>
-	<p>其中，数字为优先级(priority)，用于确定放置菜单项的位置。第一个数字<em>10</em>表明在菜单栏上的位置。数字越小越靠近左侧，而数字越大则越靠近右侧；第二个数字<em>340</em>则决定了下拉菜单的位置。数字越小越靠近上部，而数字越大则越靠近下部。<p>
-	<p>在这个例子中我们还可以看出很重要的一点就是menu-item必须是一个词.如果我们要在名字中加入空格或是Tab,我们就要用到&gt;或是.例如:</p>
-	:menu 10.340 &amp;File.&amp;Dolt:exit
+	<p><strong>priority</strong>，为数字优先级，用于确定放置菜单项的位置。第一个数字<em>10</em>表明在菜单栏上的位置。数字越小越靠近左侧，而数字越大则越靠近右侧；第二个数字<em>340</em>则决定了下拉菜单的位置。数字越小越靠近上部，而数字越大则越靠近下部。<p>
+	<p><strong>&amp;</strong>，用于指定快捷键，例如<em>&amp;File.&amp;Save</em>可以表明用<kbd>Alt-F</kbd>键来选择File菜单，而用<kbd>S</kbd>键来选择保存菜单。</p>
 	<p>使用以下命令，将新建<em>Tabs.Next</em>菜单：</p>
 	<p style="text-indent:2em"><code class="inset">:menu Tabs.Next &lt;Esc&gt;:tabnext&lt;cr&gt;</code></p>
 	<p>其中，&lt;Esc&gt;用于进入常规模式；&lt;cr&gt;用于执行命令。</p>
-
 	<p>我们还可以使用以下指定模式的菜单定义命令：</p>
 	<ul>
 		<li><code class="inset">:amenu</code>&nbsp;正常(Normal),可视(Visual),运算符操作(Operator-pending)</li>
@@ -44,16 +42,34 @@
 		<li><code class="inset">:imenu</code>&nbsp;插入(Insert)</li>
 		<li><code class="inset">:cmenu</code>&nbsp;命令行</li>
 	</ul>
-	
-	<p>在图形界面的Vim中还有一个有趣的特性，当我们点开一个菜单时就会发在子菜单的第一行有一条虚线，点击此虚线就可以将这个菜单弹出并移动到其他地方。关闭后，菜单结构又恢复到正常的状态了。在GTK版本和Windows版本中的图形界面还有一个工具栏，这些工具可以快速的完成我们的工作。</p>
+	<p></p>
+	<p style="text-indent:2em"><code class="inset">:amenu &lt;silent&gt;Tabs.&amp;Previous :tabprevious&lt;cr&gt;</code></p>
+	<p><strong>&lt;silent&gt;</strong>，将屏蔽命令行的输出。</p>
 
+	<p style="text-indent:2em"><code class="inset">:amenu Tabs.-SEP- :</code></p>
+	<p><strong>-SEP-</strong>，可以在下拉菜单中新建用于间隔菜单项的虚线。其必须是以<em>-</em>开头和结尾的唯一名称；同时必须包含命令,b比如用<strong>:</strong>空命令。</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">菜单实例</p>
+	<p>如果希望始终显示自己新建的菜单，那么可以在<a title="vimrc" href="http://yyq123.blogspot.com/2012/01/vim-vimrc.html">vimrc</a>文件中增加以下代码。请注意：代码不需要包括冒号（:）。</p>
+	<p><code class="inset">
+amenu &lt;silent&gt;Tabs.New :tabnew&lt;cr&gt;<br />
+amenu Tabs.-SEPT1- :<br />
+amenu &lt;silent&gt;Tabs.&amp;Next :tabnext&lt;cr&gt;<br />
+amenu &lt;silent&gt;Tabs.&amp;Previous :tabprevious&lt;cr&gt;<br />
+amenu Tabs.-SEPT2- :<br />
+amenu Tabs.&amp;Close :confirm tabclose&lt;cr&gt;<br />
+	</code></p>
+	<p>新建的菜单显示如下：</p>
+	<p><a href="https://www.flickr.com/photos/yyq123/32112022443/in/dateposted/" title="Menu_Tabs"><img src="https://c1.staticflickr.com/3/2231/32112022443_2752463084_o.png" width="149" height="114" alt="Menu_Tabs" /></a></p>
 下面的命令可以执行一个菜单的内容就像我们的从菜单中选中一样:
 :emenu menu-item
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">移除菜单</p>
-下面的命令可以从菜单中移除菜单项:
-:[mode]unmenu menu-item
-如果我们使用*,那么整个菜单都会被清除.
+	<p>使用以下命令，可以从菜单中移除指定菜单项：</p>
+	<p style="text-indent:2em"><code class="inset":[mode]unmenu menu-item></code></p>
+	<p>使用以下命令，则会移除所有菜单：</p>
+	<p style="text-indent:2em"><code class="inset">aunmenu *</code></p>
+
+
 
 		<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
@@ -72,8 +88,6 @@
 		<tr><td><code class="inset"></code></td><td></td></tr>
 		<tr><td><code class="inset"></code></td><td></td></tr>
 	</table>
-
-	<p>Tags: <a href="http://www.technorati.com/tags/vi" rel="tag">vi</a>,<a href="http://www.technorati.com/tags/vim" rel="tag">vim</a></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="()" href="">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="()" href="">下一篇</a>&gt;</span></p>
 </body>
 </html>
-
