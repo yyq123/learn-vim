@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 语法高亮 (Syntax Highlight)</title>
+</head>
+<body>
+	<p></p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px"></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px"></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px"></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px"></p>
+	<p><tt>:match</tt> command specifies the name of a highlight group and a pattern. Any text matching the pattern will be displayed in the foreground and background colors defined by the highlight group. <a href="http://vimdoc.sourceforge.net/cgi-bin/help?tag=%3Amatch" rel="nofollow">:help :match</a> <a href="http://vimdoc.sourceforge.net/cgi-bin/help?tag=%3A2match" rel="nofollow">:help :2match</a></div><p>Some examples follow. These use a highlight group named <tt>ExtraWhitespace</tt> which could be defined with one of the following in your <a href="http://vim.wikia.com/wiki/Vimrc" title="Vimrc">vimrc</a>.</p><pre>
+<p style="text-indent:2em"><code class="inset">:highlight ExtraWhitespace ctermbg=red guibg=red</code></p>
+
+<p>配色方案可能会清除用户定义的语法高亮组，所以请将以下命令放置在第一条<a title="" href="">colorscheme</a>命令之前，以便创建相应的高亮显示组：</p>
+<p style="text-indent:2em"><code class="inset">:autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red</code></p>
+
+<p>Once this highlight group is created, it can be associated with matching text as in the following examples.</p><div><br/></div>
+&quot; Show tabs that are not at the start of a line:<br/>
+<p style="text-indent:2em"><code class="inset">:match ExtraWhitespace /[^\t]\zs\t\+/</code></p>
+&quot; Switch off :match highlighting.<br/>
+<p style="text-indent:2em"><code class="inset">:match</code></p>
+
+Any <tt>:match</tt> highlighting applies only to the current window. With the following in your vimrc, the command will be applied to the first window, and to any subsequent windows. The pattern <tt>*</tt> applies the highlight to all files.</div><pre>
+&quot; Show leading whitespace that includes spaces, and trailing whitespace.
+:autocmd BufWinEnter * match ExtraWhitespace /^\s* \s*\|\s\+$/
+</pre><p>Rather than an autocmd, you may prefer a mapping. With the following, and the default backslash Leader key, you can type <tt>\wn</tt> to switch highlighting on, and <tt>\wf</tt> to switch it off.</p><pre>
+:nnoremap &lt;Leader&gt;wn :match ExtraWhitespace /^\s* \s*\&lt;Bar&gt;\s\+$/&lt;CR&gt;
+:nnoremap &lt;Leader&gt;wf :match&lt;CR&gt;
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+	</table>
+	
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="语法高亮度 (Syntax)" href="http://yyq123.blogspot.com/2011/02/vim-syntax.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://www.humyo.com/CHYfCqR/Blog/Vim/learn-vi-00-List.html?a=0tz81ab6hx8">&nbsp;目录&nbsp;</a>|&nbsp;<a title="模板(Template)" href="http://yyq123.blogspot.com/2010/08/vim-template.html">下一篇</a>&gt;</span></p>
+</body>
+</html>
+
