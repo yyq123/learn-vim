@@ -8,7 +8,7 @@
 	<title>VIM学习笔记 寄存器 (Registers)</title>
 </head>
 <body>
-	<p>将寄存器与各种删除、复制、粘贴命令组合使用，能够大大提高编辑文本的效率。</p> 
+	<p>将寄存器与各种删除、复制、粘贴命令组合使用，能够大大提高编辑文本的效率。</p>
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">指定寄存器</p>
 	<p>在复制或删除文本时，可以使用<code class="inset">"register</code>命令将文本放入指定的寄存器中。例如以下命令，将复制的文本放到寄存器<em>a</em>中，同时文本也会被放入未命名寄存器中。</p>
 	<p style="text-indent:2em"><code class="inset">"ayy</code></p>
@@ -20,6 +20,7 @@
 	<p><a href="https://www.flickr.com/photos/yyq123/32473418046/in/dateposted/" title="register_A"><img src="https://c1.staticflickr.com/1/420/32473418046_b00a44fd65.jpg" width="500" height="59" alt="register_A"></a></p>
 	<p>如果想要查看所有寄存中的内容，可以使用以下命令：</p>
 	<p><code class="inset">:registers</code></p>
+	<p><a data-flickr-embed="true"  href="https://www.flickr.com/photos/yyq123/32853041812/in/dateposted/" title="Registers"><img src="https://c1.staticflickr.com/3/2671/32853041812_3a159c4d5c.jpg" width="500" height="320" alt="Registers" /></a></p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">寄存器类别</p>
 	<p>寄存器可以分为以下9类：</p>
@@ -61,11 +62,12 @@
 	<p>而P命令，则将x寄存中的文本粘贴到光标之前：</p>
 	<p style="text-indent:2em"><code class="inset">"xP</code></p>
 	<p>如果直接使用<code class="inset">p</code>或<code class="inset">P</code>命令，而没有指明特定寄存器，那么将粘贴未命名寄存器中的内容。</p>
-	<p>使用以下命令，可以粘贴上次插入的文本，方便你录入重复的内容：</p> 
+	<p>使用以下命令，可以粘贴上次插入的文本，方便你录入重复的内容：</p>
 	<p style="text-indent:2em"><code class="inset">".P</code></p>
 	<p>如果要粘贴系统剪切板中的内容，在Insert mode下可以利用快捷键<kbd>Shift+Ins</kbd>，而在Normal mode下，可以使用以下命令：</p>
 	<p style="text-indent:2em"><code class="inset">"*p</code></p>
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="()" href="">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="()" href="">下一篇</a>&gt;</span></p>	
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="滚动屏幕(Scroll)" href="http://yyq123.blogspot.com/2009/02/vim_27.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="文本对象（Text Objects）" href="http://yyq123.blogspot.com/2016/12/vim-text-objects.html">下一篇</a>&gt;</span></p>
 </body>
 </html>
 
