@@ -59,16 +59,6 @@ $ gvim -geometry 80x24
 	<p style=font-weight:bold">行宽</p>
 	<p>当行过宽时，vim会自动进行回折以适应屏幕的宽度。如果设置了nowrap选项，则Vim不会自动折行，这时超出屏幕的部分将不会被显示出来。在默认的情况下，Vim也不会显示水平滚动条。我们可以使用<code class="inset">:set guioptions+=b</code>命令来显示水平滚动条。</p>
 	
-	<p style=font-weight:bold">字体</p>
-	<p>我们可以使用<code class="inset">:set guifont=font</code>命令更改当前使用的字体。这里的font是字体名称。在X Windows系统中，可以用命令xlsfonts列出所有可用的字体；在Windows系统中，可以在控制面板中检查字体列表。我们还可以用<code class="inset">:set guifont=*</code>命令打开一个字体选择列表，从中选择字体。</p>
-	<p>以下为 Linux 风格的字体设置语法。其中：字体名称和尺寸是以空格（spzce）分隔的。如果字体名称中含有空格，则需要在空格前面加上一个反斜杠进行转义。</p>
-	<p style="text-indent:2em"><code class="inset">:set guifont=Andale\ Mono\ 11</code></p>
-	<p>以下为 Mac 风格的字体设置语法。其中：字体名称和尺寸是以冒号（:）分隔的。字体尺寸以字母h为前缀。如果字体名称中含有空格或逗号，则需要在特殊字符前面加上一个反斜杠进行转义。</p>
-	<p style="text-indent:2em"><code class="inset">:set guifont=Monaco:h11</code></p>
-	<p>以下为 Windows 风格的字体设置语法。其中：字体名称和尺寸是以冒号（:）分隔的。字体尺寸以字母h为前缀。如果字体名称中含有空格，则可以用下划线（_）来代替。</p>
-	<p style="text-indent:2em"><code class="inset">:set guifont=Andale_Mono:h11</code></p>
-	<p>为了提高字体设置的适用范围，可以在命令中用逗号分隔多个字体，如果Vim没有在系统中找到第一个字体，则会自动寻找字体列表中的后续字体。</p>
-	<p style="text-indent:2em"><code class="inset">:set guifont=Droid\ Sans\ Mono:h10,Consolas:h11:cANSI</code></p>
 
 
 	<p style=font-weight:bold">颜色</p>
