@@ -68,15 +68,13 @@
 i<c-r>:
 " Retrieving last Search Command for copy  pasting into text
 i<c-r>/
+	<p>使用<code class="inset">:changes</code>命令，可以列出最近对文件进行编辑的位置：</p>
+	<p><a href="https://www.flickr.com/photos/yyq123/32762763980/in/dateposted/" title="Changes"><img src="https://c2.staticflickr.com/4/3712/32762763980_740e90d96b_o.png" width="224" height="94" alt="Changes" /></a></p>
+g;               : 移动到最近编辑的位置（1）
+g,               : 移动到最先编辑的位置
+	<p>使用<code class="inset">:h changelist</code>命令，可以查看更多帮助信息。</p>
 
-g;               : cycle thru recent changes (oldest first)
-g,               : reverse direction 
-:changes
-:h changelist    : help for above
-<C-O>            : retrace your movements in file (starting from most recent)
-<C-I>            : retrace your movements in file (reverse direction)
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">统计字数</p>
 	<p>使用<code class="inset">g-Ctrl-g</code>命令，将在状态栏下方显示整个文档的字数和行数，以及当前所处的位置。</p>
 	<p><a href="http://www.flickr.com/photos/yyq123/5383461626/" title="g-ctrl-g by yyq123, on Flickr"><img src="http://farm6.static.flickr.com/5204/5383461626_7168efc64a.jpg" width="500" height="10" alt="g-ctrl-g" /></a></p>
 	<p>如果想要统计当前行的字数，首先移动到行尾，然后使用<code class="inset">v</code>命令进入可视化模式，使用<code class="inset">0</code>命令移动到行头并选中整行文字，最后使用<code class="inset">g-Ctrl-g</code>命令显示选中文本的字数。</p>
