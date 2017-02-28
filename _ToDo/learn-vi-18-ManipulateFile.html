@@ -10,7 +10,10 @@
 <body>
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">打开文件</p>
 	<p>使用<code class="inset">:Explore</code>命令（注意开头E大写）打开文件浏览器，可以在其中切换目录并选择打开文件。</p>
-	<p><a href="https://www.flickr.com/photos/yyq123/32472916175/in/dateposted/" title="Explore"><img src="https://c1.staticflickr.com/1/669/32472916175_ee1d449ea8.jpg" width="500" height="288" alt="Explore"></a></p>
+	<p><a href="https://www.flickr.com/photos/yyq123/32472916175/in/dateposted/" title="Explore"><img src="https://c1.staticflickr.com/1/669/32472916175_ee1d449ea8.jpg" width="500" height="288" alt="Explore" /></a></p>
+	<p>如果当前文件中包含了其他文件名，那么我们可以移动到文件名位置，然后直接使用<code class="inset">gf</code>命令来打开链接的文件。例如下图所示，在HTML文件中引用了CSS文件，那么只需要在CSS文件名处执行gf命令，Vim就会在当前文件夹中查找并打开引用的CSS文件。</p>
+	<p><a href="https://www.flickr.com/photos/yyq123/32345473643/in/dateposted/" title="gf"><img src="https://c1.staticflickr.com/1/764/32345473643_3ea0fdb73e.jpg" width="500" height="20" alt="gf" /></a></p>
+	<p style="text-indent:2em"><code class="inset">:set suffixesadd+=.rb</code></p>
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">保存文件</p>
 	<p>使用<code class="inset">:write</code>（可简写为<code class="inset">:w</code>）命令，可以保存文件或文件中指定范围的文本。</p>
 	<p>使用以下命令将保存文本到文件collect.txt中：</p>
