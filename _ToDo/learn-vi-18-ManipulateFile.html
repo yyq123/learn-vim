@@ -11,7 +11,7 @@
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">打开文件</p>
 	<p>使用<code class="inset">:Explore</code>命令（注意开头E大写）打开文件浏览器，可以在其中切换目录并选择打开文件。</p>
 	<p><a href="https://www.flickr.com/photos/yyq123/32472916175/in/dateposted/" title="Explore"><img src="https://c1.staticflickr.com/1/669/32472916175_ee1d449ea8.jpg" width="500" height="288" alt="Explore" /></a></p>
-	<p>如果当前文件中包含了其他文件名，那么我们可以移动到文件名位置，然后直接使用<code class="inset">gf</code>命令来打开链接的文件。例如下图所示，在HTML文件中引用了CSS文件，那么只需要在CSS文件名处执行gf命令，Vim就会在当前文件夹中查找并打开引用的CSS文件。</p>
+	<p>如果当前文件中包含了其他文件名，那么我们可以移动到文件名位置，然后直接使用<code class="inset">gf</code>命令在新的<a href="http://yyq123.blogspot.com/2009/07/vim-buffer.html">缓冲区</a>中打开链接的文件。例如下图所示，在HTML文件中引用了CSS文件，那么只需要在CSS文件名处执行gf命令，Vim就会在当前文件夹中查找并打开引用的CSS文件。</p>
 	<p><a href="https://www.flickr.com/photos/yyq123/32345473643/in/dateposted/" title="gf"><img src="https://c1.staticflickr.com/1/764/32345473643_3ea0fdb73e.jpg" width="500" height="20" alt="gf" /></a></p>
 	<p style="text-indent:2em"><code class="inset">:set suffixesadd+=.rb</code></p>
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">保存文件</p>
@@ -50,8 +50,6 @@
 	<p style="text-indent:2em"><code class="inset">:line read file</code></p>
 	<p>我们甚至可以使用以下命令，读入外部命令的输出并插入到当前行的后面：</p>
 	<p style="text-indent:2em"><code class="inset">:line read !command</code></p>
-	<p>使用以下命令，将在新的<a href="http://yyq123.blogspot.com/2009/07/vim-buffer.html">缓冲区</a>中，打开当前目录中以光标下文字命名的文件。例如，当前打开HTML文档，可以将光标移动到链接CSS的标签，然后使用以下命令直接打开CSS文件。</p>
-	<p style="text-indent:2em"><code class="inset">gf</code></p>
 
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>

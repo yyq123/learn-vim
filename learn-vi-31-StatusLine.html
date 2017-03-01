@@ -8,17 +8,16 @@
 	<title>VIM学习笔记 状态行(Status Line)</title>
 </head>
 <body>
-	<p>默认的状态行，左侧显示当前打开的文件名，右侧显示当前所处的行列位置。当你执行Vim命令时，状态行将消失并显示命令输入及输出。</p>
+	<p>Vim默认的状态行，左侧显示当前打开的文件名，右侧显示当前所处的行列位置。当你执行Vim命令时，状态行将消失并显示命令输入及输出。</p>
 	<p>通常状态行用反色显示。你可以通过修改highlight选项中的s字符来改变。例如，sb设置为粗体字。如果状态行没有启用高亮 (sn)，那么字符^表示当前窗口，字符=表示其它窗口。如果支持鼠标并且已经通过设置mouse选项使之启动，那么你可以用鼠标拖动状态行以改变窗口的大小。</p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">定制状态行</p>
 	<p>我们可以使用以下命令来定义状态行：</p>
 	<p><code class="inset">:set statusline format</code></p>
-	<p>例如下面的命令：</p>
+	<p>例如以下命令，将在状行中包含文件名：</p>
 	<p><code class="inset">:set statusline=The file is"%f"</code></p>
-	<p>其中，%用来指明一个特殊区域。例如%f，将在状行中包含文件名。</p>
-	<p>选项包含printf风格的%项目，中间可以间杂普通文本。内容默认为右对齐，如果希望左对齐，那么可以在%后面加上-。数字内容是忽略开头0显示的，如果需要显示前导0，那么可以在%后加上一个"0"。单个百分号可以用"%%"给出。最多可给出80个项目。</p>
-	<p>如果此选项以 "%!" 开始，它用作表达式。计算此表达式的结果用作选项值。</p>
+	<p>选项包含printf风格的<strong>%</strong>项目，中间可以间杂普通文本。内容默认为右对齐，如果希望左对齐，那么可以在%后面加上-。数字内容是忽略开头0显示的，如果需要显示前导0，那么可以在%后加上一个"0"。单个百分号可以用"%%"给出。最多可给出80个项目。</p>
+	<p>如果此选项以<strong>%!</strong>开始，它用作表达式。计算此表达式的结果用作选项值。</p>
 
 	<table summary="" border="0" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>参数列表</caption>
@@ -57,7 +56,7 @@
 		<tr><td>%{expr}</td><td>表达式的结果</td></tr>
 	</table>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">显示状态行</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">显示/隐藏状态行</p>
 	<p>即使已经使用以上命令设置选项，状态行还是保持原样，这是因为Vim在默认情况下是不显示状态行的，而仅显示命令缓冲区等极少的信息。我们可以使用以下命令，将状态行显示在窗口底部倒数第二行：</p>
 	<p><code class="inset">:set laststatus=2</code></p>
 	<p>你也可以使用以下命令，移去状态行：</p>
@@ -95,9 +94,8 @@
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
 		<tr><td><code class="inset">:set statusline format</code></td><td>定制状态行</td></tr>
-		<tr><td><code class="inset">:set laststatus</code></td><td>显示/取消状态行</td></tr>
+		<tr><td><code class="inset">:set laststatus</code></td><td>显示/隐藏状态行</td></tr>
 	</table>
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="()" href="">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="()" href="">下一篇</a>&gt;</span></p>	
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.1</span><span>&lt;<a title="光标(Cursor)" href="http://yyq123.blogspot.com/2012/01/vim-cursor.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="行号(Line Number)" href="http://yyq123.blogspot.com/2017/01/vim-line-number.html">下一篇</a>&gt;</span></p>	
 </body>
 </html>
-
