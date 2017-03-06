@@ -18,7 +18,7 @@
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">列示标记</p>
 	<p>利用<code class="inset">:marks</code>命令，可以列出所有标记。这其中也包括一些系统内置的特殊标记（Special marks）：</p>
-	<p><a href="http://www.flickr.com/photos/yyq123/5821468116/" title="vim - marks by yyq123, on Flickr"><img src="http://farm6.static.flickr.com/5192/5821468116_704ac04565.jpg" width="500" height="355" alt="vim - marks"></a></p>
+	<p><a href="https://www.flickr.com/photos/yyq123/5821468116/" title="vim - marks by yyq123, on Flickr"><img src="http://farm6.static.flickr.com/5192/5821468116_704ac04565.jpg" width="500" height="355" alt="vim - marks" /></a></p>
 	<table summary="Special Marks" border="0">
 	<col span="1" style="background-color:lightgray;font-weight:bold;"/>
 	<tbody>
@@ -36,6 +36,11 @@
 	<p>如果删除了做过标记的文本行，那么所做的标记也就不存了。我们不仅可以利用标记来快速移动，而且还可以使用标记来删除文本，例如在某一行用<code class="inset">ma</code>做了标记，然后就可以使用<code class="inset">d'a</code>来删掉这一行。当然，我们也可以使用<code class="inset">y'a</code>命令就可以来复制这一行了。</p>
 	<p>使用<code class="inset">:delmarks a b c</code>命令，可以删除某个或多个标记；而<code class="inset">:delmarks!</code> 命令，则会删除所有标记。</p>
 	<p>利用<code class="inset">:help mark-motions</code>命令，可以查看关于标记的更多帮助信息。</p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">plugin: vim-signature</p>
+	<p><a title="vim-signature" href="https://github.com/kshenoy/vim-signature">vim-signature</a>插件用于在屏幕最左侧显示标记。使用以下命令，可以定义标记的显示风格：</p>
+	<p><a href="https://www.flickr.com/photos/yyq123/33121351432/in/dateposted/" title="plugin_vim-signature"><img src="https://c1.staticflickr.com/4/3916/33121351432_770ca3ceb9.jpg" width="500" height="58" alt="plugin_vim-signature" /></a></p>
+	<p>使用<code class="inset">:help Signature</code>命令，可以查看vim-signature插件定义的快捷键，用于在标记间快速移动。</p>
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
 		<tr><td><code class="inset">m</code></td><td>创建标记</td></tr>
