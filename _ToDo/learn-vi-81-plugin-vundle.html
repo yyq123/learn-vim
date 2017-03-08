@@ -8,13 +8,45 @@
 	<title>VIM学习笔记  ()</title>
 </head>
 <body>
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">启用/禁用</p>
+	<p><a href="https://github.com/gmarik/vundle">vundle</a></p>
+	<p><a href="https://desktop.github.com/">GitHub Desktop</a></p>
+	
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">配置</p>
 	<p></p>
+	<a href="https://www.flickr.com/photos/yyq123/32504647053/in/dateposted/" title="git_setup_UserVar"><img src="https://c2.staticflickr.com/4/3733/32504647053_d91a9096ab_o.png" width="493" height="109" alt="git_setup_UserVar" /></a></p>
+	<script src="https://gist.github.com/yyq123/d855a35f8641bea419cdaeadbb01a495.js"></script>
+set rtp+=$VIM/vimfiles/bundle/Vundle.vim/
+call vundle#begin('$VIM/vimfiles/bundle/')
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">识别文件</p>
+代替首页Quick start中的命令行。
+
+
+对应一个插件，后续若有新增插件，只需追加至该列表中即可。vundle 支持源码托管在 https://github.com/ 的插件，同时 vim 官网 http://www.vim.org/ 上的所有插件均在 https://github.com/vim-scripts/ 有镜像
+
+需要安装插件，先找到其在 github.com 的地址，再将配置信息其加入 .vimrc 中的call vundle#begin() 和 call vundle#end() 之间，最后进入 vim 执行
+
+:PluginInstall
+
+要卸载插件，先在 .vimrc 中注释或者删除对应插件配置信息，然后在 vim 中执行
+
+:PluginClean
+
+
+即可删除对应插件。插件更新频率较高，差不多每隔一个月你应该看看哪些插件有推出新版本，批量更新，只需执行
+
+:PluginUpdate
+
+	
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">常见问题</p>
 	<p></p>
+	<p>如果在使用:VundleInstall命令安装插件时，出现&ldquo;git不是内部或外部命令&rdquo;或者&ldquo;缺少某一个lib&rdquo;的报错是，那么请将以下目录添加到Path设置中：</p>
+	<p><code class="inset">
+	C:\Program Files (x86)\Git\libexec\git-core;<br />
+	C:\Program Files (x86)\Git\bin;
+	</code></p>
+	<p>请注意，路径名需要根据你的Git的安装目录作出相应修改。</p>
+
 	<p style="text-indent:2em"><code class="inset"></code></p>
-
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
 		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
