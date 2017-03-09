@@ -20,17 +20,19 @@ call vundle#begin('$VIM/vimfiles/bundle/')
 
 代替首页Quick start中的命令行。
 
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">安装插件</p>
+	<p>vundle支持源码托管在<a href="https://github.com/">GitHub</a>的插件，你可以在<a href="https://github.com/vim-scripts/">github.com/vim-scripts/</a>上找到<a href="http://www.vim.org/">vim官网</a>里所有插件的有镜像。</p>
+	<p>如果希望安装新插件，首先找到其在github.com的网址，然后将其追加至<a href="http://yyq123.blogspot.com/2012/01/vim-vimrc.html">vimrc</a>配置文件中的<code class="inset">call vundle#begin()</code>和<code class="inset">call vundle#end()</code>之间，最后执行以下命令：</p>
+	<p style="text-indent:2em"><code class="inset">:PluginInstall</code></p>
+	<p><a href="https://www.flickr.com/photos/yyq123/33333887515/in/dateposted/" title="Vundle_PluginInstall"><img src="https://c1.staticflickr.com/4/3737/33333887515_2d1663fe1e.jpg" width="500" height="155" alt="Vundle_PluginInstall" /></a></p>
 
-对应一个插件，后续若有新增插件，只需追加至该列表中即可。vundle 支持源码托管在 https://github.com/ 的插件，同时 vim 官网 http://www.vim.org/ 上的所有插件均在 https://github.com/vim-scripts/ 有镜像
-
-需要安装插件，先找到其在 github.com 的地址，再将配置信息其加入 .vimrc 中的call vundle#begin() 和 call vundle#end() 之间，最后进入 vim 执行
-
-:PluginInstall
-
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">卸载插件</p>
 要卸载插件，先在 .vimrc 中注释或者删除对应插件配置信息，然后在 vim 中执行
 
 :PluginClean
 
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">更新插件</p>
 
 即可删除对应插件。插件更新频率较高，差不多每隔一个月你应该看看哪些插件有推出新版本，批量更新，只需执行
 
