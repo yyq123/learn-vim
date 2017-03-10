@@ -8,17 +8,19 @@
 	<title>VIM学习笔记  ()</title>
 </head>
 <body>
-	<p><a href="https://github.com/gmarik/vundle">vundle</a></p>
-	<p><a href="https://desktop.github.com/">GitHub Desktop</a></p>
+	<p><a href="https://github.com/gmarik/vundle">Vundle</a>是一个Vim插件管理器，用于方便地安装、更新和卸载插件。</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">配置Vundle</p>
+	<ol>
+		<li>安装<a href="https://git-for-windows.github.io/">Git for Windows</a>；</li>
+		<li>配置Path环境变量；<br /><a href="https://www.flickr.com/photos/yyq123/32504647053/in/dateposted/" title="git_setup_UserVar"><img src="https://c2.staticflickr.com/4/3733/32504647053_d91a9096ab_o.png" width="493" height="109" alt="git_setup_UserVar" /></a></li>
+		<li>在Windows命令提示符下执行<code class="inset">git --version</code>命令，如果Git安装成功，那么将显示以下信息：<br /><a href="https://www.flickr.com/photos/yyq123/32494065484/in/dateposted/" title="git_Version"><img src="https://c1.staticflickr.com/4/3888/32494065484_0f670433b1.jpg" width="500" height="135" alt="git_Version" /></a></li>
+		<li>使用以下命令，将Vundle安装到指定目录：<br /><code class="inset">git clone https://github.com/VundleVim/Vundle.vim.git %USERPROFILE%/vimfiles/bundle/Vundle.vim</code></li>
+		<li>安装后目录机构如下：<br /><a href="https://www.flickr.com/photos/yyq123/33181370622/in/dateposted/" title="plugin_Vundle_Directory"><img src="https://c2.staticflickr.com/4/3881/33181370622_334911e899_o.png" width="252" height="329" alt="plugin_Vundle_Directory" /></a></li>
+		<li>将<a href="http://yyq123.blogspot.com/2012/01/vim-vimrc.html">vimrc</a>配置文件中的<em>"set the runtime path to include Vundle and initialize</em>部分，更新如下：<br /><code class="inset">set rtp+=$VIM/vimfiles/bundle/Vundle.vim/</code><br /><code class="inset">call vundle#begin('$VIM/vimfiles/bundle/')</code></li>
+	</ol>
 	
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">配置</p>
-	<p></p>
-	<a href="https://www.flickr.com/photos/yyq123/32504647053/in/dateposted/" title="git_setup_UserVar"><img src="https://c2.staticflickr.com/4/3733/32504647053_d91a9096ab_o.png" width="493" height="109" alt="git_setup_UserVar" /></a></p>
-	<script src="https://gist.github.com/yyq123/d855a35f8641bea419cdaeadbb01a495.js"></script>
-set rtp+=$VIM/vimfiles/bundle/Vundle.vim/
-call vundle#begin('$VIM/vimfiles/bundle/')
-
-代替首页Quick start中的命令行。
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">Vundel配置实例</p>
+	<p><script src="https://gist.github.com/yyq123/d855a35f8641bea419cdaeadbb01a495.js"></script></p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">安装插件</p>
 	<p>vundle支持源码托管在<a href="https://github.com/">GitHub</a>的插件，你可以在<a href="https://github.com/vim-scripts/">github.com/vim-scripts/</a>上找到<a href="http://www.vim.org/">vim官网</a>里所有插件的有镜像。</p>
@@ -27,20 +29,15 @@ call vundle#begin('$VIM/vimfiles/bundle/')
 	<p><a href="https://www.flickr.com/photos/yyq123/33333887515/in/dateposted/" title="Vundle_PluginInstall"><img src="https://c1.staticflickr.com/4/3737/33333887515_2d1663fe1e.jpg" width="500" height="155" alt="Vundle_PluginInstall" /></a></p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">卸载插件</p>
-要卸载插件，先在 .vimrc 中注释或者删除对应插件配置信息，然后在 vim 中执行
-
-:PluginClean
-
+	<p>如果希望卸载插件，请先在<a href="http://yyq123.blogspot.com/2012/01/vim-vimrc.html">vimrc</a>配置文件中注释或者删除对应插件de 配置信息，然后再执行以下命令：</p>
+	<p style="text-indent:2em"><code class="inset">:PluginClean</code></p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">更新插件</p>
-
-即可删除对应插件。插件更新频率较高，差不多每隔一个月你应该看看哪些插件有推出新版本，批量更新，只需执行
-
-:PluginUpdate
+	<p>使用以下命令，可以自动批量更新所以已安装的插件：</p>
+	<p style="text-indent:2em"><code class="inset">:PluginUpdate</code></p>
 
 	
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">常见问题</p>
-	<p></p>
 	<p>如果在使用:VundleInstall命令安装插件时，出现&ldquo;git不是内部或外部命令&rdquo;或者&ldquo;缺少某一个lib&rdquo;的报错是，那么请将以下目录添加到Path设置中：</p>
 	<p><code class="inset">
 	C:\Program Files (x86)\Git\libexec\git-core;<br />
@@ -53,9 +50,9 @@ call vundle#begin('$VIM/vimfiles/bundle/')
 		<caption>命令小结</caption>
 		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
 		<tr><td><code class="inset">:</code></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:PluginInstall</code></td><td>安装插件</td></tr>
+		<tr><td><code class="inset">:PluginClean</code></td><td>卸载插件</td></tr>
+		<tr><td><code class="inset">:PluginUpdate</code></td><td>更新插件</td></tr>
 	</table>
 
 	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="()" href="">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="()" href="">下一篇</a>&gt;</span></p>
