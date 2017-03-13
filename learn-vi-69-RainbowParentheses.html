@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记  多重色彩括号(Rainbow Parentheses)</title>
+</head>
+<body>
+	<p>在编写代码时，经常需要函数嵌套，这就会造成一行代码中会有很多括号，而变得难以阅读。我们可以使用<a style="text-weight:bold" href="http://www.vim.org/scripts/script.php?script_id=1561" title="Colors Parenthsis">Rainbow Parenthesis</a>插件或者<a href="http://www.vim.org/scripts/script.php?script_id=4176">Rainbow Parentheses Improved</a>插件，通过多种颜色来标识匹配的括号。</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">安装Rainbow Parentheses</p>
+	<p>首先<a style="text-weight:bold" href="https://www.vim.org/scripts/script.php?script_id=1561" title="Colors Parenthsis">下载</a>Rainbow Parenthesis；然后在vim中打开下载的vba文件；最后执行<code class="inset">:so %</code>命令以完成安装。</p>
+	<p><a href="https://www.flickr.com/photos/yyq123/6352760090/" title="plugin_RainbowParentheses_install by yyq123, on Flickr"><img src="https://farm7.static.flickr.com/6114/6352760090_fe618b02d7.jpg" width="500" height="141" alt="plugin_RainbowParentheses_install" /></a></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">配置Rainbow Parentheses</p>
+	<p>打开<span style="font-weight:bold;">vimfiles\autoload\rainbow_parenthesis.vim</span>文件，在第66行插入以下命令，以避免Rainbow Parentheses插件运行时报错。</p>
+	<p><a href="https://www.flickr.com/photos/yyq123/6352748404/" title="plugin_RainbowParentheses_workaround1 by yyq123, on Flickr"><img src="https://farm7.static.flickr.com/6226/6352748404_74b71d7128.jpg" width="378" height="101" alt="plugin_RainbowParentheses_workaround1" /></a></p>
+	<p>将该文件第34-49行中的<em>guibg</em>部分删除，以避免Rainbow Parentheses插件改变括号的背景色。</p>
+	<p><a href="https://www.flickr.com/photos/yyq123/6352748508/" title="plugin_RainbowParentheses_workaround2 by yyq123, on Flickr"><img src="https://farm7.static.flickr.com/6232/6352748508_985b63812d.jpg" width="500" height="182" alt="plugin_RainbowParentheses_workaround2" /></a></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">启用Rainbow Parentheses</p>
+	<p>我们可以使用以下命令，手工启动Rainbow Parentheses插件：</p>
+	<p style="text-indent:2em"><code class="inset">:ToggleRaibowParenthesis</code></p>
+	<p>显示效果如下图所示：</p>
+	<p><a href="https://www.flickr.com/photos/yyq123/6349887131/" title="plugin_RainbowParentheses by yyq123, on Flickr"><img src="http://farm7.static.flickr.com/6052/6349887131_ddef965f01_z.jpg" width="553" height="104" alt="plugin_RainbowParentheses" /></a></p>
+	<p>也可以在<em>vimrc</em>文件里添加以下命令，在vim启动时自动加载Rainbow Parentheses插件：</p>
+	<p><a href="https://www.flickr.com/photos/yyq123/6352032433/" title="plugin_RainbowParentheses_load by yyq123, on Flickr"><img src="http://farm7.static.flickr.com/6104/6352032433_c0fec6b6d7.jpg" width="371" height="122" alt="plugin_RainbowParentheses_load" /></a></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">安装Rainbow Parentheses Improved</p>
+	<p><a href="https://www.vim.org/scripts/script.php?script_id=4176">Rainbow Parentheses Improved</a>在以下几个方面进行了改进：不再限制括号的嵌套层数；可以分别自定义图形界面下和终端上所使用的括号颜色；甚至可以为不同类型的文件设定不同的配置；增加了中文说明。</p>
+	<p>首先，将下载到的<em>rainbow.vim</em>文件放到<em>vimfiles/plugin</em>文件夹（在linux系统里是<em>~/.vim/plugin</em>文件夹）中。然后，将以下句子，加入到你的<a href="https://yyq123.blogspot.com/2012/01/vim-vimrc.html">vimrc</a>配置文件中：</p>
+	<p style="text-indent:2em"><code class="inset">let g:rainbow_active = 1</code></p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">启用Rainbow Parentheses Improved</p>
+	<p>我们可以使用以下命令，手工启动Rainbow Parentheses Improved插件：</p>
+	<p style="text-indent:2em"><code class="inset">:RainbowToggle</code></p>
+	<p>显示效果如下图所示：</p>
+	<p><a href="https://www.flickr.com/photos/yyq123/33369315586/in/dateposted/" title="plugin_RainbowParenthesesImproved"><img src="https://c1.staticflickr.com/4/3805/33369315586_d4fb274e87.jpg" width="500" height="119" alt="plugin_RainbowParenthesesImproved"></a></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="语法高亮度 (Syntax)" href="http://yyq123.blogspot.com/2011/02/vim-syntax.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://users.cjb.net/yyq123/learn-vi-00-list.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="折叠 (Fold)" href="http://yyq123.blogspot.com/2011/09/vim-fold.html">下一篇</a>&gt;</span></p>
+</body>
+</html>
+
