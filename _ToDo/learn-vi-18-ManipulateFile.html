@@ -22,6 +22,20 @@
 	<p><a href="https://www.flickr.com/photos/yyq123/32801965850/in/dateposted/" title="set_path"><img src="https://c1.staticflickr.com/1/624/32801965850_1e625d31ec_o.png" width="401" height="21" alt="set_path" /></a></p>
 	<p>其中，&ldquo;.&rdquo;代表当前文件夹下的所有文件；&ldquo;**&rdquo;代表所有子文件夹；&ldquo;,&rdquo;用于分隔多个文件夹。</p>
 	<p>我们也可以使用<code class="inset">ctrl-Wf</code>命令，在新的分割窗口中打开光标下文件。</p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">文件信息</p>
+	<p>使用以下命令，可以显示当前文件的名字及与行相关的信息：</p>
+	<p style="text-indent:2em"><code class="inset">:file</code></p>
+	<p><span style="background-color:black; color:white">"test.txt" [Modified] 134 lines --55%--</span></p>
+	<p>使用以下命令，则可以显示当前文件的总行数：</p>
+	<p style="text-indent:2em"><code class="inset">:=</code></p>
+	<p>使用<code class="inset">g-Ctrl-g</code>命令，将在状态栏下方显示整个文档的字数和行数，以及当前所处的位置。</p>
+	<p><a href="https://www.flickr.com/photos/yyq123/5383461626/" title="g-ctrl-g by yyq123, on Flickr"><img src="http://farm6.static.flickr.com/5204/5383461626_7168efc64a.jpg" width="500" height="10" alt="g-ctrl-g" /></a></p>
+	<p>如果想要统计当前行的字数，首先移动到行尾，然后使用<code class="inset">v</code>命令进入可视化模式，使用<code class="inset">0</code>命令移动到行头并选中整行文字，最后使用<code class="inset">g-Ctrl-g</code>命令显示选中文本的字数。</p>
+	<p>在插入模式下，使用<code class="inset">&lt;C-R&gt;%</code>命令，或者在常规模式下，使用<code class="inset">"%p</code>命令，可以将当前文件名粘贴到文本中。</p>
+	<p>使用以下命令，可以在文本中查找当前文件名：</p>
+	<p style="text-indent:2em"><code class="inset">/&lt;C-R&gt;%</code></p>
+
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">保存文件</p>
 	<p>使用<code class="inset">:write</code>（可简写为<code class="inset">:w</code>）命令，可以保存文件或文件中指定范围的文本。</p>
 	<p>使用以下命令将保存文本到文件collect.txt中：</p>
@@ -58,6 +72,11 @@
 	<p style="text-indent:2em"><code class="inset">:line read file</code></p>
 	<p>我们甚至可以使用以下命令，读入外部命令的输出并插入到当前行的后面：</p>
 	<p style="text-indent:2em"><code class="inset">:line read !command</code></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">退出文件</p>
+	<p>使用<code class="inset">:quit</code>命令，可以退出当前文件。如果有未保存的修改，那么就会在窗口底部显示错误信息。可以使用以下命令，配置Vinm在此类情况下显示确认对话框：</p>
+	<p style="text-indent:2em"><code class="inset">:set confirm</code></p>
+	<p><a href="https://www.flickr.com/photos/yyq123/33413666225/in/dateposted/" title="set_confirm"><img src="https://c1.staticflickr.com/1/736/33413666225_df3ce0c581_o.png" width="436" height="136" alt="set_confirm" /></a></p>
 
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>

@@ -1,0 +1,128 @@
+URL
+alipay.com
+www.xianyun.org
+http://www.google.com
+https://mail.google.com/mail/#inbox
+http://www.google.com/search?hl=en&source=hp&q=%E4%B8%AD%E6%96%87&aq=f&aql=&aqi=&oq=
+
+
+URI
+ftp://www.example.com/file.zip
+ftps://www.test.com/
+
+
+Email
+mail@xianyun.org
+hotoo.cn@gmail.com
+wb-tianliang@alipay.com
+hotoo.cn+alipay.com@gmail.com
+
+err.@mail.com
+.err@mail.com
+
+
+IPv4
+192.168.0.1
+127.0.0.1
+
+256.0.0.1
+
+
+Date
+2010-1-20
+2010/1/20
+2010.1.20
+20100120
+
+2010-13-20
+2010-1-32
+
+2010-2-31
+
+
+Time
+0:0:0
+00:00:00
+23:59:59
+
+24:0:0
+
+
+ID Card 18
+360418198312042014
+
+
+ID Card 15
+360481831204201
+
+
+Phone Number
+15057113563
+
+
+Post Code
+332234
+
+
+Digit
+0
++1
+-2
+1.0
++2.1
+-1.2
+
+1.1.1
+
+
+Hex
+0xF60
+0Xf60
+
+0xG8
+
+
+Octal
+07
+056
+
+08
+
+String
+"string"
+'char'
+
+
+HTML Tags
+<b>t</b>
+<pre>
+    source
+    codes
+</pre>
+<a href="#">anchor</a>
+<ns:xml>demo</ns:xml>
+<name-space:tag-name></name-space:tag-name>
+
+
+Hex Color
+#000
+#F60
+#fff
+
+#g00
+
+
+Chinese
+Whenever I learn a new skill, I concoct elaborate fantasy scenarios where it lets save the day.
+Oh no! The killer must have followed her on vacation!
+But to find we'd have to search through 200MB of email looking for something formatted like an address!
+It's hopeless!
+Everybody stand back.
+I know regular expressions.
+PERL!
+翻译：
+每当我学习一项新技能，我就可以制作奇幻的场景并拯救世界。
+不，凶手一定会在休假地跟踪她！
+但是为此我们不得不从200兆的Email中寻找看起来想地址一样的东西！
+这个太难了！
+所有人退后，我知道正则表达式。
