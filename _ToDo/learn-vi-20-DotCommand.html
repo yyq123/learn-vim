@@ -5,19 +5,26 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记  重复命令(Cot Command)</title>
+	<title>VIM学习笔记  重复命令(Dot Command)</title>
 </head>
 <body>
-	<p><code class="inset">.</code>（Dot）命令，可以重复上次的修改。而上次的修改，可以是单个字符、整行，甚至是整个文件。所以Dot(.)命令，是一个作用范围极广的强大命令。</p>
-	<p>假设我们有以下文本：<br />Line one<br />Line two<br />Line three<br />Line four</p>
+	<p><code class="inset">.</code>（Dot）命令，可以重复上次的修改。而上次的修改，可以是针对单个字符、整行，甚至是整个文件。所以Dot(.)命令，是一个作用范围极广的强大命令。</p>
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">重复单个命令</p>
-	<p>如下图所示，<code class="inset">.</code>命令重复执行了<code class="inset">x</code>命令，用于删除当前光标下的字符。</p>
+	<p>假设我们有以下文本：<br />Line one<br />Line two<br />Line three<br />Line four</p>
+	<p>如下图所示：<code class="inset">.</code>命令重复执行了<code class="inset">x</code>命令，用于删除当前光标下的字符：</p>
 	<p><a href="https://www.flickr.com/photos/yyq123/32600406763/in/dateposted/" title="DotCommand_SingleCommand"><img src="https://c1.staticflickr.com/1/772/32600406763_d5d6290ab0_o.png" width="202" height="364" alt="DotCommand_SingleCommand" /></a></p>
+	<p>以下图例则展示了，<code class="inset">.</code>命令如何重复作用于整行之上的删除操作：</p>
+	<p><a href="https://www.flickr.com/photos/yyq123/33048891370/in/dateposted/" title="DotCommand_dd"><img src="https://c2.staticflickr.com/4/3768/33048891370_452723a5a8_o.png" width="202" height="221" alt="DotCommand_dd" /></a></p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px"></p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">重复多个命令组合</p>
+	<p>假设我们有以下代码：<br />var foo = 1<br />var bar = 'a'<br />var foobar = foo + bar</p>
+	<p>如下图所示：首先，我们使用<code class="inset">A</code>命令进入插入模式并在当前行的末尾增加分号；然后，退回到常规模式；之后，移动到一下行并利用<code class="inset">.</code>命令重复插入分号的操作。</p>
+	<p><a href="https://www.flickr.com/photos/yyq123/33432229195/in/dateposted/" title="DotCommand_A"><img src="https://c1.staticflickr.com/3/2835/33432229195_fd54413d10_o.png" width="290" height="348" alt="DotCommand_A" /></a></p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px"></p>
-
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">重复命令与其他命令的组合</p>
+	<p>假设我们有以下代码：<br />var foo = "method("+argument1+","+argument2+")";</p>
+	<p>在以下实例中：我们希望在每个加号前后分别插入空格，以提高代码的可读性。首先，我们使用<code class="inset">f</code>命令查找加号；然后，使用<code class="inset">s</code>命令将加号替换为&ldquo;&nbsp;+&nbsp;&rdquo;；随后，退回到常规模式；之后，就可以利用<code class="inset">;.</code>命令查找下一个加号并重复执行替换操作。</p>
+	<p><a href="https://www.flickr.com/photos/yyq123/33304006611/in/dateposted/" title="DotCommand_f"><img src="https://c1.staticflickr.com/4/3952/33304006611_a84f9acf2d.jpg" width="500" height="205" alt="DotCommand_f" /></a></p>
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px"></p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px"></p>
