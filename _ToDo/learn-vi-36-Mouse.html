@@ -8,8 +8,7 @@
 	<title>VIM学习笔记 鼠标(Mouse)</title>
 </head>
 <body>
-	<p style="font-weight:bold">鼠标</p>
-	<p>在Windows和X Window系统中我们都有一个系统来使用鼠标，但是这两种标准是不同的。幸运的是，我们可以定制Vim编辑器。我们可以使得Vim中的鼠标的行为看起来像是X Window系统中的鼠标的行为。命令<code class="inset">:behave xterm</code>设置使用X Window风格的鼠标行为。而命令<code class="inset">:behave mswin</code>则启用Windows风格的鼠标行为。</p>
+	<p>在Windows和X Window这两种系统中，使用鼠标的方式是不同的。我们可以定制Vim编辑器，以启用不同的鼠标行为。命令<code class="inset">:behave xterm</code>设置使用X Window风格的鼠标行为。而命令<code class="inset">:behave mswin</code>则启用Windows风格的鼠标行为。</p>
 	<p>为了控制鼠标的行为，命令<code class="inset">:behave</code>有以下这些选项：</p>
 	<table summary="Options of :behave" border="1" rules="all" cellspacing="0" cellpadding="2">
 		<tr><th>Option</th><th>:behave mswin</th><th>:behave xterm</th></tr>
@@ -46,8 +45,15 @@
 在extend模式中,右键可以扩展文本而右键可以粘贴文本.
 在popup模式中,右键可以显示弹出菜单.
 popup_setpos模式与popup模式相类似,所不同的只是当我们按下鼠标右键时文本的光标会移动到鼠标点击处,然后显示弹出菜单.
-	
-进一步的信息可参看:help mouse
+
+	<p>通过clipboard选项，可以控制Vim如何处理由鼠标选择的文本。使用以下设置，可以将所有鼠标选择的文本放在未命名寄存器中和剪切板寄存器中，这也意味着我们可以将文本粘贴到其他程序中。</p>
+	<p style="text-indent:2em"><code class="inset">:set clipboard=unnamed</code></p>
+	<p>如果设置如下选项，那么可视模式下选择的文本就会被放到系统剪切板中：</p>
+	<p style="text-indent:2em"><code class="inset">:set clipboard=autoselect</code></p>
+
+
+进一步的信息可参看
+:help mouse
 :help mouse-using
 :help scroll-mousewheel
 。
