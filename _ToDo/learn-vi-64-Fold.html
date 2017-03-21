@@ -8,7 +8,7 @@
 	<title>VIM学习笔记 折叠 (Fold)</title>
 </head>
 <body>
-	<p>当我们查看很长的文本时（比如程序代码），可以使用<code class="inset">:set foldenable</code>命令来启动折叠。首先将内容按照其结构折叠起来，查看文件的大纲，然后再针对待定的行展开折叠，显示文本的详细内容。</p>
+	<p>当我们查看很长的文本时（比如程序代码），可以使用<code class="inset">:set foldenable</code>命令来启动折叠。首先将内容按照其结构折叠起来，查看文件的大纲，然后再针对特定的部分展开折叠，显示文本的详细内容。</p>
 	<p><a href="http://www.flickr.com/photos/yyq123/6085387758/" title="fold_close by yyq123, on Flickr"><img src="http://farm7.static.flickr.com/6073/6085387758_06438c5d9f.jpg" width="500" height="109" alt="fold_close" /></a></p>
 	<p>Vim将折叠等同于行来对待&mdash;&mdash;你可以使用j或k命令，移动跳过包含多行的整个折叠；也可以使用y或d命令，复制或删除某个折叠。</p>
 	<p>通常在折叠处向左或向右移动光标，或者进入插入模式，都将会自动打开折叠。我们也可以使用以下命令定义快捷键，使用空格键关闭当前打开的折叠，或者打开当前关闭的折叠。</p>
