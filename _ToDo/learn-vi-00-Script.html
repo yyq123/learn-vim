@@ -1,0 +1,318 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记  ()</title>
+</head>
+<body>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">启用/禁用</p>
+	<p></p>
+脚本语言.当我们要为特殊的任务而定制我们的编辑器时,这些命令语言就会给我们极大的灵活性.
+Vim编辑器允许我们定义,设置和使用自己的变量.为变量设定一个值,我们可以使用:let命令.这个命令的一般形式如下:
+:let {variable}={expression}
+Vim编辑器采用大多数程序设计语言的变量命名方式,也就是在Vim中的变量是以字符或是下划线开头,由一系列的字符,数字或是下划线组成的.
+例如要定义变量line_size,我们可以用下面的命令:
+:let line_size=30
+要查看变量的内容,我们可以使用:echo命令.如:
+:echo "line_size is"line_size
+当我们执行了这样的命令以后,Vim就会在最后一行显示如下的内容:
+line_size is 30
+变量也可以包含数字和字符串,如:
+:let my_name="mylxiaoyi"
+Vim编辑器使用特殊的前缀来指明不同有变量类型.这些前缀如下:
+大写字母,数字,下划线    可以存放在viminfo文件中的变量.如果viminfo选项中含有!标记,变量可以由:makesession命令保存.
+小写字母,数字,下划线    不会存在任何保存文件中的变量.
+$environment    环境变量
+@register    文本寄存器
+&option        选项名字
+b:name        当前缓冲区的变量.每一个缓冲区有这个变量值不同
+w:name        当前窗口的变量
+g:name        全局变量(用于函数内部表明全局变量)
+a:name        函数参数
+v:name        Vim内部变量
+如下面的一些例子:
+环境变量$PAGE包含用页查看命令:
+:let $PAGE="/usr/local/bin/less"
+显示上一次查找的类型:
+:echo "Last search was"@/
+下面的两个命令有着同样的作用:
+:let &autoindent=1
+:set autoindent
+为当前缓冲区定义语法:
+:let b:current_syntax=c
+内部变量(v:name)用于存放信息.如下面的内部变量列表:
+v:count        为上一次正常模式命令所指定的数量(count)
+v:count1    与v:count相类似,所不同的只是如果没有指定数量则默认值为1
+v:errmsg    上一次的错误信息
+v:warningmsg    上一次的警告信息
+v:statusmsg    上一次的状态信息
+v:shell_error    上一次Shell命令的结果.如果为0,则命令正常执行,若为非0,则失败
+v:this_session    上一次装入或是保存的文件的命名
+v:version    Vim编辑器的版本号    
+Vim编辑器还要使用如下的一些常量:
+123    简单整数
+0123    十进制整数
+0xAC    十六进制整数
+如下的字符串常量
+"string"    简单字符串
+'string'    精确字符
+这两种字符串的不同在于前者可以用反斜线进行转义字符的扩展,而后者则不成,在后者的字符串反斜线只是原样输出.例如下面的命令:
+:echo ">100<"
+:echo '>100<'
+其输出结果分别为:
+>@<
+>100<
+在Vim编辑器中我们还可以用表达式进行整数的操作.这些操作包括如下的算术运算:
+int+int    加
+int-int    减
+int*int 乘
+int/int 除
+int%int 取余
+-int    取负
+另外逻辑运算符可以作用于字符串和整数.如果比较成功则返回1,否则则返回0.如下面的比较:
+var == var    检查是否相等
+var != var     不等
+var <  var    小于
+var >  var     大于
+var <= var    小于等于
+var >= var    大于等于
+另外比较运算符可以进行字符串和表达式的比较.例如下面进行指定的字符串("word")和表过式"w*"比较,如果表达式匹配则返回1.
+"word"=~"w*"
+例如下面的两个常规表达式的比较:
+string =~ regexp    相匹配的常规表达式
+string !~ regexp    两个表达式不匹配
+另外字符串还有下面的特殊比较:
+string ==? string    字符串相等,忽略大小写
+string ==# string    字符串相等,大小写必须匹配
+string !=? string    字符串不相等,忽略大小写
+string !=# string    字符串不相等,大小写必须匹配
+string <?  string    小于,忽略大小写
+string <#  string    小于,大小写必须匹配
+string <=? string    小于等于,忽略大小写
+string <=# string    小于等于,大小写必须匹配
+string >?  string    大于,忽略大小写
+string >#  string    大于,大小写必须匹配
+string >=? string    大于等于,忽略大小写
+string >=# string    大于等于,大小写必须匹配
+从这里我们可以看到每一个运算符有三种形式.基本形式(==)对应ignorecase选项.?(==?)忽略大小写的不同而#(==#)从不忽略这样的区别.
+如果我们要删除一个变量,我们可以用下面的命令:
+:unlet[!] {name}
+在通常的情况下如果我们删除一个不存大的变量,Vim编辑器就会显示错误.而如果我们使用!,则不会显示错误信息.
+当我们要输入文件名时,我们可以使用下面的一些特殊的单词或是符号:
+%    当前文件名
+#    交换文件名
+<cword>    光标下的单词
+<cWORD>    光标下的WORD
+<cfile>    光标下的文件名
+<afile>    当执行相关的自动命令(autocommand)正读入或是写入的文件名.
+<abuf>    在一个自动命令中的当前缓冲区标号
+<amatch>与<abuf>相类似.但是当在FileType或是Syntax事件中使用时并不是文件名,而文件类型或是语法名.
+<sfile>    当前正用于:sourced的文件名.
+我们可以用下面所列出的内容来修改这些单词或是符号.例如:p可以将文件名变为全名.例如光标下的文件名为test.c,<cfile>就将是test.c,而同是<cfile:p>就将成为/home/oualline/examples/test.c
+我们可以用下面的内容进行修改:
+:p
+将文件名变成全路径文件名.但是我们要注意的是当我们用多个修饰符时,我们要个放在第一个.
+:~
+将全路径名/home/oualline/examples/test.c变为用~标记的文件名为,如~oualline/examples/test.c
+:.    如果可能将成为当前目录相关的目录
+:h    文件名的头部.例如../path/test.c就会为../path
+:t    文件名的尾部.例如../path/test.c就会为test.c
+:r    无扩展名的文件名.例如../path/test就会成为test
+:e    扩展名
+:s?from?to?    将第一次出现的form字符串改变为to字符串
+:gs?from?to?    将所有的字符串form改变为to字符串
+我们可以来看一下这些修饰符是如何作用在文件名上的.首先我们要先创建一个文件,其内容为我们运行实验的文件名.我们将光标放在这个文件名上,使用下面的命令来设置修饰符:
+:echo expand("<cword>:p")
+我们可将这里的:p换成我们可以试验的任何修饰符.
+
+:echo的功能只是重复他的参数.例如:
+:echo "Hello world"
+Hello world
+我们还可以用他来显示变量的值:
+:let flag=1
+:echo flag
+1
+:echon命令也只是重复他的参数,但是不会输出新行.例如:
+:echo "aa" | echo "bb"
+aa
+bb
+:echon "aa" | echon "bb"
+aabb
+(注:这里的|用来分隔同一行的两个命令)
+我们可以使用:echohl命令来改变:echo的输出的指定高亮颜色组.例如:
+:echohl ErroMsg
+:echo "A mistake has been make"
+:echohl None
+一个好的程序习惯表明我们应该总是在我们的输出信息之后重设高亮显示为None.这样就不会影响其他的:echo命令了.
+如果我们要查看所定义的高亮显示组,我们可以用下面的命令:
+:highlight
+
+
+:if语句
+:if语句的一般形式如下:
+:if {condition}
+:    "Statment
+:    "Statment
+:endif
+如果条件(condition)为非0,if语句块内的语句将会被执行.在其中的四个空格的缩进是可选的,但是却是推荐使用,这样可以使得程序易读.
+:if语句还可以有else的子句:
+:if {condition}
+:    "Statment
+:    "Statment
+:else
+:    "Statment
+:    "Statment
+:endif
+最后关键字:elseif是:if和:else的组合.使用这个可以减少使用额外的:endif的需要:
+:if &term == "xterm"
+:    "Do xterm suff
+:elseif &term == "vt100"
+:    "Do vt100 suff
+:else
+:    "Do non xterm and vt100 stuff
+:endif
+循环
+:while命令开始一个循环.这个循环是由命令:endwhile命令结束的:
+:while counter<30
+:  let counter=counter+1
+:    "Do something
+:endwhile
+:continue命令回到程序的顶部开始执行下一次循环,而:break命令则退出循环:
+:while conter <: 30
+:    if skip_flag
+:        continue
+:    endif
+:    if exit_flag
+:        break
+:    endif
+:  "Do something
+:endwhile
+:execute命令:
+:execute命令像正常的命令模式一样执行一参数:
+:let  command = " echo 'Hello world!'"
+:execute command
+Vim编辑器还允许我们定义自己的函数.函数定义的一般形式如下:
+:function {name}({var1},{var2},...)
+(注:函数的名称要以大写字母开始)
+结束定义用下面的命令:
+:endfunction
+下面我们来定义一个小函数,用这个函数来返回两个数中较小的一个.我们这样开始定义:
+:function Min(num1,num2)
+这个命令是告诉Vim我们定义的函数名为Min,他有两个参数.我们要做的第一件事就是我们要比较两个数中哪一个要小一些:
+:    if a:num1 < a:num2
+这里的前缀a:是告诉Vim这个变量是一个函数参数.我们将最小的参数赋值给smaller变量:
+:    if a:num1 < a:num2
+:        let smaller = a:num1
+:    else
+        let smaller = a:num2
+:    endif
+这里的smaller是局部变量.在这个函数中使用的所有变量均为局部变量,除非我们使用了g:作为前缀.例如在函数定义外我们定义了变量var.在函数内部我们要使用时要用g:var来调用.所以说一个变量依据其内容有三个不同的名字.
+现在我们可以用:return语句来返回最小的那个数.最后我们结束函数定义:
+:    return smaller
+:endfunction
+完整的函数定义如下:
+:function Min(num1,num2)
+:    if a:num1 < a:num2
+:        let smaller = a:num1
+:    else
+:        let smaller = a:num2
+:    endif
+:    return smaller
+:endfunction
+这样我们就可以用表达式来使用我们的函数了,如:
+:let tiny = Min(10,20)
+我们还可以用:call命令用函数名来显示调用函数功能:
+:[range]call {function}([parameters])
+如果指定了[range]则每一行都要调用函数,除非这个函数是一特殊的range风格函数.
+如果我们要试着定义一个已经存在的函数,我们就会得到一个错误信息.我们可以用!来强制Vim替换以前所定义的同名的函数.
+如果我们将range关键字放在函数定义的后面,这个函数就会被认为是一个范围(range)函数.例如:
+:function Count_words() range
+当在一个范围的行内运行这个程序时,变量a:firstline,a:lastline就会设置成为这个范围内的第一行和最后一行.
+如果在函数的定义后面有abort,那么这个函数就会在第一个错误时退出,如:
+:function Do_It() abort
+最后Vim允许我们在函数中使用个数不定的参数.例如下面的命令定义了一个函数,这个函数必须有一个参数,但是可以用至多20个参数:
+:function Show(start,...)
+变量a:1包含第一个可选的参数,a:2为第二个,依次类推.变量a:0包含多余的参数.例如:
+:function Show(start,...)
+:    let index = 1
+:    echo "Show is"a:start
+:
+:    while (index <=a:0)
+:        echo "Arg" index "is" a:index
+:        let index = index + 1
+:    endwhile
+:endfunction
+我们可以用下面的命令列了所有用户定义的函数:
+:function
+要查看单一的函数,我们可以执行下面的命令:
+:function {name}
+例如我们要查看函数Show:
+:function Show
+要删除一个函数,我们可以用下面的命令:
+:delfunction name
+Vim编辑器允许我们定义自己的命令.我们可以像执行其他的命令模式的命令一样来执行我们自己定义的命令.要定义一个命令我们要使用:command命令,例如:
+:command Delete_first :1delete
+这样当我们执行命令:Delete_first Vim就会执行:1delete,从而删除第一行.
+如果我们要列出用户定义的命令,我们可以用下面的命令:
+:command
+要删除用户定义的命令,我们可以用下面的命令:
+:delcommand
+例如:
+:delcommand Delete_one
+我们还可以用下面的命令来清除所有的用户定义的命令:
+:comclear
+用户定义的命令可以指定一系列的参数.参数的个数要由-nargs选项在命令行中指定.例如,Delete_one命令没有参数,我们可以像下面的样子来定义:
+:command Delete_one -nargs=0 1delete
+然而因为在默认的情况下-nargs=0,所以我们不需要指定他.
+其他的-nargs选项值如下:
+-nargs=0    没以参数
+-nargs=1    1个参数
+-nargs=*    任何个数的参数
+-nargs=?    零个或是一个参数
+-nargs=+    一个或是更多个参数
+在命令的定义中,参数是由关键字<args>指定的.例如:
+:command -nargs=+ Say :echo "<args>"
+然后我们输入:
+:Say Hello World
+命令的执行结果为:
+Hello World
+一些命令是指定一个范围作为其参数.告诉Vim我们在定义这样的一个命令我们需要指定-range选项.选项的值如下:
+-range    允许的范围,默认为当前行.
+-range=%    允许的范围,默认为当前文件(while file)
+-range=count    允许的范围,但是他只是一个单一的数字,默认下为count.
+当我们指定了一个范围以后,我们就可以用关键字<line1>和<line2>得到这个范围的第一行和最后一行.
+例如下面的命令定义了一个SaveIt命令,这个命令可以将指定范围的文件写入文件save_file:
+:command -range=% SaveIt:<line1>,<line2> write! save_file
+其他的一些选项和关键字如下:
+-count=number
+这个命令指定一个数量,默认为number.数量的结果保存在关键字<count>中.
+-bang    我们可以使用!修饰符.如果指定了,!将会被存放在关键字<bang>中.
+-register
+我们可以指定一个寄存器,默认为未命名寄存器.寄存器的定义放在关键字<reg>中.
+关键字<f-args>含有与关键字<args>相同的信息.所不同的只是函数的调用方式不同.例如:
+:command -nargs=* DoIt :call AFunction(<f-args>)
+:DoIt a b c 
+执行下面的命令:
+:call AFunction("a","b","c")
+最后我们还有<lt>关键字,他包含字符<.
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">识别文件</p>
+	<p></p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
+		<tr><td><code class="inset">:</code></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+	</table>
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="()" href="">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="()" href="">下一篇</a>&gt;</span></p>
+</body>
+</html>
+
