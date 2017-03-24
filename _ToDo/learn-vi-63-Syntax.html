@@ -43,7 +43,7 @@
 	<p><a href="http://www.flickr.com/photos/yyq123/5368344517/" title="Syntax_contains by yyq123, on Flickr"><img src="http://farm6.static.flickr.com/5205/5368344517_da0555ec46.jpg" width="260" height="67" alt="Syntax_contains" /></a></p>
 	<p>当然，在<em>contains</em>中可以指定用逗号分隔的多个包含项。这些语法组因而被允许包含在本项目里。这使得匹配和区域的递归嵌套成为可能。在contains参数中，还可以包含以下特殊关键字：</p>
 	<p><strong>contains=ALL</strong> 如果唯一在包含列表里出现的名字是"ALL"，那么本项目里可以包含所有的组；</p>
-	<p><strong>contains=ALLBUT,{group-name}...</strong> 如果包含列表的第一个名字是"ALLBUT"，那么除了列出的组以外，所有其它的组都可以出现在本项目里。</p>
+	<p><strong>contains=ALLBUT,{group-name}...</strong> 如果包含列表的第一个名字是"ALLBUT"，那么除了列出的组以外，所有其它的组都可以出现在本项目里。使用<code class="inset">:help group-name</code>命令，可以查看预定义组的帮助信息。</p>
 	<p><strong>contains=CONTAINED</strong> 如果包含列表的第一个名字是 "CONTAINED"，那么所有包含"contained" 参数的组都可以接受。</p>
 	<p><strong>contains=TOP</strong> 如果包含列表的第一个名字是"TOP"，那么所有不包含"contained"参数的组都可以接受。</p>
 	<p>例如，以下命令将选择myComments以外的所有组：</p>
