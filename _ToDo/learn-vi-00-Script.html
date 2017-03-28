@@ -5,15 +5,16 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记  ()</title>
+	<title>VIM学习笔记  脚本(Script)</title>
 </head>
 <body>
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">启用/禁用</p>
 	<p></p>
 脚本语言.当我们要为特殊的任务而定制我们的编辑器时,这些命令语言就会给我们极大的灵活性.
-Vim编辑器允许我们定义,设置和使用自己的变量.为变量设定一个值,我们可以使用:let命令.这个命令的一般形式如下:
-:let {variable}={expression}
-Vim编辑器采用大多数程序设计语言的变量命名方式,也就是在Vim中的变量是以字符或是下划线开头,由一系列的字符,数字或是下划线组成的.
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">变量</p>
+Vim编辑器允许我们定义和使用变量。我们可以使用以下命令，为变量赋值：
+<code class="inset">:let {variable}={expression}</code>
+Vim中的变量名可以包含字符、数字和下划线，但必须以字符或是下划线开头。
 例如要定义变量line_size,我们可以用下面的命令:
 :let line_size=30
 要查看变量的内容,我们可以使用:echo命令.如:
@@ -22,17 +23,20 @@ Vim编辑器采用大多数程序设计语言的变量命名方式,也就是在V
 line_size is 30
 变量也可以包含数字和字符串,如:
 :let my_name="mylxiaoyi"
-Vim编辑器使用特殊的前缀来指明不同有变量类型.这些前缀如下:
+<p>Vim编辑器使用特殊的前缀来指明不同有变量类型.这些前缀如下:</p>
 大写字母,数字,下划线    可以存放在viminfo文件中的变量.如果viminfo选项中含有!标记,变量可以由:makesession命令保存.
 小写字母,数字,下划线    不会存在任何保存文件中的变量.
 $environment    环境变量
 @register    文本寄存器
 &option        选项名字
-b:name        当前缓冲区的变量.每一个缓冲区有这个变量值不同
+l:name 当前函数的变量
+s:name 使用:source载入的脚本
+b:name        当前缓冲区的变量
 w:name        当前窗口的变量
+t:name        当前标签页的变量
 g:name        全局变量(用于函数内部表明全局变量)
 a:name        函数参数
-v:name        Vim内部变量
+v:name        Vim预定义内部变量
 如下面的一些例子:
 环境变量$PAGE包含用页查看命令:
 :let $PAGE="/usr/local/bin/less"
@@ -52,6 +56,7 @@ v:statusmsg    上一次的状态信息
 v:shell_error    上一次Shell命令的结果.如果为0,则命令正常执行,若为非0,则失败
 v:this_session    上一次装入或是保存的文件的命名
 v:version    Vim编辑器的版本号    
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">常量</p>
 Vim编辑器还要使用如下的一些常量:
 123    简单整数
 0123    十进制整数
@@ -59,12 +64,13 @@ Vim编辑器还要使用如下的一些常量:
 如下的字符串常量
 "string"    简单字符串
 'string'    精确字符
-这两种字符串的不同在于前者可以用反斜线进行转义字符的扩展,而后者则不成,在后者的字符串反斜线只是原样输出.例如下面的命令:
-:echo ">100<"
-:echo '>100<'
-其输出结果分别为:
->@<
->100<
+	<p>在双引号包围的字符串内，可以使用反斜线进行转义；而被单引号包围的字符串，则会被原样输出:</p>
+	<table summary="Logical Operators" border="1" frame="box" rules="all" cellspacing="3" cellpadding="5">
+		<tr><th>命令</th><th>输出</th></tr>
+		<tr><td><code class="inset">:echo "\100"</code></td><td>@</td></tr>
+		<tr><td><code class="inset">:echo '\100'</code></td><td>\100</td></tr>
+
+		<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">算术运算</p>
 在Vim编辑器中我们还可以用表达式进行整数的操作.这些操作包括如下的算术运算:
 int+int    加
 int-int    减
@@ -72,13 +78,17 @@ int*int 乘
 int/int 除
 int%int 取余
 -int    取负
-另外逻辑运算符可以作用于字符串和整数.如果比较成功则返回1,否则则返回0.如下面的比较:
-var == var    检查是否相等
-var != var     不等
-var <  var    小于
-var >  var     大于
-var <= var    小于等于
-var >= var    大于等于
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">逻辑判断</p>
+	<p>逻辑运算符可以作用于字符串和整数。如果比较成功则返回1，否则返回0。</p>
+	<table summary="Logical Operators" border="1" frame="box" rules="all" cellspacing="3" cellpadding="5">
+		<tr><td>var == var</td><td>等于</td></tr>
+		<tr><td>var != var</td><td>不等</td></tr>
+		<tr><td>var <  var</td><td>小于</td></tr>
+		<tr><td>var &gt;  var</td><td>大于</td></tr>
+		<tr><td>var <= var</td><td>小于等于</td></tr>
+		<tr><td>var &gt;= var</td><td>大于等于</td></tr>
+	</table>
+   
 另外比较运算符可以进行字符串和表达式的比较.例如下面进行指定的字符串("word")和表过式"w*"比较,如果表达式匹配则返回1.
 "word"=~"w*"
 例如下面的两个常规表达式的比较:
@@ -157,7 +167,7 @@ aabb
 :    "Statment
 :    "Statment
 :endif
-如果条件(condition)为非0,if语句块内的语句将会被执行.在其中的四个空格的缩进是可选的,但是却是推荐使用,这样可以使得程序易读.
+如果条件(condition)为非0,if语句块内的语句将会被执行.
 :if语句还可以有else的子句:
 :if {condition}
 :    "Statment
@@ -194,6 +204,8 @@ aabb
 :execute命令像正常的命令模式一样执行一参数:
 :let  command = " echo 'Hello world!'"
 :execute command
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">函数</p>
+
 Vim编辑器还允许我们定义自己的函数.函数定义的一般形式如下:
 :function {name}({var1},{var2},...)
 (注:函数的名称要以大写字母开始)
@@ -253,6 +265,7 @@ Vim编辑器还允许我们定义自己的函数.函数定义的一般形式如�
 :function Show
 要删除一个函数,我们可以用下面的命令:
 :delfunction name
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">命令</p>
 Vim编辑器允许我们定义自己的命令.我们可以像执行其他的命令模式的命令一样来执行我们自己定义的命令.要定义一个命令我们要使用:command命令,例如:
 :command Delete_first :1delete
 这样当我们执行命令:Delete_first Vim就会执行:1delete,从而删除第一行.
