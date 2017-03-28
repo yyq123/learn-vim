@@ -8,7 +8,7 @@
 	<title>VIM学习笔记  重复命令(Dot Command)</title>
 </head>
 <body>
-	<p><code class="inset">.</code>（Dot）命令，可以重复上次的修改。而上次的修改，可以是针对单个字符、整行，甚至是整个文件。所以Dot(.)命令，是一个作用范围极广的强大命令。</p>
+	<p><code class="inset">.</code>（Dot）命令，可以重复上次的修改。而上次的修改，可以是针对单个字符、整行，甚至是整个文件。所以Dot命令，是一个作用范围极广的强大命令。</p>
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">重复单个命令</p>
 	<p>假设我们有以下文本：<br />Line one<br />Line two<br />Line three<br />Line four</p>
 	<p>如下图所示：<code class="inset">.</code>命令重复执行了<code class="inset">x</code>命令，用于删除当前光标下的字符：</p>
@@ -25,21 +25,8 @@
 	<p>假设我们有以下代码：<br />var foo = "method("+argument1+","+argument2+")";</p>
 	<p>在以下实例中：我们希望在每个加号前后分别插入空格，以提高代码的可读性。首先，我们使用<code class="inset">f</code>命令查找加号；然后，使用<code class="inset">s</code>命令将加号替换为&ldquo;&nbsp;+&nbsp;&rdquo;；随后，退回到常规模式；之后，就可以利用<code class="inset">;.</code>命令查找下一个加号并重复执行替换操作。</p>
 	<p><a href="https://www.flickr.com/photos/yyq123/33304006611/in/dateposted/" title="DotCommand_f"><img src="https://c1.staticflickr.com/4/3952/33304006611_a84f9acf2d.jpg" width="500" height="205" alt="DotCommand_f" /></a></p>
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px"></p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px"></p>
-
-
-	<p>使用<code class="inset">:help .</code>命令，可以查看关于重复命令的更多信息。</p>
-	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
-		<caption>命令小结</caption>
-		<tr><td><code class="inset">:vi</code></td><td>新建文件</td></tr>
-		<tr><td><code class="inset">:view</code></td><td>以只读方式打开文件</td></tr>
-		<tr><td><code class="inset">:write</code></td><td>保存文件</td></tr>
-		<tr><td><code class="inset">:read</code></td><td>读入文件</td></tr>
-		<tr><td><code class="inset">:file</code></td><td>查看文件信息</td></tr>
-	</table>
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="比较文件(diff)" href="http://yyq123.blogspot.com/2010/09/vim-diff.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="编辑多个文件()" href="http://yyq123.blogspot.com/2009/08/vim-edit-multi-files.html">下一篇</a>&gt;</span></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="比较文件(diff)" href="http://yyq123.blogspot.com/2010/09/vim-diff.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="编辑多个文件(MultiFiles)" href="http://yyq123.blogspot.com/2009/08/vim-edit-multi-files.html">下一篇</a>&gt;</span></p>
 </body>
 </html>
 
