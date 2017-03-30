@@ -8,21 +8,18 @@
 	<title>VIM学习笔记  脚本(Script)</title>
 </head>
 <body>
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">启用/禁用</p>
-	<p></p>
-脚本语言.当我们要为特殊的任务而定制我们的编辑器时,这些命令语言就会给我们极大的灵活性.
+	<p>使用脚本语言，可以更灵活地定制编辑器。</p>
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">变量</p>
-Vim编辑器允许我们定义和使用变量。我们可以使用以下命令，为变量赋值：
-<code class="inset">:let {variable}={expression}</code>
-Vim中的变量名可以包含字符、数字和下划线，但必须以字符或是下划线开头。
-例如要定义变量line_size,我们可以用下面的命令:
-:let line_size=30
-要查看变量的内容,我们可以使用:echo命令.如:
-:echo "line_size is"line_size
-当我们执行了这样的命令以后,Vim就会在最后一行显示如下的内容:
-line_size is 30
-变量也可以包含数字和字符串,如:
-:let my_name="mylxiaoyi"
+	<p>使用以下命令，可以为变量赋值：</p>
+	<p><code class="inset">:let {variable}={expression}</code></p>
+	<p>Vim中的变量名可以包含字符、数字和下划线，但必须以字符或是下划线开头。</p>
+	<p>例如使用以下命令，定义变量line_size：</p>
+	<p style="text-indent:2em"><code class="inset">:let line_size=30</code></p>
+	<p>使用:echo命令，可以查看变量的内容：</p>
+	<p style="text-indent:2em"><code class="inset">:echo "line_size is"line_size</code></p>
+	<p>命令执行以后，Vim将会在屏幕底部显示如下内容：</p>
+	<p><code class="msg">line_size is 30</code></p>
+
 <p>Vim编辑器使用特殊的前缀来指明不同有变量类型.这些前缀如下:</p>
 大写字母,数字,下划线    可以存放在viminfo文件中的变量.如果viminfo选项中含有!标记,变量可以由:makesession命令保存.
 小写字母,数字,下划线    不会存在任何保存文件中的变量.
@@ -47,7 +44,7 @@ v:name        Vim预定义内部变量
 :set autoindent
 为当前缓冲区定义语法:
 :let b:current_syntax=c
-内部变量(v:name)用于存放信息.如下面的内部变量列表:
+<p>内部变量(v:name)</p>
 v:count        为上一次正常模式命令所指定的数量(count)
 v:count1    与v:count相类似,所不同的只是如果没有指定数量则默认值为1
 v:errmsg    上一次的错误信息
@@ -56,28 +53,39 @@ v:statusmsg    上一次的状态信息
 v:shell_error    上一次Shell命令的结果.如果为0,则命令正常执行,若为非0,则失败
 v:this_session    上一次装入或是保存的文件的命名
 v:version    Vim编辑器的版本号    
+<p><script src="https://gist.github.com/yyq123/3c1db548929b59aa00f87917f5de6d8c.js"></script></p>
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">常量</p>
-Vim编辑器还要使用如下的一些常量:
-123    简单整数
-0123    十进制整数
-0xAC    十六进制整数
-如下的字符串常量
-"string"    简单字符串
-'string'    精确字符
+	<p>数字常量有以下三种：</p>
+	<ul>
+		<li>八进制：01，02，03</li>
+		<li>十进制：1，2，3</li>
+		<li>十六进制：0xAC</li>
+	</ul>
+	<p>Vim可以处理多种格式数字的计算：</p>
+	<p style="text-indent:2em"><code class="inset">:echo 10 + 0x0A + 012</code></p>
+	
+	<p>字符常量有以下两种：</p>
+	<ul>
+		<li>简单字符串："string"</li>
+		<li>精确字符串：'string'</li>
+	</ul>
 	<p>在双引号包围的字符串内，可以使用反斜线进行转义；而被单引号包围的字符串，则会被原样输出:</p>
 	<table summary="Logical Operators" border="1" frame="box" rules="all" cellspacing="3" cellpadding="5">
 		<tr><th>命令</th><th>输出</th></tr>
 		<tr><td><code class="inset">:echo "\100"</code></td><td>@</td></tr>
 		<tr><td><code class="inset">:echo '\100'</code></td><td>\100</td></tr>
+	</table>
 
-		<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">算术运算</p>
-在Vim编辑器中我们还可以用表达式进行整数的操作.这些操作包括如下的算术运算:
-int+int    加
-int-int    减
-int*int 乘
-int/int 除
-int%int 取余
--int    取负
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">算术运算</p>
+	<p>Vim可以使用以下算术运算符，进行表达式计算：</p>
+	<table summary="Logical Operators" border="1" frame="box" rules="all" cellspacing="3" cellpadding="5">
+		<tr><td>int+int</td><td>加</td></tr>
+		<tr><td>int-int</td><td>减</td></tr>
+		<tr><td>int*int</td><td>乘</td></tr>
+		<tr><td>int/int</td><td>除</td></tr>
+		<tr><td>int%int</td><td>取余</td></tr>
+		<tr><td>-int</td><td>取负</td></tr>
+	</table>
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">逻辑判断</p>
 	<p>逻辑运算符可以作用于字符串和整数。如果比较成功则返回1，否则返回0。</p>
 	<table summary="Logical Operators" border="1" frame="box" rules="all" cellspacing="3" cellpadding="5">
@@ -161,30 +169,16 @@ aabb
 :highlight
 
 
-:if语句
-:if语句的一般形式如下:
-:if {condition}
-:    "Statment
-:    "Statment
-:endif
-如果条件(condition)为非0,if语句块内的语句将会被执行.
-:if语句还可以有else的子句:
-:if {condition}
-:    "Statment
-:    "Statment
-:else
-:    "Statment
-:    "Statment
-:endif
-最后关键字:elseif是:if和:else的组合.使用这个可以减少使用额外的:endif的需要:
-:if &term == "xterm"
-:    "Do xterm suff
-:elseif &term == "vt100"
-:    "Do vt100 suff
-:else
-:    "Do non xterm and vt100 stuff
-:endif
-循环
+<p>if语句的一般形式如下</p>
+<p><script src="https://gist.github.com/yyq123/37f94883a1073534ded1cba1ad1b0831.js"></script></p>
+<p>只有条件(condition)为真时，if语句块内的语句才会被执行。</p>
+<p>if语句还可以包含else的子句</p>
+<p><script src="https://gist.github.com/yyq123/4745a7c937e2f50ea3cdf7a97b43d5dc.js"></script></p>
+<p>满足条件(condition)时，if语句块内的语句将会被执行；而不满足条件(condition)时，则else语句块内的语句将会被执行。</p>
+<p>if-else还可以进行多重判断</p>
+<p><script src="https://gist.github.com/yyq123/1ef507645718969cab35add75ef04e90.js"></script></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">循环</p>
 :while命令开始一个循环.这个循环是由命令:endwhile命令结束的:
 :while counter<30
 :  let counter=counter+1

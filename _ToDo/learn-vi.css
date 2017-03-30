@@ -1,6 +1,6 @@
 kbd {
   color: #404040;
-  margin: 0;	
+  margin: 0;
   padding: 0 0.5em;
   font-family: "Courier New", Courier, monospace;
   font-weight: bold;
@@ -11,5 +11,21 @@ code.inset {
   color: #930;
   font-family: "Courier New", Courier, monospace;
   font-weight: bold;
+}
+
+code.error {
+  margin: 0 0.2em;
+  padding: 0.2em;
+  color: #F00;
+  background-color: #000;
+  font-family: "Courier New", Courier, monospace;
+}
+
+code.msg {
+  margin: 0 0.2em;
+  padding: 0.2em;
+  color: #fff;
+  background-color: #000;
+  font-family: "Courier New", Courier, monospace;
 }
 
