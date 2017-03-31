@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记  ()</title>
+</head>
+<body>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">启用/禁用</p>
+	<p></p>
+<h2>Gvim or Vim?</h2>
+<p>Some scripts have extra features when used in the GUI version of Vim (Gvim). This could be adding menus, toolbars, or other things that only work if you are using Gvim. So what do you do to check if the user runs the script in a console Vim or in Gvim? Vim has already prepared the information for you. You simply have to check if the feature <i>gui_running</i> is enabled. To do so, you use a function called <i>has()</i>, which returns 1 (true) if a given feature is supported / enabled and 0 (false), otherwise.</p>
+<p>An example could be:</p>
+<pre style="margin-left: 40px;"><p style="white-space: pre;">if has("gui_running")<br>  "execute gui-only commands here.<br>endif</p></pre><p>This is all you need to do to check if a user has used Gvim or not. Note that it is not enough to check if the feature "gui" exists, because this will return true if your Vim is just compiled with GUI support—even if it is not using it.</p>
+<p style="margin-left:40px;margin-right:40px"><i>Look in <i>:help 'feature-list'</i> for a complete list of other features you can check with the <i>has()</i> function.</i></p>
+<h2>Which operating system?</h2>
+<p>If you have tried to work with multiple operating systems such as Microsoft Windows and Linux, you will surely know that there are many differences.</p>
+<p>This can be everything from where programs are placed, to which programs you have available and how access to files is restricted.</p>
+<p>Sometimes, this can also have an influence on how you construct your Vim script as you might have to call external programs, or use other functionality, specific for a certain operating system.</p>
+<p>Vim lets you check which operation system you are on, such that you can stop executing your script or make decisions about how to configure your script. This is done with the following piece of code:</p>
+<pre style="margin-left: 40px;"><p style="white-space: pre;">if has("win16") || has("win32") || has("win64")|| has("win95")<br>  " do windows things here<br>elseif has("unix")<br>  " do linux/unix things here<br>endif</p></pre><p>This example only shows how to check for Windows (all flavors available) and Linux / Unix. As Vim is available on a wide variety of platforms, you can of course also check for these. All of the operating systems can be found in:</p>
+<pre style="margin-left: 40px;"><p style="white-space: pre;"><br><b>:help 'feature-list'</b></p></pre><h2>Which version of Vim?</h2>
+<p>The number consists of three parts:</p>
+<ul>
+<li>Major number (for example, 7 for Vim version 7)</li>
+<li>Minor number (for example, 3 for Vim version 6.3)</li>
+<li>Patch number (for example, 123 for Vim 7.0.123)</li>
+</ul>
+<p>The first two numbers are the actual version number, but when minor features / patches are applied to a version of Vim, it is mostly only the patch number that is increased. It takes quite a bit of change to get the minor number to increase, and a major part of Vim should change in order to increase the major version number.</p>
+<p>Therefore, when you want to check which version of Vim the user is using, you do it for two versions—major and minor versions and patch number. The code for this could look like:</p>
+<pre style="margin-left: 40px;"><p style="white-space: pre;"><br>if v:version &gt;= 702 || v:version == 701 &amp;&amp; has("patch123")<br>  " code here is only done for version 7.1 with patch 123<br>  " and version 7.2 and above<br>endif</p></pre><p>The first part of the <i>if</i> condition checks if our version of Vim is version <i>7.2</i> (notice that the minor version number is padded with 0 if less than 10) or above. If this is not the case, then it checks to see if we have a version <i>7.1</i> with patch <i>123</i>. If patch version <i>124</i> or above is included, then you also have patch <i>123</i> automatically.</p>
+<h2>Printing longer lines</h2>
+<p>Vim was originally created for old text terminals where the length of lines was limited to a certain number of characters. Today, this old limitation shows up once in a while.</p>
+<p>One place where you meet this limitation of line length is when printing longer lines to the screen using the "echo" statement. Even though you use Vim in a window where there are more than the traditional 80 characters per line, Vim will still prompt you to press <i>Enter</i> after echoing lines longer than 80 characters. There is, however, a way to get around this, and make it possible to use the entire window width to echo on. Window width means the total number of columns in the Vim window minus a single character. So if your Vim window is wide enough to have 120 characters on each line, then the window width is 120-1 characters.</p>
+<p>By adding the following function to your script, you will be able to echo screen-wide long lines in Vim:</p>
+<pre style="margin-left: 40px;"><p style="white-space: pre;"><br>" WideMsg() prints [long] message up to (&amp;columns-1) length<br>function! WideMsg(msg)<br>  let x=&amp;ruler | let y=&amp;showcmd<br>  set noruler noshowcmd<br>  redraw<br>  echo a:msg<br>  let &amp;ruler=x | let &amp;showcmd=y<br>endfunction</p></pre><p style="margin-left:40px;margin-right:40px"><i>This function was originally proposed by the Vim script developer Yakov Lerner on the Vim online community site at <a href="http://www.vim.org" target="_blank">http://www.vim.org</a>.</i></p>
+<p>Now whenever you need to echo a long line of text in your script, instead of using the <i>echo</i> statement you simply use the function <i>Widemsg()</i>. An example could be:</p>
+<pre style="margin-left: 40px;"><p style="white-space: pre;"><b>:call WideMsg("This should be a very long line of text")</b></p></pre><p>The length of a single line message is still limited, but now it is limited to the width of the Vim window instead of the traditional 80-1 characters.</p>
+<h1>Debugging Vim scripts</h1>
+<p>Sometimes things in your scripts do not work exactly as you expect them to. In these cases, it is always good to know how to debug your script.</p>
+<p>In this section, we will look at some of the methods you can use to find your error.</p>
+<p style="margin-left:40px;margin-right:40px"><i>Well-structured code often has fewer bugs and is also easier to debug.</i></p>
+<p>In Vim, there is a special mode to perform script debugging. Depending on what you want to debug, there are some different ways to start this mode. So let's look at some different cases.</p>
+<p>If Vim just throws some errors (by printing them at the bottom of the Vim window), but you are not really sure where it is or why it happens, then you might want to try to start Vim directly in debugging mode. This is done on the command line by invoking Vim with the <i>-D</i>argument.</p>
+<pre style="margin-left: 40px;"><p style="white-space: pre;"><b>vim -D somefile.txt</b></p></pre><p>The debugging mode is started when Vim starts to read the first <i>vimrc</i> file it loads (in most cases the global <i>vimrc</i> file where Vim is installed). We will look at what to do when you get into debug mode in a moment.</p>
+<p>Another case where you might want to get into debug mode is when you already know which function the error (most likely) is in, and hence, just want to debug that function. In that case you just open Vim as normal (load the script with the particular function if needed) and then use the following command:</p>
+<pre style="margin-left: 40px;"><p style="white-space: pre;"><b>:debug call Myfunction()</b></p></pre><p>Here everything after the <i>:debug</i> is the functionality you want to debug. In this case, it is a simple call of the function <i>Myfunction()</i>, but it could just as well be any of the following:</p>
+<pre style="margin-left: 40px;"><p style="white-space: pre;"><b>:debug read somefile.txt<br>:debug nmap ,a :call Myfunction() &lt;CR&gt;<br>:debug help :debug</b></p></pre><p>So let's look at what to do when we get into the debugging mode.</p>
+<p>When reaching the first line that it should debug, Vim breaks the loading and shows something like:</p>
+<pre style="margin-left: 40px;"><p style="white-space: pre;">Entering Debug mode. Type "cont" to continue.<br>cmd: call MyFunction()<br>&gt;</p></pre><p>Now you are in the Vim script debugger and have some choices for what to make Vim do.</p>
+<p style="margin-left:40px;margin-right:40px"><i>If you are not familiar with debugging techniques, it might be a good idea to read up on this subject before starting to debug your scripts.</i></p>
+<p>The following commands are available in the debugger (shortcuts are in parentheses):</p>
+<ul>
+<li><i>cont</i> (<i>c</i>): Continue running the scripts / commands as normal (no debugging) until the next breakpoint (more about this later).</li>
+<li><i>quit</i> (<i>q</i>): Quit the debugging process without executing the last lines.</li>
+<li><i>interrupt</i> (<i>i</i>): Stop the current process like <i>quit</i>, but go back to the debugger.</li>
+<li><i>step</i> (<i>s</i>): Execute the next line of code and come back to the debugger when it is finished. If a line calls a function or sources a file, then it will step into the function / file.</li>
+<li><i>next</i> (<i>n</i>): Execute the <i>next</i> command and come back to the debugger when it is finished. If used on a line with a function call, it does not go into the function but steps over it.</li>
+<li><i>finish</i> (<i>f</i>): Continue executing the script without stopping on breakpoints. Go into debug mode when done.</li>
+</ul>
+                        <p>So now you simply execute the different commands to go through the lines of the script / function to see how it jumps through the <i>if</i> conditions, and so on. If you want to execute the same command multiple times, you simply press <i>Enter</i> without feeding a new command.</p>
+<p>You can at any point execute another <i>Ex</i> command if needed (see <i>:help 'excommand-index'</i>), but note that you don't have direct access to the variables, among others, in the debugger, unless they are global.</p>
+<p>Sometimes, the place you want to get to is many lines into the code, and you really don't want to step all the way through the code until you get to that place.</p>
+<p>In that case, you can insert a breakpoint at the exact line where you want to start the real debugging, and then just execute a <i>cont</i> as the first command. A breakpoint is inserted by one of the following commands, depending on how you want it inserted:</p>
+<pre style="margin-left: 40px;"><p style="white-space: pre;"><br>breakadd func linenum functionname<br>breakadd file linenum filename<br>breakadd here</p></pre>
+<p>The first example sets a breakpoint on a particular function. The <i>functionname</i> can be a pattern such as <i>Myfunction*</i> if you, for instance, want to break on any function with a name that begins with <i>Myfunction</i>.</p>
+<p>Sometimes, however, it is not in a function that the problem resides, but rather around a specific line in a file. If this is the case, then you should use the second command, where you give it a line number and a filename pattern as arguments to tell it where to break.</p>
+<p>The final command is used if you have already stepped to the right place in the file but want to be able to break on it the next time you go through the code in the debugger. This command simply sets a breakpoint on the current line, in the current file, where you currently are in the debugger.</p>
+<p>You can at any point of time get a list of breakpoints with the following command:</p>
+<pre style="margin-left: 40px;"><p style="white-space: pre;"><b>:breaklist</b></p></pre>
+<p>If a breakpoint is no longer needed, you have to delete it. As when adding breakpoints, there are a few different ways to delete them also.</p>
+<p>The simplest way to do it is by simply finding the number of the breakpoint in the list of breakpoints, and then using the following command:</p>
+<pre style="margin-left: 40px;"><p style="white-space: pre;"><br><b>:breakdel number</b></p></pre>
+<p>Alternatively, you can delete the breakpoints the same way as you added them—except that you now use <i>breakdel</i> instead of <i>breakadd</i>:</p>
+<pre style="margin-left: 40px;"><p style="white-space: pre;"><b>:breakdel func linenum functionname<br>:breakdel file linenum file<br>breakdel here</b></p></pre>
+<p>If you want to remove all breakpoints, you can do it in one step by using this command:</p>
+<pre style="margin-left: 40px;"><p style="white-space: pre;"><br><b>:breakdel *</b></p></pre>
+<p style="margin-left:40px;margin-right:40px"><i>You can add a breakpoint directly on the command line when going into debug mode. Simply use the <i>-c</i> argument as follows:</i></p>
+<pre style="margin-left: 40px;"><p style="white-space: pre;"><b>vim -D -c 'breakadd file 15 */.vimrc' somefile.txt</b></p></pre>
+<h1>Distributing Vim scripts</h1>
+<p>Now that your script is ready, it is time for you to distribute the script (if you have chosen to do so). The online Vim community has become the de facto place to publish scripts for others to find. Because of this, I urge you to do the same. But before you get to this, there are a couple of things you have to get ready.</p>
+<p>First of all, you need to figure out whether your script needs to be packed into a compressed file such as a ZIP file, or if it should just be distributed as a single <i>.vim</i> file. The main reason for choosing the first option is that your script consists of multiple files (such as main script, file type plugin, syntax file, documentation, and so on).</p>
+<p>How to create ZIP files (or related file types) is beyond what this article will look at, but here are a couple of pointers on how I make my ZIP files "install ready":</p>
+<ul>
+<li>Create the ZIP file including the folders where the files are placed relative to your <i>VIMHOME</i>. For example, consider that you have:
+<p><i>VIMHOME/plugin/myscript.vim</i></p>
+<p><i>VIMHOME/syntax/mylang.vim</i></p>
+<p><i>VIMHOME/doc/myscript.txt</i></p>
+<p>Then the ZIP file should contain the three folders: <i>plugin</i>, <i>syntax</i>, and <i>doc</i> with one file in each. This makes the installation easy, as you simply have to go into your <i>VIMHOME</i> and then unpack the ZIP file.</p>
+</li>
+<li>Always include a help file for your script. This file should be installed in <i>VIMHOME/doc/</i> and contain descriptions of what the script does, which settings it has, and how to use it.</li>
+</ul>
+<p>Even though you only have one script file, it can still be a good idea to put it in a ZIP file together with a help file. This makes it easier for you to remember to add documentation. We will look more at how to create Vim documentation in the next section.</p>
+<h2>Making Vimballs</h2>
+<p>Another, maybe even more interesting, alternative is to make a Vimball. We have previously looked at how to use Vimballs to install scripts, so it could now be interesting to look a bit at how to create one.</p>
+<p>The command to create a Vimball is constructed as:</p>
+<pre style="margin-left: 40px;"><p style="white-space: pre;"><br><b>:[range]MkVimball filename.vba</b></p></pre>
+<p>This sure seems simple, right? And it really is. There is, however, a bit of preparation you need to do before calling this function.</p>
+<p>The first thing you have to do is to open a new empty buffer in Vim with:</p>
+<pre style="margin-left: 40px;"><p style="white-space: pre;"><b>:enew</b></p></pre>
+<p>Now you add the paths to all the files (one on each line) relative to your <i>VIMHOME</i>. Considering the previous ZIP file example, it could look like:</p>
+<pre style="margin-left: 40px;"><p style="white-space: pre;"><br>plugin/myscript.vim<br>doc/myscript.txt<br>syntax/mylang.vim</p></pre>
+<p>When this is done you are actually ready to execute the command across the range of lines. Place the cursor on the first line in the buffer, go into normal mode, and use the keys <i>Shift+v</i> to select all the lines with paths on. Now all you have to do is execute the command:</p>
+<pre style="margin-left: 40px;"><p style="white-space: pre;"><b>:MkVimball myscript.vba</b></p></pre>
+<p>Vim will automatically add the range of the lines you have selected in front of the command. The filename <i>myscript.vba</i> can be any name, but if the file already exists, then a warning is given, but no file is written.</p>
+<p>If you really want to overwrite an existing file, then just add an ! after the <i>MkVimball</i> command to tell Vim that you mean it. There is no more to it. You now have a Vimball file called <i>myscript.vba</i>, which can be installed as described earlier in this chapter.</p>
+<p style="margin-left:40px;margin-right:40px"><i>Remember that you need to install the Vimball script in order to use the Vimball functions we have described at. The latest version of the Vimball script can always be found here: <a href="http://www.vim.org/scripts/script.php?script_id=1502" target="_blank">http://www.vim.org/scripts/script.php?script_id=1502</a>.</i></p>
+<p>To check if your version supports one of the languages, you simply run Vim on the command line with <i>-version</i> argument:</p>
+<pre style="margin-left: 40px;"><p style="white-space: pre;"><b>vim –version</b></p></pre>
+<p>Then, you look through the list of features to see if it has one of the following in the list:</p>
+<pre style="margin-left: 40px;"><p style="white-space: pre;"><br><b>+perl<br>+python<br>+ruby</b></p></pre>
+<p>It needs to say <i>+</i> in front of the language name to show that it is included. If it instead says, for example, <i>-perl</i>, then Perl support is not included.</p>
+<p>Alternatively, you can just open up Vim and then test for the features with the <i>has()</i> function.</p>
+<pre style="margin-left: 40px;"><p style="white-space: pre;"><b>:echo has("perl")<br>:echo has("python")<br>:echo has("ruby")</b></p></pre>
+<p>It should return 1 for the languages you have support for.</p>
+<h2>Vim scripting in Perl</h2>
+<p>Perl is a very popular scripting language that has been around for quite some time now. It is very powerful when it comes to parsing text and other similar tasks. This also makes it very useful from within Vim.</p>
+<p>The simplest way to use Perl in Vim is with the following command:</p>
+<pre style="margin-left: 40px;"><p style="white-space: pre;"><b>:perl command</b></p></pre>
+<p>This executes the Perl command in the argument <i>command</i>. Note that the values you set with the Perl command will persist throughout the entire Vim editing session.</p>
+<p>Often you would, however, like to execute more than just a single command and hence you have to use another command.</p>
+<p>In that case you can use:</p>
+<pre style="margin-left: 40px;"><p style="white-space: pre;">:perl &lt;&lt; endpattern<br>  perl code here<br>endpattern</p></pre>
+<p>This executes all the Perl code between the <i>endpattern</i> at the beginning and at the end.</p>
+<p style="margin-left:40px;margin-right:40px"><i>In Perl, Python, or Ruby, you can use anything for your <i>endpattern</i>, but the last one needs to be the only word on that particular line, and should be at the beginning of the line. If you leave out the first <i>endpattern</i>, then Vim defaults to use a single dot as <i>endpattern</i>.</i></p>
+<p>An example that just prints a single line of text to Vim could be:</p>
+<pre style="margin-left: 40px;"><p style="white-space: pre;">:perl &lt;&lt; EOF<br>  VIM::Msg("this is a text");<br>EOF</p></pre>
+<p>Note how <i>EOF</i> is used as <i>endpattern</i>, and that in the Perl code I used a function called <i>VIM::Msg()</i> to print a message into Vim. This is just one among many functions you can use to interface between Vim and Perl. Other examples of Vim functions you can use from Perl are:</p>
+<ul>
+<li><i>VIM::buffers()</i>: Return a list of all buffers open in Vim.</li>
+<li><i>VIM::SetOption("option")</i>: Set a Vim option from Perl.</li>
+<li><i>$curbuf-&gt;Name()</i>: Returns the name of the current buffer.</li>
+<li><i>$curbuf-&gt;Set(100, "fooo")</i>: Replace line <i>100</i> in current buffer</li>
+with new text.
+<li><i>$curwin-&gt;SetCursor(15,8)</i>: Set cursor at line <i>15</i>, column <i>8</i> in current window.</li>
+</ul>
+<p>You can find a full list of the Vim-specific functions you can use from within Perl by looking in the help system with:</p>
+<pre style="margin-left: 40px;"><p style="white-space: pre;"><b>:help perl-pverview</b></p></pre>
+<p>If you put Perl code in your script, you should always remember to check if the user has support for Perl in his or her version of Vim.</p>
+<p>It is always a good idea to have your Perl code wrapped in Vim functions in your script. This way it is easy to implement your script, and for an inexperienced user, the script will look normal and work as usual. An example of how to wrap Perl in a function could be:</p>
+<pre style="margin-left: 40px;"><p style="white-space: pre;"><br>function MoveCursor(row,col)<br>  if has("perl")<br>    perl &lt;&lt; EOF<br>    ($oldrow,$oldcol) = $curwin-&gt;Cursor();<br>    VIM::Msg("Old position was: ($oldrow,$oldcol)");<br>    $curwin-&gt;Cursor(row,col);<br>EOF<br>  else<br>    echo "perl not available. canceling function call"<br>  endif<br>endfunction</p></pre>
+<p>This function gets the old position of the cursor in the current window, prints that position, and then moves the cursor to the position that matches the two arguments for the function (row and column).</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">识别文件</p>
+	<p></p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
+		<tr><td><code class="inset">:</code></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+	</table>
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="()" href="">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="()" href="">下一篇</a>&gt;</span></p>
+</body>
+</html>
+

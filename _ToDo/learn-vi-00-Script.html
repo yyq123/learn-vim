@@ -87,7 +87,7 @@ v:version    Vim编辑器的版本号
 		<tr><td>-int</td><td>取负</td></tr>
 	</table>
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">逻辑判断</p>
-	<p>逻辑运算符可以作用于字符串和整数。如果比较成功则返回1，否则返回0。</p>
+	<p>逻辑运算符可以作用于字符串和整数，Vim将自动在这两种数据类型之间进行转换。如果比较成功则返回1，否则返回0。</p>
 	<table summary="Logical Operators" border="1" frame="box" rules="all" cellspacing="3" cellpadding="5">
 		<tr><td>var == var</td><td>等于</td></tr>
 		<tr><td>var != var</td><td>不等</td></tr>
@@ -103,9 +103,21 @@ v:version    Vim编辑器的版本号
 string =~ regexp    相匹配的常规表达式
 string !~ regexp    两个表达式不匹配
 另外字符串还有下面的特殊比较:
-string ==? string    字符串相等,忽略大小写
-string ==# string    字符串相等,大小写必须匹配
-string !=? string    字符串不相等,忽略大小写
+	<table summary="Logical Operators" border="1" frame="box" rules="all" cellspacing="3" cellpadding="5">
+		<tr><td>string ==? string</td><td>字符串相等,忽略大小写</td></tr>
+		<tr><td>string ==# string</td><td>字符串相等,大小写敏感</td></tr>
+		<tr><td>string !=? string</td><td>字符串不相等,忽略大小写</td></tr>
+		<tr><td></td><td></td></tr>
+		<tr><td></td><td></td></tr>
+		<tr><td></td><td></td></tr>
+		<tr><td></td><td></td></tr>
+		<tr><td></td><td></td></tr>
+		<tr><td></td><td></td></tr>
+		<tr><td></td><td></td></tr>
+		<tr><td></td><td></td></tr>
+		<tr><td></td><td></td></tr>
+		<tr><td></td><td></td></tr>
+		<tr><td></td><td></td></tr>
 string !=# string    字符串不相等,大小写必须匹配
 string <?  string    小于,忽略大小写
 string <#  string    小于,大小写必须匹配
@@ -115,6 +127,7 @@ string >?  string    大于,忽略大小写
 string >#  string    大于,大小写必须匹配
 string >=? string    大于等于,忽略大小写
 string >=# string    大于等于,大小写必须匹配
+	</table>
 从这里我们可以看到每一个运算符有三种形式.基本形式(==)对应ignorecase选项.?(==?)忽略大小写的不同而#(==#)从不忽略这样的区别.
 如果我们要删除一个变量,我们可以用下面的命令:
 :unlet[!] {name}
@@ -168,7 +181,24 @@ aabb
 如果我们要查看所定义的高亮显示组,我们可以用下面的命令:
 :highlight
 
-
+<p>在echo命令中，可以使用以下转义符：</p>
+<ul>
+	<li><code class="inset">\n</code>&nbsp;Newline</li>
+	<li><code class="inset">\r</code>&nbsp;Carriage return</li>
+	<li><code class="inset">\t</code>&nbsp;Tab</li>
+	<li><code class="inset">\123</code>&nbsp;八进制数字</li>
+	<li><code class="inset">\x123</code>&nbsp;十六进制数字</li>
+	<li><code class="inset">\u01fc34</code>&nbsp;Unicode</li>
+	<li><code class="inset">\f</code>&nbsp;Form feed</li>
+	<li><code class="inset">\e</code>&nbsp;Esc</li>
+	<li><code class="inset">\b</code>&nbsp;Backspace</li>
+	<li><code class="inset">\\</code>&nbsp;反斜线</li>
+	<li><code class="inset"></code>&nbsp;</li>
+</ul>
+Besides these escape characters, you can always insert the Vim-specific key
+acronyms like <CR> and <ESC> by prepending them with a backslash \<CR>. Even
+the Vim-specific key shortcuts (like <C-W> for Ctrl-W) can be inserted by escaping them with a backslash.
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">判断</p>
 <p>if语句的一般形式如下</p>
 <p><script src="https://gist.github.com/yyq123/37f94883a1073534ded1cba1ad1b0831.js"></script></p>
 <p>只有条件(condition)为真时，if语句块内的语句才会被执行。</p>
@@ -179,32 +209,19 @@ aabb
 <p><script src="https://gist.github.com/yyq123/1ef507645718969cab35add75ef04e90.js"></script></p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">循环</p>
-:while命令开始一个循环.这个循环是由命令:endwhile命令结束的:
-:while counter<30
-:  let counter=counter+1
-:    "Do something
-:endwhile
-:continue命令回到程序的顶部开始执行下一次循环,而:break命令则退出循环:
-:while conter <: 30
-:    if skip_flag
-:        continue
-:    endif
-:    if exit_flag
-:        break
-:    endif
-:  "Do something
-:endwhile
-:execute命令:
+	<p>while命令开始一个循环，并由endwhile命令结束。在条件为真是，循环中的代码将被重复执行。</p>
+	<p><script src="https://gist.github.com/yyq123/f87f86115272d5a9a0ab24682d03d1cc.js"></script></p>
+	<p>continue命令回到程序的顶部开始执行下一次循环；而break命令则立刻退出循环。</p>
+	<p><script src="https://gist.github.com/yyq123/54235dab1797017f16ae38a654c0fe4a.js"></script></p>
+
+    :execute命令:
 :execute命令像正常的命令模式一样执行一参数:
 :let  command = " echo 'Hello world!'"
 :execute command
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">函数</p>
-
-Vim编辑器还允许我们定义自己的函数.函数定义的一般形式如下:
-:function {name}({var1},{var2},...)
-(注:函数的名称要以大写字母开始)
-结束定义用下面的命令:
-:endfunction
+	<p>Vim编辑器还允许我们定义自己的函数.函数定义的一般形式如下:</p>
+	<p><script src="https://gist.github.com/yyq123/8ccf228e869fb644f395e1756095de3d.js"></script></p>
+<p>函数名称必须以大写字母开始，并且只可以包含字母、数字和下划线。</p>
 下面我们来定义一个小函数,用这个函数来返回两个数中较小的一个.我们这样开始定义:
 :function Min(num1,num2)
 这个命令是告诉Vim我们定义的函数名为Min,他有两个参数.我们要做的第一件事就是我们要比较两个数中哪一个要小一些:
@@ -251,14 +268,16 @@ Vim编辑器还允许我们定义自己的函数.函数定义的一般形式如�
 :        let index = index + 1
 :    endwhile
 :endfunction
-我们可以用下面的命令列了所有用户定义的函数:
-:function
-要查看单一的函数,我们可以执行下面的命令:
-:function {name}
-例如我们要查看函数Show:
-:function Show
-要删除一个函数,我们可以用下面的命令:
-:delfunction name
+<p>使用以下命令，可以列出所有用户定义的函数：</p>
+<p style="text-indent:2em"><code class="inset">:function</code></p>
+<p>使用以下命令，可以查看指定函数的代码：</p>
+<p style="text-indent:2em"><code class="inset">:function {name}</code></p>
+<p>使用以下命令，可以删除指定的函数：</p>
+<p style="text-indent:2em"><code class="inset">:delfunction {name}</code></p>
+
+<p>使用以下命令，可以查看关于函数的更多帮助信息：</p>
+<p style="text-indent:2em"><code class="inset">:help function-list</code></p>
+
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">命令</p>
 Vim编辑器允许我们定义自己的命令.我们可以像执行其他的命令模式的命令一样来执行我们自己定义的命令.要定义一个命令我们要使用:command命令,例如:
 :command Delete_first :1delete
