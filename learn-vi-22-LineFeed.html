@@ -32,10 +32,10 @@
 	<p><a href="https://www.flickr.com/photos/yyq123/30713020392/" title="line_feed_Ctrl_M"><img src="https://c2.staticflickr.com/6/5580/30713020392_38ab811e01_o.png" width="586" height="72" alt="line_feed_Ctrl_M" /></a></p>
 	<p>可以用以下命令删除换行符：</p>
 	<p style="text-indent:2em"><code class="inset">:%s/\n//g</code></p>
-	<p>可以用以下命令删除DOS文件中的回车符&ldquo;^M&rdquo;：</p>
+	<p>可以用以下命令删除DOS文件中的回车符：</p>
 	<p style="text-indent:2em"><code class="inset">:%s/\r//g</code></p>
-	<p>可以用以下命令转换DOS回车符&ldquo;^M&rdquo;为真正的换行符：</p>
-	<p style="text-indent:2em"><code class="inset">:%s/\r/\r/g</code></p>
+	<p>可以用以下命令删除DOS文件中的&ldquo;^M&rdquo;：</p>
+	<p style="text-indent:2em"><code class="inset">:%s/ˆM//g</code></p>
 	<p>可以用以下命令删除行尾的空格以及DOS回车符。它没有使用&ldquo;/&rdquo;字符作为替换命令各个参数间的分隔符，而是使用了&ldquo;#&rdquo;字符。命令还使用了&ldquo;\?&rdquo;正则表达式，用来匹配它前面出现的字符0次或1次。</p>
 	<p style="text-indent:2em"><code class="inset">:%s#\s*\r\?$## </code></p>
 	<p>可以用以下命令删除三行空行：</p>
