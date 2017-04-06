@@ -1,4 +1,17 @@
 http://bit.ly/vim-TOC		http://yyq123.github.io/learn-vim/learn-vi-00-List.html
+
+http://bit.ly/vim-basic		http://yyq123.blogspot.com/2009/02/vim.html
+http://bit.ly/vim-move		http://yyq123.blogspot.com/2009/02/vim_23.html
+http://bit.ly/vim-yank		http://yyq123.blogspot.com/2009/02/vim_25.html
+http://bit.ly/vim-find		http://yyq123.blogspot.com/2009/03/vim.html
+http://bit.ly/vim-s		http://yyq123.blogspot.com/2011/10/vim-substitute.html
+http://bit.ly/vim-undo		http://yyq123.blogspot.com/2010/10/vim-undo.html
+http://bit.ly/vim-print		http://yyq123.blogspot.com/2010/08/vim-print.html
+http://bit.ly/vim-help		http://yyq123.blogspot.com/2012/04/vim-help.html
+
+http://bit.ly/vim-word		http://yyq123.blogspot.com/2009/02/vim_4321.html
+http://bit.ly/vim-TextObj	http://yyq123.blogspot.com/2016/12/vim-text-objects.html
+
 http://bit.ly/vim-vimrc		http://yyq123.blogspot.com/2012/01/vim-vimrc.html
 http://bit.ly/vim-SpellCheck	http://yyq123.blogspot.com/2010/09/vim-spell-check.html
 http://bit.ly/vim-LineFeed	http://yyq123.blogspot.com/2010/07/vim-line-feed.html
