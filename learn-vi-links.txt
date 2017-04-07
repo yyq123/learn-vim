@@ -11,6 +11,8 @@ http://bit.ly/vim-help		http://yyq123.blogspot.com/2012/04/vim-help.html
 
 http://bit.ly/vim-word		http://yyq123.blogspot.com/2009/02/vim_4321.html
 http://bit.ly/vim-TextObj	http://yyq123.blogspot.com/2016/12/vim-text-objects.html
+http://bit.ly/vim-scroll	http://yyq123.blogspot.com/2009/02/vim_27.html			滚动屏幕
+http://bit.ly/vim-register	http://yyq123.blogspot.com/2010/10/vim-registers.html		寄存器 (Registers)
 
 http://bit.ly/vim-vimrc		http://yyq123.blogspot.com/2012/01/vim-vimrc.html
 http://bit.ly/vim-SpellCheck	http://yyq123.blogspot.com/2010/09/vim-spell-check.html
