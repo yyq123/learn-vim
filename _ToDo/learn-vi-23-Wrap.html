@@ -28,13 +28,18 @@
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">在折行内移动</p>
 	<p>如果设置了wrap选项，那么很长的行将被折回并连续显示在屏幕上。但使用<code class="inset">j</code>命令，将移动屏幕上显示为多行的一行；而如果希望在折行内向下移动，则需要使用<code class="inset">gj</code>或<code class="inset">g&lt;Down&gt;</code>命令。同理，<code class="inset">gk</code>或<code class="inset">g&lt;Up&gt;</code>命令，用于向上移动。</p>
 	<p><a href="http://www.flickr.com/photos/yyq123/5495434173/" title="j-gj by yyq123, on Flickr"><img src="http://farm6.static.flickr.com/5013/5495434173_f2cc3255ba.jpg" width="500" height="118" alt="j-gj" /></a></p>
-
+	<p>在<a href="http://bit.ly/vim-vimrc" title="vimrc">vimrc配置文件</a>中，定义以下<a href="http://bit.ly/vim-map" title="Map">键盘映射</a>，可以使<code class="inset">j</code>和<code class="inset">k</code>命令自动判断是在折行内或是在折行间进行移动：</p>
+	<p><code class="inset">
+	noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')<br />
+	noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
+	</code></p>
+	
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
 		<tr><td><code class="inset">:set wrap</code></td><td>启用自动折行</td></tr>
 		<tr><td><code class="inset">:set nowrap</code></td><td>取消自动折行</td></tr>
 		<tr><td><code class="inset">:set linebreak</code></td><td>自定义折行</td></tr>
 	</table>
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.1</span><span>&lt;<a title="换行" href="http://tiny.cc/vim-LF">上一篇</a>&nbsp;|<a title="笔记列表" href="http://tiny.cc/learn-vim">&nbsp;目录&nbsp;</a>|&nbsp;<a title="缩进" href="http://tiny.cc/vim-indent">下一篇</a>&gt;</span></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.1</span><span>&lt;<a title="换行" href="http://bit.ly/vim-LineFeed">上一篇</a>&nbsp;|<a title="笔记列表" href="http://bit.ly/vim-TOC">&nbsp;目录&nbsp;</a>|&nbsp;<a title="拼写检查" href="http://bit.ly/vim-SpellCheck">下一篇</a>&gt;</span></p>
 </body>
 </html>
