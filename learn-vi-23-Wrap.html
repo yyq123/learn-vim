@@ -12,6 +12,10 @@
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">折行显示</p>
 	<p>在默认情况下，Vim会自动折行&ndash;&ndash;将超出屏幕范围的文本打断并显示在下一行。我们也可以通过以下命令，取消自动折行&ndash;&ndash;超出屏幕范围的文本将不会被显示，你需要向句末移动光标，以使屏幕水平滚动，查看一行的完整内容。</p>
 	<p style="text-indent:2em"><code class="inset">:set nowrap</code></p>
+	<p>默认设置<code class="inset">set sidescroll=0</code>之下，当光标到达屏幕边缘时，将自动扩展显示1/2屏幕的文本。</p>
+	<p><a href="https://www.flickr.com/photos/yyq123/33157397023/in/dateposted/" title="sidescroll-off"><img src="https://c1.staticflickr.com/3/2877/33157397023_cd80a7658b_o.gif" width="500" height="265" alt="sidescroll-off"></a></p>
+	<p>通过使用<code class="inset">set sidescroll=1</code>设置，可以实现更加平滑的逐个字符扩展显示。</p>
+	<p><a href="https://www.flickr.com/photos/yyq123/33970712205/in/dateposted/" title="sidescroll-on"><img src="https://c1.staticflickr.com/3/2837/33970712205_6ccfdd340d_o.gif" width="500" height="265" alt="sidescroll-on"></a></p>
 	<p>可以使用以下命令，恢复Vim的自动折行：</p>
 	<p style="text-indent:2em"><code class="inset">:set wrap</code></p>
 
@@ -27,13 +31,13 @@
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">在折行内移动</p>
 	<p>如果设置了wrap选项，那么很长的行将被折回并连续显示在屏幕上。但使用<code class="inset">j</code>命令，将移动屏幕上显示为多行的一行；而如果希望在折行内向下移动，则需要使用<code class="inset">gj</code>或<code class="inset">g&lt;Down&gt;</code>命令。同理，<code class="inset">gk</code>或<code class="inset">g&lt;Up&gt;</code>命令，用于向上移动。</p>
-	<p><a href="http://www.flickr.com/photos/yyq123/5495434173/" title="j-gj by yyq123, on Flickr"><img src="http://farm6.static.flickr.com/5013/5495434173_f2cc3255ba.jpg" width="500" height="118" alt="j-gj" /></a></p>
-	<p>在<a href="http://bit.ly/vim-vimrc" title="vimrc">vimrc配置文件</a>中，定义以下<a href="http://bit.ly/vim-map" title="Map">键盘映射</a>，可以使<code class="inset">j</code>和<code class="inset">k</code>命令自动判断是在折行内或是在折行间进行移动：</p>
+	<p><a href="https://www.flickr.com/photos/yyq123/5495434173/" title="j-gj by yyq123, on Flickr"><img src="https://farm6.static.flickr.com/5013/5495434173_f2cc3255ba.jpg" width="500" height="118" alt="j-gj" /></a></p>
+	<p>在<a href="https://bit.ly/vim-vimrc" title="vimrc">vimrc配置文件</a>中，定义以下<a href="https://bit.ly/vim-map" title="Map">键盘映射</a>，可以使<code class="inset">j</code>和<code class="inset">k</code>命令自动判断是在折行内或是在折行间进行移动：</p>
 	<p><code class="inset">
 	noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')<br />
 	noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 	</code></p>
-	
+
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
 		<tr><td><code class="inset">:set wrap</code></td><td>启用自动折行</td></tr>
