@@ -9,15 +9,15 @@
 </head>
 <body>
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">算法</p>
-	<p>如果<code class="inset">:version</code>命令的输出信息中包含了<em>+cryptv </em>选项， 那么说明你安装的Vim已经启用了加密功能。从于7.3版本开始，Vim支持Blowfish和Blowfish2加密算法，而7.3之前的版本则提供PkZip兼容的加密算法。</p>
+	<p>如果<code class="inset">:version</code>命令的输出信息中包含了<em>+cryptv </em>选项， 那么说明你安装的Vim已经启用了加密功能。7.3之前的版本提供用于向后兼容的PkZip加密算法；自7.3版本开始提供较强的Blowfish加密算法；而从7.4.399版本开始支持更新的Blowfish2加密算法。</p>
 	<p><a href="http://www.flickr.com/photos/yyq123/5301392131/" title="version-cryptv by yyq123, on Flickr"><img src="http://farm6.static.flickr.com/5242/5301392131_4b0fa6f121.jpg" width="455" height="152" alt="version-cryptv" /></a></p>
 	<p>使用以下命令，可以查看当前使用的加密算法：</p>
 	<p><code class="inset">:set cm?</code></p>
 	<p>使用以下命令，可以切换使用的不同加密算法：</p>
 	<p><code class="inset">
-	:set cm=zip           " 弱 (默认用于向后兼容)<br />
-	:set cm=blowfish      " 强
-	:set cm=blowfish2     " 最佳 (需Vim 7.4.399或更高版本)
+	:set cm=zip<br />
+	:set cm=blowfish<br />
+	:set cm=blowfish2<br />
 	</code></p>
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">加密</p>
 	<p>我们可以使用Vim的-x启动参数，创建加密文件：</p>
@@ -31,7 +31,7 @@
 	<p style="text-indent:2em"><code class="inset">:set key=secret</code></p>
 	<p>但以上命令将会以明文显示输入的密码，显然不够安全。而使用以下X（大写）命令，则会以星号*显示输入的密码，所以更加安全。</p>
 	<p style="text-indent:2em"><code class="inset">:X</code></p>
-	<p><a href="https://www.flickr.com/photos/yyq123/33989397915/in/dateposted/" title="X"><img src="https://c1.staticflickr.com/4/3953/33989397915_b0417d68bf.jpg" width="500" height="60" alt="X"></a></p>
+	<p><a href="https://www.flickr.com/photos/yyq123/33989397915/in/dateposted/" title="X"><img src="https://c1.staticflickr.com/4/3953/33989397915_b0417d68bf.jpg" width="500" height="60" alt="X" /></a></p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">安全</p>
 	<p>在编辑文件时所使用的交换文件(swap file)、撤销文件（undo file）和备份文件(backup file)也会同时被加密。当然我们也可以在命令行中利用-n参数，指定不使用交换文件（注意：不使用交换文件，我们也就不能够通过交换文件来恢复文件了。）：</p>
@@ -39,8 +39,14 @@
 	<p>由于viminfo文件并不会被加密，所以我们可以使用以下命令禁用vimifno文件：</p>
 	<p style="text-indent:2em"><code class="inset">:set viminfo=</code></p>
 
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:set cm</code></td><td>设置加密算法</td></tr>
+		<tr><td><code class="inset">:set key</code></td><td>设置密钥</td></tr>
+		<tr><td><code class="inset">:X</code></td><td>加密文档</td></tr>
+	</table>
 
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="缩进" href="http://yyq123.blogspot.com/2010/10/vim-indent.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://www.humyo.com/CHYfCqR/Blog/Vim/learn-vi-00-List.html?a=0tz81ab6hx8">&nbsp;目录&nbsp;</a>|&nbsp;<a title="多编码处理" href="http://yyq123.blogspot.com/2010/07/vim-multi-encoding.html">下一篇</a>&gt;</span></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="缩进" href="http://yyq123.blogspot.com/2010/10/vim-indent.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://bit.ly/vim-TOC">&nbsp;目录&nbsp;</a>|&nbsp;<a title="多编码处理" href="http://yyq123.blogspot.com/2010/07/vim-multi-encoding.html">下一篇</a>&gt;</span></p>
 </body>
 </html>
 

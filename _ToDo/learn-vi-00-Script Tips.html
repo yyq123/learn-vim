@@ -12,16 +12,23 @@
 	<p></p>
 <h2>Gvim or Vim?</h2>
 <p>Some scripts have extra features when used in the GUI version of Vim (Gvim). This could be adding menus, toolbars, or other things that only work if you are using Gvim. So what do you do to check if the user runs the script in a console Vim or in Gvim? Vim has already prepared the information for you. You simply have to check if the feature <i>gui_running</i> is enabled. To do so, you use a function called <i>has()</i>, which returns 1 (true) if a given feature is supported / enabled and 0 (false), otherwise.</p>
-<p>An example could be:</p>
-<pre style="margin-left: 40px;"><p style="white-space: pre;">if has("gui_running")<br>  "execute gui-only commands here.<br>endif</p></pre><p>This is all you need to do to check if a user has used Gvim or not. Note that it is not enough to check if the feature "gui" exists, because this will return true if your Vim is just compiled with GUI support—even if it is not using it.</p>
-<p style="margin-left:40px;margin-right:40px"><i>Look in <i>:help 'feature-list'</i> for a complete list of other features you can check with the <i>has()</i> function.</i></p>
+<p></p>
+	<p style="text-indent:2em"><code class="inset">
+	if has("gui_running")<br />
+	"execute gui-only commands here.<br />
+	endif</code></p>
+<p>This is all you need to do to check if a user has used Gvim or not. Note that it is not enough to check if the feature "gui" exists, because this will return true if your Vim is just compiled with GUI support—even if it is not using it.</p>
+<p> <code class="inset">:help feature-list</code>for a complete list of other features you can check with the <i>has()</i> function.</i></p>
 <h2>Which operating system?</h2>
 <p>If you have tried to work with multiple operating systems such as Microsoft Windows and Linux, you will surely know that there are many differences.</p>
 <p>This can be everything from where programs are placed, to which programs you have available and how access to files is restricted.</p>
 <p>Sometimes, this can also have an influence on how you construct your Vim script as you might have to call external programs, or use other functionality, specific for a certain operating system.</p>
 <p>Vim lets you check which operation system you are on, such that you can stop executing your script or make decisions about how to configure your script. This is done with the following piece of code:</p>
-<pre style="margin-left: 40px;"><p style="white-space: pre;">if has("win16") || has("win32") || has("win64")|| has("win95")<br>  " do windows things here<br>elseif has("unix")<br>  " do linux/unix things here<br>endif</p></pre><p>This example only shows how to check for Windows (all flavors available) and Linux / Unix. As Vim is available on a wide variety of platforms, you can of course also check for these. All of the operating systems can be found in:</p>
-<pre style="margin-left: 40px;"><p style="white-space: pre;"><br><b>:help 'feature-list'</b></p></pre><h2>Which version of Vim?</h2>
+<pre style="margin-left: 40px;"><p style="white-space: pre;">if has("win16") || has("win32") || has("win64")|| has("win95")<br>  " do windows things here<br>elseif has("unix")<br>  " do linux/unix things here<br>endif</p></pre>
+<p>This example only shows how to check for Windows and Linux / Unix. As Vim is available on a wide variety of platforms, you can of course also check for these. All of the operating systems can be found in:</p>
+<pre style="margin-left: 40px;"><p style="white-space: pre;"><br><b>:help 'feature-list'</b></p></pre>
+
+<h2>Which version of Vim?</h2>
 <p>The number consists of three parts:</p>
 <ul>
 <li>Major number (for example, 7 for Vim version 7)</li>
