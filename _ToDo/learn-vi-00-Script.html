@@ -221,53 +221,28 @@ the Vim-specific key shortcuts (like <C-W> for Ctrl-W) can be inserted by escapi
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">函数</p>
 	<p>Vim编辑器还允许我们定义自己的函数.函数定义的一般形式如下:</p>
 	<p><script src="https://gist.github.com/yyq123/8ccf228e869fb644f395e1756095de3d.js"></script></p>
-<p>函数名称必须以大写字母开始，并且只可以包含字母、数字和下划线。</p>
-下面我们来定义一个小函数,用这个函数来返回两个数中较小的一个.我们这样开始定义:
-:function Min(num1,num2)
-这个命令是告诉Vim我们定义的函数名为Min,他有两个参数.我们要做的第一件事就是我们要比较两个数中哪一个要小一些:
-:    if a:num1 < a:num2
-这里的前缀a:是告诉Vim这个变量是一个函数参数.我们将最小的参数赋值给smaller变量:
-:    if a:num1 < a:num2
-:        let smaller = a:num1
-:    else
-        let smaller = a:num2
-:    endif
-这里的smaller是局部变量.在这个函数中使用的所有变量均为局部变量,除非我们使用了g:作为前缀.例如在函数定义外我们定义了变量var.在函数内部我们要使用时要用g:var来调用.所以说一个变量依据其内容有三个不同的名字.
-现在我们可以用:return语句来返回最小的那个数.最后我们结束函数定义:
-:    return smaller
-:endfunction
-完整的函数定义如下:
-:function Min(num1,num2)
-:    if a:num1 < a:num2
-:        let smaller = a:num1
-:    else
-:        let smaller = a:num2
-:    endif
-:    return smaller
-:endfunction
-这样我们就可以用表达式来使用我们的函数了,如:
-:let tiny = Min(10,20)
+	<p><em>Name</em>，函数名称必须以大写字母开始，并且只可以包含字母、数字和下划线。</p>
+	<p><em>arg1-argN</em>，调用函数时需要被赋值的参数。如果不需要任何参数，那么可以将括号()部分置空。最多可以定义20个参数。</p>
+	<p><em>keyword</em>，range关键字定义一个范围函数，当在一个范围的行内运行这个程序时,变量a:firstline,a:lastline就会设置成为这个范围内的第一行和最后一行；abort关键字指示函数会在第一个错误时退出。</p>
+	<p>下面我们来定义一个小函数,用这个函数来返回两个数中较小的一个</p>
+	<p><script src="https://gist.github.com/yyq123/4c18997ffac9a857d6d0f0b452923df4.js"></script></p>
+	<p>函数内部的变量（例如smaller）均为局部变量，除非使用了g:作为前缀。例如在函数外我们定义了变量var，那么在函数内部可以使用g:var来调用。前缀a:的变量均为函数参数。</p>
+	<p>return语句用于返回结果并结束函数。return语句之后的所有代码都不会被执行。</p>
+	<p>可以在表达式中调用函数：</p>
+	<p style="text-indent:2em"><code class="inset">:let tiny = Min(10,20)</code></p>
+	
 我们还可以用:call命令用函数名来显示调用函数功能:
 :[range]call {function}([parameters])
 如果指定了[range]则每一行都要调用函数,除非这个函数是一特殊的range风格函数.
-如果我们要试着定义一个已经存在的函数,我们就会得到一个错误信息.我们可以用!来强制Vim替换以前所定义的同名的函数.
-如果我们将range关键字放在函数定义的后面,这个函数就会被认为是一个范围(range)函数.例如:
-:function Count_words() range
-当在一个范围的行内运行这个程序时,变量a:firstline,a:lastline就会设置成为这个范围内的第一行和最后一行.
-如果在函数的定义后面有abort,那么这个函数就会在第一个错误时退出,如:
-:function Do_It() abort
-最后Vim允许我们在函数中使用个数不定的参数.例如下面的命令定义了一个函数,这个函数必须有一个参数,但是可以用至多20个参数:
-:function Show(start,...)
-变量a:1包含第一个可选的参数,a:2为第二个,依次类推.变量a:0包含多余的参数.例如:
-:function Show(start,...)
-:    let index = 1
-:    echo "Show is"a:start
-:
-:    while (index <=a:0)
-:        echo "Arg" index "is" a:index
-:        let index = index + 1
-:    endwhile
-:endfunction
+<p>如果我们尝试定义一个已经存在的函数，那么就会得到一个错误信息。我们可以使用!来强制替换之前定义的同名函数。</p>
+
+
+<p>Vim允许在函数中使用&ldquo;...&rdquo;标识个数不定的参数。例如以下代码定义函数至少有2个参数，最多有20个参数：</p>
+<p><script src="https://gist.github.com/yyq123/ff3e8bc64a9bcf9f3745602da5a9aba9.js"></script></p>
+<p><em>argnum</em> 计数器，用于记录num1和num2之后的参数个数；</p>
+<p><em>a:0</em> 变量，用于记录参数总个数；</p>
+<p><em>a:{argnum}</em> 变量，用于访问每一个参数的值；</p>
+
 <p>使用以下命令，可以列出所有用户定义的函数：</p>
 <p style="text-indent:2em"><code class="inset">:function</code></p>
 <p>使用以下命令，可以查看指定函数的代码：</p>

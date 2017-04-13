@@ -13,18 +13,21 @@
 <h2>Gvim or Vim?</h2>
 <p>Some scripts have extra features when used in the GUI version of Vim (Gvim). This could be adding menus, toolbars, or other things that only work if you are using Gvim. So what do you do to check if the user runs the script in a console Vim or in Gvim? Vim has already prepared the information for you. You simply have to check if the feature <i>gui_running</i> is enabled. To do so, you use a function called <i>has()</i>, which returns 1 (true) if a given feature is supported / enabled and 0 (false), otherwise.</p>
 <p></p>
-	<p style="text-indent:2em"><code class="inset">
+	<p><code class="inset">
 	if has("gui_running")<br />
-	"execute gui-only commands here.<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;"execute gui-only commands here.<br />
 	endif</code></p>
 <p>This is all you need to do to check if a user has used Gvim or not. Note that it is not enough to check if the feature "gui" exists, because this will return true if your Vim is just compiled with GUI support—even if it is not using it.</p>
 <p> <code class="inset">:help feature-list</code>for a complete list of other features you can check with the <i>has()</i> function.</i></p>
 <h2>Which operating system?</h2>
-<p>If you have tried to work with multiple operating systems such as Microsoft Windows and Linux, you will surely know that there are many differences.</p>
-<p>This can be everything from where programs are placed, to which programs you have available and how access to files is restricted.</p>
-<p>Sometimes, this can also have an influence on how you construct your Vim script as you might have to call external programs, or use other functionality, specific for a certain operating system.</p>
-<p>Vim lets you check which operation system you are on, such that you can stop executing your script or make decisions about how to configure your script. This is done with the following piece of code:</p>
-<pre style="margin-left: 40px;"><p style="white-space: pre;">if has("win16") || has("win32") || has("win64")|| has("win95")<br>  " do windows things here<br>elseif has("unix")<br>  " do linux/unix things here<br>endif</p></pre>
+<p>Vim可以判断当前是在何种操作系统之内，以便执行特点的操作</p>
+<p><code class="inset">
+if has("win16") || has("win32") || has("win64")|| has("win95")<br />
+&nbsp;&nbsp;&nbsp;&nbsp;" do windows things here<br/>
+elseif has("unix")<br />
+&nbsp;&nbsp;&nbsp;&nbsp;" do linux/unix things here
+<br />
+endif</code></p>
 <p>This example only shows how to check for Windows and Linux / Unix. As Vim is available on a wide variety of platforms, you can of course also check for these. All of the operating systems can be found in:</p>
 <pre style="margin-left: 40px;"><p style="white-space: pre;"><br><b>:help 'feature-list'</b></p></pre>
 
@@ -114,41 +117,6 @@
 <p>Vim will automatically add the range of the lines you have selected in front of the command. The filename <i>myscript.vba</i> can be any name, but if the file already exists, then a warning is given, but no file is written.</p>
 <p>If you really want to overwrite an existing file, then just add an ! after the <i>MkVimball</i> command to tell Vim that you mean it. There is no more to it. You now have a Vimball file called <i>myscript.vba</i>, which can be installed as described earlier in this chapter.</p>
 <p style="margin-left:40px;margin-right:40px"><i>Remember that you need to install the Vimball script in order to use the Vimball functions we have described at. The latest version of the Vimball script can always be found here: <a href="http://www.vim.org/scripts/script.php?script_id=1502" target="_blank">http://www.vim.org/scripts/script.php?script_id=1502</a>.</i></p>
-<p>To check if your version supports one of the languages, you simply run Vim on the command line with <i>-version</i> argument:</p>
-<pre style="margin-left: 40px;"><p style="white-space: pre;"><b>vim –version</b></p></pre>
-<p>Then, you look through the list of features to see if it has one of the following in the list:</p>
-<pre style="margin-left: 40px;"><p style="white-space: pre;"><br><b>+perl<br>+python<br>+ruby</b></p></pre>
-<p>It needs to say <i>+</i> in front of the language name to show that it is included. If it instead says, for example, <i>-perl</i>, then Perl support is not included.</p>
-<p>Alternatively, you can just open up Vim and then test for the features with the <i>has()</i> function.</p>
-<pre style="margin-left: 40px;"><p style="white-space: pre;"><b>:echo has("perl")<br>:echo has("python")<br>:echo has("ruby")</b></p></pre>
-<p>It should return 1 for the languages you have support for.</p>
-<h2>Vim scripting in Perl</h2>
-<p>Perl is a very popular scripting language that has been around for quite some time now. It is very powerful when it comes to parsing text and other similar tasks. This also makes it very useful from within Vim.</p>
-<p>The simplest way to use Perl in Vim is with the following command:</p>
-<pre style="margin-left: 40px;"><p style="white-space: pre;"><b>:perl command</b></p></pre>
-<p>This executes the Perl command in the argument <i>command</i>. Note that the values you set with the Perl command will persist throughout the entire Vim editing session.</p>
-<p>Often you would, however, like to execute more than just a single command and hence you have to use another command.</p>
-<p>In that case you can use:</p>
-<pre style="margin-left: 40px;"><p style="white-space: pre;">:perl &lt;&lt; endpattern<br>  perl code here<br>endpattern</p></pre>
-<p>This executes all the Perl code between the <i>endpattern</i> at the beginning and at the end.</p>
-<p style="margin-left:40px;margin-right:40px"><i>In Perl, Python, or Ruby, you can use anything for your <i>endpattern</i>, but the last one needs to be the only word on that particular line, and should be at the beginning of the line. If you leave out the first <i>endpattern</i>, then Vim defaults to use a single dot as <i>endpattern</i>.</i></p>
-<p>An example that just prints a single line of text to Vim could be:</p>
-<pre style="margin-left: 40px;"><p style="white-space: pre;">:perl &lt;&lt; EOF<br>  VIM::Msg("this is a text");<br>EOF</p></pre>
-<p>Note how <i>EOF</i> is used as <i>endpattern</i>, and that in the Perl code I used a function called <i>VIM::Msg()</i> to print a message into Vim. This is just one among many functions you can use to interface between Vim and Perl. Other examples of Vim functions you can use from Perl are:</p>
-<ul>
-<li><i>VIM::buffers()</i>: Return a list of all buffers open in Vim.</li>
-<li><i>VIM::SetOption("option")</i>: Set a Vim option from Perl.</li>
-<li><i>$curbuf-&gt;Name()</i>: Returns the name of the current buffer.</li>
-<li><i>$curbuf-&gt;Set(100, "fooo")</i>: Replace line <i>100</i> in current buffer</li>
-with new text.
-<li><i>$curwin-&gt;SetCursor(15,8)</i>: Set cursor at line <i>15</i>, column <i>8</i> in current window.</li>
-</ul>
-<p>You can find a full list of the Vim-specific functions you can use from within Perl by looking in the help system with:</p>
-<pre style="margin-left: 40px;"><p style="white-space: pre;"><b>:help perl-pverview</b></p></pre>
-<p>If you put Perl code in your script, you should always remember to check if the user has support for Perl in his or her version of Vim.</p>
-<p>It is always a good idea to have your Perl code wrapped in Vim functions in your script. This way it is easy to implement your script, and for an inexperienced user, the script will look normal and work as usual. An example of how to wrap Perl in a function could be:</p>
-<pre style="margin-left: 40px;"><p style="white-space: pre;"><br>function MoveCursor(row,col)<br>  if has("perl")<br>    perl &lt;&lt; EOF<br>    ($oldrow,$oldcol) = $curwin-&gt;Cursor();<br>    VIM::Msg("Old position was: ($oldrow,$oldcol)");<br>    $curwin-&gt;Cursor(row,col);<br>EOF<br>  else<br>    echo "perl not available. canceling function call"<br>  endif<br>endfunction</p></pre>
-<p>This function gets the old position of the cursor in the current window, prints that position, and then moves the cursor to the position that matches the two arguments for the function (row and column).</p>
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">识别文件</p>
 	<p></p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
