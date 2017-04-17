@@ -9,62 +9,54 @@
 </head>
 <body>
 
-
-
-
-	<p></p>
-	<p></p>
-	<p></p>
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">magic选项</p>
-	<p>默认情况下，magic选项是打开的。如果这个选项被关闭了,那么我们在通用表达式中的许多的特殊字符就失去了他们神奇的魔力，而变成了普通的字符。</p>
-	<p>我们使用只有一行的文件来测试magic选项。先用命令将整个文件打印出来:</p>
-	<p style="text-indent:2em"><code class="inset">:%print</code></p>
-	<p>命令的执行结果如下:</p>
-	<p>Test aaa* aa* a*</p>
-	<p>然后我们设置magic选项并且执行替换命令。p标记打印出所改变的行:</p>
+	<p>默认情况下，magic选项是打开的。如果关闭了此选项，那么正则表达式中的许多的特殊字符就失去了他们神奇的魔力，而变成了普通的字符。</p>
+	<p>我们使用以下只有一行的文件来测试magic选项。先用<code class="inset">:%print</code>命令将整个文件打印出来:</p>
+	<p><code class="msg">Test aaa* aa* a*</code></p>
+	<p>然后设置magic选项并且执行替换命令。其中，<em>p</em>标记打印出所改变的行:</p>
 	<p style="text-indent:2em"><code class="inset">:set magic</code></p>
 	<p style="text-indent:2em"><code class="inset">:1 substitute /a*/b/p</code></p>
 	<p>命令的执行结果如下:</p>
-	<p>bTest aaa* aa* a*</p>
-	<p>这个命令只是改变了一行开始的部分。为什么会将Test变为b*Test呢？这是因为*可以匹配0次或是多次，而Test正是以0个a开始的。但是为什么只是替换了一次呢？这是因为:substitute命令中是改变第一个出现的地方，如果我们使用g标记就可以替换全部的匹配项了。如果希望g标记成为默认设置，那么可以使用<code class="inset">:set gdefault</code>命令。</p>
-	<p>我们撤销刚才的命令并执行下面的命令:</p>
+	<p><code class="msg">bTest aaa* aa* a*</code></p>
+	<p>命令只是改变了一行开始的部分。为什么会将Test变为b*Test呢？这是因为*可以匹配0次或是多次，而Test正是以0个a开始的。为什么只是替换了一次呢？这是因为:substitute命令中是改变第一个出现的地方，如果我们使用<em>g</em>标记就可以替换全部的匹配项了。如果希望g标记成为默认设置，那么可以使用<code class="inset">:set gdefault</code>命令。</p>
+	<p>我们撤销刚才的命令并再次执行替换命令:</p>
 	<p style="text-indent:2em"><code class="inset">:undo</code></p>
 	<p style="text-indent:2em"><code class="inset">:1 substitute /a*/b/pg</code></p>
 	<p>命令的执行结果如下:</p>
-	<p>bTest b*b b*b b*</p>
-	<p>如果我们关闭magic选项的情况下再做一次:</p>
+	<p><code class="msg">bTest b*b b*b b*</code></p>
+	<p>如果在关闭magic选项的情况下再次执行命令:</p>
 	<p style="text-indent:2em"><code class="inset">:undo</code></p>
 	<p style="text-indent:2em"><code class="inset">:set nomagic</code></p>
 	<p style="text-indent:2em"><code class="inset">:1 substitute /a*/b/pg</code></p>
 	<p>命令的执行结果如下:</p>
-	<p>Test aab ab b</p>
+	<p><code class="msg">Test aab ab b</code></p>
+	
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">smgic命令</p>
 	<p>:smagic命令，可以在执行替换命令时强制转换*等特殊字符的意义。例如我们执行以下命令:</p>
 	<p style="text-indent:2em"><code class="inset">:smagic /a*/b/pg</code></p>
 	<p>命令的执行结果如下:</p>
-	<p>bTest b*b b*b b*</p>
+	<p><code class="msg">bTest b*b b*b b*</code></p>
 	<p>:snomagic命令，强行关掉magic选项:</p>
 	<p style="text-indent:2em"><code class="inset">:snomagic /a*/b/pg</code></p>
 	<p>命令的执行结果如下:</p>
-	<p>Test aab ab b</p>
+	<p><code class="msg">Test aab ab b</code></p>
 	
-	<p style="font-weight:bold">&amp;命令</p>
-	<p>&amp;命令可以重复执行替换。这个命令可以保存旧的from和to的字符串，但是允许使用不同的范围(range)和标记(flags)。</p>
-	<p>这个命令的形式如下:</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">&amp;命令</p>
+	<p>&amp;命令可以重复执行替换。此命令可以保存之前的from和to的字符串，但是允许使用不同的范围(range)和标记(flags)，命令形式如下:</p>
 	<p style="text-indent:2em"><code class="inset">:range &amp; flags count</code></p>
-	<p>例如我们执行下面的命令:</p>
+	<p>例如执行以下替换命令:</p>
 	<p style="text-indent:2em"><code class="inset">:1 substitute /a+/b/p</code></p>
 	<p>命令的执行结果如下:</p>
-	<p>Test b* aa* a*</p>
-	<p>这个命令可以改变第一个出现from所指的字符的地方.但是我们希望是的整个一行都要发生相应的替换,这时我们可以重复这一次替换命令:</p>
+	<p><code class="msg">Test b* aa* a*</code></p>
+	<p>命令只替换了第一个匹配字符。如果我们希望针对整行进行替换，可以使用<em>g</em>标记重复上次替换命令:</p>
 	<p style="text-indent:2em"><code class="inset">:&amp;g</code></p>
 	<p>命令的执行结果如下:</p>
-	<p>Test b* b* b*</p>
+	<p><code class="msg">Test b* b* b*</code></p>
 	<p>命令:&amp;和命令:substitute在没有指定替换字符串的情况下作用相同，都可以执行上一次的替换命令。</p>
-	<p>例如我们执行下面的命令将第五行中的字符manager变为idiot:</p>
+	<p>例如以下命令将第五行中的字符manager变为idiot:</p>
 	<p style="text-indent:2em"><code class="inset">:5 substitute /manager/idiot/</code></p>
-	<p>如果在正常的命令模式下，我们执行命令&amp;，那么这一行中的下一个manager字符串也会被替换。如果下移一行然后执行命令&amp;，那么这一行也会发生相应的变化。如果在这个命令中指定了count，那么这个命令就可以作用多行。</p>
-	<p>命令<code class="inset">:~</code>与<code class="inset">&amp;g</code>相类似，所不同的是前者使用的字符是上一次使用/或是?查找时使用的字符串，而不是上一次:substitute命令中的字符串。这个命令的一般格式如下:</p>
+	<p>执行&amp;命令，当前行中的下一个manager字符串也会被替换。如果下移一行然后执行&amp;命令，那么该行也会发生相应的变化。如果在这个命令中指定了count，那么命令将作用于多行。</p>
+	<p>命令<code class="inset">:~</code>与<code class="inset">&amp;g</code>相类似，所不同的是它会匹配上一次<code class="inset">/</code>或是<code class="inset">?</code>查找时使用的字符串，而不是上一次:substitute命令中的字符串。命令一般格式如下:</p>
 	<p style="text-indent:2em"><code class="inset">:range~ flags count</code></p>
 
 	<p>:</p>
