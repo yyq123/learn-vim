@@ -39,8 +39,9 @@ endif</code></p>
 <li>Patch number (for example, 123 for Vim 7.0.123)</li>
 </ul>
 <p>The first two numbers are the actual version number, but when minor features / patches are applied to a version of Vim, it is mostly only the patch number that is increased. It takes quite a bit of change to get the minor number to increase, and a major part of Vim should change in order to increase the major version number.</p>
-<p>Therefore, when you want to check which version of Vim the user is using, you do it for two versions—major and minor versions and patch number. The code for this could look like:</p>
-<pre style="margin-left: 40px;"><p style="white-space: pre;"><br>if v:version &gt;= 702 || v:version == 701 &amp;&amp; has("patch123")<br>  " code here is only done for version 7.1 with patch 123<br>  " and version 7.2 and above<br>endif</p></pre><p>The first part of the <i>if</i> condition checks if our version of Vim is version <i>7.2</i> (notice that the minor version number is padded with 0 if less than 10) or above. If this is not the case, then it checks to see if we have a version <i>7.1</i> with patch <i>123</i>. If patch version <i>124</i> or above is included, then you also have patch <i>123</i> automatically.</p>
+<p>以下代码用于确定Vim的版本号：</p>
+<pre style="margin-left: 40px;"><p style="white-space: pre;"><br>if v:version &gt;= 702 || v:version == 701 &amp;&amp; has("patch123")<br>  " code here is only done for version 7.1 with patch 123<br>  " and version 7.2 and above<br>endif</p></pre>
+<p>注意： minor version number 如果小于10，那么需要在以0为前导。如果当前Patch number高于指定的补丁编号（比如124），那么也肯定包含了指定的补丁编号（比如123）。</p>
 <h2>Printing longer lines</h2>
 <p>Vim was originally created for old text terminals where the length of lines was limited to a certain number of characters. Today, this old limitation shows up once in a while.</p>
 <p>One place where you meet this limitation of line length is when printing longer lines to the screen using the "echo" statement. Even though you use Vim in a window where there are more than the traditional 80 characters per line, Vim will still prompt you to press <i>Enter</i> after echoing lines longer than 80 characters. There is, however, a way to get around this, and make it possible to use the entire window width to echo on. Window width means the total number of columns in the Vim window minus a single character. So if your Vim window is wide enough to have 120 characters on each line, then the window width is 120-1 characters.</p>
@@ -107,7 +108,7 @@ endif</code></p>
 <p>Another, maybe even more interesting, alternative is to make a Vimball. We have previously looked at how to use Vimballs to install scripts, so it could now be interesting to look a bit at how to create one.</p>
 <p>The command to create a Vimball is constructed as:</p>
 <pre style="margin-left: 40px;"><p style="white-space: pre;"><br><b>:[range]MkVimball filename.vba</b></p></pre>
-<p>This sure seems simple, right? And it really is. There is, however, a bit of preparation you need to do before calling this function.</p>
+<p></p>
 <p>The first thing you have to do is to open a new empty buffer in Vim with:</p>
 <pre style="margin-left: 40px;"><p style="white-space: pre;"><b>:enew</b></p></pre>
 <p>Now you add the paths to all the files (one on each line) relative to your <i>VIMHOME</i>. Considering the previous ZIP file example, it could look like:</p>
@@ -120,7 +121,15 @@ endif</code></p>
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">识别文件</p>
 	<p></p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
-
+	<p><script src="https://gist.github.com/yyq123/59521a184b50ca2dc012f885d1ef4396.js"></script></p>
+	<p>*...*包围的为关键字，用户可以直接在关键字之间进行跳转。例如*myscript-intro*, 将使我们可以使用以下命令直接跳转到文档的此部分：</p>
+	<p style="text-indent:2em"><code class="inset">:help 'myscript-intro'</code></p>
+	<p>&gt;...&lt;标签包围的为代码；~，用不同的颜色显示标题。|...|，链接到关键字</p>
+	<p>将文档放置到VIMHOME/doc/，然后执行以下命令：</p>
+	<p style="text-indent:2em"><code class="inset">:helptags docdir</code></p>
+where docdir is the path to VIMHOME/doc/. If any of the keywords you have added is already used, then Vim will give you a warning, and you have to change it before distributing the documentation.
+	<p>Want to distribute your documentation in multiple languages? Take a look in the help system for more information:</p>
+:help 'help-translated'
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
 		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>

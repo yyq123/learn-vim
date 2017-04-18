@@ -1,0 +1,45 @@
+*myscript.txt* Documentation for example script myscript.vim
+
+Script : myscript.vim – Example script for vim developers
+Author : Kim Schulz
+Email : <kim@schulz.dk>
+Changed: 01/01/2007
+===========================================================
+                                          * myscript-intro*
+1. Overview~
+This document gives a short introduction to the example
+script myscript.vim.
+This script is made as an example for vim users on how to
+structure a simple vim plugin script such that it is easy
+to read and figure out.
+The following is covered in this document:
+  1. Overview     |myscript-intro|
+  2. Mappings     |myscript-mappings|
+  3. Functions    |myscript-functions|
+  4. Todo         |myscript-todo|
+===========================================================
+===========================================================
+                                       *myscript-functions*
+3. Functions~
+Besides the functions available via mappings (as described
+in |myscript-mappings|) there are some extra global func-
+tions available.
+
+MyglobalfunctionB()~
+This function is one of the global functions in this script.
+An example of usage could be: >
+  :call MyglobalfunctionB()
+<
+  Vim returns:
+  Hello from the global-scope function myglobalfunctionB~
+
+MyglobalfunctionC()~
+This function is a global function that also calls one of
+the internal functions ("s:MyfunctionA()") in the script.
+An example of usage could be: >
+  :call MyglobalfunctionC()
+<
+  Vim returns:
+  Hello from MyglobalfuncionC() now calling locally:~
+  This is the script-scope function MyfunctionA speaking~
+===============================================================

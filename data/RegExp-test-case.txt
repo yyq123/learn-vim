@@ -126,3 +126,34 @@ PERL!
 但是为此我们不得不从200兆的Email中寻找看起来想地址一样的东西！
 这个太难了！
 所有人退后，我知道正则表达式。
+
+
+<Hl>Dumb user tricks
+At one university the computer center was experience
+trouble with a new type of computer terminal. Seems
+that the professors loved to put papers on top of
+the equipment, covering the ventilation holes. Many
+terminals broke down because they became so hot that
+the solder holding one of the chips melted and the
+chip fell out.
+The student technicians were used to this problem. One
+day a technician took the back off a terminal
+
+======================================================
+
+Calls and letters to the company failed to correct
+this problem. Finally the fellow just gave up and
+wrote a check for $0.00 and the bills ceased.
+
+A Californian who loved sailing went down and applied
+for a personalized license plate. He filled in his
+three choices as 1)SAIL 2)SAILING and 3)NONE. He got
+a new plate labeled "NONE."
+
+Unfortunately, when the police write out a ticket
+
+======================================================
+
+This is a test.
+
+te tee teee teee

@@ -10,9 +10,37 @@
 <body>
 	<p>Vim使用正则表达式(regular expressions)来进行逻辑查找。正则达式是神秘和简洁的，然而这种强大的功能也必须要以大量的学习才能够习惯和掌握。</p>
 	<p>一个正则表达式是由一些元素组成的，一个元素可以是一个字符或者是一个特殊字符。</p>
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">启用/禁用</p>
-	<p>在通用表达式中，我们用<strong>&lt;</strong>来匹配一个单词的开始，用<strong>&gt;</strong>来匹配一个单词的结束。也就是说，将我们想要查找的字符串放在这两个中间，就可以更精确的查找字符串。例如在文件中有Californian和Unfortunately。如果用命令<code class="inset">/for</code>来查找，那么就会找到这两个单词。而如果用通用表达式<code class="inset">/\&lt;for\&gt;</code>来进行查找，则只会精确的查找到for，而不会出现其他的匹配情况。</p>
-	<p>星号（<strong>*</strong>）通配符，作用于其之前的一个元素，表示可以匹配0次或是多次。所以通用表达式<code class="inset">te*</code>可以匹配te,tee,teee等等。甚至还可以匹配t，因为在这里e可以匹配0次。如果需要匹配一个字符串，那么必须使用"\("和"\)"进行限定。例如，命令<code class="inset">/\(ab\)*</code>，将可以匹配 "ab", "abab", "ababab", 和""等等。</p>
+	<p>以下表格列示了常用的简单元素：</p>
+	<table summary="简单的元素" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+	<tr><td><code class="inset">x</code></td><td>字符x</td></tr>
+	<tr><td><code class="inset">^</code></td><td>一行的开始处</td></tr>
+	<tr><td><code class="inset">$</code></td><td> 一行的结尾处</td></tr>
+	<tr><td><code class="inset">.</code></td><td>任意单个字符</td></tr>
+	<tr><td><code class="inset">&lt;</code></td><td>开始标记</td></tr>
+	<tr><td><code class="inset">&gt;</code></td><td>结尾标记</td></tr>
+	</table>
+	
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">行首与行尾</p>
+	<p><code class="inset">^acme</code>，将匹配以acme开始的行。注意：除非出现在模式的开头，否则音调符号^就不是一个代表行开头的通配符，而会代表其他的含义。<code class="inset">2^4</code>，将匹配包含"2^4"的所有行。如果要查找以“^”开头的行，则需要使用<code class="inset">^^</code>模式。其中第一个^是通配符用于指示一行的开头，而第二个^则是实际的音调符号。如果要指明前导^是一个实际的音调符号而不是表示一行开头的通配符，那么就需要在其前面加一个转义的反斜杠“\”来组成<code class="inset">\^acme</code>模式。</p>
+	<p><a href="https://www.flickr.com/photos/yyq123/34073046406/in/dateposted/" title="RegularExpression_BeginOfLine"><img src="https://c1.staticflickr.com/4/3947/34073046406_5672a535a3.jpg" width="500" height="214" alt="RegularExpression_BeginOfLine"></a></p>
+	<p><code class="inset">acme$</code>，将匹配以acme结尾的行。<code class="inset">^acme$</code>，将匹配只包含acme一个单词的行。而<code class="inset">^$</code>，则会匹配所有空行。</p>
+	<p><a href="https://www.flickr.com/photos/yyq123/33302425653/in/photostream/" title="RegularExpression_EndOfLine"><img src="https://c1.staticflickr.com/3/2911/33302425653_df51ed6c68.jpg" width="500" height="214" alt="RegularExpression_EndOfLine"></a></p>
+	<p><code class="inset">dog.bone</code>，将匹配dog-bone，dog bone，dog/bone，但不会匹配dogbone，因为dog和bone之间并没有分隔符。</p>
+	<p><a href="https://www.flickr.com/photos/yyq123/34073046546/in/photostream/" title="RegularExpression_AnySingleChr"><img src="https://c1.staticflickr.com/3/2918/34073046546_af4ffe4bc9.jpg" width="500" height="214" alt="RegularExpression_AnySingleChr"></a></p>
+	<p>要指示任何字符出现的次数，可以同时使用句点和星号（.*），例如<code class="inset">dog.*bone</code>将匹配以下字符串（但不会匹配dog在一行而bone在另一行的情况）：</p>
+	<p style="width:30em; padding: 0.2em; color:#fff; background-color:#000;">dogbone<br />
+	dog-bone<br />
+	doggy bone<br />
+	My dog has a bone</code></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">词首与词尾</p>
+	<p><code class="inset">&lt;</code>用于匹配一个单词的开始。<code class="inset">&gt;</code>用于匹配一个单词的结束。也就是说，只要将想要查找的字符串包围其中，就可以实现精确查找。例如在文件中有单词Californian和Unfortunately。如果使用命令<code class="inset">/for</code>来查找，那么也会找到这两个单词。</p>
+	<p><a href="https://www.flickr.com/photos/yyq123/34074075036/in/dateposted/" title="RegularExpression_Partial"><img src="https://c1.staticflickr.com/3/2931/34074075036_e516993fed.jpg" width="500" height="177" alt="RegularExpression_Partial"></a></p>
+	<p>如果使用表达式<code class="inset">/\&lt;for\&gt;</code>来进行查找，则只会精确的查找到for，而不会出现其他的匹配。</p>
+	<p><a href="https://www.flickr.com/photos/yyq123/33272364724/in/photostream/" title="RegularExpression_Exact"><img src="https://c1.staticflickr.com/3/2924/33272364724_8b99fa6758.jpg" width="500" height="177" alt="RegularExpression_Exact"></a></p>
+
+	<p>星号（<code class="inset">*</code>）通配符，作用于其之前的一个元素，表示可以匹配0次或是多次。表达式的贪婪（greedy）特性，将尝试查找尽可能多的匹配项。<code class="inset">te*</code>将会匹配te，tee，teee等等。甚至还会匹配t，因为在这里e可以出现0次。</p>
+	<p>如果需要匹配一个字符串，那么必须使用"\("和"\)"进行限定。例如，命令<code class="inset">/\(ab\)*</code>，将可以匹配 "ab", "abab", "ababab", 和""等等。</p>
 	<p>加号（<strong>+</strong>）通配符，表示一个字符可以匹配一次或是多次。所以表达式te+可以匹配te,tee,teee等等。但是不可以再匹配t了,因为这里e最少要匹配一次。</p>
 	<p>等号（<strong>=</strong>）通配符，表示一个字符匹配0次或是一次。所以表达te=可以匹配t,te，但是不可以匹配tee，因为这个表达式只能匹配不多于两个字符。</p>
 	<p>还有一些特殊的字符：如a匹配一个字符,而d匹配任何数字。所以表达式aaa可以匹配任意三个字符。而dddd则可以查找任意四个数字。而/aaa_则查找任意后带一个下划线的三个字符</p>
@@ -69,26 +97,7 @@ b s        第一个匹配字符串的开始处.
 b[num]
 s[num]
 光标置于第一个匹配字符串的开始处,然后移动num个字符,如果为正,向右移,为负,向左移.
-常用的通用表达式如下:(认为magic选项打开)
-<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
-	<caption>简单的元素:</caption>
-	<tr><td><code class="inset">x</code></td><td>字符x</td></tr>
-	<tr><td><code class="inset">^</code></td><td>一行的开始处</td></tr>
-	<tr><td><code class="inset">$</code></td><td> 一行的结尾处</td></tr>
-	<tr><td><code class="inset">.</code></td><td>单一的字符</td></tr>
-	<tr><td><code class="inset">&lt;</code></td><td>查找字符串的开始标记</td></tr>
-	<tr><td><code class="inset">&gt;</code></td><td>查找字符串的结束标记</td></tr>
-</table>
-<p>例如：<code class="inset">^acme</code>，将匹配以acme开始的行。注意：除非出现在模式的开头，否则音调符号^就不是一个代表行开头的通配符，而会代表其他的含义。<code class="inset">2^4</code>，将匹配包含"2^4"的所有行。如果要查找以“^”开头的行，则需要使用<code class="inset">^^</code>模式。其中第一个^是通配符用于指示一行的开头，而第二个^则是实际的音调符号。如果要指明前导^是一个实际的音调符号而不是表示一行开头的通配符，那么就需要在其前面加一个转义的反斜杠（\）组成<code class="inset">\^acme</code>模式。同理：<code class="inset">acme$</code>，将匹配以acme结尾的行。<code class="inset">^acme$</code>，将匹配只包含acme一个单词的行。而<code class="inset">^$</code>，则会匹配所有空行。</p>
-<p><code class="inset">dog.bone</code>，将匹配dog-bone，dog bone，dog/bone，但不会匹配dogbone，因为dog和bone之间并没有分隔符。</p>
-<p>要指示任何字符出现的次数，可以同时使用句点和星号（.*），例如<code class="inset">dog.*bone</code>将匹配以下字符串：</p>
-<ul>
-	<li><code class="inset">dogbone</code></li>
-	<li><code class="inset">dog-bone</code></li>
-	<li><code class="inset">doggy bone</code></li>
-	<li><code class="inset">My dog has a bone</code></li>
-</ul>
-<p>但上面的模式不会匹配dog在一行而bone在另一行的情况。</p>
+
 <table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 	<caption>范围运算符:</caption>
 	<tr><td><code class="inset">[abc]</code></td><td>匹配a,b或是c</td></tr>
