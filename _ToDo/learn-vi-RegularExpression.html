@@ -5,7 +5,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记 正则表达式（Regular Expression）</title>
+	<title>VIM学习笔记 正则表达式-基础（Regular Expression Basic）</title>
 </head>
 <body>
 	<p>Vim使用正则表达式(regular expressions)来进行逻辑查找。正则达式是神秘和简洁的，然而这种强大的功能也必须要以大量的学习才能够习惯和掌握。</p>
@@ -38,11 +38,13 @@
 	<p><a href="https://www.flickr.com/photos/yyq123/34074075036/in/dateposted/" title="RegularExpression_Partial"><img src="https://c1.staticflickr.com/3/2931/34074075036_e516993fed.jpg" width="500" height="177" alt="RegularExpression_Partial"></a></p>
 	<p>如果使用表达式<code class="inset">/\&lt;for\&gt;</code>来进行查找，则只会精确的查找到for，而不会出现其他的匹配。</p>
 	<p><a href="https://www.flickr.com/photos/yyq123/33272364724/in/photostream/" title="RegularExpression_Exact"><img src="https://c1.staticflickr.com/3/2924/33272364724_8b99fa6758.jpg" width="500" height="177" alt="RegularExpression_Exact"></a></p>
-
 	<p>星号（<code class="inset">*</code>）通配符，作用于其之前的一个元素，表示可以匹配0次或是多次。表达式的贪婪（greedy）特性，将尝试查找尽可能多的匹配项。<code class="inset">te*</code>将会匹配te，tee，teee等等。甚至还会匹配t，因为在这里e可以出现0次。</p>
-	<p>如果需要匹配一个字符串，那么必须使用"\("和"\)"进行限定。例如，命令<code class="inset">/\(ab\)*</code>，将可以匹配 "ab", "abab", "ababab", 和""等等。</p>
-	<p>加号（<strong>+</strong>）通配符，表示一个字符可以匹配一次或是多次。所以表达式te+可以匹配te,tee,teee等等。但是不可以再匹配t了,因为这里e最少要匹配一次。</p>
-	<p>等号（<strong>=</strong>）通配符，表示一个字符匹配0次或是一次。所以表达te=可以匹配t,te，但是不可以匹配tee，因为这个表达式只能匹配不多于两个字符。</p>
+	<p><a href="https://www.flickr.com/photos/yyq123/33288076884/in/dateposted/" title="RegularExpression_Asterisk"><img src="https://c1.staticflickr.com/3/2883/33288076884_622dee1240.jpg" width="500" height="108" alt="RegularExpression_Asterisk"></a></p>
+	<p>加号（<code class="inset">+</code>）通配符，表示一个字符可以匹配一次或是多次。所以表达式<code class="inset">te\+</code>可以匹配te，tee，teee等等。但是不会再匹配t，因为这里e最少要出现一次。</p>
+	<p><a href="https://www.flickr.com/photos/yyq123/33288077014/in/photostream/" title="RegularExpression_Plus"><img src="https://c1.staticflickr.com/3/2880/33288077014_0a3aa86283.jpg" width="500" height="108" alt="RegularExpression_Plus"></a></p>
+	<p>等号（<code class="inset">=</code>）通配符，表示一个字符匹配0次或是一次。所以表达<code class="inset">te\=</code>可以匹配t和te，但是不会匹配tee，因为这个表达式只能匹配不多于两个字符。</p>
+	<p><a href="https://www.flickr.com/photos/yyq123/33288077124/in/photostream/" title="RegularExpression_Equal"><img src="https://c1.staticflickr.com/3/2928/33288077124_d64568e6a7.jpg" width="500" height="108" alt="RegularExpression_Equal"></a></p>
+
 	<p>还有一些特殊的字符：如a匹配一个字符,而d匹配任何数字。所以表达式aaa可以匹配任意三个字符。而dddd则可以查找任意四个数字。而/aaa_则查找任意后带一个下划线的三个字符</p>
 
 a可以匹配所有的字符(小写的或是大写的).
