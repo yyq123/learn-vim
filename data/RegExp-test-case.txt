@@ -157,3 +157,16 @@ Unfortunately, when the police write out a ticket
 This is a test.
 
 te tee teee teee
+
+======================================================
+
+// Read at most 10MB
+const unsigned int MAX_READ = (10 * 1024 * 1024);
+
+// Size of a buffer
+const unsigned int BUF_SIZE = (62 * 10240);
+
+// Buffer to be written
+static unsigned char buffer[BUF_SIZE];
+
+

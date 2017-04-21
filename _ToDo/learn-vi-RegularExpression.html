@@ -5,132 +5,90 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记 正则表达式-基础（Regular Expression Basic）</title>
+	<title>VIM学习笔记 正则表达式-（Regular Expression ）</title>
 </head>
 <body>
-	<p>Vim使用正则表达式(regular expressions)来进行逻辑查找。正则达式是神秘和简洁的，然而这种强大的功能也必须要以大量的学习才能够习惯和掌握。</p>
-	<p>一个正则表达式是由一些元素组成的，一个元素可以是一个字符或者是一个特殊字符。</p>
-	<p>以下表格列示了常用的简单元素：</p>
-	<table summary="简单的元素" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
-	<tr><td><code class="inset">x</code></td><td>字符x</td></tr>
-	<tr><td><code class="inset">^</code></td><td>一行的开始处</td></tr>
-	<tr><td><code class="inset">$</code></td><td> 一行的结尾处</td></tr>
-	<tr><td><code class="inset">.</code></td><td>任意单个字符</td></tr>
-	<tr><td><code class="inset">&lt;</code></td><td>开始标记</td></tr>
-	<tr><td><code class="inset">&gt;</code></td><td>结尾标记</td></tr>
-	</table>
-	
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">行首与行尾</p>
-	<p><code class="inset">^acme</code>，将匹配以acme开始的行。注意：除非出现在模式的开头，否则音调符号^就不是一个代表行开头的通配符，而会代表其他的含义。<code class="inset">2^4</code>，将匹配包含"2^4"的所有行。如果要查找以“^”开头的行，则需要使用<code class="inset">^^</code>模式。其中第一个^是通配符用于指示一行的开头，而第二个^则是实际的音调符号。如果要指明前导^是一个实际的音调符号而不是表示一行开头的通配符，那么就需要在其前面加一个转义的反斜杠“\”来组成<code class="inset">\^acme</code>模式。</p>
-	<p><a href="https://www.flickr.com/photos/yyq123/34073046406/in/dateposted/" title="RegularExpression_BeginOfLine"><img src="https://c1.staticflickr.com/4/3947/34073046406_5672a535a3.jpg" width="500" height="214" alt="RegularExpression_BeginOfLine"></a></p>
-	<p><code class="inset">acme$</code>，将匹配以acme结尾的行。<code class="inset">^acme$</code>，将匹配只包含acme一个单词的行。而<code class="inset">^$</code>，则会匹配所有空行。</p>
-	<p><a href="https://www.flickr.com/photos/yyq123/33302425653/in/photostream/" title="RegularExpression_EndOfLine"><img src="https://c1.staticflickr.com/3/2911/33302425653_df51ed6c68.jpg" width="500" height="214" alt="RegularExpression_EndOfLine"></a></p>
-	<p><code class="inset">dog.bone</code>，将匹配dog-bone，dog bone，dog/bone，但不会匹配dogbone，因为dog和bone之间并没有分隔符。</p>
-	<p><a href="https://www.flickr.com/photos/yyq123/34073046546/in/photostream/" title="RegularExpression_AnySingleChr"><img src="https://c1.staticflickr.com/3/2918/34073046546_af4ffe4bc9.jpg" width="500" height="214" alt="RegularExpression_AnySingleChr"></a></p>
-	<p>要指示任何字符出现的次数，可以同时使用句点和星号（.*），例如<code class="inset">dog.*bone</code>将匹配以下字符串（但不会匹配dog在一行而bone在另一行的情况）：</p>
-	<p style="width:30em; padding: 0.2em; color:#fff; background-color:#000;">dogbone<br />
-	dog-bone<br />
-	doggy bone<br />
-	My dog has a bone</code></p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">词首与词尾</p>
-	<p><code class="inset">&lt;</code>用于匹配一个单词的开始。<code class="inset">&gt;</code>用于匹配一个单词的结束。也就是说，只要将想要查找的字符串包围其中，就可以实现精确查找。例如在文件中有单词Californian和Unfortunately。如果使用命令<code class="inset">/for</code>来查找，那么也会找到这两个单词。</p>
-	<p><a href="https://www.flickr.com/photos/yyq123/34074075036/in/dateposted/" title="RegularExpression_Partial"><img src="https://c1.staticflickr.com/3/2931/34074075036_e516993fed.jpg" width="500" height="177" alt="RegularExpression_Partial"></a></p>
-	<p>如果使用表达式<code class="inset">/\&lt;for\&gt;</code>来进行查找，则只会精确的查找到for，而不会出现其他的匹配。</p>
-	<p><a href="https://www.flickr.com/photos/yyq123/33272364724/in/photostream/" title="RegularExpression_Exact"><img src="https://c1.staticflickr.com/3/2924/33272364724_8b99fa6758.jpg" width="500" height="177" alt="RegularExpression_Exact"></a></p>
-	<p>星号（<code class="inset">*</code>）通配符，作用于其之前的一个元素，表示可以匹配0次或是多次。表达式的贪婪（greedy）特性，将尝试查找尽可能多的匹配项。<code class="inset">te*</code>将会匹配te，tee，teee等等。甚至还会匹配t，因为在这里e可以出现0次。</p>
-	<p><a href="https://www.flickr.com/photos/yyq123/33288076884/in/dateposted/" title="RegularExpression_Asterisk"><img src="https://c1.staticflickr.com/3/2883/33288076884_622dee1240.jpg" width="500" height="108" alt="RegularExpression_Asterisk"></a></p>
-	<p>加号（<code class="inset">+</code>）通配符，表示一个字符可以匹配一次或是多次。所以表达式<code class="inset">te\+</code>可以匹配te，tee，teee等等。但是不会再匹配t，因为这里e最少要出现一次。</p>
-	<p><a href="https://www.flickr.com/photos/yyq123/33288077014/in/photostream/" title="RegularExpression_Plus"><img src="https://c1.staticflickr.com/3/2880/33288077014_0a3aa86283.jpg" width="500" height="108" alt="RegularExpression_Plus"></a></p>
-	<p>等号（<code class="inset">=</code>）通配符，表示一个字符匹配0次或是一次。所以表达<code class="inset">te\=</code>可以匹配t和te，但是不会匹配tee，因为这个表达式只能匹配不多于两个字符。</p>
-	<p><a href="https://www.flickr.com/photos/yyq123/33288077124/in/photostream/" title="RegularExpression_Equal"><img src="https://c1.staticflickr.com/3/2928/33288077124_d64568e6a7.jpg" width="500" height="108" alt="RegularExpression_Equal"></a></p>
-
-	<p>还有一些特殊的字符：如a匹配一个字符,而d匹配任何数字。所以表达式aaa可以匹配任意三个字符。而dddd则可以查找任意四个数字。而/aaa_则查找任意后带一个下划线的三个字符</p>
-
-a可以匹配所有的字符(小写的或是大写的).
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">范围</p>
-	<p>方括号（<strong>[]</strong>）通配符，表示只可以匹配方括号内列表的字符。例如<code class="inset">t[aeiou]n</code>只匹配一个小写元音字符，可以找到tan,ten,tin,ton,tun。</p>
-	<p>在方括号内，可以通过短横线来指明包括字符或数字的范围。例如<code class="inset">[0-9]</code>可以匹配0到9中的任一数字。我们还可以组合其他的字符。例如<code class="inset">[0-9aeiou]</code>可以匹配任意一个数字或是小写的元音字符。</p>
-	<p>如果需要匹配"-"本身，那么需要将"-"符号放在范围的第一位或最后一位。<p>
-	<p>可以在表达式中使用以下特殊字符：</p>
-	<p><code class="inset">
-	\e&nbsp;&nbsp;&lt;Esc&gt;<br />
-	\t&nbsp;&nbsp;&lt;Tab&gt;<br />
-	\r&nbsp;&nbsp;&lt;CR&gt;<br />
-	\b&nbsp;&nbsp;&lt;BS&gt;</code></p>
-
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">排除</p>
-	<p>脱字符（<strong>^</strong>）通配符，可以排除指定的字符。</p>
-	<p><code class="inset">acme[^0-9]</code>匹配所有包含acme，后跟一个非数字字符的行。但不会匹配以acme结尾的行，因为模式中的acme之后必须有一个字符。</p>
-	<p><code class="inset">^[^a-zA-Z]</code>匹配以非字母开头的行，但不会匹配空行，因为行中必须有一个非字母字符存在。</p>
-
-
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">匹配次数</p>
-	<p><strong>{minimum,maximum}</strong>表达式指出一个字符重复的次数。例如表达式<code class="inset">a{3,5}</code>可以匹配3到5个a。在表达式中，最小次数是可以省略的，即默认最小次数为0，所以表达式<code class="inset">a{,5}</code>可以匹配0到5个a。最大次数也是可以省略的，即默认匹配无穷大，所以表达式<code class="inset">a{3,}</code>最少可以匹配3个a，最多个数没有限制。</p>
-	<p><strong>{number}</strong>表达式只指定一个数字，Vim就会精确的匹配相应的次数。例如<code class="inset">a{5}</code>只会精确的匹配5次。</p>
-	<p><strong>{-minimum,maximum}</strong>在数字前增加一个负号(-)，那么Vim在查找时就会尽可能少的进行匹配（Matching as little as possible）。例如<code class="inset">ab\{-1,3}</code>将只匹配 "abbb"中的"ab"。表达式<code class="inset">a{-3,}</code>匹配三个或是更多个a，但尽可能少地的进行匹配。而表达式<code class="inset">a{-,5}</code>可以匹配0到5个字符。表达式<code class="inset">a{-}</code>可以匹配0到无穷多个字符，在通常情况下这个表达式匹配0个符，除非在它的后面还有字符或是表达式。例如<code class="inset">[a-z]{-}x</code>将会匹配.cxcx中的cx。而表达式<code class="inset">[a-z]*x</code>将会匹配整个cxcx。表达式<code class="inset">a{-5}</code>将会精确的匹配5个字符。</p>
-	<p><a data-flickr-embed="true"  href="https://www.flickr.com/photos/yyq123/31042807084/in/dateposted/" title="RegularExpression_Matching as little as possible"><img src="https://c1.staticflickr.com/1/709/31042807084_415a4b4996_o.png" width="58" height="71" alt="RegularExpression_Matching as little as possible"></a></p>
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">或操作</p>
-	<p>或运算运符（<strong>|</strong>）用于查找两个或是多个可能的匹配。例如表达式<code class="inset">/foo\|bar</code>可以找到foo或是bar。我们可以连接使用多个或运算符，例如表达式<code class="inset">/Larry\|Moe\|Curly</code>将找到Larry、Moe和Curly。而表达式<code class="inset">/end\(if\|while\|for\)</code>则可以匹配"endif", "endwhile" 和 "endfor"几个不同的元素组合。</p>
-	<p>如果希望匹配多次，那么可以组合使用加号和括号运算符。例如以下表达式可以匹配 "foo", "foobar", "foofoo", "barfoobar"等等。</p>
-	<p style="text-indent:2em"><code class="inset">/\(foo\|bar\)\+</code></p>
-
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">综合应用</p>
-	<p>例如要查找的内容为1MGU103，这个字符串由1个数字，3个大写字符和3个数字组成。我可以有以下几种方法来表示：</p>
-<ul>
-	<li><code class="inset">[0-9][A-Z]{3}[0-9]{3}</code><br />先用[0-9]表示前面的一个数字，然后加入[A-Z]大写字符，因为有三个大写字符，所以加入精确匹配的数字{3}，最后再加入末尾的三个数字。</li>
-	<li><code class="inset">du{3}d{3}</code><br />利用d指任何的数字，而u指任何的大写字符，这种方式的查找效率要比第一种方法快得多。</li>
-</ul>
-我们还可以用这样的表达示:duuuddd,这个也可以找到我们想要的内容.
-最后我们还可以用字符类来写出我们的表达式:
-[[:digit:]][[:upper:]]{3}[[:digit:]]{3}
-这四种方法都可以很好的来完成我们的工作
-
-<p>表达式<code class="inset"><.\{-}></code>，可以匹配以&lt;开头以&gt;结尾的所有HTML代码标签。</p>
-
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">偏移(Offset)</p>
-一些常用的偏移(Offset)定义:
-+[num]        光标置于第一个匹配字符下第num行的开始处.
--[num]        光标置于第一个匹配字符上第num行的开始处.
-e        匹配字符串的结尾处.
-e[num]
-光标置于第一个匹配字符串的结尾处,然后移动num个字符,如果为正,向右移,为负,向左移.
-b s        第一个匹配字符串的开始处.
-b[num]
-s[num]
-光标置于第一个匹配字符串的开始处,然后移动num个字符,如果为正,向右移,为负,向左移.
-
-<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
-	<caption>范围运算符:</caption>
+	<p>方括号（<code class="inset">[]</code>）通配符，表示只可以匹配方括号内列表的字符。例如<code class="inset">t[aeiou]n</code>将匹配一个小写元音字符，可以找到tan,ten,tin,ton,tun。</p>
+	<p>在方括号内，可以通过短横线来指明包括字符或数字的范围。例如<code class="inset">[0-9]</code>可以匹配0到9中的任一数字。我们还可以组合其他字符，例如<code class="inset">[0-9aeiou]</code>可以匹配任意一个数字或是小写的元音字符。</p>
+	<p>如果需要匹配"-"本身，那么需要使用反斜杠进行转义。例如表达式<code class="inset">one[\-]way</code>可以匹配one-way，但不会匹配one way。<p>
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+	<caption>范围运算符：</caption>
 	<tr><td><code class="inset">[abc]</code></td><td>匹配a,b或是c</td></tr>
 	<tr><td><code class="inset">[^abc]</code></td><td>匹配除abc以处的字符</td></tr>
 	<tr><td><code class="inset">[a-z]</code></td><td>匹配从a到z的所有小写字符</td></tr>
 	<tr><td><code class="inset">[a-zA-Z]</code></td><td>匹配所有大小写字符</td></tr>
+	</table>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">排除</p>
+	<p>脱字符（<code class="inset">^</code>）通配符，可以排除指定的字符。</p>
+	<p><code class="inset">acme[^0-9]</code>匹配所有包含acme，后跟一个非数字字符的行。但不会匹配以acme结尾的行，因为模式中的acme之后必须有一个字符。</p>
+	<p><code class="inset">^[^a-zA-Z]</code>匹配以非字母开头的行，但不会匹配空行，因为行中必须有一个非字母字符存在。</p>
+	<p>如果需要匹配"^"本身，那么需要使用反斜杠进行转义。例如表达式<code class="inset">2[\^*]4</code>可以匹配2^4和2*4。<p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">重复次数</p>
+	<p><strong>{minimum,maximum}</strong>表达式指出一个字符重复的次数。例如表达式<code class="inset">a{3,5}</code>可以匹配3到5个a（aaa，aaaa，aaaaa）。在表达式中，最小次数是可以省略的，即默认最小次数为0，所以表达式<code class="inset">a{,5}</code>可以匹配0到5个a。最大次数也是可以省略的，即默认匹配无穷大，所以表达式<code class="inset">a{3,}</code>最少可以匹配3个a，最多个数没有限制。</p>
+	<p><strong>{number}</strong>表达式只指定一个数字，Vim就会精确的匹配相应的次数。例如<code class="inset">a{5}</code>只会精确的匹配5次。</p>
+	<p><strong>{-minimum,maximum}</strong>在数字前增加一个负号(-)，那么Vim在查找时就会尽可能少的进行匹配（Matching as little as possible）。例如<code class="inset">ab\{-1,3}</code>将只匹配 "abbb"中的"ab"。表达式<code class="inset">a\{-3,}</code>匹配三个或是更多个a，但尽可能少地的进行匹配。而表达式<code class="inset">a\{-,5}</code>可以匹配0到5个字符。表达式<code class="inset">a\{-}</code>可以匹配0到无穷多个字符，在通常情况下这个表达式匹配0个符，除非在它的后面还有字符或表达式。例如<code class="inset">[a-z]\{-}x</code>将会匹配cxcx中的cx。而表达式<code class="inset">[a-z]*x</code>将会匹配整个cxcx。表达式<code class="inset">a\{-5}</code>将会精确的匹配5个字符。</p>
+	<p><a href="https://www.flickr.com/photos/yyq123/31042807084/in/dateposted/" title="RegularExpression_Matching as little as possible"><img src="https://c1.staticflickr.com/1/709/31042807084_415a4b4996_o.png" width="58" height="71" alt="RegularExpression_Matching as little as possible" /></a></p>
+	<p>指示重复次数的运算符主要包括：</p>
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 	<tr><td><code class="inset"></code></td><td></td></tr>
+	<tr><td><code class="inset">*</code></td><td>匹配0次或是多次,尽可能多的匹配</td></tr>
+	<tr><td><code class="inset">\+</code></td><td>匹配1次或是多次,尽可能多的匹配</td></tr>
+	<tr><td><code class="inset">\=</code></td><td>匹配0次或是1次</td></tr>
+	<tr><td><code class="inset">\{}</code></td><td>匹配0次或是多次</td></tr>
+	<tr><td><code class="inset">\{n}</code></td><td>精确匹配n次</td></tr>
+	<tr><td><code class="inset">\{-n}</code></td><td>匹配n次</td></tr>
+	<tr><td><code class="inset">\{n,m}</code></td><td>匹配n次到m次</td></tr>
+	<tr><td><code class="inset">\{n,}</code></td><td>匹配n次到多次</td></tr>
+	<tr><td><code class="inset">\{,m}</code></td><td>匹配0次到m次</td></tr>
+	<tr><td><code class="inset">\{-n,m}</code></td>匹配n次到m次,尽可能少的进行匹配<td></td></tr>
+	<tr><td><code class="inset">\{-n,}</code></td><td>至少匹配n次,尽可能少的进行匹配</td></tr>
+	<tr><td><code class="inset">\{-,m}</code></td><td>匹配到m次,尽可能少的进行匹配</td></tr>
+	<tr><td><code class="inset">{-}</code></td><td>匹配0次到多次,尽可能少的进行匹配</td></tr>
 	<tr><td><code class="inset"></code></td><td></td></tr>
-	<tr><td><code class="inset"></code></td><td></td></tr>
-	<tr><td><code class="inset"></code></td><td></td></tr>
-	<tr><td><code class="inset"></code></td><td></td></tr>
-	<tr><td><code class="inset"></code></td><td></td></tr>
-	<tr><td><code class="inset"></code></td><td></td></tr>
-	<tr><td><code class="inset"></code></td><td></td></tr>
-	<tr><td><code class="inset"></code></td><td></td></tr>
-</table>
+	</table>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">分组</p>
+	<p>括号运算符（<code class="inset">()</code>）用于保证需要组合出现的字符。表达式<code class="inset">a\(XY\)*b</code>将会匹配ab, aXYb, aXYXYb, aXYXYXYb。</p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">或操作</p>
+	<p>或运算运符（<code class="inset">|</code>）用于查找两个或是多个可能的匹配。例如表达式<code class="inset">foo\|bar</code>可以找到foo或是bar。我们可以连接使用多个或运算符，例如表达式<code class="inset">Larry\|Moe\|Curly</code>将找到Larry、Moe和Curly。而表达式<code class="inset">end\(if\|while\|for\)</code>则可以匹配"endif", "endwhile" 和 "endfor"几个不同的元素组合。</p>
+	<p>如果希望匹配多次，那么可以组合使用加号和括号运算符。例如表达式<code class="inset">/\(foo\|bar\)\+</code>可以匹配 "foo", "foobar", "foofoo", "barfoobar"等等。</p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">综合应用</p>
+	<p>例如想要查找类似&ldquo;1MGU103&rdquo;的字符串，其由1个数字，3个大写字符和3个数字组成。那么可以使用以下几种方法来匹配：</p>
+<ul>
+	<li><code class="inset">[0-9][A-Z]\{3}[0-9]\{3}</code><br />先用[0-9]表示前面的一个数字，然后加入[A-Z]大写字符，并精确匹配{3}个数字，最后再加入末尾的三个数字。</li>
+	<li><code class="inset">\d\u\{3}\d\{3}</code><br />利用\d指任何的数字，而\u指任何的大写字符，这种方式的查找效率要比第一种方法快得多。</li>
+	<li><code class="inset">\d\u\u\u\d\d\d</code></li>
+	<li><code class="inset">[[:digit:]][[:upper:]]\{3][[:digit:]]\{3}</code></li>
+</ul>
+
+<p>表达式<code class="inset"><.\{-}></code>，可以匹配以&lt;开头以&gt;结尾的所有HTML代码标签。</p>
+
+
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">预定义字符</p>
 	<p>如果需要找出包含空格的空行，那么可以使用<code class="inset">^\s.*$</code>表达式；如果需要找到没有空格的空行，则可以使用<code class="inset">\S</code></p>
-		
-	<p>操作符<code class="inset">\d</code>可以匹配任意数字；而<code class="inset">\D</code>则可以匹配任意非数字。 </p>
-<p>To match any uppercase character, use \u, while \l will match any lowercase character. Using \U will match any non-uppercase character, and \L will match any non-lowercase character.</p>
-	<p>使用以下三种命令，都可以精确匹配四位数字：</p>
+	<p>表达式<code class="inset">\a</code>匹配任意字符，而表达式<code class="inset">\a\a\a</code>则可以匹配任意三个字符。而<code class="inset">\a\a\a_</code>则可以匹配任意后带一个下划线的三个字符。</p>
+	<p><a href="https://www.flickr.com/photos/yyq123/33769091350/in/dateposted/" title="RegularExpression_3CharU"><img src="https://c1.staticflickr.com/3/2822/33769091350_509233be8c.jpg" width="500" height="211" alt="RegularExpression_3CharU"></a></p>
+	<p>操作符<code class="inset">\d</code>可以匹配任意数字；<code class="inset">\d\d\d\d</code>则可以匹配任意四个数字（即使其为更长数字串中的一部分）。</p>
+	<p><a href="https://www.flickr.com/photos/yyq123/34153894495/in/dateposted/" title="RegularExpression_4DigitNumber"><img src="https://c1.staticflickr.com/3/2914/34153894495_460333bbe0.jpg" width="500" height="211" alt="RegularExpression_4DigitNumber" /></a></p>
+	<p>如果希望精确匹配四位数字，那么可以使用以下任一命令：</p>
 	<p style="text-indent:2em"><code class="inset">/\&lt;\d\d\d\d\&gt;</code></p>
-	<p style="text-indent:2em"><code class="inset">/\D\d\d\d\d\D</code></p>
 	<p style="text-indent:2em"><code class="inset">/\&lt;\d\{4}\&gt;</code></p>
+	<p><a href="https://www.flickr.com/photos/yyq123/34023138071/in/photostream/" title="RegularExpression_4DigitNumberExact"><img src="https://c1.staticflickr.com/3/2943/34023138071_2c786922f7.jpg" width="500" height="211" alt="RegularExpression_4DigitNumberExact" /></a></p>
+
 	<p>使用以下命令，可以将整篇文本替换为大写字母：</p>
 	<p style="text-indent:2em"><code class="inset">:%s/.*/\U&amp;/</code></p>
 	<p>请注意，以上预定义字符是不能内嵌在[]中使用的。例如，表达式[\d\l]是错误的，应使用<code class="inset">\(\d\|\l\)</code>表达式匹配数字或小写字符。</p>
+	<p>而<code class="inset">\D</code>则可以匹配任意非数字。 </p>
+<p>To match any uppercase character, use \u, while \l will match any lowercase character. Using \U will match any non-uppercase character, and \L will match any non-lowercase character.</p>
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">转义符</p>
-	<p>如果需要查找某些特殊符号（比如美元符号），那么可以使用反斜杠backslash（\）进行转义。例如：表达式<code class="inset">\$</code>可以匹配美元符号（$），而表达式<code class="inset">\^</code>则可以匹配脱字符（^）。需要注意的是，Note that the backslash character is itself a special character, so you'd need to use two backslashes together.</p>
+	<p>如果需要查找某些特殊符号（比如美元符号），那么可以使用反斜杠backslash（\）进行转义。例如：表达式<code class="inset">\$</code>可以匹配美元符号（$），而表达式<code class="inset">\^</code>则可以匹配脱字符（^）。需要注意的是，反斜杠backslash（\）本身也是特殊符号，所以需要用两个反斜杠<code class="inset">\\</code>来匹配。</p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">匹配换行</p>
 	<p>如果你想要查找的内容之中包含换行符，那么可以使用"<strong>\n</strong>"通配符。执行以下命令，将匹配以"the"结尾的行，和以"word"开头的下一行：</p>
@@ -155,101 +113,69 @@ Another example is "\_[]", a character range that includes a line break:
 This finds a text in double quotes that may be split up in several lines.
 
 
-如果我们要指找所有的大写字符又应如何来做呢?一个办法就是使用表达式[A-Z].还有一个办法就是我们可以使用预先定义的字符类.[:upper:]可以匹配大写字符.所以我们要指找大写字符也可以这样的来写:[[:upper:]].我们可以使用字符类来写出所有的字符:
-[[:upper:][:lower:]].
-在Vim中还有许多不同的字符类定义
-
-[:alnum:]    匹配所有的字符和数字
-[:alpha:]    匹配所有的字符
-[:ascii:]    匹配所有的ASCII字符
-[:backspace:]    匹配退格符<BS>
-[:blank:]    匹配空格和Tab
-[:cntrl:]    匹配所有的控制字符
-[:digit:]    匹配所有的数字
-[:escape:]    匹配Esc
-[:graph:]    匹配所打印的字符,不包括空格
-[:lower:]    匹配所有的小写字符
-[:print:]    匹配所有的要打印字符,包括空格
-[:return:]    匹配所有的行末符号(包括<Enter>,<CR>,<NL>).
-[:punct:]    匹配所有的功能符号
-[:space:]    匹配所有的空白符
-[:tab:]        匹配Tab
-[:upper:]    匹配所有的大写字符
-[:xdigit:]    匹配十六进制数字.
-类型:
-(pattern)    标记一个类型以后使用
-1        与第一个在()中的子表达式匹配的字符串匹配相同的字符串
-例如表达式([a-z])1可以匹配aa,bb或是类似的.
-2        与1相类似,但是是使用第二个子表达式
-9        与1相类似,但是是使用第九个子表达式
+	<p>如果我们想要查找所有大写字符，可以使用表达式<code class="inset">[A-Z]</code>，或者使用预定义的字符类<code class="inset">[:upper:]</code>。使用<code class="inset">/[[:upper:]]</code>命令可以匹配所有大写字母；而使用/[[:upper:][:lower:]]命令则可以匹配包括大写和小写字母在内的所有字母。</p>
+	<p>预定义的字符类还包括：</p>
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<tr><td><code class="inset">[:alnum:]</code></td><td>匹配所有的字符和数字</td></tr>
+		<tr><td><code class="inset">[:alpha:]</code></td><td>匹配所有的字符</td></tr>
+		<tr><td><code class="inset">[:ascii:]</code></td><td>匹配所有的ASCII字符</td></tr>
+		<tr><td><code class="inset">[:backspace:]</code></td><td>匹配退格符<bs></td></tr>
+		<tr><td><code class="inset">[:blank:]</code></td><td>匹配空格和Tab</td></tr>
+		<tr><td><code class="inset">[:cntrl:]</code></td><td>匹配所有的控制字符</td></tr>
+		<tr><td><code class="inset">[:digit:]</code></td><td>匹配所有的数字</td></tr>
+		<tr><td><code class="inset">[:escape:]</code></td><td>匹配Esc</td></tr>
+		<tr><td><code class="inset">[:graph:]</code></td><td>匹配所打印的字符,不包括空格</td></tr>
+		<tr><td><code class="inset">[:lower:]</code></td><td>匹配所有的小写字符</td></tr>
+		<tr><td><code class="inset">[:print:]</code></td><td>匹配所有的要打印字符,包括空格</td></tr>
+		<tr><td><code class="inset">[:return:]</code></td><td>匹配所有的行末符号(包括<Enter>,<CR>,<NL>)</td></tr>
+		<tr><td><code class="inset">[:punct:]</code></td><td>匹配所有的功能符号</td></tr>
+		<tr><td><code class="inset">[:space:]</code></td><td>匹配所有的空白符</td></tr>
+		<tr><td><code class="inset">[:tab:]</code></td><td>匹配Tab</td></tr>
+		<tr><td><code class="inset">[:upper:]</code></td><td>匹配所有的大写字符</td></tr>
+		<tr><td><code class="inset">[:xdigit:]</code></td><td>匹配十六进制数字</td></tr>
+	</table>
 
 
-修饰符:
-*    匹配0次或是多次,尽可能多的匹配
-+    匹配1次或是多次,尽可能多的匹配
-=    匹配0次或是1次
-{}    匹配0次或是多次
-{n}
-{-n}    匹配n次
-{n,m}    匹配n次到m次
-{n,}    匹配n次到多次
-{,m}    匹配0次到m次
-{-n,m}    匹配n次到m次,尽可能少的进行匹配
-{-n,}    至少匹配n次,尽可能少的进行匹配
-{-,m}    匹配到m次,尽可能少的进行匹配
-{-}    匹配0次到多次,尽可能少的进行匹配
-str1|str2    匹配str1或是str2
 
 <code class="inset">regexp</code>
 http://vimregex.com/
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
-		<tr><td colspan="2">字符类:</td></tr>
-
-
-
 		<tr><td colspan="2">特殊字符:</td></tr>
-		<tr><td><code class="inset">a</code></td><td>大小写字母字符 [a-zA-Z]</td></tr>
-		<tr><td><code class="inset">A</code></td><td>除了a-zA-Z 以外的字母字符</td></tr>
-		<tr><td><code class="inset">b</code></td><td>&lt;BS&gt;</td></tr>
-		<tr><td><code class="inset">d</code></td><td>数字字符 [0-9]</td></tr>
-		<tr><td><code class="inset">D</code></td><td>非数字字符 [^0-9]</td></tr>
-		<tr><td><code class="inset">e</code></td><td>&lt;ESC&gt;</td></tr>
-		<tr><td><code class="inset">f</code></td><td>由isfname选项定义的文件名字符</td></tr>
-		<tr><td><code class="inset">F</code></td><td>文件名字符,但是不包含数字</td></tr>
-		<tr><td><code class="inset">h</code></td><td>单词的头字符(A-Za-z)</td></tr>
-		<tr><td><code class="inset">H</code></td><td>不是单词的头字符(A-Za-z)</td></tr>
-		<tr><td><code class="inset">i</code></td><td>由isdent选项定义的字符</td></tr>
-		<tr><td><code class="inset">I</code></td><td>定义的字符,但是不包括数字</td></tr>
-		<tr><td><code class="inset">k</code></td>由iskeyword选项定义的关键字字符<td></td></tr>
-		<tr><td><code class="inset">K</code></td><td>关键字字符,但是不包括数字</td></tr>
-		<tr><td><code class="inset">l</code></td><td>小字字符 [a-z]</td></tr>
-		<tr><td><code class="inset">L</code></td><td>非小写字符 [^a-z]</td></tr>
-		<tr><td><code class="inset">o</code></td><td>八进制数字</td></tr>
-		<tr><td><code class="inset">O</code></td><td>非八进制数字</td></tr>
-		<tr><td><code class="inset">p</code></td><td>由isprint选项定义的可打印字符</td></tr>
-		<tr><td><code class="inset">P</code></td><td>可打印字符,但是不包括数字</td></tr>
-		<tr><td><code class="inset">r</code></td><td>&lt;CR&gt;</td></tr>
-		<tr><td><code class="inset">s</code></td><td>空白符<Space>和<Tab> [ 	]</td></tr>
-		<tr><td><code class="inset">S</code></td><td>非空白符 [^ 	]</td></tr>
-		<tr><td><code class="inset">t</code></td><td>&lt;Tab&gt;</td></tr>
-		<tr><td><code class="inset">u</code></td><td>大写字母字符 [A-Z]</td></tr>
-		<tr><td><code class="inset">U</code></td><td>非大写字母字符 [^A-Z]</td></tr>
-		<tr><td><code class="inset">w</code></td><td>单词字符(0-9A-Za-z)</td></tr>
-		<tr><td><code class="inset">W</code></td><td>非单词字符</td></tr>
-		<tr><td><code class="inset">x</code></td><td>十六进制数字 [0-9a-fA-F]</td></tr>
-		<tr><td><code class="inset">X</code></td><td>非十六进制数字 [^0-9a-fA-F]</td></tr>
-		<tr><td><code class="inset">~</code></td><td>匹配最后指定的字符串</td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset">\a</code></td><td>大小写字母字符 [a-zA-Z]</td></tr>
+		<tr><td><code class="inset">\A</code></td><td>除了a-zA-Z以外的字母字符</td></tr>
+		<tr><td><code class="inset">\b</code></td><td>&lt;BS&gt;</td></tr>
+		<tr><td><code class="inset">\d</code></td><td>数字字符 [0-9]</td></tr>
+		<tr><td><code class="inset">\D</code></td><td>非数字字符 [^0-9]</td></tr>
+		<tr><td><code class="inset">\e</code></td><td>&lt;ESC&gt;</td></tr>
+		<tr><td><code class="inset">\f</code></td><td>由isfname选项定义的文件名字符</td></tr>
+		<tr><td><code class="inset">\F</code></td><td>文件名字符,但是不包含数字</td></tr>
+		<tr><td><code class="inset">\h</code></td><td>单词的头字符(A-Za-z)</td></tr>
+		<tr><td><code class="inset">\H</code></td><td>不是单词的头字符(A-Za-z)</td></tr>
+		<tr><td><code class="inset">\i</code></td><td>由isdent选项定义的字符</td></tr>
+		<tr><td><code class="inset">\I</code></td><td>定义的字符,但是不包括数字</td></tr>
+		<tr><td><code class="inset">\k</code></td>由iskeyword选项定义的关键字字符<td></td></tr>
+		<tr><td><code class="inset">\K</code></td><td>关键字字符,但是不包括数字</td></tr>
+		<tr><td><code class="inset">\l</code></td><td>小字字符 [a-z]</td></tr>
+		<tr><td><code class="inset">\L</code></td><td>非小写字符 [^a-z]</td></tr>
+		<tr><td><code class="inset">\o</code></td><td>八进制数字</td></tr>
+		<tr><td><code class="inset">\O</code></td><td>非八进制数字</td></tr>
+		<tr><td><code class="inset">\p</code></td><td>由isprint选项定义的可打印字符</td></tr>
+		<tr><td><code class="inset">\P</code></td><td>可打印字符,但是不包括数字</td></tr>
+		<tr><td><code class="inset">\r</code></td><td>&lt;CR&gt;</td></tr>
+		<tr><td><code class="inset">\s</code></td><td>空白符<Space>和<Tab> [ 	]</td></tr>
+		<tr><td><code class="inset">\S</code></td><td>非空白符 [^ 	]</td></tr>
+		<tr><td><code class="inset">\t</code></td><td>&lt;Tab&gt;</td></tr>
+		<tr><td><code class="inset">\u</code></td><td>大写字母字符 [A-Z]</td></tr>
+		<tr><td><code class="inset">\U</code></td><td>非大写字母字符 [^A-Z]</td></tr>
+		<tr><td><code class="inset">\w</code></td><td>单词字符(0-9A-Za-z)</td></tr>
+		<tr><td><code class="inset">\W</code></td><td>非单词字符</td></tr>
+		<tr><td><code class="inset">\x</code></td><td>十六进制数字 [0-9a-fA-F]</td></tr>
+		<tr><td><code class="inset">\X</code></td><td>非十六进制数字 [^0-9a-fA-F]</td></tr>
+		<tr><td><code class="inset">\~</code></td><td>匹配最后指定的字符串</td></tr>
 		<tr><td><code class="inset"></code></td><td></td></tr>
 	</table>
+
 	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="()" href="">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="()" href="">下一篇</a>&gt;</span></p>
 </body>
 </html>

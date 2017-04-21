@@ -12,11 +12,13 @@
 	<p>命令<code class="inset">f</code>用于在本行内向前搜索。例如<code class="inset">fx</code>是向前（Forward）搜索字母x。而命令<code class="inset">F</code>是向后（Backward）搜索。例如<code class="inset">Fx</code>是向后搜索字母x。与f和F这两个相类似的是t和T命令。<code class="inset">t</code>命令类似于f向前搜索命令，所不同的是t搜索到时并不是将光标停在目标字符上，而是停在目标字符的前一个字符上。而<code class="inset">T</code>命令类似于F向后搜索命令，所不同的是T搜索到时并不是将光标停在目标字符上，而是停在目标字符的后一个字符上。</p>
 	<p>在搜索的过程中，我们可以使用<kbd>ESC</kbd>键来退出搜索并返回到常规模式。</p>
 	<p>对于以上四个查找命令，我们可以重复执行这些操作。命令<code class="inset">;</code>是按照前一次的查找方向继续查找，如果要向相反的方向查找可以使用<code class="inset">,</code>命令。但是这些查找只是在行本行内进行，并不会将光标移动到其它的行。</p>
+
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">查找字符串</p>
 	<p>使用<code class="inset">/string</code>命令，可以向前（Forward）查找字符串string，按下回车后，光标就能跳转到匹配处。如果在整个文件中有多处匹配的内容，那么可以使用<code class="inset">/</code>命令，然后按下回车键继续刚才的查找。我们还可以使用<code class="inset">n</code>命令来继续刚才的查找命令。这两个命令都能达到同样的效果。</p>
 	<p>我们也可以使用<code class="inset">?string</code>命令向后（Backward）查找。<code class="inset">N</code>也是逆向查找命令，他可以实现立即反向查找。</p>
 	<p>如果我们想要停止这一查找，可以使用<kbd>ctrl+C</kbd>命令，如果是在Windows系统中，则要使用<kbd>ctrl+Break</kbd>命令。</p>
 	<p>Vim具有自动记录查找命令历史的功能，这样就不用重复输入查找命令了。例如你刚才做过的三次查找分别是：/one，/two，/three。而现在输入<code class="inset">/</code>，然后按上下方向键，就可以在屏幕底部看到刚才查找命令，这时只要按下回车就能够再次执行之前的查找命令了。</p>
+
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">指定光标放置位置</p>
 	<p>在默认情况下，Vim会将光标放在第一个匹配结果的开始处。例如你查找字符串set，光标将会停留在字母s之上。我们可以在命令中指定查找结束后光标停留的位置。</p>
 	<p>对于向前查找的命令，可以在斜线后用数字来指明光标所处的位置，例如<code class="inset">/set/2</code>或<code class="inset">/set/+2</code>命令都会在查找结束后将光标放在第一个set字符串之后第二行的开始处。命令中的数字可以是正数也可以是负数。如果仅是一个简单的数字，光标会被放在第一个匹配字符串之后或之前的数字所指定的行的开始处。正数表示是向后，而负数表示是向前。</p>
@@ -24,6 +26,18 @@
 	<p>而参数e会使得光标放在第一个匹配字符串的结尾处。同样我们也可以用数字来指定向右还是向左移动光标以及移动的字符数。例如<code class="inset">/set/e</code>命令会使光标放在第一个匹配字符处的结尾处。如果命令改为<code class="inset">/set/e2</code>，会将光标放在第一个匹配字符串的结尾处，然后向右移动2个字符。这里的数字如果是正数则向右移，如果为负数则向左移。</p>
 	<p>我们还可以在命令中指定偏移量。例如命令<code class="inset">/set/e+2</code>是在查找set字符串结束后，将光标放在第一个匹配字符串的结尾处，然后向右移动两个字符。<code class="inset">/</code>命令，将使用相同的偏移量重复前一次的查找。如果要重复前一次的查找，但是需要不同的偏移量，那么可以使用<code class="inset">//5</code>命令。如果不使用偏移量，则可以指明一个空的偏移量，如<code class="inset">//</code>命令。</p>
 	<p>查找命令<code class="inset">?</code>也可以实现类似的功能。例如<code class="inset">?set?b5</code>命令，是将光标放在最后一个匹配字符串的开头部分，然后向右移动5个字符。<code class="inset">??-2</code>命令，则继续前一次的查找命令，但是使用新的偏移量。<code class="inset">??</code>命令，是继续前一次的查找命令，但是不使用偏移量。</p>
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>偏移(Offset)</caption>
+		<tr><td><code class="inset">+[num]</code></td><td>光标置于第一个匹配字符下第num行的开始处</td></tr>
+		<tr><td><code class="inset">-[num]</code></td><td>光标置于第一个匹配字符上第num行的开始处</td></tr>
+		<tr><td><code class="inset">e</code></td><td>匹配字符串的结尾处</td></tr>
+		<tr><td><code class="inset">e[num]</code></td><td>光标置于第一个匹配字符串的结尾处,然后移动num个字符,如果为正,向右移,为负,向左移</td></tr>
+		<tr><td><code class="inset">b</code></td><td rowspan="2">第一个匹配字符串的开始处</td></tr>
+		<tr><td><code class="inset">s</code></td></tr>
+		<tr><td><code class="inset">b[num]</code></td><td rowspan="2">光标置于第一个匹配字符串的开始处,然后移动num个字符,如果为正,向右移,为负,向左移</td></tr>
+		<tr><td><code class="inset">s[num]</code></td></tr>
+	</table>
+
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">立时查找字符串</p>
 	<p>如果我们想快速查找当前光标下的字符串，可以使用命令<code class="inset">*</code>，这个命令可以向前查找与当前光标下的字符精确匹配的字符串。而命令<code class="inset">#</code>，则向后查找与当前光标下的字符串精确匹配的结果。</p>
 	<p>如果当前光标下的字符串为word，在执行*命令查找时并不会与Word相匹配。如果使用相类似的<code class="inset">g*</code>命令，来查找word，则不会要求严格的精确匹配，那么就有可能和Word相匹配。而<code class="inset">g#</code>命令与其相同，只不过他是向相反的方向进行查找匹配。</p>
@@ -49,17 +63,17 @@
 		<tr><td><code class="inset">?</code></td><td>向后查找</td></tr>
 		<tr><td><code class="inset">n</code></td><td>继续查找</td></tr>
 		<tr><td><code class="inset">N</code></td><td>反向查找</td></tr>
-		<tr><td><code class="inset">*</code></td><td>向前查找与当前光标下字符精确匹配的字符串</td></tr>		
-		<tr><td><code class="inset">#</code></td><td>向后查找与当前光标下字符精确匹配的字符串</td></tr>		
+		<tr><td><code class="inset">*</code></td><td>向前查找与当前光标下字符精确匹配的字符串</td></tr>
+		<tr><td><code class="inset">#</code></td><td>向后查找与当前光标下字符精确匹配的字符串</td></tr>
 		<tr><td><code class="inset">:set hlsearch</code></td><td>打开高亮显示查找的文本</td></tr>
 		<tr><td><code class="inset">:set nohlsearch</code></td><td>关闭高亮显示查找的文本</td></tr>
 		<tr><td><code class="inset">:nohlsearch</code></td><td>关闭当前高亮显示的结果</td></tr>
 		<tr><td><code class="inset">:set incsearch</code></td><td>打开显示查找匹配过程</td></tr>
 		<tr><td><code class="inset">:set noincsearch</code></td><td>关闭显示查找匹配过程</td></tr>
-		<tr><td><code class="inset">:set ignorecase</code></td><td>忽略大小写</td></tr>		
-		<tr><td><code class="inset">:set noignorecase</code></td><td>精确匹配大小写</td></tr>		
-		<tr><td><code class="inset">:set nowrapscan</code></td><td>禁止循环查找方式</td></tr>		
-		<tr><td><code class="inset">:set wrapscan</code></td><td>启用循环查找方式</td></tr>		
+		<tr><td><code class="inset">:set ignorecase</code></td><td>忽略大小写</td></tr>
+		<tr><td><code class="inset">:set noignorecase</code></td><td>精确匹配大小写</td></tr>
+		<tr><td><code class="inset">:set nowrapscan</code></td><td>禁止循环查找方式</td></tr>
+		<tr><td><code class="inset">:set wrapscan</code></td><td>启用循环查找方式</td></tr>
 	</table>
 	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="复制和粘贴(Yank)" href="http://yyq123.blogspot.com/2009/02/vim_25.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="替换 (Substitute)" href="http://yyq123.blogspot.com/2011/10/vim-substitute.html">下一篇</a>&gt;</span></p>
 </body>
