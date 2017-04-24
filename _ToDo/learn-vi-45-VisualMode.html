@@ -8,8 +8,9 @@
 	<title>VIM学习笔记 可视化模式 (Visual Mode)</title>
 </head>
 <body>
+	<p>在可视化模式下，可以对一个文本块的整体进行操作。例如，首先高亮选中一部分文本，然后用d命令删除这个文本块。可视化模式的好处在于，不但可以大大提高操作的效率，而且还可以在做改动之前，就看到操作将影响的文本。</p>
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">可视化模式的种类</p>
-	<p>在可视化模式下，可以对一个文本块的整体进行操作。例如，首先高亮选中一部分文本，然后用d命令删除这个文本块。可视化模式的好处在于，你可以在做改动之前，就看到操作将影响的文本。可视化模式可以分为以下三种：</p>
+	<p>可视化模式可以分为以下三种：</p>
 	<ol>
 	<li>用<code class="inset">v</code>命令进入的字符可视化模式（Characterwise visual mode)。文本选择是以字符为单位的。</li>
 	<li>用<code class="inset">V</code>命令进入的行可视化模式（Linewise visual mode)。文本选择是以行为单位的。</li>
@@ -40,8 +41,10 @@
 	<p>我们还可以利用可视化模式，来合并多行文本。<code class="inset">J</code>命令可以将高亮显示的文本内容合并为一行，同时以空格来分隔各行。如果不希望在行间插入空格，那么可以使用<code class="inset">gJ</code>命令。</p>
 	<p>使用<code class="inset">g?</code>命令，可以使用rot 13算法来加密高亮显示的文本。针对同一个文本再次执行加密命令，就可以进行文本解密。</p>
 	<p>在可视化模式下，按下<kbd>:</kbd>键就可以对选定范围进行操作。例如：我们先在可视化模式下选中文本，然后执行<code class="inset">:write block.txt</code>命令，就可以将文本块写入另一文件中。选择多行，然后执行<code class="inset">:sort</code>命令，则可以对选中的文本进行排序。</p>
-	<p>利用块可视化模式，我们可以快速地对选中的文本进行操作。比如先用<code class="inset">^</code>命令，移动到行首；然后使用<code class="inset">ctrl-Q</code>进入块可视化模式；再利用<code class="inset">j</code>命令选中多行；而后使用<code class="inset">I--</code>命令，就可以在每行开头增加注释符。</p>
+	<p><code class="inset">Istring&lt;Esc&gt;</code>命令，可以快速地在块可视化模式下添加文本。比如先用<code class="inset">^</code>命令，移动到行首；然后使用<code class="inset">ctrl-Q</code>进入块可视化模式；再利用<code class="inset">j</code>命令选中多行；而后使用<code class="inset">I--</code>命令，就可以在每行开头增加注释符。</p>
 	<p><img src="http://yyq123.github.io/learn-vim/images/VisualMode_Edit.gif" alt="Add comments" /></p>
+	<p>如果在块可视化模式下，仅仅选中了某些行，那么<code class="inset">Ivery&lt;Esc&gt;</code>命令将不会改变未选中的行。</p>
+	<p><a href="https://www.flickr.com/photos/yyq123/34080735482/in/dateposted/" title="VisualMode_Istring"><img src="https://c1.staticflickr.com/3/2875/34080735482_4f6d68c869.jpg" width="500" height="73" alt="VisualMode_Istring" /></a></p>
 	
 	<p>输入以下命令，然后点击<kbd>ctrl+D</kbd>键将会列出和可视化相关的帮助主题；再点击<kbd>Tab</kbd>键可以选择打开选中的主题：</p>
 	<p style="text-indent:2em"><code class="inset">:help visual</code></p>
