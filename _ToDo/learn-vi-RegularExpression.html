@@ -34,7 +34,6 @@
 	<p><a href="https://www.flickr.com/photos/yyq123/31042807084/in/dateposted/" title="RegularExpression_Matching as little as possible"><img src="https://c1.staticflickr.com/1/709/31042807084_415a4b4996_o.png" width="58" height="71" alt="RegularExpression_Matching as little as possible" /></a></p>
 	<p>指示重复次数的运算符主要包括：</p>
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
-	<tr><td><code class="inset"></code></td><td></td></tr>
 	<tr><td><code class="inset">*</code></td><td>匹配0次或是多次,尽可能多的匹配</td></tr>
 	<tr><td><code class="inset">\+</code></td><td>匹配1次或是多次,尽可能多的匹配</td></tr>
 	<tr><td><code class="inset">\=</code></td><td>匹配0次或是1次</td></tr>
@@ -44,14 +43,13 @@
 	<tr><td><code class="inset">\{n,m}</code></td><td>匹配n次到m次</td></tr>
 	<tr><td><code class="inset">\{n,}</code></td><td>匹配n次到多次</td></tr>
 	<tr><td><code class="inset">\{,m}</code></td><td>匹配0次到m次</td></tr>
-	<tr><td><code class="inset">\{-n,m}</code></td>匹配n次到m次,尽可能少的进行匹配<td></td></tr>
+	<tr><td><code class="inset">\{-n,m}</code></td><td>匹配n次到m次,尽可能少的进行匹配</td></tr>
 	<tr><td><code class="inset">\{-n,}</code></td><td>至少匹配n次,尽可能少的进行匹配</td></tr>
 	<tr><td><code class="inset">\{-,m}</code></td><td>匹配到m次,尽可能少的进行匹配</td></tr>
 	<tr><td><code class="inset">{-}</code></td><td>匹配0次到多次,尽可能少的进行匹配</td></tr>
-	<tr><td><code class="inset"></code></td><td></td></tr>
 	</table>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">分组</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">捕获组</p>
 	<p>括号运算符（<code class="inset">()</code>）用于保证需要组合出现的字符。表达式<code class="inset">a\(XY\)*b</code>将会匹配ab, aXYb, aXYXYb, aXYXYXYb。</p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">或操作</p>
@@ -72,7 +70,39 @@
 
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">预定义字符</p>
-	<p>如果需要找出包含空格的空行，那么可以使用<code class="inset">^\s.*$</code>表达式；如果需要找到没有空格的空行，则可以使用<code class="inset">\S</code></p>
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<tr><td><code class="inset">\a</code></td><td>大小写字母字符 [a-zA-Z]</td></tr>
+		<tr><td><code class="inset">\A</code></td><td>除了a-zA-Z以外的字母字符</td></tr>
+		<tr><td><code class="inset">\b</code></td><td>&lt;BS&gt;</td></tr>
+		<tr><td><code class="inset">\d</code></td><td>数字字符 [0-9]</td></tr>
+		<tr><td><code class="inset">\D</code></td><td>非数字字符 [^0-9]</td></tr>
+		<tr><td><code class="inset">\e</code></td><td>&lt;ESC&gt;</td></tr>
+		<tr><td><code class="inset">\f</code></td><td>由isfname选项定义的文件名字符</td></tr>
+		<tr><td><code class="inset">\F</code></td><td>文件名字符,但是不包含数字</td></tr>
+		<tr><td><code class="inset">\h</code></td><td>单词的头字符(A-Za-z)</td></tr>
+		<tr><td><code class="inset">\H</code></td><td>不是单词的头字符(A-Za-z)</td></tr>
+		<tr><td><code class="inset">\i</code></td><td>由isdent选项定义的字符</td></tr>
+		<tr><td><code class="inset">\I</code></td><td>定义的字符,但是不包括数字</td></tr>
+		<tr><td><code class="inset">\k</code></td><td>由iskeyword选项定义的关键字字符</td></tr>
+		<tr><td><code class="inset">\K</code></td><td>关键字字符,但是不包括数字</td></tr>
+		<tr><td><code class="inset">\l</code></td><td>小字字符 [a-z]</td></tr>
+		<tr><td><code class="inset">\L</code></td><td>非小写字符 [^a-z]</td></tr>
+		<tr><td><code class="inset">\o</code></td><td>八进制数字</td></tr>
+		<tr><td><code class="inset">\O</code></td><td>非八进制数字</td></tr>
+		<tr><td><code class="inset">\p</code></td><td>由isprint选项定义的可打印字符</td></tr>
+		<tr><td><code class="inset">\P</code></td><td>可打印字符,但是不包括数字</td></tr>
+		<tr><td><code class="inset">\r</code></td><td>&lt;CR&gt;</td></tr>
+		<tr><td><code class="inset">\s</code></td><td>空白符<Space>和<Tab> [ 	]</td></tr>
+		<tr><td><code class="inset">\S</code></td><td>非空白符 [^ 	]</td></tr>
+		<tr><td><code class="inset">\t</code></td><td>&lt;Tab&gt;</td></tr>
+		<tr><td><code class="inset">\u</code></td><td>大写字母字符 [A-Z]</td></tr>
+		<tr><td><code class="inset">\U</code></td><td>非大写字母字符 [^A-Z]</td></tr>
+		<tr><td><code class="inset">\w</code></td><td>单词字符(0-9A-Za-z)</td></tr>
+		<tr><td><code class="inset">\W</code></td><td>非单词字符</td></tr>
+		<tr><td><code class="inset">\x</code></td><td>十六进制数字 [0-9a-fA-F]</td></tr>
+		<tr><td><code class="inset">\X</code></td><td>非十六进制数字 [^0-9a-fA-F]</td></tr>
+		<tr><td><code class="inset">\~</code></td><td>匹配最后指定的字符串</td></tr>
+	</table>
 	<p>表达式<code class="inset">\a</code>匹配任意字符，而表达式<code class="inset">\a\a\a</code>则可以匹配任意三个字符。而<code class="inset">\a\a\a_</code>则可以匹配任意后带一个下划线的三个字符。</p>
 	<p><a href="https://www.flickr.com/photos/yyq123/33769091350/in/dateposted/" title="RegularExpression_3CharU"><img src="https://c1.staticflickr.com/3/2822/33769091350_509233be8c.jpg" width="500" height="211" alt="RegularExpression_3CharU"></a></p>
 	<p>操作符<code class="inset">\d</code>可以匹配任意数字；<code class="inset">\d\d\d\d</code>则可以匹配任意四个数字（即使其为更长数字串中的一部分）。</p>
@@ -81,39 +111,13 @@
 	<p style="text-indent:2em"><code class="inset">/\&lt;\d\d\d\d\&gt;</code></p>
 	<p style="text-indent:2em"><code class="inset">/\&lt;\d\{4}\&gt;</code></p>
 	<p><a href="https://www.flickr.com/photos/yyq123/34023138071/in/photostream/" title="RegularExpression_4DigitNumberExact"><img src="https://c1.staticflickr.com/3/2943/34023138071_2c786922f7.jpg" width="500" height="211" alt="RegularExpression_4DigitNumberExact" /></a></p>
-
-	<p>使用以下命令，可以将整篇文本替换为大写字母：</p>
+	<p><code class="inset">\u</code>可以匹配任意大写字符；<code class="inset">\U</code>则可以匹配任意非大写字符。使用以下命令，可以将整篇文本替换为大写字母：</p>
 	<p style="text-indent:2em"><code class="inset">:%s/.*/\U&amp;/</code></p>
+	<p>如果需要找出包含空格的空行，那么可以使用<code class="inset">^\s.*$</code>表达式；如果需要找到没有空格的空行，则可以使用<code class="inset">\S</code></p>
+	<p><code class="inset">\s\+$</code>可以匹配尾部的空格；<code class="inset">&nbsp;\+\ze\t</code>则可以匹配Tab制表符之前的空格。（请注意，此表达式开头为空格）</p>
+
 	<p>请注意，以上预定义字符是不能内嵌在[]中使用的。例如，表达式[\d\l]是错误的，应使用<code class="inset">\(\d\|\l\)</code>表达式匹配数字或小写字符。</p>
-	<p>而<code class="inset">\D</code>则可以匹配任意非数字。 </p>
-<p>To match any uppercase character, use \u, while \l will match any lowercase character. Using \U will match any non-uppercase character, and \L will match any non-lowercase character.</p>
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">转义符</p>
-	<p>如果需要查找某些特殊符号（比如美元符号），那么可以使用反斜杠backslash（\）进行转义。例如：表达式<code class="inset">\$</code>可以匹配美元符号（$），而表达式<code class="inset">\^</code>则可以匹配脱字符（^）。需要注意的是，反斜杠backslash（\）本身也是特殊符号，所以需要用两个反斜杠<code class="inset">\\</code>来匹配。</p>
-
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">匹配换行</p>
-	<p>如果你想要查找的内容之中包含换行符，那么可以使用"<strong>\n</strong>"通配符。执行以下命令，将匹配以"the"结尾的行，和以"word"开头的下一行：</p>
-	<p style="text-indent:2em"><code class="inset">/the\nword</code></p>
-	<p>如果希望同时匹配包含换行，以及不包含换行（但包含一个空格）的"the word"，那么可以使用"\_s"匹配空格或换行：</p>
-	<p style="text-indent:2em"><code class="inset">/the\_sword</code></p>
-	<p>如果还希望同时匹配包含多个空格以及换行的"the word"，那么可以使用以下命令：</p>
-	<p style="text-indent:2em"><code class="inset">/the\_s\+word</code></p>
-	<p>Similarly, "\a" matches an alphabetic character, and "\_a" matches an alphabetic character or a line break.  The other character classes and
-ranges can be modified in the same way by inserting a "_".
-
-Many other items can be made to match a line break by prepending "\_".  For
-example: "\_." matches any character or a line break.
-
-Note: "\_.*" matches everything until the end of the file.  Be careful with
-this, it can make a search command very slow.
-
-Another example is "\_[]", a character range that includes a line break:
-
-<p style="text-indent:2em"><code class="inset">/"\_[^"]*"</code></p>
-
-This finds a text in double quotes that may be split up in several lines.
-
-
-	<p>如果我们想要查找所有大写字符，可以使用表达式<code class="inset">[A-Z]</code>，或者使用预定义的字符类<code class="inset">[:upper:]</code>。使用<code class="inset">/[[:upper:]]</code>命令可以匹配所有大写字母；而使用/[[:upper:][:lower:]]命令则可以匹配包括大写和小写字母在内的所有字母。</p>
+		<p>如果我们想要查找所有大写字符，可以使用表达式<code class="inset">[A-Z]</code>，或者使用预定义的字符类<code class="inset">[:upper:]</code>。使用<code class="inset">/[[:upper:]]</code>命令可以匹配所有大写字母；而使用<code class="inset">/[[:upper:][:lower:]]</code>命令则可以匹配包括大写和小写字母在内的所有字母。</p>
 	<p>预定义的字符类还包括：</p>
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<tr><td><code class="inset">[:alnum:]</code></td><td>匹配所有的字符和数字</td></tr>
@@ -135,46 +139,21 @@ This finds a text in double quotes that may be split up in several lines.
 		<tr><td><code class="inset">[:xdigit:]</code></td><td>匹配十六进制数字</td></tr>
 	</table>
 
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">转义符</p>
+	<p>如果需要查找某些特殊符号（比如美元符号），那么可以使用反斜杠backslash（\）进行转义。例如：表达式<code class="inset">\$</code>可以匹配美元符号（$），而表达式<code class="inset">\^</code>则可以匹配脱字符（^）。需要注意的是，反斜杠backslash（\）本身也是特殊符号，所以需要用两个反斜杠<code class="inset">\\</code>来匹配。</p>
 
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">匹配换行</p>
+	<p>如果你想要查找的内容之中包含换行符，那么可以使用"<strong>\n</strong>"通配符。执行以下命令，将匹配以"the"结尾的行，和以"word"开头的下一行：</p>
+	<p style="text-indent:2em"><code class="inset">/the\nword</code></p>
+	<p>如果希望同时匹配包含换行，以及不包含换行（但包含一个空格）的"the word"，那么可以使用"\_s"匹配空格或换行：</p>
+	<p style="text-indent:2em"><code class="inset">/the\_sword</code></p>
+	<p>如果希望同时匹配包含多个空格以及换行的"the word"，那么可以使用以下命令：</p>
+	<p style="text-indent:2em"><code class="inset">/the\_s\+word</code></p>
+	<p>如果想要查找引号包围的字符串（包含换行），那么可以使用以下命令：</p>
+	<p style="text-indent:2em"><code class="inset">/"\_[^"]*"</code></p>
 
 <code class="inset">regexp</code>
 http://vimregex.com/
-	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
-		<caption>命令小结</caption>
-		<tr><td colspan="2">特殊字符:</td></tr>
-		<tr><td><code class="inset">\a</code></td><td>大小写字母字符 [a-zA-Z]</td></tr>
-		<tr><td><code class="inset">\A</code></td><td>除了a-zA-Z以外的字母字符</td></tr>
-		<tr><td><code class="inset">\b</code></td><td>&lt;BS&gt;</td></tr>
-		<tr><td><code class="inset">\d</code></td><td>数字字符 [0-9]</td></tr>
-		<tr><td><code class="inset">\D</code></td><td>非数字字符 [^0-9]</td></tr>
-		<tr><td><code class="inset">\e</code></td><td>&lt;ESC&gt;</td></tr>
-		<tr><td><code class="inset">\f</code></td><td>由isfname选项定义的文件名字符</td></tr>
-		<tr><td><code class="inset">\F</code></td><td>文件名字符,但是不包含数字</td></tr>
-		<tr><td><code class="inset">\h</code></td><td>单词的头字符(A-Za-z)</td></tr>
-		<tr><td><code class="inset">\H</code></td><td>不是单词的头字符(A-Za-z)</td></tr>
-		<tr><td><code class="inset">\i</code></td><td>由isdent选项定义的字符</td></tr>
-		<tr><td><code class="inset">\I</code></td><td>定义的字符,但是不包括数字</td></tr>
-		<tr><td><code class="inset">\k</code></td>由iskeyword选项定义的关键字字符<td></td></tr>
-		<tr><td><code class="inset">\K</code></td><td>关键字字符,但是不包括数字</td></tr>
-		<tr><td><code class="inset">\l</code></td><td>小字字符 [a-z]</td></tr>
-		<tr><td><code class="inset">\L</code></td><td>非小写字符 [^a-z]</td></tr>
-		<tr><td><code class="inset">\o</code></td><td>八进制数字</td></tr>
-		<tr><td><code class="inset">\O</code></td><td>非八进制数字</td></tr>
-		<tr><td><code class="inset">\p</code></td><td>由isprint选项定义的可打印字符</td></tr>
-		<tr><td><code class="inset">\P</code></td><td>可打印字符,但是不包括数字</td></tr>
-		<tr><td><code class="inset">\r</code></td><td>&lt;CR&gt;</td></tr>
-		<tr><td><code class="inset">\s</code></td><td>空白符<Space>和<Tab> [ 	]</td></tr>
-		<tr><td><code class="inset">\S</code></td><td>非空白符 [^ 	]</td></tr>
-		<tr><td><code class="inset">\t</code></td><td>&lt;Tab&gt;</td></tr>
-		<tr><td><code class="inset">\u</code></td><td>大写字母字符 [A-Z]</td></tr>
-		<tr><td><code class="inset">\U</code></td><td>非大写字母字符 [^A-Z]</td></tr>
-		<tr><td><code class="inset">\w</code></td><td>单词字符(0-9A-Za-z)</td></tr>
-		<tr><td><code class="inset">\W</code></td><td>非单词字符</td></tr>
-		<tr><td><code class="inset">\x</code></td><td>十六进制数字 [0-9a-fA-F]</td></tr>
-		<tr><td><code class="inset">\X</code></td><td>非十六进制数字 [^0-9a-fA-F]</td></tr>
-		<tr><td><code class="inset">\~</code></td><td>匹配最后指定的字符串</td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-	</table>
 
 	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="()" href="">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="()" href="">下一篇</a>&gt;</span></p>
 </body>
