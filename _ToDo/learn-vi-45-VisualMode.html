@@ -36,7 +36,11 @@
 	<p><a href="http://www.flickr.com/photos/yyq123/445669724/" title="Photo Sharing"><img src="http://farm1.static.flickr.com/231/445669724_d04cc4cf52.jpg" width="500" height="349" alt="VisualMode_o_2" /></a></p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">在可视化模式下编辑</p>
-	<p>在可视化模式下，我们可以进行各种编辑操作。如<code class="inset">d</code>命令可以删除高亮显示的文本，而<code class="inset">D</code>命令则会删除一行，即使这一行中只有部分文本是高亮显示的。类似的，<code class="inset">y</code>命令将复制高亮显示的文本，而<code class="inset">Y</code>命令会复制整行。<code class="inset">c</code>命令可以将高亮显示的文本删除并进入编辑模式，而<code class="inset">C</code>命令会删除一行文本并进入编辑状态。</p>
+	<p>在可视化模式下，我们可以进行各种编辑操作。如<code class="inset">d</code>命令可以删除高亮显示的文本，而<code class="inset">D</code>命令则会删除一行，即使这一行中只有部分文本是高亮显示的。类似的，<code class="inset">y</code>命令将复制高亮显示的文本，而<code class="inset">Y</code>命令会复制整行。</p>
+	<p>在块可视化模式下，使用<code class="inset">c</code>命令将删除高亮选中的文本并进入插入模式，在你输入文本并点击<kbd>Esc</kbd>返回之后，输入的文本将插入到块选中的每一行里。</p>
+	<p><a href="https://www.flickr.com/photos/yyq123/33871058340/in/dateposted/" title="VisualMode_cstring"><img src="https://c1.staticflickr.com/3/2817/33871058340_88ed064576.jpg" width="500" height="73" alt="VisualMode_cstring"></a></p>
+	<p>而<code class="inset">C</code>命令会删除从选中文本到行尾的所有字符并进入插入状态。</p>
+	<p><a href="https://www.flickr.com/photos/yyq123/34126139401/in/dateposted/" title="VisualMode_C"><img src="https://c1.staticflickr.com/5/4192/34126139401_91b2f62ef7.jpg" width="500" height="73" alt="VisualMode_C"></a></p>
 	<p>针对高亮显示的文本块，我们可以用命令<code class="inset">~</code>进行大小写转换。用命令<code class="inset">&gt;</code>增加缩进，或用命令<code class="inset">&lt;</code>减少缩进。</p>
 	<p>我们还可以利用可视化模式，来合并多行文本。<code class="inset">J</code>命令可以将高亮显示的文本内容合并为一行，同时以空格来分隔各行。如果不希望在行间插入空格，那么可以使用<code class="inset">gJ</code>命令。</p>
 	<p>使用<code class="inset">g?</code>命令，可以使用rot 13算法来加密高亮显示的文本。针对同一个文本再次执行加密命令，就可以进行文本解密。</p>
@@ -45,14 +49,18 @@
 	<p><img src="http://yyq123.github.io/learn-vim/images/VisualMode_Edit.gif" alt="Add comments" /></p>
 	<p>如果在块可视化模式下，仅仅选中了某些行，那么<code class="inset">Ivery&lt;Esc&gt;</code>命令将不会改变未选中的行。</p>
 	<p><a href="https://www.flickr.com/photos/yyq123/34080735482/in/dateposted/" title="VisualMode_Istring"><img src="https://c1.staticflickr.com/3/2875/34080735482_4f6d68c869.jpg" width="500" height="73" alt="VisualMode_Istring" /></a></p>
-	
-	<p>输入以下命令，然后点击<kbd>ctrl+D</kbd>键将会列出和可视化相关的帮助主题；再点击<kbd>Tab</kbd>键可以选择打开选中的主题：</p>
-	<p style="text-indent:2em"><code class="inset">:help visual</code></p>
-	<p>可以在所希望帮助的名称前加v_前缀。例如使用<code class="inset">:help v_d</code>命令，可以得到关于在可视模式下进行删除操作的帮助信息。</p>
-
+	<p>在块可视化模式下，使用<code class="inset">r</code>命令，然后输入单个字符，将会把所有已选中的字符都替换为输入的字符。如果仅仅选中了某些行，那么未选中的行将不会受到影响。</p>
+	<p><a href="https://www.flickr.com/photos/yyq123/34097360042/in/dateposted/" title="VisualMode_rchar"><img src="https://c1.staticflickr.com/5/4194/34097360042_dd9550741a.jpg" width="500" height="73" alt="VisualMode_rchar" /></a></p>
+	<p>在块可视化模式下，使用<code class="inset">A</code>命令，然后输入字符，输入的字符将会被添加到块之后。即使仅仅选中了某些行，但是未选中的行也会受到影响。</p>
+	<p><a href="https://www.flickr.com/photos/yyq123/33415286654/in/dateposted/" title="VisualMode_A"><img src="https://c1.staticflickr.com/5/4168/33415286654_ffc947e841.jpg" width="500" height="73" alt="VisualMode_A" /></a></p>
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">退出可视化模式</p>
 	<p>当我们想要退出可视化模式时，可以按<kbd>ESC</kbd>键或<kbd>ctrl+c</kbd>键。</p>
-	
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">可视化模式的帮助信息</p>
+	<p>输入以下命令，然后点击<kbd>ctrl+D</kbd>键将会列出和可视化相关的帮助主题；再点击<kbd>Tab</kbd>键可以选择打开选中的主题：</p>
+	<p style="text-indent:2em"><code class="inset">:help visual</code></p>
+	<p>可以在所希望帮助的名称前加v_前缀。例如使用<code class="inset">:help v_d</code>命令，可以得到关于在可视模式下进行删除操作的帮助信息。而使用<code class="inset">:help v_b_r</code>命令，则可以得到关于在块可视模式下进行替换操作的帮助信息。</p>
+
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
 		<tr><td><code class="inset">v</code></td><td>进入字符可视化模式</td></tr>
