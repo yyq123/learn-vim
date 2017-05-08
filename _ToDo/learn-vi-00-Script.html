@@ -11,7 +11,7 @@
 	<p>使用脚本语言，可以更灵活地定制编辑器。</p>
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">变量</p>
 	<p>使用以下命令，可以为变量赋值：</p>
-	<p><code class="inset">:let {variable}={expression}</code></p>
+	<p style="text-indent:2em"><code class="inset">:let {variable}={expression}</code></p>
 	<p>Vim中的变量名可以包含字符、数字和下划线，但必须以字符或是下划线开头。</p>
 	<p>例如使用以下命令，定义变量line_size：</p>
 	<p style="text-indent:2em"><code class="inset">:let line_size=30</code></p>
@@ -19,55 +19,65 @@
 	<p style="text-indent:2em"><code class="inset">:echo "line_size is"line_size</code></p>
 	<p>命令执行以后，Vim将会在屏幕底部显示如下内容：</p>
 	<p><code class="msg">line_size is 30</code></p>
+	<p>Vim使用特殊的前缀来指明不同的变量类型：</p>
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<tr><th>变量名</th><th>用途</th></tr>
+		<tr><td>大写字母,数字,下划线</td><td>可以存放在viminfo文件中的变量（如果viminfo选项中含有!标记）</td></tr>
+		<tr><td>大写字母开头</td><td>变量可以由:makesession命令保存</td></tr>
+		<tr><td>小写字母,数字,下划线</td><td>不会存在任何保存文件中的变量</td></tr>
+		<tr><td>$environment</td><td>环境变量</td></tr>
+		<tr><td>@register</td><td>文本寄存器</td></tr>
+		<tr><td>&amp;option</td><td>选项名字</td></tr>
+		<tr><td>b:name</td><td>当前缓冲区的变量</td></tr>
+		<tr><td>w:name</td><td>当前窗口的变量</td></tr>
+		<tr><td>g:name</td><td>全局变量（用于函数内部表明全局变量）</td></tr>
+		<tr><td>a:name</td><td>函数参数</td></tr>
+		<tr><td>v:name</td>Vim预定义内部变量<td></td></tr>
+		<tr><td>l:name</td><td>当前函数的变量</td></tr>
+		<tr><td>s:name</td><td>使用:source载入的脚本</td></tr>
+		<tr><td>t:name</td><td>当前标签页的变量</td></tr>
+	</table>
+	<p>使用以下命令，可以定义环境变量$PAGE包含用于查看的命令：</p>
+	<p style="text-indent:2em"><code class="inset">:let $PAGER="/usr/local/bin/less"</code></p>
+	<p>使用以下命令，可以显示上一次查找的模式：</p>
+	<p style="text-indent:2em"><code class="inset">:echo "Last search was"@/</code></p>
+	<p>使用以下任一命令，都可以设置缩进选项：</p>
+	<p style="text-indent:2em"><code class="inset">:let &amp;autoindent=1</code></p>
+	<p style="text-indent:2em"><code class="inset">:set autoindent</code></p>
+	<p>使用以下命令，可以指定当前缓冲区的语法高亮显示：</p>
+	<p style="text-indent:2em"><code class="inset">:let b:current_syntax=c</code></p>
+	
+	<p>Vim使用以下内部变量(v:name)存储相关信息：</p>
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<tr><th>变量</th><th>用途</th></tr>
+		<tr><td>v:count</td><td>上一次常规模式命令所指定的数量</td></tr>
+		<tr><td>v:count1</td><td>与v:count相类似，所不同的是如果没有指定数量则默认值为1</td></tr>
+		<tr><td>v:errmsg</td><td>上一次的错误信息</td></tr>
+		<tr><td>v:warningmsg</td><td>上一次的警告信息</td></tr>
+		<tr><td>v:statusmsg</td><td>上一次的状态信息</td></tr>
+		<tr><td>v:shell_error</td><td>上一次Shell命令的结果。如果为0，则命令正常执行；若为非0，则命令失败</td></tr>
+		<tr><td>v:this_session</td><td>上一次装入或是保存的文件的命名</td></tr>
+		<tr><td>v:version</td><td>Vim编辑器的版本号</td></tr>
+	</table>
+	<p><script src="https://gist.github.com/yyq123/3c1db548929b59aa00f87917f5de6d8c.js"></script></p>
+	<p>如果要删除一个变量，那么可以使用以下命令：</p>
+	<p style="text-indent:2em"><code class="inset">:unlet[!] {name}</code></p>
+	<p>如果试图删除一个不存在的变量，那么Vi就会报错；而如果使用!标记，则不会显示错误信息。</p>
 
-<p>Vim编辑器使用特殊的前缀来指明不同有变量类型.这些前缀如下:</p>
-大写字母,数字,下划线    可以存放在viminfo文件中的变量.如果viminfo选项中含有!标记,变量可以由:makesession命令保存.
-小写字母,数字,下划线    不会存在任何保存文件中的变量.
-$environment    环境变量
-@register    文本寄存器
-&option        选项名字
-l:name 当前函数的变量
-s:name 使用:source载入的脚本
-b:name        当前缓冲区的变量
-w:name        当前窗口的变量
-t:name        当前标签页的变量
-g:name        全局变量(用于函数内部表明全局变量)
-a:name        函数参数
-v:name        Vim预定义内部变量
-如下面的一些例子:
-环境变量$PAGE包含用页查看命令:
-:let $PAGE="/usr/local/bin/less"
-显示上一次查找的类型:
-:echo "Last search was"@/
-下面的两个命令有着同样的作用:
-:let &autoindent=1
-:set autoindent
-为当前缓冲区定义语法:
-:let b:current_syntax=c
-<p>内部变量(v:name)</p>
-v:count        为上一次正常模式命令所指定的数量(count)
-v:count1    与v:count相类似,所不同的只是如果没有指定数量则默认值为1
-v:errmsg    上一次的错误信息
-v:warningmsg    上一次的警告信息
-v:statusmsg    上一次的状态信息
-v:shell_error    上一次Shell命令的结果.如果为0,则命令正常执行,若为非0,则失败
-v:this_session    上一次装入或是保存的文件的命名
-v:version    Vim编辑器的版本号    
-<p><script src="https://gist.github.com/yyq123/3c1db548929b59aa00f87917f5de6d8c.js"></script></p>
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">常量</p>
 	<p>数字常量有以下三种：</p>
 	<ul>
-		<li>八进制：01，02，03</li>
-		<li>十进制：1，2，3</li>
-		<li>十六进制：0xAC</li>
+		<li>八进制（Octal Integer）：0123</li>
+		<li>十进制（Simple Integer）：123</li>
+		<li>十六进制（Hexadecimal）：0xAC</li>
 	</ul>
 	<p>Vim可以处理多种格式数字的计算：</p>
 	<p style="text-indent:2em"><code class="inset">:echo 10 + 0x0A + 012</code></p>
 	
 	<p>字符常量有以下两种：</p>
 	<ul>
-		<li>简单字符串："string"</li>
-		<li>精确字符串：'string'</li>
+		<li>简单字符串（Simple String）："string"</li>
+		<li>精确字符串（Literal String）：'string'</li>
 	</ul>
 	<p>在双引号包围的字符串内，可以使用反斜线进行转义；而被单引号包围的字符串，则会被原样输出:</p>
 	<table summary="Logical Operators" border="1" frame="box" rules="all" cellspacing="3" cellpadding="5">
@@ -86,6 +96,7 @@ v:version    Vim编辑器的版本号
 		<tr><td>int%int</td><td>取余</td></tr>
 		<tr><td>-int</td><td>取负</td></tr>
 	</table>
+
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">逻辑判断</p>
 	<p>逻辑运算符可以作用于字符串和整数，Vim将自动在这两种数据类型之间进行转换。如果比较成功则返回1，否则返回0。</p>
 	<table summary="Logical Operators" border="1" frame="box" rules="all" cellspacing="3" cellpadding="5">
@@ -96,42 +107,27 @@ v:version    Vim编辑器的版本号
 		<tr><td>var <= var</td><td>小于等于</td></tr>
 		<tr><td>var &gt;= var</td><td>大于等于</td></tr>
 	</table>
-   
-另外比较运算符可以进行字符串和表达式的比较.例如下面进行指定的字符串("word")和表过式"w*"比较,如果表达式匹配则返回1.
-"word"=~"w*"
-例如下面的两个常规表达式的比较:
-string =~ regexp    相匹配的常规表达式
-string !~ regexp    两个表达式不匹配
-另外字符串还有下面的特殊比较:
+	<p>比较运算符可以进行字符串正则表达式的比较。例如将字符串"word"和表过式"\w*"比较，如果匹配则返回1。</p>
+	<p style="text-indent:2em"><code class="inset">"word"=~"\w*"</code></p>
+	<p>字符串的特殊比较包括：</p>
 	<table summary="Logical Operators" border="1" frame="box" rules="all" cellspacing="3" cellpadding="5">
+		<tr><td>string =~ regexp</td><td>匹配的正则表达式</td></tr>
+		<tr><td>string !~ regexp</td><td>不匹配的正则表达式</td></tr>
 		<tr><td>string ==? string</td><td>字符串相等,忽略大小写</td></tr>
 		<tr><td>string ==# string</td><td>字符串相等,大小写敏感</td></tr>
 		<tr><td>string !=? string</td><td>字符串不相等,忽略大小写</td></tr>
-		<tr><td></td><td></td></tr>
-		<tr><td></td><td></td></tr>
-		<tr><td></td><td></td></tr>
-		<tr><td></td><td></td></tr>
-		<tr><td></td><td></td></tr>
-		<tr><td></td><td></td></tr>
-		<tr><td></td><td></td></tr>
-		<tr><td></td><td></td></tr>
-		<tr><td></td><td></td></tr>
-		<tr><td></td><td></td></tr>
-		<tr><td></td><td></td></tr>
-string !=# string    字符串不相等,大小写必须匹配
-string <?  string    小于,忽略大小写
-string <#  string    小于,大小写必须匹配
-string <=? string    小于等于,忽略大小写
-string <=# string    小于等于,大小写必须匹配
-string >?  string    大于,忽略大小写
-string >#  string    大于,大小写必须匹配
-string >=? string    大于等于,忽略大小写
-string >=# string    大于等于,大小写必须匹配
+		<tr><td>string !=# string</td><td>字符串不相等,大小写敏感</td></tr>
+		<tr><td>string &lt;?  string</td><td>小于,忽略大小写</td></tr>
+		<tr><td>string &lt;#  string</td><td>小于,大小写必须敏感</td></tr>
+		<tr><td>string &lt;=? string</td><td>小于等于,忽略大小写</td></tr>
+		<tr><td>string &lt;=# string</td><td>小于等于,大小写敏感</td></tr>
+		<tr><td>string &gt;?  string</td><td>大于,忽略大小写</td></tr>
+		<tr><td>string &gt;#  string</td><td>大于,大小写敏感</td></tr>
+		<tr><td>string &gt;=? string</td><td>大于等于,忽略大小写</td></tr>
+		<tr><td>string &gt;=# string</td><td>大于等于,大小写敏感</td></tr>
 	</table>
-从这里我们可以看到每一个运算符有三种形式.基本形式(==)对应ignorecase选项.?(==?)忽略大小写的不同而#(==#)从不忽略这样的区别.
-如果我们要删除一个变量,我们可以用下面的命令:
-:unlet[!] {name}
-在通常的情况下如果我们删除一个不存大的变量,Vim编辑器就会显示错误.而如果我们使用!,则不会显示错误信息.
+	<p>由此可见，每一个运算符有三种形式。基本形式(==)对应ignorecase选项；(==?)忽略大小写；(==#)则大小写敏感。</p>
+
 当我们要输入文件名时,我们可以使用下面的一些特殊的单词或是符号:
 %    当前文件名
 #    交换文件名
@@ -301,8 +297,8 @@ Hello World
 最后我们还有<lt>关键字,他包含字符<.
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">脚本文件架构</p>
-	<p>文件头（Header）脚本的描述，作者，版本，最近更新日期，授权方式等。以"开头为注释。</p>
-	<p>脚本载入检查（Script-Loaded Check）</p>
+	<p>文件头（Header）：脚本的描述，作者，版本，最近更新日期，授权方式等。以"开头为注释。</p>
+	<p>脚本载入检查（Script-Loaded Check）：检查脚本是否已经被载入，如果已经载入，那么应该首先卸载，然后再执行后续功能；检查是否使用vi兼容模式。</p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
 	<p><script src="https://gist.github.com/yyq123/6e11fad7cbc540f972cf5b0044302725.js"></script></p>
 	<p><code class="inset">:help 'write-filetype-plugin'<br />
