@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记  备份文件(Backup)</title>
+</head>
+<body>
+	<p>Vim利用writebackup和backup两个选项，在编辑文件的过程中，自动生成备份文件，以防止异常情况下的数据丢失。</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">启用文件备份</p>
+	<p>在默认情况下，Vim已经设置了writebackup选项。我们可以使用以下命令，启用backup选项。vim将首先删除旧的备份文件，然后再为正在编辑的文件生成新的备份文件：</p>
+	<p><code class="inset">:set backup</code></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">备份文件名称</p>
+	<p>默认情况下，备份文件的名称是在原始文件名最后加上&ldquo;~&rdquo;后缀。例如，正在编辑一个名为&ldquo;data.txt&rdquo;的文件，那么Vim将产生名为&ldquo;data.txt~&rdquo;的备份文件。我们也可以使用以下命令，来自定义备份文件扩展名，新的备份文件名将命名为&ldquo;data.txt.bu&rdquo;。</p>
+	<p><code class="inset">:set backupext=.bu</code></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">备份文件位置</p>
+	<p>默认情况下，备份文件将存储于原文件相同的目录下。使用以下命令，可以设置备份文件存放到指定位置：</p>
+	<p><code class="inset">:set backupdir=C:/Temp</code></p>
+	<p>需要注意的是，如果在不同目录下编辑相同名称的文件，在保存退出时，Vim会将备份文件放置到同一指定的目录中，名字冲突会使已存在的备份文件被覆盖。</p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">备份文件过滤</p>
+	<p>如果你并不需要对所有文件都进行备份，那么可以利用以下命令取消对指定目录下文件的备份：</p>
+	<p><code class="inset">set backupskip=D:/Temp/*</code></p>
+	<p>需要注意的是，Windows文件路径中斜线（/）的用法。</p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">禁止文件备份</p>
+	<p>在保持默认writebackup选项的情况下，我们可以使用以下命令，取消备份文件的生成：</p>
+	<p><code class="inset">:set nobackup</code></p>
+	<p>需要注意的是，如果同时设置了nobackup和nowritebackup选项，那么在磁盘已满而更新文件时会造成数据的丢失，所以我们最好不要改变默认的writebackup选项。</p>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:set backup</code></td><td>启用文件备份</td></tr>
+		<tr><td><code class="inset">:set nobackup</code></td><td>禁止备份文件</td></tr>
+		<tr><td><code class="inset">:set backupext</code></td><td>设置备份文件扩展名</td></tr>
+		<tr><td><code class="inset">:set backupdir</code></td><td>设置备份文件存储位置</td></tr>
+		<tr><td><code class="inset">:set backupskip</code></td><td>过滤不需备份的文件</td></tr>
+	</table>
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.1</span><span>&lt;<a title="标记(Mark)" href="http://yyq123.blogspot.com/2011/06/vim-mark.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.io/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="键盘映射(Map)" href="http://yyq123.blogspot.com/2010/12/vim-map.html">下一篇</a>&gt;</span></p>
+</body>
+</html>
+
