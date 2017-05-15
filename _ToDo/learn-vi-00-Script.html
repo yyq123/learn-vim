@@ -128,16 +128,19 @@
 	</table>
 	<p>由此可见，每一个运算符有三种形式。基本形式(==)对应ignorecase选项；(==?)忽略大小写；(==#)则大小写敏感。</p>
 
-当我们要输入文件名时,我们可以使用下面的一些特殊的单词或是符号:
-%    当前文件名
-#    交换文件名
-<cword>    光标下的单词
-<cWORD>    光标下的WORD
-<cfile>    光标下的文件名
-<afile>    当执行相关的自动命令(autocommand)正读入或是写入的文件名.
-<abuf>    在一个自动命令中的当前缓冲区标号
-<amatch>与<abuf>相类似.但是当在FileType或是Syntax事件中使用时并不是文件名,而文件类型或是语法名.
-<sfile>    当前正用于:sourced的文件名.
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">文件名</p>
+	<p>当我们输入文件名时，可以使用以下特殊符号：</p>
+	<table summary="Logical Operators" border="1" frame="box" rules="all" cellspacing="3" cellpadding="5">
+		<tr><td>%</td><td>当前文件名</td></tr>
+		<tr><td>#</td><td>交换文件名（Alternate filename）</td></tr>
+		<tr><td>&lt;cword&gt;</td><td>光标下的word</td></tr>
+		<tr><td>&lt;cWORD&gt;</td><td>光标下的WORD</td></tr>
+		<tr><td>&lt;cfile&gt;</td><td>光标下的文件名</td></tr>
+		<tr><td>&lt;afile&gt;</td><td>当执行相关的自动命令(autocommand)正读入或是写入的文件名</td></tr>
+		<tr><td>&lt;abuf&gt;</td><td>在一个自动命令中的当前缓冲区标号</td></tr>
+		<tr><td>&lt;amatch&gt;</td><td>与&lt;abuf&gt;类似，但是在FileType或Syntax事件中并不是指代文件名，而是文件类型或语法名</td></tr>
+		<tr><td>&lt;sfile&gt;</td><td>当前正用于:sourced的文件名</td></tr>
+	</table>
 我们可以用下面所列出的内容来修改这些单词或是符号.例如:p可以将文件名变为全名.例如光标下的文件名为test.c,<cfile>就将是test.c,而同是<cfile:p>就将成为/home/oualline/examples/test.c
 我们可以用下面的内容进行修改:
 :p
@@ -155,6 +158,7 @@
 :echo expand("<cword>:p")
 我们可将这里的:p换成我们可以试验的任何修饰符.
 
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">:echo命令</p>
 :echo的功能只是重复他的参数.例如:
 :echo "Hello world"
 Hello world
