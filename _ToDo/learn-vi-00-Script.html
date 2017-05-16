@@ -141,10 +141,20 @@
 		<tr><td>&lt;amatch&gt;</td><td>与&lt;abuf&gt;类似，但是在FileType或Syntax事件中并不是指代文件名，而是文件类型或语法名</td></tr>
 		<tr><td>&lt;sfile&gt;</td><td>当前正用于:sourced的文件名</td></tr>
 	</table>
-我们可以用下面所列出的内容来修改这些单词或是符号.例如:p可以将文件名变为全名.例如光标下的文件名为test.c,<cfile>就将是test.c,而同是<cfile:p>就将成为/home/oualline/examples/test.c
-我们可以用下面的内容进行修改:
-:p
-将文件名变成全路径文件名.但是我们要注意的是当我们用多个修饰符时,我们要个放在第一个.
+	<p>我们可以使用以下修饰符来扩展以上特殊符号的意义。例如<em>:p</em>可以将文件名转换为包括路径的全名。例如光标下的文件名为<em>test.c</em>，<em>>&lt;cfile&gt;</em>是<em>test.c</em>，那么<em>&lt;cfile:p&gt;就是<em>/home/oualline/examples/test.c</em>
+</p>
+	<p>修饰符主要包括：</p>
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<tr><td><code class="inset">:p</code></td>将文件名变成全路径文件名。如果使用多个修饰符，那么必须将此修饰符放置在最前面。<td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+	</table>
 :~
 将全路径名/home/oualline/examples/test.c变为用~标记的文件名为,如~oualline/examples/test.c
 :.    如果可能将成为当前目录相关的目录
