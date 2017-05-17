@@ -146,27 +146,19 @@
 	<p>修饰符主要包括：</p>
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<tr><td><code class="inset">:p</code></td>将文件名变成全路径文件名。如果使用多个修饰符，那么必须将此修饰符放置在最前面。<td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset">:~</code></td><td>将绝对路径路径名如/home/oualline/examples/test.c 转变为 用~标记的短文件名如~oualline/examples/test.c</td></tr>
+		<tr><td><code class="inset">:.</code></td><td>转变为现对路径名</td></tr>
+		<tr><td><code class="inset">:h</code></td><td>文件名的头。例如../path/test.c 将转变为 ../path</td></tr>
+		<tr><td><code class="inset">:t</code></td><td>文件名的尾。例如../path/test.c 将转变为 test.c</td></tr>
+		<tr><td><code class="inset">:r</code></td><td>无扩展名的文件名。例如../path/test 将转变为 test</td></tr>
+		<tr><td><code class="inset">:e</code></td><td>扩展名</td></tr>
+		<tr><td><code class="inset">:s?from?to?</code></td><td>将第一次出现的from字符串改变为to字符串</td></tr>
+		<tr><td><code class="inset">:gs?from?to?</code></td><td>将所有的字符串from改变为to字符串</td></tr>
 	</table>
-:~
-将全路径名/home/oualline/examples/test.c变为用~标记的文件名为,如~oualline/examples/test.c
-:.    如果可能将成为当前目录相关的目录
-:h    文件名的头部.例如../path/test.c就会为../path
-:t    文件名的尾部.例如../path/test.c就会为test.c
-:r    无扩展名的文件名.例如../path/test就会成为test
-:e    扩展名
-:s?from?to?    将第一次出现的form字符串改变为to字符串
-:gs?from?to?    将所有的字符串form改变为to字符串
-我们可以来看一下这些修饰符是如何作用在文件名上的.首先我们要先创建一个文件,其内容为我们运行实验的文件名.我们将光标放在这个文件名上,使用下面的命令来设置修饰符:
-:echo expand("<cword>:p")
-我们可将这里的:p换成我们可以试验的任何修饰符.
+	<p>使用以下命令，可以利用:p修饰符显示完整的当前文件名。你可以将命令中的:p换成其他需要测试的修饰符。</p>
+	<p style="text-indent:2em"><code class="inset">:echo expand("%:p")</code></p>
+
+
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">:echo命令</p>
 :echo的功能只是重复他的参数.例如:
