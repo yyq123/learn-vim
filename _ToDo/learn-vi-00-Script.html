@@ -5,11 +5,11 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记  脚本(Script)</title>
+	<title>VIM学习笔记  脚本-变量和常量 (Script-Variables and Constants)</title>
 </head>
 <body>
-	<p>使用脚本语言，可以更灵活地定制编辑器。</p>
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">变量</p>
+	<p>使用脚本语言，可以更灵活地定制编辑器以完成复杂的任务。</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">定义变量</p>
 	<p>使用以下命令，可以为变量赋值：</p>
 	<p style="text-indent:2em"><code class="inset">:let {variable}={expression}</code></p>
 	<p>Vim中的变量名可以包含字符、数字和下划线，但必须以字符或是下划线开头。</p>
@@ -19,10 +19,11 @@
 	<p style="text-indent:2em"><code class="inset">:echo "line_size is"line_size</code></p>
 	<p>命令执行以后，Vim将会在屏幕底部显示如下内容：</p>
 	<p><code class="msg">line_size is 30</code></p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">变量类型</p>
 	<p>Vim使用特殊的前缀来指明不同的变量类型：</p>
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<tr><th>变量名</th><th>用途</th></tr>
-		<tr><td>大写字母,数字,下划线</td><td>可以存放在viminfo文件中的变量（如果viminfo选项中含有!标记）</td></tr>
+		<tr><td>大写字母,数字,下划线&nbsp;</td><td>可以存放在viminfo文件中的变量（如果viminfo选项中含有!标记）</td></tr>
 		<tr><td>大写字母开头</td><td>变量可以由:makesession命令保存</td></tr>
 		<tr><td>小写字母,数字,下划线</td><td>不会存在任何保存文件中的变量</td></tr>
 		<tr><td>$environment</td><td>环境变量</td></tr>
@@ -32,12 +33,12 @@
 		<tr><td>w:name</td><td>当前窗口的变量</td></tr>
 		<tr><td>g:name</td><td>全局变量（用于函数内部表明全局变量）</td></tr>
 		<tr><td>a:name</td><td>函数参数</td></tr>
-		<tr><td>v:name</td>Vim预定义内部变量<td></td></tr>
+		<tr><td>v:name</td><td>Vim预定义内部变量</td></tr>
 		<tr><td>l:name</td><td>当前函数的变量</td></tr>
 		<tr><td>s:name</td><td>使用:source载入的脚本</td></tr>
 		<tr><td>t:name</td><td>当前标签页的变量</td></tr>
 	</table>
-	<p>使用以下命令，可以定义环境变量$PAGE包含用于查看的命令：</p>
+	<p>使用以下命令，可以定义环境变量$PAGER，用于指明查看的命令：</p>
 	<p style="text-indent:2em"><code class="inset">:let $PAGER="/usr/local/bin/less"</code></p>
 	<p>使用以下命令，可以显示上一次查找的模式：</p>
 	<p style="text-indent:2em"><code class="inset">:echo "Last search was"@/</code></p>
@@ -59,12 +60,14 @@
 		<tr><td>v:this_session</td><td>上一次装入或是保存的文件的命名</td></tr>
 		<tr><td>v:version</td><td>Vim编辑器的版本号</td></tr>
 	</table>
+	<p>以下为不同类型变量的实例：</p>
 	<p><script src="https://gist.github.com/yyq123/3c1db548929b59aa00f87917f5de6d8c.js"></script></p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">删除变量</p>
 	<p>如果要删除一个变量，那么可以使用以下命令：</p>
 	<p style="text-indent:2em"><code class="inset">:unlet[!] {name}</code></p>
-	<p>如果试图删除一个不存在的变量，那么Vi就会报错；而如果使用!标记，则不会显示错误信息。</p>
+	<p>如果试图删除一个不存在的变量，那么Vim就会报错；而如果使用!标记，则不会显示错误信息。</p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">常量</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">定义常量</p>
 	<p>数字常量有以下三种：</p>
 	<ul>
 		<li>八进制（Octal Integer）：0123</li>
@@ -80,7 +83,7 @@
 		<li>精确字符串（Literal String）：'string'</li>
 	</ul>
 	<p>在双引号包围的字符串内，可以使用反斜线进行转义；而被单引号包围的字符串，则会被原样输出:</p>
-	<table summary="Logical Operators" border="1" frame="box" rules="all" cellspacing="3" cellpadding="5">
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<tr><th>命令</th><th>输出</th></tr>
 		<tr><td><code class="inset">:echo "\100"</code></td><td>@</td></tr>
 		<tr><td><code class="inset">:echo '\100'</code></td><td>\100</td></tr>
@@ -141,7 +144,7 @@
 		<tr><td>&lt;amatch&gt;</td><td>与&lt;abuf&gt;类似，但是在FileType或Syntax事件中并不是指代文件名，而是文件类型或语法名</td></tr>
 		<tr><td>&lt;sfile&gt;</td><td>当前正用于:sourced的文件名</td></tr>
 	</table>
-	<p>我们可以使用以下修饰符来扩展以上特殊符号的意义。例如<em>:p</em>可以将文件名转换为包括路径的全名。例如光标下的文件名为<em>test.c</em>，<em>>&lt;cfile&gt;</em>是<em>test.c</em>，那么<em>&lt;cfile:p&gt;就是<em>/home/oualline/examples/test.c</em>
+	<p>我们可以使用以下修饰符来扩展以上特殊符号的意义。例如<em>:p</em>可以将文件名转换为包括路径的全名。例如光标下的文件名为<em>test.c</em>，<em>>&lt;cfile&gt;</em>是<em>test.c</em>，那么<em>&lt;cfile:p&gt;</em>就是<em>/home/oualline/examples/test.c</em>
 </p>
 	<p>修饰符主要包括：</p>
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
