@@ -16,13 +16,13 @@ code.inset {
 code.error {
   margin: 0 0.2em;
   padding: 0.2em;
-  color: #F00;
-  background-color: #000;
+  color: #FFF;
+  background-color: #800000;
   font-family: "Courier New", Courier, monospace;
 }
 
 code.msg {
-  margin: 0 0.2em;
+  margin: 0;
   padding: 0.2em;
   color: #fff;
   background-color: #000;

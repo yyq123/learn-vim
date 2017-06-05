@@ -11,29 +11,32 @@
 	<p>使用脚本语言，可以更灵活地定制编辑器以完成复杂的任务。</p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">:echo命令</p>
-:echo的功能只是重复他的参数.例如:
-:echo "Hello world"
-Hello world
-我们还可以用他来显示变量的值:
-:let flag=1
-:echo flag
-1
-:echon命令也只是重复他的参数,但是不会输出新行.例如:
-:echo "aa" | echo "bb"
-aa
-bb
-:echon "aa" | echon "bb"
-aabb
-(注:这里的|用来分隔同一行的两个命令)
-我们可以使用:echohl命令来改变:echo的输出的指定高亮颜色组.例如:
-:echohl ErroMsg
-:echo "A mistake has been make"
-:echohl None
-一个好的程序习惯表明我们应该总是在我们的输出信息之后重设高亮显示为None.这样就不会影响其他的:echo命令了.
-如果我们要查看所定义的高亮显示组,我们可以用下面的命令:
-:highlight
+	<p>:echo可以显示命令中的参数。</p>
+	<p><code class="inset">:echo "Hello world"</code></p>
+	<p>以上命令的执行结果如下：</p>
+	<p><code class="msg">Hello world</code></p>
+	<p>:echo还可以显示变量的值。</p>
+	<p><code class="inset">:let flag=1<br />:echo flag</code></p>
+	<p>以上命令的执行结果如下：</p>
+	<p><code class="msg">1</code></p>
+	<p>使用|可以分隔同一行中的两个命令。</p>
+	<p><code class="inset">:echo "aa" | echo "bb"</code></p>
+	<p>以上命令的执行结果如下：</p>
+	<p><code class="msg">aa<br />bb</code></p>
+	<p>:echon也只显示命令中的参数，但不会输出新行。</p>
+	<p><code class="inset">:echon "aa" | echon "bb"</code></p>
+	<p><code class="msg">aabb</code></p>
 
-<p>在echo命令中，可以使用以下转义符：</p>
+	<p>可以通过:echohl命令，使用指定高亮颜色组输出信息。</p>
+	<p><code class="inset">:echohl ErrorMsg<br />:echo "A mistake has been make"</code></p>
+	<p><code class="error">A mistake has been make</code></p>
+	<p>为了不影响后续:echo命令的显示效果，建议使用以下命令重设高亮显示为None：</p>
+	<p><code class="inset">:echohl None</code></p>
+	<p>使用以下命令，可以查看<a href="http://bit.ly/vim-syntaxHL" title="Syntax Highlight">高亮显示组</a>的颜色定义：</p>
+	<p><code class="inset">:highlight</code></p>
+	
+
+<p>在:echo命令中，可以使用以下转义符：</p>
 <ul>
 	<li><code class="inset">\n</code>&nbsp;Newline</li>
 	<li><code class="inset">\r</code>&nbsp;Carriage return</li>
@@ -47,18 +50,16 @@ aabb
 	<li><code class="inset">\\</code>&nbsp;反斜线</li>
 	<li><code class="inset"></code>&nbsp;</li>
 </ul>
-Besides these escape characters, you can always insert the Vim-specific key
-acronyms like <CR> and <ESC> by prepending them with a backslash \<CR>. Even
-the Vim-specific key shortcuts (like <C-W> for Ctrl-W) can be inserted by escaping them with a backslash.
+
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">判断</p>
-<p>if语句的一般形式如下</p>
-<p><script src="https://gist.github.com/yyq123/37f94883a1073534ded1cba1ad1b0831.js"></script></p>
-<p>只有条件(condition)为真时，if语句块内的语句才会被执行。</p>
-<p>if语句还可以包含else的子句</p>
-<p><script src="https://gist.github.com/yyq123/4745a7c937e2f50ea3cdf7a97b43d5dc.js"></script></p>
-<p>满足条件(condition)时，if语句块内的语句将会被执行；而不满足条件(condition)时，则else语句块内的语句将会被执行。</p>
-<p>if-else还可以进行多重判断</p>
-<p><script src="https://gist.github.com/yyq123/1ef507645718969cab35add75ef04e90.js"></script></p>
+	<p>if语句的一般形式如下：</p>
+	<p><script src="https://gist.github.com/yyq123/37f94883a1073534ded1cba1ad1b0831.js"></script></p>
+	<p>只有条件(condition)为真时，if语句块内的语句才会被执行。</p>
+	<p>if语句还可以包含else子句：</p>
+	<p><script src="https://gist.github.com/yyq123/4745a7c937e2f50ea3cdf7a97b43d5dc.js"></script></p>
+	<p>满足条件(condition)时，if语句块内的语句将会被执行；而不满足条件(condition)时，则else语句块内的语句将会被执行。</p>
+	<p>if-else结构还可以进行多重判断</p>
+	<p><script src="https://gist.github.com/yyq123/1ef507645718969cab35add75ef04e90.js"></script></p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">循环</p>
 	<p>while命令开始一个循环，并由endwhile命令结束。在条件为真是，循环中的代码将被重复执行。</p>
@@ -66,10 +67,14 @@ the Vim-specific key shortcuts (like <C-W> for Ctrl-W) can be inserted by escapi
 	<p>continue命令回到程序的顶部开始执行下一次循环；而break命令则立刻退出循环。</p>
 	<p><script src="https://gist.github.com/yyq123/54235dab1797017f16ae38a654c0fe4a.js"></script></p>
 
-    :execute命令:
-:execute命令像正常的命令模式一样执行一参数:
-:let  command = " echo 'Hello world!'"
-:execute command
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">:execute命令</p>
+	<p>:execute将执行参数中指定的命令：</p>
+	<p><code class="inset">:let  command = " echo 'Hello world!'"<br />
+	:execute command
+	</code></p>
+	<p><code class="msg">Hello world</code></p>
+
+
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">函数</p>
 	<p>Vim编辑器还允许我们定义自己的函数.函数定义的一般形式如下:</p>
 	<p><script src="https://gist.github.com/yyq123/8ccf228e869fb644f395e1756095de3d.js"></script></p>
