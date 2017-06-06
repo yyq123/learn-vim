@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记  脚本-语句 (Script-Statements)</title>
+</head>
+<body>
+	<p>使用脚本语言，可以更灵活地定制编辑器以完成复杂的任务。</p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">:echo命令</p>
+	<p>:echo可以显示命令中的参数。</p>
+	<p><code class="inset">:echo "Hello world"</code></p>
+	<p><code class="msg">Hello world</code></p>
+	<p>:echo还可以显示变量的值。</p>
+	<p><code class="inset">:let flag=1<br />:echo flag</code></p>
+	<p><code class="msg">1</code></p>
+	<p>使用|可以分隔同一行中的两个命令。</p>
+	<p><code class="inset">:echo "aa" | echo "bb"</code></p>
+	<p><code class="msg">aa<br />bb</code></p>
+	<p>:echon也只显示命令中的参数，但不会输出新行。</p>
+	<p><code class="inset">:echon "aa" | echon "bb"</code></p>
+	<p><code class="msg">aabb</code></p>
+
+	<p>可以通过:echohl命令，使用指定高亮颜色组输出信息。</p>
+	<p><code class="inset">:echohl ErrorMsg<br />:echo "A mistake has been make"</code></p>
+	<p><code class="error">A mistake has been make</code></p>
+	<p>为了不影响后续:echo命令的显示效果，建议使用以下命令重设高亮显示为None：</p>
+	<p><code class="inset">:echohl None</code></p>
+	<p>使用以下命令，可以查看<a href="http://bit.ly/vim-syntaxHL" title="Syntax Highlight">高亮显示组</a>的颜色定义：</p>
+	<p><code class="inset">:highlight</code></p>
+	
+
+<p>在:echo命令中，可以使用以下转义符：</p>
+<ul>
+	<li><code class="inset">\n</code>&nbsp;Newline</li>
+	<li><code class="inset">\r</code>&nbsp;Carriage return</li>
+	<li><code class="inset">\t</code>&nbsp;Tab</li>
+	<li><code class="inset">\123</code>&nbsp;八进制数字</li>
+	<li><code class="inset">\x123</code>&nbsp;十六进制数字</li>
+	<li><code class="inset">\u01fc34</code>&nbsp;Unicode</li>
+	<li><code class="inset">\f</code>&nbsp;Form feed</li>
+	<li><code class="inset">\e</code>&nbsp;Esc</li>
+	<li><code class="inset">\b</code>&nbsp;Backspace</li>
+	<li><code class="inset">\\</code>&nbsp;反斜线</li>
+</ul>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">判断</p>
+	<p>if语句的一般形式如下：</p>
+	<p><script src="https://gist.github.com/yyq123/37f94883a1073534ded1cba1ad1b0831.js"></script></p>
+	<p>只有条件(condition)为真时，if语句块内的语句才会被执行。</p>
+	<p>if语句还可以包含else子句：</p>
+	<p><script src="https://gist.github.com/yyq123/4745a7c937e2f50ea3cdf7a97b43d5dc.js"></script></p>
+	<p>满足条件(condition)时，if语句块内的语句将会被执行；而不满足条件(condition)时，则else语句块内的语句将会被执行。</p>
+	<p>if-else结构还可以进行多重判断</p>
+	<p><script src="https://gist.github.com/yyq123/1ef507645718969cab35add75ef04e90.js"></script></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">循环</p>
+	<p>while命令开始一个循环，并由endwhile命令结束。在条件为真是，循环中的代码将被重复执行。</p>
+	<p><script src="https://gist.github.com/yyq123/f87f86115272d5a9a0ab24682d03d1cc.js"></script></p>
+	<p>continue命令回到程序的顶部开始执行下一次循环；而break命令则立刻退出循环。</p>
+	<p><script src="https://gist.github.com/yyq123/54235dab1797017f16ae38a654c0fe4a.js"></script></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">:execute命令</p>
+	<p>:execute将执行参数中指定的命令：</p>
+	<p><code class="inset">:let  command = " echo 'Hello world!'"<br />
+	:execute command
+	</code></p>
+	<p><code class="msg">Hello world</code></p>
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="脚本-变量和表达式(Script-Variables and Expressions)" href="http://bit.ly/vim-ScriptVar">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="正则表达式-基础(Regular Expression Basic)" href="http://bit.ly/vim-regex-basic">下一篇</a>&gt;</span></p>
+</body>
+</html>
+
