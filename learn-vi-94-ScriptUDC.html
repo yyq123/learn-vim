@@ -10,42 +10,14 @@
 <body>
 	<p>使用脚本语言，可以更灵活地定制编辑器以完成复杂的任务。</p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">函数</p>
-	<p>Vim编辑器允许自定义函数：</p>
-	<p><script src="https://gist.github.com/yyq123/8ccf228e869fb644f395e1756095de3d.js"></script></p>
-	<p><em>Name</em>，函数名称必须以大写字母开始，并且只可以包含字母、数字和下划线。</p>
-	<p><em>arg1-argN</em>，调用函数时需要被赋值的参数。如果不需要任何参数，那么可以将括号()部分置空。最多可以定义20个参数。</p>
-	<p><em>keyword</em>，range关键字定义一个范围函数（<code class="inset">:function Count_words() range</code>），当在一个范围的行内运行这个程序时，变量a:firstline,a:lastline就会设置成为这个范围内的第一行和最后一行；abort关键字指示函数（<code class="inset">:function Do_It() abort</code>）会在第一个错误时退出。</p>
-	<p>下面我们来定义一个函数，用来返回两个数中较小的一个：</p>
-	<p><script src="https://gist.github.com/yyq123/4c18997ffac9a857d6d0f0b452923df4.js"></script></p>
-	<p>函数内部的变量（例如smaller）均为局部变量，除非使用了g:作为前缀。例如在函数外我们定义了变量var，那么在函数内部可以使用g:var来调用。前缀a:的变量均为函数参数。</p>
-	<p>return语句用于返回结果并结束函数。return语句之后的所有代码都不会被执行。</p>
-	<p>可以在表达式中调用函数：</p>
-	<p style="text-indent:2em"><code class="inset">:let tiny = Min(10,20)</code></p>
-	<p>还可以使用:call命令来调用函数：</p>
-	<p style="text-indent:2em"><code class="inset">:[range]call {function}([parameters])</code></p>
-	<p></p>
-	<p>如果尝试定义一个已经存在的函数，那么将会收到报错信息。可以使用!来强制替换之前定义的同名函数。</p>
-	<p style="text-indent:2em"><code class="inset">:function! Max(num1, num2, num3)</code></p>
-	<p>Vim允许在函数中使用&ldquo;...&rdquo;标识个数不定的参数。例如以下代码定义函数至少有2个参数，最多有20个参数：</p>
-	<p><script src="https://gist.github.com/yyq123/ff3e8bc64a9bcf9f3745602da5a9aba9.js"></script></p>
-	<p><em>argnum</em> 计数器，用于记录num1和num2之后的参数个数；</p>
-	<p><em>a:0</em> 变量，用于记录参数总个数；</p>
-	<p><em>a:{argnum}</em> 变量，用于访问每一个参数的值；</p>
-	<p>使用以下命令，可以列出所有用户定义的函数：</p>
-	<p style="text-indent:2em"><code class="inset">:function</code></p>
-	<p>使用以下命令，可以查看指定函数的代码：</p>
-	<p style="text-indent:2em"><code class="inset">:function {name}</code></p>
-	<p>使用以下命令，可以删除指定的函数：</p>
-	<p style="text-indent:2em"><code class="inset">:delfunction {name}</code></p>
-	<p>使用以下命令，可以查看关于函数的更多帮助信息：</p>
-	<p style="text-indent:2em"><code class="inset">:help function-list</code></p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">自定义命令</p>
 	<p>Vim编辑器允许定义自己的命令，我们可以像执行内置命令一样来执行我们自己定义的命令。</p>
 	<p>使用以下:command命令自定义命令：</p>
 	<p style="text-indent:2em"><code class="inset">:command Delete_first :1delete</code></p>
-	<p>注意自定义命令的名称，必须以大写字母开头；如果我们执行:Delete_first自定义命令，那么Vim就会执行:1delete命令，从而删除第一行。</p>
+	<p>注意自定义命令的名称，必须以大写字母开头，而且不能包含下划线；如果我们执行:Delete_first自定义命令，那么Vim就会执行:1delete命令，从而删除第一行。</p>
+	<p>可以使用!来强制重新定义同名的自定义命令：</p>
+	<p style="text-indent:2em"><code class="inset">:command! -nargs=+ Say :echo &lt;args&gt;</code></p>
 	<p>使用以下命令，可以列出用户定义的命令：</p>
 	<p style="text-indent:2em"><code class="inset">:command</code></p>
 	<p><a href="https://www.flickr.com/photos/yyq123/35108740786/in/dateposted/" title="command"><img src="https://c1.staticflickr.com/5/4237/35108740786_3ed9cd067a.jpg" width="500" height="96" alt="command"></a></p>
@@ -64,7 +36,7 @@
 		<tr><td><code class="inset">-nargs=+</code></td><td>一个或是更多个参数</td></tr>
 	</table>
 	<p>在命令定义中，参数是由关键字<args>指定的：</p>
-	<p style="text-indent:2em"><code class="inset">:command -nargs=+ Say :echo "<args>"</code></p>
+	<p style="text-indent:2em"><code class="inset">:command -nargs=+ Say :echo "&lt;args&gt;"</code></p>
 	<p>输入以下自定义命令：</p>
 	<p style="text-indent:2em"><code class="inset">:Say Hello World</code></p>
 	<p>命令的执行结果显示：</p>
@@ -77,19 +49,23 @@
 	</table>
 	<p>当指定范围之后，就可以用关键字&lt;line1&gt;和&lt;line2&gt;得到这个范围的第一行和最后一行。</p>
 	<p>例如以下定义了SaveIt命令，用于将指定范围的文件写入文件save_file：</p>
-	<p style="text-indent:2em"><code class="inset">:command -range=% SaveIt:<line1>,<line2> write! save_file</code></p>
-	<p>其他选项和关键字包括：</p>
-	<table summary="-nargs选项" border="0" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
-		<tr><td><code class="inset">-count=number</code></td><td>指定数量保存在关键字<count>中</td></tr>
-		<tr><td><code class="inset">-bang</code></td><td>指定!修饰符存放在关键字<bang>中</td></tr>
-		<tr><td><code class="inset">-register</code></td><td>指定寄存器，默认为未命名寄存器，寄存器的定义保存在关键字<register>中</td></tr>
-	</table>
+	<p style="text-indent:2em"><code class="inset">:command -range=% SaveIt :&lt;line1&gt;,&lt;line2&gt;write! save_file</code></p>
 	<p>关键字&lt;f-args&gt;含有与关键字&lt;args&gt;相同的信息，所不同的是它用于调用函数。例如以下自定义命令：</p>
-	<p style="text-indent:2em"><code class="inset">:command -nargs=* DoIt :call AFunction(<f-args>)</code></p>
+	<p style="text-indent:2em"><code class="inset">:command -nargs=* DoIt :call AFunction(&lt;f-args&gt;)</code></p>
 	<p>执行自定义命令：</p>
 	<p style="text-indent:2em"><code class="inset">:DoIt a b c</code></p>
 	<p>将会传递参数给调用的函数：</p>
 	<p style="text-indent:2em"><code class="inset">:call AFunction("a","b","c")</code></p>
+	<p>其他选项和关键字包括：</p>
+	<table summary="-nargs选项" border="0" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<tr><td><code class="inset">-count=number</code></td><td>指定数量保存在关键字&lt;count&gt;中</td></tr>
+		<tr><td><code class="inset">-bang</code></td><td>指定!修饰符存放在关键字&lt;bang&gt;中</td></tr>
+		<tr><td><code class="inset">-register</code></td><td>指定寄存器，默认为未命名寄存器，寄存器的定义保存在关键字&lt;register&gt;中</td></tr>
+		<tr><td><code class="inset">-bar</code></td><td>其他命令可以用|跟随在此命令之后</td></tr>
+		<tr><td><code class="inset">-buffer</code></td><td>命令仅对当前缓冲区有效</td></tr>
+	</table>
+	<p>使用以下命令，首先分别创建一个用户自定义命令，然后再将两个命令组合起来。</p>
+	<p><script src="https://gist.github.com/yyq123/8b0756ba00373bf36b6a8374fb1707c8.js"></script></p>
 
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
