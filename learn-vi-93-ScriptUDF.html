@@ -11,18 +11,18 @@
 	<p>使用脚本语言，可以更灵活地定制编辑器以完成复杂的任务。</p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">定义函数</p>
-	<p>Vim编辑器允许自定义函数：</p>
+	<p>Vim编辑器允许用户自定义函数，语法如下：</p>
 	<p><script src="https://gist.github.com/yyq123/8ccf228e869fb644f395e1756095de3d.js"></script></p>
 	<p><em>Name</em>，函数名称必须以大写字母开始，并且只可以包含字母、数字和下划线。</p>
-	<p><em>arg1-argN</em>，调用函数时需要为命名参数（Named Parameters）复制。如果不需要任何参数，那么可以将括号()部分置空。最多可以定义20个参数。</p>
+	<p><em>arg1-argN</em>，调用函数时需要为命名参数（Named Parameters）赋值。如果不需要任何参数，那么可以将括号()部分置空。最多可以定义20个参数。</p>
 	<p><em>keyword</em>，range关键字定义一个范围函数（<code class="inset">:function Count_words() range</code>）会针对范围内的每一行重复执行操作；abort关键字指示函数（<code class="inset">:function Do_It() abort</code>）会在第一个错误时退出。</p>
 	<p>下面我们来定义一个函数，用来返回两个数中较小的一个：</p>
 	<p><script src="https://gist.github.com/yyq123/4c18997ffac9a857d6d0f0b452923df4.js"></script></p>
 	<p>函数内部的变量（例如smaller）均为局部变量，除非使用了g:作为前缀。例如在函数外我们定义了变量var，那么在函数内部可以使用g:var来调用。前缀a:的变量均为函数参数。</p>
-	<p>return语句用于返回结果并结束函数。return语句之后的所有代码都不会被执行。</p>
-	<p>如果尝试定义一个已经存在的函数，那么将会收到报错信息。可以使用!来强制替换之前定义的同名函数。</p>
+	<p><code class="inset">return</code> 语句用于返回结果并结束函数。return语句之后的所有代码都不会被执行。</p>
+	<p>如果尝试定义一个已经存在的函数，那么将会收到报错信息。可以使用!来强制重定义同名函数。</p>
 	<p style="text-indent:2em"><code class="inset">:function! Max(num1, num2, num3)</code></p>
-	<p>Vim允许在函数中使用&ldquo;...&rdquo;标识个数不定的可变参数（Variadic Parameters）。例如以下代码定义函数至少有2个参数，最多有20个参数：</p>
+	<p>Vim允许在函数中使用&ldquo;...&rdquo;来标识个数不定的可变参数（Variadic Parameters）。例如以下代码定义函数至少有2个参数，最多有20个参数：</p>
 	<p><script src="https://gist.github.com/yyq123/ff3e8bc64a9bcf9f3745602da5a9aba9.js"></script></p>
 	<p><em>argnum</em> 计数器，用于记录num1和num2之后的参数个数；</p>
 	<p><em>a:num1</em> 变量，用于访问指定的参数；</p>
@@ -42,28 +42,15 @@
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">列示函数</p>
 	<p>使用以下命令，可以列出所有用户定义的函数：</p>
 	<p style="text-indent:2em"><code class="inset">:function</code></p>
-	<p>可以在函数定义中组合使用命名参数和可变参数：</p>
-	<p style="text-indent:2em"><code class="inset">function CommentBlock(comment, ...)</code></p>
 	<p>使用以下命令，可以查看指定函数的代码：</p>
 	<p style="text-indent:2em"><code class="inset">:function {name}</code></p>
+	<p>使用以下命令，可以查看Vim内置函数的使用说明：</p>
+	<p style="text-indent:2em"><code class="inset">:help functions</code></p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">删除函数</p>
 	<p>使用以下命令，可以删除指定的函数：</p>
 	<p style="text-indent:2em"><code class="inset">:delfunction {name}</code></p>
-	<p>使用以下命令，可以查看关于函数的更多帮助信息：</p>
-	<p style="text-indent:2em"><code class="inset">:help function-list</code></p>
 
-
-
-	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
-		<caption>命令小结</caption>
-		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
-		<tr><td><code class="inset">:</code></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-	</table>
-
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="()" href="">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="()" href="">下一篇</a>&gt;</span></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="变量和表达式(Var. &amp; Exp.)" href="http://yyq123.blogspot.com/2017/05/vim-script-variables-and-expressions.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="脚本-语句(Statements)" href="http://yyq123.blogspot.com/2017/06/vim-script-statements.html">下一篇</a>&gt;</span></p>
 </body>
 </html>
