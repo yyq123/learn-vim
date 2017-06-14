@@ -5,11 +5,10 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记  脚本-函数和命令 (Script-Function and Command)</title>
+	<title>VIM学习笔记  脚本-自定义命令 (Script-User Defined Command)</title>
 </head>
 <body>
 	<p>使用脚本语言，可以更灵活地定制编辑器以完成复杂的任务。</p>
-
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">自定义命令</p>
 	<p>Vim编辑器允许定义自己的命令，我们可以像执行内置命令一样来执行我们自己定义的命令。</p>
@@ -18,13 +17,6 @@
 	<p>注意自定义命令的名称，必须以大写字母开头，而且不能包含下划线；如果我们执行:Delete_first自定义命令，那么Vim就会执行:1delete命令，从而删除第一行。</p>
 	<p>可以使用!来强制重新定义同名的自定义命令：</p>
 	<p style="text-indent:2em"><code class="inset">:command! -nargs=+ Say :echo &lt;args&gt;</code></p>
-	<p>使用以下命令，可以列出用户定义的命令：</p>
-	<p style="text-indent:2em"><code class="inset">:command</code></p>
-	<p><a href="https://www.flickr.com/photos/yyq123/35108740786/in/dateposted/" title="command"><img src="https://c1.staticflickr.com/5/4237/35108740786_3ed9cd067a.jpg" width="500" height="96" alt="command"></a></p>
-	<p>使用以下:delcommand命令，可以删除用户定义的命令：</p>
-	<p style="text-indent:2em"><code class="inset">:delcommand Delete_one</code></p>
-	<p>使用以下命令，清除所有的用户定义的命令：</p>
-	<p style="text-indent:2em"><code class="inset">:comclear</code></p>
 	<p>用户定义的命令可以指定一系列的参数，参数的个数由-nargs选项在命令行中指定。例如定义Delete_one命令没有参数：</p>
 	<p style="text-indent:2em"><code class="inset">:command Delete_one -nargs=0 1delete</code></p>
 	<p>默认情况下-nargs=0，所以可以省略。其他-nargs选项值如下：</p>
@@ -35,7 +27,7 @@
 		<tr><td><code class="inset">-nargs=?</code></td><td>零个或是一个参数</td></tr>
 		<tr><td><code class="inset">-nargs=+</code></td><td>一个或是更多个参数</td></tr>
 	</table>
-	<p>在命令定义中，参数是由关键字<args>指定的：</p>
+	<p>在命令定义中，参数是由关键字&lt;args&gt;指定的：</p>
 	<p style="text-indent:2em"><code class="inset">:command -nargs=+ Say :echo "&lt;args&gt;"</code></p>
 	<p>输入以下自定义命令：</p>
 	<p style="text-indent:2em"><code class="inset">:Say Hello World</code></p>
@@ -67,15 +59,16 @@
 	<p>使用以下命令，首先分别创建一个用户自定义命令，然后再将两个命令组合起来。</p>
 	<p><script src="https://gist.github.com/yyq123/8b0756ba00373bf36b6a8374fb1707c8.js"></script></p>
 
-	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
-		<caption>命令小结</caption>
-		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
-		<tr><td><code class="inset">:</code></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-	</table>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">列示自定义命令</p>
+	<p>使用以下命令，可以列出用户定义的命令：</p>
+	<p style="text-indent:2em"><code class="inset">:command</code></p>
+	<p><a href="https://www.flickr.com/photos/yyq123/35108740786/in/dateposted/" title="command"><img src="https://c1.staticflickr.com/5/4237/35108740786_3ed9cd067a.jpg" width="500" height="96" alt="command" /></a></p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">删除自定义命令</p>
+	<p>使用以下:delcommand命令，可以删除用户定义的命令：</p>
+	<p style="text-indent:2em"><code class="inset">:delcommand Delete_one</code></p>
+	<p>使用以下命令，清除所有的用户定义的命令：</p>
+	<p style="text-indent:2em"><code class="inset">:comclear</code></p>
 
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="()" href="">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="()" href="">下一篇</a>&gt;</span></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="脚本-语句(Statements)" href="http://yyq123.blogspot.com/2017/06/vim-script-statements.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="脚本-自定义函数" href="http://yyq123.blogspot.com/2017/06/vim-script-user-defined-function.html">下一篇</a>&gt;</span></p>
 </body>
 </html>

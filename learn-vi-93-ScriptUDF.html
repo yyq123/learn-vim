@@ -19,6 +19,7 @@
 	<p>下面我们来定义一个函数，用来返回两个数中较小的一个：</p>
 	<p><script src="https://gist.github.com/yyq123/4c18997ffac9a857d6d0f0b452923df4.js"></script></p>
 	<p>函数内部的变量（例如smaller）均为局部变量，除非使用了g:作为前缀。例如在函数外我们定义了变量var，那么在函数内部可以使用g:var来调用。前缀a:的变量均为函数参数。</p>
+	<p><script src="https://gist.github.com/yyq123/65b52249d18dc53f91d5bcbcb8483707.js"></script></p>
 	<p><code class="inset">return</code> 语句用于返回结果并结束函数。return语句之后的所有代码都不会被执行。</p>
 	<p>如果尝试定义一个已经存在的函数，那么将会收到报错信息。可以使用!来强制重定义同名函数。</p>
 	<p style="text-indent:2em"><code class="inset">:function! Max(num1, num2, num3)</code></p>
