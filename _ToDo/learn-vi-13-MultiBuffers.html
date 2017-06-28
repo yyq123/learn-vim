@@ -5,12 +5,12 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记 缓冲区 (Buffer)</title>
+	<title>VIM学习笔记 缓冲区 (Buffers)</title>
 </head>
 <body>
-	<p>缓冲区（Buffer）是一块内存区域，里面存储着正在编辑的文件。如果没有把缓冲区里的文件存盘，那么原始文件不会被更改。可以使用<code class="inset">:help buffers</code>命令，查看关于缓冲区的帮助信息。</p>
+	<p>缓冲区（Buffer）是一块内存区域，用于存储着正在编辑的文件。在保存缓冲区并退出时，内容也随之被写回原始文件。可以使用<code class="inset">:help buffers</code>命令，查看关于缓冲区的帮助信息。</p>
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">列示缓冲区</p>
-	<p><code class="inset">:buffers</code>和<code class="inset">:ls</code>命令将会列出当前编辑中所有的缓冲区状态。在这个状态列表中，前面的数字是缓冲区的数字标记，第二个标记就是缓冲区当前的状态，紧接着是与缓冲区所关联的文件名。有如下几种状态：</p>
+	<p><code class="inset">:buffers</code>和<code class="inset">:ls</code>命令将会列出当前编辑中的所有缓冲区状态。在列表中，第一个数字是缓冲区的标号；第二个标记是缓冲区当前的状态；紧接着是与缓冲区所关联的文件名。缓冲区状态包含以下几种：</p>
 	<p>
 	- （非活动的缓冲区）<br />
 	a （激活缓冲区）<br />
@@ -20,10 +20,13 @@
 	= （只读缓冲区）<br />
 	+ （已经更改的缓冲区）
 	</p>
-	<p style="text-align:center"><a href="https://www.flickr.com/photos/yyq123/3751683098/" title="Buffers by yyq123, on Flickr"><img src="https://farm3.static.flickr.com/2616/3751683098_80d3979da8_o.png" width="385" height="103" alt="Buffers" /></a></p>
+	<p><a href="https://www.flickr.com/photos/yyq123/3751683098/" title="Buffers"><img src="https://c1.staticflickr.com/3/2616/3751683098_ecddf81430.jpg" width="385" height="103" alt="Buffers"></a></p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">打开缓冲区</p>
-	<p>如果要选择一个缓冲区，可以使用<code class="inset">:buffer number</code>命令，number就是缓冲区状态列表中所显示的数字。我们也可以用文件名来选择缓冲区：<code class="inset">:buffer file</code>。</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">选择缓冲区</p>
+	<p>可以使用number参数，选择指定标号的缓冲区：</p>
+	<p style="text-indent:2em">:buffer number<code class="inset"></code></p>
+	<p>也可以使用文件名来选择缓冲区：</p>
+	<p style="text-indent:2em"><code class="inset">:buffer file</code></p>
 	<p>我们可以用<code class="inset">:sbuffer number</code>命令，来分割当前窗口开始编辑一个缓冲区。如果指明了数字，那么当前窗口就会显示数字所标记的缓冲区中的内容；如果没有指明数字，那么就会显示当前缓冲区的内容。当然，这个命令也可以用文件名来做为参数。</p>
 	<p>使用<code class="inset">:ball</code>命令可以为每一个缓冲区打开一个窗口。</p>
 
