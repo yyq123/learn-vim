@@ -13,6 +13,8 @@
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">脚本文件架构</p>
 	<p>文件头（Header）：脚本的描述，作者，版本，最近更新日期，授权方式等。以"开头为注释。</p>
 	<p>脚本载入检查（Script-Loaded Check）：检查脚本是否已经被载入，如果已经载入，那么应该首先卸载，然后再执行后续功能；检查是否使用vi兼容模式。</p>
+	<p>配置（Configuration）：定义外部程序路径或设置变量等配置选项。由于用户有可能在<a href="http://bit.ly/vim-vimrc" title="vimrc">vimrc配置文件</a>中为变量赋值，所以我们应该检查变量是否已经存在，以免覆盖用户的设置。</p>
+	<p>键盘映射（Mapping）:</p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
 	<p><script src="https://gist.github.com/yyq123/6e11fad7cbc540f972cf5b0044302725.js"></script></p>
 	<p><code class="inset">:help 'write-filetype-plugin'<br />
