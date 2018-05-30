@@ -5,49 +5,52 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记</title>
+	<title>VIM学习笔记-开篇</title>
 </head>
 <body>
 	<p>一直在学，也一直在用<a href="http://www.vim.org/">Vim</a>。一直遇到问题，也一直在得到答案。慢慢的，<a href="http://www.vim.org/">Vim</a>成了我最重要的文本编辑器和网页编辑器。</p>
-	<p>某日在某Blog，下载了一个名为《vi编辑器的学习使用》的文件。打开一看&mdash;&mdash;密密麻麻的文字有一百多页。当时，觉得复杂的可怕。现在，才越来越发现它的价值。每次有所疑问，都能从这个文件中找到解答。每天花十几分钟，阅读几十行，也有不少收获。可问题是，这个文章的排版真是糟糕，命令和文字混在一起，内容也缺乏有条理的分隔，阅读起来十分吃力。所以，我在边阅读时也边整理，希望能把它以更好的形式展示出来。我将文章按主题分拆为多个章节，并尽量控制每节的信息量，以便读者消化其中的知识；每节中通过文字色彩和字体，将命令、快捷键突出显示出来；在每节结尾，提供一个命令列表，以便回顾文中介绍的重要命令。如果这些文章能对喜欢<a href="http://www.vim.org/">Vim</a>的朋友有所益处，我将不胜荣幸。</p>
-	<p><strong>1976</strong>年，Bill Joy开发了<strong>vi</strong>，他也是伯克利大学的毕业生，后来他跟其他人一起成立了 Sun Microsystems公司并成为了Sun的首席科学家。一开始Bill开发了ex，尔后开发了vi作为 ex的visual interface，也就是说vi允许一次能看到一屏的文本而非一行，vi也因此得名。</p>
-	<p><strong>1988</strong>年，Bram在Amiga计算机上改进一个叫Stevie的VI版本，他称之为“Vi IMitation”。
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">文章溯源</p>
+	<p>某日在某Blog，下载了一个名为《vi编辑器的学习使用》的文件。打开一看&mdash;&mdash;密密麻麻的文字有一百多页。当时，觉得复杂的可怕。现在，才越来越发现它的价值。每次有所疑问，都能从这个文件中找到解答。每天花十几分钟，阅读几十行，也有不少收获。可问题是，这个文章的排版真是糟糕，命令和文字混在一起，内容也缺乏有条理的组织，阅读起来十分吃力。所以，我在边阅读时也边整理（同时也结合了其他阅读资料），希望能把它以更好的形式展示出来。我将文章按主题分拆为多个章节，并尽量控制每节的信息量，以便读者消化其中的知识；每节中通过文字色彩和字体，将命令、快捷键突出显示出来；在每节结尾，提供一个命令列表，以便回顾文中介绍的重要命令。如果这些文章能对喜欢Vim的朋友有所益处，我将不胜荣幸。</p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">发展历史</p>
+	<p><strong>1976</strong>年，Bill Joy开发了<strong>vi</strong>，他毕业于伯克利大学，后来共同成立了Sun Microsystems公司并成为了Sun的首席科学家。一开始Bill开发了ex，尔后开发了vi作为 ex的visual interface，也就是说vi允许一次能看到一屏的文本而非一行，所以vi也代表visual editor。</p>
+	<p><strong>1988</strong>年，Bram Moolenaar在Amiga计算机上改进一个叫Stevie的VI版本，他称之为“Vi IMitation”。</p>
 	<p><strong>1991年11月2日</strong>，Vim的首个版本1.14g公开发布。Vim既是开源软件（Opensource），也是慈善软件（Charityware）的概念，你可以自由地使用Vim，但鼓励用户通过<a href="http://iccf-holland.org/">ICCF Holland</a>为乌干达的孤儿做出捐助。 </p>
 	<p><strong>1992</strong>，随着功能逐渐丰富的1.22版本发布，<strong>VIM</strong>的名称也想要改成了“Vi IMproved”。相比原始的VI，VIM增加的一项最重要的功能便是多级撤销，VI只支持一级撤销。</p>
-	<p>Vim is everywhere. Mac上有MacVim，Windows上有GVim, Linux上有Vim。而且，在不同的平台上可以使用相同的命令和插件完成相同的任务。</p>
-	<p>在Vim生态之中，有大量不同的插件专注于完成不同的任务。比如：格式化代码，自动化备注，整合Git/Github，语法高亮度等等。再配合Vim强大的自定义配置能力，你完全可以按照自己的喜好定制出一个属于你的开发环境。</p>
-	<p>多模式编辑。Vim设计在不同的模式下，分别进行文字录入和文字编辑。你可在插入模式下，像普通文本编辑器那样输入文字，而退回到常规模式，则可以利用命令和快捷键o work—commands are performed with conventional keyboard shortcuts and characters are appended to the buffer as you press the associated keys. In the “normal” mode, however, sequences of key presses perform commands. The most useful commands allow you to quickly navigate and manipulate the text in the buffer. </p>
-	<p>强大的搜索功能: Vim has some very sophisticated tools for automated search and replace, including extensive support for regular expressions. It also has a built-in version of the grep command, which integrates with Vim’s enormously convenient quickfix feature—a special buffer that shows you a list of results and allows you to conveniently jump between them.</p>
-	<p>不提网上浩如烟海的Vim文档，只是内置的在线帮助 “:help” 就已经完整的令人发指！</p>
-	<p>Vim起初是为在终端中使用而设计的，但现如今已有多种图形界面提供菜单、工具栏和滚动条.</p>
-	<p>追求编辑效率的程序员，其它经常处理纯文本的人员，Web 开发人员，编写LaTeX文档的研究人员，Unix / Linux 系统管理员</p>
-
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">版本历史</p>
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>Timeline</caption>
 		<tr><td><code class="inset">1988</code></td><td>Vim 1.0</td><td>Vi IMitation on the Amiga</td></tr>
 		<tr><td><code class="inset">1991</code></td><td>Vim 1.14</td><td>First public release (on Fred Fish disk #591)</td></tr>
-		<tr><td><code class="inset">1992</code></td><td>Vim 1.22</td><td>Port to Unix, renamed to Vi IMproved</td></tr>
-		<tr><td><code class="inset">1994</code></td><td>Vim 3.0</td><td>Multiple windows</td></tr>
+		<tr><td><code class="inset">1992</code></td><td>Vim 1.22</td><td>Port to Unix</td></tr>
+		<tr><td><code class="inset">1993</code></td><td>Vim 2.0</td><td>Renamed to Vi IMproved</td></tr>
+		<tr><td><code class="inset">1994</code></td><td>Vim 3.0</td><td>Multiple buffers and windows</td></tr>
 		<tr><td><code class="inset">1996</code></td><td>Vim 4.0</td><td>GUI</td></tr>
-		<tr><td><code class="inset">1998</code></td><td>Vim 5.0</td><td>Syntax highlighting</td></tr>
-		<tr><td><code class="inset">2001</code></td><td>Vim 6.0</td><td>Folding, multi-language</td></tr>
+		<tr><td><code class="inset">1998</code></td><td>Vim 5.0</td><td>Syntax coloring and highlighting</td></tr>
+		<tr><td><code class="inset">2001</code></td><td>Vim 6.0</td><td>Folding, plugins, multi-language</td></tr>
 		<tr><td><code class="inset">2006</code></td><td>Vim 7.0</td><td>On the fly spell checker, support for tabs</td></tr>
 		<tr><td><code class="inset">2016</code></td><td>Vim 8.0</td><td>Jobs, Timers, Partial, Packages</td></tr>
 	</table>
-	<p style="font-weight: bold">目录</p>
-	<p>第一部分 基础知识</p>
-	<ol start="1">
-		<li><a href="http://yyq123.journalspace.com/?entryid=191">基本编辑命令</a></li>
-		<li><a href="http://yyq123.journalspace.com/?entryid=192">移动和修改命令</a></li>
-		<li><a href="http://yyq123.journalspace.com/?entryid=193">复制和粘贴命令</a></li>
-		<li><a href="http://yyq123.journalspace.com/?entryid=194">查找文本</a></li>
-		<li><a href="http://yyq123.journalspace.com/?entryid=195">替换文本</a></li>
-	</ol>
-	<p>第二部分 编辑多个文件</p>
-	<ol start="6">
-		<li><a href="http://yyq123.journalspace.com/?entryid=230">使用多标签页</a></li>
-	</ol>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">功能哲学</p>
+	<p>Vim起初是为在终端中使用而设计的，但现如今已有多种图形界面提供菜单、工具栏和滚动条。普通用户可以完全无障碍的使用常用的文本编辑功能。而追求编辑效率的程序员，其它经常处理纯文本的人员，Web 开发人员，编写LaTeX文档的研究人员，Unix / Linux 系统管理员，也能找到自己需要的特定高级功能。</p>
+	<p><strong>多模式编辑</strong> Vim设计在不同的模式下，分别进行文字录入和文字操作。你可在插入模式下，像普通文本编辑器那样输入文字；而退回到常规模式，则可以利用命令和快捷键对文字进行增、删、改等等处理。 为了高效使用Vim，我们必须习惯尽量停留在常规模式：只在必要时进入插入模式以输入文字，然后立刻使用<kbd>Esc</kbd>键退换到命令模式，这样双手不用离开键盘就可以继续对个别乃至整篇文本进行下一步操作。</p>
+	<p><strong>跨平台</strong> Mac上有MacVim，Windows上有GVim, Linux上有Vim。而且，在不同的平台上可以使用相同的命令和插件完成相同的任务。所以，看似陡峭的学习曲线也同时带来更大的持续回报。</p>
+	<p><strong>可度灵活的可配置性</strong> 在Vim生态之中，有大量不同的插件专注于完成不同的任务。比如：格式化代码，自动化备注，整合Git/Github，语法高亮度等等。再配合Vim强大的自定义配置能力，你完全可以按照自己的喜好定制出一个属于你的开发环境。</p>
+	<p><strong>强大的搜索功能</strong> Vim可以对文本进行及其复杂的查找和替换，包括对正则表达式（regular expressions）和grep的全面支持。</p>
+	<p><strong>丰富的帮助信息</strong> 不提网上浩如烟海的Vim文档，只是内置的在线帮助 “:help” 就已经完整的令人发指！</p>
+
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">笔记目录</p>
+	<p><a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html#Basic">第一部分 基础知识</a></p>
+	<p><a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html#Advanced">第二部分 高阶操作</a></p>
+	<p><a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html#Mode">第三部分 模式详解</a></p>
+	<p><a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html#TextManipulate">第四部分 文字处理</a></p>
+	<p><a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html#GUI">第五部分 图形界面</a></p>
+	<p><a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html#MutliFiles">第六部分 多文件操作</a></p>
+	<p><a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html#Options">第七部分 自定义系统</a></p>
+	<p><a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html#Coding">第八部分 代码开发</a></p>
+	<p><a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html#RegExr">第九部分 正则表达式</a></p>
+	<p><a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html#Script">第十部分 脚本</a></p>
 </body>
 </html>
 
