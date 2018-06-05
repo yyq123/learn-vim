@@ -8,8 +8,8 @@
 	<title>VIM学习笔记 窗口(Window)</title>
 </head>
 <body>
-	<p>窗口（Window）被用来查看<a href="http://bit.ly/vim-buffers" title="Buffer">缓冲区</a>（Buffer）的内容。你可以用多个窗口查看同一个缓冲区，也可以用多个窗口查看不同的缓冲区。利用多窗口，我们就能够很方便地对比多个文件，在不同文件之间复制粘贴或者查看同一文件的不同部分。</p>
-	<p>Vim主窗口可以容纳多个分割的窗口。也可以创建多个<a href="http://bit.ly/vim-tabs" title="Tabs">标签页</a>（tab-page），每个标签页也能容纳多个窗口。</p>
+	<p>窗口（Window）用来查看<a href="http://yyq123.github.io/learn-vim/learn-vi-13-MultiBuffers.html" title="Buffer">缓冲区</a>（Buffer）的内容。你可以用多个窗口查看同一个缓冲区，也可以用多个窗口查看不同的缓冲区。利用多窗口，我们就能够很方便地对比多个文件，在不同文件之间复制粘贴或者查看同一文件的不同部分。</p>
+	<p>Vim主窗口可以容纳多个分割的窗口。也可以创建多个<a href="http://yyq123.github.io/learn-vim/learn-vi-15-Tabs.html" title="Tabs">标签页</a>（tab-page），每个标签页也能容纳多个窗口。</p>
 	<p>在默认情况下，与Vi类似，Vim启动后只打开一个窗口。参数 "-o" 和 "-O" 可以让Vim为参数列表里的每一个文件打开一个窗口。参数 "-o" 水平分割窗口；参数 "-O" 垂直分割窗口。如果 "-o" 和 "-O" 都用了，那么最后一个参数决定分割的方向。例如，下面的例子打开三个水平分割的窗口。</p>
 	<p><code class="inset">vim -o file1 file2 file3</code></p>
 	
@@ -23,11 +23,12 @@
 	<p><code class="inset">:sview</code>是:split和:view两个命令的组合，它可以分隔出一个新窗口，并以只读方式打开指定的文件。</p>
 	<p>与窗口操作相关的命令，通常也有相对应的ctrl+W快捷键：</p>
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
-		<caption>新建窗口的命令和快捷键</caption>
-		<tr><td><code class="inset">:sview</code></td><td>新建一个窗口并只读打开文件</td><td></td></tr>
-		<tr><td><code class="inset">:new</code></td><td>新建一个窗口并开始编辑新文件</td><td><code class="inset">ctrl+Wn</code></td></tr>
-		<tr><td><code class="inset">:split</code></td><td>新建一个水平窗口并显示当前文件</td><td><code class="inset">ctrl+Ws</code></td></tr>
-		<tr><td><code class="inset">:vsplit</code></td><td>新建一个垂直窗口并显示当前文件</td><td><code class="inset">ctrl+Wv</code></td></tr>
+		<caption>新建窗口命令</caption>
+		<tr><td><code class="inset">:new</code></td><td>新建水平窗口并开始编辑新文件</td><td><code class="inset">ctrl+Wn</code></td></tr>
+		<tr><td><code class="inset">:vnew</code></td><td>新建垂直窗口并开始编辑新文件</td><td></td></tr>
+		<tr><td><code class="inset">:split</code></td><td>新建水平窗口并显示当前文件</td><td><code class="inset">ctrl+Ws</code></td></tr>
+		<tr><td><code class="inset">:vsplit</code></td><td>新建垂直窗口并显示当前文件</td><td><code class="inset">ctrl+Wv</code></td></tr>
+		<tr><td><code class="inset">:sview</code></td><td>新建窗口并只读打开文件</td><td></td></tr>
 	</table>
 	<p><a href="http://www.flickr.com/photos/yyq123/3748996872/" title="Windows_Split by yyq123, on Flickr"><img src="http://farm3.static.flickr.com/2543/3748996872_4dfeb7c615.jpg" width="500" height="372" alt="Windows_Split" /></a></p>
 
@@ -49,7 +50,7 @@
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">移动窗口</p>
 	<p>命令<kbd>ctrl+Wx</kbd>，可以将当前窗口与下一窗口进行位置对换。如果当前窗口在底部，则没有下一个窗口，这时命令将当前窗口与上一个窗口进行位置对换。</p>
 	<p><a href="https://www.flickr.com/photos/yyq123/42574781641/in/dateposted/" title="Wx"><img src="https://farm2.staticflickr.com/1740/42574781641_9974259819.jpg" width="500" height="198" alt="Wx" /></a></p>
-	<p>命令<kbd>ctrl+Wr</kbd>命令可以使得窗口向右或向下进行循环移动。这个命令可以带一个数字作为参数，指明向下循环移动所执行的次数。与其相类似的<kbd>ctrl+WR</kbd>命令，可以使得窗口向上循环移动。</p>
+	<p>命令<kbd>ctrl+Wr</kbd>命令可以使得窗口向右或向下进行循环移动。这个命令可以带一个数字作为参数，指明向下循环移动所执行的次数。与其相类似的<kbd>ctrl+WR</kbd>命令，可以使得窗口向左或向上循环移动。</p>
 	<p>以上命令在调换窗口位置时，会维持现有的窗口尺寸和布局；而以下命令，则会同时改变窗口的位置、尺寸和布局：</p>
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>移动窗口命令</caption>
@@ -62,7 +63,7 @@
 		<tr><td><code class="inset">ctrl+WJ</code></td><td>将当前窗口放到最底部，并使用最大屏幕宽度</td></tr>
 		<tr><td><code class="inset">ctrl+WH</code></td><td>将当前窗口放到最左侧，并使用最大屏幕高度</td></tr>
 		<tr><td><code class="inset">ctrl+WL</code></td><td>将当前窗口放到最右侧，并使用最大屏幕高度</td></tr>
-		<tr><td><code class="inset">ctrl+WT</code></td><td>将当前窗口放到新的<a href="http://bit.ly/vim-tabs" title="Tabs">标签页</a></td></tr>
+		<tr><td><code class="inset">ctrl+WT</code></td><td>将当前窗口放到新的<a href="http://yyq123.github.io/learn-vim/learn-vi-15-Tabs.html" title="Tabs">标签页</a></td></tr>
 	</table>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">控制窗口尺寸</p>
@@ -73,7 +74,6 @@
 	<p>使用<kbd>ctrl+W&gt;</kbd>命令增大窗口宽带，默认增量为1列；<kbd>ctrl+W&lt;</kbd>命令减小窗口宽度，默认值为1列。命令<kbd>countCtrl+W|</kbd>可以使得当前窗口变为count指定的宽度；如果没有指定count，则将当前窗口变得尽可能最大。</p>
 	<p>使用<code class="inset">:vertical resize</code>命令，可以精确控制窗口宽度。例如：<code class="inset">:vertical resize +3</code>将增大窗口宽度3列；<code class="inset">:vertical resize -3</code>将减少窗口宽度3列；<code class="inset">:vertical resize 3</code>则将精确指定窗口宽度为3列。</p>
 	<p>当然，你也可以用鼠标上下拖动状态行来改变窗口的高度。</p>
-	<p>可以使用<code class="inset">:help CTRL-W</code>命令，查看关于窗口操作的帮助信息。</p>
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>控制窗口尺寸命令</caption>
 		<tr><td><code class="inset">:resize +n</code></td><td>增大窗口高度</td><td><code class="inset">ctrl+W+</code></td></tr>
@@ -93,8 +93,10 @@
 		<tr><td><code class="inset">:close</code></td><td>关闭当前窗口</td><td><code class="inset">ctrl+Wc</code></tr>
 		<tr><td><code class="inset">:only</code></td><td>关闭其它所有窗口</td><td><code class="inset">Ctrl+Wo</code></td></tr>
 	</table>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">帮助信息</p>
+	<p>使用<code class="inset">:help CTRL-W</code>命令，可以查看关于窗口操作的帮助信息。</p>
 
-<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="()" href="">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="()" href="">下一篇</a>&gt;</span></p>
+<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="缓冲区（Buffer）" href="http://yyq123.github.io/learn-vim/learn-vi-13-MultiBuffers.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="标签页（Tabs）" href="http://yyq123.github.io/learn-vim/learn-vi-15-Tabs.html">下一篇</a>&gt;</span></p>
 </body>
 </html>
 
