@@ -8,24 +8,28 @@
 	<title>VIM学习笔记 缓冲区 (Buffers)</title>
 </head>
 <body>
-	<p>缓冲区（Buffer）是一块内存区域，用于存储着正在编辑的文件。在保存缓冲区并退出时，内容也随之被写回原始文件。可以使用<code class="inset">:help buffers</code>命令，查看关于缓冲区的帮助信息。</p>
+	<p>缓冲区（Buffer）是一块内存区域，用于存储着正在编辑的文件。在保存缓冲区并退出时，内容也随之被写回原始文件。</p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">增加缓冲区</p>
 	<p>使用<code class="inset">:badd filename</code>命令将新增一个缓冲区。指定的文件会被加载到缓冲区列表中，但是对这个文件的编辑过程只有切换到那个缓冲区时才会开始。在命令中，还可以指明为这个缓冲区打开窗口时，光标所处的位置：</p>
 	<p style="text-indent:2em"><code class="inset">:badd +linenum filename</code></p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">列示缓冲区</p>
-	<p><code class="inset">:buffers</code>和<code class="inset">:ls</code>命令将会列出当前编辑中的所有缓冲区状态。在列表中，第一个数字是缓冲区的标号；第二个标记是缓冲区当前的状态；紧接着是与缓冲区所关联的文件名。缓冲区状态包含以下几种：</p>
-	<p>
-	- （Inactive buffer，非活动的缓冲区，没有正在被编辑）<br />
-	a （Active buffer，激活缓冲区，当前显示在屏幕上）<br />
-	h （Hidden buffer，隐藏的缓冲区，正在被编辑但没有显示在屏幕上）<br />
-	% （current buffer，当前的缓冲区）<br />
-	# （Alternate buffeer，交换缓冲区）<br />
-	= （Readonly buffer，只读缓冲区）<br />
-	+ （Modified buffer，已经更改的缓冲区）
-	</p>
+	<p><code class="inset">:buffers</code>，<code class="inset">:files</code>和<code class="inset">:ls</code>命令将会列出当前编辑中的所有缓冲区信息。在列表中，第一个数字是缓冲区的标号；第二个标记是缓冲区当前的状态；紧接着是与缓冲区所关联的文件名。</p>
 	<p><a href="https://www.flickr.com/photos/yyq123/3751683098/" title="Buffers"><img src="https://c1.staticflickr.com/3/2616/3751683098_ecddf81430.jpg" width="385" height="103" alt="Buffers" /></a></p>
+	<p>缓冲区状态包含以下几种：</p>
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<tr><td><code class="inset">-</code></td><td>Readonly buffer，禁用了modifiable选项，只读缓冲区</td></tr>
+		<tr><td><code class="inset">=</code></td><td>Readonly buffer，只读缓冲区</td></tr>
+		<tr><td><code class="inset">a</code></td><td>Active buffer，活动缓冲区，当前显示在屏幕上</td></tr>
+		<tr><td><code class="inset">h</code></td><td>Hidden buffer，隐藏缓冲区，已载入但没有显示在屏幕上</td></tr>
+		<tr><td><code class="inset">+</code></td><td>Modified buffer，已经更改的缓冲区</td></tr>
+		<tr><td><code class="inset">x</code></td><td>Error buffer，读入时报错的缓冲区</td></tr>
+		<tr><td><code class="inset">%</code></td><td>Current buffer，当前缓冲区</td></tr>
+		<tr><td><code class="inset">#</code></td><td>Alternate buffeer，交换缓冲区</td></tr>
+		<tr><td><code class="inset">u</code></td><td>Unlisted buffer，只有在列示命令中使用!修饰符才能显示的缓冲区</td></tr>
+	</table>
+	<p><a href="https://www.flickr.com/photos/yyq123/28741113598/in/dateposted/" title="Buffers_u"><img src="https://farm2.staticflickr.com/1739/28741113598_767eda3c6a.jpg" width="500" height="319" alt="Buffers_u"></a></p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">选择缓冲区</p>
 	<p>可以使用number参数，选择指定标号的缓冲区：</p>
@@ -47,6 +51,9 @@
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">卸载缓冲区</p>
 	<p>命令<code class="inset">:bunload</code>会从内存中卸载一个缓冲区，所有为这个缓冲区打开的窗口也会关闭。但是这个文件名仍然会存在于缓冲区列表中。如果缓冲区被改动过，那么该命令将失败，除非使用!选项，但是这样所有的改动都会丢失。</p>
 
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">帮助信息</p>
+	<p>可以使用<code class="inset">:help buffers</code>命令，查看关于缓冲区的帮助信息。</p>
+	
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
 		<tr><td><code class="inset">:buffers</code></td><td>列示缓冲区状态</td></tr>
