@@ -11,11 +11,13 @@
 	<p>缓冲区（Buffer）是一块内存区域，用于存储着正在编辑的文件。在保存缓冲区并退出时，内容也随之被写回原始文件。</p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">增加缓冲区</p>
+	<p>在启动vi时，可以指定多个文件做为参数，例如<code class="inset">vi file1 file2 file3</code>，参数中的所有文件都会被载入缓冲区，但vi只会在窗口中显示第一个文件。你可以使用以下命令，为每一个缓冲区打开一个窗口。</p>
+	<p style="text-indent:2em"><code class="inset">:ball</code></p>
 	<p>使用<code class="inset">:badd filename</code>命令将新增一个缓冲区。指定的文件会被加载到缓冲区列表中，但是对这个文件的编辑过程只有切换到那个缓冲区时才会开始。在命令中，还可以指明为这个缓冲区打开窗口时，光标所处的位置：</p>
 	<p style="text-indent:2em"><code class="inset">:badd +linenum filename</code></p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">列示缓冲区</p>
-	<p><code class="inset">:buffers</code>，<code class="inset">:files</code>和<code class="inset">:ls</code>命令将会列出当前编辑中的所有缓冲区信息。在列表中，第一个数字是缓冲区的标号；第二个标记是缓冲区当前的状态；紧接着是与缓冲区所关联的文件名。</p>
+	<p><code class="inset">:buffers</code>，<code class="inset">:files</code>和<code class="inset">:ls</code>命令将会列出当前编辑中的（除“u”类型之外）缓冲区信息。在列表中，第一个数字是缓冲区的标号；第二个标记是缓冲区当前的状态；紧接着是与缓冲区所关联的文件名。</p>
 	<p><a href="https://www.flickr.com/photos/yyq123/3751683098/" title="Buffers"><img src="https://c1.staticflickr.com/3/2616/3751683098_ecddf81430.jpg" width="385" height="103" alt="Buffers" /></a></p>
 	<p>缓冲区状态包含以下几种：</p>
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
@@ -29,7 +31,8 @@
 		<tr><td><code class="inset">#</code></td><td>Alternate buffeer，交换缓冲区</td></tr>
 		<tr><td><code class="inset">u</code></td><td>Unlisted buffer，只有在列示命令中使用!修饰符才能显示的缓冲区</td></tr>
 	</table>
-	<p><a href="https://www.flickr.com/photos/yyq123/28741113598/in/dateposted/" title="Buffers_u"><img src="https://farm2.staticflickr.com/1739/28741113598_767eda3c6a.jpg" width="500" height="319" alt="Buffers_u"></a></p>
+	<p>使用&ldquo;!&rdquo;修饰符的<code class="inset">:buffers!</code>，<code class="inset">:files!</code>和<code class="inset">:ls!</code>命令将会列出包括&ldquo;u&rdquo;类型在内的所有缓冲区信息。如下图所示，窗口中使用<code class="inset">:help buffers</code>命令查询帮助信息，而<code class="inset">:buffers!</code>命令则列示了其打开windows.txt文件的“u”类型缓冲区。</p>
+	<p><a href="https://www.flickr.com/photos/yyq123/28741113598/in/dateposted/" title="Buffers_u"><img src="https://farm2.staticflickr.com/1739/28741113598_767eda3c6a.jpg" width="500" height="319" alt="Buffers_u" /></a></p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">选择缓冲区</p>
 	<p>可以使用number参数，选择指定标号的缓冲区：</p>
@@ -38,25 +41,27 @@
 	<p style="text-indent:2em"><code class="inset">:buffer filename</code></p>
 	<p>我们可以用<code class="inset">:sbuffer number</code>命令，来分割当前窗口开始编辑一个缓冲区。如果指明了数字，那么当前窗口就会显示数字所标记的缓冲区中的内容；如果没有指明数字，那么就会显示当前缓冲区的内容。当然，这个命令也可以用文件名来做为参数：</p>
 	<p style="text-indent:2em"><code class="inset">sbuffer filename</code></p>
-	<p>使用<code class="inset">:ball</code>命令可以为每一个缓冲区打开一个窗口。</p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">切换缓冲区</p>
 	<p><code class="inset">:bnext</code>到下一个缓冲区；<code class="inset">:bprevious</code>或<code class="inset">:bNext</code>到前一个缓冲区；<code class="inset">:blast</code>到最后一个缓冲区；<code class="inset">:bfirst</code>到第一个缓冲区。</p>
 	<p>根据默认设置，在切换到另一缓冲区之前，Vim将提示你保存当前缓冲区。你也可以使用<code class="inset">:set hidden</code>命令，允许在未保存的情况下切换缓冲区。</p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">删除缓冲区</p>
-	<p>可以使用<code class="inset">:bdelete filename</code>、<code class="inset">:bdelete 3</code>或<code class="inset">:3 bdelete</code>命令来删除一个缓冲区。也可以用<code class="inset">:1,3 bdelete</code>命令来删除指定范围的缓冲区。</p>
-	<p>如果缓冲区被改动过，那么该命令将失败，除非使用!选项。如果使用了带!选项的<code class="inset">:bdelete! filename</code>命令，那么在缓冲区中的所有改动都会被放弃。</p>
+	<p>可以使用<code class="inset">:bdelete filename</code>，<code class="inset">:bdelete 3</code>或<code class="inset">:3 bdelete</code>命令来删除一个缓冲区。也可以使用<code class="inset">:1,3 bdelete</code>命令来删除指定范围的缓冲区。所删除缓冲区引用的文件名，也将会随之从缓冲区列表中删除。</p>
+	<p>如果缓冲区被改动过，那么该命令将失败。如果使用了!选项的<code class="inset">:bdelete! filename</code>命令，强制删除缓冲区，那么在缓冲区中的所有改动都会被放弃。</p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">卸载缓冲区</p>
-	<p>命令<code class="inset">:bunload</code>会从内存中卸载一个缓冲区，所有为这个缓冲区打开的窗口也会关闭。但是这个文件名仍然会存在于缓冲区列表中。如果缓冲区被改动过，那么该命令将失败，除非使用!选项，但是这样所有的改动都会丢失。</p>
+	<p>命令<code class="inset">:bunload</code>会从内存中卸载一个缓冲区，所有为这个缓冲区打开的窗口也会关闭。但是这个文件名仍然会存在于缓冲区列表中。如果缓冲区被改动过，那么该命令将失败。你也可以使用!选项的<code class="inset">:bunload!</code>命令，强制卸载缓冲区，但所有的改动也将会丢失。</p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">帮助信息</p>
 	<p>可以使用<code class="inset">:help buffers</code>命令，查看关于缓冲区的帮助信息。</p>
 	
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
-		<tr><td><code class="inset">:buffers</code></td><td>列示缓冲区状态</td></tr>
+		<tr><td><code class="inset">:badd</code></td><td>增加缓冲区</td></tr>
+		<tr><td><code class="inset">:ls</code></td><td rowspan="3">列示缓冲区状态</td></tr>
+		<tr><td><code class="inset">:files</code></td></tr>
+		<tr><td><code class="inset">:buffers</code></td></tr>
 		<tr><td><code class="inset">:buffer</code></td><td>编辑指定缓冲区</td></tr>
 		<tr><td><code class="inset">:ball</code></td><td>编辑所有缓冲区</td></tr>
 		<tr><td><code class="inset">:bnext</code></td><td>到下一缓冲区</td></tr>
@@ -64,11 +69,10 @@
 		<tr><td><code class="inset">:blast</code></td><td>到最后一个缓冲区</td></tr>
 		<tr><td><code class="inset">:bfirst</code></td><td>到第一个缓冲区</td></tr>
 		<tr><td><code class="inset">:bmodified</code></td><td>到修改过的缓冲区</td></tr>
-		<tr><td><code class="inset">:badd</code></td><td>增加缓冲区</td></tr>
 		<tr><td><code class="inset">:bdelete</code></td><td>删除缓冲区</td></tr>
 		<tr><td><code class="inset">:bunload</code></td><td>卸载缓冲区</td></tr>
 	</table>
-		<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="参数(Arguments)" href="http://yyq123.blogspot.com/2009/08/vim-arguments.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="窗口(Window)" href="http://yyq123.blogspot.com/2009/08/vim-window.html">下一篇</a>&gt;</span></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="参数(Arguments)" href="http://yyq123.blogspot.com/2009/08/vim-arguments.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="窗口(Window)" href="http://yyq123.blogspot.com/2009/08/vim-window.html">下一篇</a>&gt;</span></p>
 </body>
 </html>
 
