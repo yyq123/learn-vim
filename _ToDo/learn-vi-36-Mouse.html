@@ -8,35 +8,22 @@
 	<title>VIM学习笔记 鼠标(Mouse)</title>
 </head>
 <body>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">启用鼠标</p>
+	<p></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">鼠标选项</p>
 	<p>在Windows和X Window这两种系统中，使用鼠标的方式是不同的。我们可以定制Vim编辑器，以启用不同的鼠标行为。命令<code class="inset">:behave xterm</code>设置使用X Window风格的鼠标行为。而命令<code class="inset">:behave mswin</code>则启用Windows风格的鼠标行为。</p>
-	<p>为了控制鼠标的行为，命令<code class="inset">:behave</code>有以下这些选项：</p>
 	<table summary="Options of :behave" border="1" rules="all" cellspacing="0" cellpadding="2">
-		<tr><th>Option</th><th>:behave mswin</th><th>:behave xterm</th></tr>
-		<tr><td>'selectmode'</td><td>mouse,key</td><td>&nbsp;</td></tr>
-		<tr><td>'mousemodel'</td><td>popup</td><td>extend</td></tr>
-		<tr><td>'keymodel'</td><td>startsel,stopsel</td><td>&nbsp;</td></tr>
-		<tr><td>'selection'</td><td>exclusive</td><td>inclusive</td></tr>
+		<tr><th></th><th>xterm的鼠标行为</th><th>Windows的鼠标行为</th></tr>
+		<tr><td><strong>左键</strong></td><td>移动光标</td><td>移动光标</td></tr>
+		<tr><td><strong>拉动左键</strong></td><td>在可视化模式下选择文本</td><td>在选择模式下选中文本</td></tr>
+		<tr><td><strong>右键</strong></td><td>选中光标到右键点击处的文本</td><td>显示弹出菜单</td></tr>
+		<tr><td><strong>中键</strong></td><td>在光标处粘贴选中的文本</td><td>将系统剪切板中的文本粘贴到文件</td></tr>
 	</table>
-	<p>xterm的鼠标行为主要有以下一些：</p>
-	<table>
-		<tr><td>左键：</td><td>移动光标</td></tr>
-		<tr><td>拉动左键：</td><td>在可视化模式下选择文本</td></tr>
-		<tr><td>右键：</td><td>选中光标到右键点击处的文本</td></tr>
-		<tr><td>中键：</td><td>在光标处粘贴选中的文本</td></tr>
-	</table>
-	<p>Windows的鼠标行为主要有以下一些：</p>
-	<table>
-		<tr><td>左键：</td><td>移动光标</td></tr>
-		<tr><td>拉动左键：</td><td>在选择模式下选中文本</td></tr>
-		<tr><td>右键：</td><td>显示弹出菜单</td></tr>
-		<tr><td>中键：</td><td>将系统剪切板中的文本粘贴到文件</td></tr>
-	</table>
-	<p>选项mousetime可以定义双击之间的最大时间间隔。这个命令的形式如下:</p>
+
+	<p>使用以下命令，可以定义双击之间的最大时间间隔：</p>
 	<p style="text-indent:2em"><code class="inset">:set mousetime=time</code></p>
-	<p>这里的时间以毫秒为单位，在默认情况下为半秒（500ms）。</p>
-	<p>在图形界面下编辑时，我们要同时处理文本光标和鼠标光标。如果认为鼠标光标的存在会打扰你的工作，可以设置在没有鼠标时隐藏鼠标光标。</p>
-	<p style="text-indent:2em"><code class="inset">:set mousehide</code></p>
-	<p>这样设置后，当我们键盘输入时鼠标就会隐藏，而移动光标时鼠标就会再出现。</p>
+	<p>其中的时间以毫秒为单位，默认情况下为半秒（500ms）。</p>
 	<p>使用以下命令，可以设置鼠标的模式：</p>
 	<p style="text-indent:2em"><code class="inset">:set mousemodel=mode</code></p>
 	<p>有三种可能的模式:extend,popup,popup_setpos
@@ -50,13 +37,17 @@ popup_setpos模式与popup模式相类似,所不同的只是当我们按下鼠�
 	<p style="text-indent:2em"><code class="inset">:set clipboard=unnamed</code></p>
 	<p>如果设置如下选项，那么可视模式下选择的文本就会被放到系统剪切板中：</p>
 	<p style="text-indent:2em"><code class="inset">:set clipboard=autoselect</code></p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">隐藏鼠标</p>
+	<p>在图形界面下编辑时，如果认为鼠标光标的存在会打扰你的工作，可以设置隐藏鼠标光标。</p>
+	<p style="text-indent:2em"><code class="inset">:set mousehide</code></p>
+	<p>设置之后，当键盘输入时鼠标光标就会隐藏，而移动光标时鼠标光标就会再度出现。</p>
 
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">帮助信息</p>
+	<p>可以使用以下命令，查看关于鼠标使用的更多帮助信息：</p>
+	<p style="text-indent:2em"><code class="inset">:help mouse</code></p>
+	<p style="text-indent:2em"><code class="inset">:help mouse-using</code></p>
+	<p style="text-indent:2em"><code class="inset">:help scroll-mousewheel</code></p>
 
-进一步的信息可参看
-:help mouse
-:help mouse-using
-:help scroll-mousewheel
-。
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
 		<tr><td><code class="inset">:behave</code></td><td>控制鼠标的行为</td></tr>
@@ -74,6 +65,7 @@ popup_setpos模式与popup模式相类似,所不同的只是当我们按下鼠�
 		<tr><td><code class="inset"></code></td><td></td></tr>
 		<tr><td><code class="inset"></code></td><td></td></tr>
 	</table>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="参数(Arguments)" href="http://yyq123.blogspot.com/2009/08/vim-arguments.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="窗口(Window)" href="http://yyq123.blogspot.com/2009/08/vim-window.html">下一篇</a>&gt;</span></p>
 	
 </body>
 </html>
