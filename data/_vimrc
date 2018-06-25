@@ -118,6 +118,9 @@ hi User2 guifg=red
 hi User3 guifg=white
 "hi User5 guibg=#C2BFA5 guifg=#666666 
 
+"Mouse
+set mousehide
+
 " font
 set guifont=Courier\ New:h11:cANSI
 "set guifontwide=Fixedsys:h11

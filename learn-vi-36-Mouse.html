@@ -8,8 +8,11 @@
 	<title>VIM学习笔记 鼠标(Mouse)</title>
 </head>
 <body>
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">启用鼠标</p>
-	<p></p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">启用/禁用鼠标</p>
+	<p>使用以下命令可以启用鼠标（默认选项）：</p>
+	<p style="text-indent:2em"><code class="inset">:set mouse=a</code></p>
+	<p>使用以下命令可以禁用鼠标：</p>
+	<p style="text-indent:2em"><code class="inset">:set mouse=""</code></p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">鼠标选项</p>
 	<p>在Windows和X Window这两种系统中，使用鼠标的方式是不同的。我们可以定制Vim编辑器，以启用不同的鼠标行为。命令<code class="inset">:behave xterm</code>设置使用X Window风格的鼠标行为。而命令<code class="inset">:behave mswin</code>则启用Windows风格的鼠标行为。</p>
@@ -24,14 +27,9 @@
 	<p>使用以下命令，可以定义双击之间的最大时间间隔：</p>
 	<p style="text-indent:2em"><code class="inset">:set mousetime=time</code></p>
 	<p>其中的时间以毫秒为单位，默认情况下为半秒（500ms）。</p>
-	<p>使用以下命令，可以设置鼠标的模式：</p>
+	<p>使用以下命令，可以设置鼠标的模式为extend,popup,popup_setpos其中之一：</p>
 	<p style="text-indent:2em"><code class="inset">:set mousemodel=mode</code></p>
-	<p>有三种可能的模式:extend,popup,popup_setpos
-
-在所有的模式中,鼠标左键移动光标,拉动左键可以选择文本.
-在extend模式中,右键可以扩展文本而右键可以粘贴文本.
-在popup模式中,右键可以显示弹出菜单.
-popup_setpos模式与popup模式相类似,所不同的只是当我们按下鼠标右键时文本的光标会移动到鼠标点击处,然后显示弹出菜单.
+	<p>在所有模式之下，鼠标左键可以移动光标，拉动左键可以选择文本。在<em>extend</em>模式中，可以使用左键点中起始位置，然后按住<kbd>Alt</kbd>键的同时右击结束位置，将选中两点定义的可视化块（visual block）。在<em>popup</em>模式中，右键可以显示弹出菜单。而<em>popup_setpos</em>模式与popup模式相类似，所不同的只是当按下鼠标右键时，光标会移动到鼠标点击处，然后显示弹出菜单。</p>
 
 	<p>通过clipboard选项，可以控制Vim如何处理由鼠标选择的文本。使用以下设置，可以将所有鼠标选择的文本放在未命名寄存器中和剪切板寄存器中，这也意味着我们可以将文本粘贴到其他程序中。</p>
 	<p style="text-indent:2em"><code class="inset">:set clipboard=unnamed</code></p>
@@ -50,22 +48,14 @@ popup_setpos模式与popup模式相类似,所不同的只是当我们按下鼠�
 
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
+		<tr><td><code class="inset">:set mouse=a</code></td><td>启用鼠标</td></tr>
+		<tr><td><code class="inset">:set mouse=""</code></td><td>禁用鼠标</td></tr>
 		<tr><td><code class="inset">:behave</code></td><td>控制鼠标的行为</td></tr>
-		<tr><td><code class="inset">:set lines?</code></td><td>以显示当前窗口的行数</td></tr>
-		<tr><td><code class="inset">:set lines=lines</code></td><td>设置行数</td></tr>
-		<tr><td><code class="inset">:set columns=columns</code></td><td>设置列数</td></tr>
-		<tr><td><code class="inset">:set guioptions+=b</code></td><td>显示水平滚动条</td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset">:set mousetime</code></td><td>设置双击时间间隔</td></tr>
+		<tr><td><code class="inset">:set mousemodel</code></td><td>设置鼠标模式</td></tr>
+		<tr><td><code class="inset">:set mousehide</code></td><td>隐藏鼠标</td></tr>
 	</table>
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="参数(Arguments)" href="http://yyq123.blogspot.com/2009/08/vim-arguments.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="窗口(Window)" href="http://yyq123.blogspot.com/2009/08/vim-window.html">下一篇</a>&gt;</span></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="光标(Cursor)" href="http://yyq123.github.io/learn-vim/learn-vi-35-Cursor.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="字体(Font)" href="http://yyq123.github.io/learn-vim/learn-vi-37-Font.html">下一篇</a>&gt;</span></p>
 	
 </body>
 </html>
