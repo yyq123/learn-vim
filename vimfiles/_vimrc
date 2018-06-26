@@ -81,11 +81,24 @@ set cursorline cursorcolumn
 highlight Cursor guifg=white guibg=#1874cd
 highlight iCursor guifg=white guibg=#1874cd
 
+"Mouse
+set mousehide
+
 " set the menu & the message to English
 set langmenu=en_US
 let $LANG = 'en_US'
 source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
+
+"" Contents of the Menu {{{
+" Menu-Tabs
+15amenu <silent>Tabs.New :tabnew<cr>
+amenu Tabs.-SEPT1- :
+amenu <silent>Tabs.&Next :tabnext<cr>
+amenu <silent>Tabs.&Previous :tabprevious<cr>
+amenu Tabs.-SEPT2- :
+amenu Tabs.&Close :confirm tabclose<cr>
+"" }}}
 
 "" Contents of the ToolBar {{{
 " Do not install the ToolBar if it is already done.

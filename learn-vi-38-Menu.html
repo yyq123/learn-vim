@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 菜单(Menu)</title>
+</head>
+<body>
+	
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">启用/禁用菜单</p>
+	<p>使用以下命令，可以显示菜单栏：</p>
+	<p style="text-indent:2em"><code class="inset">:set guioptions+=m</code></p>
+	<p>使用以下命令，可以隐藏菜单栏：</p>
+	<p style="text-indent:2em"><code class="inset">:set guioptions-=m</code></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">查看菜单映射</p>
+	<p>本质上，菜单项都是由命令定义的行为。使用以下命令，可以列出所有菜单定义的映射：</p>
+	<p style="text-indent:2em"><code class="inset">:menu</code></p>
+	<p>如果只需要显示特定的菜单（注意区分大小写），那么可以使用以下命令：</p>
+	<p style="text-indent:2em"><code class="inset">:menu File</code></p>
+	<p><a href="https://www.flickr.com/photos/yyq123/43014447591/in/dateposted/" title="Menu_File"><img src="https://farm2.staticflickr.com/1808/43014447591_c9c46d8f4c.jpg" width="500" height="320" alt="Menu_File" /></a></p>
+	<p>命令执行结果的每一行首个字母指明了这个命令的模式。</p>
+	<p>而以下命令，则可以列出指定菜单项的内容：</p>
+	<p style="text-indent:2em"><code class="inset">:menu File.Save</code></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">定义新菜单</p>
+	<p>Vim编辑器所使用的菜单是由文件<code class="inset">$VIMRUNTIME/menu.vim</code>定义的。</p>
+	<p>可以使用以下:menu命令，定义新的菜单内容：</p>
+	<p style="text-indent:2em"><code class="inset">:menu [priority] menu-item command-string</code></p>
+	<p><strong>menu-item</strong>，描述了放置菜单项的路径，比如<em>File.Save</em>表明Save菜单在File菜单下；还可以依次创建子菜单，例如<em>Tabs.Navigation.Next</em>。菜单定义命令示例如下：</p>
+	<p style="text-indent:2em"><code class="inset">:menu 10.340 &amp;File.&amp;Save:w        :confirm w</code></p>
+	<p><strong>priority</strong>，为数字优先级，用于确定放置菜单项的位置。第一个数字<em>10</em>表明在菜单栏上的位置。数字越小越靠近左侧，而数字越大则越靠近右侧；第二个数字<em>340</em>则决定了下拉菜单的位置。数字越小越靠近上部，而数字越大则越靠近下部。如果你在新建菜单命令中没有指定优先级数字，那么默认值为<em>500</em>。你可以使用<code class="inset">:help menu-priority</code>帮助命令，查看Vim内置菜单的位置排列。</p>
+	<p><strong>&amp;</strong>，用于指定快捷键，例如<em>&amp;File.&amp;Save</em>可以表明用<kbd>Alt-F</kbd>键来选择File菜单，而用<kbd>S</kbd>键来选择保存菜单。</p>
+	<p>使用以下命令，将新建<em>Tabs.Next</em>菜单：</p>
+	<p style="text-indent:2em"><code class="inset">:menu &lt;silent&gt;Tabs.Next &lt;Esc&gt;:tabnext&lt;cr&gt;</code></p>
+	<p><strong>&lt;Esc&gt;</strong>，用于进入常规模式；&lt;cr&gt;用于执行命令。</p>
+	<p><strong>&lt;silent&gt;</strong>，将屏蔽命令行的输出。</p>
+	<p><strong>-SEP-</strong>，可以在下拉菜单中新建用于间隔菜单项的虚线。必须是以<em>-</em>开头和结尾的唯一名称；同时必须包含命令，例如以下定义中使用的<strong>:</strong>空命令。</p>
+	<p style="text-indent:2em"><code class="inset">:menu Tabs.-SEP- :</code></p>
+	<p>我们还可以使用以下指定模式的菜单定义命令：</p>
+	<ul style="list-style-type: none;">
+		<li><code class="inset">:menu</code>&nbsp;常规模式, 可视化模式, 操作待决模式</li>
+		<li><code class="inset">:nmenu</code>&nbsp;常规模式(Normal mode)</li>
+		<li><code class="inset">:vmenu</code>&nbsp;可视化模式(Visual mode)</li>
+		<li><code class="inset">:omenu</code>&nbsp;操作待决模式(Operator-pending mode)</li>
+		<li><code class="inset">:imenu</code>&nbsp;插入模式(Insert mode)</li>
+		<li><code class="inset">:cmenu</code>&nbsp;命令行模式(Command-line mode)</li>
+		<li><code class="inset">:amenu</code>&nbsp;所有模式</li>
+	</ul>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">菜单实例</p>
+	<p>如果希望始终显示自己新建的菜单，那么可以在<a title="vimrc" href="http://yyq123.blogspot.com/2012/01/vim-vimrc.html">vimrc</a>文件中增加以下代码。请注意：代码不需要包括冒号（:）。</p>
+	<p><code class="inset"><br />
+15amenu &lt;silent&gt;Tabs.New :tabnew&lt;cr&gt;
+amenu Tabs.-SEPT1- :<br />
+amenu &lt;silent&gt;Tabs.&amp;Next :tabnext&lt;cr&gt;<br />
+amenu &lt;silent&gt;Tabs.&amp;Previous :tabprevious&lt;cr&gt;<br />
+amenu Tabs.-SEPT2- :<br />
+amenu Tabs.&amp;Close :confirm tabclose&lt;cr&gt;<br />
+	</code></p>
+	<p>新建的菜单显示如下：</p>
+	<p><a href="https://www.flickr.com/photos/yyq123/32112022443/in/dateposted/" title="Menu_Tabs"><img src="https://c1.staticflickr.com/3/2231/32112022443_2752463084_o.png" width="149" height="114" alt="Menu_Tabs" /></a></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">移除菜单</p>
+	<p>使用以下命令，可以从菜单中移除指定菜单项：</p>
+	<p style="text-indent:2em"><code class="inset">:[mode]unmenu menu-item</code></p>
+	<p>使用以下命令，则会移除所有菜单：</p>
+	<p style="text-indent:2em"><code class="inset">:aunmenu *</code></p>
+
+
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:set guioptions+=m</code></td><td>显示菜单</td></tr>
+		<tr><td><code class="inset">:set guioptions-=m</code></td><td>隐藏菜单</td></tr>
+		<tr><td><code class="inset">:menu</code></td><td>查看/新建菜单定义</td></tr>
+		<tr><td><code class="inset">:unmenu</code></td><td>移除菜单</td></tr>
+	</table>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="字体(Font)" href="http://yyq123.github.io/learn-vim/learn-vi-37-Font.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="工具栏(Toolbar)" href="http://yyq123.github.io/learn-vim/learn-vi-39-ToolBar.html">下一篇</a>&gt;</span></p>
+</body>
+</html>
