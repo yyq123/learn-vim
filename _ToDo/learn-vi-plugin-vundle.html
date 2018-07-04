@@ -5,17 +5,25 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记  ()</title>
+	<title>VIM学习笔记 Vundle()</title>
 </head>
 <body>
 	<p><a href="https://github.com/gmarik/vundle">Vundle</a>是一个Vim插件管理器，用于方便地安装、更新和卸载插件。</p>
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">配置Vundle</p>
+		<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">在Mac中配置Vundle</p>
+	<ol>
+		<li>安装<a href="https://desktop.github.com">GitHub for macOS</a>；</li>
+		<li>使用以下命令，将Vundle安装到指定目录：<br /><code class="inset">git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim</code></li>
+		<li>安装后目录结构如下：<br /><a href="https://www.flickr.com/photos/yyq123/42291411725/in/dateposted/" title="plugin_Vundle_Directory_Mac"><img src="https://farm2.staticflickr.com/1762/42291411725_d72755a3bf.jpg" width="500" height="182" alt="plugin_Vundle_Directory_Mac" /></a></li>
+		<li>将<a href="http://yyq123.blogspot.com/2012/01/vim-vimrc.html">vimrc</a>配置文件中的<em>"set the runtime path to include Vundle and initialize</em>部分，更新如下：<br /><code class="inset">set rtp+=$VIM/vimfiles/bundle/Vundle.vim/</code><br /><code class="inset">call vundle#begin('$VIM/vimfiles/bundle/')</code></li>
+	</ol>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">在Windows中配置Vundle</p>
 	<ol>
 		<li>安装<a href="https://git-for-windows.github.io/">Git for Windows</a>；</li>
 		<li>配置Path环境变量；<br /><a href="https://www.flickr.com/photos/yyq123/32504647053/in/dateposted/" title="git_setup_UserVar"><img src="https://c2.staticflickr.com/4/3733/32504647053_d91a9096ab_o.png" width="493" height="109" alt="git_setup_UserVar" /></a></li>
 		<li>在Windows命令提示符下执行<code class="inset">git --version</code>命令，如果Git安装成功，那么将显示以下信息：<br /><a href="https://www.flickr.com/photos/yyq123/32494065484/in/dateposted/" title="git_Version"><img src="https://c1.staticflickr.com/4/3888/32494065484_0f670433b1.jpg" width="500" height="135" alt="git_Version" /></a></li>
 		<li>使用以下命令，将Vundle安装到指定目录：<br /><code class="inset">git clone https://github.com/VundleVim/Vundle.vim.git %USERPROFILE%/vimfiles/bundle/Vundle.vim</code></li>
-		<li>安装后目录机构如下：<br /><a href="https://www.flickr.com/photos/yyq123/33181370622/in/dateposted/" title="plugin_Vundle_Directory"><img src="https://c2.staticflickr.com/4/3881/33181370622_334911e899_o.png" width="252" height="329" alt="plugin_Vundle_Directory" /></a></li>
+		<li>安装后目录结构如下：<br /><a href="https://www.flickr.com/photos/yyq123/33181370622/in/dateposted/" title="plugin_Vundle_Directory"><img src="https://c2.staticflickr.com/4/3881/33181370622_334911e899_o.png" width="252" height="329" alt="plugin_Vundle_Directory" /></a></li>
 		<li>将<a href="http://yyq123.blogspot.com/2012/01/vim-vimrc.html">vimrc</a>配置文件中的<em>"set the runtime path to include Vundle and initialize</em>部分，更新如下：<br /><code class="inset">set rtp+=$VIM/vimfiles/bundle/Vundle.vim/</code><br /><code class="inset">call vundle#begin('$VIM/vimfiles/bundle/')</code></li>
 	</ol>
 	
@@ -27,23 +35,31 @@
 	<p>如果希望安装新插件，首先找到其在github.com的网址，然后将其追加至<a href="http://yyq123.blogspot.com/2012/01/vim-vimrc.html">vimrc</a>配置文件中的<code class="inset">call vundle#begin()</code>和<code class="inset">call vundle#end()</code>之间，最后执行以下命令：</p>
 	<p style="text-indent:2em"><code class="inset">:PluginInstall</code></p>
 	<p><a href="https://www.flickr.com/photos/yyq123/33333887515/in/dateposted/" title="Vundle_PluginInstall"><img src="https://c1.staticflickr.com/4/3737/33333887515_2d1663fe1e.jpg" width="500" height="155" alt="Vundle_PluginInstall" /></a></p>
+	<p>你也可以指定安装特定的插件：</p>
+	<p style="text-indent:2em"><code class="inset">:PluginInstall yyq123/HTML-Editor</code></p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">卸载插件</p>
 	<p>如果希望卸载插件，请先在<a href="http://yyq123.blogspot.com/2012/01/vim-vimrc.html">vimrc</a>配置文件中注释或者删除对应插件de 配置信息，然后再执行以下命令：</p>
 	<p style="text-indent:2em"><code class="inset">:PluginClean</code></p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">更新插件</p>
-	<p>使用以下命令，可以自动批量更新所以已安装的插件：</p>
+	<p>使用以下命令，可以自动批量更新所有已安装的插件：</p>
 	<p style="text-indent:2em"><code class="inset">:PluginUpdate</code></p>
 
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">帮助信息</p>
+	<p>使用以下命令，可以查看更多帮助信息：</p>
+	<p style="text-indent:2em"><code class="inset">:help vundle</code></p>
 	
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">常见问题</p>
-	<p>如果在使用:VundleInstall命令安装插件时，出现&ldquo;git不是内部或外部命令&rdquo;或者&ldquo;缺少某一个lib&rdquo;的报错是，那么请将以下目录添加到Path设置中：</p>
-	<p><code class="inset">
+	<p style="font-weight:bold">1、在Windows系统下，安装插件时，出现&ldquo;git不是内部或外部命令&rdquo;或者&ldquo;缺少某一个lib&rdquo;的报错。</p>
+	<p style="margin-left:1.5em">请将Git安装目录添加到Path设置中（路径名需要根据Git的安装位置作出相应修改）：<code class="inset"><br />
 	C:\Program Files (x86)\Git\libexec\git-core;<br />
 	C:\Program Files (x86)\Git\bin;
 	</code></p>
-	<p>请注意，路径名需要根据你的Git的安装目录作出相应修改。</p>
+	<p style="font-weight:bold">2、在Mac系统下，安装插件时，出现报错信息&ldquo;error: invalid active developer path (/Library/Developer/CommandLineTools), missing xcrun at:/Library/Developer/CommandLineTools/usr/bin/xcrun&rdquo;</p>
+	<p style="margin-left:1.5em">请在终端窗口中，执行以下命令来安装Xcode命令行工具包：<code class="inset"><br />
+	xcode-select --install
+	</code></p>
 
 	<p style="text-indent:2em"><code class="inset"></code></p>
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
@@ -55,7 +71,8 @@
 		<tr><td><code class="inset">:PluginUpdate</code></td><td>更新插件</td></tr>
 	</table>
 
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="()" href="">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="()" href="">下一篇</a>&gt;</span></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
+
 </body>
 </html>
 
