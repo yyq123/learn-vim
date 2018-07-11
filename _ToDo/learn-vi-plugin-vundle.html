@@ -5,7 +5,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记 Vundle()</title>
+	<title>VIM学习笔记 插件管理器(Vundle)</title>
 </head>
 <body>
 	<p><a href="https://github.com/gmarik/vundle">Vundle</a>是一个Vim插件管理器，用于方便地安装、更新和卸载插件。</p>
@@ -14,7 +14,7 @@
 		<li>安装<a href="https://desktop.github.com">GitHub for macOS</a>；</li>
 		<li>使用以下命令，将Vundle安装到指定目录：<br /><code class="inset">git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim</code></li>
 		<li>安装后目录结构如下：<br /><a href="https://www.flickr.com/photos/yyq123/42291411725/in/dateposted/" title="plugin_Vundle_Directory_Mac"><img src="https://farm2.staticflickr.com/1762/42291411725_d72755a3bf.jpg" width="500" height="182" alt="plugin_Vundle_Directory_Mac" /></a></li>
-		<li>将<a href="http://yyq123.blogspot.com/2012/01/vim-vimrc.html">vimrc</a>配置文件中的<em>"set the runtime path to include Vundle and initialize</em>部分，更新如下：<br /><code class="inset">set rtp+=$VIM/vimfiles/bundle/Vundle.vim/</code><br /><code class="inset">call vundle#begin('$VIM/vimfiles/bundle/')</code></li>
+		<li>将<a href="http://yyq123.blogspot.com/2012/01/vim-vimrc.html">vimrc</a>配置文件中的<em>"set the runtime path to include Vundle and initialize</em>部分，更新如下：<br /><code class="inset">set rtp+=~/.vim/bundle/Vundle.vim</code><br /><code class="inset">call vundle#begin()</code></li>
 	</ol>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">在Windows中配置Vundle</p>
@@ -28,18 +28,18 @@
 	</ol>
 	
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">Vundel配置实例</p>
-	<p><script src="https://gist.github.com/yyq123/d855a35f8641bea419cdaeadbb01a495.js"></script></p>
+	<p><script src="https://gist.github.com/yyq123/d855a35f8641bea419cdaeadbb01a495.js" type="text/javascript"></script></p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">安装插件</p>
-	<p>vundle支持源码托管在<a href="https://github.com/">GitHub</a>的插件，你可以在<a href="https://github.com/vim-scripts/">github.com/vim-scripts/</a>上找到<a href="http://www.vim.org/">vim官网</a>里所有插件的有镜像。</p>
-	<p>如果希望安装新插件，首先找到其在github.com的网址，然后将其追加至<a href="http://yyq123.blogspot.com/2012/01/vim-vimrc.html">vimrc</a>配置文件中的<code class="inset">call vundle#begin()</code>和<code class="inset">call vundle#end()</code>之间，最后执行以下命令：</p>
+	<p>vundle支持源码托管在<a href="https://github.com/">GitHub</a>的插件，你可以在<a href="https://github.com/vim-scripts/">github.com/vim-scripts/</a>上找到<a href="http://www.vim.org/">vim官网</a>里所有插件的镜像。</p>
+	<p>如果希望安装新插件，首先找到其在github.com的网址，然后将其追加至<a href="http://yyq123.blogspot.com/2012/01/vim-vimrc.html">vimrc</a>配置文件中的<code class="inset">call vundle#begin()</code>和<code class="inset">call vundle#end()</code>之间，最后执行以下命令安装所有引用的插件：</p>
 	<p style="text-indent:2em"><code class="inset">:PluginInstall</code></p>
 	<p><a href="https://www.flickr.com/photos/yyq123/33333887515/in/dateposted/" title="Vundle_PluginInstall"><img src="https://c1.staticflickr.com/4/3737/33333887515_2d1663fe1e.jpg" width="500" height="155" alt="Vundle_PluginInstall" /></a></p>
-	<p>你也可以指定安装特定的插件：</p>
+	<p>你也可以使用以下命令，指定安装特定的插件：</p>
 	<p style="text-indent:2em"><code class="inset">:PluginInstall yyq123/HTML-Editor</code></p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">卸载插件</p>
-	<p>如果希望卸载插件，请先在<a href="http://yyq123.blogspot.com/2012/01/vim-vimrc.html">vimrc</a>配置文件中注释或者删除对应插件de 配置信息，然后再执行以下命令：</p>
+	<p>如果希望卸载插件，请先在<a href="http://yyq123.blogspot.com/2012/01/vim-vimrc.html">vimrc</a>配置文件中注释或者删除对应插件的 配置信息，然后再执行以下命令：</p>
 	<p style="text-indent:2em"><code class="inset">:PluginClean</code></p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">更新插件</p>
@@ -64,8 +64,6 @@
 	<p style="text-indent:2em"><code class="inset"></code></p>
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
-		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
-		<tr><td><code class="inset">:</code></td></tr>
 		<tr><td><code class="inset">:PluginInstall</code></td><td>安装插件</td></tr>
 		<tr><td><code class="inset">:PluginClean</code></td><td>卸载插件</td></tr>
 		<tr><td><code class="inset">:PluginUpdate</code></td><td>更新插件</td></tr>
