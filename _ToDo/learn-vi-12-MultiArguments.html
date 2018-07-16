@@ -3,33 +3,34 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIMÑ§Ï°±Ê¼Ç ²ÎÊý(Arguments)</title>
+	<title>VIMå­¦ä¹ ç¬”è®° å‚æ•°(Arguments)</title>
 </head>
 <body>
-	<p>Äã¿ÉÒÔÔÚÆô¶¯viÊ±£¬Ö¸¶¨¶à¸öÎÄ¼þ×öÎª²ÎÊý£¬ÀýÈçvi file1 file2 file3£¬ÕâÑù¾Í¿ÉÒÔ±à¼­¶à¸öÎÄ¼þÁË¡£ÔÚÄ¬ÈÏÇé¿öÏÂ£¬vi½«ÏÔÊ¾µÚÒ»¸öÎÄ¼þ¡£</p>
-	<p>ÐèÒªÇÐ»»µ½ÏÂÒ»¸öÎÄ¼þÊ±£¬¿ÉÒÔÊäÈë<code class="inset">:next</code>ÃüÁî£¬Èç¹ûÄãÃ»ÓÐ±£´æµ±Ç°ÎÄ¼þµÄÐÞ¸Ä£¬vi½«¸ø³öÌáÊ¾ÐÅÏ¢£¬²»ÔÊÐíÄãÇÐ»»µ½ÏÂÒ»ÎÄ¼þ¡£ÕâÊ±¿ÉÒÔÊäÈë<code class="inset">:write</code>ºÍ<code class="inset">:next</code>ÃüÁî£¬±£´æ²¢ÇÐ»»µ½µÚ¶þ¸öÎÄ¼þ¡£´ËÃüÁîÒ²¿É¼òÐ´Îª<code class="inset">:wnext</code>¡£Ê¹ÓÃ<code class="inset">:next!</code>ÃüÁîÒ²¿ÉÒÔÇ¿ÖÆÇÐ»»µ½µÚ¶þ¸öÎÄ¼þ,µ±È»ÕâÑùÄãËù×öµÄ¸Ä¶¯Ò²½«»á¶ªÊ§¡£ÎªÁË±ÜÃâÕâÖÖÇé¿ö£¬ÎÒÃÇ¿ÉÒÔÓÃ<code class="inset">:set autowrite</code>ÃüÁî£¬´ò¿ªviµÄ×Ô¶¯±£´æ¹¦ÄÜ¡£ÏàÓ¦µÄ£¬¹Ø±Õ×Ô¶¯±£´æÃüÁîÎª<code class="inset">:set noautowrite</code>¡£</p>
-	<p>Èç¹ûÏëÒª»Øµ½ÉÏÒ»¸öÎÄ¼þ£¬¿ÉÒÔÊ¹ÓÃ<code class="inset">:previous</code>»òÊÇ<code class="inset">:Next</code>ÃüÁî¡£Èç¹ûÄãÒª±£´æµ±Ç°ÎÄ¼þ²¢ÇÐ»»µ½Ç°Ò»ÎÄ¼þ£¬¿ÉÒÔÊ¹ÓÃ<code class="inset">:wprevious</code>»òÊÇ<code class="inset">:wNext</code>ÃüÁî¡£</p>
-	<p>ÎÒÃÇ¿ÉÒÔÓÃ<code class="inset">:first</code>»òÕß<code class="inset">:rewind</code>ÃüÁî¿ìËÙÇÐ»»µ½µÚÒ»¸öÎÄ¼þ£»Ò²¿ÉÒÔÓÃ<code class="inset">:last</code>ÃüÁî¿ìËÙÇÐ»»µ½×îºóÒ»¸öÎÄ¼þ¡£</p>
-	<p>ÈçºÎÈ·¶¨ÎÒÃÇÔÚ±à¼­ÄÄÒ»¸öÎÄ¼þÄØ£¿¿ÉÒÔ×¢ÒâÒ»ÏÂÎÄ¼þµÄ±êÌâ¡£ÄÇÀïÓ¦¸ÃÏÔÊ¾ÀàËÆ"(2 of 3)" µÄ×ÖÑù¡£Õâ±íÊ¾ÄãÕýÔÚ±à¼­Èý¸öÎÄ¼þÖÐµÄµÚ¶þ¸ö¡£ÃüÁî<code class="inset">:args</code>¿ÉÒÔÏÔÊ¾ÎÒÃÇËù´ò¿ªµÄÎÄ¼þ£¬²¢ÓÃÖÐÀ¨ºÅ±êÊ¶³öÕýÔÚ±à¼­µÄÎÄ¼þ¡£</p>
+	<p>åœ¨å¯åŠ¨vimæ—¶ï¼Œå¯ä»¥æŒ‡å®šå¤šä¸ªæ–‡ä»¶åšä¸ºå‚æ•°ï¼Œä¾‹å¦‚ä»¥ä¸‹å‘½ä»¤å°†æ‰“å¼€å¤šä¸ªæ–‡ä»¶ï¼Œå¹¶æ˜¾ç¤ºç¬¬ä¸€ä¸ªæ–‡ä»¶ã€‚</p>
+	<p style="text-indent:2em"><code class="inset">vim file1 file2 file3</code></p>
+	<p>éœ€è¦åˆ‡æ¢åˆ°ä¸‹ä¸€ä¸ªæ–‡ä»¶æ—¶ï¼Œå¯ä»¥è¾“å…¥<code class="inset">:next</code>å‘½ä»¤ï¼Œå¦‚æžœä½ æ²¡æœ‰ä¿å­˜å½“å‰æ–‡ä»¶çš„ä¿®æ”¹ï¼Œviå°†ç»™å‡ºæç¤ºä¿¡æ¯ï¼Œä¸å…è®¸ä½ åˆ‡æ¢åˆ°ä¸‹ä¸€æ–‡ä»¶ã€‚è¿™æ—¶å¯ä»¥è¾“å…¥<code class="inset">:write</code>å’Œ<code class="inset">:next</code>å‘½ä»¤ï¼Œä¿å­˜å¹¶åˆ‡æ¢åˆ°ç¬¬äºŒä¸ªæ–‡ä»¶ã€‚æ­¤å‘½ä»¤ä¹Ÿå¯ç®€å†™ä¸º<code class="inset">:wnext</code>ã€‚ä½¿ç”¨<code class="inset">:next!</code>å‘½ä»¤ä¹Ÿå¯ä»¥å¼ºåˆ¶åˆ‡æ¢åˆ°ç¬¬äºŒä¸ªæ–‡ä»¶,å½“ç„¶è¿™æ ·ä½ æ‰€åšçš„æ”¹åŠ¨ä¹Ÿå°†ä¼šä¸¢å¤±ã€‚ä¸ºäº†é¿å…è¿™ç§æƒ…å†µï¼Œæˆ‘ä»¬å¯ä»¥ç”¨<code class="inset">:set autowrite</code>å‘½ä»¤ï¼Œæ‰“å¼€viçš„è‡ªåŠ¨ä¿å­˜åŠŸèƒ½ã€‚ç›¸åº”çš„ï¼Œå…³é—­è‡ªåŠ¨ä¿å­˜å‘½ä»¤ä¸º<code class="inset">:set noautowrite</code>ã€‚</p>
+	<p>å¦‚æžœæƒ³è¦å›žåˆ°ä¸Šä¸€ä¸ªæ–‡ä»¶ï¼Œå¯ä»¥ä½¿ç”¨<code class="inset">:previous</code>æˆ–æ˜¯<code class="inset">:Next</code>å‘½ä»¤ã€‚å¦‚æžœä½ è¦ä¿å­˜å½“å‰æ–‡ä»¶å¹¶åˆ‡æ¢åˆ°å‰ä¸€æ–‡ä»¶ï¼Œå¯ä»¥ä½¿ç”¨<code class="inset">:wprevious</code>æˆ–æ˜¯<code class="inset">:wNext</code>å‘½ä»¤ã€‚</p>
+	<p>æˆ‘ä»¬å¯ä»¥ç”¨<code class="inset">:first</code>æˆ–è€…<code class="inset">:rewind</code>å‘½ä»¤å¿«é€Ÿåˆ‡æ¢åˆ°ç¬¬ä¸€ä¸ªæ–‡ä»¶ï¼›ä¹Ÿå¯ä»¥ç”¨<code class="inset">:last</code>å‘½ä»¤å¿«é€Ÿåˆ‡æ¢åˆ°æœ€åŽä¸€ä¸ªæ–‡ä»¶ã€‚</p>
+	<p>å‘½ä»¤<code class="inset">:args</code>å¯ä»¥åˆ—ç¤ºæ‰“å¼€çš„å¤šä¸ªæ–‡ä»¶ï¼Œå¹¶ç”¨ä¸­æ‹¬å·[]æ ‡è¯†å‡ºæ­£åœ¨ç¼–è¾‘çš„æ–‡ä»¶åã€‚</p>
 	<p style="text-align:center"><a href="http://www.flickr.com/photos/yyq123/3737701803/" title="args by yyq123, on Flickr"><img src="http://farm3.static.flickr.com/2513/3737701803_11f4eb9625_o.png" width="491" height="144" alt="args" /></a></p>
-	<p>Èç¹ûÎÒÃÇÔÚÒ»¸öÎÄ¼þÖÐ½øÐÐÒ»Ð©¸Ä¶¯£¬ÔÙÇÐ»»µ½ÁíÒ»¸öÎÄ¼þÖÐ½ø±à¼­£¬ÕâÊ±¾Í¿ÉÒÔÓÃ<kbd>ctrl+^</kbd>À´ÇÐ»»ÕâÁ½¸öÎÄ¼þ¡£</p>
+	<p>å¦‚æžœæˆ‘ä»¬åœ¨ä¸€ä¸ªæ–‡ä»¶ä¸­è¿›è¡Œä¸€äº›æ”¹åŠ¨ï¼Œå†åˆ‡æ¢åˆ°å¦ä¸€ä¸ªæ–‡ä»¶ä¸­è¿›ç¼–è¾‘ï¼Œè¿™æ—¶å°±å¯ä»¥ç”¨<kbd>ctrl+^</kbd>æ¥åˆ‡æ¢è¿™ä¸¤ä¸ªæ–‡ä»¶ã€‚</p>
 	
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
-		<caption>ÃüÁîÐ¡½á</caption>
-		<tr><td><code class="inset">:next</code></td><td>ÇÐ»»µ½ÏÂÒ»ÎÄ¼þ</td></tr>
-		<tr><td><code class="inset">:wnext</code></td><td>±£´æºóÇÐ»»µ½ÏÂÒ»ÎÄ¼þ</td></tr>
-		<tr><td><code class="inset">:previous</code></td><td rowspan="2">ÇÐ»»µ½ÉÏÒ»ÎÄ¼þ</td></tr>
+		<caption>å‘½ä»¤å°ç»“</caption>
+		<tr><td><code class="inset">:next</code></td><td>åˆ‡æ¢åˆ°ä¸‹ä¸€æ–‡ä»¶</td></tr>
+		<tr><td><code class="inset">:wnext</code></td><td>ä¿å­˜åŽåˆ‡æ¢åˆ°ä¸‹ä¸€æ–‡ä»¶</td></tr>
+		<tr><td><code class="inset">:previous</code></td><td rowspan="2">åˆ‡æ¢åˆ°ä¸Šä¸€æ–‡ä»¶</td></tr>
 		<tr><td><code class="inset">:Next</code></td></tr>
-		<tr><td><code class="inset">:wprevious</code></td><td rowspan="2">±£´æºóÇÐ»»µ½ÉÏÒ»ÎÄ¼þ</td></tr>
+		<tr><td><code class="inset">:wprevious</code></td><td rowspan="2">ä¿å­˜åŽåˆ‡æ¢åˆ°ä¸Šä¸€æ–‡ä»¶</td></tr>
 		<tr><td><code class="inset">:wNext</code></td></tr>
-		<tr><td><code class="inset">:first</code></td><td>ÇÐ»»µ½µÚÒ»¸öÎÄ¼þ</td></tr>
-		<tr><td><code class="inset">:last</code></td><td>ÇÐ»»µ½×îºóÒ»¸öÎÄ¼þ</td></tr>
-		<tr><td><code class="inset">:set autowrite</code></td><td>´ò¿ª×Ô¶¯±£´æ¹¦ÄÜ</td></tr>
-		<tr><td><code class="inset">:set noautowrite</code></td><td>¹Ø±Õ×Ô¶¯±£´æ¹¦ÄÜ</td></tr>
-		<tr><td><code class="inset">:args</code></td><td>ÏÔÊ¾ÕýÔÚ±à¼­µÄÎÄ¼þÃû</td></tr>
-		<tr><td><code class="inset">:argument [N]</code></td><td>ÇÐ»»ÖÁµÚNºÅÎÄ¼þ</td></tr>
+		<tr><td><code class="inset">:first</code></td><td>åˆ‡æ¢åˆ°ç¬¬ä¸€ä¸ªæ–‡ä»¶</td></tr>
+		<tr><td><code class="inset">:last</code></td><td>åˆ‡æ¢åˆ°æœ€åŽä¸€ä¸ªæ–‡ä»¶</td></tr>
+		<tr><td><code class="inset">:set autowrite</code></td><td>æ‰“å¼€è‡ªåŠ¨ä¿å­˜åŠŸèƒ½</td></tr>
+		<tr><td><code class="inset">:set noautowrite</code></td><td>å…³é—­è‡ªåŠ¨ä¿å­˜åŠŸèƒ½</td></tr>
+		<tr><td><code class="inset">:args</code></td><td>æ˜¾ç¤ºæ­£åœ¨ç¼–è¾‘çš„æ–‡ä»¶å</td></tr>
+		<tr><td><code class="inset">:argument [N]</code></td><td>åˆ‡æ¢è‡³ç¬¬Nå·æ–‡ä»¶</td></tr>
 	</table>
 	<p>Technorati Tags: <a href="http://www.technorati.com/tags/vi" rel="tag">vi</a>,<a href="http://www.technorati.com/tags/vim" rel="tag">vim</a>,<a href="http://www.technorati.com/tags/gvim" rel="tag">gvim</a></p>
 </body>
