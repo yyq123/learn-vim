@@ -29,6 +29,7 @@
 	<p>在完成文本编辑之后，可以使用<code class="inset">:q</code>命令退出vim。如果你有未保存的修改，那么就会在窗口底部显示错误信息。提示你使用<code class="inset">:q!</code>命令，放弃改动并强制退出。</p>
 	<p><a href="https://www.flickr.com/photos/yyq123/29748828773/in/dateposted/" title="E37"><img src="https://c2.staticflickr.com/6/5447/29748828773_8269a78cdd_o.png" width="429" height="20" alt="E37"></a></p>
 	<p>你可以使用<code class="inset">:w</code>命令，保存改动但并不退出vim。而使用<code class="inset">:wq</code>命令，则保存修改并退出程序。</p>
+	<p>命令<code class="inset">:x</code>也用于保存并退出，但只有在文件已修改时，才会执行保存操作。也就是说，对于未修改的文件执行此命令，并不会更改最后修改日期，这对于代码的版本管理是有意义的。</p>
 <table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 <caption>命令小结</caption>
 <tr><td><code class="inset">:q</code></td><td>退出</td></tr>
