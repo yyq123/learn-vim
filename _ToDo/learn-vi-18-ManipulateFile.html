@@ -36,22 +36,6 @@
 	<p>使用以下命令，可以在文本中查找当前文件名：</p>
 	<p style="text-indent:2em"><code class="inset">/&lt;C-R&gt;%</code></p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">保存文件</p>
-	<p>使用<code class="inset">:write</code>（可简写为<code class="inset">:w</code>）命令，可以保存文件或文件中指定范围的文本。</p>
-	<p>使用以下命令将保存文本到文件collect.txt中：</p>
-	<p style="text-indent:2em"><code class="inset">:write collect.txt</code></p>
-	<p>如果这个文件已经存在，那么就会显示错误信息。如果要强行保存，那么需要使用!选项：</p>
-	<p style="text-indent:2em"><code class="inset">:write! collect.txt</code></p>
-	<p>我们也可以向已有文件中追加内容。使用以下命令将正编辑的文件内容追加到collect.txt中:</p>
-	<p style="text-indent:2em"><code class="inset">:write &gt;&gt; collect.txt</code></p>
-	<p>如果这个文件不存在，那么就会显示错误信息。可以使用!选项，强行创建并保存新文件：</p>
-	<p style="text-indent:2em"><code class="inset">:write! &gt;&gt; collect.txt</code></p>
-	<p>我们还可以导出文件中的部分内容到其它文件中。首先进入可视化模式并选择内容，然后使用以下命令写入其它文件：</p>
-	<p style="text-indent:2em"><code class="inset">:'&lt;,'&gt; write collet.txt</code></p>
-	<p>使用写入命令不仅可以保存文件，而且还可以将文件重定向到其他程序。在Linux系统中，我们可以使用以下命令将文件发送到打印机：</p>
-	<p style="text-indent:2em"><code class="inset">:write !lpr</code></p>
-	<p>注意：命令<code class="inset">:write! lpr</code>与<code class="inset">:write !lpr</code>是不同的，前者是强行保存文件，而后者则是将文件发送到打印机。</p>
-
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">查看文件</p>
 	<p>使用<code class="inset">:view file</code>命令，将以只读方式打开文件。</p>
 	<p>使用<code class="inset">:set ro</code>命令，会将当前文件置为只读状态。你在文件中进行的任何修改，都无法保存。当然我们也可以使用<code class="inset">:write!</code>命令，来强制保存文件。</p>
@@ -67,16 +51,6 @@
 	<p>使用以下命令，可以将当前文件另存为以name命名的新文件，并在当前缓冲区中开始编辑新文件：</p>
 	<p style="text-indent:2em"><code class="inset">:file name</code></p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">读入文件</p>
-	<p>使用<code class="inset">:read</code>（可简写为<code class="inset">:r</code>）命令，可以读入其它文件内容并插入到当前行以下。例如，以下命令会将名为file的文件读入并且插入在line后面。如果没有指定文件，那么就会使用当前文件；如果没有指定行，那么就会使用当前行。</p>
-	<p style="text-indent:2em"><code class="inset">:line read file</code></p>
-	<p>我们甚至可以使用以下命令，读入外部命令的输出并插入到当前行的后面：</p>
-	<p style="text-indent:2em"><code class="inset">:line read !command</code></p>
-
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">退出文件</p>
-	<p>使用<code class="inset">:quit</code>命令，可以退出当前文件。如果有未保存的修改，那么就会在窗口底部显示错误信息。可以使用以下命令，配置Vinm在此类情况下显示确认对话框：</p>
-	<p style="text-indent:2em"><code class="inset">:set confirm</code></p>
-	<p><a href="https://www.flickr.com/photos/yyq123/33413666225/in/dateposted/" title="set_confirm"><img src="https://c1.staticflickr.com/1/736/33413666225_df3ce0c581_o.png" width="436" height="136" alt="set_confirm" /></a></p>
 
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
