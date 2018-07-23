@@ -8,11 +8,11 @@
 	<title>VIM学习笔记 编辑多个文件(Edit Multiple Files)</title>
 </head>
 <body>
-	<p>主要有以下几种方法，用于同时打开并编辑多个文件：</p>
+	<p>如果需要同时打开并编辑多个文件，可以使用以下几种方法：</p>
 	<ul>
 		<li>在启动vim时，可以指定多个文件做为<a style="font-weight:bold" href="http://yyq123.github.io/learn-vim/learn-vi-16-MultiArguments.html" title="Arguments">参数(Argument)</a>以同时打开多个文件；</li>
 		<li>在Vim中，新建<a style="font-weight:bold" href="http://yyq123.github.io/learn-vim/learn-vi-14-MultiWindows.html">窗口(Window)</a>用于打开文件；</li>
-		<li>在Vim中，在任一窗口(Window)内，都可以新建多个<a style="font-weight:bold" style="font-weight:bold" href="http://yyq123.github.io/learn-vim/learn-vi-13-MultiBuffers.html" title="Buffer">缓冲区(Buffer)</a>用于编辑不同的文件。</li>
+		<li>在Vim中，在任一窗口(Window)内，都可以新建多个<a style="font-weight:bold" href="http://yyq123.github.io/learn-vim/learn-vi-13-MultiBuffers.html" title="Buffer">缓冲区(Buffer)</a>用于编辑不同的文件。</li>
 	</ul>
 	<p>以下表格，简单列举了参数、窗口和缓冲区命令的对照关系：</p>
 
@@ -23,23 +23,23 @@
 		<tr><td><code class="inset">:Next</code></td><td><code class="inset">:bNext</code></td></tr>
 		<tr><td><code class="inset">:first</code></td><td>切换到第一个文件</td><td><code class="inset">:bfirst</code></td></tr>
 		<tr><td><code class="inset">:last</code></td><td>切换到最后一个文件</td><td><code class="inset">:blast</code></td></tr>
-		<tr><td><code class="inset">:args</code></td><td>显示正在编辑的文件名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td><code class="inset">:buffers</code></td></tr>
+		<tr><td><code class="inset">:args</code></td><td>显示正在编辑的文件名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td><code class="inset">:buffers</code></td></tr>
 		<tr><td><code class="inset">:argument [N]&nbsp;</code></td><td>切换至第N号文件</td><td><code class="inset">:buffer [N]</code></td></tr>
 	</table>
 	<p></p>
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>参数、缓冲区和窗口命令对照</caption>
-		<tr><td><code class="inset">:snext</code></td><td>分割并切换到下一文件</td><td><code class="inset">:sbnext</code></td></tr>
-		<tr><td><code class="inset">:sprevious</code></td><td rowspan="2">分割并切换到上一文件</td><td><code class="inset">:sbprevious</code></td></tr>
+		<tr><td><code class="inset">:snext</code></td><td>分割窗口并切换到下一文件</td><td><code class="inset">:sbnext</code></td></tr>
+		<tr><td><code class="inset">:sprevious</code></td><td rowspan="2">分割窗口并切换到上一文件</td><td><code class="inset">:sbprevious</code></td></tr>
 		<tr><td><code class="inset">:sNext</code></td><td><code class="inset">:sbNext</code></td></tr>
-		<tr><td><code class="inset">:sfirst</code></td><td>分割并切换到第一个文件</td><td><code class="inset">:sbfirst</code></td></tr>
-		<tr><td><code class="inset">:slast</code></td><td>分割并切换到最后一个文件</td><td><code class="inset">:sblast</code></td></tr>
-		<tr><td><code class="inset">:sall</code></td><td>分割并显示所有文件</td><td><code class="inset">:sball</code></td></tr>
-		<tr><td><code class="inset">:sargument [N]</code></td><td>分割并切换至第N号文件</td><td><code class="inset">:sbuffer [N]</code></td></tr>
+		<tr><td><code class="inset">:sfirst</code></td><td>分割窗口并切换到第一个文件</td><td><code class="inset">:sbfirst</code></td></tr>
+		<tr><td><code class="inset">:slast</code></td><td>分割窗口并切换到最后一个文件</td><td><code class="inset">:sblast</code></td></tr>
+		<tr><td><code class="inset">:sall</code></td><td>分割窗口并显示所有文件</td><td><code class="inset">:sball</code></td></tr>
+		<tr><td><code class="inset">:sargument [N]</code></td><td>分割窗口并切换至第N号文件</td><td><code class="inset">:sbuffer [N]</code></td></tr>
 	</table>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">在不同文件之间拷贝文本</p>
-	<p>使用<a href="http://yyq123.github.io/learn-vim/learn-vi-53-Mark.html" title="Mark">标记</a>，在不同文件之间拷贝文本法：</p>
+	<p>使用<a href="http://yyq123.github.io/learn-vim/learn-vi-53-Mark.html" title="Mark">标记</a>，在不同文件之间拷贝文本：</p>
 	<ol>
 		<li>编辑第一文件</li>
 		<li>执行命令<code class="inset">:split second_file</code>打开另一个窗口并开始编辑第二个文件</li>
@@ -78,7 +78,7 @@
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">读入文件</p>
 	<p>使用<code class="inset">:read filename</code>（可简写为<code class="inset">:r</code>）命令，可读进一个文件并将内容插在当前行的后面。我们也可以在命令中，指明读取内容放置在文件中的特定位置。例如<code class="inset">:0r filename</code>命令，将读取内容放置在文件开头；而<code class="inset">:$r filename</code>命令，则会将读取内容放置在文件末尾。</p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">写入</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">写入文件</p>
 	<p>命令<code class="inset">:write</code>（可简写为<code class="inset">:w</code>）用来写入文件（也就是保存当前文件）。</p>
 		<p>使用以下命令将保存文本到文件collect.txt中：</p>
 	<p style="text-indent:2em"><code class="inset">:write collect.txt</code></p>
@@ -102,7 +102,7 @@
 	<p>命令<code class="inset">:wall</code>可以保存所有已经修改过的文件（包括隐藏缓冲区中的文件）。</p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">退出文件</p>
-	<p><code class="inset">:quit</code>可以退出当前文件。如果同时打开了多个窗口,可以用<code class="inset">:qall</code>命令退出所有文件。</p>
+	<p><code class="inset">:quit</code>可以退出当前文件。而<code class="inset">:qall</code>命令，则可以退出所有打开的文件。</p>
 	<p>如果文件已修改但没有保存，则会在窗口底部显示警告信息并禁止退出。可以使用以下命令，配置Vinm在此类情况下显示确认对话框：</p>
 	<p style="text-indent:2em"><code class="inset">:set confirm</code></p>
 	<p><a href="https://www.flickr.com/photos/yyq123/33413666225/in/dateposted/" title="set_confirm"><img src="https://c1.staticflickr.com/1/736/33413666225_df3ce0c581_o.png" width="436" height="136" alt="set_confirm" /></a></p>
