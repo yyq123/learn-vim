@@ -15,7 +15,7 @@
 	<p>直接使用鼠标点击文件或文件夹名称，也可以在当前窗口中打开该文件或文件夹。</p>
 	<p>点击大写<kbd>R</kbd>键，然后修改窗口底部信息中的第二个文件名，可以重命名当前光标下的文件。</p>
 	<p><a href="https://www.flickr.com/photos/yyq123/29735245818/in/dateposted/" title="Explore_R"><img src="https://farm1.staticflickr.com/926/29735245818_98bdf69939.jpg" width="500" height="39" alt="Explore_R" /></a></p>
-	<p>点击大写<kbd>D</kbd>键，然后在窗口底部信息中确认，则可以删除当前光标下的文件。</p>
+	<p>点击大写<kbd>D</kbd>键，然后在窗口底部信息中进行确认，则可以删除当前光标下的文件。</p>
 	<p><a href="https://www.flickr.com/photos/yyq123/43557892512/in/dateposted/" title="Explore_D"><img src="https://farm1.staticflickr.com/915/43557892512_b948a16415.jpg" width="500" height="40" alt="Explore_D" /></a></p>
 	<p>点击<kbd>/</kbd>键，可以在文件列表中进行查找。</p>
 	<p><a href="https://www.flickr.com/photos/yyq123/42887767054/in/dateposted/" title="Explore_Search"><img src="https://farm1.staticflickr.com/913/42887767054_f56ecfcfe7.jpg" width="500" height="132" alt="Explore_Search" /></a></p>
@@ -34,7 +34,7 @@
 	<p>我们也可以使用<code class="inset">ctrl-Wf</code>命令，在新的分割窗口中打开光标下文件。</p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">文件信息</p>
-	<p>使用以下命令，可以显示当前文件的名字及与行相关的信息：</p>
+	<p>使用以下命令，可以显示当前文件的名字、状态以及行列相关的信息：</p>
 	<p style="text-indent:2em"><code class="inset">:file</code></p>
 	<p><span style="background-color:black; color:white">"test.txt" [Modified] 134 lines --55%--</span></p>
 	<p>使用以下命令，则可以显示当前文件的总行数：</p>
@@ -54,7 +54,8 @@
 	<p><a href="https://www.flickr.com/photos/yyq123/32374306316/in/dateposted/" title="E21"><img src="https://c1.staticflickr.com/1/327/32374306316_2678a19fbf.jpg" width="450" height="23" alt="E21" /></a></p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">新建文件</p>
-	<p>使用<code class="inset">:vi file</code>命令，在新建缓冲区中编辑名为file的新文件。如果当前文件没有保存，那么将会显示警告信息，此时可以输入<code class="inset">:write</code>命令，来保存当前文件</p>
+	<p>使用<code class="inset">:vi file</code>命令，在新建缓冲区中编辑名为file的新文件。如果当前文件没有保存，那么将会显示警告信息，此时可以输入<code class="inset">:write</code>命令，来保存当前文件。</p>
+	<p><a href="https://www.flickr.com/photos/yyq123/29748828773/in/photolist-MjNwmV" title="E37"><img src="https://farm6.staticflickr.com/5447/29748828773_8269a78cdd_o.png" width="429" height="20" alt="E37" /></a></p>
 	<p>使用<code class="inset">:vi! file</code>命令，将不保存当前文件而强制开始编辑新文件。</p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">另存文件</p>
@@ -74,11 +75,18 @@
 	
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
+		<tr><td><code class="inset">:Explore</code></td><td>打开文件浏览器</td></tr>
+		<tr><td><code class="inset">gf</code></td><td>打开以当前光标下文字命名的文件</td></tr>
+		<tr><td><code class="inset">:file</code></td><td>显示当前文件的名字、状态以及行列信息</td></tr>
+		<tr><td><code class="inset">:=</code></td><td>显示当前文件的总行数</td></tr>
+		<tr><td><code class="inset">g-Ctrl-g</code></td><td>显示行列信息和字数统计</td></tr>
+		<tr><td><code class="inset">:set ro</code></td><td>将当前文件置为只读状态</td></tr>
+		<tr><td><code class="inset">:set noma</code></td><td>将当前文件置为不可修改状态</td></tr>
 		<tr><td><code class="inset">:vi</code></td><td>新建文件</td></tr>
 		<tr><td><code class="inset">:view</code></td><td>以只读方式打开文件</td></tr>
-		<tr><td><code class="inset">:write</code></td><td>保存文件</td></tr>
-		<tr><td><code class="inset">:read</code></td><td>读入文件</td></tr>
+		<tr><td><code class="inset">:pwd</code></td><td>显示当前工作目录</td></tr>
+		<tr><td><code class="inset">:cd</code></td><td>切换目录</td></tr>
 	</table>
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="比较文件(diff)" href="http://yyq123.blogspot.com/2010/09/vim-diff.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="编辑多个文件()" href="http://yyq123.blogspot.com/2009/08/vim-edit-multi-files.html">下一篇</a>&gt;</span></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="参数(args)" href="http://yyq123.github.io/learn-vim/learn-vi-16-MultiArguments.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="编辑多个文件(Edit Multiple Files)" href="http://yyq123.github.io/learn-vim/learn-vi-17-MultiFile.html">下一篇</a>&gt;</span></p>
 </body>
 </html>
