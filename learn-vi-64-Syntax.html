@@ -5,13 +5,12 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记 语法高亮度 (Syntax)</title>
+	<title>VIM学习笔记 语法高亮文件 (Syntax)</title>
 </head>
 <body>
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">启用/禁用</p>
 	<p>我们可以使用<code class="inset">:syntax enable</code>命令，启用语法高亮度。Vim将会自动识别关键字、字符串以及其他语法元素，并以不同的颜色显示出来。如果不希望高亮显示语法元素，可以使用<code class="inset">:syntax clear</code>命令关闭此功能。</p>
-	<p>以上命令只在当前文件中有效。而以下命令则对所有缓冲区中的文件立刻生效。</p>
-	<p>我们可以使用<code class="inset">set syntax=off</code>命令关闭语法高亮度；使用<code class="inset">:syntax on</code>命令打开语法高亮度。</p>
+	<p>以上命令只在当前文件中有效。而<code class="inset">set syntax=off</code>命令，则会关闭所有缓冲区中文件的语法高亮度；使用<code class="inset">:syntax on</code>命令，则会针对所有缓冲区中的文件启用语法高亮度。</p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">识别文件</p>
 	<p>Vim通过识别文件的扩展名来选择相应的语法高亮显示。如果没有使用传统的扩展名，那么就需要设置filetype选项，来告诉Vim正在编辑的文件类型。例如使用以下命令，告诉Vim我们正在编辑一个C程序文件：</p>
@@ -19,7 +18,7 @@
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">修改语法文件</p>
 	<p>语法高亮显示，是由位于<em>$VIMRUNTIME/syntax/language.vim</em>中的语法文件来控制的。主要经过两步来实现：首先，确定需要格式化的字符；然后，定义如何显示这些字符（请参看<a href="http://yyq123.blogspot.com/2011/02/vim-color-scheme.html" title="colorscheme">配色方案</a>）。</p>
-	<p>例如可以使用以下命令，将所有FIX和ENDFIX关键字显示为特定颜色：</p>
+	<p>例如以下命令，将所有FIX和ENDFIX关键字显示为特定颜色：</p>
 	<p style="text-indent:2em"><code class="inset">:syntax match cscFix "FIX\|ENDFIX"</code></p>
 	<p style="text-indent:2em"><code class="inset">:highlight cscFix ctermfg=cyan guifg=#00FFFF</code></p>
 	<p>其中，第一条命令，创建名为cscFix的匹配模式；第二条命令，使用青色显示匹配的文本。</p>
@@ -59,11 +58,10 @@
 	<p style="text-indent:2em"><code class="inset">:help after-directory</code></p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">新增语法类型</p>
-	<p>如果想要使用Vim未知的文件类型，那么需要在$VIMHOME/filetype.vim文件中进行注册：</p>
+	<p>如果想要使用Vim未知的文件类型，那么需要在vimrc文件中进行注册，Vim就能够自动识别新的文件类型并匹配相应的语法高亮度：</p>
 	<p style="text-indent:2em"><code class="inset">augroup filetypedetect</code></p>
 	<p style="text-indent:2em"><code class="inset">autocmd BufNewFile,BufRead *.my setfiletype my</code></p>
 	<p style="text-indent:2em"><code class="inset">augroup END</code></p>
-	<p>在filetype.vim文件中增加以上命令后，Vim就能够自动识别新的文件类型并匹配相应的语法高亮度。</p>
 	<p>使用以下命令，可以查看关于新增文件类型的帮助信息：</p>
 	<p style="text-indent:2em"><code class="inset">:help new-filetype</code></p>
 
@@ -86,4 +84,6 @@
 		<tr><td><code class="inset">:TOhtml</code></td><td>转换为HTML文件</td></tr>
 	</table>
 
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="模板(Template)" href="http://yyq123.blogspot.com/2010/08/vim-template.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://www.humyo.com/CHYfCqR/Blog/Vim/learn-vi-00-List.html?a=0tz81ab6hx8">&nbsp;目录&n
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="语法高亮 (Syntax Highlight)" href="http://yyq123.github.io/learn-vim/learn-vi-64-Syntax Highlight.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="非可见字符 (Listchars)" href="http://yyq123.github.io/learn-vim/learn-vi-65-Listchars.html">下一篇</a>&gt;</span></p>
+</body>
+</html>
