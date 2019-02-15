@@ -8,11 +8,9 @@
 	<title>VIM学习笔记 </title>
 </head>
 <body>
-	<p><a data-flickr-embed="true"  href="https://www.flickr.com/photos/yyq123/30932779851/in/dateposted/" title="vim_directory"><img src="https://c2.staticflickr.com/6/5742/30932779851_30e0bbac18_o.png" width="92" height="93" alt="vim_directory"></a></p>
-	<ul>
-		<li>vimXX：带上版本号的程序文件夹，可以让不同版本共存。</li>
-		<li>vimfiles 是用户文件夹，你自己装的插件等东西最好放在这里。</li>
-	</ul>
+	
+	<p>使用以下命令，可以查看运行时目录：</p>
+	<p style="text-indent:2em"><code class="inset">:set rtp?</code></p>
 	<p>以上文件夹是运行时文件夹，vim通常会搜索以下三个目录下的运行时文件夹：</p>
 	<ul>
 		<li>$HOME/vimfiles（windows上是你的用户文件夹根目录下的vimfiles ）</li>
@@ -21,30 +19,34 @@
 	</ul>
 
 这样可以在不同的状况加载不同的插件和设置（比如多人共同使用，每个人可以有自己的vim设置）
-你可以在命令模式下运行
-   :set rtp?
-来查看本机运行时目录设置
+
 你可以通过直接修改 rtp 来增加/修改运行时目录,如
    :set runtimepath+=c:/blahblah/vimfiles
 这样你也可以把插件等文件夹放在一个完全不同的地方。
  :help rtp
 :help dos-locations
-<p style="text-indent:2em"><code class="inset"></code></p>
-	<p>$VIM代表，/usr/share/vim或/usr/local/share/vim</p>
-	:echo $vim
+
 
 vimfiles目录中的设置，会覆盖runtime目录中的设置。例如，vimfiles/plugin/myplug.vim 将优先于 $VIMRUNTIME/plugin/myplug.vim 而被载入。
 
-在Windows下的 $VIM\vimfilel\ 目录，以及Unix下的 $HOME/.vim/ 目录 are for any customizations that should not be over-written when upgrading to a new version of vim.
 
-The install directory
-<p>对于Unix操作系统，Vim将被安装在以下目录：</p>
-Directories in /usr/share/vim/vim72 (/usr/share/vim/vim73 if you’re on the cutting edge, 
-<p>对于Windows操作系统，Vim将被安装在以下目录：</p>
-C:\Program Files\vim72 if you like pain) 
 
-You generally should not modify these files or add files in here. It’s better to put changes or new files in a separate directory that you can more easily control (maybe even with version control.)
-Anyway, here are the folders that are installed by default.
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">安装目录</p>
+<p style="text-indent:2em"><code class="inset"></code></p>
+	<p>使用以下命令，可以查看$VIM所代表的安装目录：</p>
+	<p style="text-indent:2em"><code class="inset">:echo $VIM</code></p>
+	
+	<p>对于Linux操作系统，Vim将被安装在以下目录：</p>
+	<p><kbd>/usr/share/vim</kbd></p>
+	<p>对于Windows操作系统，Vim将被安装在以下目录：</p>
+	<p><kbd>C:\Program Files\vim</kbd></p>
+	<p>对于默认安装目录，您不应该修改以上安装目录中的内容，也不应该在其中存放用户相关的文件。主要包括以下内容：</p>
+	<p><a href="https://www.flickr.com/photos/yyq123/30932779851/in/dateposted/" title="vim_directory"><img src="https://c2.staticflickr.com/6/5742/30932779851_30e0bbac18_o.png" width="92" height="93" alt="vim_directory" /></a></p>
+	<ul>
+		<li>vimXX：带上版本号的程序文件夹，可以让不同版本共存。</li>
+		<li>vimfiles 是用户文件夹，你自己装的插件等东西最好放在这里。</li>
+	</ul>
+	<p></p>
 <ul>
 autoload
 The autoload directory is for standard Vim autoload scripts.
@@ -107,8 +109,21 @@ vimspell.*:     Shell script for highlighting spelling mistakes.
 ...
 <li>tutor<br />入门教程</li>
 </ul>
-The custom configuration directory
-Next, we have our custom configuration directory, commonly located at ~/.vim. This contains all of our personal modifications so we don’t mess with the default configuration. From what I can tell, you can put any directory that matches the names in the install directory, and the files within will behave as if you had dropped them in the installation directory. Again, you can do this to override the default behavior without messing anything up so you can easily take your changes to other machines. For an example of what my ~/.vim directory looks like, check it out. I’ve generally tried to stick to the conventions that are laid out on this page.
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">用户目录</p>
+	<p>使用以下命令，可以查看$HOME所代表的用户目录：</p>
+	<p style="text-indent:2em"><code class="inset">:echo $HOME</code></p>
+	Unix下的 $HOME/.vim/ 目录 are for any customizations that should not be over-written when upgrading to a new version of vim.
+	The custom configuration directory
+<p>commonly located at ~/.vim. This contains all of our personal modifications so we don’t mess with the default configuration. From what I can tell, you can put any directory that matches the names in the install directory, and the files within will behave as if you had dropped them in the installation directory. Again, you can do this to override the default behavior without messing anything up so you can easily take your changes to other machines. For an example of what my ~/.vim directory looks like, check it out. 
+	<p>在首次使用Vim之前，可以使用以下命令来创建<a href="http://bit.ly/vim-vimrc" title="vimrc">vimrc配置文件</a>：</p>
+<p style="text-indent:2em"><code class="inset">$ touch ~/.vimrc</code></p>
+Linux: /home/username/.vimrc
+Windows: c:\documents and settings\username\_vimrc
+Whatever you change in the personal vimrc file will overrule any previous setting
+made in the global vimrc file. This way you can modify the entire configuration
+without having to ever have access to the global vimrc file.
+You can find out what Vim considers as the home directory on your system, by
+
 
 
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
