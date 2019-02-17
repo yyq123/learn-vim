@@ -17,7 +17,7 @@
 				<li>Windows: <kbd>~\vimfiles\autoload\plug.vim</kbd></li>
 			</ul>
 		</li>
-		<li>目录结构如下，之后安装的插件将存放在<kbd>plugged</kbd>目录中：<br /><img src="http://yyq123.github.io/learn-vim/images/plugin_plug_DirTree.png" alt="vim-plug Directory Tree" /></li>
+		<li>目录结构如下，之后安装的插件将存放在<kbd>plugged</kbd>目录中：<br /><img src="https://yyq123.github.io/learn-vim/images/plugin_plug_DirTree.png" alt="vim-plug Directory Tree" /></li>
 		<li>在<a href="http://yyq123.blogspot.com/2012/01/vim-vimrc.html">vimrc</a>配置文件中增加<em>plug-vim</em>部分，示例如下：<br /><code class="inset">call plug#begin('~/.vim/plugged')</code><br /><code class="inset">" Shorthand notation for plugin</code><br /><code class="inset">Plug 'foo/bar'</code><br /><code class="inset">call plug#end()</code></li>
 	</ol>
 
@@ -28,26 +28,26 @@
 	<p>vim-plug支持源码托管在<a href="https://github.com/">GitHub</a>的插件，你可以在<a href="https://github.com/vim-scripts/">github.com/vim-scripts/</a>上找到<a href="http://www.vim.org/">vim官网</a>里所有插件的镜像。</p>
 	<p>如果希望安装新插件，首先找到其在github.com的网址，然后将其追加至<a href="http://yyq123.blogspot.com/2012/01/vim-vimrc.html">vimrc</a>配置文件中的<code class="inset">call plug#begin()</code>和<code class="inset">call plug#end()</code>之间，最后执行以下命令安装所有引用的插件：</p>
 	<p style="text-indent:2em"><code class="inset">:PlugInstall</code></p>
-	<p><img src="http://yyq123.github.io/learn-vim/images/plugin_plug_PlugInstall.png" alt="vim-plug PlugInstall" /></p>
+	<p><img src="https://yyq123.github.io/learn-vim/images/plugin_plug_PlugInstall.png" alt="vim-plug PlugInstall" /></p>
 	<p>你也可以使用以下命令，指定安装特定的插件：</p>
 	<p style="text-indent:2em"><code class="inset">:PlugInstall gist-vim</code></p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">卸载插件</p>
 	<p>如果希望卸载插件，请先在<a href="http://yyq123.blogspot.com/2012/01/vim-vimrc.html">vimrc</a>配置文件中注释或者删除对应插件的配置信息，然后再执行以下命令：</p>
 	<p style="text-indent:2em"><code class="inset">:PlugClean</code></p>
-	<p><img src="http://yyq123.github.io/learn-vim/images/plugin_plug_PlugClean.png" alt="vim-plug Directory" /></p>
+	<p><img src="https://yyq123.github.io/learn-vim/images/plugin_plug_PlugClean.png" alt="vim-plug Directory" /></p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">更新插件</p>
 	<p>使用以下命令，可以更新vim-plug插件自身：</p>
 	<p style="text-indent:2em"><code class="inset">:PlugUpgrade</code></p>
 	<p>使用以下命令，可以批量更新所有已安装的插件：</p>
 	<p style="text-indent:2em"><code class="inset">:PlugUpdate</code></p>
-	<p><img src="http://yyq123.github.io/learn-vim/images/plugin_plug_PlugUpdate.png" alt="vim-plug PlugUpdate" /></p>
+	<p><img src="https://yyq123.github.io/learn-vim/images/plugin_plug_PlugUpdate.png" alt="vim-plug PlugUpdate" /></p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">插件状态</p>
 	<p>使用以下命令，可以查看当前已安装插件的状态信息：</p>
 	<p style="text-indent:2em"><code class="inset">:PlugStatus</code></p>
-	<p><img src="http://yyq123.github.io/learn-vim/images/plugin_plug_PlugStatus.png" alt="vim-plug PlugStatus" /></p>
+	<p><img src="https://yyq123.github.io/learn-vim/images/plugin_plug_PlugStatus.png" alt="vim-plug PlugStatus" /></p>
 
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
@@ -60,4 +60,3 @@
 
 </body>
 </html>
-
