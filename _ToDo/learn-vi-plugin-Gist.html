@@ -8,44 +8,70 @@
 	<title>VIM学习笔记 代码片段管理器(Gist.vim)</title>
 </head>
 <body>
-	<p><a href="https://gist.github.com/" alt="Gist"></a><a href="https://github.com/mattn/gist-vim" title="">Gist.vim</a></p>
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">安装配置</p>
-	<p>首先安装<a href="https://gitforwindows.org/">Git for windows</a>，并且将以下目录添加到系统的PATH变量中：
+	<p><a href="https://gist.github.com/" alt="Gist">Gist</a>是<a href="https://github.com/" title="GitHub">GitHub</a>服务的一部分，用于存储和分享代码片段。而<a href="https://github.com/mattn/gist-vim" title="">Gist.vim</a>插件，则可以直接在Vim中管理Gist代码片段。</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">安装配置Git</p>
+	<p>对于Windows操作系统，推荐安装<a href="https://gitforwindows.org/">Git for windows</a>，并且将以下目录添加到系统的PATH变量中：
 	<ul>
 		<li><kbd>C:\Program Files\Git\bin</kbd></li>
 		<li><kbd>C:\Program Files\Git\cmd</kbd></li>
 	</ul>
-	<p>在系统命令行中，使用<code class="inset">git --version</code>验证安装是否成功：</p>
+	<p>对于Linux操作系统，在大多数发行版本中都已经预装了Git。</p>
+	<p>请在操作系统命令行中，使用<code class="inset">git --version</code>验证Git是否可用：</p>
 	<p><img src="https://yyq123.github.io/learn-vim/images/git_Version.png" alt="git --version" width="500px" height="135px" /></p>
 	</p>
-	<p>在系统命令行中，使用以下命令配置GitHub用户：</p>
+	<p>在操作系统命令行中，使用以下命令配置GitHub用户：</p>
 	<ul>
-		<li><code class="inset">git config --global user.name "username"</li>
-		<li><code class="inset">git config --global user.email "email"</li>
+		<li><code class="inset">git config --global user.name "username"</code></li>
+		<li><code class="inset">git config --global user.email "email"</code></li>
 	</ul>
-	<p>然后下载<a href="https://curl.haxx.se/">cURL</a>，并将<em>curl.exe</em>复制到以下目录：
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">安装curl</p>
+	<p>对于Windows操作系统，请下载<a href="https://curl.haxx.se/">cURL</a>，并将<em>curl.exe</em>复制到以下目录：
 	<ul>
 		<li><kbd>C:\Program Files\Git\bin</kbd></li>
-		<li><kbd>C:\Users\usernam\AppData\Local\Programs\Git\bin</kbd></li>
+		<li><kbd>C:\Users\usernam\AppData\Local\Programs\Git\bin</kbd>(可选)</li>
 	</ul>
-	<p>在命令行中，使用<code class="inset">curl --version</code>验证安装是否成功：</p>
+	<p>对于Linux操作系统，在大多数发行版本中都已经预装了curl。</p>
+	<p>在操作系统命令行中，使用<code class="inset">curl --version</code>验证curl是否可用：</p>
 	<p><img src="https://yyq123.github.io/learn-vim/images/curl_Version.png" alt="git --version" width="500px" height="145px" /></p>
-	<img src="" alt="" /></p>
-grab the script (gist.vim) and copy it to your ~/.vim/plugin directory. You'll also need a Gist account and configure git with your account details. You'll need your username and your Github token. You can find the token under Account Settings -> Account Admin. 
-	<p>如果Gist.vim有如下报错：&ldquo;没有配置GitHub账户&rdquo;</p>
-	<p><code class="error">You have not configured a Github account. Read ":help gist-vim-setup".</code></p>
-	<p>那么需要在<a href="http://bit.ly/vim-vimrc">vimrc</a>配置文件中，设置<code>github_user</code>变量：</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">安装webapi-vim和Gist.vim</p>
+	<p>推荐使用插件管理器<a href="http://yyq123.github.io/learn-vim/learn-vi-102-plugin-plug.html" title="vim-plug">vim-plug</a>或<a href="http://yyq123.github.io/learn-vim/learn-vi-101-plugin-vundle.html" title="Vundle">Vundle</a>，来安装<a href="https://github.com/mattn/webapi-vim" title="webapi-vim">webapi-vim</a>和<a href="https://github.com/mattn/gist-vim" title="">Gist.vim</a>。</p>
+	<p>请使用以下命令，在<a href="http://bit.ly/vim-vimrc">vimrc</a>配置文件中，设置GitHub用户名：</p>
 	<p style="text-indent:2em"><code class="inset">let github_user = 'username'</code></p>
-	<p><a href="https://github.com/mattn/webapi-vim" title="webapi-vim"></a></p>
-	<p>首次调用插件，将询问你输入GitHub密码， 密码将会被保存到<kbd>~/.gist-vim</kbd>：</p>
-	<p><img src="https://yyq123.github.io/learn-vim/images/git_Version.png" alt="git --version" width="500px" height="39px" /></p>
+	<p>当首次调用插件时，将询问你的GitHub密码， 输入的密码将会被保存到<kbd>~/.gist-vim</kbd>：</p>
+	<p><img src="https://yyq123.github.io/learn-vim/images/plugin_Gist_auth.png" alt="Git" width="500px" height="39px" /></p>
+	<p>你也可以使用<code class="inset">:help gist-vim-setup</code>命令，查看更多安Gist.vim的安装配置信息。</p>
 
-	<p>列表当前用户所有公开的Gist</p>
-<p style="text-indent:2em"><code class="inset">:Gist -l</code></p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">发布代码片段</p>
+	<p>使用以下命令，将当前缓冲区的全部内容公开发布至Gist：</p>
+	<p style="text-indent:2em"><code class="inset">:Gist</code></p>
+	<p>进入可视化模式选择文本之后，执行Gist命令则会将选中的内容发布至Gist：</p>
+	<p style="text-indent:2em"><code class="inset">:'&lt;,'&gt;Gist</code></p>
+	<p>当代码片段发布成功之后，将在屏幕底部显示生成的Gist网址，同时网址也会被复制到剪贴板之中。</p>
 
-<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">识别文件</p>
-	<p>使用以下命令，将指定ID的Gist载入到当前缓冲区：</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">列示代码片段</p>
+	<p>使用以下命令，可以列出当前用户所有公开的Gist：</p>
+	<p style="text-indent:2em"><code class="inset">:Gist -l</code></p>
+	<p><img src="https://yyq123.github.io/learn-vim/images/plugin_Gist_l.png" alt="Git" width="500px" height="147px" /></p>
+	<p>在显示列表中的任一行内，点击<kbd>Enter</kbd>回车键，则会将该Gist读入到新建缓冲区内；你可以对代码片段进行修改，然后使用Gist命令再次将其发布。也就是说，你既不用打开Gist网页，也不用本地保存代码片段，仅仅通过Vim界面，就可以方便地完成Gist的发布和更新。</p>
+	<p><img src="https://yyq123.github.io/learn-vim/images/plugin_Gist_get.png" alt="GettingGit" width="500px" height="394px" /></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">载入代码片段</p>
+	<p>使用以下命令，可以将指定ID的Gist载入到新建缓冲区：</p>
 	<p style="text-indent:2em"><code class="inset">:Gist id</code></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">删除代码片段</p>
+	<p>在Gist载入到新建缓冲区之后，使用以下命令，可以删除该代码片段：</p>
+	<p style="text-indent:2em"><code class="inset">:Gist id</code></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">克隆代码片段</p>
+	<p>除了查看自己创建的代码片段，我们还可以浏览其他用户发布的Gist。使用以下命令，可以列示指定用户共享的代码片段：</p>
+	<p style="text-indent:2em"><code class="inset">:Gist -l username</code></p>
+	<p>将Gist载入到新建缓冲区之后，使用以下命令，则可以克隆该代码片段至自己的用户名之下：</p>
+	<p style="text-indent:2em"><code class="inset">:Gist -f</code></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">在浏览器中查看代码片段</p>
+	<p>将Gist载入到新建缓冲区之后，使用以下命令，将会更新代码片段，并在默认浏览器中显示Gist网页：</p>
+	<p style="text-indent:2em"><code class="inset">:Gist -b</code></p>
 
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
@@ -55,6 +81,91 @@ grab the script (gist.vim) and copy it to your ~/.vim/plugin directory. You'll a
 		<tr><td><code class="inset">:</code></td><td></td></tr>
 		<tr><td><code class="inset">:</code></td><td></td></tr>
 	</table>
+
+
+    Post current buffer to gist, using default privacy option.
+
+      :Gist
+
+    Post selected text to gist, using default privacy option. This applies to all permutations listed below (except multi).
+
+      :'<,'>Gist
+
+    Create a private gist.
+
+      :Gist -p
+
+    Create a public gist. (Only relevant if you've set gists to be private by default.)
+
+      :Gist -P
+
+    This is only relevant if you've set gists to be private by default; if you get an empty gist list, try ":Gist --abandon".
+
+    Create a gist anonymously.
+
+      :Gist -a
+
+    Create a gist with all open buffers.
+
+      :Gist -m
+
+    Edit the gist (you need to have opened the gist buffer first). You can update the gist with the ":w" command within the gist buffer.
+
+      :Gist -e
+
+    Edit the gist with name 'foo.js' (you need to have opened the gist buffer first).
+
+      :Gist -e foo.js
+
+    Post/Edit with the description " (you need to have opened the gist buffer first). >
+
+      :Gist -s something
+      :Gist -e -s something
+
+    Delete the gist (you need to have opened the gist buffer first). Password authentication is needed.
+
+      :Gist -d
+
+    Fork the gist (you need to have opened the gist buffer first). Password authentication is needed.
+
+      :Gist -f
+
+    Star the gist (you need to have opened the gist buffer first). Password authentication is needed.
+
+      :Gist +1
+
+    Unstar the gist (you need to have opened the gist buffer first). Password authentication is needed.
+
+      :Gist -1
+
+    Get gist XXXXX.
+
+      :Gist XXXXX
+
+    Get gist XXXXX and add to clipboard.
+
+      :Gist -c XXXXX
+
+    List your public gists.
+
+      :Gist -l
+
+    List gists from user "mattn".
+
+      :Gist -l mattn
+
+    List everyone's gists.
+
+      :Gist -la
+
+    List gists from your starred gists.
+
+      :Gist -ls
+
+    Open the gist on browser after you post or update it.
+
+      :Gist -b
+
 
 	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="()" href="">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="()" href="">下一篇</a>&gt;</span></p>
 </body>
