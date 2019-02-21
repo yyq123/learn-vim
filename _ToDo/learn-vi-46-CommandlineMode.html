@@ -21,6 +21,36 @@
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">命令历史</p>
 	<p style="text-indent:2em"><code class="inset">:history</code></p>
 	help :history
+命令:history可以显示当前命令模式下的命令历史
+Vim编辑器可以记录各种命令的历史,下面的标记指出所记录的历史类型;
+c    cmd    :    命令行历史
+s    search    /    查找字符串历史
+e    expr    =    表达式寄存器历史
+i    input    @    输入行历史 data typed in response to an :input operator
+a    all        所有的历史
+如果我们列出所有的历史,我们可以用下面的命令:
+	<p style="text-indent:2em"><code class="inset">:history all</code></p>
+
+:history命令的一般格式如下:
+:history code first,last
+<p>如果没有指定first和last，那么就会列出所有的命令历史。first参数默认是指命令历史的第一条；last是指最后一条；而负数则是相对于最后一条历史纪录的向前位移。</p>
+<p>例如下面的命令列出第一个到第五个的命令行历史:</p>
+	<p style="text-indent:2em"><code class="inset">:history c 1,5</code></p>
+
+而下面的命令则是列出了上五次的查找历史:
+	<p style="text-indent:2em"><code class="inset">:history s -5</code></p>
+	<p>通过history选项，可以控制记录历史命令的数量。例如使用以下命令，设置保存50条命令历史纪录：</p>
+:set history=50
+Vim编辑器可以记录上几次的错误以及在屏幕最后一行显示的信息.要查看这些信息,我们可以用下面的命令:
+:messages
+下面的命令可以使得信息的输出在显示在屏幕的同时会拷贝到一个文件中:
+:redir &gt; file
+如果要停止拷贝,可以使用下面的命令:
+:redir END
+这个命令在保存调试信息时会显得更为有用.
+我们还可以用:redir命令将输出追加到文件中:
+:redir &gt;&gt; file
+	
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
 		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
