@@ -8,13 +8,14 @@
 	<title>VIM学习笔记  ()</title>
 </head>
 <body>
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">启用/禁用</p>
-	<p></p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px"></p>
+	<p>使用以下命令，查看当前安装的vim版本：</p>
+	<p style="text-indent:2em"><code class="inset">sudo dnf list installed | grep vi</code></p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">识别文件</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">安装</p>
 	<p></p>
-	<p style="text-indent:2em"><code class="inset"></code></p>
-Introduction – By default, Fedora Linux ships with vim-minimal package that provides vi command. There is no syntax-highlighting for vi commands. Hence, you must install an enhanced version of VIM. 
+	<p style="text-indent:2em"><code class="inset">sudo dnf list installed | grep vi</code></p>
+Fedora 默认安装了vim-minimal， package that provides vi command. There is no syntax-highlighting for vi commands. Hence, you must install an enhanced version of VIM. 
 dnf info vim-minimal
 How to search for an enhanced version of VIM on Fedora
 dnf search vim
@@ -28,6 +29,9 @@ dnf info vim-enhanced
 How to install VIM enhanced on Fedora Linux 29
 Type the following dnf command:
 sudo dnf install vim-enhanced
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">配置</p>
+	<p></p>
+
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
 		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
