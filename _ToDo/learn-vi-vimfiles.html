@@ -11,20 +11,17 @@
 	
 	<p>使用以下命令，可以查看运行时目录：</p>
 	<p style="text-indent:2em"><code class="inset">:set rtp?</code></p>
-	<p>以上文件夹是运行时文件夹，vim通常会搜索以下三个目录下的运行时文件夹：</p>
+	<p>vim通常会搜索以下三个运行时目录：</p>
 	<ul>
 		<li>$HOME/vimfiles（windows上是你的用户文件夹根目录下的vimfiles ）</li>
 		<li>$VIM/vimfiles ( vim下的vimfiles)</li>
 		<li>$VIMRUNTIME (vimxx，比如vim72)</li>
 	</ul>
-
-这样可以在不同的状况加载不同的插件和设置（比如多人共同使用，每个人可以有自己的vim设置）
-
-你可以通过直接修改 rtp 来增加/修改运行时目录,如
-   :set runtimepath+=c:/blahblah/vimfiles
-这样你也可以把插件等文件夹放在一个完全不同的地方。
- :help rtp
-:help dos-locations
+	<p>这样可以在不同的状况加载不同的插件和设置（比如多人共同使用，每个人可以有自己的vim设置）</p>
+	<p>使用以下命令，可以修改或增加运行时目录</p>
+	<p style="text-indent:2em"><code class="inset">:set runtimepath+=c:/blahblah/vimfiles</code></p>
+	<p>你也可以把插件等文件夹放在一个完全不同的地方。</p>
+	<p>使用<code class="inset">:help rtp</code>和<code class="inset">:help dos-locations</code>命令，可以查看更多帮助信息。</p>
 
 
 vimfiles目录中的设置，会覆盖runtime目录中的设置。例如，vimfiles/plugin/myplug.vim 将优先于 $VIMRUNTIME/plugin/myplug.vim 而被载入。
@@ -47,74 +44,45 @@ vimfiles目录中的设置，会覆盖runtime目录中的设置。例如，vimfi
 		<li>vimfiles 是用户文件夹，你自己装的插件等东西最好放在这里。</li>
 	</ul>
 	<p></p>
-<ul>
-autoload
-The autoload directory is for standard Vim autoload scripts.
-These are functions used by plugins and for general use. They will be loaded automatically when the function is invoked. See “:help autoload”.
-colors
-These files are used to get different colors by using the “:colorscheme” command.
-compiler
-This directory contains Vim scripts to be used with a specific compiler. They are used with the “:compiler” command. These scripts usually set options, for example ‘errorformat’. See “:help write-compiler-plugin”.
-ftplugin
-The ftplugin directory is for Vim plugin scripts that are only used for a specific filetype.
-All files ending in .vim in this directory and subdirectories will be sourced by Vim when it detects the filetype that matches the name of the file or subdirectory.
-For example, these are all loaded for the “c” filetype:
-    c.vim
-    c_extra.vim
-    c/settings.vim
-Note that the “_” in “c_extra.vim” is required to separate the filetype name from the following arbitrary name.
-The filetype plugins are only loaded when the “:filetype plugin” command has been used.
-The default filetype plugin files contain settings that 95% of the users will want to use. They do not contain personal preferences, like the value of 'shiftwidth’.
-If you want to do additional settings, or overrule the default filetype plugin, you can create your own plugin file.  See “:help ftplugin” in Vim.
-indent
-This directory contains files to automatically compute the indent for a type of file.
-If you want to add your own indent file for your personal use, read the docs at “:help indent-expression”.
-Note: If you want to make an indent file, it should be named for the filetype that you want, not the extension. For example, if you want to change your Javascript indentation, your file should be named javascript.vim, not js.vim.
-keymap
-Keymap files for Vim
-One of these files is loaded when the 'keymap’ option is set.
-The name of the file consists of these parts:
-{language}[-{layout}][_{encoding}].vim
-The format of the keymap lines below “loadkeymap” is explained in the Vim help files, see “:help keymap-file-format”.
-lang
-Language files for Vim
-More information in the on-line help:
-    :help multilang-menus
-    :help :menutrans
-    :help 'langmenu'
-    :help :language
-macros
-The macros in the maze, hanoi and urm directories can be used to test Vim for vi compatibility. The life macros can be used for performance comparisons.
-hanoi   Macros that solve the tower of hanoi problem. life    Macros that run Conway’s game of life. maze    Macros that solve a maze (amazing!). urm     Macros that simulate a simple computer: “Universal Register Machine”
-
-dvorak                  for when you use a Dvorak keyboard
-justify.vim             user function for justifying text
-matchit.vim + matchit.txt  make % match if-fi, HTML tags, and much more
-less.sh + less.vim      make Vim work like less (or more)
-shellmenu.vim           menus for editing shell scripts in the GUI version
-swapmous.vim            swap left and right mouse buttons
-editexisting.vim        when editing a file that is already edited with
-                        another Vim instance
-This one is only for Unix.  It can be found in the extra archive:
-file_select.vim         macros that make a handy file selector
-plugin
-The plugin directory is for standard Vim plugin scripts.
-All files here ending in .vim will be sourced by Vim when it starts up. Look in the files for hints on how they can be disabled without deleting them.
-<li>syntax<br />语法高亮度</li>
-tools
-Some tools that can be used with Vim:
-blink.c:        C program to make the cursor blink in an xterm.
-...
-vimspell.*:     Shell script for highlighting spelling mistakes.
-...
-<li>tutor<br />入门教程</li>
-</ul>
+	<table summary="Commands" border="1" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><kbd>autoload</kbd></td><td>autoload scripts</td><td><code class="inset">:help autoload</code></td></tr>
+		<tr><td><kbd>colors</kbd></td><td></td>:colorscheme配色方案<td><code class="inset"></code></td></tr>
+		<tr><td><kbd>compiler</kbd></td><td>Vim scripts to be used with a specific compiler. They are used with the “:compiler” command</td><td><code class="inset">:help write-compiler-plugin</code></td></tr>
+		<tr><td><kbd>ftplugin</kbd></td><td>The ftplugin directory is for Vim plugin scripts that are only used for a specific filetype.All files ending in .vim in this directory and subdirectories will be sourced by Vim when it detects the filetype that matches the name of the file or subdirectory.For example, these are all loaded for the “c” filetype:    c.vim    c_extra.vim    c/settings.vim Note that the “_” in “c_extra.vim” is required to separate the filetype name from the following arbitrary name. The filetype plugins are only loaded when the “:filetype plugin” command has been used. The default filetype plugin files contain settings that 95% of the users will want to use. They do not contain personal preferences, like the value of 'shiftwidth’.</td><td><code class="inset">:help ftplugin”</code></td></tr>
+		<tr><td><kbd>indent</kbd></td><td>自动缩进This directory contains files to automatically compute the indent for a type of file.</td><td><code class="inset">:help indent-expression</code></td></tr>
+		<tr><td><kbd>keymap</kbd></td><td>Keymap files,The name of the file consists of these parts:{language}[-{layout}][_{encoding}].vim</td><td><code class="inset">:help keymap-file-format</code></td></tr>
+		<tr><td><kbd>lang</kbd></td><td>语言文件</td><td><code class="inset">:help multilang-menus<br />:help :menutrans<br />:help 'langmenu'<br />:help :language</code></td></tr>
+		<tr><td><kbd>macros</kbd></td><td>
+		<ul>
+			<li><kbd>hanoi</kbd> Macros that solve the tower of hanoi problem.</li>
+			<li><kbd>life</kbd>Macros that run Conway’s game of life.</li>
+			<li><kbd>maze</kbd>Macros that solve a maze (amazing!).</li>
+			<li><kbd>urm</kbd>Macros that simulate a simple computer: “Universal Register Machine”</li>
+			<li><kbd>dvorak</kbd>for when you use a Dvorak keyboard</li>
+			<li><kbd>editexisting.vim</kbd>when editing a file that is already edited with another Vim instance</li>
+			<li><kbd>file_select.vim</kbd>macros that make a handy file selector</li>
+			<li><kbd>justify.vim</kbd>user function for justifying text</li>
+			<li><kbd>matchit.vim</kbd>make % match if-fi, HTML tags, and much more</li>
+			<li><kbd>less.sh</kbd>make Vim work like less (or more)</li>
+			<li><kbd>shellmenu.vim</kbd>menus for editing shell scripts in the GUI version</li>
+			<li><kbd>swapmous.vim</kbd>swap left and right mouse buttons</li>
+			
+		</ul>
+		</td><td><code class="inset"></code></td></tr>
+		<tr><td><kbd>plugin</kbd></td><td>插件All files here ending in .vim will be sourced by Vim when it starts up.</td><td><code class="inset"></code></td></tr>
+		<tr><td><kbd>syntax</kbd></td><td>语法高亮度</td><td><code class="inset"></code></td></tr>
+		<tr><td><kbd>tools</kbd></td><td>工具</td><td><code class="inset"></code></td></tr>
+		<tr><td><kbd>tutor</kbd></td><td>入门教程</td><td><code class="inset"></code></td></tr>
+	</table>
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">用户目录</p>
 	<p>使用以下命令，可以查看$HOME所代表的用户目录：</p>
 	<p style="text-indent:2em"><code class="inset">:echo $HOME</code></p>
-	Unix下的 $HOME/.vim/ 目录 are for any customizations that should not be over-written when upgrading to a new version of vim.
-	The custom configuration directory
-<p>commonly located at ~/.vim. This contains all of our personal modifications so we don’t mess with the default configuration. From what I can tell, you can put any directory that matches the names in the install directory, and the files within will behave as if you had dropped them in the installation directory. Again, you can do this to override the default behavior without messing anything up so you can easily take your changes to other machines. For an example of what my ~/.vim directory looks like, check it out. 
+	<ul>
+		<li>For Windows：<kbd>C:\users\username</kbd></li>
+		<li>For Linux：<kbd> ~/.vim</kbd></li>
+	</ul>
+	<p>用户目录，在vim版本升级时也不会被覆盖。This contains all of our personal modifications so we don’t mess with the default configuration.目录结构可以与安装目录保持一致</p>
 	<p>在首次使用Vim之前，可以使用以下命令来创建<a href="http://bit.ly/vim-vimrc" title="vimrc">vimrc配置文件</a>：</p>
 <p style="text-indent:2em"><code class="inset">$ touch ~/.vimrc</code></p>
 Linux: /home/username/.vimrc
@@ -122,10 +90,6 @@ Windows: c:\documents and settings\username\_vimrc
 Whatever you change in the personal vimrc file will overrule any previous setting
 made in the global vimrc file. This way you can modify the entire configuration
 without having to ever have access to the global vimrc file.
-You can find out what Vim considers as the home directory on your system, by
-
-
-
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
 		<tr><td><code class="inset"></code></td><td></td></tr>
