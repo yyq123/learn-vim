@@ -18,17 +18,30 @@
 	<p>使用以下命令，可以看到vim-minimal是一个仅提供vi兼容命令的精简版本。以“-”标识的未启用特性中，包括<a href="http://bit.ly/vim-syntaxHL" title="Syntax Highlight">语法高亮度显示</a>和<a href="http://bit.ly/vim-Fold" title="Fold">折叠</a>等重要功能。因此，我们需要安装完整版本的vim-enhanced。</p>
 	<p><img src="https://yyq123.github.io/learn-vim/images/Linux_vi_version.png" alt="vi --version" width="500" height="569" /></p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">安装</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">安装Vim</p>
 	<p>使用以下命令，可以查看vim-enhanced的详细信息：</p>
 	<p style="text-indent:2em"><code class="inset">dnf info vim-enhanced</code></p>
 	<p><img src="https://yyq123.github.io/learn-vim/images/dnf-info-vim-enhanced.png" alt="dnf info vim-enhanced" width="500" height="274" /></p>
 	<p>使用以下命令，可以安装vim-enhanced：</p>
 	<p style="text-indent:2em"><code class="inset">sudo dnf install vim-enhanced</code></p>
-
+	<p>使用以下命令，可以看到vim-enhanced包含除图形界面之外的更多特性。如果你需要GUI版本的Vim，可以安装GVim：</p>
 	<p><img src="https://yyq123.github.io/learn-vim/images/Linux_vim_version.png" alt="vi --version" width="500" height="569" /></p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">配置</p>
-	<p></p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">安装gVim</p>
+	<p>打开Fedora预装的软件管理器Software，然后在其中搜索“gVim”，就可以进行安装：</p>
+	<p><img src="https://yyq123.github.io/learn-vim/images/Install_gVim_Linux_Fedora.png" alt="Install gVim on Fedora" width="500" height="114" /></p>
+
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">基本配置</p>
+	<p>可以在HOME目录之下，创建<kbd>.vimrc</kbd>文件；或者将安装目录下的示例文件<kbd>/usr/share/vim/vim81/vimrc_example.vim</kbd>复制到用户目录之下并更名为<kbd>~/.vimrc</kbd>；</p>
+	<p>依据安装目录的<kbd>/usr/share/vim/vimfiles</kbd>目录结构，在用户目录下的创建一致的目录结构（例如<kbd>~/.vim</kbd>）；</p>
+	<p><img src="https://yyq123.github.io/learn-vim/images/vimfiles_directory.png" alt="dnf info vim-enhanced" width="500" height="274" /></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">验证安装</p>
+	<p>在Terminal中输入<code class="inset">vim</code>命令，可以打开命令行版本的vim</p>
+	<p><img src="https://yyq123.github.io/learn-vim/images/Vim_Linux_Fedora.png" alt="dnf info vim-enhanced" width="500" height="394" /></p>
+	<p>在Terminal中输入<code class="inset">gvim</code>命令，可以打开图形界面版本的gVim</p>
+	<p><img src="https://yyq123.github.io/learn-vim/images/gVim_Linux_Fedora.png" alt="dnf info vim-enhanced" width="500" height="394" /></p>
 
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
