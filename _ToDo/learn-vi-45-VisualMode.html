@@ -12,13 +12,13 @@
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">可视化模式的种类</p>
 	<p>可视化模式可以分为以下三种：</p>
 	<ol>
-	<li>用<code class="inset">v</code>命令进入的字符可视化模式（Characterwise visual mode)。文本选择是以字符为单位的。</li>
-	<li>用<code class="inset">V</code>命令进入的行可视化模式（Linewise visual mode)。文本选择是以行为单位的。</li>
-	<li>用<code class="inset">ctrl-V</code>进入的块可视化模式（Blockwise visual mode）。可以选择一个矩形内的文本。（注意：在Windows中，<code class="inset">ctrl-V</code>可能已经被影射为粘贴操作，可以使用<code class="inset">ctrl-Q</code>进入块可视化模式。）</li>
+		<li>用<code class="inset">v</code>命令进入的<strong>字符可视化模式（Characterwise visual mode)</strong>，文本选择是以字符为单位的。</li>
+	<li>用<code class="inset">V</code>命令进入的<strong>行可视化模式（Linewise visual mode)</strong>，文本选择是以行为单位的。</li>
+	<li>用<code class="inset">ctrl-V</code>进入的<strong>块可视化模式（Blockwise visual mode）</strong>，可以选择一个矩形内的文本。（注意：在Windows中，ctrl-V可能已经被影射为粘贴操作，可以使用<code class="inset">ctrl-Q</code>进入块可视化模式。）</li>
 	</ol>
 	
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">切换可视化模式</p>
-	<p>通过输入相应的可视化命令，就可以切换到不同的可视化模式。例如现在字符可视化模式下，如果想要切换到块可视化模式，那么只需要输入<kbd>ctrl-V</kbd>即可。当然，我们也可以先用<kbd>ESC</kbd>关闭当前的可视化模式，然后再进入其它可视化模式。</p>
+	<p>通过输入相应的可视化命令，就可以切换到不同的可视化模式。例如现在字符可视化模式下，如果想要切换到块可视化模式，那么只需要输入<kbd>ctrl-Q</kbd>即可。当然，我们也可以先用<kbd>ESC</kbd>关闭当前的可视化模式，然后再进入其它可视化模式。</p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">在可视化模式下选择</p>
 	<p>使用命令<code class="inset">v</code>进入<strong>字符可视化模式</strong>。在此模式下，用命令移动光标，光标起始位置和当前位置之间的文本将会以高亮显示。这时就可以对这些高亮显示的文本进行整体的操作。例如：在字符可视化模式中，首先用<code class="inset">6l</code>命令选中光标右侧的6个字符，然后输入<code class="inset">d</code>命令删除高亮显示的文本。</p>
@@ -27,7 +27,7 @@
 	<p><a href="http://www.flickr.com/photos/yyq123/5100818807/" title="VisualMode_Line by yyq123, on Flickr"><img src="http://farm5.static.flickr.com/4110/5100818807_654901eb04.jpg" width="266" height="87" alt="VisualMode_Line" /></a></p>
 	<p>使用命令<code class="inset">ctrl-Q</code>进入<strong>块可视化模式</strong>。在此模式下，我们使用<code class="inset">2l</code>命令向右移动，然后使用<code class="inset">3j</code>命令向下移动，就可以选中4行2列的文本块。</p>	
 	<p><a href="http://www.flickr.com/photos/yyq123/5100856819/" title="VisualMode_Block by yyq123, on Flickr"><img src="http://farm5.static.flickr.com/4107/5100856819_81acfbf1fa.jpg" width="266" height="87" alt="VisualMode_Block" /></a></p>
-	<p>命令<code class="inset">gv</code>可以重复前一次可视化模式时选中的文本。如果已经在可视化模式下，执行该命令会选中前一次选择的文本。如果重复行执gv命令，就会在当前选中的文本和前一次选中的文本之间进行切换。</p>
+	<p>命令<code class="inset">gv</code>可以重复前一次可视化模式时选中的文本。如果已经在可视化模式下，执行该命令会选中前一次选择的文本。如果重复行执行gv命令，就会在当前选中的文本和前一次选中的文本之间进行切换。</p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">在可视化模式下移动</p>
 	<p>如果你已经在可视化模式下选择了若干文本，并且希望移动到已选择文本的另一结尾处，那么可以使用<code class="inset">o</code>命令。</p>
@@ -59,8 +59,8 @@
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">可视化模式的帮助信息</p>
 	<p>输入以下命令，然后点击<kbd>ctrl+D</kbd>键将会列出和可视化相关的帮助主题；再点击<kbd>Tab</kbd>键可以选择打开选中的主题：</p>
 	<p style="text-indent:2em"><code class="inset">:help visual</code></p>
-	<p>可以在所希望帮助的名称前加v_前缀。例如使用<code class="inset">:help v_d</code>命令，可以得到关于在可视模式下进行删除操作的帮助信息。而使用<code class="inset">:help v_b_r</code>命令，则可以得到关于在块可视模式下进行替换操作的帮助信息。</p>
-	<p style="text-indent:2em"><code class="inset">help Visual-mode</code></p>
+	<p>可以在所希望帮助的名称前加v_前缀。例如使用<code class="inset">:help v_d</code>命令，可以得到关于在可视模式下进行删除操作的帮助信息。而使用<code class="inset">:help v_b_r</code>命令，则可以得到关于在块可视模式下进行替换操作的帮助信息。使用以下命令，则可以查看更多关于可视化模式的帮助信息：</p>
+	<p style="text-indent:2em"><code class="inset">:help Visual-mode</code></p>
 	
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
