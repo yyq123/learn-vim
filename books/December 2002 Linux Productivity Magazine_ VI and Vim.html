@@ -257,55 +257,6 @@ the next "My_Opinion", which presumably was fixed by the preceding command.<br>
 </table>
 
 
-<h3>WYSIWYG Ranges</h3>
-
-
-Consider the preceding range substitution:<br>
-
-
-<pre>:2+?My_Opinion?;/My_Opinion/-1s/Windows/Linux/</pre>
-
-
-Can you glance at that command and tell what it does? Not unless you're a true VimMeister. Personally, I'm not that good.<br>
-
-
-<br>
-
-
-The classic early 1980's post titled "Real Men Don't Use Pascal" discusses
-the wonders of "You asked for it, you got it" (YAFIYGI) editors like DEC's
-TECO, in which a single wrong character can destroy the file. The preceding
-command just might involve just a little too much "you asked for it, you got it" risk for
-someone on a tight deadline.<br>
-
-
-<br>
-
-
-When you need to play it safe, many VI implementations have something called
-Visual Mode, in which you can highlight a certain range of lines, and run
-a simple substitution on that range. For instance, in the Vim implementation,
-you'd go to the first line you want to change, press Shift+V, then use motion
-commands, such as j or a search, to move to the end of the range. Once the
-desired range is highlighted, you simply press the colon key, and then type
-<tt>s/Windows/Linux/</tt> to make the change in the highlighted area.<br>
-
-
-<br>
-
-
-Generally speaking, when you're making range changes in realtime, if you
-have Visual Mode available, you'll use it to simplify ranges.<br>
-
-
-<br>
-
-
-And of course, when you want to show off at your LUG, you use the YAFIYGI
-method. After all, real men use TECO when they can, and if TECO isn't available,
-they use VI recklessly.<br>
-
-
 <h2>Global Commands</h2>
 
 
