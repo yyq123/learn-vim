@@ -257,55 +257,6 @@ the next "My_Opinion", which presumably was fixed by the preceding command.<br>
 </table>
 
 
-<h3>WYSIWYG Ranges</h3>
-
-
-Consider the preceding range substitution:<br>
-
-
-<pre>:2+?My_Opinion?;/My_Opinion/-1s/Windows/Linux/</pre>
-
-
-Can you glance at that command and tell what it does? Not unless you're a true VimMeister. Personally, I'm not that good.<br>
-
-
-<br>
-
-
-The classic early 1980's post titled "Real Men Don't Use Pascal" discusses
-the wonders of "You asked for it, you got it" (YAFIYGI) editors like DEC's
-TECO, in which a single wrong character can destroy the file. The preceding
-command just might involve just a little too much "you asked for it, you got it" risk for
-someone on a tight deadline.<br>
-
-
-<br>
-
-
-When you need to play it safe, many VI implementations have something called
-Visual Mode, in which you can highlight a certain range of lines, and run
-a simple substitution on that range. For instance, in the Vim implementation,
-you'd go to the first line you want to change, press Shift+V, then use motion
-commands, such as j or a search, to move to the end of the range. Once the
-desired range is highlighted, you simply press the colon key, and then type
-<tt>s/Windows/Linux/</tt> to make the change in the highlighted area.<br>
-
-
-<br>
-
-
-Generally speaking, when you're making range changes in realtime, if you
-have Visual Mode available, you'll use it to simplify ranges.<br>
-
-
-<br>
-
-
-And of course, when you want to show off at your LUG, you use the YAFIYGI
-method. After all, real men use TECO when they can, and if TECO isn't available,
-they use VI recklessly.<br>
-
-
 <h2>Global Commands</h2>
 
 
@@ -452,44 +403,6 @@ Even the somewhat convoluted second form is not completely accurate, because
 if there are multiple instances of the word "slave", VI's native long matching
 will cause it to only change the last instance of "slave" on each line. Long
 and short matching are explained in the <a href="http://www.troubleshooters.com/lpm/200212/200212.htm#_Regular_Expressions">article on regular expressions</a>.<br>
-
-
-<h2>Summary</h2>
-
-
-Substitute and Global commands offer immense power, but that fact is not
-obvious from this article. After all, most examples in this article simply
-looked for one string and replaced it with another. Ranges added some power,
-and so did the one-two punch of a Global command whose command upon match is a Substitute command. <br>
-
-
-<br>
-
-
-But until you introduce Regular Expressions, the Global and Substitute commands
-are just parlor tricks of a second rate magician. Regular Expressions transmogrify
-these commands into wizardry. Read on...<br>
-
-
-<h5>Steve Litt is the author of "<a href="http://www.troubleshooters.com/bookstore/ttech.htm"> Troubleshooting
-Techniques of the Successful Technologist</a>".&nbsp; Steve can be reached
-at <a href="http://www.troubleshooters.com/email_steve_litt.htm">Steve Litt's email address</a>
-.</h5>
-
-
-
-
-
-
-
-
-<h1>
-</h1>
-
-
-
-
-
 
 
 
@@ -2092,88 +2005,8 @@ may be repeated. Groups can be nested.<br>
 
 
 
-<h5>
-Steve Litt is the author of <a href="http://www.troubleshooters.com/bookstore/rl.htm">Rapid Learning:
-Secret Weapon of the Successful Technologist</a> . He can be reached at
-<a href="http://www.troubleshooters.com/email_steve_litt.htm">Steve Litt's email address</a>
-.</h5>
-
-
-
-
-
 
 <h1><a name="_Registers_Cut_and_Paste"></a>Registers, Cut and Paste</h1>
-
-
-
-
-
-<h5>By Steve Litt</h5>
-
-The most significant factor in a software developer's
-success is his or her design process. Next comes his or her debugging process,
-including use of tools such as debuggers. Obviously, a good memory or skillful
-use of reference material play an important part also.<br>
-
-
-<br>
-
-
-And for those of us without total recall, cut and paste plays a vital role
-in our software development productivity. The ability to copy documentation
-and paste it into our code, to copy a function declaration to the code that
-uses the function, and many other cut and paste tasks speed our productivity
-immensely.<br>
-
-
-<br>
-
-
-VI's cut and paste is richer than most other editors because of VI's vast
-array of registers. A register is simply a place to store text.<br>
-
-
-<br>
-
-
-The simplest cut and paste operation is to delete a single line and paste it elsewhere. The line delete is accomplished by the <tt>dd</tt> key sequence, which deletes the current line and places it in the default register, the <tt>""</tt> register. You can then move to another location, and press the <tt>p</tt> key, which pastes the contents of the <tt>""</tt> register below the current line.<br>
-
-
-<br>
-
-
-If you had wanted to copy the line instead of cut it, you could have used the <tt>yy</tt> keystroke sequence to "yank" the line into the <tt>""</tt> register, and then moved and used the <tt>p</tt> keystroke to paste it below the current line.<br>
-
-
-<br>
-
-
-By the way, if you want to paste above the current line instead of below it, you'd use the <tt>P</tt> keystroke instead of the <tt>p</tt> keystroke.<br>
-
-
-<br>
-
-
-Anyway, the <tt>""</tt> register always contains the text of your last deletion
-or yank, meaning it will quickly be be overwritten by the next delete or
-yank. To save a delete or yank, delete it or yank it into a specific register.
-For instance, to delete the current line and save it in the <tt>"b</tt> register, use the <tt>"bdd</tt> keystroke sequence. To yank (copy without delete) a line into register <tt>"c</tt> use the <tt>"cyy</tt>
-keystroke sequence. In general, you save any deletion or yank to a named
-register by preceding the delete or yank command with a doublequote and the
-register letter.<br>
-
-
-<br>
-
-
-To paste from a specific register, prepend a doublequote and the register letter to the paste command. Thus <tt>"bp</tt> pastes the contents of the <tt>"b</tt> register after the current position, while <tt>"eP</tt> pastes the contents of the <tt>"e</tt> register before the current position.<br>
-
-
-<br>
-
-
-To see a list of all the registers and their contents, use the <tt>:reg</tt> command.<br>
 
 
 <h2>The System Clipboard Register</h2>
@@ -2202,14 +2035,6 @@ but with techniques discussed later in this article you can copy entire subrouti
 Sometimes you want to delete only part of a line, instead of the complete
 line. To delete to the end of the current word, you'd use the <tt>dw</tt> keystroke sequence. To copy the remainder of the current word you'd use the <tt>yw</tt> keystroke sequence. When you delete or yank a line fragment, the <tt>p</tt> and <tt>P</tt> commands act differently, in that they paste before or after the current character instead of the current line.<br>
 
-
-<br>
-
-
-In general, deletion commands have corresponding yank commands. The following table lists several such commands:<br>
-
-
-<br>
 
 
 <table cellpadding="2" cellspacing="2" border="1">
@@ -2380,39 +2205,6 @@ Notice in the preceding that many of the commands are composed by appending a mo
 <h2>WYSIWYG Cut and Paste</h2>
 
 
-Many VI implementations, including Vim, allow visual mode highlighting, in which case simply pressing the <tt>d</tt> or <tt>y</tt>
-key will delete or yank the highlighted text. For instance, in Vim you can
-highlight line by line by pressing &nbsp;the <tt>V</tt> key and then moving with motion commands
-such as <tt>j</tt>, <tt>k</tt>, <tt>}</tt> or a search. You can start&nbsp; highlighting character by character with the <tt>v</tt> key. <br>
-
-
-<br>
-
-
-And in Vim, you can start rectangular highlighting with the Ctrl+v keystroke
-combination. This extremely powerful capability allows you to switch fields
-around in a fixed length sequential record file. You can also build up such
-a file field by field by typing a field's contents on each line, and then
-rectangular cut and paste that onto the end of the preceding fields.<br>
-
-
-<br>
-
-
-Rectangular delete is excellent for deleting the first several characters
-from several lines or all lines in the file, or for deleting past a certain
-column.<br>
-
-
-<h2>Summary</h2>VI offers a wide variety of delete, cut, copy and paste techniques
-that are keyboard easy. The practitioner knowing the techniques listed in
-this article will be able to edit quickly. Your VI implementation will probably
-have many additional techniques not discussed in this article, giving you
-the opportunity to be even faster.<br>
-
-
-<br>
-
 
 In VI the concepts of "cut" and "delete" are identical -- deleting text always sends it to the <tt>""</tt>
 register, which could be thought of as "the VI clipboard". This concept is
@@ -2422,26 +2214,6 @@ starting with <tt>d</tt>. The concept of "copy" is called "yank" in VI, and is t
 
 <br>
 
-
-Deletes and yanks can either be character by character or line by line. The distinction is important when pasting.<br>
-
-
-<br>
-
-
-VI has two paste commands, <tt>p</tt> and <tt>P</tt>. The lower case paste
-command pastes after the current position, while the upper case version pastes
-before the current position. If the previously deleted or yanked material
-was line by line, the pasted material goes in new lines opened either after
-(<tt>p</tt>) or before (<tt>P</tt>) the current line. If the previously deleted
-or yanked material was character by character, the new material starts on
-the current line either after (<tt>p</tt>) or before (<tt>P</tt>) the character over which the cursor resides.<br>
-
-
-<h5>Steve Litt is the author of <a href="http://www.troubleshooters.com/bookstore/rl.htm">Rapid Learning:
-Secret Weapon of the Successful Technologist</a> . He can be reached at
-<a href="http://www.troubleshooters.com/email_steve_litt.htm">Steve Litt's email address</a>
-.</h5>
 
 
 
@@ -3133,28 +2905,6 @@ life projects I recommend you review information on the <tt>ctags</tt> program, 
 
 
 
-<h5>
-Steve Litt is the author of the <a href="http://www.troubleshooters.com/utp/tcourses.htm">Universal
-Troubleshooting Process courseware</a>.&nbsp;&nbsp; Steve can be reached
-at
-<a href="http://www.troubleshooters.com/email_steve_litt.htm">Steve Litt's email address</a>.</h5>
-
-
-
-<h2>Learning Vim</h2>
-
-need to find out what directory contains your help text. Perform the <tt>:h</tt> command to bring up <tt>help.txt</tt>,
-and press the Ctrl+G key combination to see what directory it's in. Then,
-at the bash prompt, go to that directory, and run a grep command. For instance,
-if you want help on "matching", try this:<br>
-<pre>grep -i -C5 match * | less</pre>
-
-Then you can search the retrieved information to discover which help file
-would help you, and within Vim access that help file with the <tt>:h filename</tt> command, where <tt>filename</tt> is the name of the help file.<br>
-
-
-
-
 <h1>
 <a name="_VimOutliner"></a>VimOutliner</h1>
 
@@ -3381,35 +3131,6 @@ The current VimOutliner is known to work on Linux. We have every reason to
 believe it will work on any UNIX clone or workalike, including BSD and OS/X.
 We suspect it can be adapted to Windows usage, but have not yet made the
 port.<br>
-<h2>Summary</h2>
-
-Because so much of the world around us, and so much of human thinking, is
-hierarchical in nature, the outline has always been the design tool of choice
-for writers, and the planning tool of people too busy to work by trial and
-error. Outlining is so powerful that even before computers, when outlining
-was a painful pencil and paper process involving writing, marking up, and
-rewriting, outlines were used extensively.<br>
-<br>
-With the advent of computerized outline processors, the cost of outlining
-has plunged. In the pencil and paper days creating a finished 200 headline
-outline could have taken several days. Today, assuming most of the the research
-and though have been completed, a 200 headline outline would take between
-2 and 6 hours.<br>
-<br>
-With different features and keystroke interfaces, computerized outline processors
-vary widely in their productivity. Due to the incredibly efficient VI keyset,
-VimOutliner is probably the most productive outline creation tools. The current
-version (0.2.0, released 12/3/2002) has the following fully developed features:<br>
-<ul>
-  <li>Insertion/Deletion</li>
-  <li>Demotion/Promotion</li>
-  <li>Rearrangement</li>
-  <li>Copying</li>
-  <li>Collapse/Expand</li>
-  <li>Interoutline linking</li>
-  <li>Level based coloration</li>
-  <li>Fast retrieval</li>
-</ul>
 Two additional important features, <i>spawning</i> and <i>body text</i>,
 have already been prototyped by the VimOutliner team, and almost certainly
 be added to the next version (after 0.2.0). Other features such as <i>hoisting/dehoisting</i>, <i>spellcheck</i>, <i>user friendly menu interface</i>, <i>level aware sorting</i>, and <i>single step rearrangement</i>
@@ -3417,10 +3138,5 @@ are being actively developed, and some of these features are likely to make
 the next version. It's very likely that the next VimOutliner version will
 be more featureful than commercial outliners.<br>
 <br>
-Perhaps most intriguing is the fact that the VimOutliner team has discussed
-techniques to add groupware capability to VimOutliner. When that feature
-is in place, VimOutliner can be expected to be the best of breed outline
-processor, for any price, on any kind of computer.<br>
-<br>
 
-</body><style type="text/css">embed[type*="application/x-shockwave-flash"],embed[src*=".swf"],object[type*="application/x-shockwave-flash"],object[codetype*="application/x-shockwave-flash"],object[src*=".swf"],object[codebase*="swflash.cab"],object[classid*="D27CDB6E-AE6D-11cf-96B8-444553540000"],object[classid*="d27cdb6e-ae6d-11cf-96b8-444553540000"],object[classid*="D27CDB6E-AE6D-11cf-96B8-444553540000"]{	display: none !important;}</style></html>
+</body></html>

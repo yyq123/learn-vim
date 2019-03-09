@@ -5,10 +5,14 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记 </title>
+	<title>VIM学习笔记 目录结构(Directory Structure)</title>
 </head>
 <body>
 	
+	<p>使用<code class="inset">:version</code>命令，可以查看Vim查找配置文件的位置</p>
+	<p><img src="https://yyq123.github.io/learn-vim/images/version_Win_Dir.png" alt="version" width="486" height="273" /></p>
+	<p><img src="https://yyq123.github.io/learn-vim/images/version_Linux_Dir.png" alt="version" /></p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">运行时目录</p>
 	<p>使用以下命令，可以查看运行时目录：</p>
 	<p style="text-indent:2em"><code class="inset">:set rtp?</code></p>
 	<p>vim通常会搜索以下三个运行时目录：</p>
@@ -17,16 +21,21 @@
 		<li>$VIM/vimfiles ( vim下的vimfiles)</li>
 		<li>$VIMRUNTIME (vimxx，比如vim72)</li>
 	</ul>
-	<p>这样可以在不同的状况加载不同的插件和设置（比如多人共同使用，每个人可以有自己的vim设置）</p>
-	<p>使用以下命令，可以修改或增加运行时目录</p>
+	<p></p>
+	<p>使用以下命令，可以修改或增加运行时目录：</p>
 	<p style="text-indent:2em"><code class="inset">:set runtimepath+=c:/blahblah/vimfiles</code></p>
-	<p>你也可以把插件等文件夹放在一个完全不同的地方。</p>
+	<p>如果本机上有多个用户，那么每个用户都可以将自己的vim设置和插件，存放在独立的目录里，然后再将这些目录加入到运行时目录列表里。在Vim启动时，会遍历运行时目录，以载入并运行其中的脚本文件，以实现不同用户使用各种不同的独立设置。</p>
 	<p>使用<code class="inset">:help rtp</code>和<code class="inset">:help dos-locations</code>命令，可以查看更多帮助信息。</p>
 
+	<p style="text-indent:2em"><code class="inset">:echo $VIMRUNTIME</code></p>
+	<ul>
+		<li>For Windows: "C:\Program Files (x86)\Vim\vim81"</li>
+		<li>For Linux: /usr/share/vim/vim81</li>
+	</ul>
 
 vimfiles目录中的设置，会覆盖runtime目录中的设置。例如，vimfiles/plugin/myplug.vim 将优先于 $VIMRUNTIME/plugin/myplug.vim 而被载入。
 
-
+:h system-vimrc
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">安装目录</p>
 <p style="text-indent:2em"><code class="inset"></code></p>
@@ -49,10 +58,11 @@ vimfiles目录中的设置，会覆盖runtime目录中的设置。例如，vimfi
 		<tr><td><kbd>autoload</kbd></td><td>自动载入脚本（autoload scripts）</td><td><code class="inset">:help autoload</code></td></tr>
 		<tr><td><kbd>colors</kbd></td><td></td>配色方案<td><code class="inset"></code></td></tr>
 		<tr><td><kbd>compiler</kbd></td><td>Vim scripts to be used with a specific compiler. They are used with the “:compiler” command</td><td><code class="inset">:help write-compiler-plugin</code></td></tr>
-		<tr><td><kbd>ftplugin</kbd></td><td>The ftplugin directory is for Vim plugin scripts that are only used for a specific filetype.All files ending in .vim in this directory and subdirectories will be sourced by Vim when it detects the filetype that matches the name of the file or subdirectory.For example, these are all loaded for the “c” filetype:    c.vim    c_extra.vim    c/settings.vim Note that the “_” in “c_extra.vim” is required to separate the filetype name from the following arbitrary name. The filetype plugins are only loaded when the “:filetype plugin” command has been used. The default filetype plugin files contain settings that 95% of the users will want to use. They do not contain personal preferences, like the value of 'shiftwidth’.</td><td><code class="inset">:help ftplugin”</code></td></tr>
+		<tr><td><kbd>doc</kbd></td><td>文档</td><td><code class="inset"></code></td></tr>
+		<tr><td><kbd>ftplugin</kbd></td><td>针对特定类型文件的插件。All files ending in .vim in this directory and subdirectories will be sourced by Vim when it detects the filetype that matches the name of the file or subdirectory.For example, these are all loaded for the “c” filetype:    c.vim    c_extra.vim    c/settings.vim Note that the “_” in “c_extra.vim” is required to separate the filetype name from the following arbitrary name. The filetype plugins are only loaded when the “:filetype plugin” command has been used. The default filetype plugin files contain settings that 95% of the users will want to use. They do not contain personal preferences, like the value of 'shiftwidth’.</td><td><code class="inset">:help ftplugin”</code></td></tr>
 		<tr><td><kbd>indent</kbd></td><td>自动缩进</td><td><code class="inset">:help indent-expression</code></td></tr>
 		<tr><td><kbd>keymap</kbd></td><td>Keymap files,The name of the file consists of these parts:{language}[-{layout}][_{encoding}].vim</td><td><code class="inset">:help keymap-file-format</code></td></tr>
-		<tr><td><kbd>lang</kbd></td><td>语言文件</td><td><code class="inset">:help multilang-menus<br />:help :menutrans<br />:help 'langmenu'<br />:help :language</code></td></tr>
+		<tr><td><kbd>lang</kbd></td><td>菜单语言文件</td><td><code class="inset">:help multilang-menus<br />:help :menutrans<br />:help 'langmenu'<br />:help :language</code></td></tr>
 		<tr><td><kbd>macros</kbd></td><td>
 		<ul>
 			<li><kbd>hanoi</kbd> Macros that solve the tower of hanoi problem.</li>
@@ -75,21 +85,24 @@ vimfiles目录中的设置，会覆盖runtime目录中的设置。例如，vimfi
 		<tr><td><kbd>tools</kbd></td><td>工具</td><td><code class="inset"></code></td></tr>
 		<tr><td><kbd>tutor</kbd></td><td>入门教程</td><td><code class="inset"></code></td></tr>
 	</table>
+
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">用户目录</p>
 	<p>使用以下命令，可以查看$HOME所代表的用户目录：</p>
 	<p style="text-indent:2em"><code class="inset">:echo $HOME</code></p>
 	<ul>
 		<li>For Windows：<kbd>C:\users\username</kbd></li>
-		<li>For Linux：<kbd> ~/.vim</kbd></li>
+		<li>For Linux：<kbd> /home/username</kbd></li>
 	</ul>
-	<p>用户目录，在vim版本升级时也不会被覆盖。This contains all of our personal modifications so we don’t mess with the default configuration.目录结构可以与安装目录保持一致</p>
-	<p>在首次使用Vim之前，可以使用以下命令来创建<a href="http://bit.ly/vim-vimrc" title="vimrc">vimrc配置文件</a>：</p>
+	<p>用户目录，在vim版本升级时也不会被覆盖。建议其目录结构与安装目录保持一致，并在其中存放用户设置和插件。</p>
+	<p>在首次使用Vim之前，请先创建<a href="http://bit.ly/vim-vimrc" title="vimrc">vimrc配置文件</a>：</p>
 <p style="text-indent:2em"><code class="inset">$ touch ~/.vimrc</code></p>
-Linux: /home/username/.vimrc
-Windows: c:\documents and settings\username\_vimrc
-Whatever you change in the personal vimrc file will overrule any previous setting
-made in the global vimrc file. This way you can modify the entire configuration
-without having to ever have access to the global vimrc file.
+<ul>
+	<li>For Windows: c:\users\username\_vimrc</li>
+	<li>For Linux: /home/username/.vimrc</li>
+</ul>
+<p>用户配置文件（personal vimrc）将优先于系统配置文件（global vimrc）。用户应该将个性化设置存放在用户配置文件中，而不应修改系统配置文件。</p>
+
+
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
 		<tr><td><code class="inset"></code></td><td></td></tr>
