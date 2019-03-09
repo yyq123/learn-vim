@@ -9,29 +9,17 @@
 </head>
 <body>
 
-我们还可以用delete命令删除一个范围内的文本行。例如可以用:1,5 delete命令，来删除1到5行。
-
-:delete命令的一般格式如下:
-:range delete register count
-在这个命令中的register是我们的删除的文本要放入的寄存器.这个可以是我们用a-z命名的寄存器中的一个.如果我们使用大写的字符做为寄存器的名字,那么这些文本就会被添加到已经存在文本的寄存器中.如果没有指定这个参数,那么就会使用未命名的(unnamed)寄存器.而count则指出要删除的行数.range则是指明要使用的行.
-我们还可以使用命令来删除含有指定字符串的行.如我们可以用下面的命令来删除从第一个包含字符串hello到第一个包含字符串goodbye的行之间所有的行:
-:/hello/,/goodbye/ delete
-在这里我们要注意的就是如果goodbye在hello之前出现,那么这个命令就不会正常的工作了.我们还可以使用偏移量(offset)来重新定义要查找的字符串.例如/hello/+1是指含有hello字符串行的下一行,因而我们还可以使用下面的命令来进行删除的操作:
-:/beach/+1,/seashore/-1 delete
-我们还可以使用下面的一些简写的运算符:
-/    向前查找上一次使用的模式
-?    向后查找上一次使用的模式
-&    向前查找上一次使用的子模式
-(注:这个地方不懂,也不晓如何来用)
-我们还可以使用链式的模式,例如下面的命令在找到字符串first以后要查找second字符串:
-/first//second
-所以我们还可以使用下面这样的删除命令:
-:/hello//goodbye/ delete
-我们还可以指定行号,用来指明在第几行进行查找,如果我们要从第七行开始查找,我们可以使用下面的命令:
-7/first/
-
-
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">删除</p>
+	<p>使用 :range delete register count 形式的命令，可以删除指定范围内的文本行。其中：range 是指明要使用的行；count 是指出要删除的行数；register 是指删除的文本要放入的寄存器.这个可以是我们用a-z命名的寄存器中的一个.如果我们使用大写的字符做为寄存器的名字,那么这些文本就会被添加到已经存在文本的寄存器中.如果没有指定这个参数,那么就会使用未命名的(unnamed)寄存器.例如以下命令，将删除第1到5行：</p>
+	<p style="text-indent:2em"><code class="inset">:1,5 delete</code></p>
+	<p>我们还可以在命令中使用搜索模式，来删除含有指定字符串的行。例如，以下命令将删除从第一个包含字符串hello到第一个包含字符串goodbye的行之间所有的行：</p>
+	<p style="text-indent:2em"><code class="inset">:/hello/,/goodbye/ delete</code></p>
+	<p>注意：如果goodbye在hello之前出现，那么命令就不会正常的工作了。</p>
+	<p>在搜索模式中，可以使用偏移量(offset)来精确定位要查找的字符串。例如，以下命令中/hello/+1是指含有hello字符串行的下一行：</p>
+	<p style="text-indent:2em"><code class="inset">:/beach/+1,/seashore/-1 delete</code></p>
+	<p>在命令中指定行号，将从指定行开始进行查找。例如，以下命令将从第七行开始查找，然后删除匹配行：</p>
+	<p style="text-indent:2em"><code class="inset">:7/first/ delete</code></p>
+
 	<p>使用 :line delete count 形式的命令，可以删除指定范围内的文本，即移动到line所指定的行（默认为当前行），然后删除总数为count行的文本（包括line所指定的行在内）。例如，以下命令将删除第三和第四行，总计两行文本：</p>
 	<p><code class="inset">:3 delete 2</code></p>
 	<p>如果在命令之前指定一个数字n，那么就会删除这个数字所指定的范围（即包括当前行在内的n行）：</p>
@@ -39,29 +27,35 @@
 	<p>屏幕底部将显示实际执行的是以下命令：</p>
 	<p><code class="inset">:.,.+2 delete</code></p>
 	<p>也就是数，命令删除当前行以及当前行以下的两行，总计三行文本。</p>
+:change命令与:delete命令相类似,所不同的只是他还同时执行:insert命令,也就是有我们可以同时输入我们要插入的文本.
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px"></p>
 	<p></p>
 	<p><code class="inset">:help cmdline-editing</code></p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">命令历史</p>
-	<p style="text-indent:2em"><code class="inset"></code></p>
-	<p style="text-indent:2em"><code class="inset"></code></p>
-	<p style="text-indent:2em"><code class="inset"></code></p>
-:copy命令是将几行的文本从一个地方复制到另一个地方.这个命令的一般格式如下:
-:range copy address
-如果没有特别指定,range默认是指当前行.这个命令是拷贝range所指定的范围行的文本到address指定行的后面.
-与:copy命令相类似的是:move命令,所不同的只是这个命令是移动而不复制.
-假如我们要在我们正编辑的文本中插入一些行,而由于某些原因,我们要使用命令行的方式来完成这样的工作.这时我们就要将光标移动我们希望新行出现的上一行.换句话说,我们是希望将插入的文本出现在当前行的后面.然后我们可以执行命令:append来开始我们的插入过程,我们输入我们要插入的内容并用句号(.)来结束一行的输入.例如我们在一个测试文本中执行下面的命令:
-:1append
-这个命令是要第一行的后面插入我们新的文本行.执行这个命令后,我们可以在Vi的底部输入我们要插入的内容.当我们要结束我们的输入时,只要在一新行输入.就可以了.这样我们输入的内容就会出在第一行的后面了.
-:append命令的一般格式如下:
-:line append
-我们输入的新文本将会插入在line所指定的行后面.
-:insert命令也可以插入文本,这个命令的一般形式如下:
-:line insert
-这个命令与:append命令相似,所不同的是后者是当前行的后面插入文本,而前者是在当前的前面插入文本.
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">复制</p>
+	<p>使用 :range copy address 形式的命令，可以将range所指定范围的文本复制到address指定行的下面。如果没有指定range，则默认为当前行。例如，以下命令将第一至第三行文本，复制到第四行下面：</p>
+	<p style="text-indent:2em"><code class="inset">:1,3 copy 4</code></p>
 
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">移动</p>
+	<p>与:copy命令相类似的:move命令，用于移动文本。例如，以下命令将第一至第三行文本，移动到第四行下面：</p>
+	<p style="text-indent:2em"><code class="inset">:1,3 move 4</code></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">插入文本</p>
+	<p>使用命令行的方式，也可以用来插入文本。执行以下命令，然后在屏幕底部继续输入文本，最后在新一行中输入句号(.)来结束录入，输入的文本就会被添加到当前行的下面：</p>
+	<p style="text-indent:2em"><code class="inset">:append</code></p>
+	<p>通过在命令中指定行号，可以在指定行的下面插入文本。例如，以下命令将在第一行下面插入新的文本：</p>
+	<p style="text-indent:2em"><code class="inset">:1append</code></p>
+	<p>与:append相似的<code class="inset">:insert</code>命令，可以在指定行的上面插入文本。</p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">执行宏</p>
+	<p>使用以下命令，可以执行寄存器中的<a href="http://yyq123.github.io/learn-vim/learn-vi-29-Macro.html" title="Macro">宏</a>：</p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+命令:>使得文本右缩进,:<命令使文本向左缩进.例如下面的命令将会使第五行到第十行向右缩进:
+:5,10>
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
 		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
