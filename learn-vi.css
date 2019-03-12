@@ -29,3 +29,13 @@ code.msg {
   font-family: "Courier New", Courier, monospace;
 }
 
+
+code.menu {
+  margin: 0;
+  padding: 0.2em;
+  color: #000;
+  background-color: #DCDCDC;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+}
+

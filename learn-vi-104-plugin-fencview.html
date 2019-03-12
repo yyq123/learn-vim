@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 多编码侦测器(fencview.vim)</title>
+</head>
+<body>
+	<p>Vim内置的<a href="https://gist.github.com/" title="Multi-Encoding">多编码（Multi-Encodings）处理</a>能力，可以很好地判断并显示不同编码格式的文件，而<a href="https://www.vim.org/scripts/script.php?script_id=1708" title="fencview.vim">fencview.vim</a>插件，则提供了更强大地功能。</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">安装配置</p>
+	<p>你可以直接下载<a href="https://www.vim.org/scripts/script.php?script_id=1708" title="fencview.vim">fencview.vim</a>文件，然后将其放入<kbd>vimfiles\plugin</kbd>目录之中。</p>
+	<p>推荐的方法是，使用<a href="http://yyq123.github.io/learn-vim/learn-vi-102-plugin-plug.html" title="插件管理器(vim-plug)">vim-plug</a>或<a href="http://yyq123.github.io/learn-vim/learn-vi-101-plugin-vundle.html" title="插件管理器(Vundle)">Vundle</a>等插件管理器，来安装GitHub上的<a href="https://github.com/mbbill/fencview">fencview.vim</a>插件。</p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">自动侦测</p>
+	<p>以下图所示的文件为例，文件被错误判断为latin1编码格式，故而显示乱码：</p>
+	<p><img src="https://yyq123.github.io/learn-vim/images/encoding_wrong.png" alt="encoding_wrong.png" width="500" height="208" /></p>
+	<p>使用 <code class="inset">:FencAutoDetect</code> 命令，将会自动侦测编码格式。</p>
+	<p>使用 <code class="menu">Tools</code>-&gt;<code class="menu">Encoding</code>-&gt;<code class="menu">Auto Detect</code> 菜单，也可以自动侦测编码格式。</p>
+	<p><img src="https://yyq123.github.io/learn-vim/images/FencView_Menu_AutoDetect.png" alt="FencView Auto Detect" width="500" height="334" /></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">手动侦测</p>
+	<p>如果使用自动侦测，仍然没有正确判断文件编码，那么可以使用 <code class="inset">:FencView</code> 命令，来显示编码列表：</p>
+	<p><img src="https://yyq123.github.io/learn-vim/images/FencView.png" alt="FencView_encoding.png" width="500" height="221" /></p>
+	<p>在选择了正确的编码格式之后，文本显示正常：</p>
+	<p><img src="https://yyq123.github.io/learn-vim/images/FencView_encoding.png" alt="FencView_encoding.png" width="500" height="210" /></p>
+	<p>在菜单<code class="menu">Tools</code>-&gt;<code class="menu">Encoding</code>中，也可以选择需要的编码格式：</p>
+	<p><img src="https://yyq123.github.io/learn-vim/images/FencView_Menu.png" alt="FencView Menu" width="500" height="334" /></p>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+	</table>
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a href="http://yyq123.github.io/learn-vim/learn-vi-101-plugin-vundle.html" title="插件管理器(Vundle)">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a href="http://yyq123.github.io/learn-vim/learn-vi-102-plugin-plug.html" title="插件管理器(vim-plug)">下一篇</a>&gt;</span></p>
+</body>
+</html>
+
