@@ -5,47 +5,59 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记  ()</title>
+	<title>VIM学习笔记 启动命令()</title>
 </head>
 <body>
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">启用/禁用</p>
-	<p></p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">启动命令</p>
+	<p>我们通常使用 vim [arguments] [file ..] 形式，使用指定的选项打开指定的文件。例如，使用以下命令，以只读模式打开virmc配置文件：</p>
+	<p><code class="inset">vim -R .vimrc</code></p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">识别文件</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">命令参数</p>
 	<p></p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
-	<p>使用以下命令，可以查看命令行参数的帮助信息：</p>
-	<p style="text-indent:2em">$ vim --help<code class="inset"></code></p>
-	<p>使用以下命令，可以查看Vim的版本信息：</p>
-	<p style="text-indent:2em">$ vim --version<code class="inset"></code></p>
-我们可以用-R参数来在只读状态下打开一个文件，命令格式如下:
-$ vim -R filename
+	<p>在操作系统中执行以下命令，可以查看命令行参数的帮助信息：</p>
+	<p style="text-indent:2em"><code class="inset">$ vim --help</code></p>
+	<p><img src="https://yyq123.github.io/learn-vim/images/vim -help.png" alt="vim -help.png" width="500" height="191" /></p>
 
+	<table summary="" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+	<tr><td><code class="inset">-v</code></td><td>在vi模式下启动(与命令vi相同)</td></tr>
+	<tr><td><code class="inset">-e</code></td><td>在ex模式下启动(与命令ex相同)</td></tr>
+	<tr><td><code class="inset">-E</code></td><td>在Improved Ex模式下启动</td></tr>
+	<tr><td><code class="inset">-g</code></td><td>在图形模式下启动(与命令gvim相同)</td></tr>
+	<tr><td><code class="inset">-s</code></td><td>静默批处理模式</td></tr>
+	<tr><td><code class="inset">-d</code></td><td>Diff模式(与命令vimdiff相同)</td></tr>
+	<tr><td><code class="inset">-y</code></td><td>Easy模式(与命令evim相同)</td></tr>
+	<tr><td><code class="inset">-R</code></td><td>在只读模式下启动(与命令view相同)</td></tr>
+	<tr><td><code class="inset">-Z</code></td><td>受限模式(与rvim相同).这个命令参数可阻止我们使用:shell命令或是其他的一些命令来使用外部的Shell</td></tr>
+	<tr><td><code class="inset">-m</code></td><td>允许修改文本，但不允许保存文件</td></tr>
+	<tr><td><code class="inset">-M</code></td><td>不允许修改文本，也不允许保存文件</td></tr>
+	<tr><td><code class="inset">-b</code></td><td>二进制模式（设置了noexpandtab,textwidth=0,nomodeline,binary选项）</td></tr>
+	<tr><td><code class="inset">-l</code></td><td>Lisp模式（设置了lisp和showmatch选项）</td></tr>
+	<tr><td><code class="inset">-C</code></td><td>Vi兼容模式（compatible）</td></tr>
+	<tr><td><code class="inset">-N</code></td><td>非兼容模式（nocompatible）</td></tr>
+	<tr><td><code class="inset">-D</code></td><td>调试模式</td></tr>
+	<tr><td><code class="inset">-n</code></td><td>不使用swap文件</td></tr>
+	<tr><td><code class="inset">-r</code></td><td>列示swap文件</td></tr>
+	<tr><td><code class="inset">-p[N]</code></td><td>新建N个标签页(默认为每个文件一个)</td></tr>
+	<tr><td><code class="inset">-o[N]</code></td><td>新建N个水平窗口(默认为每个文件一个)</td></tr>
+	<tr><td><code class="inset">-O[N]</code></td><td>新建N个垂直窗口(默认为每个文件一个)</td></tr>
+	<tr><td><code class="inset">+</code></td><td>打开文件并移动到文件末尾</td></tr>
+	<tr><td><code class="inset">+lnum</code></td><td>打开文件并移动到第lnum行</td></tr>
+	<tr><td><code class="inset">-s script</code></td><td>读取用-w参数保持的脚本文件</td></tr>
+	<tr><td><code class="inset">-w script</code></td><td>将用户输入的所有命令，追加到脚本文件末尾。</td></tr>
+	<tr><td><code class="inset">-W script</code></td><td>将用户输入的所有命令，覆盖存储到脚本文件。</td></tr>
+	<tr><td><code class="inset"></code></td><td></td></tr>
+	<tr><td><code class="inset">-u vimrcfile</code></td><td>使用vimrcfile为初始化文件，而不使用.vimrc作为初始化文件；如果没有指定的文件，那么就不使用任何初始化文件。</td></tr>
+	<tr><td><code class="inset">-U gvimrcfile</code></td><td>使用gvimrcfile为初始化文件，而不使用.gvimrc作为初始化文件；如果没有指定的文件，那么就不使用任何初始化文件。</td></tr>
+	<tr><td><code class="inset">-i viminfofile</code></td><td>使用viminfofile而不使用.viminfo作为初始化文件</td></tr>
+	<tr><td><code class="inset">--noplugin</code></td><td>不启用插件</td></tr>
+	<tr><td><code class="inset">--startuptime file</code></td><td>将Vim启动过程地耗时信息写入到指定文件<file></td></tr>
+	<tr><td><code class="inset">--clean</code></td><td>非兼容模式(nocompatible)，不启用插件和viminfo</td></tr>
+	<tr><td><code class="inset">--version</code></td><td>查看版本信息</td></tr>
+	</table>
 
-想一下,如果我们要处理许多的文件,而要将这些文件中的字符串-person-换成Jones.我们应怎么样来做呢?一个办法就是我们要输入许多次来手工的更改,另一个解决办法就是我们可以写一个Shell脚本或是批处理文件来做这样的工作.然而要批处理,Vim并不会产生一个空的有注释的文件,因而我们要使用ex的命令模式.这种方式给了我们一个极好的命令行的接口可以很容易的放入批文件中.
-在我们这个例子中我们所需要的命令如下:
-:%s/-person-/Jones/g
-:write
-:quit
-我们将这些命令放入一个名为change.vim的文件中,然后在批模式下运行Vim,这时我们可以使用这样的命令:
-$ vim -es file.txt<change.vim
-这个是告诉Vim是ex命令模式下运行处理文件file.txt并从change.vim中读入文件.-s标记告诉Vim不要给出任何的输出提示一类的内容.
-还有另外的一些命令行参数使得我们可以更好的来控制Vim编辑器:
-    
--m    允许修改.这个选项允许我们可以设置write选项和修改文件
--Z
-受限模式.这个命令参数可阻止我们使用:shell命令或是其他的一些命令来使用外部的Shell.但是这个选项并不会阻止我们使用:vi命令来编辑文件.
-另外还有一些命令行参数可以允许我们决定读取哪一个初始化文件:
--u file
-使用file为初始化文件,而不是使用.vimrc作为初始化文件.如果没有这个文件,那么就不会用任何的初始化文件.
--U file
-使用file而不使用.gvimrc作为初始化文件.如果没有这个文件,同样不使用任何的初始化文件.
--i file        使用file而不使用.viminfo作为初始化文件.
-在UNIX系统中,Vim编辑器实际上是一个有着不同的名字或链接的文件.Vim编辑器在哪种模式下启动,取决于我们用什么样的命令或是名字来启动他.一些常用的命令如下:
-    
-    
-    
-    
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">命令变体</p>
+	<p>Vim编辑器实际上是一个有着不同的名字或链接的文件，执行以下不同的命令，就可以使编辑器在不同的模式下启动：</p>
 	<table summary="" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 	<tr><td><code class="inset">vim</code></td><td>在终端模式下启动</td></tr>
 	<tr><td><code class="inset">gvim</code></td><td>在图形模式下启动</td></tr>
@@ -57,45 +69,16 @@ $ vim -es file.txt<change.vim
 	<tr><td><code class="inset">rgvim</code></td><td>在图形模式下启动,受限</td></tr>
 	<tr><td><code class="inset">rgview</code></td><td>在图形模式下启动,只读,受限</td></tr>
 	</table>
-我们也可以通过命令行参数来设置初始化模式:
-	<table summary="" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
-	<tr><td><code class="inset">-g</code></td><td>在图形模式下启动vim(与命令gvim相同)</td></tr>
-	<tr><td><code class="inset">-e</code></td><td>在ex模式下启动(与ex相同)</td></tr>
-	<tr><td><code class="inset">-v</code></td><td>在Vi模式下启动(与vi相同)</td></tr>
-	<tr><td><code class="inset">-R</code></td><td>在正常模式下启动,只读</td></tr>
-	<tr><td><code class="inset"></code></td><td></td></tr>
-	<tr><td><code class="inset"></code></td><td></td></tr>
-	<tr><td><code class="inset"></code></td><td></td></tr>
-	<tr><td><code class="inset"></code></td><td></td></tr>
-	<tr><td><code class="inset"></code></td><td></td></tr>
-	<tr><td><code class="inset"></code></td><td></td></tr>
-	<tr><td><code class="inset"></code></td><td></td></tr>
-	<tr><td><code class="inset"></code></td><td></td></tr>
-	</table>
-    
-    
-    
-我们还可以使用一些命令行参数来调试我们的Vim编辑器,常用的命令行参数有下面的一些:
--Vnumber
-显示额外的信息以使我们知道在编辑器的内部都做了一些什么.数字越大,我们得到的输出信息也就越多.这个参数常用来调试我们的Vim编辑器脚本.
--f
-前景.我们不要在背景模式下启动图形界面.这个启动对于那些只有一个程序执行完毕才开始执行另一个程序的情况显得尤为有用.当然了这个选项对调试也是相当有用的.
--w script
-将用户输入的所有字符存入脚本文件.如果这个文件已经存在,那么就追加在文件后面.
--W script    -W相类似,只是这个选项会覆盖掉已经存在的数据
--s script    用-w选项来恢复脚本记录
--T terminal
-设置终端类型.在UNIX系统中,这会改写$TERM的环境变量(当然了,如果$TERM环境变量错误,其他的许多程序都将会崩溃)
-我们还有一些兼容的命令行参数.这些参数可以使得我们的Vim运行起来更像是Vi;
--N
-这个参数可以使得Vim以自己的方式来运行,而不是不是像Vi的方式运行.这个参数是被.vimrc文件默认定义的.
--C
-兼容模式.这个参数关掉了许多Vim的自己的特征,而是尽量的像Vi的方式一样的运行.
--l
-Lisp模式.这种模式完全是由老版本的vi延续下来的.他设置了lisp和showmatch选项.这时的Vim的与文件类型相关的命令都可以很好的处理Lisp程序,并且这是可以自动完成的.
-最后还有一些不知道该将他们归为哪一类的命令行参数:
--d device    打开编辑给定的设备文件
--b        二进制模式.设置了noexpandtab,textwidth=0,nomodeline,binary
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">操作实例</p>
+	<p>例如，需要将多个文件中的字符串-person-替换成Jones：如果是手工方式，那么就需要打开多个文件进行重复操作；而利用命令行参数，则可以进行自动化地批处理。</p>
+	<p>首先，将以下命令保存为change.vim的文件：</p>
+	<p><code class="inset">:%s/-person-/Jones/g<br/>
+	:write<br/>
+	:quit<br/>
+	</code></p>
+	<p>然后，在操作系统中执行以下命令，以ex模式运行Vim，进行替换操作：</p>
+	<p><code class="inset">$ vim -es file.txt&lt;change.vim</code></p>
 
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
@@ -106,59 +89,6 @@ Lisp模式.这种模式完全是由老版本的vi延续下来的.他设置了lis
 		<tr><td><code class="inset">:</code></td><td></td></tr>
 	</table>
 &ldquo;&rdquo;
-VIM - Vi IMproved 8.1 (2018 May 18, compiled Mar  4 2019 16:22:18)
-
-Usage: vim [arguments] [file ..]       edit specified file(s)
-   or: vim [arguments] -               read text from stdin
-   or: vim [arguments] -t tag          edit file where tag is defined
-   or: vim [arguments] -q [errorfile]  edit file with first error
-
-Arguments:
-   --                   Only file names after this
-   -v                   Vi mode (like "vi")
-   -e                   Ex mode (like "ex")
-   -E                   Improved Ex mode
-   -s                   Silent (batch) mode (only for "ex")
-   -d                   Diff mode (like "vimdiff")
-   -y                   Easy mode (like "evim", modeless)
-   -R                   Readonly mode (like "view")
-   -Z                   Restricted mode (like "rvim")
-   -m                   Modifications (writing files) not allowed
-   -M                   Modifications in text not allowed
-   -b                   Binary mode
-   -l                   Lisp mode
-   -C                   Compatible with Vi: 'compatible'
-   -N                   Not fully Vi compatible: 'nocompatible'
-   -V[N][fname]         Be verbose [level N] [log messages to fname]
-   -D                   Debugging mode
-   -n                   No swap file, use memory only
-   -r                   List swap files and exit
-   -r (with file name)  Recover crashed session
-   -L                   Same as -r
-   -A                   Start in Arabic mode
-   -H                   Start in Hebrew mode
-   -T <terminal>        Set terminal type to <terminal>
-   --not-a-term         Skip warning for input/output not being a terminal
-   --ttyfail            Exit if input or output is not a terminal
-   -u <vimrc>           Use <vimrc> instead of any .vimrc
-   --noplugin           Don't load plugin scripts
-   -p[N]                Open N tab pages (default: one for each file)
-   -o[N]                Open N windows (default: one for each file)
-   -O[N]                Like -o but split vertically
-   +                    Start at end of file
-   +<lnum>              Start at line <lnum>
-   --cmd <command>      Execute <command> before loading any vimrc file
-   -c <command>         Execute <command> after loading the first file
-   -S <session>         Source file <session> after loading the first file
-   -s <scriptin>        Read Normal mode commands from file <scriptin>
-   -w <scriptout>       Append all typed commands to file <scriptout>
-   -W <scriptout>       Write all typed commands to file <scriptout>
-   -x                   Edit encrypted files
-   --startuptime <file> Write startup timing messages to <file>
-   -i <viminfo>         Use <viminfo> instead of .viminfo
-   --clean              'nocompatible', Vim defaults, no plugins, no viminfo
-   -h  or  --help       Print Help (this message) and exit
-   --version            Print version information and exit
 
 
 	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
