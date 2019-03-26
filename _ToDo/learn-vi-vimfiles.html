@@ -57,11 +57,11 @@ vimfiles目录中的设置，会覆盖runtime目录中的设置。例如，vimfi
 		<caption>命令小结</caption>
 		<tr><td><kbd>autoload</kbd></td><td>自动载入脚本（autoload scripts）</td><td><code class="inset">:help autoload</code></td></tr>
 		<tr><td><kbd>colors</kbd></td><td></td>配色方案<td><code class="inset"></code></td></tr>
-		<tr><td><kbd>compiler</kbd></td><td>Vim scripts to be used with a specific compiler. They are used with the “:compiler” command</td><td><code class="inset">:help write-compiler-plugin</code></td></tr>
+		<tr><td><kbd>compiler</kbd></td><td>编译命令<code class="inset">:compiler</code>使用的脚本文件</td><td><code class="inset">:help write-compiler-plugin</code></td></tr>
 		<tr><td><kbd>doc</kbd></td><td>文档</td><td><code class="inset"></code></td></tr>
-		<tr><td><kbd>ftplugin</kbd></td><td>针对特定类型文件的插件。All files ending in .vim in this directory and subdirectories will be sourced by Vim when it detects the filetype that matches the name of the file or subdirectory.For example, these are all loaded for the “c” filetype:    c.vim    c_extra.vim    c/settings.vim Note that the “_” in “c_extra.vim” is required to separate the filetype name from the following arbitrary name. The filetype plugins are only loaded when the “:filetype plugin” command has been used. The default filetype plugin files contain settings that 95% of the users will want to use. They do not contain personal preferences, like the value of 'shiftwidth’.</td><td><code class="inset">:help ftplugin”</code></td></tr>
+		<tr><td><kbd>ftplugin</kbd></td><td>针对特定类型文件的插件（需要配合:filetype plugin命令使用）。</td><td><code class="inset">:help ftplugin”</code></td></tr>
 		<tr><td><kbd>indent</kbd></td><td>自动缩进</td><td><code class="inset">:help indent-expression</code></td></tr>
-		<tr><td><kbd>keymap</kbd></td><td>Keymap files,The name of the file consists of these parts:{language}[-{layout}][_{encoding}].vim</td><td><code class="inset">:help keymap-file-format</code></td></tr>
+		<tr><td><kbd>keymap</kbd></td><td>Keymap文件，命名格式为：{language}[-{layout}][_{encoding}].vim</td><td><code class="inset">:help keymap-file-format</code></td></tr>
 		<tr><td><kbd>lang</kbd></td><td>菜单语言文件</td><td><code class="inset">:help multilang-menus<br />:help :menutrans<br />:help 'langmenu'<br />:help :language</code></td></tr>
 		<tr><td><kbd>macros</kbd></td><td>
 		<ul>
