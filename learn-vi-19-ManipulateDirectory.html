@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记  操作目录(Manipulate Directory)</title>
+</head>
+<body>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">创建目录</p>
+	<p>使用以下命令，可以显示当前所在的目录：</p>
+	<p style="text-indent:2em"><code class="inset">:pwd</code></p>
+	<p>使用以下命令，在Linux下可以进入HOME目录，而在Windows下则显示当前所在目录：</p>
+	<p style="text-indent:2em"><code class="inset">:cd</code></p>
+	<p>使用以下命令，可以进入指定的目录：</p>
+	<p style="text-indent:2em"><code class="inset">:cd D:\tepm</code></p>
+	<p>使用以下命令，可以返回前一个目录：</p>
+	<p style="text-indent:2em"><code class="inset">:cd -</code></p>
+	<p>使用以下命令，可以返回上一级目录：</p>
+	<p style="text-indent:2em"><code class="inset">:cd ..</code></p>
+	<p>我们还可以使用以下命令，创建新的目录:</p>
+	<p style="text-indent:2em"><code class="inset">:!mkdir my_project</code></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">wildmenu 选项</p>
+	<p>在vimrc配置文件中，增加以下两条命令，可以在屏幕底部启用菜单显示：</p>
+	<p style="text-indent:2em"><code class="inset">set wildmenu</code><br />set wildmode=list:longest,full</code></p>
+	<p>命令行中，第一次点击<kbd>Tab</kbd>时， 将列示所有可能与已输入字符相匹配的命令列表；第二次点击<kbd>Tab</kbd>时，则将在显示的wildmenu中遍历选择可能的匹配项：</p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+	<p>使用<code class="inset">:help wildmode</code>和<code class="inset">:help wildmenu</code>命令，可以查看更多帮助信息。</p>
+
+	<p>在命令行中输入<code class="inset">:e</code>命令，紧接着输入一个空格，然后点击<kbd>Tab</kbd>键，将在屏幕底部的wildmenu中，显示当前目录下的子目录和文件列表：</p>
+	<p><img src="https://yyq123.github.io/learn-vim/images/wildmenu_e_tab.png" alt="wildmenu_e_tab" width="500" height="225" /></p>
+	<p>再次点击<kbd>Tab</kbd>键，可以选择下一个项目，点击<kbd>Shift + Tab</kbd>键则可以选择上一个项目 ；使用左右移动键，也可以在文件列表中进行选择；而使用上下移动键，则可以移动至上一层或下一层目录。点击回车键，将打开选中的文件或文件夹。</p>
+	<p><img src="https://yyq123.github.io/learn-vim/images/wildmenu_e_tab_tab.png" alt="wildmenu_e_tab_tab" width="500" height="225" /></p>
+	<p>如果在命令行中输入<code class="inset">:e</code>命令，紧接着输入一个空格以及文件名的开头部分，然后点击<kbd>Tab</kbd>键，那么将在屏幕底部的wildmenu中，那么将显示与之相匹配的项目；如果只发现一个匹配项，那么将会直接补全文件名：</p>
+	<p><img src="https://yyq123.github.io/learn-vim/images/wildmenu_e_tab_filename.png" alt="wildmenu_e_tab_filename" /></p>
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="操作文件(Manipulate File)" href="http://yyq123.blogspot.com/2012/07/vim-manipulate-file.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="编辑多个文件(Edit Multi Files)" href="http://yyq123.blogspot.com/2009/08/vim-edit-multi-files.html">下一篇</a>&gt;</span></p>
+</html>
