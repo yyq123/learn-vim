@@ -5,9 +5,37 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记  操作文件(Manipulate File)</title>
+	<title>VIM学习笔记  文件浏览器(Netrw)</title>
 </head>
 <body>
+	<p></p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">启动</p>
+	<p>使用<code class="inset">:Explore</code>命令或缩写<code class="inset">:E</code>命令（注意E大写），将在当前窗口中打开文件浏览器：</p>
+	<p><a href="https://www.flickr.com/photos/yyq123/32472916175/in/dateposted/" title="Explore"><img src="https://c1.staticflickr.com/1/669/32472916175_ee1d449ea8.jpg" width="500" height="288" alt="Explore" /></a></p>
+	<p>使用<code class="inset">:Sexplore</code>命令或缩写<code class="inset">:Sex</code>命令，将在水平拆分窗口中打开文件浏览器：</p>
+	<p><a href="" title=""><img src="" width="500" height="20" alt="" /></a></p>
+	<p>使用<code class="inset">:Vexplore</code>命令或缩写<code class="inset">:Vex</code>命令，将在垂直拆分窗口中打开文件浏览器：</p>
+	<p><a href="" title=""><img src="" width="500" height="20" alt="" /></a></p>
+	<p>可以在其中切换目录并选择打开文件。使用键盘移动光标至文件或文件夹名称上，然后点击<kbd>Enter</kbd>回车键，可以在当前窗口中打开该文件或文件夹；如果希望在新建窗口中打开文件或文件夹，那么可以点击<kbd>o</kbd>键。</p>
+	<p>直接使用鼠标点击文件或文件夹名称，也可以在当前窗口中打开该文件或文件夹。</p>
+	<p>点击大写<kbd>R</kbd>键，然后修改窗口底部信息中的第二个文件名，可以重命名当前光标下的文件。</p>
+	<p><a href="https://www.flickr.com/photos/yyq123/29735245818/in/dateposted/" title="Explore_R"><img src="https://farm1.staticflickr.com/926/29735245818_98bdf69939.jpg" width="500" height="39" alt="Explore_R" /></a></p>
+	<p>点击大写<kbd>D</kbd>键，然后在窗口底部信息中进行确认，则可以删除当前光标下的文件。</p>
+	<p><a href="https://www.flickr.com/photos/yyq123/43557892512/in/dateposted/" title="Explore_D"><img src="https://farm1.staticflickr.com/915/43557892512_b948a16415.jpg" width="500" height="40" alt="Explore_D" /></a></p>
+	<p>点击<kbd>/</kbd>键，可以在文件列表中进行查找。</p>
+	<p><a href="https://www.flickr.com/photos/yyq123/42887767054/in/dateposted/" title="Explore_Search"><img src="https://farm1.staticflickr.com/913/42887767054_f56ecfcfe7.jpg" width="500" height="132" alt="Explore_Search" /></a></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">goto file</p>
+
+	<p>如果文件名中没有指明扩展名称，那么可以使用以下命令来指定gf需要查找的文件类型：</p>
+	<p style="text-indent:2em"><code class="inset">:set suffixesadd+=.rb</code></p>
+	<p>如果我们希望gf在多个文件夹中尝试查找并打开文件，那么可以使用以下命令来定义文件夹列表：</p>
+	<p style="text-indent:2em"><code class="inset">:set path+=D:/Anthony_GitHub/learn-vim/**</code></p>
+	<p>使用以下命令可以查看当前path选项的设置：</p>
+	<p style="text-indent:2em"><code class="inset">:set path?</code></p>
+	<p><a href="https://www.flickr.com/photos/yyq123/32801965850/in/dateposted/" title="set_path"><img src="https://c1.staticflickr.com/1/624/32801965850_1e625d31ec_o.png" width="401" height="21" alt="set_path" /></a></p>
+	<p>其中，&ldquo;.&rdquo;代表当前文件夹下的所有文件；&ldquo;**&rdquo;代表所有子文件夹；&ldquo;,&rdquo;用于分隔多个文件夹。</p>
+	<p>我们也可以使用<code class="inset">ctrl-Wf</code>命令，在新的分割窗口中打开光标下文件。</p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">文件信息</p>
 	<p>使用以下命令，可以显示当前文件的名字、状态以及行列相关的信息：</p>
@@ -38,21 +66,9 @@
 	<p>使用以下命令，可以将当前文件另存为以name命名的新文件，并在当前缓冲区中开始编辑新文件：</p>
 	<p style="text-indent:2em"><code class="inset">:file name</code></p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">goto file</p>
-	<p>如果当前文件中包含了其他文件名，那么我们可以移动到文件名位置，然后直接使用<code class="inset">gf</code>命令在新的<a href="http://yyq123.blogspot.com/2009/07/vim-buffer.html">缓冲区</a>中打开链接的文件。例如下图所示，在HTML文件中引用了CSS文件，那么只需要在CSS文件名处执行gf命令，Vim就会在当前文件夹中查找并打开引用的CSS文件。</p>
-	<p><a href="https://www.flickr.com/photos/yyq123/32345473643/in/dateposted/" title="gf"><img src="https://c1.staticflickr.com/1/764/32345473643_3ea0fdb73e.jpg" width="500" height="20" alt="gf" /></a></p>
-	<p>如果文件名中没有指明扩展名称，那么可以使用以下命令来指定gf需要查找的文件类型：</p>
-	<p style="text-indent:2em"><code class="inset">:set suffixesadd+=.rb</code></p>
-	<p>如果我们希望gf在多个文件夹中尝试查找并打开文件，那么可以使用以下命令来定义文件夹列表：</p>
-	<p style="text-indent:2em"><code class="inset">:set path+=D:/Anthony_GitHub/learn-vim/**</code></p>
-	<p>使用以下命令可以查看当前path选项的设置：</p>
-	<p style="text-indent:2em"><code class="inset">:set path?</code></p>
-	<p><a href="https://www.flickr.com/photos/yyq123/32801965850/in/dateposted/" title="set_path"><img src="https://c1.staticflickr.com/1/624/32801965850_1e625d31ec_o.png" width="401" height="21" alt="set_path" /></a></p>
-	<p>其中，&ldquo;.&rdquo;代表当前文件夹下的所有文件；&ldquo;**&rdquo;代表所有子文件夹；&ldquo;,&rdquo;用于分隔多个文件夹。</p>
-	<p>我们也可以使用<code class="inset">ctrl-Wf</code>命令，在新的分割窗口中打开光标下文件。</p>
-
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
+		<tr><td><code class="inset">:Explore</code></td><td>打开文件浏览器</td></tr>
 		<tr><td><code class="inset">gf</code></td><td>打开以当前光标下文字命名的文件</td></tr>
 		<tr><td><code class="inset">:file</code></td><td>显示当前文件的名字、状态以及行列信息</td></tr>
 		<tr><td><code class="inset">:=</code></td><td>显示当前文件的总行数</td></tr>
