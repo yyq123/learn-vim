@@ -17,7 +17,16 @@
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">使用</p>
 	<p>使用以下命令定义快捷键，删除当前文件中所有的行尾多余空格：</p>
 	<p style="text-indent:2em"><code class="inset">nnoremap &lt;leader&gt;W :%s/\s\+$//&lt;cr&gt;:let @/=''&lt;CR&gt;</code></p>
-
+" Switch beetween buffers: switch with number
+nnoremap <leader>1 :1b<CR>
+nnoremap <leader>2 :2b<CR>
+nnoremap <leader>3 :3b<CR>
+nnoremap <leader>4 :4b<CR>
+nnoremap <leader>5 :5b<CR>
+nnoremap <leader>6 :6b<CR>
+nnoremap <leader>7 :7b<CR>
+nnoremap <leader>8 :8b<CR>
+nnoremap <leader>9 :9b<CR>
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
 		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
