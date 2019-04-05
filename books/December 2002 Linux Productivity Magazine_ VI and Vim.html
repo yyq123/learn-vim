@@ -18,19 +18,6 @@
     margin-left: 0px !important;
 }
 </style><script type="text/javascript" src="./December 2002 Linux Productivity Magazine_ VI and Vim_files/scoop.js.download"></script><link type="text/css" rel="stylesheet" href="./December 2002 Linux Productivity Magazine_ VI and Vim_files/bklet_external_scpWindow.css" media="screen"></head><body text="#000000" bgcolor="#ffffff" link="#0000ee" vlink="#551a8b" alink="#ff0000" data-gr-c-s-loaded="true" data-pinterest-extension-installed="cr2.0.5"><iframe id="iframeUnderDivToShowOverFlash" frameborder="0" allowtransparency="true" class=" scoopit-hulk" style="display: none; height: 24303px;" src="./December 2002 Linux Productivity Magazine_ VI and Vim_files/saved_resource.html"></iframe><div id="sc_bookmarklet" class="scoopit-hulk v4" style="height: 24303px; display: none;"><div id="sc_main" style="top: 17274.8px;" class=" scoopitWindowSuccessBookmarklet">    <iframe id="sc_iframe" frameborder="0" name="sc_bookmarklet_iframe" src="./December 2002 Linux Productivity Magazine_ VI and Vim_files/bookmarklet.html"></iframe>        &nbsp;    </div></div>
-<a name="starthdr"></a>
-<center><b><font size="+2"><a href="http://www.troubleshooters.com/troubleshooters.htm">Troubleshooters.Com
-Presents</a></font></b></center>
-
-
-
-
-
-
-<p><br>
-</p>
-
-
 
 
 <center><table border="4" cellpadding="8" bgcolor="#000066" nosave="">
@@ -1910,21 +1897,6 @@ Let's review some distinctions between macros and scripts:<br>
 </table>
 
 
-<table cellpadding="2" cellspacing="2" border="1" width="40%" align="right">
-  <tbody>
-    <tr>
-      <td valign="top">
-      <div align="center"><font size="+1"><b>NOTE</b></font><br>
-      </div>
-      <br>
-The <tt>:normal @b</tt> syntax works only in Vim, and possibly a few other
-VI implementations. It doesn't work in the "standard" VI from the UNIX world.<br>
-      </td>
-    </tr>
-  </tbody>
-</table>
-<br>
-
 
 <h2>Scripts</h2>
 
@@ -2230,44 +2202,6 @@ new filename, perform the <tt>:e!</tt> command immediately after <tt>:w filename
 
 
 
-
-<h3>Functions</h3>
-
-In Vim, and probably some other VI implementations, your scripts can have
-functions. This provides power to accomplish almost any task, including turning
-VI into a different product (like an outliner). In Vim scripts, functions look something
-like this:<br>
-<br>
-
-<table cellpadding="2" cellspacing="2" border="1" bgcolor="#ccffff">
-
-  <tbody>
-    <tr>
-      <td valign="top">
-      <pre>function MakeChars(count,char)<br>	let i = 0<br>	let chars=""<br>	while i &lt; a:count<br>		let chars = chars . a:char<br>		let i = i + 1<br>	endwhile<br>	return chars<br>endfunction<br></pre>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-<br>
-In the preceding, you see functions are delineated by their declaration, and by the word <tt>endfunction</tt>. Arguments are defined in the declaration, and the return statement is what you'd expect. Assignment is via the <tt>let</tt> statement, and you have loops and branching.<br>
-<br>
-One thing not obvious is functions must not be defined multiple times, so
-function definitions and declarations must be surrounded by code to prevent
-multiple definition. It looks something like this:<br>
-<br>
-<table cellpadding="2" cellspacing="2" border="1" bgcolor="#ccffff">
-  <tbody>
-    <tr>
-      <td valign="top">
-      <pre>if !exists("loaded_vimoutliner_functions")<br>  let loaded_vimoutliner_functions=1<br><br>  function MakeSpaces(count)<br>      let spaces = MakeChars(a:count," ")<br>      return spaces<br>  endfunction<br><br>  function MakeDashes(count)<br>      let dashes = MakeChars(a:count,"-")<br>      return dashes<br>  endfunction<br><br>endif<br></pre>
-      </td>
-    </tr>
-  </tbody>
-</table>
-<br>
-For more about functions, use the <tt>:h functions</tt> command to see info about built in functions, and the <tt>:h func</tt> command to see function definition syntax.<br>
 
 
 </body></html>

@@ -8,7 +8,7 @@
 	<title>VIM学习笔记  文件浏览器(Netrw)</title>
 </head>
 <body>
-	<p></p>
+	<p>在vim 7.0之前，文件浏览功能由explorer.vim插件提供；从vim 7.0之后，这个插件被netrw.vim插件所代替。Netrw插件伴随vim发行，不需要单独安装。 </p>
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">启动</p>
 	<p>使用<code class="inset">:Explore</code>命令或缩写<code class="inset">:E</code>命令（注意E大写），将在当前窗口中打开文件浏览器：</p>
 	<p><a href="https://www.flickr.com/photos/yyq123/32472916175/in/dateposted/" title="Explore"><img src="https://c1.staticflickr.com/1/669/32472916175_ee1d449ea8.jpg" width="500" height="288" alt="Explore" /></a></p>
@@ -16,31 +16,36 @@
 	<p><a href="https://yyq123.github.io/learn-vim/images/Netrw_Sex.png" title=""><img src="https://yyq123.github.io/learn-vim/images/Netrw_Sex.png" width="500" height="339" alt="" /></a></p>
 	<p>使用<code class="inset">:Vexplore</code>命令或缩写<code class="inset">:Vex</code>命令，将在垂直拆分窗口中打开文件浏览器：</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/Netrw_Vex.png" title=""><img src="https://yyq123.github.io/learn-vim/images/Netrw_Vex.png" width="500" height="256" alt="" /></a></p>
-	<p>可以在其中切换目录并选择打开文件。使用键盘移动光标至文件或文件夹名称上，然后点击<kbd>Enter</kbd>回车键，可以在当前窗口中打开该文件或文件夹；如果希望在新建窗口中打开文件或文件夹，那么可以点击<kbd>o</kbd>键。</p>
+	<p>当然，也可以在启动Netwr时，指定浏览特定的文件夹：</p>
+	<p style="text-indent:2em"><code class="inset">:Sex C:\Temp</code></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">打开文件</p>
+	<p>在Netrw中，可以切换目录并打开文件。使用键盘移动光标至文件或文件夹名称上，然后点击<kbd>Enter</kbd>回车键，可以在当前窗口中打开该文件或文件夹；如果希望在新建窗口中打开文件或文件夹，那么可以点击<kbd>o</kbd>键。</p>
 	<p>直接使用鼠标点击文件或文件夹名称，也可以在当前窗口中打开该文件或文件夹。</p>
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px"></p>
-	<p>点击大写<kbd>R</kbd>键，然后修改窗口底部信息中的第二个文件名，可以重命名当前光标下的文件。</p>
-	<p><a href="https://www.flickr.com/photos/yyq123/29735245818/in/dateposted/" title="Explore_R"><img src="https://farm1.staticflickr.com/926/29735245818_98bdf69939.jpg" width="500" height="39" alt="Explore_R" /></a></p>
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px"></p>
-	<p>点击大写<kbd>D</kbd>键，然后在窗口底部信息中进行确认，则可以删除当前光标下的文件。</p>
-	<p><a href="https://www.flickr.com/photos/yyq123/43557892512/in/dateposted/" title="Explore_D"><img src="https://farm1.staticflickr.com/915/43557892512_b948a16415.jpg" width="500" height="40" alt="Explore_D" /></a></p>
 	<p>点击<kbd>/</kbd>键，可以在文件列表中进行查找。</p>
 	<p><a href="https://www.flickr.com/photos/yyq123/42887767054/in/dateposted/" title="Explore_Search"><img src="https://farm1.staticflickr.com/913/42887767054_f56ecfcfe7.jpg" width="500" height="132" alt="Explore_Search" /></a></p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">配置外观</p>
-	<p>点击<kbd>i</kbd>键，可以在thin/long/wide/tree这4种显示类型之间切换。也可以在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc配置文件</a></p>
-	<p style="text-indent:2em"><code class="inset">let g:netrw_liststyle = 3</code></p>
-	<p>点击<kbd>I</kbd>键，可以显示或隐藏Netrw顶端的横幅（Banner）：</p>
-	<p style="text-indent:2em"><code class="inset">let g:netrw_banner = 0</code></p>
-	<p>设置文件浏览器的宽度，为窗口的25%：</p>
-	<p style="text-indent:2em"><code class="inset">let g:netrw_winsize = 25</code></p>
-	<p><a href="" title=""><img src="" width="401" height="21" alt="set_path" /></a></p>
-	<p>其中，&ldquo;.&rdquo;代表当前文件夹下的所有文件；&ldquo;**&rdquo;代表所有子文件夹；&ldquo;,&rdquo;用于分隔多个文件夹。</p>
-	<p>我们也可以使用<code class="inset">ctrl-Wf</code>命令，在新的分割窗口中打开光标下文件。</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">改变盘符和目录</p>
+	<p>通过编辑目录，可以使用Netrw来浏览该文件夹：</p>
+	<p style="text-indent:2em"><code class="inset">:edit E:\_ToDo</code></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">排序</p>
+	<p>通过设置g:netrw_sort_by和g:netrw_sort_direction，可以按照最近修改时间来进行排序：</p>
+	<p style="text-indent:2em"><code class="inset">let g:netrw_sort_by = 'time'</code></p>
+	<p style="text-indent:2em"><code class="inset">let g:netrw_sort_direction = 'reverse'</code></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">重命名</p>
+	<p>点击大写<kbd>R</kbd>键，然后修改窗口底部信息中的第二个文件名，可以重命名当前光标下的文件。</p>
+	<p><a href="https://www.flickr.com/photos/yyq123/29735245818/in/dateposted/" title="Explore_R"><img src="https://farm1.staticflickr.com/926/29735245818_98bdf69939.jpg" width="500" height="39" alt="Explore_R" /></a></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">删除</p>
+	<p>点击大写<kbd>D</kbd>键，然后在窗口底部信息中进行确认，则可以删除当前光标下的文件。</p>
+	<p><a href="https://www.flickr.com/photos/yyq123/43557892512/in/dateposted/" title="Explore_D"><img src="https://farm1.staticflickr.com/915/43557892512_b948a16415.jpg" width="500" height="40" alt="Explore_D" /></a></p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">配置文件打开方式</p>
-	<p>默认情况下，Netrw将在当前窗口中打开文件。 使用以下命令，可以改变Netr打开文件的方式：</p>
-	<p style="text-indent:2em"><code class="inset">let g:netrw_browse_split = 1</code></p>
+	<p>默认情况下，Netrw将在当前窗口中打开文件。 使用以下命令，可以配置Netrw打开文件的方式：</p>
+	<p style="text-indent:2em"><code class="inset">let g:netrw_browse_split = n</code></p>
+	<p>其中，参数的值可以为以下四种：</p>
 	<ol>
 		<li>用水平拆分窗口打开文件</li>
 		<li>用垂直拆分窗口打开文件</li>
@@ -48,40 +53,33 @@
 		<li>用前一个窗口打开文件</li>
 	</ol>
 
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">定制外观</p>
+	<p>点击<kbd>i</kbd>键，可以在thin/long/wide/tree这4种显示模式之间切换。也可以在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc配置文件</a>中，使用以下命令来设置显示模式：</p>
+	<p style="text-indent:2em"><code class="inset">let g:netrw_liststyle = 3</code></p>
+	<p>点击<kbd>I</kbd>键，可以显示或隐藏Netrw顶端的横幅（Banner）。例如以下命令，将隐藏横幅：</p>
+	<p style="text-indent:2em"><code class="inset">let g:netrw_banner = 0</code></p>
+	<p>使用以下命令，可以设置文件浏览器的宽度，为窗口的25%：</p>
+	<p style="text-indent:2em"><code class="inset">let g:netrw_winsize = 25</code></p>
+	<p>通过以上配置，我们可以得到通常IDE环境的文件显示效果：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Netrw.png" title="Netrw"><img src="https://yyq123.github.io/learn-vim/images/Netrw.png" alt="Netrw" width="500" height="220" /></a></p>
 
-	<p><span style="background-color:black; color:white">"test.txt" [Modified] 134 lines --55%--</span></p>
-	<p>使用以下命令，则可以显示当前文件的总行数：</p>
-	<p style="text-indent:2em"><code class="inset">:=</code></p>
-	<p>使用<code class="inset">g-Ctrl-g</code>命令，将在状态栏下方显示整个文档的字数和行数，以及当前所处的位置。</p>
-	<p><a href="https://www.flickr.com/photos/yyq123/5383461626/" title="g-ctrl-g by yyq123, on Flickr"><img src="http://farm6.static.flickr.com/5204/5383461626_7168efc64a.jpg" width="500" height="10" alt="g-ctrl-g" /></a></p>
-	<p>如果想要统计当前行的字数，首先移动到行尾，然后使用<code class="inset">v</code>命令进入可视化模式，使用<code class="inset">0</code>命令移动到行头并选中整行文字，最后使用<code class="inset">g-Ctrl-g</code>命令显示选中文本的字数。</p>
-	<p>在插入模式下，使用<code class="inset">&lt;C-R&gt;%</code>命令，或者在常规模式下，使用<code class="inset">"%p</code>命令，可以将当前文件名粘贴到文本中。</p>
-	<p>使用以下命令，可以在文本中查找当前文件名：</p>
-	<p style="text-indent:2em"><code class="inset">/&lt;C-R&gt;%</code></p>
-
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">改变盘符和目录</p>
-	<p>通过编辑目录，将打开Netrw来浏览该文件夹：</p>
-	<p style="text-indent:2em"><code class="inset">:edit E:\_ToDo</code></p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">退出</p>
 	<p>使用<code class="inset">:q</code>命令，可以退出当前的Netrw；如果Netrw是唯一打开的窗口，那么将同时退出Vim。</p>
 	<p>我们可以将Netrw理解为，使用编辑命令对于目录进行操作的特殊缓冲区。也就是说，我们可以使用<code class="inset">:bdelete</code>命令，来关闭Netwr打开的缓冲区，但不会退出Vim。</p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">帮助信息</p>
+	<p>Netrw不仅可以浏览本地文件，还支持远程文件的读写。你可以通过ftp，ssh，http等多种协议来浏览远程机器的目录并编辑远程文件。 </p>
+	<p>如果你使用图形界面的GVim，那么也可以通过菜单来使用Netrw的功能：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Netrw_menu.png" title="Netrw_menu"><img src="https://yyq123.github.io/learn-vim/images/Netrw_menu.png" alt="Netrw menu" /></a></p>
 	<p>在Netrw中点击<kbd>F1</kbd>键，或者使用<code class="inset">:help netrw</code>命令，可以查看更多帮助信息。</p>
 	<p style="text-indent:2em"></p>
 
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
-		<tr><td><code class="inset">:Explore</code></td><td>打开文件浏览器</td></tr>
-		<tr><td><code class="inset">gf</code></td><td>打开以当前光标下文字命名的文件</td></tr>
-		<tr><td><code class="inset">:file</code></td><td>显示当前文件的名字、状态以及行列信息</td></tr>
-		<tr><td><code class="inset">:=</code></td><td>显示当前文件的总行数</td></tr>
-		<tr><td><code class="inset">g-Ctrl-g</code></td><td>显示行列信息和字数统计</td></tr>
-		<tr><td><code class="inset">:set ro</code></td><td>将当前文件置为只读状态</td></tr>
-		<tr><td><code class="inset">:set noma</code></td><td>将当前文件置为不可修改状态</td></tr>
-		<tr><td><code class="inset">:vi</code></td><td>新建文件</td></tr>
-		<tr><td><code class="inset">:view</code></td><td>以只读方式打开文件</td></tr>
+		<tr><td><code class="inset">:Explore</code></td><td>在当前窗口中打开文件浏览器</td></tr>
+		<tr><td><code class="inset">:Sexplore</code></td><td>在水平拆分窗口中打开文件浏览器</td></tr>
+		<tr><td><code class="inset">:Vexplore</code></td><td>在垂直拆分窗口中打开文件浏览器</td></tr>
 	</table>
 	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="参数(args)" href="http://yyq123.github.io/learn-vim/learn-vi-16-MultiArguments.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="编辑多个文件(Edit Multiple Files)" href="http://yyq123.github.io/learn-vim/learn-vi-17-MultiFile.html">下一篇</a>&gt;</span></p>
 </body>
