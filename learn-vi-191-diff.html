@@ -8,6 +8,18 @@
 	<title>VIM学习笔记 比较文件(diff)</title>
 </head>
 <body>
+	<p>Vim通过调用外部的diff命令，可以对相似的文件进行比较。使用<code class="inset">:help diff</code>命令，可以查看关于比较文件的更多信息。</p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">配置</p>
+	<p>在Windows系统下，请确认diff.exe已经存在于vim目录之下；并且在操作系统的PATH变量中，也包含了该目录：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/diff.exe.png" title="diff"><img src="https://yyq123.github.io/learn-vim/images/diff.exe.png" alt="diff" width="500" height="81" /></a></p>
+	<p>为了避免<a href="http://yyq123.github.io/learn-vim/learn-vi-62-ColorScheme.html" title="Color Scheme">配色方案</a>对比较结果显示效果的影响，我们可以在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc配置文件</a>中，增加以下命令，以便在比较文件时使用默认的显示颜色：</p>
+	<p><code class="inset">
+	au FilterWritePre * if &amp;diff | colorscheme default | endif<br />
+	if &amp;diff<br />
+	&nbsp;&nbsp;colorscheme default<br />
+	endif</code></p>
+
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">比较</p>
 	<p>可以从命令行调用以下命令，来打开两个文件进行比较：</p>
 	<p style="text-indent:2em"><code class="inset">vim -d file1 file2</code></p>
@@ -25,7 +37,7 @@
 	</ul>
 	<p>如果想要垂直比较两个文件，可以使用以下命令：</p>
 	<p style="text-indent:2em"><code class="inset">:vert diffsplit file2</code></p>
-	<p><a href="http://www.zooomr.com/photos/yyq123/9432091/" title="Photo Sharing"><img src="http://static.zooomr.com/images/9432091_dfe7768713.jpg" width="500" height="347" alt="diff" style="border:1px solid gray" /></a></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/diff_v.png" title="diff"><img src="https://yyq123.github.io/learn-vim/images/diff_v.png" alt="diff" width="500" height="113" /></a></p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">折叠</p>
 	<p>使用<code class="inset">zo</code>命令，可以展开被折叠的相同的文本行；而<code class="inset">zc</code>命令，则可以重新折叠相同的行。</p>
@@ -52,7 +64,6 @@
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">跳转</p>
 	<p>你可以用<code class="inset">[c</code>命令；跳转到前一个不同点；或者用<code class="inset">]c</code>命令，跳转到后一个不同点。</p>
 
-
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
 		<tr><td><code class="inset">:diffsplit</code></td><td>分隔窗并比较文件</td></tr>
@@ -63,8 +74,6 @@
 		<tr><td><code class="inset">[c</code></td><td>跳转到前一个不同点</td></tr>
 		<tr><td><code class="inset">]c</code></td><td>跳转到后一个不同点</td></tr>
 	</table>
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.1</span><span>&lt;<a title="标签页(Tab)" href="http://yyq123.blogspot.com/2009/04/vim.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://www.humyo.com/CHYfCqR/Blog/Vim/learn-vi-00-List.html?a=0tz81ab6hx8">&nbsp;目录&nbsp;</a>|&nbsp;<a title="编辑多个文件(Files)" href="http://yyq123.blogspot.com/2009/08/vim-edit-multi-files.html">下一篇</a>&gt;</span></p>
-
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
 </body>
 </html>
-
