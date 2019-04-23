@@ -8,12 +8,12 @@
 	<title>VIM学习笔记 在Mac下安装Vim</title>
 </head>
 <body>
-	<p>Mac预装了Vim。比如Fedora就默认安装了vim-minimal。</p>
+	<p></p>
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">查询当前安装版本</p>
-	<p>使用以下命令，可以发现当前已经安装了vim-minimal：</p>
-	<p style="text-indent:2em"><code class="inset">sudo dnf list installed | grep vi</code></p>
-	<p>使用以下命令，可以查看vim-minimal的详细信息：</p>
-	<p style="text-indent:2em"><code class="inset">dnf info vim-minimal</code></p>
+	<p>使用以下命令，可以查看当前系统预装Vim版本：</p>
+	<p style="text-indent:2em"><code class="inset">vim --version</code></p>
+	<p>Mac预装的版本是不包括GVim的图形界面的：</p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
 	<p><img src="https://yyq123.github.io/learn-vim/images/Mac_VimPre_version.png" alt="vim-mac" width="500" height="596" /></p>
 	<p>在Terminal中输入<code class="inset">vi --version</code>命令，可以看到vim-minimal是一个仅提供vi兼容命令的精简版本。以“-”标识的未启用特性中，包括<a href="http://bit.ly/vim-syntaxHL" title="Syntax Highlight">语法高亮度显示</a>和<a href="http://bit.ly/vim-Fold" title="Fold">折叠</a>等重要功能。因此，我们需要安装完整版本的vim-enhanced。</p>
 	<p><img src="https://yyq123.github.io/learn-vim/images/Linux_vi_version.png" alt="vi --version" width="500" height="569" /></p>
@@ -29,20 +29,17 @@
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">安装MacVim</p>
 	<p><a href="https://macvim-dev.github.io/macvim/" alt="MacVim">MacVim</a>是在Vim基础上实现的完整的Cocoa用户界面。MacVim 采用了分离进程的方式，一个MacVim程序可以启动多个vim 进程，每个显示在一个MacVim窗口中，这是官方的vim和其他平台下的gvim所不支持的。MacVim 还支持很多 Mac OS X 原生的界面特性，比如工具栏、滚动条、全屏显示、Mac 菜单快捷键的绑定等。</p>
+	<p>首先<a href="https://github.com/macvim-dev/macvim/releases" alt="MacVim">下载</a>镜像文件，然后将程序拖拽到应用程序中即可完成安装。</p>
 	<p><img src="https://yyq123.github.io/learn-vim/images/Mac_MacVim_Version.png" alt="MacVim" width="500" height="391" /></p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">基本配置</p>
-	<p>首先在HOME目录之下，创建<kbd>.gvimrc</kbd>文件；或者将安装目录下的示例文件<kbd>/usr/share/vim/vim80/gvimrc_example.vim</kbd>复制到用户目录之下并更名为<kbd>~/.gvimrc</kbd>；Type :h vimrc-introfor more information on Vim configuration files.</p>
-	<p>然后依据安装目录<kbd>/usr/share/vim/vimfiles</kbd>的目录结构，在用户目录下的<kbd>.vim</kbd>目录中创建一致的目录结构；</p>
+	<p>首先在HOME目录之下，创建<kbd>.gvimrc</kbd>文件；或者将安装目录下的示例文件<kbd>/usr/share/vim/vim80/gvimrc_example.vim</kbd>复制到用户目录之下并更名为<kbd>~/.gvimrc</kbd>；</p>
+	<p>然后依据安装目录<kbd>/usr/share/vim/vim80</kbd>的目录结构，在用户目录下的<kbd>.vim</kbd>目录中创建一致的目录结构；</p>
 	<p><img src="https://yyq123.github.io/learn-vim/images/vimfiles_directory.png" alt="vimfiles_directory" /></p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">验证安装</p>
-	<p>在Terminal中输入<code class="inset">vim</code>命令，可以打开命令行版本的vim：</p>
-	<p><img src="https://yyq123.github.io/learn-vim/images/Vim_Linux_Fedora.png" alt="dnf info vim-enhanced" width="500" height="394" /></p>
-	<p>在Terminal中输入<code class="inset">gvim</code>命令，可以打开图形界面版本的gVim：</p>
-	<p><img src="https://yyq123.github.io/learn-vim/images/gVim_Linux_Fedora.png" alt="dnf info vim-enhanced" width="500" height="394" /></p>
-How can I open files from Terminal?
-Put the script mvim which comes bundled with the MacVim download somewhere in your path. Type :h macvim-start for more information.
+	<p>在Terminal中输入<code class="inset">/Applications/MacVim.app/Contents/bin/mvim filename</code>或者<code class="inset">open -a MacVim filename</code>命令，可以从命令行打开MacVim：</p>
+	<p><img src="https://yyq123.github.io/learn-vim/images/Mac_MacVim_GUI.png" alt="MacVim GUI" width="500" height="369" /></p>
 
 	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a href="http://yyq123.github.io/learn-vim/learn-vi-101-plugin-vundle.html" title="插件管理器(Vundle)">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a href="http://yyq123.github.io/learn-vim/learn-vi-102-plugin-plug.html" title="插件管理器(vim-plug)">下一篇</a>&gt;</span></p>
 
