@@ -18,6 +18,19 @@
 	<p>当替换的文本中有Tab键时，他也会将Tab替换为相应的字符，这样就影响了文本的缩进。在这种情况下，可以使用<code class="inset">gr</code>命令来进行替换。如果光标下的字符是Tab的一部分，那么就会跳过而替换别的字符，这样就不会影响文本的缩进了。我们还可以使用<code class="inset">gR</code>命令进入虚替换模式(virtual replace mode)，这时我们输入的字符就会替换屏幕空白处的一个字符。</p>
 
 
+Replace mode behaves similarly to those times you accidentally press the Insert key on your keyboard and wonder why typing erases text. When working with replace mode, the text you type is placed over existing text (as opposed to moving the existing text in insert mode). This is great when you don't want to change the character count in the original line, for example.
+
+Enter replace mode by hitting R:
+
+You'll see --REPLACE-- in the status line. Now, you'll be replacing text as you type:
+
+Hit Esc to exit replace mode and go back to normal mode.
+
+You can press r to enter replace mode for a single character press before being switched back to normal mode.
+
+Vim also provides virtual replace mode, which behaves similarly to replace mode, but operates in terms of screen real estate as opposed to characters in a file. The main noticeable differences include Tab replacing multiple characters (as opposed to a single character in replace mode) or Enter not creating an addition line, but moving onto the next line. You can enter virtual replace mode using gR, and you can read more about it by reading :help vreplace-mode.
+
+
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
 		<tr><td><code class="inset">:substitute</code></td><td>替换字符</td></tr>
