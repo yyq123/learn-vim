@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记  前缀键(leader)</title>
+</head>
+<body>
+	<p>Vim预置有很多快捷键，再加上各类插件的快捷键，大量快捷键出现在单层空间中难免引起冲突。为缓解该问题，而引入了前缀键&lt;leader&gt;。藉由前缀键， 则可以衍生出更多的快捷键命名空间（namespace)。例如将<kbd>r</kbd>键配置为<kbd>&lt;leader&gt;r</kbd>、<kbd>&lt;leader&gt;&lt;leader&gt;r</kbd>等多个快捷键。</p>
+	<p>使用<code class="inset">:help &lt;leader&gt;</code>命令，可以查看关于前缀键的更多信息。</p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">定义前缀键</p>
+	<p>前缀键默认为&ldquo;\&rdquo;。使用以下命令，可以将前缀键定义为逗号：</p>
+	<p style="text-indent:2em"><code class="inset">let mapleader=","</code></p>
+	<p>使用以下命令，利用转义符&ldquo;\&rdquo;将前缀键设置为空格键也是不错的主意：</p>
+	<p style="text-indent:2em"><code class="inset">let mapleader = "\&lt;space&gt;"</code></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">配置实例</p>
+	<p>定义以下快捷键，用于删除当前文件中所有的行尾多余空格：</p>
+	<p style="text-indent:2em"><code class="inset">nnoremap &lt;leader&gt;W :%s/\s\+$//&lt;cr&gt;:let @/=''&lt;CR&gt;</code></p>
+	<p>定义以下快捷键，用于快速编辑和重载<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc配置文件</a>：</p>
+	<p style="text-indent:2em"><code class="inset">nnoremap &lt;leader&gt;ev :vsp $MYVIMRC&lt;CR&gt;</code></p>
+	<p style="text-indent:2em"><code class="inset">nnoremap &lt;leader&gt;sv :source $MYVIMRC&lt;CR&gt;</code></p>
+	<p>定义以下快捷键，使用前缀键和数字键快速切换<a href="http://yyq123.github.io/learn-vim/learn-vi-13-MultiBuffers.html" title="Buffer">缓冲区</a>：</p>
+	<p style="text-indent:2em"><code class="inset">nnoremap &lt;leader&gt;1 :1b&lt;CR&gt;</code></p>
+	<p style="text-indent:2em"><code class="inset">nnoremap &lt;leader&gt;2 :2b&lt;CR&gt;</code></p>
+	<p style="text-indent:2em"><code class="inset">nnoremap &lt;leader&gt;3 :3b&lt;CR&gt;</code></p>
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="键盘映射" href="http://yyq123.github.io/learn-vim/learn-vi-51-KeyMapping.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="缩写" href="http://yyq123.github.io/learn-vim/learn-vi-52-Abbreviation.html">下一篇</a>&gt;</span></p>
+</body>
+</html>
+
