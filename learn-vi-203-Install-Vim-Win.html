@@ -10,22 +10,41 @@
 <body>
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">安装GVim</p>
 	<p>首先<a href="https://www.vim.org/download.php#pc" title="Vim">下载</a>GVim安装包，然后按照屏幕提示进行安装。</p>
-	<p>如下图所示，建议安装Vim的完整特性，包括创建.bat文件，以便在命令行中使用Vim：</p>
+	<p>如下图所示，建议安装Vim的完整特性（包括创建用于命令行的.bat文件）：</p>
 	<p><img src="https://yyq123.github.io/learn-vim/images/Win_vim_install.png" alt="Vim" /></p>
 	<p>安装完成之后，即可以从菜单中启动Vim：</p>
 	<p><img src="https://yyq123.github.io/learn-vim/images/Win_vim_Menu.png" alt="Vim" /></p>
+	<table summary="" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+	<tr style="background: #e5e5e5;"><td>命令</td><td>功能</td><td>对应参数</td></tr>
+	<tr><td><code class="inset">vim</code></td><td>在终端模式下启动</td><td></td></tr>
+	<tr><td><code class="inset">gvim</code></td><td>在图形模式下启动</td><td><code class="inset">-g</code></td></tr>
+	<tr><td><code class="inset">ex</code></td><td>在Ex模式下启动</td><td><code class="inset">-e</code></td></tr>
+	<tr><td><code class="inset">exim</code></td><td>在Improved Ex模式下启动</td><td><code class="inset">-E</code></td></tr>
+	<tr><td><code class="inset">view</code></td><td>在正常模式下启动,只读</td><td><code class="inset">-R</code></td></tr>
+	<tr><td><code class="inset">gview</code></td><td>在图形模式下启动,只读</td><td><code class="inset">-Rg</code></td></tr>
+	<tr><td><code class="inset">rvim</code></td><td>在终端模式下启动,受限</td><td><code class="inset">-Z</code></td></tr>
+	<tr><td><code class="inset">rview</code></td><td>在终端模式下启动,只读,受限</td><td><code class="inset">-RZ</code></td></tr>
+	<tr><td><code class="inset">rgvim</code></td><td>在图形模式下启动,受限</td><td><code class="inset">-gZ</code></td></tr>
+	<tr><td><code class="inset">rgview</code></td><td>在图形模式下启动,只读,受限</td><td><code class="inset">-RgZ</code></td></tr>
+	<tr><td><code class="inset">evim</code></td><td>在Easy模式下启动</td><td><code class="inset">-y</code></td></tr>
+	<tr><td><code class="inset">eview</code></td><td>在Easy模式下启动,只读</td><td><code class="inset">-yR</code></td></tr>
+	<tr><td><code class="inset">vimdiff</code></td><td>在Diff模式下启动</td><td><code class="inset">-d</code></td></tr>
+	<tr><td><code class="inset">gvimdiff</code></td><td>在Diff模式下启动图形模式</td><td><code class="inset">-gd</code></td></tr>
+	</table>
+	<p>在Windows命令行中使用以下命令，可以查看完整的版本信息：</p>
 	<p style="text-indent:2em"><code class="inset">vim --version</code></p>
-	<p>如下图所示，Mac预装的是不包括图形界面的Vim：</p>
 	<p><img src="https://yyq123.github.io/learn-vim/images/Win_vim_version.png" alt="vim-version" width="500" height="546" /></p>
-	<p>不建议删除或更新系统预装的Vim，而是推荐新安装Vim的Mac实现--<a href="https://macvim-dev.github.io/macvim/" title="MacVim">MacVim</a>。</p>
-
+	<p>在Vim中使用以下命令，可以查看Vim主要目录指向的位置：</p>
+	<p><code class="inset">:echo $VIM</code><br /><code class="msg">C:\Users\username</code></p>
+	<p><code class="inset">:echo $HOME</code><br /><code class="msg">C:\Users\username</code></p>
+	<p><code class="inset">:echo $VIMRUNTIME</code><br /><code class="msg">C:\Program Files (x86)\Vim\vim81</code></p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">基本配置</p>
-	<p>首先在HOME目录之下，创建<kbd>.gvimrc</kbd>文件；或者将安装目录下的示例文件<kbd>/usr/share/vim/vim80/gvimrc_example.vim</kbd>复制到用户目录之下并更名为<kbd>~/.gvimrc</kbd>；</p>
-	<p>然后依据安装目录<kbd>/usr/share/vim/vim80</kbd>的目录结构，在用户目录下的<kbd>.vim</kbd>目录中创建一致的目录结构；</p>
+	<p>首先在Windows用户目录之下，创建<kbd>_vimrc</kbd>文件；或者将安装目录下的示例文件<kbd>C:\Program Files (x86)\Vim\vim81\vimrc_example.vim</kbd>复制到用户目录之下并更名为<kbd>_vimrc</kbd>；</p>
+	<p>然后依据安装目录<kbd>C:\Program Files (x86)\Vim\vim81</kbd>的目录结构，在用户目录下的<kbd>vimfiles</kbd>目录中创建一致的目录结构；</p>
 	<p><img src="https://yyq123.github.io/learn-vim/images/vimfiles_directory.png" alt="vimfiles_directory" /></p>
-	<p>请确保在Windows环境变量Path中，包含以下目录：</p>
-	<p>For Windows: "C:\Program Files (x86)\Vim\vim81"</p>
+	<p>请确保在Windows环境变量Path中，包含以下Vim的安装目录：</p>
+	<p>C:\Program Files (x86)\Vim\vim81</p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">从命令行启动MacVim</p>
 	<p>在Terminal中输入<code class="inset">/Applications/MacVim.app/Contents/bin/mvim filename</code>或者<code class="inset">open -a MacVim filename</code>命令，可以从命令行打开MacVim。</p>
