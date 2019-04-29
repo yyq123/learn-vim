@@ -8,22 +8,17 @@
 	<title>VIM学习笔记 在Windows下安装Vim</title>
 </head>
 <body>
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">查询当前安装版本</p>
-	<p>使用以下命令，可以查看当前系统预装的Vim版本：</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">安装GVim</p>
+	<p>首先<a href="https://www.vim.org/download.php#pc" title="Vim">下载</a>GVim安装包，然后按照屏幕提示进行安装。</p>
+	<p>如下图所示，建议安装Vim的完整特性，包括创建.bat文件，以便在命令行中使用Vim：</p>
+	<p><img src="https://yyq123.github.io/learn-vim/images/Win_vim_install.png" alt="Vim" /></p>
+	<p>安装完成之后，即可以从菜单中启动Vim：</p>
+	<p><img src="https://yyq123.github.io/learn-vim/images/Win_vim_Menu.png" alt="Vim" /></p>
 	<p style="text-indent:2em"><code class="inset">vim --version</code></p>
 	<p>如下图所示，Mac预装的是不包括图形界面的Vim：</p>
 	<p><img src="https://yyq123.github.io/learn-vim/images/Win_vim_version.png" alt="vim-version" width="500" height="546" /></p>
 	<p>不建议删除或更新系统预装的Vim，而是推荐新安装Vim的Mac实现--<a href="https://macvim-dev.github.io/macvim/" title="MacVim">MacVim</a>。</p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">安装MacVim</p>
-	<p><a href="https://macvim-dev.github.io/macvim/" title="MacVim">MacVim</a>是在Vim基础上实现的完整的Cocoa用户界面。MacVim 采用了分离进程的方式，一个MacVim程序可以启动多个vim 进程，每个显示在一个MacVim窗口中，这是官方的vim和其他平台下的gvim所不支持的。MacVim 还支持很多 Mac OS X 原生的界面特性，比如工具栏、滚动条、全屏显示、Mac 菜单快捷键的绑定等。</p>
-	<p>首先<a href="https://www.vim.org/download.php#pc" title="Vim">下载</a>镜像文件，然后将程序拖拽到应用程序中即可完成安装。</p>
-	<p>双击MacVim图标，即可启动程序：</p>
-	<p><img src="https://yyq123.github.io/learn-vim/images/Mac_MacVim_GUI.png" alt="MacVim GUI" width="500" height="369" /></p>
-	<p>在MacVim中使用以下命令，可以查看详细的版本信息：</p>
-	<p style="text-indent:2em"><code class="inset">:version</code></p>
-	<p>如下图所示，已经安装了包括图形界面的MacVim：</p>
-	<p><img src="https://yyq123.github.io/learn-vim/images/Mac_MacVim_Version.png" alt="MacVim" width="500" height="391" /></p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">基本配置</p>
 	<p>首先在HOME目录之下，创建<kbd>.gvimrc</kbd>文件；或者将安装目录下的示例文件<kbd>/usr/share/vim/vim80/gvimrc_example.vim</kbd>复制到用户目录之下并更名为<kbd>~/.gvimrc</kbd>；</p>
@@ -34,30 +29,18 @@
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">从命令行启动MacVim</p>
 	<p>在Terminal中输入<code class="inset">/Applications/MacVim.app/Contents/bin/mvim filename</code>或者<code class="inset">open -a MacVim filename</code>命令，可以从命令行打开MacVim。</p>
-https://portableapps.com/apps/development/gvim_portable
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">GVim</p>
+	<p>如果你没有权限安装软件，或者不想安装软件，那么也可以选择便携/绿色版<a href="https://portableapps.com/apps/development/gvim_portable" title="MacVim">gVim Portable</a>。首先下载安装包，然后选择将程序放置到本地磁盘或者U盘中。</p>
+	<p><img src="https://yyq123.github.io/learn-vim/images/Win_vim_install_portable.png" alt="gVim Portable Install" width="500" height="378" /></p>
+	<p>双击MacVim图标，即可启动程序：</p>
+	<p><img src="https://yyq123.github.io/learn-vim/images/Mac_MacVim_GUI.png" alt="MacVim GUI" width="500" height="369" /></p>
+	<p>在MacVim中使用以下命令，可以查看详细的版本信息：</p>
+	<p style="text-indent:2em"><code class="inset">:version</code></p>
+	<p>如下图所示，已经安装了包括图形界面的MacVim：</p>
+	<p><img src="https://yyq123.github.io/learn-vim/images/Mac_MacVim_Version.png" alt="MacVim" width="500" height="391" /></p>
 
 
-There are portable versions of vim that seem to be maintained, but personally I've never found a particular need for them: the standard Vim is portable enough for my needs.
-
-Create a directory on your USB stick (let's assume that it's E: when you're creating it):
-
-E:\vim
-
-Add two folders:
-
-E:\vim\vim73
-E:\vim\vimfiles
-
-Copy the contents of C:\Program Files\vim\vim73 (or wherever it's installed) into E:\vim\vim73 and take your vim configuration files (if you have any) and put them in E:\vim\vimfiles. Copy your vimrc to E:\vim\_vimrc.
-
-Now put the USB stick in another PC (let's assume it mounts it as F:). Open Windows Explorer, navigate to F:\vim\vim73 and double click on gvim.exe. It will open the Vim GUI and load your configuration.
-
-To keep the local and portable vim configurations matching, I'd recommend sticking the vimfiles directory under version control (also allows you to easily try out new plugins and then 'revert' to get rid of them if you don't want them) and having a checkout on the USB stick and another one on the PC. If you move your _vimrc to vimfiles\vimrc and replace your _vimrc with the following, it will keep vimrc version controlled with all the plugins and configuration:
-
-" _vimrc - Links to the vimrc in the vimfiles directory
-runtime vimrc
-
-You can do the same with _gvimrc if you have one.
 
 
 	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a href="http://yyq123.github.io/learn-vim/learn-vi-101-plugin-vundle.html" title="插件管理器(Vundle)">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a href="http://yyq123.github.io/learn-vim/learn-vi-102-plugin-plug.html" title="插件管理器(vim-plug)">下一篇</a>&gt;</span></p>
