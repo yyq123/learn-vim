@@ -8,59 +8,62 @@
 	<title>VIM学习笔记 在Windows下安装Vim</title>
 </head>
 <body>
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">安装GVim</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">安装gVim</p>
 	<p>首先<a href="https://www.vim.org/download.php#pc" title="Vim">下载</a>GVim安装包，然后按照屏幕提示进行安装。</p>
 	<p>如下图所示，建议安装Vim的完整特性（包括创建用于命令行的.bat文件）：</p>
 	<p><img src="https://yyq123.github.io/learn-vim/images/Win_vim_install.png" alt="Vim" /></p>
 	<p>安装完成之后，即可以从菜单中启动Vim：</p>
 	<p><img src="https://yyq123.github.io/learn-vim/images/Win_vim_Menu.png" alt="Vim" /></p>
 	<table summary="" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
-	<tr style="background: #e5e5e5;"><td>命令</td><td>功能</td><td>对应参数</td></tr>
-	<tr><td><code class="inset">vim</code></td><td>在终端模式下启动</td><td></td></tr>
-	<tr><td><code class="inset">gvim</code></td><td>在图形模式下启动</td><td><code class="inset">-g</code></td></tr>
-	<tr><td><code class="inset">ex</code></td><td>在Ex模式下启动</td><td><code class="inset">-e</code></td></tr>
-	<tr><td><code class="inset">exim</code></td><td>在Improved Ex模式下启动</td><td><code class="inset">-E</code></td></tr>
-	<tr><td><code class="inset">view</code></td><td>在正常模式下启动,只读</td><td><code class="inset">-R</code></td></tr>
-	<tr><td><code class="inset">gview</code></td><td>在图形模式下启动,只读</td><td><code class="inset">-Rg</code></td></tr>
-	<tr><td><code class="inset">rvim</code></td><td>在终端模式下启动,受限</td><td><code class="inset">-Z</code></td></tr>
-	<tr><td><code class="inset">rview</code></td><td>在终端模式下启动,只读,受限</td><td><code class="inset">-RZ</code></td></tr>
-	<tr><td><code class="inset">rgvim</code></td><td>在图形模式下启动,受限</td><td><code class="inset">-gZ</code></td></tr>
-	<tr><td><code class="inset">rgview</code></td><td>在图形模式下启动,只读,受限</td><td><code class="inset">-RgZ</code></td></tr>
-	<tr><td><code class="inset">evim</code></td><td>在Easy模式下启动</td><td><code class="inset">-y</code></td></tr>
-	<tr><td><code class="inset">eview</code></td><td>在Easy模式下启动,只读</td><td><code class="inset">-yR</code></td></tr>
-	<tr><td><code class="inset">vimdiff</code></td><td>在Diff模式下启动</td><td><code class="inset">-d</code></td></tr>
-	<tr><td><code class="inset">gvimdiff</code></td><td>在Diff模式下启动图形模式</td><td><code class="inset">-gd</code></td></tr>
+	<p>以下表格列示了菜单项所对应的命令和参数：</p>
+	<tr style="background: #e5e5e5;"><td>菜单项</td><td>功能</td><td>对应命令参数</td></tr>
+	<tr><td><code class="inset">gVim</code></td><td>在图形模式下启动</td><td><code class="inset">gvim.exe</code></td></tr>
+	<tr><td><code class="inset">gVim Diff</code></td><td>在Diff模式下启动图形模式</td><td><code class="inset">gvim.exe -d</code></td></tr>
+	<tr><td><code class="inset">gVim Easy</code></td><td>在Easy模式下启动图形模式</td><td><code class="inset">gvim.exe -y</code></td></tr>
+	<tr><td><code class="inset">gVim Read-only</code></td><td>在只读模式下启动图形模式</td><td><code class="inset">gvim.exe -R</code></td></tr>
+	<tr><td><code class="inset">Help</code></td><td>在图形模式下打开帮助文件</td><td><code class="inset">gvim.exe -ch</code></td></tr>
+	<tr><td><code class="inset">Vim</code></td><td>在终端模式下启动</td><td>vim.exe</td></tr>
+	<tr><td><code class="inset">Vim Diff</code></td><td><code class="inset">在Diff模式下启动终端模式</code></td><td><code class="inset">vim.exe -d</code></td></tr>
+	<tr><td><code class="inset">Vim Read-only</code></td><td>在只读模式下启动终端模式</td><td><code class="inset">vim.exe -R</code></td></tr>
 	</table>
-	<p>在Windows命令行中使用以下命令，可以查看完整的版本信息：</p>
+	<p>在Windows命令行中使用以下命令，可以查看已安装Vim的版本信息：</p>
 	<p style="text-indent:2em"><code class="inset">vim --version</code></p>
 	<p><img src="https://yyq123.github.io/learn-vim/images/Win_vim_version.png" alt="vim-version" width="500" height="546" /></p>
-	<p>在Vim中使用以下命令，可以查看Vim主要目录指向的位置：</p>
+	<p>在Vim中使用以下命令，可以看到Vim主要目录都指向了系统文件夹：</p>
 	<p><code class="inset">:echo $VIM</code><br /><code class="msg">C:\Users\username</code></p>
 	<p><code class="inset">:echo $HOME</code><br /><code class="msg">C:\Users\username</code></p>
 	<p><code class="inset">:echo $VIMRUNTIME</code><br /><code class="msg">C:\Program Files (x86)\Vim\vim81</code></p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">基本配置</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">配置gVim</p>
 	<p>首先在Windows用户目录之下，创建<kbd>_vimrc</kbd>文件；或者将安装目录下的示例文件<kbd>C:\Program Files (x86)\Vim\vim81\vimrc_example.vim</kbd>复制到用户目录之下并更名为<kbd>_vimrc</kbd>；</p>
 	<p>然后依据安装目录<kbd>C:\Program Files (x86)\Vim\vim81</kbd>的目录结构，在用户目录下的<kbd>vimfiles</kbd>目录中创建一致的目录结构；</p>
 	<p><img src="https://yyq123.github.io/learn-vim/images/vimfiles_directory.png" alt="vimfiles_directory" /></p>
 	<p>请确保在Windows环境变量Path中，包含以下Vim的安装目录：</p>
-	<p>C:\Program Files (x86)\Vim\vim81</p>
+	<p><code class="inset">C:\Program Files (x86)\Vim\vim81</code></p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">从命令行启动MacVim</p>
-	<p>在Terminal中输入<code class="inset">/Applications/MacVim.app/Contents/bin/mvim filename</code>或者<code class="inset">open -a MacVim filename</code>命令，可以从命令行打开MacVim。</p>
-
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">GVim</p>
-	<p>如果你没有权限安装软件，或者不想安装软件，那么也可以选择便携/绿色版<a href="https://portableapps.com/apps/development/gvim_portable" title="MacVim">gVim Portable</a>。首先下载安装包，然后选择将程序放置到本地磁盘或者U盘中。</p>
-	<p><img src="https://yyq123.github.io/learn-vim/images/Win_vim_install_portable.png" alt="gVim Portable Install" width="500" height="378" /></p>
-	<p>双击MacVim图标，即可启动程序：</p>
-	<p><img src="https://yyq123.github.io/learn-vim/images/Mac_MacVim_GUI.png" alt="MacVim GUI" width="500" height="369" /></p>
-	<p>在MacVim中使用以下命令，可以查看详细的版本信息：</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">安装gVim Portable</p>
+	<p>如果你没有权限安装软件，或者不想安装软件，那么也可以选择便携/绿色版<a href="https://portableapps.com/apps/development/gvim_portable" title="MacVim">gVim Portable</a>。</p>
+	<p>首先下载安装包，然后选择将程序放置到本地磁盘或者U盘中。</p>
+	<p>在安装目录中，双击gVimPortable.exe文件，即可启动gVim Portable：</p>
+	<p><img src="https://yyq123.github.io/learn-vim/images/gVimPortable.exe.png" alt="gVim Portable Start" width="500" height="279" /></p>
+	<p></p>
+	<p><img src="https://yyq123.github.io/learn-vim/images/gVimPortable.png" alt="gVim Portable GUI" width="500" height="397" /></p>
+	<p>在Vim中使用以下命令，可以查看详细的版本信息：</p>
 	<p style="text-indent:2em"><code class="inset">:version</code></p>
-	<p>如下图所示，已经安装了包括图形界面的MacVim：</p>
-	<p><img src="https://yyq123.github.io/learn-vim/images/Mac_MacVim_Version.png" alt="MacVim" width="500" height="391" /></p>
+	<p><img src="https://yyq123.github.io/learn-vim/images/gVimPortable_Version.png" alt="gVim Portable Version" width="500" height="633" /></p>
+	<p>在Vim中使用以下命令，可以查看gVim Portable主要目录的指向：</p>
+	<p><code class="inset">:echo $VIM</code><br /><code class="msg">E:\Anthony_Tools\gVimPortable\App\vim</code></p>
+	<p><code class="inset">:echo $HOME</code><br /><code class="msg">E:\Anthony_Tools\gVimPortable\Data\settings</code></p>
+	<p><code class="inset">:echo $VIMRUNTIME</code><br /><code class="msg">E:\Anthony_Tools\gVimPortable\App\vim\vim80</p>
+	<p>对比之前安装的gVim，可以发现gVim Portable的主要目录都指向了软件所处的文件夹。也就是说，运行文件和配置文件都存放在同一目录结构之下；您只需要复制此目录就可以在不同的电脑中，使用完全一致的gVim，而省去了重复的安装和配置工作。您也可以将gVim Portable存放在U盘中，真正实现即插即用。</p>
 
-
-
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">配置gVim Portable</p>
+	<p>请在\gVimPortable\Data\settings目录中，保存配置信息和定制化内容，此目录不会在升级过程中被覆盖。</p>
+	<p>首先在\gVimPortable\Data\settings目录之下，已经预置了<kbd>_vimrc</kbd>文件，你可以在此基础上进行修改；</p>
+	<p><img src="https://yyq123.github.io/learn-vim/images/gVimPortable_vimrc.png" alt="vimfiles_directory" width="500" height="246" /></p>
+	<p>然后依据安装目录<kbd>C:\Program Files (x86)\Vim\vim81</kbd>的目录结构，在\gVimPortable\Data\settings目录下的<kbd>vimfiles</kbd>目录中创建一致的目录结构；</p>
+	<p><img src="https://yyq123.github.io/learn-vim/images/vimfiles_directory.png" alt="vimfiles_directory" /></p>
+	<p>请确保在Windows环境变量Path中，包含以下Vim的安装目录：</p>
 
 	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a href="http://yyq123.github.io/learn-vim/learn-vi-101-plugin-vundle.html" title="插件管理器(Vundle)">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a href="http://yyq123.github.io/learn-vim/learn-vi-102-plugin-plug.html" title="插件管理器(vim-plug)">下一篇</a>&gt;</span></p>
 
