@@ -6,6 +6,7 @@ Created by yyq123@gmail.com using [vim](http://www.vim.org/)
 - **安装配置**
   - [在Linux下安装Vim](https://yyq123.github.io/learn-vim/learn-vi-201-Install-Vim-Linux.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/02/install-vim-linux.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/57650613)
   - [在Mac下安装Vim](https://yyq123.github.io/learn-vim/learn-vi-202-Install-Vim-Mac.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/04/install-vim-mac.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/64024294)
+  - [在Windows下安装Vim](https://yyq123.github.io/learn-vim/learn-vi-203-Install-Vim-Win.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/05/install-vim-windows.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/64856646)
   - [启动 (Starting)](http://yyq123.github.io/learn-vim/learn-vi-209-Start.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/03/vim-starting.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/60260968)
 - **基础操作**
   -	[基本编辑](http://yyq123.blogspot.com/2009/02/vim.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/03/vim-starting.html)<sup>/</sup>[<sup>Z</sup>](http://zhuanlan.zhihu.com/p/23011506)
