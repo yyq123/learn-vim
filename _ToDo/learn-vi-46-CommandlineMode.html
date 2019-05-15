@@ -25,7 +25,7 @@
 Vim编辑器可以记录各种命令的历史,下面的标记指出所记录的历史类型;
 c    cmd    :    命令行历史
 s    search    /    查找字符串历史
-e    expr    =    表达式寄存器历史
+e    expr    =    表达式寄存器历史 expression register history
 i    input    @    输入行历史 data typed in response to an :input operator
 a    all        所有的历史
 如果我们列出所有的历史,我们可以用下面的命令:
@@ -42,7 +42,7 @@ a    all        所有的历史
 	<p>通过history选项，可以控制记录历史命令的数量。例如使用以下命令，设置保存50条命令历史纪录：</p>
 :set history=50
 
-<p>The history is persisted in the viminfo file; you can configure what (and how many of them) is persisted via the 'viminfo' (and 'history') options.
+<p>命令历史是存储在viminfo文件中的; you can configure what (and how many of them) is persisted via the 'viminfo' (and 'history') options.
 
 You can clear the history via the histdel() function, e.g. for searches:
 

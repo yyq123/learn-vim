@@ -9,99 +9,80 @@
 </head>
 <body>
 	
-	<p>使用<code class="inset">:version</code>命令，可以查看Vim查找配置文件的位置</p>
+	<p>使用<code class="inset">:version</code>命令，可以查看Vim查找配置文件的位置和顺序：</p>
+	<p>Windows下的查找路径：</p>
 	<p><img src="https://yyq123.github.io/learn-vim/images/version_Win_Dir.png" alt="version" width="486" height="273" /></p>
+	<p>Linux下的查找路径：</p>
 	<p><img src="https://yyq123.github.io/learn-vim/images/version_Linux_Dir.png" alt="version" /></p>
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">运行时目录</p>
-	<p>使用以下命令，可以查看运行时目录：</p>
-	<p style="text-indent:2em"><code class="inset">:set rtp?</code></p>
-	<p>vim通常会搜索以下三个运行时目录：</p>
-	<ul>
-		<li>$HOME/vimfiles（windows上是你的用户文件夹根目录下的vimfiles ）</li>
-		<li>$VIM/vimfiles ( vim下的vimfiles)</li>
-		<li>$VIMRUNTIME (vimxx，比如vim72)</li>
-	</ul>
-	<p></p>
-	<p>使用以下命令，可以修改或增加运行时目录：</p>
-	<p style="text-indent:2em"><code class="inset">:set runtimepath+=c:/blahblah/vimfiles</code></p>
-	<p>如果本机上有多个用户，那么每个用户都可以将自己的vim设置和插件，存放在独立的目录里，然后再将这些目录加入到运行时目录列表里。在Vim启动时，会遍历运行时目录，以载入并运行其中的脚本文件，以实现不同用户使用各种不同的独立设置。</p>
-	<p>使用<code class="inset">:help rtp</code>和<code class="inset">:help dos-locations</code>命令，可以查看更多帮助信息。</p>
-
-	<p style="text-indent:2em"><code class="inset">:echo $VIMRUNTIME</code></p>
-	<ul>
-		<li>For Windows: "C:\Program Files (x86)\Vim\vim81"</li>
-		<li>For Linux: /usr/share/vim/vim81</li>
-	</ul>
-
-vimfiles目录中的设置，会覆盖runtime目录中的设置。例如，vimfiles/plugin/myplug.vim 将优先于 $VIMRUNTIME/plugin/myplug.vim 而被载入。
-
-:h system-vimrc
-
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">安装目录</p>
-<p style="text-indent:2em"><code class="inset"></code></p>
-	<p>使用以下命令，可以查看$VIM所代表的安装目录：</p>
-	<p style="text-indent:2em"><code class="inset">:echo $VIM</code></p>
+	<p>使用以下命令可以查看其中变量所指向的实际目录：</p>
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
+		<tr><th>命令</th><th>Linux</th><th>Windows</th></tr>
+		<tr><td><code class="inset">:echo $VIM</code></td><td>/usr/share/vim/</td><td>C:\Program Files\vim</td></tr>
+		<tr><td><code class="inset">:echo $HOME</code></td><td>/home/username</td><td>C:\Users\username</td></tr>
+		<tr><td><code class="inset">:echo $VIMRUNTIME</code></td><td>/usr/share/vim/vim81</td><td>C:\Program Files\Vim\vim81</td></tr>
+	</table>
 	
-	<p>对于Linux操作系统，Vim将被安装在以下目录：</p>
-	<p><kbd>/usr/share/vim</kbd></p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">VIM 安装目录</p>
+	<p>使用以下命令，可以查看$VIM所代表的Vim安装目录：</p>
+	<p style="text-indent:2em"><code class="inset">:echo $VIM</code></p>
+	<p>对于Linux操作系统，Vim通常被安装在以下目录：</p>
+	<p style="text-indent:2em"><kbd>/usr/share/vim</kbd></p>
 	<p>对于Windows操作系统，Vim将被安装在以下目录：</p>
-	<p><kbd>C:\Program Files\vim</kbd></p>
-	<p>对于默认安装目录，您不应该修改以上安装目录中的内容，也不应该在其中存放用户相关的文件。主要包括以下内容：</p>
-	<p><a href="https://www.flickr.com/photos/yyq123/30932779851/in/dateposted/" title="vim_directory"><img src="https://c2.staticflickr.com/6/5742/30932779851_30e0bbac18_o.png" width="92" height="93" alt="vim_directory" /></a></p>
-	<ul>
-		<li>vimXX：带上版本号的程序文件夹，可以让不同版本共存。</li>
-		<li>vimfiles 是用户文件夹，你自己装的插件等东西最好放在这里。</li>
-	</ul>
-	<p></p>
-	<table summary="Commands" border="1" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
-		<caption>命令小结</caption>
-		<tr><td><kbd>autoload</kbd></td><td>自动载入脚本（autoload scripts）</td><td><code class="inset">:help autoload</code></td></tr>
-		<tr><td><kbd>colors</kbd></td><td></td>配色方案<td><code class="inset"></code></td></tr>
-		<tr><td><kbd>compiler</kbd></td><td>编译命令<code class="inset">:compiler</code>使用的脚本文件</td><td><code class="inset">:help write-compiler-plugin</code></td></tr>
-		<tr><td><kbd>doc</kbd></td><td>文档</td><td><code class="inset"></code></td></tr>
-		<tr><td><kbd>ftplugin</kbd></td><td>针对特定类型文件的插件（需要配合:filetype plugin命令使用）。</td><td><code class="inset">:help ftplugin”</code></td></tr>
-		<tr><td><kbd>indent</kbd></td><td>自动缩进</td><td><code class="inset">:help indent-expression</code></td></tr>
-		<tr><td><kbd>keymap</kbd></td><td>Keymap文件，命名格式为：{language}[-{layout}][_{encoding}].vim</td><td><code class="inset">:help keymap-file-format</code></td></tr>
-		<tr><td><kbd>lang</kbd></td><td>菜单语言文件</td><td><code class="inset">:help multilang-menus<br />:help :menutrans<br />:help 'langmenu'<br />:help :language</code></td></tr>
-		<tr><td><kbd>macros</kbd></td><td>
-		<ul>
-			<li><kbd>hanoi</kbd> Macros that solve the tower of hanoi problem.</li>
-			<li><kbd>life</kbd>Macros that run Conway’s game of life.</li>
-			<li><kbd>maze</kbd>Macros that solve a maze (amazing!).</li>
-			<li><kbd>urm</kbd>Macros that simulate a simple computer: “Universal Register Machine”</li>
-			<li><kbd>dvorak</kbd>for when you use a Dvorak keyboard</li>
-			<li><kbd>editexisting.vim</kbd>when editing a file that is already edited with another Vim instance</li>
-			<li><kbd>file_select.vim</kbd>macros that make a handy file selector</li>
-			<li><kbd>justify.vim</kbd>user function for justifying text</li>
-			<li><kbd>matchit.vim</kbd>make % match if-fi, HTML tags, and much more</li>
-			<li><kbd>less.sh</kbd>make Vim work like less (or more)</li>
-			<li><kbd>shellmenu.vim</kbd>menus for editing shell scripts in the GUI version</li>
-			<li><kbd>swapmous.vim</kbd>swap left and right mouse buttons</li>
-			
-		</ul>
-		</td><td><code class="inset"></code></td></tr>
-		<tr><td><kbd>plugin</kbd></td><td>插件</td><td><code class="inset"></code></td></tr>
-		<tr><td><kbd>syntax</kbd></td><td>语法高亮度</td><td><code class="inset"></code></td></tr>
-		<tr><td><kbd>tools</kbd></td><td>工具</td><td><code class="inset"></code></td></tr>
-		<tr><td><kbd>tutor</kbd></td><td>入门教程</td><td><code class="inset"></code></td></tr>
+	<p style="text-indent:2em"><kbd>C:\Program Files\vim</kbd></p>
+	<p>对于以上默认安装目录，您不应该修改其中的内容，也不应该在其中存放用户相关的文件。安装目录主要包括以下内容：</p>
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
+		<tr><th>目录</th><th>用途</th></tr>
+		<tr><td><kbd>autoload</kbd></td><td>自动载入脚本（autoload scripts）</td></tr>
+		<tr><td><kbd>colors</kbd></td><td>配色方案</td></tr>
+		<tr><td><kbd>compiler</kbd></td><td>编译命令:compiler使用的脚本文件</td></tr>
+		<tr><td><kbd>doc</kbd></td><td>文档</td></tr>
+		<tr><td><kbd>ftplugin</kbd></td><td>针对特定类型文件的插件（需要配合:filetype plugin命令使用）</td></tr>
+		<tr><td><kbd>indent</kbd></td><td>自动缩进定义文件</td></tr>
+		<tr><td><kbd>keymap</kbd></td><td>命名格式为 {language}[-{layout}][_{encoding}].vim 的Keymap文件</td></tr>
+		<tr><td><kbd>lang</kbd></td><td>界面显示语言文件（英文、中文等）</td></tr>
+		<tr><td><kbd>macros</kbd></td><td>宏示例（hanoi、maze、urm等），小工具（justify、matchit、swapmous等）</td></tr>
+		<tr><td><kbd>plugin</kbd></td><td>插件</td></tr>
+		<tr><td><kbd>syntax</kbd></td><td>语法高亮度文件</td></tr>
+		<tr><td><kbd>tools</kbd></td><td>工具（unicode、vimspell等）</td></tr>
+		<tr><td><kbd>tutor</kbd></td><td>入门教程</td></tr>
 	</table>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">用户目录</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">HOME 用户目录</p>
 	<p>使用以下命令，可以查看$HOME所代表的用户目录：</p>
 	<p style="text-indent:2em"><code class="inset">:echo $HOME</code></p>
+	<p>对于Linux操作系统，用户目录为：</p>
+	<p style="text-indent:2em">/home/username</p>
+	<p>对于Windows操作系统，用户目录为：</p>
+	<p style="text-indent:2em">C:\Users\username</p>
+	<p>由于用户目录在vim版本升级时也不会被覆盖，建议在其中存放用户设置信息。</p>
+	<p>如果本机上有多个用户，那么每个用户都可以将自己的vim设置和插件，存放在自己的目录里，以实现不同用户使用各自不同的独立设置。</p>
+	<p>在首次使用Vim之前，请先创建<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>用户配置文件：</p>
 	<ul>
-		<li>For Windows：<kbd>C:\users\username</kbd></li>
-		<li>For Linux：<kbd> /home/username</kbd></li>
+		<li>Linux: <kbd>/home/username/.vimrc</kbd></li>
+		<li>Windows: <kbd>c:\users\username\_vimrc</kbd></li>
 	</ul>
-	<p>用户目录，在vim版本升级时也不会被覆盖。建议其目录结构与安装目录保持一致，并在其中存放用户设置和插件。</p>
-	<p>在首次使用Vim之前，请先创建<a href="http://bit.ly/vim-vimrc" title="vimrc">vimrc配置文件</a>：</p>
-<p style="text-indent:2em"><code class="inset">$ touch ~/.vimrc</code></p>
-<ul>
-	<li>For Windows: c:\users\username\_vimrc</li>
-	<li>For Linux: /home/username/.vimrc</li>
-</ul>
-<p>用户配置文件（personal vimrc）将优先于系统配置文件（global vimrc）。用户应该将个性化设置存放在用户配置文件中，而不应修改系统配置文件。</p>
+	<p>用户应该将个性化设置存放在用户配置文件（personal vimrc），而不应修改系统配置文件（global vimrc）。</p>
 
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">VIMRUNTIME 运行时目录</p>
+	<p>使用以下命令，可以查看$VIMRUNTIME所代表的运行时目录：</p>
+	<p style="text-indent:2em"><code class="inset">:echo $VIMRUNTIME</code></p>
+	<p>对于Linux操作系统，运行时目录为：</p>
+	<p style="text-indent:2em">/usr/share/vim/vim81</p>
+	<p>对于Windows操作系统，运行时目录为：</p>
+	<p style="text-indent:2em">C:\Program Files\Vim\vim81</p>
+	<p>在Vim启动时，会遍历运行时目录，以载入并运行其中的脚本文件。</p>
+	<p>使用以下命令，可以查看运行时目录的详细列表：</p>
+	<p style="text-indent:2em"><code class="inset">:set rtp?</code></p>
+	<p>使用以下命令，可以修改或增加运行时目录：</p>
+	<p style="text-indent:2em"><code class="inset">:set runtimepath+=c:/blahblah/vimfiles</code></p>
+	<p>Vim通常会搜索以下三个运行时目录及其子目录：</p>
+	<ul>
+		<li>$HOME/vimfiles（用户目录下的vimfiles）</li>
+		<li>$VIM/vimfiles （安装目录下的vimfiles）</li>
+		<li>$VIMRUNTIME （安装目录下的vimxx，比如vim72）</li>
+	</ul>
+	<p>请注意：vimfiles目录中的设置，优先于runtime目录中的设置。例如，vimfiles/plugin/myplug.vim 将优先于 $VIMRUNTIME/plugin/myplug.vim 而被载入。</p>
+	<p>使用<code class="inset">:help rtp</code>和<code class="inset">:help dos-locations</code>命令，可以查看更多帮助信息。</p>
 
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
