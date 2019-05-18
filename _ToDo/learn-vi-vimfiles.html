@@ -14,13 +14,8 @@
 	<p><img src="https://yyq123.github.io/learn-vim/images/version_Win_Dir.png" alt="version" width="486" height="273" /></p>
 	<p>Linux下的查找路径：</p>
 	<p><img src="https://yyq123.github.io/learn-vim/images/version_Linux_Dir.png" alt="version" /></p>
-	<p>使用以下命令可以查看其中变量所指向的实际目录：</p>
-	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
-		<tr><th>命令</th><th>Linux</th><th>Windows</th></tr>
-		<tr><td><code class="inset">:echo $VIM</code></td><td>/usr/share/vim/</td><td>C:\Program Files\vim</td></tr>
-		<tr><td><code class="inset">:echo $HOME</code></td><td>/home/username</td><td>C:\Users\username</td></tr>
-		<tr><td><code class="inset">:echo $VIMRUNTIME</code></td><td>/usr/share/vim/vim81</td><td>C:\Program Files\Vim\vim81</td></tr>
-	</table>
+	<p>从虚拟的变量对应物理的目录结构，左侧为安装Vim的目录，而右侧为用户目录：</p>
+	<p><img src="https://yyq123.github.io/learn-vim/images/Win_vim_dir_structure.png" alt="Directiry Structure" width="500" height="433" /></p>
 	
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">VIM 安装目录</p>
 	<p>使用以下命令，可以查看$VIM所代表的Vim安装目录：</p>
@@ -51,9 +46,9 @@
 	<p>使用以下命令，可以查看$HOME所代表的用户目录：</p>
 	<p style="text-indent:2em"><code class="inset">:echo $HOME</code></p>
 	<p>对于Linux操作系统，用户目录为：</p>
-	<p style="text-indent:2em">/home/username</p>
+	<p style="text-indent:2em"><kbd>/home/username</kbd></p>
 	<p>对于Windows操作系统，用户目录为：</p>
-	<p style="text-indent:2em">C:\Users\username</p>
+	<p style="text-indent:2em"><kbd>C:\Users\username</kbd></p>
 	<p>由于用户目录在vim版本升级时也不会被覆盖，建议在其中存放用户设置信息。</p>
 	<p>如果本机上有多个用户，那么每个用户都可以将自己的vim设置和插件，存放在自己的目录里，以实现不同用户使用各自不同的独立设置。</p>
 	<p>在首次使用Vim之前，请先创建<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>用户配置文件：</p>
@@ -67,9 +62,9 @@
 	<p>使用以下命令，可以查看$VIMRUNTIME所代表的运行时目录：</p>
 	<p style="text-indent:2em"><code class="inset">:echo $VIMRUNTIME</code></p>
 	<p>对于Linux操作系统，运行时目录为：</p>
-	<p style="text-indent:2em">/usr/share/vim/vim81</p>
+	<p style="text-indent:2em"><kbd>/usr/share/vim/vim81</kbd></p>
 	<p>对于Windows操作系统，运行时目录为：</p>
-	<p style="text-indent:2em">C:\Program Files\Vim\vim81</p>
+	<p style="text-indent:2em"><kbd>C:\Program Files\Vim\vim81</kbd></p>
 	<p>在Vim启动时，会遍历运行时目录，以载入并运行其中的脚本文件。</p>
 	<p>使用以下命令，可以查看运行时目录的详细列表：</p>
 	<p style="text-indent:2em"><code class="inset">:set rtp?</code></p>
@@ -81,27 +76,18 @@
 		<li>$VIM/vimfiles （安装目录下的vimfiles）</li>
 		<li>$VIMRUNTIME （安装目录下的vimxx，比如vim72）</li>
 	</ul>
-	<p>请注意：vimfiles目录中的设置，优先于runtime目录中的设置。例如，vimfiles/plugin/myplug.vim 将优先于 $VIMRUNTIME/plugin/myplug.vim 而被载入。</p>
-	<p>使用<code class="inset">:help rtp</code>和<code class="inset">:help dos-locations</code>命令，可以查看更多帮助信息。</p>
+	<p><img src="https://yyq123.github.io/learn-vim/images/set runtimepath.png" alt="Directiry Structure" width="500" height="167" /></p>
+	<p>请注意：vimfiles目录中的设置，优先于runtime目录中的设置。例如，vimfiles/plugin/myplug.vim 将优先于 $VIMRUNTIME/plugin/myplug.vim。</p>
+	<p>使用<code class="inset">:help rtp</code>命令，可以查看更多帮助信息。</p>
 
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><th>命令</th><th>Linux</th><th>Windows</th></tr>
+		<tr><td><code class="inset">:echo $VIM</code></td><td>/usr/share/vim/</td><td>C:\Program Files\vim</td></tr>
+		<tr><td><code class="inset">:echo $HOME</code></td><td>/home/username</td><td>C:\Users\username</td></tr>
+		<tr><td><code class="inset">:echo $VIMRUNTIME</code></td><td>/usr/share/vim/vim81</td><td>C:\Program Files\Vim\vim81</td></tr>
 	</table>
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="()" href="">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="()" href="">下一篇</a>&gt;</span></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="在Linux下安装Vim" href="http://yyq123.github.io/learn-vim/learn-vi-201-Install-Vim-Linux.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="在Windows下安装Vim" href="http://yyq123.github.io/learn-vim/learn-vi-203-Install-Vim-Win.html">下一篇</a>&gt;</span></p>
 </body>
 </html>
 
