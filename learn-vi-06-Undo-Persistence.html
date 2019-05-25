@@ -5,46 +5,32 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记 持久性撤销 (undo Persistence)</title>
+	<title>VIM学习笔记 持久性撤销 (Undo Persistence)</title>
 </head>
 <body>
-	<p>持久性撒消（persistent undo），会将撒消树保存到文件中，因而即使文件被关闭再打开多次，也可以撤销过去进行的所有修改（当然不能超过'undolevel'的限制）。</p>
+	<p>持久性撒消（persistent undo），会将撒消树保存到撤销文件中，因而即使被编辑文件被关闭再打开多次，也可以撤销过去进行的所有修改（当然不能超过<a href="http://vimdoc.sourceforge.net/htmldoc/options.html#'undolevels'" title="undolevels">undolevel</a>的限制）。</p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">启用持久性撤销</p>
-	<p>使用以下命令，可以启用持久性撤销：</p>
+	<p>默认情况下，Vim并没有启用持久性撤销。使用以下命令，可以启用持久性撤销：</p>
 	<p style="text-indent:2em"><code class="inset">set undofile</code></p>
 	<p>Vim将为正在编辑的文件，分别创建独立的撤销文件，用以保存支持撤销操作的信息。</p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">撤销文件</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">生成撤销文件</p>
 	<p>撤销文件通常保存在文件本身所在的目录里。使用以下命令，可以将撤销文件集中保存到指定的目录：</p>
 	<p style="text-indent:2em"><code class="inset">set undodir="$HOME/.vim/undodir"</code></p>
-	<p>请注意，需求确保您指定的目录已经存在。</p>
-	<p>生成的撤销文件，将以所编辑文件的完整名称命名。其中包括了完整的路径名，而“/”将以“%”代替：</p>
+	<p>请注意，需要确保您指定的目录已经存在。</p>
+	<p>生成的撤销文件，将以所编辑文件的完整名称命名。其中包括了完整的路径名，其中“/”将以“%”代替：</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/undofile.png" title="undofile"><img src="https://yyq123.github.io/learn-vim/images/undofile.png" width="525" height="51" alt="Undofile"></a></p>
-	<p>Vim只会创建撒消文件，而永远不会去删除它们，所以需要手动删除。</p>
+	<p>Vim只会创建撒消文件，而永远不会去删除它们；如果你更改了文件名称，那么旧文件名所对应的撤销文件也不会被自动删除。建议，将撤销文件存储到指定目录（比如temp临时目录），并定期进行手动清理。</p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">撤销操作</p>
 	<p>使用:earlier {N}f 和 :later {N}f 命令，可以根据写入次数进行撤销。</p>
 	<p>例如以下用命令，可以恢复到上次写入时的文本状态：</p>
 	<p style="text-indent:2em"><code class="inset">:earlier 1f</code></p>
 
-	<p>使用<code class="inset">:help persistent-undo</code>命令，可以查看撤消操作的<a href="http://vimcdoc.sourceforge.net/doc/undo.html#undo-persistence">帮助信息</a>。</p>
+	<p>使用<code class="inset">:help persistent-undo</code>命令，可以查看关于持久性撤消的<a href="http://vimcdoc.sourceforge.net/doc/undo.html#undo-persistence">帮助信息</a>。</p>
 
-
-	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
-		<caption>命令小结</caption>
-		<tr><td><code class="inset">u</code></td><td rowspan="2">撤消</td></tr>
-		<tr><td><code class="inset">:undo</code></td></tr>
-		<tr><td><code class="inset">CTRL-R</code></td><td rowspan="2">重做</td></tr>
-		<tr><td><code class="inset">:redo</code></td></tr>
-		<tr><td><code class="inset">:undolist</code></td><td>查看撤消分支</td></tr>
-		<tr><td><code class="inset">g-</code></td><td>返回较早的文本状态</td></tr>
-		<tr><td><code class="inset">g+</code></td><td>返回较新的文本状态</td></tr>
-		<tr><td><code class="inset">:earlier</code></td><td>退回到指定时间前的文本状态</td></tr>
-		<tr><td><code class="inset">:later</code></td><td>退回到指定时间后的文本状态</td></tr>
-	</table>
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a href="http://yyq123.github.io/learn-vim/learn-vi-101-plugin-vundle.html" title="插件管理器(Vundle)">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a href="http://yyq123.github.io/learn-vim/learn-vi-102-plugin-plug.html" title="插件管理器(vim-plug)">下一篇</a>&gt;</span></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a href="https://yyq123.github.io/learn-vim/learn-vi-06-Undo.html" title="撤销 (Undo)">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a href="https://yyq123.github.io/learn-vim/learn-vi-07-Print.html" title="打印 (Print &amp; Hardcopy)">下一篇</a>&gt;</span></p>
 
 </body>
 </html>
-
