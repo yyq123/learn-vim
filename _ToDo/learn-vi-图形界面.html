@@ -5,23 +5,33 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>图形界面</title>
+	<title>VIM学习笔记 图形界面(GUI)</title>
 </head>
 <body>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">启用/禁用</p>
 	<p style="font-weight:bold">启动</p>
-	<p>使用gvim file命令，就可以打开图形界面来编辑文本了。</p>
-	<p>图形界面的外观因你所用的操作系统的不同而有所不同，就是同样的操作系统也会因你所使用的工具集不同（Motif,Athena,GTK）而会呈现不同的外观。</p>
-	<p>我们可以使用-geometry标记来指定启动的vim的位置和大小.这个选项的一般形式如下:
--geometry width+x heightx_offset-y_offset
-这里的width和height以字符数指定了窗口的大小.而x_offset和y_offset则是指定了窗口的位置.x_offset以像素数指定了屏幕的左边和窗口的左边的距离.如果这个值是一个负数,则是指定编辑器的左边和屏幕的右边的距离.与此相类似,y_offset则是指定了上边缘,如果为负数,则是指定了下边缘的空白大小.所以如果我们要在屏幕的左上角启动gvim,可以用下面的命令:
-$ gvim -geometry +0+0
-参数width和height则是指定了所启动的窗口的大小,也就是所具有的行数和列数.例如如果我们需要一个80x24的编辑窗口我们可以用下面的命令:
-$ gvim -geometry 80x24
+	<p>在操作系统的终端中执行以下命令，就可以打开图形界面的GVim来编辑文件了：</p>
+	<p style="text-indent:2em"><code class="inset">$ gvim [filename]</code></p>
+	<p>使用 -geometry width+x height x_offset y_offset 标记，可以指定启动GVim的屏幕位置和窗口大小。</p>
+	<ul>
+		<li>width，窗口宽度；</li>
+		<li>height，窗口高度；</li>
+		<li>x_offset以像素数指定了屏幕的左边和窗口的左边的距离.如果这个值是一个负数,则是指定编辑器的左边和屏幕的右边的距离；</li>
+		<li>y_offset则是指定了上边缘,如果为负数,则是指定了下边缘的空白大小。</li>
+	</ul>
+	<p>使用以下命令，可以在屏幕的左上角启动gvim：</p>
+	<p style="text-indent:2em"><code class="inset">$ gvim -geometry +0+0</code></p>
+	<p>使用以下命令，可以打开一个80行x24列的编辑窗：</p>
+	<p style="text-indent:2em"><code class="inset">$ gvim -geometry 80x24</code></p>
+
 我们在图形界面下可以用下面的命令来得到当前窗口所在的位置:
+	<p style="text-indent:2em"><code class="inset"></code></p>
 :winpos(以左上角为标准)
 如果我们要移动到指定的位置,我们可以用下面的命令形式:
+	<p style="text-indent:2em"><code class="inset"></code></p>
 :winpos X Y
 例如如果我们要将当前的窗口移动到(20,30)处,我们可以用下面的命令:
+	<p style="text-indent:2em"><code class="inset"></code></p>
 :winpos 20 30
 
 
@@ -104,7 +114,21 @@ File is read-only and has been modified
 		<tr><td><code class="inset"></code></td><td></td></tr>
 		<tr><td><code class="inset"></code></td><td></td></tr>
 	</table>
-	
-	<p>Tags: <a href="http://www.technorati.com/tags/vi" rel="tag">vi</a>,<a href="http://www.technorati.com/tags/vim" rel="tag">vim</a></p>
+	<p></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">识别文件</p>
+	<p></p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
+		<tr><td><code class="inset">:</code></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+	</table>
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
 </body>
 </html>
