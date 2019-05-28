@@ -9,7 +9,6 @@
 </head>
 <body>
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">启用/禁用</p>
-	<p style="font-weight:bold">启动</p>
 	<p>在操作系统的终端中执行以下命令，就可以打开图形界面的GVim来编辑文件了：</p>
 	<p style="text-indent:2em"><code class="inset">$ gvim [filename]</code></p>
 	<p>使用 -geometry width+x height x_offset y_offset 标记，可以指定启动GVim的屏幕位置和窗口大小。</p>
@@ -23,19 +22,18 @@
 	<p style="text-indent:2em"><code class="inset">$ gvim -geometry +0+0</code></p>
 	<p>使用以下命令，可以打开一个80行x24列的编辑窗：</p>
 	<p style="text-indent:2em"><code class="inset">$ gvim -geometry 80x24</code></p>
+	<p>使用以下命令，则可以在屏幕的左上角打开一个80行x24列的编辑窗：</p>
+	<p style="text-indent:2em"><code class="inset">$ gvim -geometry 80x24+0+0</code></p>
 
-我们在图形界面下可以用下面的命令来得到当前窗口所在的位置:
-	<p style="text-indent:2em"><code class="inset"></code></p>
-:winpos(以左上角为标准)
-如果我们要移动到指定的位置,我们可以用下面的命令形式:
-	<p style="text-indent:2em"><code class="inset"></code></p>
-:winpos X Y
-例如如果我们要将当前的窗口移动到(20,30)处,我们可以用下面的命令:
-	<p style="text-indent:2em"><code class="inset"></code></p>
-:winpos 20 30
+	<p>在GVim中使用以下命令，可以得到当前窗口（相对于左上角）的屏幕位置：</p>
+	<p style="text-indent:2em"><code class="inset">:winpos</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/winpos.png" title="winpo"><img src="https://yyq123.github.io/learn-vim/images/winpos.png" alt="winpos"></a></p>
+	<p>使用:winpos X Y命令，则可以将当前窗口移动到指定的屏幕位置：</p>
+	<p style="text-indent:2em"><code class="inset">:winpos 20 30</code></p>
 
+	<p style="text-indent:2em"><code class="inset"></code></p>
 
-	<p style="font-weight:bold">GUI控制命令</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">GUI控制命令</p>
 	<p>我们可以用guioptions选项来控制许多GUI特征。命令形式如下：</p>
 	<p style="text-indent:2em"><code class="inset">:set guioptions=options</code></p>
 	<p>其中options是一个字母集合，每一个是一个选项：</p>
@@ -75,12 +73,14 @@
 	<p></p>
 	
 	
-	<p style="font-weight:bold">标题栏</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">标题栏</p>
 	<p>如果要将当前窗口的标题改为正在编辑的文件名，可以使用以下命令：</p>
 	<p style="text-indent:2em">:set title</p>
+	<p>默认情况下，窗口标题将显示当前编辑的文件名，随后是一个状态标识码，以及文件路径：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/set title.png" title="set title.png"><img src="https://yyq123.github.io/learn-vim/images/set title.png" alt="set title"></a></p>
+	<p>其中，状态标识码有以下几种：</p>
 
-	<p>默认情况下，窗口标题将显示当前编辑的文件名，随后是一个状态标识码，以及文件路径。其中，状态标识码有以下几种：</p>
--
+	-
 File can't be modified
 +
 File has been modified
