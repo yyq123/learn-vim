@@ -27,7 +27,7 @@
 
 	<p>在GVim中使用以下命令，可以得到当前窗口（相对于左上角）的屏幕位置：</p>
 	<p style="text-indent:2em"><code class="inset">:winpos</code></p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/winpos.png" title="winpo"><img src="https://yyq123.github.io/learn-vim/images/winpos.png" alt="winpos"></a></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/winpos.png" title="winpos"><img src="https://yyq123.github.io/learn-vim/images/winpos.png" alt="winpos"></a></p>
 	<p>使用:winpos X Y命令，则可以将当前窗口移动到指定的屏幕位置：</p>
 	<p style="text-indent:2em"><code class="inset">:winpos 20 30</code></p>
 
@@ -38,28 +38,28 @@
 	<p style="text-indent:2em"><code class="inset">:set guioptions=options</code></p>
 	<p>其中options是一个字母集合，每一个是一个选项：</p>
 	<table summary="GUI Options" border="1" rules="all" cellspacing="2" cellpadding="4">
-		<tr><td>a</td><td>Autoselect</td><td>如果设定了这个选项，当我们在可视化模式下选择了文本，Vim会将所选的文本放在系统的全局寄存器中。这就意味着，可以在这个Vim中选择文本然后用命令"*p将这些文本粘贴到另一个Vim中。如果没有这个选项，那么就要用命令"*y将所选择的文本复制到系统寄存器中。在系统寄存中的文本可以被其他程序所使用。</td></tr>
-		<tr><td>f</td><td>Foreground</td><td>在UNIX系统上，gvim命令可以执行fork()命令，让编辑器在后台运行。我们可以设置此选项来防止这样的事情发生。如果要编辑一个脚本程序，需要执行gvim命令使得用户可以编辑文件而且要等待到编辑工作结束，这样的选项就会显得更为有用。（注意：这个选项要在初始文件中进行设置）</td></tr>
-		<tr><td>i</td><td>Icon</td><td>如果设置了这个选项，gvim就会在X Windows系统上运行而且最小化时会显示一个图标。如果没有设置这个选项，只会显示正在编辑的文件名称而不会显示图标。</td></tr>
-		<tr><td>m</td><td>Menu</td><td>显示菜单栏</td></tr>
-		<tr><td>M</td><td>Nomenu</td><td>如果设置了这个选项，那么系统菜单的定义文件$VIMRUNTIME/menu.vim就不会被读入。（注意：这个选项要在初始文件中进行设置）</td></tr>
-		<tr><td>g</td><td>Gray</td><td>将不可用的菜单显示为灰色。如果没有设置这个选项，那么不可用的菜单就会从菜单栏或是工具栏中移除。</td></tr>
-		<tr><td>t</td><td>Tear off</td><td>打开tear off菜单</td></tr>
-		<tr><td>T</td><td>Tool bar</td><td>显示工具栏</td></tr>
-		<tr><td>r</td><td>Always Right scrollbar</td><td>总是在编辑器右侧放置滚动条</td></tr>
-		<tr><td>R</td><td>Display Right scrollbar</td><td>如果窗口垂直分隔，将在编辑器右侧放置滚动条</td></tr>
-		<tr><td>l</td><td>Always Left scrollbar</td><td>在编辑器左侧放置滚动条</td></tr>
-		<tr><td>L</td><td>Display Left scrollbar</td><td>如果窗口垂直分隔，将在编辑器左侧放置滚动条</td></tr>
-		<tr><td>b</td><td>Bottom scrollbar</td><td>在编辑器底部放置滚动条</td></tr>
-		<tr><td>v</td><td>Vertical dialog boxes</td><td>在对话框中采用垂直的排列顺序</td></tr>
-		<tr><td>p</td><td>Pointer callback fix</td><td>可以用这个选项来处理当X11窗口管理器发生问题时的情况。这样可以使用程序可以产生定点回溯。（注意：这个选项要在初始文件中进行设置）</td></tr>
+		<tr><td><code class="inset">a</code></td><td>Autoselect</td><td>如果设定了此选项，那么在可视化模式下选择了文本，Vim会将所选的文本放在系统的全局寄存器中。这就意味着，可以将当前选中的文本用命令"*p粘贴到其他文件。如果没有设定此选项，那么就需要用命令"*y将所选择的文本复制到系统寄存器中。在系统寄存中的文本可以被其他程序所使用。</td></tr>
+		<tr><td><code class="inset">f</code></td><td>Foreground</td><td>在Linux系统上，gvim可以执行fork()命令，让编辑器在后台运行。通过设置此选项，可以禁用此行为。如果在一个脚本程序中，需要执行gvim命令使得用户可以编辑文件而且要等待到编辑工作结束，此选项就会显得更为有用。（注意：这个选项要在初始文件中进行设置）</td></tr>
+		<tr><td><code class="inset">i</code></td><td>Icon</td><td>如果设置了这个选项，gvim就会在X Windows系统上运行而且最小化时会显示一个图标。如果没有设置这个选项，只会显示正在编辑的文件名称而不会显示图标。</td></tr>
+		<tr><td><code class="inset">m</code></td><td>Menu</td><td>显示菜单栏</td></tr>
+		<tr><td><code class="inset">M</code></td><td>Nomenu</td><td>如果设置了这个选项，那么系统菜单的定义文件$VIMRUNTIME/menu.vim就不会被读入。（注意：这个选项要在初始文件中进行设置）</td></tr>
+		<tr><td><code class="inset">g</code></td><td>Gray</td><td>将不可用的菜单显示为灰色。如果没有设置这个选项，那么不可用的菜单就会从菜单栏或是工具栏中移除。</td></tr>
+		<tr><td><code class="inset">t</code></td><td>Tear off</td><td>打开tear off菜单</td></tr>
+		<tr><td><code class="inset">T</code></td><td>Tool bar</td><td>显示工具栏</td></tr>
+		<tr><td><code class="inset">r</code></td><td>Always Right scrollbar</td><td>总是在编辑器右侧放置滚动条</td></tr>
+		<tr><td><code class="inset">R</code></td><td>Display Right scrollbar</td><td>如果窗口垂直分隔，将在编辑器右侧放置滚动条</td></tr>
+		<tr><td><code class="inset">l</code></td><td>Always Left scrollbar</td><td>在编辑器左侧放置滚动条</td></tr>
+		<tr><td><code class="inset">L</code></td><td>Display Left scrollbar</td><td>如果窗口垂直分隔，将在编辑器左侧放置滚动条</td></tr>
+		<tr><td><code class="inset">b</code></td><td>Bottom scrollbar</td><td>在编辑器底部放置滚动条</td></tr>
+		<tr><td><code class="inset">v</code></td><td>Vertical dialog boxes</td><td>在对话框中采用垂直的排列顺序</td></tr>
+		<tr><td><code class="inset">p</code></td><td>Pointer callback fix</td><td>可以用这个选项来处理当X11窗口管理器发生问题时的情况。这样可以使用程序可以产生定点回溯。（注意：这个选项要在初始文件中进行设置）</td></tr>
 		<tr><td></td><td></td><td></td></tr>
 	</table>
 	<p>例如，我们可以使用以下命令隐藏菜单栏、工具栏和滚动条，以获得更大的屏幕空间：</p>
 	<p style="text-indent:2em"><code class="inset">:set guioptions-=mTrlb</code></p>
 	<p>如果想要重新显示隐藏的窗口部件，可以使用以下命令：</p>
 	<p style="text-indent:2em"><code class="inset">:set guioptions+=T</code></p>
-	
+<code class="inset">:help guioptions</code>
 
 	<p style="font-weight:bold">行数</p>
 	<p>使用<code class="inset">:set lines?</code>命令可以显示当前编辑窗口的行数。利用<code class="inset">:set lines=n</code>命令可以改变行数，这里的n就是我们希望具有的行数。与此类似，如果我们要改变当前窗口的列数，可以用<code class="inset">:set columns=columns</code>命令。</p>
@@ -75,25 +75,20 @@
 	
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">标题栏</p>
 	<p>如果要将当前窗口的标题改为正在编辑的文件名，可以使用以下命令：</p>
-	<p style="text-indent:2em">:set title</p>
+	<p style="text-indent:2em"><code class="inset">:set title</code></p>
 	<p>默认情况下，窗口标题将显示当前编辑的文件名，随后是一个状态标识码，以及文件路径：</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/set title.png" title="set title.png"><img src="https://yyq123.github.io/learn-vim/images/set title.png" alt="set title"></a></p>
 	<p>其中，状态标识码有以下几种：</p>
-
-	-
-File can't be modified
-+
-File has been modified
-=
-File is read-only
-=+
-File is read-only and has been modified
-	
-	<p>有时文件全名会很长，我们可以用以下命令来改变文件名可以占用的空间：</p>
-	<p style="text-indent:2em">:set titlelen=85</p>
-	<p>在这种情况下，标题的文本可以占用标题栏85%的空间。
-	<p>我们还可以用以下命令改变标题：</p>
-	<p style="text-indent:2em">:set titlestring=Hello World!</p>
+	<ul>
+		<li><code class="inset">-</code>，文件不可更改；</li>
+		<li><code class="inset">+</code>，文件已经更改；</li>
+		<li><code class="inset">=</code>，只读文件；</li>
+		<li><code class="inset">=+</code>，只读文件，已经被更改。</li>
+	</ul>
+	<p>有时文件全名会很长，我们可以使用以下命令，来指定文件名占用标题栏空间的百分比：</p>
+	<p style="text-indent:2em"><code class="inset">:set titlelen=85</code></p>
+	<p>使用以下命令，可以直接改变标题：</p>
+	<p style="text-indent:2em"><code class="inset">:set titlestring=Hello World!</p>
 :help titlestring
 	
 	<p></p>
