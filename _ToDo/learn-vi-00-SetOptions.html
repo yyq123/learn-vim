@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记  ()</title>
+</head>
+<body>
+	<p>使用:set命令设置的选项，大致可以分为两种：使用布尔值的开关选项，和使用数值或字符串的选项。</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">启用/禁用</p>
+	<p></p>
+Vim编辑器有许多设定选项的方法.一般情况下要设定一个选项,我们可以用下面的命令:
+:set option=value
+真值选项的设置可以用下面的命令:
+:set option
+如果要重置我们可以用下面的命令:
+:set nooptoion
+如果我们要查看一个选项的值,我们可以用这样的命令:
+:set option?
+如果我们要将一个选项设为其默认的值,我们可以用下面的命令来做到:
+:set option&
+布尔选项:
+我们可以对布尔选项执行下面的操作:
+:set option    打开选项
+:set nooption    关闭选项
+:set option!    转换选项
+:set invoption    转换选项
+:set option&    将选项设为默认值
+例如:
+:set list
+:set list?
+list
+:set nolist
+:set list?
+nolist
+:set list!
+:set list?
+list
+:set list&
+:set list?
+nolist
+
+数字选项:
+我们可以对数字选项执行下面的一些操作:
+:set option += value    在选项中加入一个值
+:set option -= value    在选项中减去一个值
+:set option ^= value    将值乘以选项
+:set option&        将选项设为默认值
+例如:
+:set shiftwidth=4
+:set shiftwidth += 2
+:set shiftwidth?
+shiftwidth=6
+:set shiftwidth-=3
+:set shiftwidth
+shiftwidth=3
+:set shiftwidth ^= 2
+:set shiftwidth
+shiftwidth=6
+:set shiftwidth&
+:set shiftwidth
+shiftwidth=8
+
+字符串相关的命令:
+我们可以对字符串选项执行下面的操作:
+:set option += value    在选项的末尾加上value
+:set option -= value    从选项中移去value或是字符
+:set option ^= value    在选项的开头加入value
+例如:
+:set cinwords=test
+:set cinwords?
+cinwords=test
+:set cinwords+=end
+:set cinwords?
+cinwords=test,end
+:set cinwords-=test
+:set cinwords?
+cinwords=end
+:set cinwords^=start
+:set cinwords?
+cinwords=start,end
+下面的命令会设置一个布尔选项(例如list或是nolist),但是他会显示出其他类型选项的值::set option
+然而用这样的命令方式来显示一个选项的值并不是很好的方法,因为如果我们不小心这个方法就会导致错误.更好的方法是用下面的命令来显示一个选项的值:
+:set option?
+相对的下面的命令形式:
+:set option = value
+查看其值的方法为:
+:set option:value
+其他的一些:set参数:
+下面的命令会打印出所有的与其默认值不同的选项:
+:set
+下面的命令会打印出所有的选项:
+:set all
+
+最后如果我们要将所有的选项都重新置为默认值我们可以用下面的命令:
+:set all&
+我们可以在一行中放入几个:set操作.例如要设置三个不同的选项我们可以用下面的命令:
+:set list shiftwidth=4 incsearch
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">识别文件</p>
+	<p></p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
+		<tr><td><code class="inset">:</code></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+	</table>
+&ldquo;&rdquo;
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
+
+</body>
+</html>
+
