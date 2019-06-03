@@ -40,11 +40,12 @@ list
 nolist
 	<p>使用以下命令，可以设置布尔选项：</p>
 	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
-		<tr><td><code class="inset">:set option</code></td><td>打开选项</td></tr>
-		<tr><td><code class="inset">:set nooption</code></td><td>关闭选项</td></tr>
-		<tr><td><code class="inset">:set option!</code></td><td>转换选项</td></tr>
-		<tr><td><code class="inset">:set invoption</code></td><td>转换选项</td></tr>
-		<tr><td><code class="inset">:set option&amp;</code></td><td>将选项设为默认值</td></tr>
+		<tr><th>命令形式</th><th>描述</th><th>示例</th></tr>
+		<tr><td><code class="inset">:set option</code></td><td>打开选项</td><td><code class="inset">:set list</code></td></tr>
+		<tr><td><code class="inset">:set nooption</code></td><td>关闭选项</td><td><code class="inset">:set nolist</code></td></tr>
+		<tr><td><code class="inset">:set option!</code></td><td>反转选项</td><td><code class="inset">:set list!</code></td></tr>
+		<tr><td><code class="inset">:set invoption</code></td><td>反转选项</td><td><code class="inset">:set invlist</code></td></tr>
+		<tr><td><code class="inset">:set option&amp;</code></td><td>将选项设为默认值</td><td><code class="inset">:set list&amp;</code></td></tr>
 	</table>
 
 例如:
@@ -64,10 +65,11 @@ shiftwidth=8
 
 	<p>使用以下命令，可以设置数值选项：</p>
 	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
-		<tr><td><code class="inset">:set option += value</code></td><td>在选项中加入一个值</td></tr>
-		<tr><td><code class="inset">:set option -= value</code></td><td>在选项中减去一个值</td></tr>
-		<tr><td><code class="inset">:set option ^= value</code></td><td>将选项乘以值</td></tr>
-		<tr><td><code class="inset">:set option&amp;</code></td><td>将选项设为默认值</td></tr>
+		<tr><td><code class="inset">:set option = value</code></td><td>设置选项的值</td><td><code class="inset"></code></td></tr>
+		<tr><td><code class="inset">:set option += value</code></td><td>在选项中加入一个值</td><td><code class="inset"></code></td></tr>
+		<tr><td><code class="inset">:set option -= value</code></td><td>在选项中减去一个值</td><td><code class="inset"></code></td></tr>
+		<tr><td><code class="inset">:set option ^= value</code></td><td>将选项乘以值</td><td><code class="inset"></code></td></tr>
+		<tr><td><code class="inset">:set option&amp;</code></td><td>将选项设为默认值</td><td><code class="inset">:set list&amp;</code></td></tr>
 	</table>
 
 :set cinwords=test
@@ -84,12 +86,12 @@ cinwords=end
 cinwords=start,end
 	<p>使用以下命令，可以设置字符串选项：</p>
 	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
-		<tr><td><code class="inset">:set option += value</code></td><td>在选项的末尾加上value</td></tr>
-		<tr><td><code class="inset">:set option -= value</code></td><td>从选项中移去value或是字符</td></tr>
-		<tr><td><code class="inset">:set option ^= value</code></td><td>在选项的开头加入value</td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset">:set option&amp;</code></td><td>将选项设为默认值</td></tr>
+		<tr><td><code class="inset">:set option += value</code></td><td>在选项的末尾加上value</td><td><code class="inset"></code></td></tr>
+		<tr><td><code class="inset">:set option -= value</code></td><td>从选项中移去value或是字符</td><td><code class="inset"></code></td></tr>
+		<tr><td><code class="inset">:set option ^= value</code></td><td>在选项的开头加入value</td><td><code class="inset"></code></td></tr>
+		<tr><td><code class="inset"></code></td><td></td><td><code class="inset"></code></td></tr>
+		<tr><td><code class="inset"></code></td><td></td><td><code class="inset"></code></td></tr>
+		<tr><td><code class="inset">:set option&amp;</code></td><td>将选项设为默认值</td><td><code class="inset"></code></td></tr>
 	</table>
 
 
@@ -114,9 +116,10 @@ cinwords=start,end
 
 最后如果我们要将所有的选项都重新置为默认值我们可以用下面的命令:
 :set all&
-我们可以在一行中放入几个:set操作.例如要设置三个不同的选项我们可以用下面的命令:
-:set list shiftwidth=4 incsearch
-:help set-option
+	<p>我们可以在一行:set命令中，设置多个选项。例如以下命令，将设置三个不同的选项：</p>
+	<p style="text-indent:2em"><code class="inset">:set list shiftwidth=4 incsearch</code></p>
+	<p><code class="inset">:help set-option</p>
+
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">识别文件</p>
 	<p></p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
