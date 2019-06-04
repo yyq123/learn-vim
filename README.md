@@ -54,6 +54,7 @@ Created by yyq123@gmail.com using [vim](http://www.vim.org/)
   - [操作文件(Manipulate File)](https://yyq123.blogspot.com/2012/07/vim-manipulate-file.htm)[<sup>B</sup>](https://yyq123.blogspot.com/2012/07/vim-manipulate-file.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/41395981)
   - [操作目录(Manipulate Directory)](https://yyq123.blogspot.com/2012/08/vim-manipulate-directory.html)[<sup>B</sup>](https://yyq123.blogspot.com/2012/08/vim-manipulate-directory.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/61106206)
 - **自定义系统**
+  - [设置选项(set-option)](http://yyq123.github.io/learn-vim/learn-vi-50-SetOption.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/06/vim-set-option.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/68051173)
   - [键盘映射(Map)](http://yyq123.github.io/learn-vim/learn-vi-51-KeyMapping.html)[<sup>B</sup>](http://yyq123.blogspot.com/2010/12/vim-map.html)<sup>/</sup>[<sup>Z</sup>](http://zhuanlan.zhihu.com/p/24713018)
   - [前缀键(leader)](https://yyq123.blogspot.com/2019/04/vim-leader.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/04/vim-leader.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/63626180)
   - [缩写(Abbr)](http://yyq123.blogspot.com/2010/12/vim-abbreviation.html)[<sup>B</sup>](http://yyq123.blogspot.com/2010/12/vim-abbreviation.html)<sup>/</sup>[<sup>Z</sup>](http://zhuanlan.zhihu.com/p/24950030)
