@@ -35,54 +35,29 @@
 		<tr><td><code class="inset">:set option&amp;</code></td><td>将选项设为默认值</td><td><code class="inset">:set list&amp;</code></td></tr>
 	</table>
 	<p>如果顺序执行这些命令，那么选项变化如下图所示：</p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/setoption_bl.png" title=""><img src="https://yyq123.github.io/learn-vim/images/setoption_bl.png" alt="setoption_bl" /></a></p>
-
-例如:
-:set shiftwidth=4
-:set shiftwidth += 2
-:set shiftwidth?
-shiftwidth=6
-:set shiftwidth-=3
-:set shiftwidth
-shiftwidth=3
-:set shiftwidth ^= 2
-:set shiftwidth
-shiftwidth=6
-:set shiftwidth&
-:set shiftwidth
-shiftwidth=8
+	<p><a href="https://yyq123.github.io/learn-vim/images/setoption_bl.png" title="setoption_boolean"><img src="https://yyq123.github.io/learn-vim/images/setoption_bl.png" alt="setoption_bl" /></a></p>
 
 	<p>使用以下命令，可以设置数值选项：</p>
 	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
-		<tr><td><code class="inset">:set option = value</code></td><td>设置选项的值</td><td><code class="inset"></code></td></tr>
-		<tr><td><code class="inset">:set option += value</code></td><td>在选项中加入一个值</td><td><code class="inset"></code></td></tr>
-		<tr><td><code class="inset">:set option -= value</code></td><td>在选项中减去一个值</td><td><code class="inset"></code></td></tr>
-		<tr><td><code class="inset">:set option ^= value</code></td><td>将选项乘以值</td><td><code class="inset"></code></td></tr>
-		<tr><td><code class="inset">:set option&amp;</code></td><td>将选项设为默认值</td><td><code class="inset">:set list&amp;</code></td></tr>
+		<tr><td><code class="inset">:set option = value</code></td><td>设置选项的值</td><td><code class="inset">:set shiftwidth=4</code></td></tr>
+		<tr><td><code class="inset">:set option += value</code></td><td>在选项中加入一个值</td><td><code class="inset">:set shiftwidth+=2</code></td></tr>
+		<tr><td><code class="inset">:set option -= value</code></td><td>在选项中减去一个值</td><td><code class="inset">:set shiftwidth-=3</code></td></tr>
+		<tr><td><code class="inset">:set option ^= value</code></td><td>将选项乘以值</td><td><code class="inset">:set shiftwidth^=2</code></td></tr>
+		<tr><td><code class="inset">:set option&amp;</code></td><td>将选项设为默认值</td><td><code class="inset">:set shiftwidth&amp;</code></td></tr>
 	</table>
+	<p>如果顺序执行这些命令，那么选项变化如下图所示：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/setoption_num.png" title="setoption_num"><img src="https://yyq123.github.io/learn-vim/images/setoption_num.png" alt="setoption_num" /></a></p>
 
-:set cinwords=test
-:set cinwords?
-cinwords=test
-:set cinwords+=end
-:set cinwords?
-cinwords=test,end
-:set cinwords-=test
-:set cinwords?
-cinwords=end
-:set cinwords^=start
-:set cinwords?
-cinwords=start,end
 	<p>使用以下命令，可以设置字符串选项：</p>
 	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
-		<tr><td><code class="inset">:set option += value</code></td><td>在选项的末尾加上value</td><td><code class="inset"></code></td></tr>
-		<tr><td><code class="inset">:set option -= value</code></td><td>从选项中移去value或是字符</td><td><code class="inset"></code></td></tr>
-		<tr><td><code class="inset">:set option ^= value</code></td><td>在选项的开头加入value</td><td><code class="inset"></code></td></tr>
-		<tr><td><code class="inset"></code></td><td></td><td><code class="inset"></code></td></tr>
-		<tr><td><code class="inset"></code></td><td></td><td><code class="inset"></code></td></tr>
-		<tr><td><code class="inset">:set option&amp;</code></td><td>将选项设为默认值</td><td><code class="inset"></code></td></tr>
+		<tr><td><code class="inset">:set option = value</code></td><td>设置选项的值</td><td><code class="inset">:set cinwords=test</code></td></tr>
+		<tr><td><code class="inset">:set option += value</code></td><td>在选项的末尾加上value</td><td><code class="inset">:set cinwords+=end</code></td></tr>
+		<tr><td><code class="inset">:set option -= value</code></td><td>从选项中移去value或是字符</td><td><code class="inset">:set cinwords-=test</code></td></tr>
+		<tr><td><code class="inset">:set option ^= value</code></td><td>在选项的开头加入value</td><td><code class="inset">:set cinwords^=start</code></td></tr>
+		<tr><td><code class="inset">:set option&amp;</code></td><td>将选项设为默认值</td><td><code class="inset">:set cinwords&amp;</code></td></tr>
 	</table>
-
+	<p>如果顺序执行这些命令，那么选项变化如下图所示：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/setoption_str.png" title="setoption_str"><img src="https://yyq123.github.io/learn-vim/images/setoption_str.png" alt="setoption_str" /></a></p>
 
 	<p>如果需要将某个选项设置为默认值，那么可以使用以下命令：</p>
 	<p style="text-indent:2em"><code class="inset">:set option&amp;</code></p>
@@ -101,6 +76,7 @@ cinwords=start,end
 
 下面的命令会打印出所有的与其默认值不同的选项:
 :set
+	<p><a href="https://yyq123.github.io/learn-vim/images/set.png" title="set"><img src="https://yyq123.github.io/learn-vim/images/set.png" alt="set" width="500" height="268" /></a></p>
 
 
 最后如果我们要将所有的选项都重新置为默认值我们可以用下面的命令:
