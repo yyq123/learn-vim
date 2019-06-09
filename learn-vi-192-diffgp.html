@@ -5,10 +5,10 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记 比较文件-消除差异(diffget &amp; diffput )</title>
+	<title>VIM学习笔记 比较文件-消除差异(diffget &amp; diffput)</title>
 </head>
 <body>
-	<h1>VIM学习笔记 比较文件-消除差异(diffget &amp; diffput )</h1>
+	<h1>VIM学习笔记 比较文件-消除差异(diffget &amp; diffput)</h1>
 	<p>在操作系统的命令行中使用以下命令，可以利用Vim比较多个文件：</p>
 	<p style="text-indent:2em"><code class="inset">$ vimdiff file1 file2</code></p>
 	<p>如下图所示，红色高亮区域显示了两个文件中第三行的差异，左侧文件包含文字“ACTUAL”，而右侧文件则包含文字“BUDGET”：</p>
@@ -39,21 +39,11 @@
 	<p><a href="https://yyq123.github.io/learn-vim/images/vimdiff_3_files.png" title="vimdiff"><img src="https://yyq123.github.io/learn-vim/images/vimdiff_3_files.png" alt="vimdiff" width="550" height="121" /></a></p>
 	<p>因为此时打开了多个<a href="http://yyq123.github.io/learn-vim/learn-vi-13-MultiBuffers.html" title="Buffer">缓冲区 (Buffer)</a>，所以需要执行:diffget [bufspec]和:diffput [bufspec]命令以指明缓冲区。例如<code class="inset">:diffput 3</code>命令，将推送差异到第三缓冲区：</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/diffput_3.png" title="vimdiff"><img src="https://yyq123.github.io/learn-vim/images/diffput_3.png" alt="vimdiff" width="550" height="121" /></a></p>
-	<p>其中，[bufspec]参数可以是缓冲区编号，缓冲区名称，或者缓冲区名称的一部分。你可以使用<code class="inset">:buffers</code>命令，来查看包含缓冲区编号和名称的列表。</p>
+	<p>其中，[bufspec]参数可以是缓冲区编号，缓冲区名称，或者缓冲区名称的一部分。可以使用<code class="inset">:buffers</code>命令，来查看包含缓冲区编号和名称的列表。</p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">帮助信息</p>
 	<p>使用<code class="inset">:help copy-diffs</code>命令，可以查看合并/消除差异的更多帮助信息。</p>
 
-	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
-		<caption>命令小结</caption>
-		<tr><td><code class="inset">:diffsplit</code></td><td>分隔窗并比较文件</td></tr>
-		<tr><td><code class="inset">:diffthis</code></td><td>比较文件</td></tr>
-		<tr><td><code class="inset">:diffupdate</code></td><td>更新比较结果</td></tr>
-		<tr><td><code class="inset">zo</code></td><td>展开</td></tr>
-		<tr><td><code class="inset">zc</code></td><td>折叠</td></tr>
-		<tr><td><code class="inset">[c</code></td><td>跳转到前一个不同点</td></tr>
-		<tr><td><code class="inset">]c</code></td><td>跳转到后一个不同点</td></tr>
-	</table>
 	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="比较文件(diff)" href="http://yyq123.github.io/learn-vim/learn-vi-191-diff.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="操作文件(Manipulate File)" href="http://yyq123.github.io/learn-vim/learn-vi-18-ManipulateFile.html">下一篇</a>&gt;</span></p>
 </body>
 </html>
