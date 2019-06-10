@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记  对话框()</title>
+</head>
+<body>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">启用/禁用</p>
+	<p></p>
+命令:browse可以打开一个文件浏览器,然后会对选中的文件执行命令.例如下面的命令可以使得我们打开文件浏览器然后选择要打开的文件:
+:browse edit
+编辑器然后会执行:edit file命令.
+:browse命令的一般形式如下:
+:browse command [directory]
+这里的command是以文件名为参数的编辑器命令.例如:
+:read,:write,:edit
+如果我们指定了directory参数,我们就指定了文件浏览器开始的目录.如果没有指定这个参数,那么浏览器就会选择browsedir选项所指定的目录.这个选项可以用下面的三个值:
+last    使用上一次浏览的目录(默认)
+buffer    使用与当前缓冲区相同的目录
+current    总是使用当前目录
+所以如果我们要总是从当前目录开始,我们就要将下面的命令放在我们的初始化文件中:
+:set browsedir=current
+下面的命令会显示一个查找对话框:
+:promptfind [string]
+如果我们指定了string的值,那么这个值就会作为查找区的初始值.然后当我们按下查找下一个的按键时,Vim编辑器就会查找指定的字符串.
+与此相类似,下面的命令可以打开一个替换对话框:
+:promptrepl string
+如果我们指定了string的值,他就会被作为查找的内容.
+下面的命令会使我们打开一个对话框,我们可以在这个对话框中输入我们想要得到的帮助内容:
+:helpfind
+:confirm选项会在例如执行:quit命令会破坏数据时执行命令.如果命令的执行会破坏数据,那么就会显示一个确认窗口.
+例如下面的命令会显示出一个确认窗口:
+:confirm :quit
+下面的命令会打开一个窗口并且充许我们在其中查看选项:
+:browse set
+这个窗口可以使得我们访问所有的选项.开如是一个简短的内容提示.我们可以用光标命令定位内容然后回车就会得到一个详细的列表信息.
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">识别文件</p>
+	<p></p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+
+	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
+		<tr><td><code class="inset">:</code></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+	</table>
+&ldquo;&rdquo;
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
+
+</body>
+</html>
+
