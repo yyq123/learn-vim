@@ -8,13 +8,13 @@
 	<title>VIM学习笔记  对话框()</title>
 </head>
 <body>
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">启用/禁用</p>
-	<p></p>
-命令:browse可以打开一个文件浏览器,然后会对选中的文件执行命令.例如下面的命令可以使得我们打开文件浏览器然后选择要打开的文件:
-:browse edit
-编辑器然后会执行:edit file命令.
-:browse命令的一般形式如下:
-:browse command [directory]
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">文件对话框</p>
+	<p>使用:browse命令，可以打开一个文件对话框，然后会对选中的文件执行操作。例如以下命令，将在打开的文件对话框中选择要打开的文件，然后执行:edit命令:</p>
+	<p style="text-indent:2em"><code class="inset">:browse edit</code></p>
+	<p>:browse命令的一般形式如下：</p>
+	<p style="text-indent:2em"><code class="inset">:browse {command} [directory]</code></p>
+	<p>其中，</p>
+
 这里的command是以文件名为参数的编辑器命令.例如:
 :read,:write,:edit
 如果我们指定了directory参数,我们就指定了文件浏览器开始的目录.如果没有指定这个参数,那么浏览器就会选择browsedir选项所指定的目录.这个选项可以用下面的三个值:
@@ -34,9 +34,17 @@ current    总是使用当前目录
 :confirm选项会在例如执行:quit命令会破坏数据时执行命令.如果命令的执行会破坏数据,那么就会显示一个确认窗口.
 例如下面的命令会显示出一个确认窗口:
 :confirm :quit
-下面的命令会打开一个窗口并且充许我们在其中查看选项:
-:browse set
-这个窗口可以使得我们访问所有的选项.开如是一个简短的内容提示.我们可以用光标命令定位内容然后回车就会得到一个详细的列表信息.
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">选项窗口</p>
+	<p>使用以下命令，将会打开一个窗口并显示Vim选项：</p>
+	<p style="text-indent:2em"><code class="inset">:browse set</code></p>
+	<p>在目录中点击<kbd>&lt;CR&gt;</kbd>回车键，将跳转到相应类别的具体选项：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/browse_set.png" title="browse_set"><img src="https://yyq123.github.io/learn-vim/images/browse_set.png" alt="" width="500" height="214" /></a></p>
+	<p>这个窗口可以使得我们访问所有的选项.开如是一个简短的内容提示.我们可以用光标命令定位内容然后回车就会得到一个详细的列表信息.</p>
+" Hit <CR> on a "set" line to execute it.
+"            A boolean option will be toggled.
+"            For other options you can edit the value before hitting <CR>.
+" Hit <CR> on a help line to open a help window on this option.
+" Hit <Space> on a "set" line to refresh it.
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">识别文件</p>
 	<p></p>

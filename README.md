@@ -88,3 +88,5 @@ Created by yyq123@gmail.com using [vim](http://www.vim.org/)
   - [代码片段管理器(Gist.vim)](http://yyq123.github.io/learn-vim/learn-vi-103-plugin-Gist.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/02/vim-gistvim.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/57381412)
   - [多编码侦测器(fencview.vim)](http://yyq123.github.io/learn-vim/learn-vi-104-plugin-fencview.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/03/vim-fencview.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/59179775)
   - [文件浏览器(Netrw)](http://yyq123.github.io/learn-vim/learn-vi-105-plugin-Netrw.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/04/vim-netrw.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/61588081)
+- **附录**
+  - [参考资料(References)](http://yyq123.github.io/learn-vim/learn-vi-999-Ref.html)[<sup>B</sup>](http://yyq123.blogspot.com/2018/07/vim--plugin-vundle.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/39516694)
