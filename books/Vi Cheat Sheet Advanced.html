@@ -1,0 +1,566 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    <title>Vi Cheat Sheet</title>
+    <link rel="stylesheet" href="Vi%20Cheat%20Sheet%20Advanced_files/stylesheet_003.css" type="text/css">
+    <link rel="stylesheet" href="Vi%20Cheat%20Sheet%20Advanced_files/stylesheet_004.css" type="text/css">
+    <link rel="stylesheet" href="Vi%20Cheat%20Sheet%20Advanced_files/stylesheet.css" type="text/css">
+    <link rel="stylesheet" href="Vi%20Cheat%20Sheet%20Advanced_files/stylesheet_002.css" type="text/css">
+<script async="" src="Vi%20Cheat%20Sheet%20Advanced_files/analytics.js"></script><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-47071135-1', 'lagmonster.org');
+  ga('send', 'pageview');
+
+</script>
+  <style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+.en-markup-crop-options {
+    top: 18px !important;
+    left: 50% !important;
+    margin-left: -100px !important;
+    width: 200px !important;
+    border: 2px rgba(255,255,255,.38) solid !important;
+    border-radius: 4px !important;
+}
+
+.en-markup-crop-options div div:first-of-type {
+    margin-left: 0px !important;
+}
+</style></head>
+  <body vlink="#5493B4" text="#000000" link="#006699" bgcolor="#97b9da">
+    <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+    <a name="formtop"></a>
+    <h1 align="CENTER"><font color="#660000">Advanced Vi Cheat Sheet</font></h1><br clear="ALL">
+    <center><table>
+      <tbody><tr>
+        <td align="top">
+          <ul>
+            <li><a href="#start">Starting/Ending</a></li>
+            <li><a href="#status">Status</a></li>
+            <li><a href="#mode">Modes</a></li>
+            <li><a href="#insert">Inserting Text</a></li>
+            <li><a href="#motion">Motion</a></li>
+            <li><a href="#delete">Deleting Text</a></li>
+            <li><a href="#yank">Yanking</a></li>
+            <li><a href="#change">Changing Text</a></li>
+            <li><a href="#put">Putting Text</a></li>
+            <li><a href="#buffer">Buffers</a></li>
+            <li><a href="#mark">Markers</a></li>
+          </ul>
+        </td>
+        <td>
+          <ul> 
+            <li><a href="#search">Searching</a></li>
+            <li><a href="#replace">Replacing Text</a></li>
+            <li><a href="#re">Regular Expressions</a></li>
+            <li><a href="#count">Counts</a></li>
+            <li><a href="#range">Ranges</a></li>
+            <li><a href="#shell">Shell Functions</a></li>
+            <li><a href="#file">Files</a></li>
+            <li><a href="#settings">VI Settings</a></li>
+            <li><a href="#mapping">Key Mapping</a></li>
+            <li><a href="#other">Other</a></li>
+          </ul>
+        </td>
+      </tr><tr>
+    </tr></tbody></table>
+    <br><a href="http://www.lagmonster.org/docs/vi.html">Click here</a> for the Basic VI Cheatsheet</center>
+    <hr>    
+
+
+General Notes:<br><br>
+1. Before doing anything to a document, type the following command followed by a carriage return: :set showmode<br><br>
+2. VI is CaSe SEnsItiVe!!! So make sure Caps Lock is OFF.<br><br><hr>
+    
+    <a name="start"></a>
+    <h2><font color="#660000">Starting and Ending VI</font></h2>
+    <hr width="75%" align="left">
+    <table border="1">
+      <tbody><tr><td colspan="2"><b>Starting VI</b></td></tr>
+      <tr><td>vi <i>filename</i></td><td>Edits <i>filename</i></td></tr><tr>
+      </tr><tr><td>vi -r <i>filename</i></td><td>Edits last save version of <i>filename</i> after a crash</td></tr><tr>
+      </tr><tr><td>vi + <font color="blue">n</font> <i>filename</i></td><td>Edits <i>filename</i> and places curser at line <font color="blue">n</font></td></tr><tr>
+      </tr><tr><td>vi + <i>filename</i></td><td>Edits <i>filename</i> and places curser on last line</td></tr><tr>
+      </tr><tr><td>vi +/<i>string</i> <i>filename</i></td><td>Edits <i>filename</i> and places curser on first occurance of <i>string</i></td><td></td></tr><tr>
+      </tr><tr><td>vi <i>filename</i> <i>file2</i> ...</td><td>Edits <i>filename</i>, then edits <i>file2</i> ... After the save, use :n</td></tr><tr>
+      </tr><tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+      <tr><td colspan="2"><b>Ending VI</b></td></tr>
+      <tr><td>ZZ or :wq or :x</td><td>Saves and exits VI</td></tr>
+      <tr><td>:w</td><td>Saves current file but doesn't exit</td></tr>
+      <tr><td>:w!</td><td>Saves current file overriding normal checks but doesn't exit
+      </td></tr><tr><td>:w <i>file</i></td><td>Saves current as <i>file</i> but doesn't exit</td></tr>
+      <tr><td>:w! <i>file</i></td><td>Saves to <i>file</i> overriding normal checks but doesn't exit</td></tr>
+      <tr><td>:<font color="blue">n</font>,<font color="blue">m</font>w <i>file</i></td><td>Saves lines <font color="blue">n</font> through <font color="blue">m</font> to <i>file</i></td></tr>
+      <tr><td>:<font color="blue">n</font>,<font color="blue">m</font>w &gt;&gt;<i>file</i></td><td>Saves lines <font color="blue">n</font> through <font color="blue">m</font> to the end of <i>file</i></td></tr>
+      <tr><td>:q</td><td>Quits VI and may prompt if you need to save</td></tr>
+      <tr><td>:q!</td><td>Quits VI and without saving</td></tr>
+      <tr><td>:e!</td><td>Edits file discarding any unsaved changes (starts over)</td></tr>
+      <tr><td>:we!</td><td>Saves and continues to edit current file</td></tr>
+    </tbody></table>
+    <br><br><br>
+
+    <a name="status"></a>
+    <h2><font color="#660000">Status</font></h2>
+    <hr width="75%" align="left">
+    <table border="1">
+      <tbody><tr><td>:.=</td><td>Shows current line number</td></tr>
+      <tr><td>:=</td><td>Shows number of lines in file</td></tr>
+      <tr><td>Control-G</td><td>Shows filename, current line number, total lines in file, and % of file location</td></tr>
+      <tr><td>l</td><td>Displays tab (^l) backslash (\) backspace (^H) newline ($) bell (^G) formfeed (^L^) of current line</td></tr>
+    </tbody></table>
+    <br><br><br>
+
+    <a name="mode"></a>
+    <h2><font color="#660000">Modes</font></h2>
+    <hr width="75%" align="left">
+    <table border="1">
+      <tbody><tr>
+      </tr><tr><td>
+          Vi has two modes insertion mode and command mode. The editor 
+begins in command mode, where the cursor movement and text deletion and 
+pasting occur. Insertion mode begins upon entering an insertion or 
+change command. [ESC] returns the editor to command mode (where you can 
+quit, for example by typing :q!). Most commands execute as soon as you 
+type them except for "colon" commands which execute when you press the 
+ruturn key.
+        </td>
+      </tr>
+    </tbody></table>
+    <br><br><br>
+
+    <a name="insert"></a>
+    <h2><font color="#660000">Inserting Text</font></h2>
+    <hr width="75%" align="left">
+    <table border="1">
+      <tbody><tr><td>i</td><td>Insert before cursor</td></tr><tr>
+      </tr><tr><td>I</td><td>Insert before line</td></tr>
+      <tr><td>a</td><td>Append after cursor</td></tr>
+      <tr><td>A</td><td>Append after line</td></tr>
+      <tr><td>o</td><td>Open a new line after current line</td></tr>
+      <tr><td>O</td><td>Open a new line before current line</td></tr>
+      <tr><td>r</td><td>Replace one character</td></tr>
+      <tr><td>R</td><td>Replace many characters</td></tr>
+      <tr><td>CTRL-v <i>char</i></td><td>While inserting, ignores special meaning of char (e.g., for inserting characters like ESC and CTRL) until ESC is used</td></tr>
+      <tr><td>:r <i>file</i></td><td>Reads <i>file</i> and inserts it after current line</td></tr>
+      <tr><td>:<font color="blue">n</font>r <i>file</i></td><td>Reads <i>file</i> and inserts it after line <font color="blue">n</font></td></tr>
+      <tr><td>CTRL-i or TAB</td><td>While inserting, inserts one shift width</td></tr>
+    </tbody></table>
+    <br>
+    <table border="1">
+      <caption>Things to do while in Insert Mode:</caption>
+      <tbody><tr><td>CTRL-h or Backspace</td><td>While inserting, deletes previous character</td></tr>
+      <tr><td>CTRL-w</td><td>While inserting, deletes previous word</td></tr>
+      <tr><td>CTRL-x</td><td>While inserting, deletes to start of inserted text</td></tr>
+      <tr><td>CTRL-v</td><td>Take the next character literally. (i.e. To insert a Control-H, type Control-v Control-h)</td></tr>
+    </tbody></table>
+    <br><br><br>
+
+    <a name="motion"></a>
+    <h2><font color="#660000">Motion</font></h2>
+    <hr width="75%" align="left">
+    <table border="1">
+      <tbody><tr><td>h</td><td>Move left</td></tr>
+      <tr><td>j</td><td>Move down</td></tr>
+      <tr><td>k</td><td>Move up</td></tr>
+      <tr><td>l</td><td>Move right</td></tr>
+      <tr><td>Arrow Keys</td><td>These do work, but they may be too slow
+ on big files. Also may have unpredictable results when arrow keys are 
+not mapped correctly in client.</td></tr>
+      <tr><td>w</td><td>Move to next word</td></tr>
+      <tr><td>W</td><td>Move to next blank delimited word</td></tr>
+      <tr><td>b</td><td>Move to the beginning of the word</td></tr>
+      <tr><td>B</td><td>Move to the beginning of blank delimted word</td></tr>
+      <tr><td>^</td><td>Moves to the first non-blank character in the current line</td></tr>
+      <tr><td>+ or <cr></cr></td><td>Moves to the first character in the next line</td></tr>
+      <tr><td>-</td><td>Moves to the first non-blank character in the previous line</td></tr>
+      <tr><td>e</td><td>Move to the end of the word</td></tr>
+      <tr><td>E</td><td>Move to the end of Blank delimited word</td></tr>
+      <tr><td>(</td><td>Move a sentence back</td></tr>
+      <tr><td>)</td><td>Move a sentence forward</td></tr>
+      <tr><td>{</td><td>Move a paragraph back</td></tr>
+      <tr><td>}</td><td>Move a paragraph forward</td></tr>
+      <tr><td>[[</td><td>Move a section back</td></tr>
+      <tr><td>]]</td><td>Move a section forward</td></tr>
+      <tr><td>0 or |</td><td>Move to the begining of the line</td></tr>
+      <tr><td><font color="blue">n</font>|</td><td>Moves to the column <font color="blue">n</font> in the current line</td></tr>
+      <tr><td>$</td><td>Move to the end of the line</td></tr>
+      <tr><td>1G</td><td>Move to the first line of the file</td></tr>
+      <tr><td>G</td><td>Move to the last line of the file</td></tr>
+      <tr><td><font color="blue">n</font>G</td><td>Move to <font color="blue">n</font>th line of the file</td></tr>
+      <tr><td>:<font color="blue">n</font></td><td>Move to <font color="blue">n</font>th line of the file</td></tr>
+      <tr><td>f<font color="green">c</font></td><td>Move forward to <font color="green">c</font></td></tr>
+      <tr><td>F<font color="green">c</font></td><td>Move back to <font color="green">c</font></td></tr>
+      <tr><td>H</td><td>Move to top of screen</td></tr>
+      <tr><td><font color="blue">n</font>H</td><td>Moves to <font color="blue">n</font>th line from the top of the screen</td></tr>
+      <tr><td>M</td><td>Move to middle of screen</td></tr>
+      <tr><td>L</td><td>Move to botton of screen</td></tr>
+      <tr><td><font color="blue">n</font>L</td><td>Moves to <font color="blue">n</font>th line from the bottom of the screen</td></tr>
+      <tr><td>Control-d</td><td>Move forward ½ screen</td></tr>
+      <tr><td>Control-f</td><td>Move forward one full screen</td></tr>
+      <tr><td>Control-u</td><td>Move backward ½ screen</td></tr>
+      <tr><td>Control-b</td><td>Move backward one full screen</td></tr>
+      <tr><td>CTRL-e</td><td>Moves screen up one line</td></tr>
+      <tr><td>CTRL-y</td><td>Moves screen down one line</td></tr>
+      <tr><td>CTRL-u</td><td>Moves screen up ½ page</td></tr>
+      <tr><td>CTRL-d</td><td>Moves screen down ½ page</td></tr>
+      <tr><td>CTRL-b</td><td>Moves screen up one page</td></tr>
+      <tr><td>CTRL-f</td><td>Moves screen down one page</td></tr>
+      <tr><td>CTRL-I</td><td>Redraws screen</td></tr>
+      <tr><td>z <cr></cr></td><td>z-carriage return makes the current line the top line on the page</td></tr>
+      <tr><td><font color="blue">n</font>z <cr></cr></td><td>Makes the line <font color="blue">n</font> the top line on the page</td></tr>
+      <tr><td>z.</td><td>Makes the current line the middle line on the page</td></tr>
+      <tr><td><font color="blue">n</font>z.</td><td>Makes the line <font color="blue">n</font> the middle line on the page</td></tr>
+      <tr><td>z-</td><td>Makes the current line the bottom line on the page</td></tr>
+      <tr><td><font color="blue">n</font>z-</td><td>Makes the line <font color="blue">n</font> the bottom line on the page</td></tr>
+      <tr><td>%</td><td>Move to associated ( ), { }, [ ]</td></tr>
+    </tbody></table>
+    <br><br><br>
+	
+    <a name="delete"></a>
+    <h2><font color="#660000">Deleting Text</font></h2>
+    <hr width="75%" align="left">
+    <table>
+      <tbody><tr><td>Almost all deletion commands are performed by 
+typing d followed by a motion. For example, dw deletes a word. A few 
+other deletes are:</td></tr>
+    </tbody></table>
+    <table border="1">
+      <tbody><tr><td>x</td><td>Delete character to the right of cursor</td></tr>
+      <tr><td><font color="blue">n</font>x</td><td>Deletes n characters starting with current; omitting n deletes current character only</td></tr>
+      <tr><td>X</td><td>Delete character to the left of cursor</td></tr>
+      <tr><td><font color="&lt;blue">n</font>X</td><td>Deletes previous n characters; omitting n deletes previous character only</td></tr>
+      <tr><td>D</td><td>Delete to the end of the line</td></tr>
+      <tr><td>d$</td><td>Deletes from the cursor to the end of the line</td></tr>
+      <tr><td>dd or :d</td><td>Delete current line</td></tr>
+      <tr><td><font color="&lt;blue">n</font>dw</td><td>Deletes the next <font color="&lt;blue">n</font> words starting with current</td></tr>
+      <tr><td><font color="&lt;blue">n</font>db</td><td>Deletes the previous <font color="&lt;blue">n</font> words starting with current</td></tr>
+      <tr><td><font color="&lt;blue">n</font>dd</td><td>Deletes <font color="&lt;blue">n</font> lines beginning with the current line</td></tr>
+      <tr><td>:<font color="&lt;blue">n,<font color="&lt;blue">md</font></font></td><td>Deletes lines <font color="&lt;blue">n</font> through <font color="&lt;blue">m</font></td></tr>
+      <tr><td>d<i>Motion_cmd<i></i></i></td><td>Deletes everything included in the <a href="#motion">Motion Command</a> (e.g., dG would delete from current position to the end of the file, and d4 would delete to the end of the fourth sentence).
+      </td></tr><tr><td>"<font color="blue">n</font>p</td><td>Retrieves the last <font color="blue">n</font>th delete (last 9 deletes are kept in a buffer)</td></tr>
+      <tr><td>"1pu.u.</td><td>Scrolls through the delete buffer until the desired delete is retrieved (repeat u.)</td></tr>
+    </tbody></table>
+    <br><br><br>
+
+    <a name="yank"></a>
+    <h2><font color="#660000">Yanking Text</font></h2>
+    <hr width="75%" align="left">
+    <table>
+      <tbody><tr><td>Like deletion, almost all yank commands are 
+performed by typing y followed by a motion. For example, y$ yanks to the
+ end of the line. Two other yank commands are:</td></tr>
+    </tbody></table>
+    <table border="1">
+      <tbody><tr><td>yy</td><td>Yank the current line</td></tr>
+      <tr><td>:y</td><td>Yank the current line</td></tr>
+      <tr><td><font color="blue">n</font>yy or <font color="blue">n</font>Y</td><td>Places <font color="blue">n</font> lines in the buffer-copies</td></tr>
+      <tr><td>y<i>Motion_cmd<i></i></i></td><td>Copies everything from the curser to the <a href="#motion">Motion Command</a> (e.g., yG would copy from current position to the end of the file, and y4 would copy to the end of the fourth sentence)</td></tr>
+      <tr><td>"(<font color="green">a</font>-<font color="green">z</font>)<font color="blue">n</font>yy or "(<font color="green">a</font>-<font color="green">z</font>)<font color="blue">n</font>dd</td><td>Copies or cuts (deletes) <font color="blue">n</font> lines into a named buffer <font color="green">a</font> through <font color="green">z</font>; omitting n works on current line</td></tr>
+      <tr><td>
+    </td></tr></tbody></table>
+    <br><br><br>
+
+    <a name="change"></a>
+    <h2><font color="#660000">Changing text</font></h2>
+    <hr width="75%" align="left">
+    <table>
+      <tbody><tr><td>The change command is a deletion command that 
+leaves the editor in insert mode. It is performed by typing c followed 
+by a motion. For example cw changes a word. A few other change commands 
+are:</td></tr>
+    </tbody></table>
+    <table border="1">
+      <tbody><tr><td>C</td><td>Change to the end of the line</td></tr>
+      <tr><td>cc or S</td><td>Change the whole line until ESC is pressed</td></tr>
+      <tr><td>xp</td><td>Switches character at cursor with following character</td></tr>
+      <tr><td>s<i>text</i></td><td>Substitutes text for the current character until ESC is used</td></tr>
+      <tr><td>cw<i>text</i></td><td>Changes current word to text until ESC is used</td></tr>
+      <tr><td>C<i>text</i></td><td>Changes rest of the current line to text until ESC is used</td></tr>
+      <tr><td>c<i>Motion_cmd</i></td><td>Changes to text from current position to <a href="#motion">Motion Command</a> until ESC is used</td></tr>
+      <tr><td>&lt;&lt; or &gt;&gt;</td><td>Shifts the line left or right (respectively) by one shift width (a tab)</td></tr><tr>
+      </tr><tr><td><font color="blue">n</font>&lt;&lt; or <font color="blue">n</font>&gt;&gt;</td><td>Shifts <font color="blue">n</font> lines left or right (respectively) by one shift width (a tab)</td></tr><tr>
+      </tr><tr><td>&lt;<i>Motion_cmd</i> or &gt;<i>Motion_cmd</i></td><td>Use with <a href="#motion">Motion Command</a> to shift multiple lines left or right</td></tr>
+    </tbody></table>
+    <br><br><br>
+
+    <a name="put"></a>
+    <h2><font color="#660000">Putting text</font></h2>
+    <hr width="75%" align="left">
+    <table border="1">
+      <tbody><tr><td>p</td><td>Put after the position or after the line</td></tr>
+      <tr><td>P</td><td>Put before the poition or before the line</td></tr>
+      <tr><td>"(<font color="green">a</font>-<font color="green">z</font>)p or "(<font color="green">a</font>-<font color="green">z</font>)P</td><td>Pastes text from a named buffer <font color="green">a</font> through <font color="green">z</font> after or before the current line</td></tr>
+    </tbody></table>
+    <br><br><br>
+
+    <a name="buffer"></a>
+    <h2><font color="#660000">Buffers</font></h2>
+    <hr width="75%" align="left">
+    <table>
+      <tbody><tr><td>Named buffers may be specified before any deletion,
+ change, yank or put command. The general prefix has the form "c where c
+ is any lowercase character. for example, "adw deletes a word into 
+buffer a. It may thereafter be put back into text with an appropriate 
+"ap.</td></tr>
+    </tbody></table>
+    <br><br><br>
+
+    <a name="mark"></a>
+    <h2><font color="#660000">Markers</font></h2>
+    <hr width="75%" align="left">
+    <table>
+      <tbody><tr><td>Named markers may be set on any line in a file. Any
+ lower case letter may be a marker name. Markers may also be used as 
+limits for ranges.</td></tr>
+    </tbody></table>
+    <table border="1">
+      <tbody><tr><td>m<font color="green">c</font></td><td>Set marker <font color="green">c</font> on this line</td></tr>
+      <tr><td>`<font color="green">c</font></td><td>Go to beginning of marker <font color="green">c</font> line.</td></tr>
+      <tr><td>'<font color="green">c</font></td><td>Go to first non-blank character of marker <font color="green">c</font> line.</td></tr>
+    </tbody></table>
+    <br><br><br>
+
+    <a name="search"></a>
+    <h2><font color="#660000">Search for strings</font></h2>
+    <hr width="75%" align="left">
+    <table border="1">
+      <tbody><tr><td>/<i>string</i></td><td>Search forward for <i>string</i></td></tr>
+      <tr><td>?<i>string</i></td><td>Search back for <i>string</i></td></tr>
+      <tr><td>n</td><td>Search for next instance of <i>string</i></td></tr>
+      <tr><td>N</td><td>Search for previous instance of <i>string</i></td></tr>
+      <tr><td>%</td><td>Searches to beginning of balancing ( ) [ ] or { }</td></tr>
+      <tr><td>f<i>c</i></td><td>Searches forward in current line to <i>char</i></td></tr>
+      <tr><td>F<i>c</i></td><td>Searches backward in current line to <i>char</i></td></tr>
+      <tr><td>t<i>c</i></td><td>Searches forward in current line to character before char</td></tr>
+      <tr><td>Tchar</td><td>Searches backward in current line to character before char</td></tr>
+      <tr><td>?str</td><td>Finds in reverse for str</td></tr>
+      <tr><td>:set ic</td><td>Ignores case when searching</td></tr>
+      <tr><td>:set noic</td><td>Pays attention to case when searching</td></tr>
+      <tr><td>:<font color="blue">n</font>,<font color="blue">m</font>s/<i>str1</i>/<i>str2</i>/<i>opt</i></td><td>Searches from <font color="blue">n</font> to <font color="blue">m</font> for <i>str1</i>; replaces <i>str1</i> to <i>str2</i>; using opt-opt can be g for global change, c to confirm change (y to acknowledge, <cr> to suppress), and p to print changed lines</cr></td></tr>
+      <tr><td>&amp;</td><td>Repeats last :s command</td></tr>
+      <tr><td>:g/<i>str</i>/<i>cmd</i></td><td>Runs <i>cmd</i> on all lines that contain <i>str</i></td></tr>
+      <tr><td>:g/<i>str1</i>/s/<i>str2</i>/<i>str3</i>/</td><td>Finds the line containing <i>str1</i>, replaces <i>str2</i> with <i>str3</i></td></tr>
+      <tr><td>:v/<i>str</i>/<i>cmd</i></td><td>Executes <i>cmd</i> on all lines that do not match <i>str</i></td></tr>
+      <tr><td>,</td><td>Repeats, in reverse direction, last / or ? search command</td></tr>
+    </tbody></table>
+    <br><br><br>
+
+    <a name="replace"></a>
+    <h2><font color="#660000">Replace</font></h2>
+    <hr width="75%" align="left">
+    <table>
+      <tbody><tr><td>The search and replace function is accomplished 
+with the :s command. It is commonly used in combination with ranges or 
+the :g command (below).</td></tr>
+    </tbody></table>
+    <table border="1">
+      <tbody><tr><td>:s/<i>pattern</i>/<i>string</i>/<i>flags</i></td><td>Replace <i>pattern</i> with <i>string</i> according to <i>flags</i>.</td></tr>
+      <tr><td>g</td><td>Flag - Replace all occurences of pattern</td></tr>
+      <tr><td>c</td><td>Flag - Confirm replaces.</td></tr>
+      <tr><td>&amp;</td><td>Repeat last :s command</td></tr>
+    </tbody></table>
+    <br><br><br>
+
+    <a name="re"></a>
+    <h2><font color="#660000">Regular Expressions</font></h2>
+    <hr width="75%" align="left">
+    <table border="1">
+      <tbody><tr><td>. (dot)</td><td>Any single character except newline</td></tr>
+      <tr><td>*</td><td>zero or more occurances of any character</td></tr>
+      <tr><td>[...]</td><td>Any single character specified in the set</td></tr>
+      <tr><td>[^...]</td><td>Any single character not specified in the set</td></tr>
+      <tr><td>\&lt;</td><td>Matches beginning of word</td></tr>
+      <tr><td>\&gt;</td><td>Matches end of word</td></tr>
+      <tr><td>^</td><td>Anchor - beginning of the line</td></tr>
+      <tr><td>$</td><td>Anchor - end of line</td></tr>
+      <tr><td>\&lt;</td><td>Anchor - begining of word</td></tr>
+      <tr><td>\&gt;</td><td>Anchor - end of word</td></tr>
+      <tr><td>\(...\)</td><td>Grouping - usually used to group conditions</td></tr>
+      <tr><td>\<font color="blue">n</font></td><td>Contents of <font color="blue">n</font>th grouping</td></tr>
+      <tr><td>\</td><td>Escapes the meaning of the next character (e.g., \$ allows you to search for $)</td></tr>
+      <tr><td>\\</td><td>Escapes the \ character</td></tr><tr>
+    </tr></tbody></table>
+    <br>
+    <table border="1">
+      <caption>[...] - Set Examples</caption>
+      <tbody><tr><td>[A-Z]</td><td>The SET from Capital A to Capital Z</td></tr>
+      <tr><td>[a-z]</td><td>The SET from lowercase a to lowercase z</td></tr>
+      <tr><td>[0-9]</td><td>The SET from 0 to 9 (All numerals)</td></tr>
+      <tr><td>[./=+]</td><td>The SET containing . (dot), / (slash), =, and +</td></tr>
+      <tr><td>[-A-F]</td><td>The SET from Capital A to Capital F and the dash (dashes must be specified first)</td></tr>
+      <tr><td>[0-9 A-Z]</td><td>The SET containing all capital letters and digits and a space</td></tr>
+      <tr><td>[A-Z][a-zA-Z]</td><td>In the first position, the SET from Capital A to Capital Z<br>In the second character position, the SET containing all letters</td></tr>
+      <tr><td>[a-z]{<font color="blue">m</font>}</td><td>Look for <i><font color="blue">m</font></i> occurances of the SET from lowercase a to lowercase z</td></tr>
+      <tr><td>[a-z]{<font color="blue">m</font>,<font color="blue">n</font>}</td><td>Look for at least <font color="blue">m</font> occurances, but no more than <font color="blue">n</font> occurances of the SET from lowercase a to lowercase z</td></tr>
+    </tbody></table>
+    <br>
+    <table border="1">
+      <caption>Regular Expression Examples</caption>
+      <tbody><tr><td>/Hello/</td><td>Matches if the line contains the value Hello</td></tr>
+      <tr><td>/^TEST$/</td><td>Matches if the line contains TEST by itself</td></tr>
+      <tr><td>/^[a-zA-Z]/</td><td>Matches if the line starts with any letter</td></tr>
+      <tr><td>/^[a-z].*/</td><td>Matches if the first character of the line is a-z and there is at least one more of any character following it</td></tr>
+      <tr><td>/2134$/</td><td>Matches if line ends with 2134</td></tr>
+      <tr><td>/\(21|35\)/</td><td>Matches is the line contains 21 or 35<br>Note the use of ( ) with the pipe symbol to specify the 'or' condition</td></tr>
+      <tr><td>/[0-9]*/</td><td>Matches if there are zero or more numbers in the line</td></tr>
+      <tr><td>/^[^#]/</td><td>Matches if the first character is not a # in the line</td></tr>
+      <tr><td colspan="2">Notes:<br>1. Regular expressions are case sensitive<br>2. Regular expressions are to be used where <i>pattern</i> is specified</td></tr>
+    </tbody></table><br><br>
+
+    <a name="count"></a>
+    <h2><font color="#660000">Counts</font></h2>
+    <hr width="75%" align="left">
+    <table>
+      <tbody><tr><td>Nearly every command may be preceded by a number 
+that specifies how many times it is to be performed. For example, 5dw 
+will delete 5 words and 3fe will move the cursor forward to the 3rd 
+occurence of the letter e. Even insertions may be repeated conveniently 
+with this method, say to insert the same line 100 times.</td></tr>
+    </tbody></table>
+    <br><br><br>
+
+    <a name="range"></a>
+    <h2><font color="#660000">Ranges</font></h2>
+    <hr width="75%" align="left">
+    <table>
+      <tbody><tr><td>Ranges may precede most "colon" commands and cause 
+them to be executed on a line or lines. For example :3,7d would delete 
+lines 3-7. Ranges are commonly combined with the :s command to perform a
+ replacement on several lines, as with :.,$s/pattern/string/g to make a 
+replacement from the current line to the end of the file.</td></tr>
+    </tbody></table>
+    <table border="1">
+      <tbody><tr><td>:<font color="blue">n</font>,<font color="blue">m</font></td><td>Range - Lines <font color="blue">n</font>-<font color="blue">m</font></td></tr>
+      <tr><td>:.</td><td>Range - Current line</td></tr>
+      <tr><td>:$</td><td>Range - Last line</td></tr>
+      <tr><td>:'<font color="green">c</font></td><td>Range - Marker <font color="green">c</font></td></tr>
+      <tr><td>:%</td><td>Range - All lines in file</td></tr>
+      <tr><td>:g/<i>pattern</i>/</td><td>Range - All lines that contain <i>pattern</i></td></tr>
+    </tbody></table>
+    <br><br><br>
+
+    <a name="shell"></a>
+    <h2><font color="#660000">Shell Functions</font></h2>
+    <hr width="75%" align="left">
+    <table border="1">
+      <tbody><tr><td>:! cmd</td><td>Executes shell command cmd; you can add these special characters to indicate:%  name of current file#  name of last file edited</td></tr>
+      <tr><td>!! cmd</td><td>Executes shell command cmd, places output in file starting at current line</td></tr>
+      <tr><td>:!!</td><td>Executes last shell command</td></tr>
+      <tr><td>:r! cmd</td><td>Reads and inserts output from cmd</td></tr>
+      <tr><td>:f file</td><td>Renames current file to file</td></tr>
+      <tr><td>:w !cmd</td><td>Sends currently edited file to cmd as standard input and execute cmd</td></tr>
+      <tr><td>:cd dir</td><td>Changes current working directory to dir</td></tr>
+      <tr><td>:sh</td><td>Starts a sub-shell (CTRL-d returns to editor)</td></tr>
+      <tr><td>:so file</td><td>Reads and executes commands in file (file is a shell script)</td></tr>
+      <tr><td>!<i>Motion_cmd</i></td><td>Sends text from current position to <a href="#motion">Motion Command</a> to shell command <i>cmd</i></td></tr>
+      <tr><td>!}sort</td><td>Sorts from current position to end of paragraph and replaces text with sorted text</td></tr>
+    </tbody></table>
+    <br><br><br>
+
+    <a name="file"></a>
+    <h2><font color="#660000">Files</font></h2>
+    <hr width="75%" align="left">
+    <table border="1">
+      <tbody><tr><td>:w <i>file</i></td><td>Write to <i>file</i></td></tr>
+      <tr><td>:r <i>file</i></td><td>Read <i>file</i> in after line</td></tr>
+      <tr><td>:n</td><td>Go to next file</td></tr>
+      <tr><td>:p</td><td>Go to previous file</td></tr>
+      <tr><td>:e <i>file</i></td><td>Edit <i>file</i></td></tr>
+      <tr><td>!!<i>program</i></td><td>Replace line with output from <i>program</i></td></tr>
+    </tbody></table>
+    <br><br><br>
+
+    <a name="settings"></a>
+    <h2><font color="#660000">VI Settings</font></h2>
+    <hr width="75%" align="left">
+    --noto<table border="1">
+      <caption>Note: Options given are default. To change them, enter type :set option to turn them on or :set no<i>optioni</i>
+ to turn them off.To make them execute every time you open VI, create a 
+file in your HOME directory called .exrc and type the options without 
+the colon (:) preceding the option</caption>
+      <tbody><tr><th>Set</th><th>Default</th><th>Description</th></tr>
+      <tr><td>:set ai</td><td>noai</td><td>Turns on auto indentation</td></tr>
+      <tr><td>:set all</td><td>--</td><td>Prints all options to the screen</td></tr>
+      <tr><td>:set ap</td><td>aw</td><td>Prints line after d c J m :s t u commands</td></tr>
+      <tr><td>:set aw</td><td>noaw</td><td>Automatic write on :n ! e# ^^ :rew ^} :tag</td></tr>
+      <tr><td>:set bf</td><td>nobf</td><td>Discards control characters from input</td></tr>
+      <tr><td>:set dir=<i>tmp</i></td><td>dir = /tmp</td><td>Sets <i>tmp</i> to directory or buffer file</td></tr>
+      <tr><td>:set eb</td><td>noed</td><td>Precedes error messages with a bell</td></tr>
+      <tr><td>:set ed</td><td>noed</td><td>Precedes error messages with a bell</td></tr>
+      <tr><td>:set ht=</td><td>ht = 8</td><td>Sets terminal hardware tabs</td></tr>
+      <tr><td>:set ic</td><td>noic</td><td>Ignores case when searching</td></tr>
+      <tr><td>:set lisp</td><td>nolisp</td><td>Modifies brackets for Lisp compatibility.</td></tr>
+      <tr><td>:set list</td><td>nolist</td><td>Shows tabs (^l) and end of line ($)</td></tr>
+      <tr><td>:set magic</td><td>magic</td><td>Allows pattern matching with special characters</td></tr>
+      <tr><td>:set mesg </td><td>mesg</td><td>Allows others to send messages</td></tr>
+      <tr><td>:set no<i>option</i></td><td></td><td>Turns off <i>option</i></td></tr>
+      <tr><td>:set nu</td><td>nonu</td><td>Shows line numbers</td></tr>
+      <tr><td>:set opt</td><td>opt</td><td>Speeds output; eliminates automatic RETURN</td></tr>
+      <tr><td>:set para=</td><td>para = LIlPLPPPQPbpP</td><td>macro names that start paragraphs for { and } operators</td></tr>
+      <tr><td>:set prompt</td><td>prompt</td><td>Prompts for command input with :</td></tr>
+      <tr><td>:set re</td><td>nore</td><td>Simulates smart terminal on dumb terminal</td></tr>
+      <tr><td>:set remap</td><td>remap</td><td>Accept macros within macros</td></tr>
+      <tr><td>:set report</td><td>noreport</td><td>Indicates largest size of changes reported on status line</td></tr>
+      <tr><td>:set ro</td><td>noro</td><td>Changes file type to "read only"</td></tr>
+      <tr><td>:set scroll=<font color="blue">n</font></td><td>scroll = 11</td><td>set n lines for CTRL-d and z</td></tr>
+      <tr><td>:set sh=<i>shell_path</i></td><td>sh = /bin/sh</td><td>set shell escape (default is /bin/sh) to <i>shell_path</i></td></tr>
+      <tr><td>:set showmode</td><td>nosm</td><td>Indicates input or replace mode at bottom</td></tr>
+      <tr><td>:set slow</td><td>slow</td><td>Pospone display updates during inserts</td></tr>
+      <tr><td>:set sm</td><td>nosm</td><td>Show matching { or ( as ) or } is typed</td></tr>
+      <tr><td>:set sw=<font color="blue">n</font></td><td>sw = 8</td><td>Sets shift width to <font color="blue">n</font> characters</td></tr>
+      <tr><td>:set tags=<font color="blue">x</font></td><td>tags = /usr/lib/tags</td><td>Path for files checked for tags (current directory included in default)</td></tr>
+      <tr><td>:set term</td><td>$TERM</td><td>Prints terminal type</td></tr>
+      <tr><td>:set terse</td><td>noterse</td><td>Shorten messages with terse</td></tr>
+      <tr><td>:set timeout</td><td></td><td>Eliminates one-second time limit for macros</td></tr>
+      <tr><td>:set tl=<font color="blue">n</font></td><td>tl = 0</td><td>Sets significance of tags beyond <font color="blue">n</font> characters (0 means all)</td></tr>
+      <tr><td>:set ts=<font color="blue">n</font></td><td>ts = 8</td><td>Sets tab stops to <font color="blue">n</font> for text input</td></tr>
+      <tr><td>:set wa</td><td>nowa</td><td>Inhibits normal checks before write commands</td></tr>
+      <tr><td>:set warn</td><td>warn</td><td></td><td>Warns "no write since last change"</td></tr>
+      <tr><td>:set window=<font color="blue">n</font></td><td>window = n</td><td>Sets number of lines in a text window to <font color="blue">n</font></td></tr>
+      <tr><td>:set wm=<font color="blue">n</font></td><td>wm = 0</td><td>Sets automatic wraparound <font color="blue">n</font> spaces from right margin.</td></tr>
+      <tr><td>:set ws</td><td>ws</td><td>Sets automatic wraparound <font color="blue">n</font> spaces from right margin.</td></tr>
+    </tbody></table>
+    <br><br><br>
+    
+    <a name="mapping"></a>
+    <h2><font color="#660000">Key Mapping</font></h2>
+    <hr width="75%" align="left">
+    <table border="1">
+      <caption>NOTE: Map allows you to define strings of VI commands. If
+ you create a file called ".exrc" in your home directory, any map or set
+ command you place inside this file will be executed every time you run 
+VI. To imbed control characters like ESC in the macro, you need to 
+precede them with CTRL-v. If you need to include quotes ("), precede 
+them with a \ (backslash). Unused keys in vi are: K V g q v * = and the 
+function keys.<br><font color="red">Example</font> (The actual VI commands are in blue): :map v <font color="blue">/</font>I CTRL-v <font color="blue">ESC</font> <font color="blue">dwi</font>You CTRL-v <font color="blue">ESC</font> ESC<br><font color="red">Description</font>: When v is pressed, search for "I" (/I ESC), delete word (dw), and insert "You" (iYou ESC). CTRL-v allows ESC to be inserted</caption>
+      <tbody><tr><td>:map <i>key</i> <i>cmd_seq</i></td><td>Defines <i>key</i> to run <i>cmd_seq</i> when pressed
+      </td></tr><tr><td>:map</td><td>Displays all created macros on status line</td></tr>
+      <tr><td>:unmap key</td><td>Removes macro definition for key</td></tr>
+      <tr><td>:ab <i>str</i> <i>string</i></td><td>When <i>str</i> is input, replaces it with <i>string</i></td></tr><tr>
+      </tr><tr><td>:ab</td><td>Displays all abbreviations</td></tr>
+      <tr><td>:una <i>str</i></td><td>Unabbreviates <i>str</i></td></tr>
+    </tbody></table>
+    <br><br><br>
+
+    <a name="other"></a>
+    <h2><font color="#660000">Other</font></h2>
+    <hr width="75%" align="left">
+    <table border="1">
+      <tbody><tr><td>~</td><td>Toggle upper and lower case</td></tr>
+      <tr><td>J</td><td>Join lines</td></tr>
+      <tr><td><font color="blue">n</font>J</td><td>Joins the next <font color="blue">n</font> lines together; omitting n joins the beginning of the next line to the end of the current line</td></tr>
+      <tr><td>.</td><td>Repeat last text-changing command</td></tr>
+      <tr><td>u</td><td>Undo last change (Note: u in combination with . can allow multiple levels of undo in some versions)</td></tr>
+      <tr><td>U</td><td>Undo all changes to line</td></tr>
+      <tr><td>;</td><td>Repeats last f F t or T search command</td></tr>
+      <tr><td>:N or :E</td><td>You can open up a new split-screen window in (n)vi and then use ^w to switch between the two.</td></tr>
+    </tbody></table>
+    <br><br><br>
+
+    <a href="#formtop">Return to the top</a>
+    <hr><center><font size="1">Page produced by Lagmonster - Feb 2009</font></center>
+  
+
+</font></body></html>

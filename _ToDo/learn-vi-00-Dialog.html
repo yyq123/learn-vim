@@ -13,19 +13,24 @@
 	<p style="text-indent:2em"><code class="inset">:browse edit</code></p>
 	<p>:browse命令的一般形式如下：</p>
 	<p style="text-indent:2em"><code class="inset">:browse {command} [directory]</code></p>
-	<p>其中，</p>
+	<ul>
+		<li>{command}，编辑器命令。例如，:read,:write,:edit</li>
+		<li>[directory]，指定了文件浏览器开始的目录。如果没有指定此参数，那么将会使用browsedir选项所指定的目录。</li>
+	</ul>
+	<p>browsedir选项可以使用以下三个值：</p>
+	<ul>
+		<li>last，上一次浏览的目录（默认值）</li>
+		<li>buffer，与当前缓冲区相同的目录</li>
+		<li>current，当前目录</li>
+	</ul>
+	<p>如果希望从当前目录开始选择文件，那么可以使用以下设置命令：</p>
+	<p style="text-indent:2em"><code class="inset">:set browsedir=current</code></p>
 
-这里的command是以文件名为参数的编辑器命令.例如:
-:read,:write,:edit
-如果我们指定了directory参数,我们就指定了文件浏览器开始的目录.如果没有指定这个参数,那么浏览器就会选择browsedir选项所指定的目录.这个选项可以用下面的三个值:
-last    使用上一次浏览的目录(默认)
-buffer    使用与当前缓冲区相同的目录
-current    总是使用当前目录
-所以如果我们要总是从当前目录开始,我们就要将下面的命令放在我们的初始化文件中:
-:set browsedir=current
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">查找对话框</p>
 下面的命令会显示一个查找对话框:
 :promptfind [string]
 如果我们指定了string的值,那么这个值就会作为查找区的初始值.然后当我们按下查找下一个的按键时,Vim编辑器就会查找指定的字符串.
+	<p><a href="https://yyq123.github.io/learn-vim/images/promptfind.png" title="promptfind"><img src="https://yyq123.github.io/learn-vim/images/promptfind.png" alt="promptfind" /></a></p>
 与此相类似,下面的命令可以打开一个替换对话框:
 :promptrepl string
 如果我们指定了string的值,他就会被作为查找的内容.
@@ -34,17 +39,14 @@ current    总是使用当前目录
 :confirm选项会在例如执行:quit命令会破坏数据时执行命令.如果命令的执行会破坏数据,那么就会显示一个确认窗口.
 例如下面的命令会显示出一个确认窗口:
 :confirm :quit
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">选项窗口</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">选项对话框</p>
 	<p>使用以下命令，将会打开一个窗口并显示Vim选项：</p>
 	<p style="text-indent:2em"><code class="inset">:browse set</code></p>
-	<p>在目录中点击<kbd>&lt;CR&gt;</kbd>回车键，将跳转到相应类别的具体选项：</p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/browse_set.png" title="browse_set"><img src="https://yyq123.github.io/learn-vim/images/browse_set.png" alt="" width="500" height="214" /></a></p>
-	<p>这个窗口可以使得我们访问所有的选项.开如是一个简短的内容提示.我们可以用光标命令定位内容然后回车就会得到一个详细的列表信息.</p>
-" Hit <CR> on a "set" line to execute it.
-"            A boolean option will be toggled.
-"            For other options you can edit the value before hitting <CR>.
-" Hit <CR> on a help line to open a help window on this option.
-" Hit <Space> on a "set" line to refresh it.
+	<p><a href="https://yyq123.github.io/learn-vim/images/browse_set.png" title="browse_set"><img src="https://yyq123.github.io/learn-vim/images/browse_set.png" alt="" width="500" height="227" /></a></p>
+	<p>在目录行上（index line），点击<kbd>&lt;CR&gt;</kbd>回车键，将跳转到相应类别的具体选项：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/browse_set_line.png" title="browse set line"><img src="https://yyq123.github.io/learn-vim/images/browse_set_line.png" alt="" width="500" height="177" /></a></p>
+	<p>在包含set命令的行上（set line），点击<kbd>&lt;CR&gt;</kbd>回车键，可以执行该设置命令。如果该选项是布尔值，那么点击回车键将立刻转换此开关选项；如果该选项是数值或者字符串，那么可以先修改值，然后再点击回车键来修改选项。</p>
+	<p>在包含帮助信息关键字的行上（help line），点击<kbd>&lt;CR&gt;</kbd>回车键，可以显示该选项的帮助信息。</p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">识别文件</p>
 	<p></p>
