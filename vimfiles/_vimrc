@@ -1,6 +1,17 @@
-﻿set nocompatible	"disable backwards-compatible with vi
+﻿" yyq's vimrc
+
+" Initialization... {{{
+if has('autocmd')
+	" Remove ALL autocommands for the current group
+	au!
+endif
+
+set nocompatible	"disable backwards-compatible with vi
 filetype off
 
+" }}}
+
+ " General {{{
 source $VIMRUNTIME/vimrc_example.vim
 source $VIMRUNTIME/mswin.vim
 behave mswin
@@ -11,35 +22,16 @@ else
 	let $VIMFILES = $HOME."/.vim"
 endif
 
-set diffexpr=MyDiff()
-function MyDiff()
-  let opt = '-a --binary '
-  if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
-  if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
-  let arg1 = v:fname_in
-  if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
-  let arg2 = v:fname_new
-  if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
-  let arg3 = v:fname_out
-  if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
-  let eq = ''
-  if $VIMRUNTIME =~ ' '
-    if &sh =~ '\<cmd'
-      let cmd = '""' . $VIMRUNTIME . '\diff"'
-      let eq = '"'
-    else
-      let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
-    endif
-  else
-    let cmd = $VIMRUNTIME . '\diff'
-  endif
-  silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
-endfunction
+set background=dark
 
-set backup            " make backup files
-set backupdir=C:\Temp " where to put backup files
-set noswapfile        " no swap files
-set undofile          " make undo files
+"set diffexpr=
+au FilterWritePre * if &diff | colorscheme default | endif    " using vimdiff from within vim
+
+set backup              " make backup files
+set backupdir=C:\Temp   " where to put backup files
+set backupskip=C:\Temp  " Don’t create backups when editing files in certain directories
+set noswapfile          " no swap files
+set undofile            " make undo files
 set undodir=C:\Temp
 
 set ignorecase    " ignore case when searching
@@ -48,59 +40,61 @@ set smartcase     " ignore case if search pattern is all lowercase, case-sensiti
 set smarttab      " insert tabs on the start of a line according to shiftwidth, not tabstop
 
 set backspace=indent,eol,start        " allow backspacing over everything in insert mode
+set confirm       " Show confirm dialog
 set autoindent    " always set autoindenting on
 set copyindent    " copy the previous indentation on autoindenting
-set gdefault      " applies substitutions globally on lines 
+set gdefault      " applies substitutions globally on lines
 set showmatch     " set show matching parenthesis
 set incsearch     " show search matches as you type
 set visualbell    " Silence the bell, use a flash instead
 set showcmd       " Show (partial) command in status line
-set showmode
-set wildmenu
+set showmode      " Show the current mode
+set wildmenu      " turn on command line completion wild style
 set wildmode=list:longest,full
+set esckeys       " Allow cursor keys in insert mode
+set modeline      " Respect modeline in files
+set modelines=4
 
+" }}}
 
 " Handle long lines
 set wrap " don't wrap lines
 map <F2> <Esc>:set nowrap<CR>
 map <S-F2> <Esc>:set wrap<CR>
-"nnoremap j gj
-"nnoremap k gk
-"This makes gj/gk move by virtual lines when used without a count, and by physical lines when used with a count.
+" Makes gj/gk move by virtual lines when used without a count, and by physical lines when used with a count.
 noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
 noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 
-colorscheme xoria256
-
-"set colorcolumn=85	"show a colored column at 85 characters (so I can see when I write a too-long line of code)
-set pastetoggle=<F5>	"Vim will switch to paste mode, disabling all kinds of smartness and just pasting a whole buffer of text. When in paste-mode auto indent will be turned off.
+"set colorcolumn=85	" show a colored column at 85 characters (so I can see when I write a too-long line of code)
+set pastetoggle=<F5>	" Vim will switch to paste mode, disabling all kinds of smartness and just pasting a whole buffer of text. When in paste-mode auto indent will be turned off.
 
 set paste
+" Use the OS clipboard by default (on versions compiled with `+clipboard`)
+set clipboard=unnamed  " share windows clipboard
 
-set cursorline cursorcolumn
+" UI {{{
+set cursorline cursorcolumn  " highlight the current column&line 
 highlight Cursor guifg=white guibg=#1874cd
 highlight iCursor guifg=white guibg=#1874cd
-
-"Mouse
-set mousehide
 
 " set the menu & the message to English
 set langmenu=en_US
 let $LANG = 'en_US'
 source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
+"}}}
 
-"" Contents of the Menu {{{
-" Menu-Tabs
-15amenu <silent>Tabs.New :tabnew<cr>
+
+" Menu s {{{
+amenu <silent>Tabs.New :tabnew<CR>
 amenu Tabs.-SEPT1- :
-amenu <silent>Tabs.&Next :tabnext<cr>
-amenu <silent>Tabs.&Previous :tabprevious<cr>
+amenu <silent>Tabs.&Next :tabnext<CR>
+amenu <silent>Tabs.&Previous :tabprevious<CR>
 amenu Tabs.-SEPT2- :
-amenu Tabs.&Close :confirm tabclose<cr>
-"" }}}
+amenu Tabs.&Close :confirm tabclose<CR>
+"}}}
 
-"" Contents of the ToolBar {{{
+"" ToolBar {{{
 " Do not install the ToolBar if it is already done.
 "if !exists("did_install_custom_toolbar")
 "    let did_install_custom_toolbar = 1
@@ -171,6 +165,7 @@ amenu Tabs.&Close :confirm tabclose<cr>
 "        an icon=~/.gvim/bitmaps/16/go-previous.png 1.920 ToolBar.FindPrev N
 "    endif
     "}}}
+"}}}
 
     "" ToolTips {{{
     tmenu 1.10 ToolBar.New New
@@ -218,16 +213,14 @@ set tenc=utf-8
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 language message en_US.UTF-8
 
+set autoread		"error alert for destructive write
+
 set number
-set relativenumber
+" set relativenumber
 hi CursorLineNr guifg=silver
 
-set ruler
-set guioptions+=b
-"set guioptions-=T
-nnoremap <C-F1> :if &go=~#'m'<Bar>set go-=m<Bar>else<Bar>set go+=m<Bar>endif<CR>
-nnoremap <C-F2> :if &go=~#'T'<Bar>set go-=T<Bar>else<Bar>set go+=T<Bar>endif<CR>
-nnoremap <C-F3> :if &go=~#'r'<Bar>set go-=r<Bar>else<Bar>set go+=r<Bar>endif<CR>
+autocmd! GUIEnter * simalt ~x		" 启动时最大化
+set ruler                               " Always show current positions along the bottom
 
 filetype plugin on
 
@@ -238,10 +231,16 @@ autocmd Filetype *
 \ endif
 endif
 
+" calling vimdiff from the command-line
+if &diff
+    colorscheme default
+else
+    colorscheme xoria256
+endif
+
 " statusline
 set laststatus=2 "enable status line always
-set statusline=%2*%n%m%r%h%w%*\ %F\ %1*[FORMAT=%2*%{&ff}:%{&fenc!=''?&fenc:&enc}%1*]\ [TYPE=%2*%Y%1*]\ [COL=%2*%03v%1*]\ [ROW=%2*%03l%1*/%3*%L(%p%%)%1*]\    
-"set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
+set statusline=%2*%n%m%r%h%w%*\ %F\ %1*[FORMAT=%2*%{&ff}:%{&fenc!=''?&fenc:&enc}%1*]\ [TYPE=%2*%Y%1*]\ [COL=%2*%03v%1*]\ [ROW=%2*%03l%1*/%3*%L(%p%%)%1*]
 
 function! InsertStatuslineColor(mode)
   if a:mode == 'i'
@@ -249,47 +248,67 @@ function! InsertStatuslineColor(mode)
   elseif a:mode == 'r'
     hi statusline guibg=blue
   else
-    hi statusline guibg=black
+    hi statusline guibg=#1C1C1C
   endif
 endfunction
 
 au InsertEnter * call InsertStatuslineColor(v:insertmode)
-au InsertLeave * hi statusline guibg=orange guifg=white
-hi statusline guibg=black "default the statusline to green when entering Vim
+au InsertLeave * hi statusline guibg=#1C1C1C guifg=white
 
+hi statusline guibg=#1C1C1C
 hi User1 guifg=gray
-hi User2 guifg=red
+hi User2 guifg=peru
 hi User3 guifg=white
-"hi User5 guibg=#C2BFA5 guifg=#666666 
+hi User4 gui=bold
 
-" Font 设置字体。
-" 如果字体名称中含有空格，
-" 需要在空格前面加上一个反斜杠，如下：
-" 这是 Linux 风格的字体设置语法
-"set guifont=Bitstream\ Vera\ Sans\ Mono\ 9
-" 这是 Windows 风格的字体设置语法
-"set guifont=Bitstream_Vera_Sans_Mono:h9:cANSI
-if has("gui_win32")
-    :set guifont=Consolas:h11,Courier\ New:h11:cANSI
+" Font 设置字体
+if has('gui_running')
+	" 确保所有的文件类型会在菜单“语法”（“Syntax”）下出现，而不是出现一个菜单项“Show filetypes in menu”
+	"let do_syntax_sel_menu=1
+	set guioptions+=b
+	nnoremap <C-F1> :if &go=~#'m'<Bar>set go-=m<Bar>else<Bar>set go+=m<Bar>endif<CR>
+	nnoremap <C-F2> :if &go=~#'T'<Bar>set go-=T<Bar>else<Bar>set go+=T<Bar>endif<CR>
+	nnoremap <C-F3> :if &go=~#'r'<Bar>set go-=r<Bar>else<Bar>set go+=r<Bar>endif<CR>
+
+	if has("win16") || has("win32") || has("win95") || has("win64")
+		set guifont=Consolas:h11,Courier_New:h11:cANSI
+	else
+		set guifont=MiscFixed\ Semi-Condensed\ 10
+	endif
 endif
 
-:set nospell
+set nospell
 
 " Maps
+
+" Alternate open/close a fold
+nnoremap <space> za
 "nmap <tab> V>
 "nmap <s-tab> V<
 "vmap <tab> >gv
 "vmap <s-tab> <gv
-" Stay in visual mode when indenting. 
+" Stay in visual mode when indenting.
 vnoremap < <gv
 vnoremap > >gv
+
+nnoremap <C-Insert> :tabnew<CR>
+nnoremap <C-Delete> :tabclose<CR>
+
+" Search for visually highlighted text
+vmap <silent> //    y/<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
+
+" Open help on current word in a new tab
+noremap <silent> <F1> :execute "tab h " . expand("<cword>")<cr>
 
 " 显示/禁止行列光标
 nmap <silent> <F6> <Esc>:call ToggleCursor()<CR>
 
 " Determining the highlight group that the word under the cursor belongs to
 nmap <silent> <F7>   :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
-map <F10> <Esc>:tabnew<CR>
+
+" Show all buffers in tabs, or to close all tabs (toggle: it alternately executes  :tab ball and :tabo).
+let notabs = 0
+nnoremap <silent> <F8> :let notabs=!notabs<Bar>:if notabs<Bar>:tabo<Bar>:else<Bar>:tab ball<Bar>:tabn<Bar>:endif<CR>
 
 function! ToggleCursor()
      if &cursorcolumn
@@ -302,23 +321,34 @@ endfunction
 " clear highlighted searches
 nmap <silent> ,/ :nohlsearch<CR>
 "
-function ToggleHLSearch() 
+function! ToggleHLSearch()
 	if &hls
-		set nohls 
+		set nohls
 	else
-		set hls 
-	endif 
+		set hls
+	endif
 endfunction
 
-" let mapleader=";" "Default \
+let mapleader="," "Default \
 nmap <silent> <leader><space> <Esc>:call ToggleHLSearch()<CR>
 inoremap <leader>\ <C-x><C-o>
 
+" Mark any tabs that are not at the beginning of the lines
+nnoremap <leader>mt :match errorMsg /[^\t]\zs\t\+/<CR>
+
 " Quickly edit/reload the vimrc file
-nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>ev :tabe $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 autocmd BufWritePost $MYVIMRC source $MYVIMRC
 
+" Reselect the text that was just pasted
+nnoremap <leader>v V`]
+
+" Set current directory to current file with ,cd
+nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
+
+" Improve performance
+autocmd BufWinLeave * call clearmatches()
 
 " Abbreviations
 abbreviate #b /**********************
@@ -331,12 +361,13 @@ iabbrev icode <code class="inset">!cursor!</code><Esc>:call search('!cursor!','b
 autocmd! BufNewFile * silent! 0r $VIM/vimfiles/skel/Template.%:e
 
 " Fold
-set foldmethod=marker
-set foldcolumn=0
+set foldenable              " Turn on folding
+set foldmethod=marker       " Fold on the marker
+set foldcolumn=2
 
 " Show invisible characters
 set list
-set listchars=tab:\|.,trail:,nbsp:.,extends:⇔
+set listchars=tab:\|.,trail:,nbsp:.,extends:¬
 " Enter the middle-dot by pressing Ctrl-k then .M
 " Enter the right-angle-quote by pressing Ctrl-k then >>
 " Enter the Pilcrow mark by pressing Ctrl-k then PI
@@ -350,7 +381,7 @@ set undolevels=1000 " use many muchos levels of undo
 
 ":au Filetype html,xml,xsl source $VIM/vimfile/plugin/closetag.vim
 
-" visually select text then press ~ to convert the text to  UPPER CASE, 
+" visually select text then press ~ to convert the text to  UPPER CASE,
 " then to lower case, then to Title Case.
 function! TwiddleCase(str)
   if a:str ==# toupper(a:str)
@@ -364,10 +395,16 @@ function! TwiddleCase(str)
 endfunction
 vnoremap ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgvl
 
+" User Defined Command {{{
+command! -bar DelTab %s/	//
+command! DelLF %s/\n//
+command! FmtCode DelTab|DelLF
+"}}}
 
 " Vundle
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " set the runtime path to include Vundle and initialize
+let $VIM="C:\\Users\\yiqyuan"
 set rtp+=$VIM/vimfiles/bundle/Vundle.vim/
 call vundle#begin('$VIM/vimfiles/bundle/')
 " alternatively, pass a path where Vundle should install plugins
@@ -379,16 +416,21 @@ Plugin 'VundleVim/Vundle.vim'
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
-"Plugin 'mattn/emmet-vim'
+"Plugin 'luochen1990/rainbow'
 Plugin 'lilydjwg/colorizer'
-Plugin 'kshenoy/vim-signature'
-Plugin 'landonb/dubs_html_entities'
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
+Plugin 'kshenoy/vim-signature'		"toggle, display and navigate marks
+Plugin 'MarcWeber/vim-addon-mw-utils'	"interpret a file by function and cache file automatically
+Plugin 'tomtom/tlib_vim'		"Some utility functions
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 Plugin 'yyq123/HTML-Editor'
-" plugin from http://vim-scripts.org/vim/scripts.html
+Plugin 'mattn/webapi-vim'
+Plugin 'mattn/gist-vim'
+Plugin 'mbbill/fencview'
+Plugin 'google/vim-searchindex'		"display number of search matches & index of a current match
+"Plugin 'LargeFile'
+"Plugin 'landonb/dubs_html_entities'
+"plugin from http://vim-scripts.org/vim/scripts.html
 "Plugin 'L9'
 " Git plugin not hosted on GitHub
 "Plugin 'https://github.com/wincent/command-t.git'
@@ -417,13 +459,37 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 
 
-" vim-signature 配置
-hi SignColumn guibg=NONE
-hi SignColumn ctermbg=NONE
-hi SignatureMarkText ctermbg=NONE
+" vim-signature
+hi SignColumn ctermbg=NONE guibg=#131313
+hi SignatureMarkText ctermbg=NONE guibg=#131313 gui=bold term=bold cterm=bold
 
-" vim-sinpmate 配置 
+" vim-sinpmate
 " Alt+Space
 imap <M-space> <Plug>snipMateNextOrTrigger
 smap <M-space> <Plug>snipMateNextOrTrigger
 xmap <M-space> <Plug>snipMateVisual
+
+" Rainbow Parentheses Improved
+"let g:rainbow_active = 0 "0 if you want to enable it later via :RainbowToggle
+
+" Gist-vim
+let github_user = 'yyq123'
+
+augroup filetypedetect
+   au BufNewFile,BufRead *.csc setfiletype csc
+   au BufNewFile,BufRead *.msh setfiletype mxl
+   au BufNewFile,BufRead *.mxl setfiletype mxl
+   au BufNewFile,BufRead *.rle setfiletype rle
+augroup END
+
+" Netrw
+let g:netrw_liststyle = 3
+let g:netrw_banner = 0
+let g:netrw_winsize = 25
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+"augroup ProjectDrawer
+"autocmd!
+"autocmd VimEnter * :Vexplore
+"augroup END
+map <F3> <Esc>:Vex<CR>

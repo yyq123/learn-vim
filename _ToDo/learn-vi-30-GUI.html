@@ -8,6 +8,7 @@
 	<title>VIM学习笔记 图形界面(GUI)</title>
 </head>
 <body>
+	:help gui
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">启用/禁用</p>
 	<p>在操作系统的终端中执行以下命令，就可以打开图形界面的GVim来编辑文件了：</p>
 	<p style="text-indent:2em"><code class="inset">$ gvim [filename]</code></p>
@@ -39,6 +40,8 @@
 	<p>其中options是一个字母集合，每一个是一个选项：</p>
 	<table summary="GUI Options" border="1" rules="all" cellspacing="2" cellpadding="4">
 		<tr><td><code class="inset">a</code></td><td>Autoselect</td><td>如果设定了此选项，那么在可视化模式下选择了文本，Vim会将所选的文本放在系统的全局寄存器中。这就意味着，可以将当前选中的文本用命令"*p粘贴到其他文件。如果没有设定此选项，那么就需要用命令"*y将所选择的文本复制到系统寄存器中。在系统寄存中的文本可以被其他程序所使用。</td></tr>
+		<tr><td><code class="inset">P</code></td><td></td><td>类似Autoselect，但使用"+寄存器，而不是"*寄存器。</td></tr>
+		<tr><td><code class="inset">c</code></td><td></td><td>use console dialogs instead of pop-up</td></tr>
 		<tr><td><code class="inset">f</code></td><td>Foreground</td><td>在Linux系统上，gvim可以执行fork()命令，让编辑器在后台运行。通过设置此选项，可以禁用此行为。如果在一个脚本程序中，需要执行gvim命令使得用户可以编辑文件而且要等待到编辑工作结束，此选项就会显得更为有用。（注意：这个选项要在初始文件中进行设置）</td></tr>
 		<tr><td><code class="inset">i</code></td><td>Icon</td><td>如果设置了这个选项，gvim就会在X Windows系统上运行而且最小化时会显示一个图标。如果没有设置这个选项，只会显示正在编辑的文件名称而不会显示图标。</td></tr>
 		<tr><td><code class="inset">m</code></td><td>Menu</td><td>显示菜单栏</td></tr>

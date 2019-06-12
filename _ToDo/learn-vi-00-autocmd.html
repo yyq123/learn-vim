@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记  ()</title>
+</head>
+<body>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">启用/禁用</p>
+	<p></p>
+自动命令.所谓的自动命令就是一条命令，所不同的只是他可以在某些事件发生时自动执行.
+例如通过Vim的这样自动命令，我们可以使用Vim来编辑压缩文件，这是因为我们可以定义一个自动命令在我们读取文件时解压缩，在我们写入文件时进行压缩.
+我们在处理文件时有时希望文件在保存时在文件的结尾处插入当前的日期，而这在Vim当中我们可以使用自动命令来完成.我们可以定义这样的一个函数:
+:function DateInsert()
+:    $read !date    "在文件的结尾处插入日期
+:endfunction
+当我们要保存文件时可以调用这个函数:
+:call DateInsert()
+然后我们就可以保存退出了.
+我们还可以将这个功能绑定在一个按键上:
+:map <F12>:call DateInsert()<CR>|:write<CR>
+这种方法使用问题的解决更简单，因为我们只需在要保存文件时按一下F12键就可以了.
+但是也许有时我们会忘记这样的步骤，而使用正常的保存命令，那么这时这个函数也就失去了意义.我们希望这个插入日期的命令可以自动被执行，这也正是自动命令的意义所在.
+下面的命令就可以来满足我们的要求了:
+:autocmd FileWritePre * :callDateInsert()<CR>
+这个命令会使得所有的文件在保存之前调用这个插入日期的函数.我们并不需要每一次都要输入:write来保存文件，也就是说当我们定义了这个命令以后，当我们输入一次:write命令，vim就会自动检查所有未保存的文件并执行我们定义的这个命令，然后执行保存命令.
+
+:autocmd命令的一般格式如下:
+:autocmd group events file_patter nested command
+在这个格式中组名(group)是一个可选项，他被用于管理和调用命令.参数事件(events)是一个事件列表，指明引发命令的事件，而嵌套标记(nested)可以允许嵌套自动命令，最后是所要执行的命令.
+命令:augroup可以使得我们定义一组自动命令.这个组名最好应是一个和我们要定义的一组自动命令相关联的名字，如下面的例子:
+:augroup cprograms
+:    autocmd FileReadPost *.c :set cindent
+:    autocmd FileReadPost *.cpp :set cindent
+:augroup END
+在这里因为这些自动命令是在:augroup的作用域之内的，所以他们被放在cprogram这个组内.这组自动命令是在读取C和Cpp之后执行的.如果我们想在这个组中添加关于头文件的自动命令，我们可以使用:augroup命令，或者是在我们的定义中包含这个组名.
+如果我们正在编辑的文件名为sam.cx，而我们想将他当作C程序文件来对处理.这时我们可以通过命令来告诉Vim编辑器在文件读入以后将他与*.c文件相匹配.我们所用的命令如下:
+:doautocmd group event file_name
+在这个命令执行的时候，Vim是将假定当前文件的名字为file_name，而实际上这并不是他真正的文件名.如果在这个命令中我们并没有指明组(group)，那么所有的组都会被用到.而且我们必须指明事件，并且Vim会认为这个事件已经发生.与命令:doautocmd相类似的是命令:doautoall，所不同的只是后者是针对每一个缓冲区(buffer).这个命令的格式为:
+:doautoall group event file_name
+我们可以使用下列的命令来引发命令:
+BufNewFile            当编辑一个新文件时引发命令
+BufReadPre    BufReadPost    在读入之前或是读入之后引发命令
+        BufRead        BufReadPost的另一种说法
+BufFilePre    BufFilePost    在通过:file命令更改缓冲区名字之前或是之后引发
+FileReadPre    FileReadPost
+在用:read命令读入文件之前或之后.在文件读入之后，在文件的开头和结尾处有由[和]来标记
+FilterReadPre    FilterReadPost    在用过滤命令(filter)读入文件之前或之后
+FileType            当FileType设置时有效
+Syntax                当Syntax设置时有效
+StdinReadPre    StdReadPost    由标准输入设备读入或是输出
+BufWritePre    BufWritePost    在将整个缓冲区写入文件之前或是之后
+BufWrite            BufWritePre的另一种说法
+FileWritePre    FileWritePost    将部分缓冲区内容写入文件之前或是之后
+FileAppendPre    FileAppendPost    将一个文件由过滤命令输入之前或之后
+FileChangedShell
+这个事件是在Vim运行Shell命令而文件的修改时间已经改变时引发
+FocusGained    FocusLost
+这个事件是在Vim编辑器得到或是失运输入光标时引发.这意味着vim运行图形界面，并且是Vim成为当前窗口或是其他的成为当前窗口
+CursorHold
+用户停止输入的时间长于由updatetime所指定的时间时引发
+BufEnter    BufLeave    当进入或离开缓冲区时引发
+BufUnload            在缓冲区未载入之前引发
+BufCreate    BufDelete    在缓冲区产生以后或是在缓冲区删除以前引发
+GuiEnter            启动GUI时引发
+VimEnter            Vim启动而初始化文件还没有读入进引发
+VimLeave            退出Vim编辑器而.viminfo还没有改写时引发
+FileEncoding            fileencoding已经被设置时有效
+TermChanged            term选项被更改时引发
+User
+并不是一个真正的事件，而是命令:doautocmd一起使用的一个事件
+当存文件时，只有下列事件成对出现时才引发:
+BufWritePre    BufWritePost
+FilterWritePre    FilterWritePost
+FileAppendPre    FileAppendPost
+FileWritePre    FileWritePost
+当读文件进，只要下列事件中的一个被设置则会引发:
+BufNewFile
+BufReadPre    BufReadPost
+FilterReadPre    FilterReadPost
+FileReadPre    FileReadPost
+文件名类型与UNIX标准系统相匹配.下面列出是一些特殊字符匹配的情况:
+*    匹配任意长度的任意字符
+?    匹配单个字符
+'    分隔交替的类型
+?    字符?
+,    字符,
+character
+将这个字符看作是一个要查找的类型字符，例如:a+可以匹配，aa，aaa等等
+一般情况下一个命令的执行结果并不会引发另一个事件.例如Syntax的执行结果并不会引发FileReadPre事件.但是如果我们在自动命令中加入nested关键字就可以来引发了，例如下面的命令:
+:autocmd FileChangedShell *.c nested e!
+我们可以使用命令:autocmd列出所有的自动命令.
+如果我们想要得到所有这些命令中的一个子集命令，我们可以使用如下的命令:
+:autocmd group event pattern
+在这个命令中如果我们指定了group，那么就会所有与group相匹配的命令.event可以是以前定义的或是所有的事件，pattern指了与类型相匹配的文件选项.只有那些与命令相匹配的命令才会被列出来.
+我们可以建立我们自已的自动命令，当然了我们也可以移除那些我们不再需要的自动命令.例如命令:autocmd!就可以移除所有的自动命令.
+我们也可以用下面的命令来移除指定的组命令:
+:autocmd! group
+在这个命令中我们当然也可以为这个组指定事件或是类型
+:autocmd! group event pattern
+event可以用*代替所有的事件
+我们可以用命令:autocmd!来移除那些已经存在的自动命令，我们还可以同时在一个命令中再新建一个我们自己的自动命令.这个语法的格式如下:
+:autocmd! group event pattern nested command
+这个命令等价于下面的两个命令:
+:autocmd! group event pattern
+:autocmd group event pattern nested command
+有时我们并不想引发某个命令，在这样的情况下我们可以设置eventignore选项来指定那些要忽略的事件.例如下面的命令将进入窗口和离开窗口的事件忽略掉:
+:set eventignore=WinEnter,WinLeave
+如果要忽略所有的事件，可以用下面的命令:
+:set eventignore=all
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">识别文件</p>
+	<p></p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+
+	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
+		<tr><td><code class="inset">:</code></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+	</table>
+&ldquo;&rdquo;
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
+
+</body>
+</html>
+
