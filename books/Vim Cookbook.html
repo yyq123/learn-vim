@@ -1,0 +1,1090 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head>
+    <title>Vim Cookbook</title>
+    <meta name="description" content="Vim Cookbook">
+    <meta name="keywords" content="Vim, editing, hints, cookbook">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+.en-markup-crop-options {
+    top: 18px !important;
+    left: 50% !important;
+    margin-left: -100px !important;
+    width: 200px !important;
+    border: 2px rgba(255,255,255,.38) solid !important;
+    border-radius: 4px !important;
+}
+
+.en-markup-crop-options div div:first-of-type {
+    margin-left: 0px !important;
+}
+</style></head>
+<body bgcolor="white">
+<p>
+</p><h1 align="center">Vim Cookbook</h1>
+<h2 align="center">by Steve Oualline</h2>
+<p>
+This is the <i>Vim</i> cookbook page.  It contains short recipes for doing
+many simple and not so simple things in <i>Vim</i>.  You should already
+know the basics of <i>Vim</i>, however each command is explained in detail.
+</p>
+<p>
+Each set of instructions is a complete package.  Feel free to pick
+and choose what you need.
+</p>
+<h2>Contents</h2>
+<p>
+<a href="#char twiddling">Character twiddling</a>
+<br>
+<a href="#interactive replace">Interactively replacing one word with another </a>
+<br>
+<a href="#cmd line interactive replace">
+Interactively replacing one word with another (command line method)</a>
+<br>
+<a href="#replace_one">Replacing one word with another using one command</a>
+<br>
+<a href="#moving">Moving Text (<i>Vi</i> style commands)</a>
+<br>
+<a href="#moving_visual"> Moving Text (Visual mode)</a>
+<br>
+<a href="#copy_block">Copying a block of text from one file to another</a>
+<br>
+<a href="#copy_block_visual">
+Copying a block of text from one file to another 
+<i>(Visual Method)</i></a>
+<br>
+<a href="#sorting">Sorting a section (<i>Vi</i> Style)</a>
+<br>
+<a href="#sorting_visual">Sorting a section (Visual Method)</a>
+<br>
+<a href="#sob">Dealing with Makefile and other SOB files</a>
+<br>
+<a href="#format_para">Formatting a text paragraph</a>
+<br>
+<a href="#find_c">Finding a procedure in a C program </a>
+<br>
+<a href="#drawing">Drawing comment boxes</a>
+<br>
+<a href="#reading">Reading a man page</a>
+<br>
+<a href="#eol">Removing carriage returns from MS-DOS file</a>
+<br>
+<a href="#trim">Trimming the blanks off an end of line </a>
+<br>
+<a href="#write">Oops, I left the file write protected</a>
+<br>
+<a href="#last">Changing "Last, First" to "First Last"</a>
+<br>
+<a href="#all_files">How to edit all the files containing a given word</a>
+<br>
+<a href="#all_files_grep">How to edit all the files containing a given word using the built-in grep</a>
+</p>
+<hr>
+<h2><a name="char twiddling">Character twiddling</a></h2>
+<p>
+If you type fast your fingers can easily get ahead of your mind. Frequently
+people transpose characters.  For example the  word "the" comes out "teh". </p><p>
+To swap two characters, for example "e" with "h", put the cursor on the cursor
+on the "e" and type <tt><u>xp</u></tt>.  
+</p><p>
+The "x" command deletes a character (the "e") and the "p" pastes it after the
+cursor (which is now placed over the "h".)
+</p><hr>
+<h2><a name="interactive replace">
+Interactively replacing one word with another (n. method)</a></h2>
+Suppose you want to replace every occurrence of the word "idiot" with the word
+"manager". But you want the chance to review each change before you do it.<p>
+Here's what you do:
+</p><p>
+</p><table>
+<tbody><tr>
+    <td>1.</td>
+    <td><tt><u>1G</u></tt></td>
+    <td>Go to the top of the document</td>
+</tr>
+<tr>
+    <td>2.</td>
+    <td><tt><u>/idiot&lt;enter&gt;</u></tt></td>
+    <td>Find the first occurrence of the word "idiot"</td>
+</tr>
+<tr>
+    <td>3.</td>
+    <td><tt><u>cwmanager</u></tt></td>
+    <td>Change the word (<tt><u>cw</u></tt>) to manager.</td>
+</tr>
+<tr>
+    <td>4.</td>
+    <td><tt><u>n</u></tt></td>
+    <td>Repeat the last search (find the next idiot.)</td>
+</tr>
+<tr>
+    <td>5. </td>
+    <td><tt><u>.</u></tt></td>
+    <td>Repeat the last edit (change one word to manager)
+    <br>
+	(If you do not want to change the word, skip this step.)</td>
+</tr>
+</tbody></table>
+<p>
+Repeat steps 4 and 5 until you have replaced all occurred.
+</p>
+<p>
+</p><blockquote>
+<h3>The Virgin What!?</h3>
+<p>
+A church had just bought their first computer and were learning how to
+use it. The church secretary decided to set up a form letter to be used in a
+funeral service. Where the person's name was to be she put in the word
+"&lt;name&gt;". When a funeral occurred she would change this word to the
+actual name of the departed.
+</p>
+<p>
+One day, there were two funerals, first for a lady named Mary, then later one
+for someone named Edna. So the secretary used global replace to change
+"&lt;name&gt;" to "Mary." So far so good. Next she generated the service for
+the second funeral by changing the word "Mary" to "Edna." That was a mistake 
+</p>
+<p>
+Imagine the Minister's surprise when he started reading the part containing the
+Apostle's Creed and saw, "Born of the Virgin Edna."  
+</p></blockquote>
+<hr>
+<h2><a name="cmd line interactive replace">
+Interactively replacing one word with another (command line method)</a></h2>
+Suppose you want to replace every occurrence of the word "idiot" with the word
+"manager". But you want the chance to review each change before you do it.<p>
+Execute the command:
+</p><pre>:%s/\&lt;idiot\&gt;/manager/gc
+</pre>
+<p>
+This command will make the change and pause after each change to give you 
+a chance to confirm it.   You can enter "y" to accept the change or 
+"n" to not accept it.
+</p><p>
+The parts of this command are:
+</p><blockquote>
+<table>
+<tbody><tr valign="top">
+    <td>:</td>
+    <td>Enter command mode</td>
+</tr>
+<tr valign="top">
+    <td>%</td>
+    <td>Perform this command on all lines (% is a synomim
+    for the first to last line.)</td>
+</tr>
+<tr valign="top">
+    <td>s</td>
+    <td>The short form of the <b>:substitute</b> command.</td>
+</tr>
+<tr valign="top">
+    <td>/\&lt;idiot\&gt;/</td>
+    <td>This text specifies the text we are looking for wand
+    want.  The <b>\&lt;</b> tells <i>Vim</i> to match a word
+    start and the <b>\&gt;</b> tells <i>Vim</i> to match the 
+    end of a word.</td>
+</tr>
+<tr valign="top">
+    <td>/manager/</td>
+    <td>The replacement text</td>
+</tr>
+<tr valign="top">
+    <td>gc</td>
+    <td>The flags.   These are
+        <dl>
+	    <dt>g</dt><dd>Global -- Change every occurance, not use
+	    the first one on each line</dd>
+	    <dt>c</dt><dd>Confirm -- Ask before making each change</dd>
+	</dl>
+    </td>
+</tr>
+</tbody></table>
+</blockquote>
+<hr>
+<h2><a name="replace_one">Replacing one word with another using one command </a></h2>
+Suppose you want to replace every occurrence of the word "idiot" with the word
+"manager". No confirmation needed because all idiots are managers.
+<p>
+Use the command:
+</p><pre>:%s/\&lt;idiot\&gt;/manager/g
+</pre>
+<p>
+The parts of this command are:
+</p><blockquote>
+<table>
+<tbody><tr valign="top">
+    <td>:</td>
+    <td>Enter command mode</td>
+</tr>
+<tr valign="top">
+    <td>%</td>
+    <td>Perform this command on all lines (% is a synomim
+    for the first to last line.)</td>
+</tr>
+<tr valign="top">
+    <td>s</td>
+    <td>The short form of the <b>:substitute</b> command.</td>
+</tr>
+<tr valign="top">
+    <td>/\&lt;idiot\&gt;/</td>
+    <td>This text specifies the text we are looking for wand
+    want.  The <b>\&lt;</b> tells <i>Vim</i> to match a word
+    start and the <b>\&gt;</b> tells <i>Vim</i> to match the 
+    end of a word.</td>
+</tr>
+<tr valign="top">
+    <td>/manager/</td>
+    <td>The replacement text</td>
+</tr>
+<tr valign="top">
+    <td>g</td>
+    <td>Global flag --  This flag tells <i>Vim</i> to change 
+    every occurance on the line, not use the first one.</td>
+</tr>
+</tbody></table>
+</blockquote>
+<hr>
+<h2><a name="moving">Moving Text (<i>Vi</i> style commands)</a></h2>
+<p>
+Suppose you want to move a paragraphs from the top of the document to the
+bottom.  There are several ways of doing this.  In this example, we
+do it using <i>Vi</i> style command.   In the next section
+<a href="#moving_visual"> Moving Text (Visual mode)</a> we do it using 
+using the <i>Vim</i> visual commands.
+</p>
+<p>
+To do the move the commands:
+</p>
+<table border="3">
+<tbody><tr valign="top">
+    <td colspan="2">Command</td>
+    <td>Explaination</td>
+</tr>
+<tr valign="top">
+    <td>1.</td>
+    <td>&nbsp;</td>
+    <td>Move the cursor to the top of the paragraph you want to move.</td>
+</tr>
+<tr valign="top">
+    <td>2.</td>
+    <td><tt><u>ma</u></tt></td>
+    <td>Place a mark named "a" at this location. (<i>Vim</i> 
+        will give you no indication that this command has been
+	executed.  In other words, the screen will not change.)</td>
+</tr>
+<tr valign="top">
+    <td>3.</td>
+    <td>&nbsp;</td>
+    <td>Move the cursor to the bottom of the paragraph to be moved.</td>
+</tr>
+<tr valign="top">
+    <td>4.</td>
+    <td><tt><u>d'a</u></tt></td>
+    <td>Delete to mark "a".  This puts the deleted text in a cut buffer.</td>
+</tr>
+<tr valign="top">
+    <td>5.</td>
+    <td>&nbsp;</td>
+    <td>Move the cursor to line where the text is to go. 
+    The paragraph will be placed after this one.</td>
+</tr>
+<tr valign="top">
+    <td>6.</td>
+    <td><tt><u>p</u></tt></td>
+    <td>Paste the text in below the cursor.</td>
+</tr>
+</tbody></table>
+<hr>
+<h2><a name="moving_visual">Moving Text (Visual Method)</a></h2>
+<p>
+Suppose you want to move a paragraphs from the top of the document to the
+bottom.  There are several ways of doing this.  In this example, we
+do it using the <i>Vim</i> Visual mode.   In the previous section
+<a href="#moving"> Moving Text (old method)</a> we do it using 
+using the <i>Vi</i> style commands.
+</p>
+<p>
+To do the move the commands:
+</p>
+<table border="3">
+<tbody><tr valign="top">
+    <td colspan="2">Command</td>
+    <td>Explaination</td>
+</tr>
+<tr valign="top">
+    <td>1.</td>
+    <td>&nbsp;</td>
+    <td>Move the cursor to the top of the paragraph you want to move.</td>
+</tr>
+<tr valign="top">
+    <td>2.</td>
+    <td><tt><u>v</u></tt></td>
+    <td>Start visual mode.  (If you want to move only full lines, use
+    the <tt><u>V</u></tt> command which starts visual line mode.</td>
+</tr>
+<tr valign="top">
+    <td>3.</td>
+    <td>&nbsp;</td>
+    <td>Move the cursor to the bottom of the paragraph to be moved.
+    The text to be moved will be hightlighted.</td>
+</tr>
+<tr valign="top">
+    <td>4.</td>
+    <td><tt><u>d</u></tt></td>
+    <td>Perform a visual delete.   In other words delete the highlighted
+    text.</td>
+</tr>
+<tr valign="top">
+    <td>5.</td>
+    <td>&nbsp;</td>
+    <td>Move the cursor to line where the text is to go. 
+    The paragraph will be placed after this one.</td>
+</tr>
+<tr>
+    <td>6.</td>
+    <td><tt><u>p</u></tt></td>
+    <td>Paste the text in below the cursor.</td>
+</tr>
+</tbody></table>
+<hr>
+<h2><a name="copy_block">Copying a block of text from one file to another 
+<i>(Vi Style)</i></a></h2>
+<p>
+There is more than one way to copy text between files.  In this section
+we use the more triditionally <i>Vi</i> commands.   In the next section
+<a href="#copy_block_visual">Copying using visual mode</a>, we 
+perform the same operations using the Visual mode.
+</p><p>
+To copy a block of text between files execute the commands:
+</p><table border="3">
+<tbody><tr valign="top">
+    <td colspan="2">Command</td>
+    <td>Explaination</td>
+</tr>
+<tr valign="top">
+	<td>1.</td>
+	<td>&nbsp;</td>
+	<td>Edit the file containing the text you want to copy.</td>
+</tr>
+<tr valign="top">
+	<td>2.</td>
+	<td>&nbsp;</td>
+	<td>Go to the top line to be copied.</td>
+</tr>
+<tr valign="top">
+	<td>3.</td>
+	<td><tt><u>ma</u></tt></td>
+	<td>Mark this line as mark "a".</td>
+</tr>
+<tr valign="top">
+	<td>4.</td>
+	<td>&nbsp;</td>
+	<td>Go to the bottom line to be copied</td>
+</tr>
+<tr valign="top">
+	<td>5.</td>
+	<td><tt><u>y'a</u></tt></td>
+	<td>Yank (<tt><u>y</u></tt>) the text from the current
+	cursor location to the mark "a" (<tt><u>'a</u></tt>)
+	</td>
+</tr>
+<tr valign="top">
+	<td>6.</td>
+	<td><tt><u>:split</u> </tt><i>second-file</i></td>
+	<td>Open another window containing the second file.
+	(This the file in which the text is to be inserted.)</td>
+</tr>
+<tr valign="top">
+	<td>7.</td>
+	<td>&nbsp;</td>
+	<td>Go to the line where the insert is to occur. 
+	The text will be place after this line.</td>
+</tr>
+<tr valign="top">
+	<td>8.</td>
+	<td><tt><u>p</u></tt></td>
+	<td>Put the text after the cursor.</td>
+</tr>
+</tbody></table>
+<hr>
+<h2><a name="copy_block_visual">
+Copying a block of text from one file to another 
+<i>(Visual Method)</i></a></h2>
+<p>
+There is more than one way to copy text between files.  In this section
+we use the newer visual mode commands.  See the previous section for
+the older
+<a href="#copy_block"><i>Vi</i> Style</a> of doing things.
+</p><p>
+To copy a block of text between files execute the commands:
+</p><table border="3">
+<tbody><tr valign="top">
+    <td colspan="2">Command</td>
+    <td>Explaination</td>
+</tr>
+<tr valign="top">
+	<td>1.</td>
+	<td>&nbsp;</td>
+	<td>Edit the file containing the text to be copied.</td>
+</tr>
+<tr valign="top">
+	<td>2.</td>
+	<td>&nbsp;</td>
+	<td>Go to the top line to be copied.</td>
+</tr>
+<tr valign="top">
+	<td>3.</td>
+	<td><tt><u>v</u></tt></td>
+	<td>Start visual mode.  If you want to copy a block of
+	full lines, use <tt><u>V</u></tt> to go start
+	Visual Line Mode</td>
+</tr>
+<tr valign="top">
+	<td>4.</td>
+	<td>&nbsp;</td>
+	<td>Go to the bottom line to be copied.  The text to be
+	copied will be hightlighted.</td>
+</tr>
+<tr valign="top">
+	<td>5.</td>
+	<td><tt><u>y</u></tt></td>
+	<td>Yank (<tt><u>y</u></tt>) the text.
+	</td>
+</tr>
+<tr valign="top">
+	<td>6.</td>
+	<td><tt><u>:split</u> </tt><i>second-file</i></td>
+	<td>Open another window containing the second file.
+	(This the file in which the text is to be inserted.)</td>
+</tr>
+<tr valign="top">
+	<td>7.</td>
+	<td>&nbsp;</td>
+	<td>Go to the line where the insert is to occur. 
+	The text will be place after this line.</td>
+</tr>
+<tr valign="top">
+	<td>8.</td>
+	<td><tt><u>p</u></tt></td>
+	<td>Put the text after the cursor.</td>
+</tr>
+</tbody></table>
+<h2><a name="sorting">Sorting a section (<i>Vi</i> Style)</a></h2>
+<p>
+Frequently you will be editing a file with a list of names in it.  For example,
+a list of object files that make up a program.
+</p>
+<p>
+For example:
+</p><pre>	version.o  	
+	pch.o		
+	getopt.o 	
+	util.o		
+	getopt1.o	
+	inp.o		
+	patch.o		
+	backupfile.o
+</pre>
+<p>
+This list would be nice in alphabetical order.  Or at least ASCII order.  To
+alphabetize this list execute the commands:
+</p><p>
+</p><table border="3">
+<tbody><tr valign="top">
+    <td colspan="2">Command</td>
+    <td>Explaination</td>
+</tr>
+<tr valign="top">
+    <td>1.</td>
+    <td>&nbsp;</td>
+    <td>Move the cursor to the first line to be sorted.</td>
+</tr>
+<tr valign="top">
+    <td>2.</td>
+    <td><tt><u>ma</u></tt></td>
+    <td>Mark the first line as mark <tt><u>a</u></tt>.</td>
+</tr>
+<tr valign="top">
+    <td>3.</td>
+    <td>&nbsp;</td>
+    <td>Move to the bottom of the text to be sorted.</td>
+</tr>
+<tr valign="top">
+    <td>4.</td>
+    <td><tt><u>!'asort</u></tt></td>
+    <td>The <tt><u>!</u></tt> command tells <i>Vim</i> to 
+run the text through UNIX command.  The <tt><u>'a</u></tt> tell the 
+editor that the text to be worked on starts at the
+current line and ends at mark <tt><u>a</u></tt>. 
+The command that the text is to go through
+is <tt><u>sort</u></tt>.
+</td></tr>
+</tbody></table>
+<p>
+The result looks like:
+</p>
+<pre>	backupfile.o
+	getopt.o 	
+	getopt1.o	
+	inp.o	
+	patch.o		
+	pch.o		
+	util.o		
+	version.o  	
+</pre>
+<h2 align="center">
+    <a name="sort_warn"><b>Warning</b></a>
+</h2>
+<p>
+In actual practice what you in most <i>Makefile</i>s (file that
+are used by UNIX to control compilation) looks more like:
+</p>
+<pre>OBJS = \
+        version.o       \
+        pch.o           \
+        getopt.o        \
+        util.o          \
+        getopt1.o       \
+        inp.o           \
+        patch.o         \
+        backupfile.o
+</pre>
+<p>
+Notice that the backslash (\) is used to indicate a continuation line. 
+After sorting this looks like:
+</p>
+<pre>OBJS = \
+        backupfile.o
+        getopt.o        \
+        getopt1.o       \
+        inp.o           \
+        patch.o         \
+        pch.o           \
+        util.o          \
+        version.o       \
+</pre>
+<p>
+The names are in order, but the backslashes are wrong.  Don't forget to fix
+them using normal editing before continuing.
+</p>
+<pre>OBJS = \
+        backupfile.o    \
+        getopt.o        \
+        getopt1.o       \
+        inp.o           \
+        patch.o         \
+        pch.o           \
+        util.o          \
+        version.o
+</pre>
+<hr>
+<h2><a name="sorting_visual">Sorting a section (Visual Method)</a></h2>
+<p>
+Frequently you will be editing a file with a list of names in it.  For example,
+a list of object files that make up a program.
+</p>
+<p>
+For example:
+</p><pre>	version.o  	
+	pch.o		
+	getopt.o 	
+	util.o		
+	getopt1.o	
+	inp.o		
+	patch.o		
+	backupfile.o
+</pre>
+<p>
+This list would be nice in alphabetical order.  Or at least ASCII order.  To
+alphabetize this list execute the commands:
+</p><p>
+</p><table border="3">
+<tbody><tr valign="top">
+    <td colspan="2">Command</td>
+    <td>Explaination</td>
+</tr>
+<tr valign="top">
+    <td>1.</td>
+    <td></td>
+    <td>Move the cursor to the first line to be sorted.</td>
+</tr>
+<tr valign="top">
+    <td>2.</td>
+    <td><tt><u>V</u></tt></td>
+    <td>Enter visual line mode</td>
+</tr>
+<tr valign="top">
+    <td>3.</td>
+    <td></td>
+    <td>Move to the bottom of the text to be sorted.</td>
+</tr>
+<tr valign="top">
+    <td>4.</td>
+    <td><tt><u>!sort</u></tt></td>
+    <td>The <tt><u>!</u></tt> command tells <i>Vim</i> to 
+    run the hightlighted text through UNIX command.  
+    The command that the text is to go through
+    is <tt><u>sort</u></tt>.
+</td></tr>
+</tbody></table>
+<h2 align="center"><b>Warning</b></h2>
+<p>
+Check out the <a href="#sort_warn">sort warning</a> section for
+a short description of the problems that can result from using this
+command.
+</p><p>
+</p><h2><a name="sob">Dealing with Makefile and other SOB files </a></h2>
+<p>
+One problem with the file format used by the UNIX <i>make</i> command is that
+it's extremely fussy.
+</p>
+<p>
+For example, the following is correct:
+</p>
+<pre>        prog: prog.c
+                cc -g -o prog prog.c
+</pre>
+<p>
+The following is not:
+</p><pre>        prog: prog.c
+                cc -g -o prog prog.c
+</pre>
+<p>
+At first glance you might think that these two are exactly.  But look closer.
+The "cc" line of the first one begins with a tab.  The second one begins with
+eight spaces. (You can't tell the difference between a space and a tab when
+it's printed on the screen!  You need a better video card.)
+</p><p>
+So how are you supposed to tell them apart especially when one the screen (or
+the printed page) they look exactly the same.
+</p><p>
+The answer is you can't.  You might think that's a bit unfair.  Especially when
+<i>make</i> works on the first one but not the second.  But who every said UNIX
+was fair.
+</p><p>
+Fortunately <i>Vim</i> has a mode that tells you exactly what's in your file.
+Executing the command
+</p><p>
+</p><pre>	<u>:set list</u>
+</pre>
+puts you into this mode.  When the display is set into "list mode" all
+characters print.  Tabs show up as "^I" and the end of line shows up as $.  So
+in list mode, our two examples look like:
+<pre>        prog: prog.c$
+        ^Icc -g -o prog prog.c$
+</pre>
+<p>
+and
+</p><pre>        prog: prog.c$
+                cc -g -o prog prog.c$
+</pre>
+<p>
+From this it's easy to see which line has the tab.
+</p><hr>
+<h2><a name="format_para">Formatting a text paragraph</a></h2>
+<p>
+The <i>Vim</i> editor is  not a word processor.  
+Boy is it not a word processor.
+There are a couple of things you can do to make things better for you when
+editing text.
+</p><p>
+Word processors automatically wrap when you type a line 
+that's longer than the margins.  The <i>Vim</i> editor lets make a 
+line as long as you want.  By executing the command:
+</p><pre>        <u>:set wrapmargin=70</u>
+</pre>
+<p>
+you can tell <i>Vim</i> to automatically break lines 
+when the run longer than 70 characters.  
+(You can adjust this number to whatever line length you want.)
+</p><p>
+This makes entering text much easier.  
+It doesn't solve the problem of editing.
+If you enter a paragraph and then decide to 
+delete half the words on the first
+line, <i>Vim</i> will not reformat the text.
+</p><p>
+You can force a reformat of a paragraph by executing  the commands:
+</p><table border="3">
+<tbody><tr valign="top">
+    <td colspan="2">Command</td>
+    <td>Explaination</td>
+</tr>
+<tr valign="top">
+    <td>1.</td>
+    <td>&nbsp;</td>
+    <td>Move to the top of the paragraph.</td>
+</tr>
+<tr valign="top">
+    <td>2.</td>
+    <td><tt><u>gq}</u></tt></td>
+    <td>The "!" command tells <i>Vim</i> to pipe a section of 
+    text through a filter.  The <tt><u>}</u></tt> tells <i>Vim</i> that 
+    the section of text for the pipe command is a single paragraph.
+</td></tr>
+<tr valign="top">
+    <td>3.</td>
+    <td><tt><u>fmt -70</u></tt></td>
+    <td>The UNIX command <i>fmt</i> is a primitive formatter. It performs
+word-wrapping well enough for text documentation. 
+The -70 tells <i>fmt</i> to format lines for 70 characters per line.
+</td></tr>
+</tbody></table>
+<h2><a name="find_c">Finding a procedure in a C program </a></h2>
+<p>
+The <i>Vim</i> program was designed by programmers for programmers. 
+You can use it to locate procedures within a set of C or C++ program files.
+</p><p>
+But first you must generate a table of contest file called a "tags" file.
+(This file has been given the obvious name <i>tags</i>.)  The <i>ctags</i>
+command generates this table of contents files.
+</p><p>
+To generate a table of contents of all the C program files in your current
+working directory, use the command:
+</p><pre>        $<b> ctags *.c</b>
+</pre>
+<p>
+For C++ use the command:
+</p><pre>        $ <b>ctags *.cpp</b>
+</pre>
+<p>
+If you use an extension other than .cpp for your C++ 
+files, use it instead of <tt>.cpp</tt>.
+</p><p>
+Once this file is generated, you tell <i>Vim</i> 
+that you want edit a procedure, and it will find the file 
+containing that procedure and position you there.
+For example if you want to edit the procedure 
+write_file use the command:
+</p><pre>        $ <b>vim</b><i> -t write_file</i>
+</pre>
+<p>
+Now suppose as you are looking at the write_file procedure that it calls
+setup_data and you need to look at that procedure. To jump to that function,
+position the cursor at the beginning of the word setup_data and press Ctrl+].
+This tells <i>Vim</i> to jump to the definition of this procedure.  This
+repositioning will occur even if <i>Vim</i> has to change files to do so.
+</p><p>
+</p><h3 align="center">Note:</h3>
+If you've edited the current file and not saved it, <i>Vim</i>
+will issue a warning and ignore the Ctrl+] command.
+<hr>
+<h2><a name="drawing">Drawing comment boxes</a></h2>
+<p>
+I like to put a big comment box at the top of each of my procedures.  For
+example:
+</p><pre>	/*******************************************************
+	 * Program -- Solve it -- Solves the worlds problems.  *
+	 *     All of them.  At once.  This will be a great    *
+	 *   program when I finish it.                         *
+	 *******************************************************/
+</pre>
+<p>
+Drawing these boxes like this is tedious at best.  
+But <i>Vim</i> has a nice feature called abbreviations that 
+makes things easier.
+</p><p>
+First, you need to create a <i>Vim</i> initialization file called
+<i>~/.vimrc</i>.  (At first this may look like a <i>ex</i> initialization file.
+It is. The <i>Vim</i> command is actually a mode of the <i>ex</i> editor.)
+</p><p>
+The <i>~/.vimrc</i> file need to contain the lines:
+</p><pre>        :ab #b /************************************************
+        :ab #e ************************************************/
+</pre>
+<p>
+These command define a set of <i>Vim</i> abbreviations.
+What's a <i>Vim</i> abbreviation?  
+Its a word that stands for another word.  When <i>Vim</i> see the
+abbreviation, it will expand it to the full word.  In this case we've defined
+an abbreviation called <tt><u>#b</u></tt> 
+that expands to the beginning line of a comment
+box.  The  <tt><u>#e</u></tt> abbreviation does the same thing. 
+</p><p>
+So to create a comment box enter #b&lt;enter&gt;.  The screen looks like:
+</p><pre>        /************************************************
+</pre>
+Enter the comments, including the beginning and ending "*" characters. 
+Finally end the comment by typing <tt><u>#e&lt;enter&gt;</u></tt>.  
+This causes the ending comment to be entered.
+<p>
+</p><h3 align="center">Note:</h3>
+<p>
+This page was written in <i>Vim</i>.  So how did we
+enter the #b and #e?  Easy, we typed in #bb and the deleted a character. 
+(We couldn't enter #b or it would have been 
+expanded.) 
+</p><p>
+Some other useful commands that programmer may want to put in
+their <i>~/.exrc</i> include:
+</p><pre>	:set autoindent
+	:set autowrite
+	:ab #d #define
+	:ab #i #include
+	:ab #b /************************************************
+	:ab #e ************************************************/
+	:ab #l /*----------------------------------------------*/
+	:set sw=4
+</pre>
+<p>
+The autoindent setting causes <i>Vim</i> to 
+indent new lines by a similar amount
+to the one next to them.  
+This is very useful for entering programs.  The
+autowrite setting tells <i>Vim</i> to write the old file out when switching from
+one file to another.
+</p><p>
+The abbreviations <tt><u>#d</u></tt>, 
+<tt><u>#i</u></tt>, and <tt><u>#l</u></tt>, 
+define useful terms for programmers.
+</p><p>
+Finally, the command set <tt><u>sw=4</u></tt> sets the shift width 
+(the number of characters
+text is moved sideways for the shift command 
+(<tt><u>&lt;&lt;</u></tt> and <tt><u>&gt;&gt;</u></tt>)).
+</p><p>
+This is very useful if you use a 4 space indentation for your C or C++
+programs.  (Studies at Rice University have shown this to be the best
+indentation size.)
+</p><hr>
+<h2><a name="reading">Reading a man page</a></h2>
+<p>
+You can use the <i>Vim</i> editor to browse through text files.  One of the most
+useful set of files to browse through is the man pages.   To do this
+we assemble a pipeline of three command.
+</p><p>
+The first is <i>man</i> which gets the page.  The next one, <i>ul</i>
+turns the underline and bold escape codes into something readable, and 
+finally we use <i>Vim</i> to broswe the file.
+</p><p>
+So our command is:
+</p><blockquote>
+<pre>$ man <i>subject</i> | ul -i | vim -
+</pre>
+</blockquote>
+<p>
+The man page will be generated and then displayed in the <i>Vim</i>
+window.  You can now use your normal editing commands to browse the
+files.
+</p><hr>
+<h2><a name="eol">Removing carriage returns from MS-DOS file</a></h2>
+<p>
+If you ever try to edit a MS-DOS file, you'll notice that each line
+ends with a <tt><u>^M</u></tt> character.  This is caused by the funny
+way that MS-DOS treats the end-of-line.  
+(For some background on this problem take a look at 
+ <a href="http://www.oualline.com/practical.programmer/eol.html">The EOL Story</a>.
+</p><p>
+To remove the ^M characters from a MS-DOS file, enter the command:
+</p><pre>	<b>:1,$s/{Ctrl+V}{Ctrl+M}//{Enter}</b>
+</pre>
+This command starts with a colon (<tt><u>:</u></tt>) to
+tell <i>Vim</i> to enter <i>ex</i> mode.  All <i>ex</i>
+start with a line number range, in this case its from
+the first line (1) to the last ($). The slash indicates
+the start of the "from text".  The <tt><u>{Ctrl+V}</u></tt> tells <i>Vim</i>
+to treat the next character as a regular character even
+if it's a special one.	The next character is <tt><u>{Ctrl+M}</u></tt>.
+(This would be treated as <tt><u>{Enter}</u></tt> without the 
+<tt><u>{Ctrl+V}</u></tt>.)
+The next slash ends the "from text". What follows is the
+"to text" enclosed by slashes.	In this case it's nothing
+(<tt><u>//</u></tt>).  
+<hr>
+<h2><a name="trim">Trimming the blanks off an end of line </a></h2>
+Some people find spaces and
+tabs at the end of a line useless, wasteful, and ugly.
+To remove whitespace at the end of every line, execute
+the command:<p> 
+</p><pre>	<b>:1,$s/[ &lt;tab&gt;]*$//</b>
+</pre>
+<p>
+The colon
+(:) tells <i>Vim</i> to enter <i>ex</i> command mode. All
+<i>ex</i> commands start with a line range, in this case,
+the entire file (line 1 to the last line: $).  
+</p><p> 
+The
+first set of slashes enclose the "from text".  The square
+brackets indicate that either character can be a match.
+So <tt><u>[ &lt;tab&gt;]</u></tt> matches either space or tab.  The star
+(<tt><u>*</u></tt>) means that the previous character specification
+(space or tab) can be repeated any of number times.
+The dollar (<tt><u>$</u></tt> indicates an end of line.	
+</p><p> 
+So <tt><u>[ &lt;tab&gt;]*$</u></tt>
+tells <i>Vim</i> to look for any number of spaces or tabs
+followed by an end of line.  
+</p><p> 
+These are then replaced by
+the text in the next set of slashes. This text is nothing,
+so the spaces and tabs are effectively removed.  
+</p><hr>
+<h2><a name="write">Oops, I left the file write protected</a></h2> 
+<p>
+Say your editing a file and you've made a lot
+of changes. This is a very important file and to preserve
+it from any casual changes, you've write protected it,
+even  against yourself.
+</p><p> 
+The <i>Vim</i> editor allows you
+to edit a write protected file with little or no warning.
+The only trouble is that when you try to exit using "<tt><u>ZZ</u></tt>"
+you get the error:
+</p><pre>    file.txt	File is read only
+</pre>
+<p> 
+and
+<i>Vim</i> doesn't exit. 
+</p><p> 
+So what can you do?  You don't
+want to throw away all those changes, but you need to get
+out of <i>Vim</i> so you can turn on write permission.
+</p><p>
+The trick is to execute the <tt><u>:shell</u></tt> command. This command
+takes you out of <i>Vim</i> by starting a command processor
+(shell) running under <i>Vim</i></p><p> You can then write
+enable the file:
+</p><pre> 
+	$ <b>chmod u+w file.txt</b>
+</pre>
+and get out of the shell, returning to <i>Vim</i>
+<pre>	$ <b>exit</b>
+</pre> 
+<p>
+Finally you need to force <i>Vim</i> to write
+the file using the command:
+</p><pre>	<b>:w!</b>
+</pre>
+(It still thinks the file is write protected so we need to use
+the force option (<tt><u>!</u></tt>) to convince it to try writing.)
+<p>
+</p><h3 align="center">Note:</h3>
+<p>
+It is
+a good idea to only spend as short a time as possible in
+a command processor started by the :shell command. That's
+because it's easy to forget that you're running under
+<i>Vim</i>.  It's possible to start a shell, that starts
+<i>Vim</i>, that starts a shell, that starts <i>Vim</i>,
+that ....  Using this method you can easily consume a lot
+of resources and generate a lot of confusion.
+</p><p> 
+By keeping
+your <tt><u>:shell</u></tt> sessions short you can avoid lots of trouble.
+</p><hr>
+<h2><a name="last">Changing "Last, First" to "First Last"</a></h2>
+<p>
+You have a list of names in the form:
+</p><pre>	Last, First
+</pre>
+<p>
+How to you change them to:
+</p><pre>	First Last
+</pre>
+It can be done with one command:
+<pre>    <b>:1,$s/\([^,]*\), \(.*$\)/\2 \1/</b>
+</pre>
+The colon (<tt><u>:</u></tt>) tells <i>Vim</i>
+that this is an <i>ex</i> style command.
+<p> 
+The line range for this command is the whole file as indicated by
+the range <tt><u>1,$</u></tt>.	
+</p><p> 
+The <tt><u>s</u></tt> (substitute) tells <i>Vim</i>
+to do a string substitution.
+</p><p> 
+The old text is a complex
+regular expression.  The  <tt><u>\( ... \)</u></tt> delimiters are used
+to inform the editor that the text that matches the
+regular expression side is to be treated special.
+</p><p>
+The text in the first <tt><u>\( ... \)</u></tt> is assigned to 
+<tt><u>\1</u></tt> in the replacement text.  
+The second set of text inside <tt><u>\( ... \)</u></tt> is assigned 
+<tt><u>\2</u></tt> and so on.
+</p><p> 
+In this case the
+first regular expression is any bunch of characters that
+does not include a comma. The <tt><u>[^,]</u></tt> means anything but a
+comma, the * means a bunch (zero or more characters).
+</p><p>
+The second expression matches anything: <tt><u>.*</u></tt> up to the end
+of line: <tt><u>$</u></tt>.
+</p><p> 
+The result of this substitution is that
+the first word on the line is assigned to <tt><u>\1</u></tt> and the
+second to <tt><u>\2</u></tt>.  These values are used in the end of the
+command to reverse the word.
+</p><p>
+The figure below shows the
+relationship between the <tt><u>\( \)</u></tt> 
+enclosed strings and the <tt><u>\1</u></tt>,
+<tt><u>\2</u></tt> markers.
+</p><pre>	:1,$s/\([^,]*\), \(.*$\)/\2 \1/
+	      ^^     ^^  ^^   ^^^ ^  ^            
+	      ||     ||  ||   ||| |  +-----  String matched by 
+	      ||     ||  ||   ||| |          first \( \)
+	      ||     ||  ||   ||| +--------- String matched by
+	      ||     ||  ||   |||            second \( \)
+	      ||     ||  ||   ||+----------- Slash separating 
+	      ||     ||  ||   ||             old/new strings
+	      ||     ||  ++---++------------ Second \( \) 
+	      ++-----++--------------------- First \( \)
+</pre>
+<p>
+The next figure 
+breaks out the various parts of the regular
+expressions used in this example.
+</p><pre>	:1,$s/\([^,]*\), \(.*$\)/\2 \1/
+		^^^^^  ^^  ^^^
+		|||||  ||  ||+--- The end of the line
+		|||||  ||  |+---- Repeated 0 or more time
+		|||||  ||  +----- Any character
+		|||||  ||  +++--- Any character, repeated,
+		|||||  ||             followed by EOL
+		|||||  |+-------- The character space
+		|||||  +--------- The character comma
+		||||+------------ Repeated 0 or more times
+		|||+------------- Closes the [] expression
+		||+-------------- The character comma
+		|+--------------- Match anything except the
+		|                 next character
+		+---------------- Starts a set of matches
+		++++------------- Match anything but comma
+		    +------------ Repeated 0 or more times
+		       +--------- Followed by comma
+</pre>
+<hr>
+<h2><a name="all_files">How to edit all the files containing a given word</a></h2>
+<p>
+This involves the <i>fgrep</i>
+as well as the special shell character backtick (<tt><u>`</u></tt>).
+</p><p>
+To edit all the C program files that contain the word
+<i>indentation_level</i> execute the command:
+</p><pre>    $ <b><i>vim</i> `fgrep -l indentation_level *.c`</b>
+</pre>
+<p> The <tt><u>fgrep -l indentation_level *.c</u></tt> 
+searches all the files ending with
+<i>.c</i> for the word and lists them out.
+</p><p> 
+Since this command
+is enclosed in backtick (<tt><u>`</u></tt>) characters the results of
+the command (a list of files) takes the place of the
+command on the command line.</p><p> The <i>Vim</i> editor
+is then run on these files.  The commands <tt><u>:n{Enter}</u></tt> and
+<tt><u>:rew{Enter}</u></tt> can then be used to browse through the files.
+</p><h2><a name="all_files_grep">How to edit all the files containing a given word using the built-in grep</a></h2>
+<p>
+Start <i>Vim</i>.
+</p><p>
+Execute the command:
+</p><pre>    :grep <i>&gt;word&lt;</i> <i>&gt;file-list&lt;</i>
+</pre>
+<p>
+This finds the first location of <i>word</i> in the given files and
+positions the cursor on that line.   You can use the command
+<tt>:cn</tt>  to find the next occurance.
+
+
+</p></body></html>
