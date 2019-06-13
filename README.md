@@ -44,6 +44,7 @@ Created by yyq123@gmail.com using [vim](http://www.vim.org/)
   - [字体(Font)](http://yyq123.blogspot.com/2017/02/vim-font.html)[<sup>B</sup>](http://yyq123.blogspot.com/2017/02/vim-font.html)<sup>/</sup>[<sup>Z</sup>](http://zhuanlan.zhihu.com/p/25418424)
   - [菜单(Menu)](http://yyq123.github.io/learn-vim/learn-vi-38-Menu.html)[<sup>B</sup>](http://yyq123.blogspot.com/2018/06/vim-menu.html)<sup>/</sup>[<sup>Z</sup>](http://zhuanlan.zhihu.com/p/38521894)
   - [工具栏(ToolBar)](http://yyq123.github.io/learn-vim/learn-vi-39-ToolBar.html)[<sup>B</sup>](https://yyq123.blogspot.com/2018/07/vim-toolbar.html)<sup>/</sup>[<sup>Z</sup>](http://zhuanlan.zhihu.com/p/38821238)
+  - [对话框(Dialog)](http://yyq123.github.io/learn-vim/learn-vi-131-Dialog.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/06/vim-dialog.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/69046577)
 - **多文件操作**
   - [参数(Arguments)](http://yyq123.blogspot.com/2009/08/vim-arguments.html)[<sup>B</sup>](http://yyq123.blogspot.com/2009/08/vim-arguments.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/39957182)
   - [缓冲区 (Buffer)](http://yyq123.blogspot.com/2009/07/vim-buffer.html)[<sup>B</sup>](http://yyq123.blogspot.com/2009/07/vim-buffer.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/60260968)
