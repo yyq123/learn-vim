@@ -29,37 +29,36 @@
 	<p style="text-indent:2em"><code class="inset">:browse {command} [directory]</code></p>
 	<ul>
 		<li><i>{command}</i>，需要执行的编辑器命令。例如，:read，:write，:edit等；</li>
-		<li><i>[directory]</i>，指定了文件浏览器开始的目录。如果没有指定此参数，那么将会使用browsedir选项所指定的目录。</li>
+		<li><i>[directory]</i>，指定文件浏览器开始的目录。如果没有指定此参数，那么将会使用browsedir选项所指定的目录。</li>
 	</ul>
 	<p>browsedir选项可以使用以下三个值：</p>
 	<ul>
-		<li><i>last</i>，上一次浏览的目录（默认值）；</li>
+		<li><i>last</i>，上次浏览的目录（默认值）；</li>
 		<li><i>buffer</i>，与当前缓冲区相同的目录；</li>
 		<li><i>current</i>，当前目录。</li>
 	</ul>
 	<p>如果希望从当前目录开始选择文件，那么可以使用以下设置命令：</p>
 	<p style="text-indent:2em"><code class="inset">:set browsedir=current</code></p>
+	<p>可以使用以下命令，在指定目录中选择并打开文件：</p>
+	<p style="text-indent:2em"><code class="inset">:browse e E:\learn-vim\</code></p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">选项对话框</p>
-	<p>使用以下任一命令，将会打开一个窗口并显示Vim选项：</p>
-	<p style="text-indent:2em"><code class="inset">:browse set</code></p>
-	<p style="text-indent:2em"><code class="inset">:options</code></p>
+	<p>使用<code class="inset">:browse set</code>或<code class="inset">:options</code>命令，将会打开一个窗口并显示Vim选项：</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/browse_set.png" title="browse_set"><img src="https://yyq123.github.io/learn-vim/images/browse_set.png" alt="" width="500" height="227" /></a></p>
 	<p>在目录行上（index line），点击<kbd>&lt;CR&gt;</kbd>回车键，将跳转到相应类别的具体选项：</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/browse_set_line.png" title="browse set line"><img src="https://yyq123.github.io/learn-vim/images/browse_set_line.png" alt="" width="500" height="177" /></a></p>
-	<p>在包含set命令的行上（set line），点击<kbd>&lt;CR&gt;</kbd>回车键，可以执行该设置命令。如果该选项是布尔值，那么点击回车键将立刻转换此开关选项；如果该选项是数值或者字符串，那么可以先修改值，然后再点击回车键来修改选项。</p>
+	<p>在包含set命令的行上（set line），点击<kbd>&lt;CR&gt;</kbd>回车键，可以执行该设置命令。如果该选项是布尔值，那么点击回车键将立刻打开/关闭此选项；如果该选项是数值或者字符串，那么可以先修改此值，然后再点击回车键来变更选项。</p>
 	<p>在包含帮助信息关键字的行上（help line），点击<kbd>&lt;CR&gt;</kbd>回车键，可以显示该选项的帮助信息。</p>
-	<p>使用<code class="inset">:help :browse-set</code>命令，可以查看更多选项对话框的帮助信息。</p>
+	<p>使用<code class="inset">:help :browse-set</code>命令，可以查看更多选项对话框的帮助信息。关于更多选项设置的信息，请参阅<a href="http://yyq123.github.io/learn-vim/learn-vi-50-SetOption.html" title="set-option">设置选项(set-option)</a>章节。</p>
 
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
-		<tr><td><code class="inset">:promptfind</code></td><td>查找对话框</td></tr>
-		<tr><td><code class="inset">:promptrepl</code></td><td>替换对话框</td></tr>
-		<tr><td><code class="inset">:browse</code></td><td>文件对话框</td></tr>
-		<tr><td><code class="inset">:browse set</code></td><td rowspan="2">选项对话框</td></tr>
+		<tr><td><code class="inset">:promptfind</code></td><td>打开查找对话框</td></tr>
+		<tr><td><code class="inset">:promptrepl</code></td><td>打开替换对话框</td></tr>
+		<tr><td><code class="inset">:browse</code></td><td>打开文件对话框</td></tr>
+		<tr><td><code class="inset">:browse set</code></td><td rowspan="2">打开选项对话框</td></tr>
 		<tr><td><code class="inset">:options</code></td></tr>
 	</table>
-&ldquo;&rdquo;
 
 	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="菜单(Menu)" href="http://yyq123.github.io/learn-vim/learn-vi-38-Menu.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="设置选项(set-option)" href="http://yyq123.github.io/learn-vim/learn-vi-50-SetOption.html">下一篇</a>&gt;</span></p>
 
