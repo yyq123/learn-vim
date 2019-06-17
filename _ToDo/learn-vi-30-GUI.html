@@ -9,67 +9,80 @@
 </head>
 <body>
 	:help gui
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">启用/禁用</p>
-	<p>在操作系统的终端中执行以下命令，就可以打开图形界面的GVim来编辑文件了：</p>
-	<p style="text-indent:2em"><code class="inset">$ gvim [filename]</code></p>
-	<p>使用 -geometry width+x height x_offset y_offset 标记，可以指定启动GVim的屏幕位置和窗口大小。</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">指定屏幕位置</p>
+	<p>在操作系统的终端中执行以下命令，可以在指定的屏幕位置打开图形界面的GVim：</p>
+	<p style="text-indent:2em"><code class="inset">$ gvim -geometry width+ x heightx_offset-y_offset</code></p>
+	<p>请注意， -geometry 标记用于指定启动GVim的屏幕位置和窗口大小。此标记仅适用于Linux操作系统。无法通过此标记指定Windows窗口的大小。</p>
 	<ul>
-		<li>width，窗口宽度；</li>
-		<li>height，窗口高度；</li>
-		<li>x_offset以像素数指定了屏幕的左边和窗口的左边的距离.如果这个值是一个负数,则是指定编辑器的左边和屏幕的右边的距离；</li>
-		<li>y_offset则是指定了上边缘,如果为负数,则是指定了下边缘的空白大小。</li>
+		<li><i>width</i>，窗口宽度；</li>
+		<li><i>height</i>，窗口高度；</li>
+		<li><i>x_offset</i>，以像素数指定了屏幕的左边界和窗口的左边界的距离。如果此值为负数，那么则是指定编辑器的左边界和屏幕的右边界的距离；</li>
+		<li><i>y_offset</i>，以像素数指定了与屏幕上边缘的距离。如果此值为负数，则是指定了与屏幕下边缘的距离。</li>
 	</ul>
-	<p>使用以下命令，可以在屏幕的左上角启动gvim：</p>
+	<p>使用以下命令，将在屏幕的左上角启动gvim：</p>
 	<p style="text-indent:2em"><code class="inset">$ gvim -geometry +0+0</code></p>
-	<p>使用以下命令，可以打开一个80行x24列的编辑窗：</p>
+	<p>使用以下命令，将在屏幕的右下角启动gvim：</p>
+	<p style="text-indent:2em"><code class="inset">$ gvim -geometry -0-0</code></p>
+	<p>使用以下命令，可以打开一个80行x24列的编辑窗口：</p>
 	<p style="text-indent:2em"><code class="inset">$ gvim -geometry 80x24</code></p>
 	<p>使用以下命令，则可以在屏幕的左上角打开一个80行x24列的编辑窗：</p>
 	<p style="text-indent:2em"><code class="inset">$ gvim -geometry 80x24+0+0</code></p>
+	<p>可以想象，如果我们需要针对同样尺寸的窗口进行截图，那么此功能就非常有价值了。</p>
 
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">移动窗口</p>
 	<p>在GVim中使用以下命令，可以得到当前窗口（相对于左上角）的屏幕位置：</p>
 	<p style="text-indent:2em"><code class="inset">:winpos</code></p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/winpos.png" title="winpos"><img src="https://yyq123.github.io/learn-vim/images/winpos.png" alt="winpos"></a></p>
 	<p>使用:winpos X Y命令，则可以将当前窗口移动到指定的屏幕位置：</p>
 	<p style="text-indent:2em"><code class="inset">:winpos 20 30</code></p>
 
-	<p style="text-indent:2em"><code class="inset"></code></p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">GUI控制命令</p>
-	<p>我们可以用guioptions选项来控制许多GUI特征。命令形式如下：</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">指定窗口尺寸</p>
+	<p>使用以下命令，可以显示当前编辑窗口的行数：</p>
+	<p style="text-indent:2em"><code class="inset">:set lines?</code></p>
+	<p>使用以下命令，则可以设置窗口的行数为n：</p>
+	<p style="text-indent:2em"><code class="inset">:set lines=n</code></p>
+	<p>如果需要指定窗口的列数为n，则可以使用以下命令：</p>
+	<p style="text-indent:2em"><code class="inset">:set columns=n</code></p>
+	<p>当行过宽时，vim会自动进行回折以适应屏幕的宽度。如果设置了nowrap选项，则Vim不会自动折行，这时超出屏幕的部分将不会被显示出来。在默认的情况下，Vim也不会显示水平滚动条。我们可以使用<code class="inset">:set guioptions+=b</code>命令来显示水平滚动条。关于折行显示的更多信息，请参阅<a href="http://yyq123.blogspot.com/2010/07/vim-wrap.html" title="">折行(Wrap)</a>章节。</p>
+	<p>在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">配置文件(vimrc)</a>中增加以下命令，将行和列都设置为足够大的值，可以在启动GVim时自动最大化窗口：</p>
+	<p style="text-indent:2em"><code class="inset">set lines=500 columns=500</code></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">GUI选项</p>
+	<p>使用以下命令，可以通过guioptions选项来控制GUI特征：</p>
 	<p style="text-indent:2em"><code class="inset">:set guioptions=options</code></p>
-	<p>其中options是一个字母集合，每一个是一个选项：</p>
+	<p>其中<i>options</i>是一个字母集合，每一个字面代表一个选项：</p>
 	<table summary="GUI Options" border="1" rules="all" cellspacing="2" cellpadding="4">
-		<tr><td><code class="inset">a</code></td><td>Autoselect</td><td>如果设定了此选项，那么在可视化模式下选择了文本，Vim会将所选的文本放在系统的全局寄存器中。这就意味着，可以将当前选中的文本用命令"*p粘贴到其他文件。如果没有设定此选项，那么就需要用命令"*y将所选择的文本复制到系统寄存器中。在系统寄存中的文本可以被其他程序所使用。</td></tr>
+		<tr><td><code class="inset">a</code></td><td>Autoselect</td><td>如果设定了此选项，那么在可视化模式下选中文本，Vim会将所选文本放置到系统的全局寄存器中。这就意味着，可以将当前选中的文本用命令 "*p 粘贴到其他文件。如果没有设定此选项，那么就需要使用命令 "*y 将所选择的文本复制到系统寄存器中。在系统寄存中的文本，也可以被其他程序所使用。</td></tr>
 		<tr><td><code class="inset">P</code></td><td></td><td>类似Autoselect，但使用"+寄存器，而不是"*寄存器。</td></tr>
-		<tr><td><code class="inset">c</code></td><td></td><td>use console dialogs instead of pop-up</td></tr>
-		<tr><td><code class="inset">f</code></td><td>Foreground</td><td>在Linux系统上，gvim可以执行fork()命令，让编辑器在后台运行。通过设置此选项，可以禁用此行为。如果在一个脚本程序中，需要执行gvim命令使得用户可以编辑文件而且要等待到编辑工作结束，此选项就会显得更为有用。（注意：这个选项要在初始文件中进行设置）</td></tr>
+		<tr><td><code class="inset">f</code></td><td>Foreground</td><td>在Linux系统上，gvim可以执行fork()命令，让编辑器在后台运行。通过设置此选项，可以禁用此行为。如果在一个脚本程序中，需要执行gvim命令使得用户可以编辑文件而且要等待到编辑工作结束，此选项就会显得更为有用。（注意：这个选项需要在初始文件中进行设置）</td></tr>
 		<tr><td><code class="inset">i</code></td><td>Icon</td><td>如果设置了这个选项，gvim就会在X Windows系统上运行而且最小化时会显示一个图标。如果没有设置这个选项，只会显示正在编辑的文件名称而不会显示图标。</td></tr>
-		<tr><td><code class="inset">m</code></td><td>Menu</td><td>显示菜单栏</td></tr>
-		<tr><td><code class="inset">M</code></td><td>Nomenu</td><td>如果设置了这个选项，那么系统菜单的定义文件$VIMRUNTIME/menu.vim就不会被读入。（注意：这个选项要在初始文件中进行设置）</td></tr>
-		<tr><td><code class="inset">g</code></td><td>Gray</td><td>将不可用的菜单显示为灰色。如果没有设置这个选项，那么不可用的菜单就会从菜单栏或是工具栏中移除。</td></tr>
-		<tr><td><code class="inset">t</code></td><td>Tear off</td><td>打开tear off菜单</td></tr>
-		<tr><td><code class="inset">T</code></td><td>Tool bar</td><td>显示工具栏</td></tr>
-		<tr><td><code class="inset">r</code></td><td>Always Right scrollbar</td><td>总是在编辑器右侧放置滚动条</td></tr>
-		<tr><td><code class="inset">R</code></td><td>Display Right scrollbar</td><td>如果窗口垂直分隔，将在编辑器右侧放置滚动条</td></tr>
-		<tr><td><code class="inset">l</code></td><td>Always Left scrollbar</td><td>在编辑器左侧放置滚动条</td></tr>
-		<tr><td><code class="inset">L</code></td><td>Display Left scrollbar</td><td>如果窗口垂直分隔，将在编辑器左侧放置滚动条</td></tr>
-		<tr><td><code class="inset">b</code></td><td>Bottom scrollbar</td><td>在编辑器底部放置滚动条</td></tr>
-		<tr><td><code class="inset">v</code></td><td>Vertical dialog boxes</td><td>在对话框中采用垂直的排列顺序</td></tr>
-		<tr><td><code class="inset">p</code></td><td>Pointer callback fix</td><td>可以用这个选项来处理当X11窗口管理器发生问题时的情况。这样可以使用程序可以产生定点回溯。（注意：这个选项要在初始文件中进行设置）</td></tr>
-		<tr><td></td><td></td><td></td></tr>
+		<tr><td><code class="inset">m</code></td><td>Menu</td><td>显示菜单栏。</td></tr>
+		<tr><td><code class="inset">M</code></td><td>Nomenu</td><td>如果设置了此选项，那么系统菜单的定义文件$VIMRUNTIME/menu.vim就不会被读入。（注意：此选项需要在初始文件中进行设置）</td></tr>
+		<tr><td><code class="inset">g</code></td><td>Gray</td><td>将不可用的菜单显示为灰色。如果没有设置此选项，那么不可用的菜单就会从菜单栏或是工具栏中移除。<br /><img src="https://yyq123.github.io/learn-vim/images/guioptions_g.png" alt="guioption"></td></tr>
+		<tr><td><code class="inset">t</code></td><td>Tear off</td><td>启用Tear off菜单（可以将菜单从界面中分离出来）<br /><img src="https://yyq123.github.io/learn-vim/images/guioptions_g.png" alt="guioption"></td></tr>
+		<tr><td><code class="inset">T</code></td><td>Tool bar</td><td>显示工具栏。</td></tr>
+		<tr><td><code class="inset">r</code></td><td>Always Right scrollbar</td><td>总是在编辑器右侧放置滚动条。</td></tr>
+		<tr><td><code class="inset">R</code></td><td>Display Right scrollbar</td><td>如果窗口垂直分隔，将在编辑器右侧放置滚动条。</td></tr>
+		<tr><td><code class="inset">l</code></td><td>Always Left scrollbar</td><td>总是在编辑器左侧放置滚动条。</td></tr>
+		<tr><td><code class="inset">L</code></td><td>Display Left scrollbar</td><td>如果窗口垂直分隔，将在编辑器左侧放置滚动条。</td></tr>
+		<tr><td><code class="inset">b</code></td><td>Bottom scrollbar</td><td>在编辑器底部放置滚动条。</td></tr>
+		<tr><td><code class="inset">v</code></td><td>Vertical dialog boxes</td><td>对话框中的按钮采用垂直排列。<br /><img src="https://yyq123.github.io/learn-vim/images/guioptions_g.png" alt="guioption"></td></tr>
 	</table>
-	<p>例如，我们可以使用以下命令隐藏菜单栏、工具栏和滚动条，以获得更大的屏幕空间：</p>
-	<p style="text-indent:2em"><code class="inset">:set guioptions-=mTrlb</code></p>
+	<p>使用以下命令，可以隐藏菜单栏、工具栏和滚动条，以获得更大的屏幕空间：</p>
+	<p>
+		<code class="inset">:set guioptions-=m</code><br />
+		<code class="inset">:set guioptions-=T</code><br />
+		<code class="inset">:set guioptions-=r</code><br />
+		<code class="inset">:set guioptions-=l</code><br />
+		<code class="inset">:set guioptions-=b</code>
+	</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/guioptions-=mTrlb.png.png" title="guioptions"><img src="https://yyq123.github.io/learn-vim/images/guioptions-=mTrlb.png.png" alt="guioptions" width="500" height="586"></a></p>
 	<p>如果想要重新显示隐藏的窗口部件，可以使用以下命令：</p>
 	<p style="text-indent:2em"><code class="inset">:set guioptions+=T</code></p>
 <code class="inset">:help guioptions</code>
 
-	<p style="font-weight:bold">行数</p>
-	<p>使用<code class="inset">:set lines?</code>命令可以显示当前编辑窗口的行数。利用<code class="inset">:set lines=n</code>命令可以改变行数，这里的n就是我们希望具有的行数。与此类似，如果我们要改变当前窗口的列数，可以用<code class="inset">:set columns=columns</code>命令。</p>
-	
-	<p style=font-weight:bold">行宽</p>
-	<p>当行过宽时，vim会自动进行回折以适应屏幕的宽度。如果设置了nowrap选项，则Vim不会自动折行，这时超出屏幕的部分将不会被显示出来。在默认的情况下，Vim也不会显示水平滚动条。我们可以使用<code class="inset">:set guioptions+=b</code>命令来显示水平滚动条。</p>
-	
+
 
 
 	<p style=font-weight:bold">颜色</p>
