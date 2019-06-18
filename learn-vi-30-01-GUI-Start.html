@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 启动图形界面(gui-start)</title>
+</head>
+<body>
+	<h1>VIM学习笔记 启动图形界面(gui-start)</h1>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">指定屏幕位置</p>
+	<p>在操作系统的终端中执行以下命令，可以在指定的屏幕位置打开图形界面的GVim：</p>
+	<p style="text-indent:2em"><code class="inset">$ gvim -geometry width+ x heightx_offset-y_offset</code></p>
+	<p>请注意， -geometry 标记用于指定屏幕位置和窗口大小。此标记仅适用于Linux操作系统。</p>
+	<ul>
+		<li><i>width</i>，窗口宽度；</li>
+		<li><i>height</i>，窗口高度；</li>
+		<li><i>x_offset</i>，以像素数指定屏幕的左边界和窗口的左边界的距离。如果此值为负数，那么则是指定编辑器的左边界和屏幕的右边界的距离；</li>
+		<li><i>y_offset</i>，以像素数指定与屏幕上边缘的距离。如果此值为负数，则是指定了与屏幕下边缘的距离。</li>
+	</ul>
+	<p>使用以下命令，将在屏幕的左上角启动gvim：</p>
+	<p style="text-indent:2em"><code class="inset">$ gvim -geometry +0+0</code></p>
+	<p>使用以下命令，将在屏幕的右下角启动gvim：</p>
+	<p style="text-indent:2em"><code class="inset">$ gvim -geometry -0-0</code></p>
+	<p>使用以下命令，可以打开一个80行x24列的编辑窗口：</p>
+	<p style="text-indent:2em"><code class="inset">$ gvim -geometry 80x24</code></p>
+	<p>使用以下命令，则可以在屏幕的左上角打开一个80行x24列的编辑窗：</p>
+	<p style="text-indent:2em"><code class="inset">$ gvim -geometry 80x24+0+0</code></p>
+	<p>如果我们需要针对同样尺寸的窗口进行截图，那么此功能就非常有价值了。</p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">移动窗口位置</p>
+	<p>在GVim中使用以下命令，可以得到当前窗口（相对于左上角）的屏幕位置：</p>
+	<p style="text-indent:2em"><code class="inset">:winpos</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/winpos.png" title="winpos"><img src="https://yyq123.github.io/learn-vim/images/winpos.png" alt="winpos"></a></p>
+	<p>使用:winpos X Y命令，则可以将当前窗口移动到指定的屏幕位置：</p>
+	<p style="text-indent:2em"><code class="inset">:winpos 20 30</code></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">指定窗口尺寸</p>
+	<p>使用以下命令，可以显示当前窗口的行数：</p>
+	<p style="text-indent:2em"><code class="inset">:set lines?</code></p>
+	<p>使用以下命令，则可以设置窗口的行数为n：</p>
+	<p style="text-indent:2em"><code class="inset">:set lines=n</code></p>
+	<p>如果需要指定窗口的列数为n，则可以使用以下命令：</p>
+	<p style="text-indent:2em"><code class="inset">:set columns=n</code></p>
+	<p>当行过宽时，vim会自动进行回折以适应屏幕的宽度。如果设置了nowrap选项，则Vim不会自动折行，这时超出屏幕的部分将不会被显示出来。在默认的情况下，Vim也不会显示水平滚动条。我们可以使用<code class="inset">:set guioptions+=b</code>命令来显示水平滚动条。关于折行显示的更多信息，请参阅<a href="http://yyq123.blogspot.com/2010/07/vim-wrap.html" title="">折行(Wrap)</a>章节。</p>
+	<p>在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">配置文件(vimrc)</a>中增加以下命令，将行和列都设置为足够大的值，可以在启动GVim时自动最大化窗口：</p>
+	<p style="text-indent:2em"><code class="inset">set lines=500 columns=500</code></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">标题栏</p>
+	<p>使用以下命令，可以将当前窗口的标题设置为正在编辑的文件名：</p>
+	<p style="text-indent:2em"><code class="inset">:set title</code></p>
+	<p>默认情况下，窗口标题将显示当前编辑的文件名，随后是一个状态标识码，以及文件路径：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/set_title.png" title="set title"><img src="https://yyq123.github.io/learn-vim/images/set_title.png" alt="set title"></a></p>
+	<p>其中，状态标识码有以下几种：</p>
+	<ul>
+		<li><code class="inset">-</code>，文件不可更改；</li>
+		<li><code class="inset">+</code>，文件已经更改；</li>
+		<li><code class="inset">=</code>，只读文件；</li>
+		<li><code class="inset">=+</code>，只读文件，已经被更改。</li>
+	</ul>
+	<p>有时文件全名会很长，我们可以使用以下命令，来指定文件名占用标题栏空间的百分比：</p>
+	<p style="text-indent:2em"><code class="inset">:set titlelen=85</code></p>
+	<p>使用以下命令，可以直接改变标题为指定字符串：</p>
+	<p style="text-indent:2em"><code class="inset">:set titlestring=Hello World!</code></p>
+	<p>使用<code class="inset">:help titlestring</code>命令，可以查看关于titlestring选项的更多帮助信息。</p>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:winpos [x] [y]</code></td><td>显示/指定窗口位置</td></tr>
+		<tr><td><code class="inset">:set lines?</code></td><td>显示当前窗口的行数</td></tr>
+		<tr><td><code class="inset">:set lines=n</code></td><td>设置行数</td></tr>
+		<tr><td><code class="inset">:set columns=n</code></td><td>设置列数</td></tr>
+		<tr><td><code class="inset">:set guioptions+=b</code></td><td>显示水平滚动条</td></tr>
+		<tr><td><code class="inset">:set title</code></td><td>在窗口标题中显示文件名</td></tr>
+		<tr><td><code class="inset">:set titlelen=85</code></td><td>设置文件名占用标题栏的百分比</td></tr>
+		<tr><td><code class="inset">:set titlestring=str</code></td><td>设置窗口标题</td></tr>
+	</table>
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="状态行(Status Line)" href="http://yyq123.github.io/learn-vim/learn-vi-31-StatusLine.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="工具栏(ToolBar)" href="http://yyq123.github.io/learn-vim/learn-vi-39-ToolBar.html">下一篇</a>&gt;</span></p>
+</body>
+</html>

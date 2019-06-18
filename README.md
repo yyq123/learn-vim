@@ -2,7 +2,7 @@
 
 Created by yyq123@gmail.com using [vim](http://www.vim.org/)
 
-- [**引言**](https://yyq123.github.io/learn-vim/learn-vi-00-Intro.html) [<sup>B</sup>](https://yyq123.blogspot.com/2018/05/vim-intro.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/37478384)
+- [**引言**](https://yyq123.github.io/learn-vim/learn-vi-00-01-Intro.html) [<sup>B</sup>](https://yyq123.blogspot.com/2018/05/vim-intro.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/37478384)
 - **安装配置**
   - [在Linux下安装Vim](https://yyq123.github.io/learn-vim/learn-vi-201-Install-Vim-Linux.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/02/install-vim-linux.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/57650613)
   - [在Mac下安装Vim](https://yyq123.github.io/learn-vim/learn-vi-202-Install-Vim-Mac.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/04/install-vim-mac.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/64024294)
@@ -37,7 +37,8 @@ Created by yyq123@gmail.com using [vim](http://www.vim.org/)
   - [宏(Macro)](http://yyq123.blogspot.com/2011/03/vim-macro.html)[<sup>B</sup>](http://yyq123.blogspot.com/2011/03/vim-macro.html)<sup>/</sup>[<sup>Z</sup>](http://zhuanlan.zhihu.com/p/26401360)
   - [多编码处理（Multi-Encodings）](http://yyq123.blogspot.com/2010/07/vim-multi-encoding.html)[<sup>B</sup>](http://yyq123.blogspot.com/2010/07/vim-multi-encoding.htm)<sup>/</sup>[<sup>Z</sup>](http://zhuanlan.zhihu.com/p/25451437)
 - **图形界面**
-  - [状态行(Status Line)](http://yyq123.blogspot.com/2009/10/vim-statusline.html)[<sup>B</sup>](http://yyq123.blogspot.com/2009/10/vim-statusline.html)<sup>/</sup>[<sup>Z</sup>](http://zhuanlan.zhihu.com/p/25494323)
+  - [启动图形界面(gui-start)](http://yyq123.github.io/learn-vim/learn-vi-30-01-GUI-Start.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/06/vim-gui-start.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/69699141)
+  - [状态行(Status Line)](http://yyq123.github.io/learn-vim/learn-vi-31-StatusLine.html)[<sup>B</sup>](http://yyq123.blogspot.com/2009/10/vim-statusline.html)<sup>/</sup>[<sup>Z</sup>](http://zhuanlan.zhihu.com/p/25494323)
   - [行号(Line Number)](http://yyq123.blogspot.com/2017/01/vim-line-number.html)[<sup>B</sup>](http://yyq123.blogspot.com/2017/01/vim-line-number.html)<sup>/</sup>[<sup>Z</sup>](http://zhuanlan.zhihu.com/p/24933320)
   - [光标(Cursor)](http://yyq123.blogspot.com/2012/01/vim-cursor.html)[<sup>B</sup>](http://yyq123.blogspot.com/2012/01/vim-cursor.html)<sup>/</sup>[<sup>Z</sup>](http://zhuanlan.zhihu.com/p/24898976)
   - [鼠标(Mouse)](http://yyq123.github.io/learn-vim/learn-vi-36-Mouse.html)[<sup>B</sup>](http://yyq123.blogspot.com/2018/06/vim-mouse.html)<sup>/</sup>[<sup>Z</sup>](http://zhuanlan.zhihu.com/p/38477934)
