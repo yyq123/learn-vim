@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 设置选项(set-option)</title>
+</head>
+<body>
+	<h1>VIM学习笔记 设置选项(set-option)</h1>
+" These commands open folds
+set foldopen=block,insert,jump,mark,percent,quickfix,search,tag,undo
+
+“ press the keystroke sequence ,,1 your foldlevel gets set to 1
+map ,,1 :set foldlevel=1<CR>
+
+set foldlevelstart=10 " open most folds by default
+foldlevelstart is the starting fold level for opening a new buffer. If it is set to 0, all folds will be closed. Setting it to 99 would guarantee folds are always open. So, setting it to 10 here ensures that only very nested blocks of code are folded when opening a buffer.
+
+set foldnestmax=10 " 10 nested fold max
+Folds can be nested. Setting a max on the number of folds guards against too many folds. If you need more than 10 fold levels you must be writing some Javascript burning in callback-hell and I feel very bad for you.
+
+
+" space open/closes folds
+nnoremap <space> za
+za opens/closes the fold around the current block.
+
+" Set the search scan to wrap around the file
+set wrapscan
+
+" Set the forward slash to be the slash of note. Backslashes suck
+" This is really only applicable to Windows but I like to have a vimrc
+" that works no matter what OS I'm currently on
+set shellslash
+
+" Allow backspacing over indent, eol, and the start of an insert
+set backspace=2
+
+" See :help 'cpoptions' for these ones. 'cpoptions' has a huge
+" set of possible options
+set cpoptions=ces$
+
+当我们删除或是修改了一些行的文本,如果这些行数超出了report所指定的行数,Vim编辑器就会告诉这一些情况.所以如果我们要Vim报告所有的变化,我们可以用下面的命令:
+:set report=0
+相反,如果我们不希望Vim来告诉我们这些变化,我们可以将这个值设成一个相当大的值就可了.
+我们可以用下面的命令来设置帮助窗口的最小尺寸:
+:set helpheight={height}
+我们这里设置的数值会在打开帮助窗口时用到.
+我们也可以用下面的命令来设置预览窗口的大小:
+:set previewheight={height}
+
+
+	<p>Vim是一个高度可定制的编辑器，我们可以使用 :set 命令来设置大量的选项，其大致可分为三种：布尔值选项、数值选项和字符串选项。</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">自定义信息</p>
+	<p>Vim使用屏幕底部来显示消息，如果消息长度超出一行是，将会得到类似于&ldquo;按回车继续&rdquo;的提示。通过设置 <i>cmdheight</i> 选项来增加消息的行数，可以显示更多的信息以避免不必要的提示。例如使用以下命令，设置命令行高度为3行：</p>
+	<p style="text-indent:2em"><code class="inset">:set cmdheight=3</code></p>
+	<p>当Vim捕获一个错误时，将会显示错误信息。如果希望同时发出声音警告，那么可以执行以下命令：</p
+	<p style="text-indent:2em"><code class="inset">:set errorbells</code></p>
+	:
+但是有时这样的设置会影响我们的其他的同事,在这样的情况下我们可以来设置visualbell选项.这样当我们输入错误时屏幕就会闪动然后回到正常状态.要设置这样的选项我们可以执行下面的命令:
+:set visualbell
+
+	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
+	<p>如果希望查看某个选项的当前值，那么可以使用 :set option? 命令，其返回值将显示在屏幕底部。例如：</p>
+显示部分命令:
+如果我们设置了showcmd选项,当我们输入命令时就会在屏幕的下部显示出部分命令.例如我们执行下面的命令:
+:set showcmd
+现在我们输入fx命令来查找x.当我们输入f时就会在底部显示f.
+这对于我们输入较为复杂的纵使时就会显示尤为有用.
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">显示状态</p>
+	<p>使用以下命令设置showmode选项，将可以在屏幕底部显示当前所处的状态：</p>
+	<p style="text-indent:2em"><code class="inset">:set showmode</code></p>
+	<p>如果顺序执行这些命令，那么选项变化如下图所示：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/setoption_bl.png" title="setoption_boolean"><img src="https://yyq123.github.io/learn-vim/images/setoption_bl.png" alt="setoption_bl" /></a></p>
+
+	<p>使用以下命令，可以设置数值选项：</p>
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
+		<tr><th>命令形式</th><th>描述</th><th>示例</th></tr>
+		<tr><td><code class="inset">:set option = value</code></td><td>设置选项的值</td><td><code class="inset">:set shiftwidth=4</code></td></tr>
+		<tr><td><code class="inset">:set option += value</code></td><td>在选项中加入一个值</td><td><code class="inset">:set shiftwidth+=2</code></td></tr>
+		<tr><td><code class="inset">:set option -= value</code></td><td>在选项中减去一个值</td><td><code class="inset">:set shiftwidth-=3</code></td></tr>
+		<tr><td><code class="inset">:set option ^= value</code></td><td>将选项乘以一个值</td><td><code class="inset">:set shiftwidth^=2</code></td></tr>
+		<tr><td><code class="inset">:set option&amp;</code></td><td>将选项设为默认值</td><td><code class="inset">:set shiftwidth&amp;</code></td></tr>
+	</table>
+	<p>如果顺序执行这些命令，那么选项变化如下图所示：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/setoption_num.png" title="setoption_num"><img src="https://yyq123.github.io/learn-vim/images/setoption_num.png" alt="setoption_num" /></a></p>
+
+	<p>使用以下命令，可以设置字符串选项：</p>
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
+		<tr><th>命令形式</th><th>描述</th><th>示例</th></tr>
+		<tr><td><code class="inset">:set option = value</code></td><td>设置选项的值</td><td><code class="inset">:set cinwords=test</code></td></tr>
+		<tr><td><code class="inset">:set option += value</code></td><td>在选项末尾增加字符串</td><td><code class="inset">:set cinwords+=end</code></td></tr>
+		<tr><td><code class="inset">:set option -= value</code></td><td>从选项中移去字符串</td><td><code class="inset">:set cinwords-=test</code></td></tr>
+		<tr><td><code class="inset">:set option ^= value</code></td><td>在选项开头增加字符串</td><td><code class="inset">:set cinwords^=start</code></td></tr>
+		<tr><td><code class="inset">:set option&amp;</code></td><td>将选项设为默认值</td><td><code class="inset">:set cinwords&amp;</code></td></tr>
+	</table>
+	<p>如果顺序执行这些命令，那么选项变化如下图所示：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/setoption_str.png" title="setoption_str"><img src="https://yyq123.github.io/learn-vim/images/setoption_str.png" alt="setoption_str" /></a></p>
+	<p>我们可以在一行:set命令中，设置多个选项。例如以下命令，将设置三个不同的选项：</p>
+	<p style="text-indent:2em"><code class="inset">:set list shiftwidth=4 incsearch</code></p>
+	<p>使用以下命令，可以将所有的选项都重置为默认值：</p>
+	<p style="text-indent:2em"><code class="inset">:set all&amp;</code></p>
+	<p>使用以下命令，将列示出所有与其默认值不同的选项：</p>
+	<p style="text-indent:2em"><code class="inset">:set</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/set.png" title="set"><img src="https://yyq123.github.io/learn-vim/images/set.png" alt="set" width="500" height="268" /></a></p>
+	<p>使用<code class="inset">:help set-option</code>命令，可以查看设置选项的更多帮助信息。</p>
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="键盘映射(Map)" href="http://yyq123.github.io/learn-vim/learn-vi-51-KeyMapping.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="配置文件(vimrc)" href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html">下一篇</a>&gt;</span></p>
+
+</body>
+</html>
+
