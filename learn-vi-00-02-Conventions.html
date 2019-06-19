@@ -8,13 +8,14 @@
 	<title>VIM学习笔记 表示法/约定(Conventions)</title>
 </head>
 <body>
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">启用/禁用</p>
-	<p>用户应该用时间的文件名和目录来分别替换</p>
-中括号[]之间的内容是可选的
-KEY PRESSES
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">快捷键 KEY PRESSES</p>
+	
 <Esc> - Indicates that the named key should be pressed.
 <Ctrl>-p - Keys joined with a - should be pressed simultaneously. In this example the
 <Ctrl> should be held down while the p key is pressed.
+	<p>用户应该用时间的文件名和目录来分别替换</p>
+中括号[]之间的内容是可选的
+
 NORMAL MODE COMMANDS
 gqap - The named characters should be entered in order while in Normal mode.
 COMMAND-LINE COMMANDS
@@ -23,7 +24,23 @@ different mode, press <Esc> before you type the command).
 :!command - As above, but command is a variable which should be substituted for its value.
 MONOSPACED FONT
 A fixed width font is used for filenames, code, and variable names.
-vi
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">命令 COMMANDS</p>
+	<p>如果要将当前窗口的标题改为正在编辑的文件名，可以使用以下命令：</p>
+	<p style="text-indent:2em"><code class="inset">:set title</code></p>
+	<p>默认情况下，窗口标题将显示当前编辑的文件名，随后是一个状态标识码，以及文件路径：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/set title.png" title="set title.png"><img src="https://yyq123.github.io/learn-vim/images/set title.png" alt="set title"></a></p>
+	<p>其中，状态标识码有以下几种：</p>
+	<ul>
+		<li><code class="inset">-</code>，文件不可更改；</li>
+		<li><code class="inset">+</code>，文件已经更改；</li>
+		<li><code class="inset">=</code>，只读文件；</li>
+		<li><code class="inset">=+</code>，只读文件，已经被更改。</li>
+	</ul>
+	<p>有时文件全名会很长，我们可以使用以下命令，来指定文件名占用标题栏空间的百分比：</p>
+	<p style="text-indent:2em"><code class="inset">:set titlelen=85</code></p>
+	<p>使用以下命令，可以直接改变标题：</p>
+	<p style="text-indent:2em"><code class="inset">:set titlestring=Hello World!</code></p>
+	<p>使用<code class="inset">:help titlestring</code>命令，可以查看关于GUI选项的更多帮助信息。</p>
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">识别文件</p>
 	<p></p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
