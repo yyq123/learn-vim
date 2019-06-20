@@ -37,9 +37,6 @@ set shellslash
 " Allow backspacing over indent, eol, and the start of an insert
 set backspace=2
 
-" See :help 'cpoptions' for these ones. 'cpoptions' has a huge
-" set of possible options
-set cpoptions=ces$
 
 当我们删除或是修改了一些行的文本,如果这些行数超出了report所指定的行数,Vim编辑器就会告诉这一些情况.所以如果我们要Vim报告所有的变化,我们可以用下面的命令:
 :set report=0
@@ -55,35 +52,25 @@ set cpoptions=ces$
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">自定义信息</p>
 	<p>Vim使用屏幕底部来显示消息，如果消息长度超出一行是，将会得到类似于&ldquo;按回车继续&rdquo;的提示。通过设置 <i>cmdheight</i> 选项来增加消息的行数，可以显示更多的信息以避免不必要的提示。例如使用以下命令，设置命令行高度为3行：</p>
 	<p style="text-indent:2em"><code class="inset">:set cmdheight=3</code></p>
-	<p>当Vim捕获一个错误时，将会显示错误信息。如果希望同时发出声音警告，那么可以执行以下命令：</p
+	<p>当Vim捕获一个错误时，将会显示错误信息。如果希望同时发出声音警告，那么可以执行以下命令：</p>
 	<p style="text-indent:2em"><code class="inset">:set errorbells</code></p>
-	:
-但是有时这样的设置会影响我们的其他的同事,在这样的情况下我们可以来设置visualbell选项.这样当我们输入错误时屏幕就会闪动然后回到正常状态.要设置这样的选项我们可以执行下面的命令:
-:set visualbell
+	<p>使用以下命令启用visualbell选项，当输入错误时屏幕就会闪动然后回到正常状态：</p>
+	<p style="text-indent:2em"><code class="inset">:set visualbell</code></p>
+
 
 	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
 	<p>如果希望查看某个选项的当前值，那么可以使用 :set option? 命令，其返回值将显示在屏幕底部。例如：</p>
-显示部分命令:
-如果我们设置了showcmd选项,当我们输入命令时就会在屏幕的下部显示出部分命令.例如我们执行下面的命令:
-:set showcmd
-现在我们输入fx命令来查找x.当我们输入f时就会在底部显示f.
-这对于我们输入较为复杂的纵使时就会显示尤为有用.
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">显示状态</p>
 	<p>使用以下命令设置showmode选项，将可以在屏幕底部显示当前所处的状态：</p>
 	<p style="text-indent:2em"><code class="inset">:set showmode</code></p>
 	<p>如果顺序执行这些命令，那么选项变化如下图所示：</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/setoption_bl.png" title="setoption_boolean"><img src="https://yyq123.github.io/learn-vim/images/setoption_bl.png" alt="setoption_bl" /></a></p>
 
-	<p>使用以下命令，可以设置数值选项：</p>
-	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
-		<tr><th>命令形式</th><th>描述</th><th>示例</th></tr>
-		<tr><td><code class="inset">:set option = value</code></td><td>设置选项的值</td><td><code class="inset">:set shiftwidth=4</code></td></tr>
-		<tr><td><code class="inset">:set option += value</code></td><td>在选项中加入一个值</td><td><code class="inset">:set shiftwidth+=2</code></td></tr>
-		<tr><td><code class="inset">:set option -= value</code></td><td>在选项中减去一个值</td><td><code class="inset">:set shiftwidth-=3</code></td></tr>
-		<tr><td><code class="inset">:set option ^= value</code></td><td>将选项乘以一个值</td><td><code class="inset">:set shiftwidth^=2</code></td></tr>
-		<tr><td><code class="inset">:set option&amp;</code></td><td>将选项设为默认值</td><td><code class="inset">:set shiftwidth&amp;</code></td></tr>
-	</table>
-	<p>如果顺序执行这些命令，那么选项变化如下图所示：</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">命令行</p>
+
+	<p>使用以下命令启用showcmd选项，将会在输入命令时，在屏幕底部显示出部分命令：</p>
+	<p style="text-indent:2em"><code class="inset">:set showcmd</code></p>
+	<p>例如希望输入fx命令来查找字符&ldquo;x&rdquo;，当我们输入f时就会在底部显示f，这对于我们输入较为复杂的纵使时就会显示尤为有用.</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/setoption_num.png" title="setoption_num"><img src="https://yyq123.github.io/learn-vim/images/setoption_num.png" alt="setoption_num" /></a></p>
 
 	<p>使用以下命令，可以设置字符串选项：</p>
