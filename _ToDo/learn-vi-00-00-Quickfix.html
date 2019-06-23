@@ -10,10 +10,21 @@
 <body>
 	<p>某些Vim命令，将会使用quickfix列表在不同文件的不同位置间导航。例如：使用:make命令进行编译时，遍历编译错误；使用:vimgrep命令进行搜索时，列示遍历匹配结果。</p>
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">启用/禁用</p>
-	<p>使用以下命令，</p>
-	<p style="text-indent:2em"><code class="inset">:vimgrep /quickfix/ *.html</code></p>
-
-
+	<p>执行以下搜索命令，</p>
+	<p style="text-indent:2em"><code class="inset">:vimgrep options *.html</code></p>
+	<p>将在屏幕底部显示查找到的第一个匹配结果：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/quickfix_vimgrep_search.png" title=""><img src="https://yyq123.github.io/learn-vim/images/quickfix_vimgrep_search.png" alt="quickfix_vimgrep_search" width="500" height="27" /></a></p>
+	<p>输入以下命令，将在水平分隔窗口中，打开quickfix列表以显示所有匹配结果：</p>
+	<p style="text-indent:2em"><code class="inset">:copen</code></p>
+	<p></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/quickfix_list.png" title="quickfix_list"><img src="https://yyq123.github.io/learn-vim/images/quickfix_list.png" alt="quickfix_list" width="500" height="148" /></a></p>
+	<ul>
+		<li>使用<kbd>k</kbd>/<kbd>j</kbd>键，或者上下光标键，可以在匹配列表中上下移动；</li>
+		<li>使用<kbd>Ctrl + f</kbd>/<kbd>Ctrl + b</kbd>键，或者<kbd>PageDown</kbd>/<kbd>pageUp</kbd>键，可以在匹配列表中上下翻页；</li>
+		<li>使用<kbd>/</kbd>键，或者<kbd>?</kbd>键，可以在匹配列表向前或向后搜索；</li>
+		<li>使用<kbd>Enter</kbd>键，可以在当前缓冲区之中打开匹配的文件，并定位到匹配结果所处的位置；</li>
+	</ul>
+	<p></p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">识别文件</p>
 	<p></p>
