@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 QuickFix</title>
+</head>
+<body>
+	<h1>VIM学习笔记 QuickFix</h1>
+	<p>某些Vim命令，将会使用QuickFix列表在不同文件的不同位置间导航。例如：使用:make命令进行编译时，遍历编译错误；使用:vimgrep命令进行搜索时，遍历匹配结果。</p>
+	<p>执行以下命令，将在当前文件夹中的所有HTML文件中，搜索字符串&ldquo;options&rdquo;：</p>
+	<p style="text-indent:2em"><code class="inset">:vimgrep options *.html</code></p>
+	<p>在屏幕底部，将显示查找到的第一个匹配结果：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/quickfix_vimgrep_search.png" title=""><img src="https://yyq123.github.io/learn-vim/images/quickfix_vimgrep_search.png" alt="quickfix_vimgrep_search" width="500" height="27" /></a></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">打开QuickFix窗口</p>
+	<p>输入<code class="inset">:copen</code>或<code class="inset">:cwindow</code>命令，将在水平分隔窗口中，打开QuickFix列表以显示所有匹配结果：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/quickfix_list.png" title="quickfix_list"><img src="https://yyq123.github.io/learn-vim/images/quickfix_list.png" alt="quickfix_list" width="500" height="148" /></a></p>
+	<p>你可以使用<kbd>ctrl+Wj</kbd>快捷键，移动到QuickFix窗口。关于在多个窗口之间的跳转操作，请参阅<a href="http://yyq123.github.io/learn-vim/learn-vi-14-MultiWindows.html" title="Window">窗口(Window)</a>章节。</p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">在QuickFix列表中导航</p>
+	<p>使用以下快捷键，可以在QuickFix列表中进行移动或搜索；当到达想要查看的列表项时，点击<kbd>Enter</kbd>键，将会打开匹配文件并精确定位到查找结果所处的位置。</p>
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<tr><td><kbd>k</kbd></td><td>向上移动</td><td><kbd>&uarr;</kbd></td></tr>
+		<tr><td><kbd>j</kbd></td><td>向下移动</td><td><kbd>&darr;</kbd></td></tr>
+		<tr><td><kbd>Ctrl+b</kbd></td><td>向上翻页</td><td><kbd>pageUp</kbd></td></tr>
+		<tr><td><kbd>Ctrl+f</kbd></td><td>向下翻页</td><td><kbd>PageDown</kbd></td></tr>
+		<tr><td><kbd>/string</kbd></td><td colspan="2">向前（Forward）查找字符串string</td></tr>
+		<tr><td><kbd>?string</kbd></td><td colspan="2">向后（Backward）查找字符串string</td></td></tr>
+	</table>
+	<p>你也可以使用以下命令，直接跳转到匹配文件的查找结果所处位置：</p>
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<tr><td><code class="inset">:cnext</code></td><td>移动到下一个匹配处</td></tr>
+		<tr><td><code class="inset">:cprevious</code></td><td>移动到上一个匹配处</td></tr>
+		<tr><td><code class="inset">:cfirst</code></td><td>移动到第一个匹配处</td></tr>
+		<tr><td><code class="inset">:clast</code></td><td>移动到最后一个匹配处</td></tr>
+	</table>
+	<p><a href="https://yyq123.github.io/learn-vim/images/quickfix_list_enter.png" title=""><img src="https://yyq123.github.io/learn-vim/images/quickfix_list_enter.png" alt="quickfix_list_enter" width="500" height="162" /></a></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">关闭QuickFix窗口</p>
+	<p>使用以下命令，可以关闭QuickFix窗口：</p>
+	<p style="text-indent:2em"><code class="inset">:cclose</code></p>
+
+	<p>使用<code class="inset">:help quickfix</code>命令，可以查看关于QuickFix的更多帮助信息。</p>
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="持久性撤销 (Undo Persistence)" href="http://yyq123.github.io/learn-vim/learn-vi-06-Undo-Persistence.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="运行外部命令(Shell Command)" href="http://yyq123.github.io/learn-vim/learn-vi-71-Shell.html">下一篇</a>&gt;</span></p>
+
+</body>
+</html>

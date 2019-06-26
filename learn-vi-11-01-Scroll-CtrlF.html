@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 Ctrl-F设置</title>
+</head>
+<body>
+	<h1>VIM学习笔记 Ctrl-F设置</h1>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">Ctrl-F默认设置</p>
+	<p>在Linux下的Vim中，<kbd>Ctrl-F</kbd>键默认设置为，向前（Forward）滚动屏幕；</p>
+	<p>而在Windows和Mac下的Vim中，<kbd>Ctrl-F</kbd>键默认设置为，打开查找对话框。</p>
+	<p>此设置是在2017年2月9日发布的8.0.0321版本中开始生效的。通过查看 "C:\Program Files (x86)\Vim\vim81\mswin.vim" 文件，可以发现 Ctrl-F 被设置为打开查找对话框。</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/mswin.vim_Ctrl_F.png" title=""><img src="https://yyq123.github.io/learn-vim/images/mswin.vim_Ctrl_F.png" alt="" width="500" height="153" /></a></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">恢复Ctrl-F设置</p>
+	<p>为了保持不同操作系统之间的操作一致性，建议在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">配置文件(vimrc)</a>中增加以下代码，以重现将<kbd>Ctrl-F</kbd>键设置为向前滚动屏幕：</p>
+	<p style="text-indent:2em"><code class="inset">unmap <C-F></code></p>
+	<p>注意，请在vimrc文件中，将以上设置命令放置在以下载入代码之后，以确保设置不会被覆盖</p>
+	<p style="text-indent:2em"><code class="inset">source &dollar;VIMRUNTIME/mswin.vim</code></p>
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="滚动屏幕(Scroll)" href="https://yyq123.github.io/learn-vim/learn-vi-11-Scroll.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="寄存器(Regists)" href="https://yyq123.github.io/learn-vim/learn-vi-12-Register.html">下一篇</a>&gt;</span></p>
+
+</body>
+</html>
