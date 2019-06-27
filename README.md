@@ -17,7 +17,7 @@ Created by yyq123@gmail.com using [vim](http://www.vim.org/)
   - [替换 (Substitute)](http://yyq123.blogspot.com/2011/10/vim-substitute.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/03/vim-starting.html)<sup>/</sup>[<sup>Z</sup>](http://zhuanlan.zhihu.com/p/23396437)
   - [撤销 (Undo)](https://yyq123.github.io/learn-vim/learn-vi-06-Undo.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/03/vim-starting.html)<sup>/</sup>[<sup>Z</sup>](http://zhuanlan.zhihu.com/p/23510077)
   - [打印 (Print &amp; Hardcopy)](https://yyq123.github.io/learn-vim/learn-vi-07-Print.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/03/vim-starting.html)<sup>/</sup>[<sup>Z</sup>](http://zhuanlan.zhihu.com/p/23703353)
-  - [帮助信息(Help)](http://yyq123.blogspot.com/2012/04/vim-help.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/03/vim-starting.html)<sup>/</sup>[<sup>Z</sup>](http://zhuanlan.zhihu.com/p/23852368)
+  - [帮助信息(Help)](http://yyq123.github.io/learn-vim/learn-vi-08-help.html)[<sup>B</sup>](http://yyq123.blogspot.com/2012/04/vim-help.html)<sup>/</sup>[<sup>Z</sup>](http://zhuanlan.zhihu.com/p/23852368)
 - **高阶操作**
   - [在词间移动 (Word Movement)](http://yyq123.blogspot.com/2009/02/vim_4321.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/03/vim-starting.html)<sup>/</sup>[<sup>Z</sup>](http://zhuanlan.zhihu.com/p/24343264)
   - [文本对象（Text Objects）](http://yyq123.blogspot.com/2016/12/vim-text-objects.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/03/vim-starting.html)<sup>/</sup>[<sup>Z</sup>](http://zhuanlan.zhihu.com/p/24387751)

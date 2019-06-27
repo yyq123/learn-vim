@@ -18,8 +18,10 @@
 	<li><code class="inset">\d\u\u\u\d\d\d</code></li>
 	<li><code class="inset">[[:digit:]][[:upper:]]\{3][[:digit:]]\{3}</code></li>
 </ul>
+	<p>表达式<code class="inset"><.\{-}></code>，可以匹配以&lt;开头以&gt;结尾的所有HTML代码标签。</p>
+	<p>使用一下命令，可以将每个单词的首字母转换为大写：</p>
+	<p style="text-indent:2em"><code class="inset">:s/\&lt;\(.\)\([^[:space:][:punct:]]*\)\&gt;/\u\1\2/g</code></p>
 
-<p>表达式<code class="inset"><.\{-}></code>，可以匹配以&lt;开头以&gt;结尾的所有HTML代码标签。</p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">匹配换行</p>
 	<p>如果你想要查找的内容之中包含换行符，那么可以使用"<strong>\n</strong>"通配符。执行以下命令，将匹配以"the"结尾的行，和以"word"开头的下一行：</p>
@@ -32,7 +34,6 @@
 	<p style="text-indent:2em"><code class="inset">/"\_[^"]*"</code></p>
 
 
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="()" href="">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="()" href="">下一篇</a>&gt;</span></p>
 </body>
 </html>
 
