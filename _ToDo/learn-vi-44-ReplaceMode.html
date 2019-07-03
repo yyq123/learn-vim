@@ -5,16 +5,16 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记 替换模式()</title>
+	<title>VIM学习笔记 替换模式(Replace Mode)</title>
 </head>
 <body>
 
+	<h1>VIM学习笔记 替换模式(Replace Mode)</h1>
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px"></p>
 	<p>：</p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
 
 
-	<p style="font-weight:bold">替换模式</p>
 	<p>当替换的文本中有Tab键时，他也会将Tab替换为相应的字符，这样就影响了文本的缩进。在这种情况下，可以使用<code class="inset">gr</code>命令来进行替换。如果光标下的字符是Tab的一部分，那么就会跳过而替换别的字符，这样就不会影响文本的缩进了。我们还可以使用<code class="inset">gR</code>命令进入虚替换模式(virtual replace mode)，这时我们输入的字符就会替换屏幕空白处的一个字符。</p>
 
 
@@ -27,6 +27,7 @@ You'll see --REPLACE-- in the status line. Now, you'll be replacing text as you 
 Hit Esc to exit replace mode and go back to normal mode.
 
 You can press r to enter replace mode for a single character press before being switched back to normal mode.
+<p>通过在命令中增加数字前缀，可以一次性替换多个字符。例如，将光标定位到&ldquo;||&rdquo;字符处，然后执行<code class="inset">2r&amp;</code>命令，可以将其替换为&ldquo;&amp;&amp;&rdquo;</p>
 
 Vim also provides virtual replace mode, which behaves similarly to replace mode, but operates in terms of screen real estate as opposed to characters in a file. The main noticeable differences include Tab replacing multiple characters (as opposed to a single character in replace mode) or Enter not creating an addition line, but moving onto the next line. You can enter virtual replace mode using gR, and you can read more about it by reading :help vreplace-mode.
 
@@ -37,7 +38,5 @@ Vim also provides virtual replace mode, which behaves similarly to replace mode,
 		<tr><td><code class="inset">R</code></td><td>进入替换模式</td></tr>
 		<tr><td><code class="inset">gR</code></td><td>进入虚替换模式</td></tr>
 	</table>
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="()" href="">上一篇</a>&nbsp;|<a title="笔记列表" href="http://www.humyo.com/CHYfCqR/Blog/Vim/learn-vi-00-List.html?a=0tz81ab6hx8">&nbsp;目录&nbsp;</a>|&nbsp;<a title="()" href="">下一篇</a>&gt;</span></p>
 </body>
 </html>
-
