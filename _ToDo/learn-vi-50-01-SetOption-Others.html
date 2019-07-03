@@ -54,7 +54,6 @@ notimeout    ttimeout    只有代码键超时
 
 	<p><i>timeoutlen</i>选项，即等待后续按键输入的时间，单位为毫秒（millisecond），默认值为1000毫秒，即1秒。如果希望设置键盘等待时间，可以使用以下命令：</p>
 	<p style="text-indent:2em"><code class="inset">set timeoutlen=500</code></p>
-	<p>Vim是一个高度可定制的编辑器，我们可以使用 :set 命令来设置大量的选项，其大致可分为三种：布尔值选项、数值选项和字符串选项。</p>
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">自定义信息</p>
 	<p>Vim使用屏幕底部来显示消息，如果消息长度超出一行是，将会得到类似于&ldquo;按回车继续&rdquo;的提示。通过设置 <i>cmdheight</i> 选项来增加消息的行数，可以显示更多的信息以避免不必要的提示。例如使用以下命令，设置命令行高度为3行：</p>
 	<p style="text-indent:2em"><code class="inset">:set cmdheight=3</code></p>
@@ -79,7 +78,21 @@ notimeout    ttimeout    只有代码键超时
 	<p>例如希望输入fx命令来查找字符&ldquo;x&rdquo;，当我们输入f时就会在底部显示f，这对于我们输入较为复杂的纵使时就会显示尤为有用.</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/setoption_num.png" title="setoption_num"><img src="https://yyq123.github.io/learn-vim/images/setoption_num.png" alt="setoption_num" /></a></p>
 
-	<p>使用以下命令，可以设置字符串选项：</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">打印设置</p>
+	<p>使用<code class="inset">:hardcopy</code>命令<a href="http://yyq123.github.io/learn-vim/learn-vi-07-Print.html" title="print">打印</a>文件时，将根据<i>printheader</i>选项来定义页眉格式。其默认值为"%&lt;%f%h%m%=Page %N"，将在页眉中显示以下信息：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/set_printheader_default.png" title="set_printheader_default"><img src="https://yyq123.github.io/learn-vim/images/set_printheader_default.png" alt="set_printheader_default" width="525" height="103" /></a></p>
+	<ul>
+		<li><i>File name</i>，文件名；</li>
+		<li><i>Help buffer flag</i>，如果当前缓冲区打开的是帮助文件，将显示&ldquo;[help]&rdquo;；</li>
+		<li><i>Modified flag</i>，如果当前文件已被更改（modified），将显示&ldquo;[+]&rdquo;；如果当前文件不可编辑（nomodifiable），将显示&ldquo;[-]&rdquo;</li>
+		<li><i>Page number</i>，页码。</li>
+	</ul>
+	<p>使用以下命令，可以设置在页眉中打印当前日期和时间：</p>
+	<p style="text-indent:2em"><code class="inset">set printheader=%&lt;%f%h%m%40{strftime(\"%I:%M:%S\ \%p,\ %a\ %b\ %d,\ %Y\")}%=Page\ %N</code></p>
+	<p>使用以下命令，可以设置在页眉中打印文件最后修改时间：</p>
+	<p style="text-indent:2em"><code class="inset">set printheader=%&lt;%f%h%m%40{strftime(\"%c\",getftime(expand(\"%%\")))}%=Page\ %N</code></p>
+	<p>使用以下命令，可以设置页眉为空（请注意，命令末尾包括一个空格）：</p>
+	<p style="text-indent:2em"><code class="inset">:set printheader=\&nbsp;</code></p>
 	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
 		<tr><th>命令形式</th><th>描述</th><th>示例</th></tr>
 		<tr><td><code class="inset"></code></td><td></td><td><code class="inset"></code></td></tr>
