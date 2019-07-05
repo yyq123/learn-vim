@@ -19,19 +19,27 @@
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">进入替换模式</p>
 	<p>使用大写<code class="inset">R</code>命令，将进入替换模式（屏幕底部显示&ldquo;--REPLACE--&rdquo;）。此时新输入的文本将直接替代/覆盖已经存在的内容，直至点击<kbd>ESC</kbd>键返回常规模式。</p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/ReplaceMode_Edit.gif" title="ReplaceMode_Edit"><img src="https://yyq123.github.io/learn-vim/images/ReplaceMode_Edit.gif" alt="ReplaceMode_Edit.gif" width="500" height="86" /></a></p>
+	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/ReplaceMode_Edit.gif" title="ReplaceMode_Edit"><img src="http://yyq123.github.io/learn-vim/images/ReplaceMode_Edit.gif" alt="ReplaceMode_Edit.gif" width="500" height="86" /></a></br>Source: medium.com/vim-drops</p>
 	<p>使用小写<code class="inset">R</code>命令，将进入单字符替换模式，此时新输入的字符将替代光标之下的当前字符，然后自动返回到常规模式。</p>
 	<p>通过在命令中增加数字前缀，可以一次性替换多个字符。例如，将光标定位到&ldquo;||&rdquo;字符处，然后执行<code class="inset">2r&amp;</code>命令，可以将其替换为&ldquo;&amp;&amp;&rdquo;</p>
-	<p>使用<code class="inset">gR</code>命令，将进入虚拟替换模式（virtual replace mode）（屏幕底部显示&ldquo;--VREPLACE--&rdquo;），其与替换模式的主要区别包括：</p>
+	<p>使用<code class="inset">gR</code>命令，将进入虚拟替换模式（virtual replace mode）（屏幕底部显示&ldquo;--VREPLACE--&rdquo;），其与替换模式最主要的区别在于，对<kbd>Tab</kbd>键的处理：假设当前设置<kbd>Tab</kbd>键占用4个空格的位置</p>
 	<ul>
 		<li></li>
 	</ul>
 	这时我们输入的字符就会替换屏幕空白处的一个字符。
 The main noticeable differences include Tab replacing multiple characters (as opposed to a single character in replace mode) or Enter not creating an addition line, but moving onto the next line. You can enter virtual replace mode using gR, and you can read more about it by reading :help vreplace-mode.
+The point is basically the <Tab> behaviour!
+
+Let's say your <Tab> is set to 4 spaces, that means it's (4 spaces of screen real estate), and you're overwiting a spacing provided by the <Tab> character, with the letter a, let's see what happens:
+	<p>在替换模式（REPLACE）下，输入字母'a'，将直接替代'Tab'键所占用的所有4个空格的位置，The table looses the formatting.</p>
+	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/REPLACE_A.gif" title="REPLACE_A"><img src="http://yyq123.github.io/learn-vim/images/REPLACE_A.gif" alt="REPLACE_A" /></a></br>Source: medium.com/vim-drops</p>
+	<p>在虚拟替换模式（VREPLACE）下，输入字母'a'，将仅仅替代单个空格：the content will not loose it's actual position and the table will keep the formatting.</p>
+	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/VREPLACE_A.gif" title="VREPLACE_A"><img src="http://yyq123.github.io/learn-vim/images/VREPLACE_A.gif" alt="VREPLACE_A" /></a></br>Source: medium.com/vim-drops</p>
+
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">退出替换模式</p>
 	<p>按下<kbd>ESC</kbd>键即可离开替换模式，返回到常规模式。</p>
 
-
+(VREPLACE mode isn't available when Vim is compiled without the +vreplace feature. On terminal type vim --version and check if +vreplace is there.)
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
 		<tr><td><code class="inset">:substitute</code></td><td>替换字符</td></tr>
