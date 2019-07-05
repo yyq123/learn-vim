@@ -29,6 +29,7 @@ Created by yyq123@gmail.com using [vim](http://www.vim.org/)
   - [运行外部命令(Shell Command)](http://yyq123.github.io/learn-vim/learn-vi-71-Shell.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/02/vim-shell-command.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/56381336)
   - [QuickFix](http://yyq123.github.io/learn-vim/learn-vi-70-01-QuickFix.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/07/vim-quickfix.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/71778294)
 - **模式详解**
+  - [插入模式 (Insert Mode)](http://yyq123.github.io/learn-vim/learn-vi-42-InsertMode.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/07/vim-insert-mode.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/72335772)
   - [可视化模式 (Visual Mode)](http://yyq123.github.io/learn-vim/learn-vi-45-VisualMode.html)[<sup>B</sup>](http://yyq123.blogspot.com/2010/11/vim-visual-mode.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/58513837)
 - **文字处理**
   - [换行（Line Feed）](http://yyq123.blogspot.com/2010/07/vim-line-feed.html)[<sup>B</sup>](http://yyq123.blogspot.com/2010/07/vim-line-feed.html)<sup>/</sup>[<sup>Z</sup>](http://zhuanlan.zhihu.com/p/26133311)

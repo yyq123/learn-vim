@@ -11,8 +11,8 @@
 	<h1>VIM学习笔记 插入模式 (Insert Mode)</h1>
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">进入插入模式</p>
 	<p>在常规模式下执行<code class="inset">i</code>命令，或者使用<code class="inset">:startinsert</code>命令，可以进入插入模式。</p>
-	<p>灵活使用以下命令，可以直接在你想要的位置进入插入模式，以加快输入文字的速度：</p>
-	<table border="0">
+	<p>灵活使用以下命令，可以直接在你想要的位置进入插入模式：</p>
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<tr><td><code class="inset">i</code></td><td>在光标之前，进入插入模式</td></tr>
 		<tr><td><code class="inset">I</code></td><td>在本行开头，进入插入模式</td></tr>
 		<tr><td><code class="inset">a</code></td><td>在光标之后，进入插入模式</td></tr>
@@ -20,33 +20,27 @@
 		<tr><td><code class="inset">o</code></td><td>在本行之后新增一行，并进入插入模式</td></tr>
 		<tr><td><code class="inset">O</code></td><td>在本行之前新增一行，并进入插入模式</td></tr>
 		<tr><td><code class="inset">s</code></td><td>删除当前字符，并进入插入模式</td></tr>
-		<tr><td><code class="inset">S</code></td><td>删除当前行中的文本，并进入插入模式</td></tr>
+		<tr><td><code class="inset">S</code></td><td>删除当前行中的所有文本，并进入插入模式</td></tr>
 	</table>
 	<p>通过在i，I，a，A命令中增加数字前缀，可以批量插入内容，以避免重复输入。例如：输入<code class="inset">50i*</code>命令，然后点击<kbd>Esc</kbd>键，将一次性插入50个星号；使用<code class="inset">25a*-</code><kbd>Esc</kbd>命令，则将一次性插入25个星号和短线的组合。</p>
-	<p>通过在小写s命令中增加数字前缀，可以替换多个字符。例如，希望将&ldquo;www.vim.org&rdquo;更改为其它网址，可以首先将光标移动到字符&ldquo;v&rdquo;处，然后执行<code class="inset">3s</code>命令，删除3个字符并进入插入模式。</p>
-	<p>通过在大写S命令中增加数字前缀，可以替换多行内容。例如，执行<code class="inset">3S</code>命令，将删除2行文本，并将第3行文本清空，然后进入插入模式。</p>
-	19
-	4
-	5
+	<p>通过在小写s命令中增加数字前缀，可以替换多个字符。例如：希望将&ldquo;www.vim.org&rdquo;更改为其它网址，可以首先将光标移动到字符&ldquo;v&rdquo;处，然后执行<code class="inset">3s</code>命令，删除3个字符并进入插入模式输入其它域名。</p>
+	<p>通过在大写S命令中增加数字前缀，可以替换多行内容。例如：执行<code class="inset">3S</code>命令，将删除2行文本，并将第3行文本清空，然后进入插入模式。</p>
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">在插入模式中编辑</p>
-	<p>在插入模式下，不能使用h，j，k，l键来移动光标，而必须使用光标移动键。所以，建议您在输入完毕文字之后，立即使用<kbd>Esc</kbd>键退回到常规模式以执行各种命令。</p>
+	<p>在插入模式下，不能使用h，j，k，l键来移动光标，而必须使用光标移动键。使用以下命令，可以查看使用特殊快捷键进行移动和操作的说明：</p>
+	<p style="text-indent:2em"><code class="inset">:help ins-special-special</code></p>
 	<p>在插入模式下，可以使用各种快捷键来操作文本，而不需要首先退回到常规模式，然后再执行命令。例如：使用<kbd>ctrl-U</kbd>键，可以删除光标之前的所有文字；而<kbd>ctrl-W</kbd>键，则可以删除光标之前的一个字符；使用<kbd>ctrl-T</kbd>键，可以增加缩进；而<kbd>ctrl-D</kbd>键，则可以减少缩进。请使用以下命令，查看插入模式下快捷键的更多帮助信息：</p>
 	<p style="text-indent:2em"><code class="inset">:help ins-special-keys</code></p>
-	<p>使用<code class="inset">CTRL-O</code>命令，可以进入命令模式执行Vim命令，然后重新回到插入模式中。例如，使用<p style="text-indent:2em"><code class="inset">CTRL-Odw</code></p>命令，Vim将会进入命令模式执行dw命令，在执行完毕后重新回到插入模式，这样就省去了多次切换模式的繁琐。</p>
+	<p>使用<kbd>CTRL-O</kbd>快捷键，可以进入命令模式执行Vim命令，然后重新回到插入模式，以避免多次切换模式的繁琐。例如，首先使用<kbd>CTRL-O</kbd>进入命令模式，然后执行<code class="inset">dw</code>命令来删除单词，在执行完毕之后将重新回到插入模式。</p>
 	
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">退出插入模式</p>
-	<p>按下<kbd>ESC</kbd>键就可以离开插入模式，回到正常模式。</p>
+	<p>按下<kbd>ESC</kbd>键即可离开插入模式，返回到常规模式。建议您在输入完毕文字之后，立即退回到常规模式，以利用各种命令来提高编辑效率。</p>
 	
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">插入模式帮助信息</p>
 	<p>使用以下命令，可以查看关于插入模式的帮助信息：</p>
 	<p style="text-indent:2em"><code class="inset">:help insert.txt</code></p>
-	<p>使用以下命令，可以查看关于快速插入的技巧。比如：补全、重复插入、从另一行拷贝、插入一个寄存器内容、<a href="http://yyq123.github.io/learn-vim/learn-vi-52-Abbreviation.html" title="缩写">缩写</a>和<a href="http://yyq123.github.io/learn-vim/learn-vi-65-Listchars.html" title="Listchars">插入特殊字符</a>等等。</p>
+	<p>使用以下命令，可以查看关于快速插入文本的更多技巧。比如：补全、重复插入、从另一行拷贝、插入一个寄存器内容、<a href="http://yyq123.github.io/learn-vim/learn-vi-52-Abbreviation.html" title="缩写">缩写</a>和<a href="http://yyq123.github.io/learn-vim/learn-vi-65-Listchars.html" title="Listchars">插入特殊字符</a>等等：</p>
 	<p style="text-indent:2em"><code class="inset">:help usr_24.txt</code></p>
-:help ins-special-special
-	* 
-:help ins-completion
-	* 
 
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="可视化模式(Visual Mode)" href="http://yyq123.github.io/learn-vim/learn-vi-45-VisualMode.html">下一篇</a>&gt;</span></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/learn-vi-40-Mode.html.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="可视化模式(Visual Mode)" href="http://yyq123.github.io/learn-vim/learn-vi-45-VisualMode.html">下一篇</a>&gt;</span></p>
 </body>
 </html>
