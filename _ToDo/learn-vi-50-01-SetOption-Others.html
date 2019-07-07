@@ -20,6 +20,26 @@ set foldopen=block,insert,jump,mark,percent,quickfix,search,tag,undo
 		<li><strong>0</strong>，所有折叠都是关闭状态；</li>
 		<li><strong>99</strong>，所有折叠都是打开状态；如果设置为其他正数时，则打开相应级别的折叠。</li>
 	</ul>
+选项winaltkeys可以控制Alt键的使用.
+例如,如果我们执行了下面的命令,所有的Alt键就可以通过:map命令来使用之成我们命令中的一部分:
+:set winaltkeys=no
+执行Alt-F并不会选择文件菜单而是执行映射的Alt-F命令.这个可以映射可以是下面的样子:
+:map <M-f> :write
+在这里我们要知道的就是在Vim中Alt会被叫作M-,Meta的意思.
+如果我们执行了下面的命令,所有的Alt键盘就会选择菜单内容而不会执行映射命令了:
+:set winaltkeys=yes
+第三个选项是yes和no的组合:
+:set winaltkeys=menu
+在这种模式下,Alt键可以用于选择菜单,也可以用来映射:map命令.所以Alt-F可以选择文件菜单,而我们还可以用Alt-X来映射命令.
+
+果我们设置了more选项,当一个命令的显示会超出一屏时就会显示More提示.如果没有进行设置只是会翻滚屏幕.默认如下:
+:set more
+下面的命令定义了可以由CTRL-A,CTRL-X识别的数字格式.
+:set nrformats=octal,hex
+(注:十进制总是可以识别)
+如果我们设置了下面的选项,Vim就会试着重新装入终端屏幕的内容.
+:set restorescreen
+换句话说,他会试着使得我们运行这个程序以后的屏幕看起来就像他运行以前的一样.
 
 " Set the search scan to wrap around the file
 set wrapscan
@@ -105,4 +125,3 @@ notimeout    ttimeout    只有代码键超时
 
 </body>
 </html>
-
