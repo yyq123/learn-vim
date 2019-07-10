@@ -8,16 +8,48 @@
 	<title>VIM学习笔记 命令行模式 (Command-line Mode)</title>
 </head>
 <body>
+	:help :
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px"></p>
 	<p></p>
+Command-line mode is entered by typing a colon (:) or when searching for text with /or?, and allows you to input a command until you hit Enter. Command-line mode provides some useful shortcuts:
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px"></p>
-	<p>使用<code class="inset">q:</code>命令，进入命令行</p>
+使用<kbd>&uarr;</kbd>或<kbd>Ctrl+p</kbd>键，显示上一条命令；使用<kbd>&darr;</kbd>或<kbd>Ctrl+n</kbd>键，显示下一条命令；
+<kbd>Ctrl + b</kbd>andCtrl + elet you go to thebeginning and theend of the line respectively
+	* 
+The Shift orCtrl keys combined with left or right arrows allows you to move by words
+
+Suppose you search for "horse", then for "Hello", then for "helium", then for "habit".
+
+If you type /h and repeatedly press up arrow, you will see /habit, then /helium, then /horse ("Hello" is skipped because the history navigation is case-sensitive and "Hello" does not start with a lowercase "h").
+
+Register : holds the last command, and / holds the last search. Therefore ":p will paste the last command, and "/p will paste the last search.
+
+Type @: to repeat the last command.
+
+You may have used several commands (for example, :%s/old/new/g) on the current buffer, and now find you would like to repeat those commands on another buffer. Type q: to enter the command window, then select and yank the commands you want. Press Ctrl-c twice to close the command window. If wanted, you can paste the commands into a buffer, then edit and save them. Later, you can source the file containing the commands, or you can yank the commands, then type :@"<CR> to execute the yanked commands on the current buffer.
+
+If you always want to use the command editing window, try these mappings:
+
+nnoremap : q:i
+nnoremap / q/i
+nnoremap ? q?i
+
+Keeping the window openEdit
+
+Executing a command closes the window but sometimes you want it to remain open.
+
+Under :help q: we find a suggestion to map a key such as F5 to execute the current line, then re-open the command window: :autocmd CmdwinEnter * nnoremap <buffer> <F5> <CR>q:
+
+This can be expanded to put us back on the same line in the command window, which is useful when repeating a whole series of commands. We use a global variable to remember which line we were on (buffer-local variables are lost when the window closes).
+
+:autocmd CmdwinEnter * nnoremap <buffer> <F5> :let g:CmdWindowLineMark=line(".")<CR>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">命令行窗口</p>
+	<p>使用<code class="inset">q:</code>命令，将打开命令行窗口（command line window），你可以在窗口中查找命令历史纪录，并在基础上修改并执行命令：</p>
 	<p>命令行模式下，<kbd>&lt;Ctrl-w&gt;</kbd>用来删除光标前的一个单词，<kbd>&lt;Ctrl-u&gt;</kbd>用来删除光标前的所有命令字符，<kbd>&lt;Ctrl-b&gt;</kbd>移动到命令行最前(before)，<kbd>&lt;Ctrl-e&gt;</kbd>移动到命令行尾部(end)。</p>
 	<p>键入:set i后键入CTRL-D则显示set命令支持的所有以i开头的选项</p>
 	<p><code class="inset">:help cmdline-editing</code></p>
 	<p>进入命令行模式之后，点击<kbd>&lt;C-r&gt;</kbd><kbd>&lt;C-w&gt;</kbd>可以将当前光标下的word粘贴到命令行；点击<kbd>&lt;C-r&gt;</kbd><kbd>&lt;C-a&gt;</kbd>可以将当前光标下的WORD粘贴到命令行；点击<kbd>&lt;C-r&gt;</kbd><kbd>%</kbd>可以将当前文件名粘贴到命令行；</p>
-
+使用<code class="inset">:q</code>，可以关闭命令行窗口。
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">命令历史</p>
 	<p style="text-indent:2em"><code class="inset">:history</code></p>
 	help :history
@@ -43,6 +75,7 @@ a    all        所有的历史
 :set history=50
 
 <p>命令历史是存储在viminfo文件中的; you can configure what (and how many of them) is persisted via the 'viminfo' (and 'history') options.
+	<p><a href="https://yyq123.github.io/learn-vim/images/viminfo.png" title="viminfo"><img src="https://yyq123.github.io/learn-vim/images/viminfo.png" alt="viminfo" width="500" height="332" /></a></p>
 
 You can clear the history via the histdel() function, e.g. for searches:
 
@@ -72,7 +105,6 @@ Vim编辑器可以记录上几次的错误以及在屏幕最后一行显示的�
 		<tr><td><code class="inset">:</code></td><td></td></tr>
 	</table>
 
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="()" href="">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="()" href="">下一篇</a>&gt;</span></p>
 </body>
 </html>
 
