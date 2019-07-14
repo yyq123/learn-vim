@@ -11,12 +11,28 @@
 	:help :
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px"></p>
 	<p></p>
-Command-line mode is entered by typing a colon (:) or when searching for text with /or?, and allows you to input a command until you hit Enter. Command-line mode provides some useful shortcuts:
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">进入命令行模式</p>
+	<p>输入<code class="inset">:</code>命令；使用<code class="inset">/</code>或<code class="inset">?</code>搜索命令，都将进入命令行模式（Command-line mode）。用户可以在屏幕底部的命令行中输入命令，或者使用以下快捷键遍历之前的命令历史，然后点击<kbd>&lt;Enter&gt;</kbd>键来执行命令。</p>
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><kbd>&uarr;</kbd></td><td rowspan="2">显示上一条命令</td></tr>
+		<tr><td><kbd>Ctrl + p</kbd></td></tr>
+		<tr><td><kbd>&darr;</kbd></td><td rowspan="2">显示下一条命令</td></tr>
+		<tr><td><kbd>Ctrl + n</kbd></td></tr>
+		<tr><td><kbd>Ctrl + b</kbd></td><td>移动到命令行开头</td></tr>
+		<tr><td><kbd>Ctrl + e</kbd></td><td>移动到命令行末尾</td></tr>
+		<tr><td><kbd>Ctrl + &larr;</kbd></td><td rowspan="2">向左移动一个单词</td></tr>
+		<tr><td><kbd>Shift + &larr;</kbd></td></tr>
+		<tr><td><kbd>Ctrl + &rarr;</kbd></td><td rowspan="2">向右移动一个单词</td></tr>
+		<tr><td><kbd>Shift + &rarr;</kbd></td></tr>
+		<tr><td><kbd>Ctrl + w</kbd></td><td>删除光标前的一个单词</td></tr>
+		<tr><td><kbd>Ctrl + u</kbd></td><td>删除光标前的所有字符</td></tr>
+	</table>
 
-使用<kbd>&uarr;</kbd>或<kbd>Ctrl+p</kbd>键，显示上一条命令；使用<kbd>&darr;</kbd>或<kbd>Ctrl+n</kbd>键，显示下一条命令；
-<kbd>Ctrl + b</kbd>andCtrl + elet you go to thebeginning and theend of the line respectively
-	* 
-The Shift orCtrl keys combined with left or right arrows allows you to move by words
+	<p></p>
+	<p>键入:set i后键入CTRL-D则显示set命令支持的所有以i开头的选项</p>
+	<p><code class="inset">:help cmdline-editing</code></p>
+	<p>进入命令行模式之后，点击<kbd>&lt;C-r&gt;</kbd><kbd>&lt;C-w&gt;</kbd>可以将当前光标下的word粘贴到命令行；点击<kbd>&lt;C-r&gt;</kbd><kbd>&lt;C-a&gt;</kbd>可以将当前光标下的WORD粘贴到命令行；点击<kbd>&lt;C-r&gt;</kbd><kbd>%</kbd>可以将当前文件名粘贴到命令行；</p>
 
 Suppose you search for "horse", then for "Hello", then for "helium", then for "habit".
 
@@ -44,13 +60,19 @@ This can be expanded to put us back on the same line in the command window, whic
 
 :autocmd CmdwinEnter * nnoremap <buffer> <F5> :let g:CmdWindowLineMark=line(".")<CR>
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">命令行窗口</p>
-	<p>使用<code class="inset">q:</code>命令，将打开命令行窗口（command line window），你可以在窗口中查找命令历史纪录，并在基础上修改并执行命令：</p>
-	<p>命令行模式下，<kbd>&lt;Ctrl-w&gt;</kbd>用来删除光标前的一个单词，<kbd>&lt;Ctrl-u&gt;</kbd>用来删除光标前的所有命令字符，<kbd>&lt;Ctrl-b&gt;</kbd>移动到命令行最前(before)，<kbd>&lt;Ctrl-e&gt;</kbd>移动到命令行尾部(end)。</p>
-	<p>键入:set i后键入CTRL-D则显示set命令支持的所有以i开头的选项</p>
-	<p><code class="inset">:help cmdline-editing</code></p>
-	<p>进入命令行模式之后，点击<kbd>&lt;C-r&gt;</kbd><kbd>&lt;C-w&gt;</kbd>可以将当前光标下的word粘贴到命令行；点击<kbd>&lt;C-r&gt;</kbd><kbd>&lt;C-a&gt;</kbd>可以将当前光标下的WORD粘贴到命令行；点击<kbd>&lt;C-r&gt;</kbd><kbd>%</kbd>可以将当前文件名粘贴到命令行；</p>
-使用<code class="inset">:q</code>，可以关闭命令行窗口。
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">命令历史</p>
+	<p>可以使用以下两种方式来打开命令行窗口（command line window）：</p>
+	<ol>
+		<li>在命令行模式下，使用<kbd>CTRL-F</kbd>快捷键；</li>
+		<li>在常规模式下，使用<code class="inset">q:</code>命令。</li>
+	</ol>
+	From Command-line mode, use the key specified with the 'cedit' option.
+   The default is CTRL-F when 'compatible' is not set.
+	<p>我们可以将命令行窗口，视为常规的<a href="http://yyq123.github.io/learn-vim/learn-vi-13-MultiBuffers.html" title="Buffer">缓冲区 (Buffer)</a>来编辑。可以在其中查找命令历史纪录，并在此基础上进行修改，然后点击<kbd>&lt;Enter&gt;</kbd>键来执行命令（命令行窗口也将同时关闭）。</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/command-line-window.png" title="command-line-window"><img src="https://yyq123.github.io/learn-vim/images/command-line-window.png" alt="command-line-window" /></a></p>
+	<p>使用<code class="inset">:q</code>命令，可以关闭命令行窗口。</p>
+	<p>使用<code class="inset">:help command-line-window</code>，可以关闭命令行窗口。</p>
+
+<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">命令历史</p>
 	<p style="text-indent:2em"><code class="inset">:history</code></p>
 	help :history
 命令:history可以显示当前命令模式下的命令历史

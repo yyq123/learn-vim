@@ -1,0 +1,225 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记  ()</title>
+</head>
+<body>
+	<p>很久很久以前，人们还是使用打印设备而非显示器来与计算机进行沟通。比如打印出某行代码以确定需要修改的内容，然后针对文本进行操作，再次打印以检查变更效果。在此情形之下，行号就成为有效的定位工具。虽然，今天我们已经不再如此依赖打印设备，但是基于行编辑的Ex模式，在操作文本时还是有某些优势的。比如将文本从一个文件移动到另一个文件；快速地对大于单个屏幕的文本块进行编辑；针对整个文件中的特定模式进行全局替换等等。</p>
+	可以说Vim是Ex行编辑器的可视模式，所以ex算是vi的底层行编辑器。由于一些ex命令可以节省大量的编辑时间，因此在使用vi时它们是非常有用的。
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">进入Ex模式</p>
+	<p>在操作系统的命令行中，使用以下ex命令，可以进入Vim的Ex模式：</p>
+	<p style="text-indent:2em"><code class="inset">$ ex filename</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/ExMode.png" title="ExMode"><img src="https://yyq123.github.io/learn-vim/images/ExMode.png" alt="ExMode" /></a></p>
+可以看到有关文件总行数信息
+	<p>在Vim的常规模式下，使用<code class="inset">Q</code>，可以进入Vim的Ex模式：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/ExMode_FromNormalMode.png" title="ExMode_FromNormalMode"><img src="https://yyq123.github.io/learn-vim/images/ExMode_FromNormalMode.png" alt="ExMode_FromNormalMode" width="500" height="40" /></a></p>
+
+ex命令由行号和命令组成，并以回车键结束。
+<p></p>
+最基本的命令是用来打印（到屏幕）的p.
+   : 2 p
+ 显示当前文件的第二行内容
+
+ 
+如果要显示多行，可以指定行号范围：
+   ：2 , 10 p
+显示2～10行的内容
+
+
+没有行号的命令被认为作用于当前行。假设当前光标在12行，输入命令
+： s/hello/hehe
+会把第12行的第一个"hello"改为"hehe"
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">识别文件</p>
+	<p></p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+使用ex进行编辑
+
+ex常用编辑命令：
+d     (delete)   删除行
+m   (move)    移动行
+co  (copy)      复制行
+t    复制行，和co同义
+
+定义行的范围:
+ex可以使用行号明确地定义一行或连续数行范围。使用明确数字的地址成为绝对行地址。
+使用行范围，可以行范围内的行进行命令操作，例如：
+：3, 18 d              删除3~18行
+：11, 15 m 23      把11～15行移动到23行下面。
+：23, 29 co 100   复制23～29行并把它们粘贴到100行下面
+	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
+
+： =                   显示总行数
+： . =               显示当前行号
+： /pattern/=   显示地一个与模式pattern想匹配的行号
+
+
+行地址符
+
+.（点）  代表当前行
+$           代表文件的最后一行；
+%          代表文件的每一行，等同于1, $的组合
+  
+这些符号可以与绝对行地址组合使用，例如：
+： . ,  $ d    删除从当前行到文件末尾
+：20, . m $  把20～当前行的文本移动到文件末尾
+：% d         删除文件中的所有行
+：% t $        复制所有行并把它们粘贴到文件的尾部（成为连续的副本）
+
+
+除了绝对行地址外，也可以指定一个相对当前行的地址。符号+和-就像数学运算符一样，当将其放置在数字前面时，这些符号就会加上或减去跟在它们后面的数值。例如：
+：. , . + 20 d   删除从当前行到当前行以下20行
+：226 , $  m  .-2  把226行到文件末尾的文本移动到当前行的上面两行的后面。
+：. , +20 #     显示从当前行下面20行的行号
+事实上，由于当前行是假定的开始位置，因此在使用+或-时不需要输入圆点
+
+
+如果在+或-后面没有数字，那么就等价于+1和-1
+
+数字0代表文件的开头（等于0行）。
+
+：-, + t 0  复制三行（当前行，前一行，后一行），并粘贴到文件开头
+
+
+
+搜索模式
+
+ex定位行的另一种方法是使用搜索模式。例如：
+
+：/pattern/ d     删除下一个包行模式pattern的行
+：/pattern/+ d   删除下一个包行模式pattern的行的下一行（也i可使用+1来代替）
+：/pattern1/,/pattern2/ d  删除第一个包行pattern1的行与第一个包行pattern2的行之间的所有行
+：. , /pattern/ m 23    从当前行到第一个包行pattern的行之间的文本移动到23行后面。
+
+
+
+重新定义当前行的位置
+
+假设当前光标在第一行。
+：100, +5 p
+会发生错误， 因为这个命令等价于：100, 6p， 
+而我们是希望显示100～105行， 为了达到这个目的，我们要把当前行为第一行变成当前行为100,然后+5.
+
+ex提供了这个方法， 当使用“分号”代替“逗号”时，就会将第一个行地址当成“当前行”。
+：100 ; +5 p   就会显示100～105行
+
+分号也可以用于搜索模式的相对地址中，例如，显示下一个包行模式pattern的行和它下面的10行：
+：/patter/ ; +10 p  
+
+
+全局搜索
+
+我们已经知道在vi中使用/(斜杆)来搜索文件中的字符模式。ex也有全局命令g， 可以让你搜索模式并显示找出的所有包含该模式的行。命令：g!的作用与：g相反，使用：g!（或它的同义词：v）可以搜索不包行该模式的行
+
+可以对文件中的所有行使用全局命令，也可以使用行地址把全局搜索限定在指定的行或行范围内。
+
+
+：g /pattern             寻找（移动到）模式pattern在文件中最后出现的位置
+：g /pattern/ p         寻找并显示文件中所有包含模式pattern的行
+：g!/pattern/nu       寻找并显示文件中所有不包行模式pattern的行，并显示这些行号  
+：20, 40g/pattern/p  寻找并显示第20到40行之间所有包含模式pattern的行
+
+  
+
+组合ex命令
+
+你不必一直输入冒号来开始新的ex命令。在ex中，竖直线（|）是命令的分割符，它允许用户把多个命令组合在同一个ex提示符下（与此类似的是分号分隔符UNIX shell提示符下的多个命令）。同时使用|时，要注意制定的行地址。如果一个命令影响到文件中行的顺序，那么下一个命令将使用新的行位置进行工作。例如：
+：1 , 3d |  s/thier/their/ 
+把第1行到第3行删除，然后在当前行（该行是调用ex提示符以前的第4行）进行替换
+
+：1 , 5 m 10 | g/pattern/nu
+把第1行到第5行移动到第10行后面，然后显示所有包含模式pattern的行。
+
+
+保存和退出文件
+
+
+：w   把缓冲区写（保存）到文件中但不退出，可以（和应该）在编辑会话期间使用：w来保护编辑操作以避免系统瘫痪或重大的编辑错误
+：q    退出编辑器，返回系统提示符
+：wq  写文件并退出编辑器，即使没有修改文件，写操作也会无条件的进行
+：x 写文件并退出编辑器，只有修改了文件写操作才能进行
+
+有时候vi编辑器会有警告，可以在命令后面加上感叹号！来强制执行，忽略警告
+
+
+ 
+保存部分文件到新文件中
+
+有时候，希望把当前文件的一部分保存为一个新的单独文件。
+：20 , $w  newfile   把第20行到文件末尾文本保存到新文件newfile中
+：. , 500 w newfile   从当前行到500行文本保存到新文件newfile中
+
+
+
+
+添加到现有文件中
+
+可以使用重定向添加符（>>）和w把缓冲区的全部或部分内容添加到现有文件尾。
+：30 , $w >> file 把30行到文件末尾添加到文件file的末尾
+
+
+
+把文件复制到另一个文件中
+
+有时想把系统中已有的文本或数据复制到正在编辑的文件中，在vi中可以使用ex命令读取另一个文件的内容：
+：read  filename
+或者使用缩写形式
+：r  filename
+这个命令会把filename文件的内容插入当前编辑文本的光标位置后面一行。
+如果想指定其它行，只需要在read或r命令之前输入行号即可。例如：
+：10 r filename   将会把filename的文本输入到当前第10行后。
+
+如果文件在其他目录下，只需要加上路径即可。例如:
+：r  /home/time/data    把/home/time目录下的data内容插入当前编辑文件
+
+应用地址符组合或搜索模式可以更灵活：
+：$r  /home/tim/data  把读取的文件内容加到当前编辑文件的末尾
+：0r  /home/tim/data   把读取的文件内容加到文件开头位置
+：/pattern/r  /home/tim/data  将读取的文件内容加到当前文件包行模式/pattern的行的后面
+
+
+
+编辑多个文件
+
+ex命令可以在多个文件之间切换。同时编辑多个文件的好处是速度快。在同一编辑会话中，在文件之间切换不仅能加速访问，而且还能保留已制定的缩写和命令序列，以及复制缓冲区，这样可以在文件之间复制文本。
+
+1. 调用vi打开多个文件
+在首次调用vi时，可以制定要编辑的多个文件，然后使用ex命令在文件之间进行切换。例如：
+$ vi  file1  file2    首先编辑file1，完成第一个文件的编辑后，ex的：w命令写（保存）file1，：next 命令（缩写：n）调用下一个文件（file2）
+
+2. 使用参数列表
+除了使用：n移动到下一个文件。还有其他参数可以使用
+：args命令（缩写：ar）列出在所有编辑的文件，当前文件使用方括号括起来。
+：rewind（缩写：rew）  把当前文件设置为上一个编辑的文件
+：last（缩写：la）       把当前文件设置为最后一个文件
+
+3. 调用新文件
+你不必在编辑会话的开始就调用多个文件，可以使用ex的：e命令在任何时候切换到另一个文件。如果想在vi中编辑另一个文件，那么首先需要保存当前文件（：w），然后给出命令：
+：e  filename
+使用这个命令切换到新文件filename时，vi把之前的文件名记为#， 当前文件名记为%，使用这两个文件可以迅速切换
+：e #  切换到上一个文件中
+：r  #  把上一个文件的内容粘贴到当前文件中
+：e! #  放弃当前文件编辑，并返回上一个文件中
+
+：e #的快捷键：
+由于切换到前面的文件会经常发生，因此不必在ex命令行下进行这种操作。
+可以使用快捷键Ctrl + ^来使用，和：e #效果相同。
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
+		<tr><td><code class="inset">:</code></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+	</table>
+&ldquo;&rdquo;
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
+
+</body>
+</html>
+
