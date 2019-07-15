@@ -14,7 +14,6 @@
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">进入命令行模式</p>
 	<p>输入<code class="inset">:</code>命令；使用<code class="inset">/</code>或<code class="inset">?</code>搜索命令，都将进入命令行模式（Command-line mode）。用户可以在屏幕底部的命令行中输入命令，或者使用以下快捷键遍历之前的命令历史，然后点击<kbd>&lt;Enter&gt;</kbd>键来执行命令。</p>
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
-		<caption>命令小结</caption>
 		<tr><td><kbd>&uarr;</kbd></td><td rowspan="2">显示上一条命令</td></tr>
 		<tr><td><kbd>Ctrl + p</kbd></td></tr>
 		<tr><td><kbd>&darr;</kbd></td><td rowspan="2">显示下一条命令</td></tr>
@@ -29,8 +28,10 @@
 		<tr><td><kbd>Ctrl + u</kbd></td><td>删除光标前的所有字符</td></tr>
 	</table>
 
+	<p>输入部分命令，比如输入<code class="inset">:set</code>，然再点击上下光标键，将自动对命令历史纪录进行过滤，仅仅显示以&ldquo;set&rdquo;开头的命令历史纪录。</p>
 	<p></p>
-	<p>键入:set i后键入CTRL-D则显示set命令支持的所有以i开头的选项</p>
+	<p>继续键入命令<code class="inset">:set i</code>之后，按下<kbd>Tab</kbd>或<kbd>Ctrl+D</kbd>键，就将显示匹配以i开头的set命令；继续按<kbd>Tab</kbd>键，可以在这些命令列表间移动，按下回车键就可以执行该命令。持的所有</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/set_i_tab.png" title="set_i_tab"><img src="https://yyq123.github.io/learn-vim/images/set_i_tab.png" alt="set_i_tab" width="500" height="78" /></a></p>
 	<p><code class="inset">:help cmdline-editing</code></p>
 	<p>进入命令行模式之后，点击<kbd>&lt;C-r&gt;</kbd><kbd>&lt;C-w&gt;</kbd>可以将当前光标下的word粘贴到命令行；点击<kbd>&lt;C-r&gt;</kbd><kbd>&lt;C-a&gt;</kbd>可以将当前光标下的WORD粘贴到命令行；点击<kbd>&lt;C-r&gt;</kbd><kbd>%</kbd>可以将当前文件名粘贴到命令行；</p>
 
@@ -44,11 +45,6 @@ Type @: to repeat the last command.
 
 You may have used several commands (for example, :%s/old/new/g) on the current buffer, and now find you would like to repeat those commands on another buffer. Type q: to enter the command window, then select and yank the commands you want. Press Ctrl-c twice to close the command window. If wanted, you can paste the commands into a buffer, then edit and save them. Later, you can source the file containing the commands, or you can yank the commands, then type :@"<CR> to execute the yanked commands on the current buffer.
 
-If you always want to use the command editing window, try these mappings:
-
-nnoremap : q:i
-nnoremap / q/i
-nnoremap ? q?i
 
 Keeping the window openEdit
 
@@ -60,17 +56,21 @@ This can be expanded to put us back on the same line in the command window, whic
 
 :autocmd CmdwinEnter * nnoremap <buffer> <F5> :let g:CmdWindowLineMark=line(".")<CR>
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">命令行窗口</p>
-	<p>可以使用以下两种方式来打开命令行窗口（command line window）：</p>
+	<p>可以使用以下四种方式，来打开命令行窗口（command line window）：</p>
 	<ol>
-		<li>在命令行模式下，使用<kbd>CTRL-F</kbd>快捷键；</li>
-		<li>在常规模式下，使用<code class="inset">q:</code>命令。</li>
+		<li>在命令行模式下，使用<kbd>CTRL-F</kbd>快捷键打开命令行窗口，并显示命令历史纪录；</li>
+		<li>在常规模式下，使用<code class="inset">q:</code>命令打开命令行窗口，并显示命令历史纪录；<br /><a href="https://yyq123.github.io/learn-vim/images/command-line-window-cmd.png" title="command-line-window"><img src="https://yyq123.github.io/learn-vim/images/command-line-window-cmd.png" alt="command-line-window" /></a></li>
+		<li>在常规模式下，使用<code class="inset">q/</code>命令打开命令行窗口，并显示向前查找（search forward）的历史纪录；<br /><a href="https://yyq123.github.io/learn-vim/images/command-line-window-sf.png" title="command-line-window"><img src="https://yyq123.github.io/learn-vim/images/command-line-window-sf.png" alt="command-line-window" /></a></li>
+		<li>在常规模式下，使用<code class="inset">q?</code>命令打开命令行窗口，并显示向后查找（search backward）的历史纪录；<br /><a href="https://yyq123.github.io/learn-vim/images/command-line-window-sb.png" title="command-line-window"><img src="https://yyq123.github.io/learn-vim/images/command-line-window-sb.png" alt="command-line-window" /></a></li>
 	</ol>
 	From Command-line mode, use the key specified with the 'cedit' option.
    The default is CTRL-F when 'compatible' is not set.
 	<p>我们可以将命令行窗口，视为常规的<a href="http://yyq123.github.io/learn-vim/learn-vi-13-MultiBuffers.html" title="Buffer">缓冲区 (Buffer)</a>来编辑。可以在其中查找命令历史纪录，并在此基础上进行修改，然后点击<kbd>&lt;Enter&gt;</kbd>键来执行命令（命令行窗口也将同时关闭）。</p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/command-line-window.png" title="command-line-window"><img src="https://yyq123.github.io/learn-vim/images/command-line-window.png" alt="command-line-window" /></a></p>
+	<p></p>
+	<p>使用一下命令，可以设置命令行窗口的高度（默认值为7）：</p>
+	<p style="text-indent:2em"><code class="inset">set cmdwinheight=n</code></p>
 	<p>使用<code class="inset">:q</code>命令，可以关闭命令行窗口。</p>
-	<p>使用<code class="inset">:help command-line-window</code>，可以关闭命令行窗口。</p>
+	<p>使用<code class="inset">:help command-line-window</code>命令，可以查看命令行窗口的更多帮助信息。</p>
 
 <p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">命令历史</p>
 	<p style="text-indent:2em"><code class="inset">:history</code></p>
@@ -93,8 +93,8 @@ a    all        所有的历史
 
 而下面的命令则是列出了上五次的查找历史:
 	<p style="text-indent:2em"><code class="inset">:history s -5</code></p>
-	<p>通过history选项，可以控制记录历史命令的数量。例如使用以下命令，设置保存50条命令历史纪录：</p>
-:set history=50
+	<p>通过history选项，可以控制记录历史命令的数量。例如使用以下命令，设置保存1000条命令历史纪录：</p>
+:set history=1000
 
 <p>命令历史是存储在viminfo文件中的; you can configure what (and how many of them) is persisted via the 'viminfo' (and 'history') options.
 	<p><a href="https://yyq123.github.io/learn-vim/images/viminfo.png" title="viminfo"><img src="https://yyq123.github.io/learn-vim/images/viminfo.png" alt="viminfo" width="500" height="332" /></a></p>
@@ -109,7 +109,8 @@ Alternatively, you could also just edit the ~/.viminfo file directly (when Vim i
 
 
 Vim编辑器可以记录上几次的错误以及在屏幕最后一行显示的信息.要查看这些信息,我们可以用下面的命令:
-:messages
+	<p style="text-indent:2em"><code class="inset">:messages</code></p>
+
 下面的命令可以使得信息的输出在显示在屏幕的同时会拷贝到一个文件中:
 :redir &gt; file
 如果要停止拷贝,可以使用下面的命令:
