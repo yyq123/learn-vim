@@ -5,9 +5,10 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记  ()</title>
+	<title>VIM学习笔记 Ex模式 (Ex Mode)</title>
 </head>
 <body>
+	<h1>VIM学习笔记 Ex模式 (Ex Mode)</h1>
 	<p>很久很久以前，人们还是使用打印设备而非显示器来与计算机进行沟通。比如打印出某行代码以确定需要修改的内容，然后针对文本进行操作，再次打印以检查变更效果。在此情形之下，行号就成为有效的定位工具。虽然，今天我们已经不再如此依赖打印设备，但是基于行编辑的Ex模式，在操作文本时还是有某些优势的。比如将文本从一个文件移动到另一个文件；快速地对大于单个屏幕的文本块进行编辑；针对整个文件中的特定模式进行全局替换等等。</p>
 	可以说Vim是Ex行编辑器的可视模式，所以ex算是vi的底层行编辑器。由于一些ex命令可以节省大量的编辑时间，因此在使用vi时它们是非常有用的。
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">进入Ex模式</p>
@@ -29,10 +30,15 @@ ex命令由行号和命令组成，并以回车键结束。
    ：2 , 10 p
 显示2～10行的内容
 
+	<p>如果我们在命令中没有指定行号，那么命令将默认作用于当前行。例如以下命令将在当前行中，将第一个"Hello"替换为"Hi"：</p>
+	<p style="text-indent:2em"><code class="inset">:s/Hello/Hi</code></p>
+	<p>请注意，在命令执行之后，受到影响的当前行，将会被重新打印到屏幕上：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/ExMode_ChangeCurrentLine.png" title="ExMode_ChangeCurrentLine"><img src="https://yyq123.github.io/learn-vim/images/ExMode_ChangeCurrentLine.png" alt="ExMode_ChangeCurrentLine" /></a></p>
+	<p>如果我们在命令中指定了行号，那么命令将作用于指定的行范围。例如以下命令将在多行中，将所有"Hello"替换为"Hi"：</p>
+	<p style="text-indent:2em"><code class="inset">:1,6s/Hello/Hi</code></p>
+	<p>请注意，在命令执行之后，受到影响的行信息，将会被重新打印到屏幕上：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/ExMode_ChangeMultiLine.png" title="ExMode_ChangeMultiLine"><img src="https://yyq123.github.io/learn-vim/images/ExMode_ChangeMultiLine.png" alt="ExMode_ChangeMultiLine" /></a></p>
 
-没有行号的命令被认为作用于当前行。假设当前光标在12行，输入命令
-： s/hello/hehe
-会把第12行的第一个"hello"改为"hehe"
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">识别文件</p>
 	<p></p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
