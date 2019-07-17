@@ -19,7 +19,7 @@ Created by yyq123@gmail.com using [vim](http://www.vim.org/)
   - [打印 (Print &amp; Hardcopy)](https://yyq123.github.io/learn-vim/learn-vi-07-Print.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/03/vim-starting.html)<sup>/</sup>[<sup>Z</sup>](http://zhuanlan.zhihu.com/p/23703353)
   - [帮助信息(Help)](http://yyq123.github.io/learn-vim/learn-vi-08-help.html)[<sup>B</sup>](http://yyq123.blogspot.com/2012/04/vim-help.html)<sup>/</sup>[<sup>Z</sup>](http://zhuanlan.zhihu.com/p/23852368)
 - **高阶操作**
-  - [在词间移动 (Word Movement)](http://yyq123.blogspot.com/2009/02/vim_4321.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/03/vim-starting.html)<sup>/</sup>[<sup>Z</sup>](http://zhuanlan.zhihu.com/p/24343264)
+  - [在词间移动 (Word Movement)](https://yyq123.github.io/learn-vim/learn-vi-09-word.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/03/vim-starting.html)<sup>/</sup>[<sup>Z</sup>](http://zhuanlan.zhihu.com/p/24343264)
   - [文本对象（Text Objects）](http://yyq123.blogspot.com/2016/12/vim-text-objects.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/03/vim-starting.html)<sup>/</sup>[<sup>Z</sup>](http://zhuanlan.zhihu.com/p/24387751)
   - [滚动屏幕(Scroll)](https://yyq123.github.io/learn-vim/learn-vi-11-Scroll.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/03/vim-starting.html)<sup>/</sup>[<sup>Z</sup>](http://zhuanlan.zhihu.com/p/24843535)
   - [Ctrl-F设置](https://yyq123.github.io/learn-vim/learn-vi-11-01-Scroll-CtrlF.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/06/vim-ctrl-f.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/70953289)
