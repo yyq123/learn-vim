@@ -5,16 +5,26 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记  ()</title>
+	<title>VIM学习笔记 ()</title>
 </head>
 <body>
+	<p>在编写<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">VIM学习笔记</a>的过程中，刻意增加了屏幕截图/录像的数量，以便能够更直观地说明各种命令的用法和效果。以下则将介绍我用于制作屏幕截图/录像的主要几款工具。</p>
+
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">启用/禁用</p>
 	<p></p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">屏幕截图</p>
-	<p><a href="https://getgreenshot.org/"></a></p>
+	<p>在屏幕截图领域，有无数优秀的软件。由于使用频率如此之高，我相信每个人也都有自己的偏好。而<a href="https://getgreenshot.org/">Greenshot</a>则是我在使用多款软件之后，安定下来的选择。Greenshot是免费的开源软件，支持Windows和Mac操作系统。她吸引我的主要有以下几点：</p>
+	<p>Greenshot除了可以截取整个屏幕、指定窗口、和矩形区域之外，她的&ldquo;截取上次区域&rdquo;功能，则可以快速截取固定的屏幕区域。比如我想要说明针对同一文字区域执行命令的效果，那么首先在原始状态下通过鼠标拖拽截取屏幕，然后执行命令，接下来只要点击快捷键<kbd>Shift + Print</kbd>就可以针对上次选定的屏幕区域进行截图。可以想象，这大大提高了多次重复截图的效率，而且确保了多次截图像素位置和图片尺寸的一致性。
+	<p>Greenshot可以将屏幕截图自动发送到剪贴板、打印机、文件或者内置的图片编辑器。通过以下快捷菜单设置，可以将屏幕截图同时发送到剪贴板和图片编辑器。你可以在图片编辑器中查看屏幕截图的效果，然后选择继续编辑图片、保存文件；或者直接关闭编辑器，然后将图片粘贴到其他应用程序当中。</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Tools_Screen_Greenshot_Destination.png" title="Tools_Screen_Greenshot_Destination"><img src="https://yyq123.github.io/learn-vim/images/Tools_Screen_Greenshot_Destination.png" alt="Tools_Screen_Greenshot_Destination" width="500" height="127" /></a></p>
+	<p>在Greenshot内置的图片编辑器中，可以为图片增加注解、标识重点、绘制图形；还可以应用边框、阴影、锯齿、高亮和模糊等多种效果。更重要的是，图片可以保存为greenshot类型的文件。也就是说，您可以多次打开文件，不断对屏幕截图进行修改，然后再将最终结果输出为PNG或JPG图片格式。这种对于屏幕截图进行多次持续调整的能力，在其他屏幕截图软件中并不多见。</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Tools_Screen_Greenshot_Editor.png" title="Tools_Screen_Greenshot_Editor"><img src="https://yyq123.github.io/learn-vim/images/Tools_Screen_Greenshot_Editor.png" alt="Tools_Screen_Greenshot_Editor" width="500" height="271" /></a></p>
+	<p>在Linux下，我会使用开源的<a href="https://github.com/lupoDharkael/flameshot" title="Flameshot">Flameshot</a>；而在Mac下，则购买了久负盛名的<a href="https://www.techsmith.com/screen-capture.html" title="SnagIt">SnagIt</a>，同时也使用免费的<a href="http://snappy-app.com/"></a>。</p>
+
+	<p></p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
-	<p><a href="https://github.com/lupoDharkael/flameshot" title="Flameshot">Flameshot</a></p>
+	<p></p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">图表制作</p>
 	<p></p>
@@ -29,7 +39,12 @@
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">屏幕录像</p>
 	<p><a href="http://www.screentogif.com"></a></p>
 
-
+取色配色
+FUJITSU ColorSelector可以说是一个极具社会价值的软件。它不但可以获取屏幕上的颜色值，更重要的是它可以判断所指定的文字颜色和背景颜色是否易于阅读；不仅判断是否易于正常人阅读，更判断是否易于白内障或者色盲人士阅读。任何一项设计只有在有用的前提下，才值得评判其优劣。如果一个网站限制用户的选择（比如国内的很多银行网站只能用IE访问），不尊重用户的感受（漫天飞舞的不堪入目的广告），我相信这样的东西是没有资格谈论设计的，它们只是一堆垃圾，一堆发臭的垃圾，即使它们拥有再漂亮的外观，也毫无价值。
+我总是很难舍弃像Color Schemer ColorPix这样的软件－－她精致小巧，用优雅的方式完成任务。利用ColorPix可以获取屏幕上任意像素的RGB、HEX、HSB和CMYK色彩值。（注：Mac自带屏幕取色程序）
+http://annystudio.com/software/colorpicker/
+免费
+Supported platforms: Windows 2000, Windows XP, Windows Server 2003, Windows Vista, Windows Server 2008, Windows 7, Windows 8 and Windows 10 — 32 and 64 bit; macOS X 10.6.6 or later — 64 bit. Portable, no installation required.
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
 		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
