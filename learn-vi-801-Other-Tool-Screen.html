@@ -5,40 +5,52 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记 ()</title>
+	<title>VIM学习笔记 相关工具-屏幕截图 (Screenshot Tools)</title>
 </head>
 <body>
-	<h1>VIM学习笔记 ()</h1>
-	<p>在编写<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">VIM学习笔记</a>的过程中，刻意增加了屏幕截图/录像的数量，以便能够更直观地说明各种命令的用法和效果。以下则将介绍我用于制作屏幕截图/录像的主要几款工具。</p>
+	<h1>VIM学习笔记  相关工具-屏幕截图 (Screenshot Tools)</h1>
+	<p>在编写<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">VIM学习笔记</a>的过程中，我刻意增加了屏幕截图/录像的数量，以便能够更直观地说明各种命令的用法和效果。以下则为我用于制作屏幕截图/录像的几款工具：</p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">屏幕截图</p>
-	<p>在屏幕截图领域，有无数优秀的软件。由于使用频率如此之高，我相信每个人也都有自己的偏好。而<a style="font-weight:bold" href="https://getgreenshot.org/">Greenshot</a>则是我在试用多款软件之后，安定下来的选择。Greenshot是免费的开源软件，支持Windows和Mac操作系统。</p>
-	<p>Greenshot可以截取整个屏幕、指定窗口、和矩形区域，而&ldquo;截取上次区域&rdquo;功能，则可以快速截取之前选定的屏幕区域。比如：我想要说明针对同一文字区域执行命令的效果，那么首先在原始状态下通过鼠标拖拽截取屏幕，然后执行命令，接下来只要点击快捷键<kbd>Shift + Print</kbd>就可以针对上次选定的屏幕区域进行截图。这大大提高了多次重复截图的效率，而且确保了多次截时图像素位置和图片尺寸的一致性。
-	<p>Greenshot可以将屏幕截图输出到剪贴板、打印机、文件或者内置的图片编辑器。通过以下快捷菜单设置，可以将屏幕截图同时发送到剪贴板和图片编辑器。你可以在图片编辑器中查看屏幕截图的效果；然后选择继续编辑图片，或者保存为文件，或者直接关闭编辑器，然后将图片粘贴到其他应用程序当中。</p>
+	<p>在屏幕截图领域，有无数优秀的软件。由于使用频率如此之高，我相信每个人也都有自己的偏好。而<a style="font-weight:bold" title="Greenshot" href="https://getgreenshot.org/">Greenshot</a>则是我在试用多款软件之后，安定下来的选择。Greenshot是免费的开源软件，支持Windows和Mac操作系统。</p>
+	<p>Greenshot可以截取整个屏幕、指定窗口、和矩形区域。而&ldquo;截取上次区域&rdquo;功能，则可以快速截取之前选定的屏幕区域。比如：我想要说明针对同一文字区域执行命令的效果，那么首先在原始状态下通过鼠标拖拽截取屏幕，然后执行命令，接下来只要点击<kbd>Shift + Print</kbd>快捷键就可以针对上次选定的屏幕区域再次进行截图。这大大提高了多次重复截图的效率，而且确保了多次截图时像素位置和图片尺寸的一致性。
+	<p>Greenshot可以将屏幕截图输出到剪贴板、打印机、文件或者内置的图片编辑器。通过选择以下快捷菜单，可以将屏幕截图同时发送到剪贴板和图片编辑器。那么你就可以在图片编辑器中查看屏幕截图的效果；然后选择继续编辑图片，或者保存为文件，或者直接关闭编辑器，然后将图片粘贴到其他应用程序当中。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/Tools_Screen_Greenshot_Destination.png" title="Tools_Screen_Greenshot_Destination"><img src="https://yyq123.github.io/learn-vim/images/Tools_Screen_Greenshot_Destination.png" alt="Tools_Screen_Greenshot_Destination" width="500" height="127" /></a></p>
-	<p>在Greenshot内置的图片编辑器中，可以为图片增加注解、标识重点、绘制图形；还可以应用边框、阴影、锯齿、高亮和模糊等多种效果。更重要的是，图片可以保存为greenshot类型的文件。之后您可以多次打开greenshot文件，不断对屏幕截图进行修改，然后再将最终结果输出为PNG或JPG图片格式。这种对于屏幕截图进行多次持续调整的能力，在其他屏幕截图软件中并不多见。</p>
+	<p>在Greenshot内置的图片编辑器中，可以为图片增加注解、标识重点、绘制图形；还可以应用边框、阴影、锯齿、高亮和模糊等多种效果。更重要的是，图片可以保存为greenshot类型的文件。之后您可以多次打开greenshot文件，不断对屏幕截图进行修改，然后再将最终结果输出为PNG或JPG图片格式。这种对于屏幕截图进行多次调整的能力，在其他屏幕截图软件中并不多见。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/Tools_Screen_Greenshot_Editor.png" title="Tools_Screen_Greenshot_Editor"><img src="https://yyq123.github.io/learn-vim/images/Tools_Screen_Greenshot_Editor.png" alt="Tools_Screen_Greenshot_Editor" width="500" height="271" /></a></p>
 	<p>在Linux下，我会使用开源的<a href="https://github.com/lupoDharkael/flameshot" title="Flameshot">Flameshot</a>；而在Mac下，则购买了久负盛名的<a href="https://www.techsmith.com/screen-capture.html" title="SnagIt">SnagIt</a>，同时也使用免费的<a href="http://snappy-app.com/">Snappy</a>。</p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">屏幕录像</p>
 	<p>对于多步骤的键盘操作，静态的屏幕截图就显得力不从心了，而使用<a style="font-weight:bold" href="http://www.screentogif.com">ScreenToGif</a>录制动态的屏幕录像，则能够更流畅地演示连续操作。</p>
-	<p>点击&ldquo;录像机&rdquo;按钮，然后将ScreenToGif窗口像取景框一样，移动到需要捕捉地屏幕区域之上；点击红色&ldquo;录制&rdquo;按钮，即可以进行屏幕录像：</p>
+	<p>点击&ldquo;录像机&rdquo;按钮，然后将ScreenToGif窗口像取景框一样，移动到需要捕捉的屏幕区域之上；点击红色&ldquo;录制&rdquo;按钮，即可以进行屏幕录像：</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/Tools_Screen_ScreenToGif_Recorder.png" title="Tools_Screen_ScreenToGif_Recorder"><img src="https://yyq123.github.io/learn-vim/images/Tools_Screen_ScreenToGif_Recorder.png" alt="Tools_Screen_ScreenToGif_Recorder" width="500" height="524" /></a></p>
-	<p>完成录制之后，可以在ScreenToGif内置的编辑器中，对屏幕录像进行逐帧的调整。比如添加文本和图像元素，调整帧的顺序，删除多余的帧等等。也就是说，可以通过后期制作，来提供更多视觉辅助，并修正操作演示中不够顺畅的步骤。屏幕录像编辑完成之后，可以导出为Gif动画或者Avi视频。</p>
+	<p>完成录制之后，可以在ScreenToGif内置的编辑器中，对屏幕录像进行逐帧调整。比如添加文本和图像元素，调整帧的顺序，删除多余的帧等等。也就是说，你可以通过后期制作，来提供更多视觉辅助，并修正操作演示中不够顺畅的步骤。屏幕录像编辑完成之后，可以导出为Gif动画或者Avi视频。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/Tools_Screen_ScreenToGif_Editor.png" title="Tools_Screen_ScreenToGif_Tools_Screen_ScreenToGif_Editor"><img src="https://yyq123.github.io/learn-vim/images/Tools_Screen_ScreenToGif_Tools_Screen_ScreenToGif_Editor.png" alt="Tools_Screen_ScreenToGif_Tools_Screen_ScreenToGif_Editor" width="500" height="341" /></a></p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
 	<p>ScreenToGif是Windows下的开源软件。在Mac下，我使用开源的屏幕录像软件<a href="https://getkap.co/">Kap</a>。</p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">按键屏显</p>
-	<p>对于Vim中大量的按键操作，即使利用屏幕截图来演示，有时仍然显得词不达意。而使用<a style="font-weight:bold" href="http://carnackeys.com/">Carnac</a>，则可以在屏幕上实时显示按键操作，也就可以同步展示输入的命令，以及执行命令的结果。</p>
+	<p>对于Vim中大量的按键操作，即使利用屏幕录像来演示，有时仍然显得词不达意。而使用<a style="font-weight:bold" href="http://carnackeys.com/">Carnac</a>，则可以在屏幕上实时显示按键操作，也就可以同步展示输入的命令，以及执行命令的结果。</p>
 	<p>通过设置按键屏显的位置、字体大小、颜色、背景和样式，可以更加美观和直观地辅助屏幕录像。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/Tools_Screen_Carnac_Appearance.png" title="Tools_Screen_Carnac_Appearance"><img src="https://yyq123.github.io/learn-vim/images/Tools_Screen_Carnac_Appearance.png" alt="Tools_Screen_Carnac_Appearance" width="500" height="352" /></a></p>
-	<p>例如以下屏幕录像，演示了在将'j'映射为'gj'之后，向下移动键和j键，对于折行的不同处理（请参阅<a href="http://yyq123.github.io/learn-vim/learn-vi-23-Wrap.html" title="wrap">折行</a>章节的详细说明）。俗话说，&ldquo;一幅图话胜过千言万语&rdquo;，而一段活动的影像更又胜强百倍了吧？</p>
+	<p>例如以下屏幕录像，演示了在将'j'映射为'gj'之后，向下移动键和j键，对于折行的不同处理（请参阅<a href="http://yyq123.github.io/learn-vim/learn-vi-23-Wrap.html" title="wrap">折行</a>章节的详细说明）。俗话说，&ldquo;一幅图画胜过千言万语&rdquo;，而一段活动的影像更又胜强百倍了吧？</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/j-gj-500.gif" title="j-gj-500"><img src="https://yyq123.github.io/learn-vim/images/j-gj-500.gif" alt="j-gj" /></a></p>
 	<p>Carnac是Windows下的开源软件。在Mac下，我使用开源<a href="https://github.com/keycastr/keycastr">KeyCastr</a>。</p>
 
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr>
+			<th></th><th>Windows</th><th>Linux</th><th>Mac</th>
+		</tr>
+		<tr>屏幕截图<td>而<a title="Greenshot" href="https://getgreenshot.org/">Greenshot</a></td><td rowspan="2"></td></tr>
+		<tr><td><code class="inset">:</code></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+	</table>
+</a></li>
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="学习资源(Resources)" href="http://yyq123.github.io/learn-vim/learn-vi-998-Resources.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="参考资料(References)" href="http://yyq123.github.io/learn-vim/learn-vi-999-Ref.html">下一篇</a>&gt;</span></p>
 
 </body>
 </html>
-

@@ -11,8 +11,7 @@
 	:help :
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px"></p>
 	<p></p>
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">进入命令行模式</p>
-	<p>输入<code class="inset">:</code>命令；使用<code class="inset">/</code>或<code class="inset">?</code>搜索命令，都将进入命令行模式（Command-line mode）。用户可以在屏幕底部的命令行中输入命令，或者使用以下快捷键遍历之前的命令历史，然后点击<kbd>&lt;Enter&gt;</kbd>键来执行命令。</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px"></p>
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<tr><td><kbd>&uarr;</kbd></td><td rowspan="2">显示上一条命令</td></tr>
 		<tr><td><kbd>Ctrl + p</kbd></td></tr>
@@ -28,13 +27,8 @@
 		<tr><td><kbd>Ctrl + u</kbd></td><td>删除光标前的所有字符</td></tr>
 	</table>
 
-	<p>输入部分命令，比如输入<code class="inset">:set</code>，然再点击上下光标键，将自动对命令历史纪录进行过滤，仅仅显示以&ldquo;set&rdquo;开头的命令历史纪录。</p>
-	<p></p>
-	<p>继续键入命令<code class="inset">:set i</code>之后，按下<kbd>Tab</kbd>或<kbd>Ctrl+D</kbd>键，就将显示匹配以i开头的set命令；继续按<kbd>Tab</kbd>键，可以在这些命令列表间移动，按下回车键就可以执行该命令。持的所有</p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/set_i_tab.png" title="set_i_tab"><img src="https://yyq123.github.io/learn-vim/images/set_i_tab.png" alt="set_i_tab" width="500" height="78" /></a></p>
-	<p><code class="inset">:help cmdline-editing</code></p>
-	<p>进入命令行模式之后，点击<kbd>Ctrl+r</kbd><kbd>Ctrl+w</kbd>键可以将当前光标下的<a href="https://yyq123.github.io/learn-vim/learn-vi-09-word.html" title="word">word</a>粘贴到命令行中；点击<kbd>Ctrl+r</kbd><kbd>Ctrl+a</kbd>键可以将当前光标下的<a href="https://yyq123.github.io/learn-vim/learn-vi-09-word.html" title="word">WORD</a>粘贴到命令行；点击<kbd>Ctrl+r</kbd><kbd>%</kbd>键可以将当前文件名粘贴到命令行。</p>
-	<p><code class="inset">:help c_CTRL-R_CTRL-W</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
+	<p><code class="inset">:help </code></p>
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">命令行窗口</p>
 	<p>可以使用以下四种方式，来打开命令行窗口（command line window）：</p>
 	<ol>
@@ -78,6 +72,10 @@ a    all        所有的历史
 
 <p>命令历史是存储在viminfo文件中的; you can configure what (and how many of them) is persisted via the 'viminfo' (and 'history') options.
 	<p><a href="https://yyq123.github.io/learn-vim/images/viminfo.png" title="viminfo"><img src="https://yyq123.github.io/learn-vim/images/viminfo.png" alt="viminfo" width="500" height="332" /></a></p>
+
+	Register : holds the last command, and / holds the last search. Therefore ":p will paste the last command, and "/p will paste the last search.
+重复执行上一条命令
+	<p><code class="inset">@:</code></p>
 
 You can clear the history via the histdel() function, e.g. for searches:
 

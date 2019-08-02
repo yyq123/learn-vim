@@ -5,19 +5,22 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记 选择模式</title>
+	<title>VIM学习笔记 选择模式 (Select Mode)</title>
 </head>
 <body>
-	<p>选择模式是另一种可视化模式。在选择模式下，可以对选中文本进行的快速操作。比如先高亮显示文本，然后用<kbd>Backspace</kbd>来删除这段文本；或者先高亮显示文本，然后用输入的内容来替换这些文本。</p>
-	<p>那么选择模式和可视化模式又有何区别呢？在可视化模式下，我们可以选中文本，然后执行命令操作。也就是说，要用命令来结束可视化模式。而在选择模式下，命令仅限于<kbd>Backspace</kbd>（用于操作删除操作）和可打印的字符（用于替换操作）。因为不需要输入命令，所以操作变得更为简单，但同时也存在很多限制。</p>
-	<p>可以使用以下命令来开始一种选择模式：</p>
+	<h1>VIM学习笔记 选择模式 (Select Mode)</h1>
+	<p>选择模式是另一种可视化模式。在选择模式下，可以对选中的文本进行快速操作。比如先高亮显示文本，然后用<kbd>Backspace</kbd>来删除这段文本；或者先高亮显示文本，然后用输入的内容来替换这些文本。执行操作之后，Vim将自动进入<a href="http://yyq123.github.io/learn-vim/learn-vi-42-InsertMode.html" title="插入模式(Insert Mode)">插入模式(Insert Mode)</a>。</p>
+	<p>选择模式与可视化模式的主要区别在于：在可视化模式下，可以选中文本，然后执行命令操作。也就是说，要用命令来结束可视化模式。而在选择模式下，命令仅限于<kbd>Backspace</kbd>（用于删除操作）和可打印的字符（用于替换操作）。因为不需要输入命令，所以操作变得更为简单，但同时也存在很多限制。</p>
+	<p>在常规模式下，可以使用以下命令进入选择模式：</p>
 	<p style="text-indent:2em"><code class="inset">gh</code>  进入字符选择模式</p>
 	<p style="text-indent:2em"><code class="inset">gH</code>  进入行选择模式</p>
 	<p style="text-indent:2em"><code class="inset">gCTRL-H</code>  进入块选择模式</p>
+	<p>在<a href="http://yyq123.github.io/learn-vim/learn-vi-45-VisualMode.html" title="可视化模式(Visual Mode)">可视化模式(Visual Mode)</a>下，可以使用<kbd>Ctrl + g</kbd>快捷键，进入选择模式。Vim将根据当前所处的可视化模式的类型，自动进入与之一致的字符/行/块选择模式。再次点击<kbd>ctrl-g</kbd>键，将返回到可视化模式。</p>
+	<p>我们可以用<kbd>ctrl-O</kbd>命令从选择模式切换到可视化模式。</p>
 	<p>在选择模式下移动光标比在正常模式下要困难一些。因为输入任何可打印字符，Vim就会删掉已选中的文本并进插入状态。所以要选择文本就只能使用方向键、CTRL以及功能键。如果要在选择模式下用鼠标来选择文本，需要设置以下选项：</p>
 	<p style="text-indent:2em"><code class="inset">:set selectmode=mouse</code></p>
-	<p>我们可以用<kbd>ctrl-O</kbd>命令从选择模式切换到可视化模式。也可以用<kbd>ctrl-G</kbd>命令从可视化模式切换到选择模式。</p>
-	<p>Technorati Tags: <a href="http://www.technorati.com/tags/vi" rel="tag">vi</a>,<a href="http://www.technorati.com/tags/vim" rel="tag">vim</a>,<a href="http://www.technorati.com/tags/gvim" rel="tag">gvim</a></p>
+	使用<kbd>Esc</kbd>键，可以退出选择模式。
+	:help select-mode
 </body>
 </html>
 

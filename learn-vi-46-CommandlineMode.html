@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 命令行模式 (Command-line Mode)</title>
+</head>
+<body>
+	<h1>VIM学习笔记 命令行模式 (Command-line Mode)</h1>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">命令行模式 (Command-line Mode)</p>
+	<p>输入<code class="inset">:</code>命令，使用<code class="inset">/</code>或<code class="inset">?</code>搜索命令，都将进入命令行模式。用户可以在屏幕底部的命令行中输入命令，或者使用以下快捷键遍历之前的命令历史，然后点击<kbd>&lt;Enter&gt;</kbd>键来执行命令。</p>
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<tr><td><kbd>&uarr;</kbd></td><td rowspan="2">显示上一条命令</td></tr>
+		<tr><td><kbd>Ctrl + p</kbd></td></tr>
+		<tr><td><kbd>&darr;</kbd></td><td rowspan="2">显示下一条命令</td></tr>
+		<tr><td><kbd>Ctrl + n</kbd></td></tr>
+		<tr><td><kbd>Ctrl + b</kbd></td><td>移动到命令行开头</td></tr>
+		<tr><td><kbd>Ctrl + e</kbd></td><td>移动到命令行末尾</td></tr>
+		<tr><td><kbd>Ctrl + &larr;</kbd></td><td rowspan="2">向左移动一个单词</td></tr>
+		<tr><td><kbd>Shift + &larr;</kbd></td></tr>
+		<tr><td><kbd>Ctrl + &rarr;</kbd></td><td rowspan="2">向右移动一个单词</td></tr>
+		<tr><td><kbd>Shift + &rarr;</kbd></td></tr>
+		<tr><td><kbd>Ctrl + w</kbd></td><td>删除光标前的一个单词</td></tr>
+		<tr><td><kbd>Ctrl + u</kbd></td><td>删除光标前的所有字符</td></tr>
+	</table>
+	<p>输入部分命令，比如输入<code class="inset">:set</code>，然再点击上下光标键，将自动对命令历史纪录进行过滤，仅显示以&ldquo;set&rdquo;开头的命令历史纪录。在输入<code class="inset">/</code>和<code class="inset">?</code>查找命令时，此特性同样有效。请注意，此时是大小写敏感的。</p>
+	<p>继续键入命令<code class="inset">:set i</code>之后，按下<kbd>Tab</kbd>或<kbd>Ctrl+D</kbd>键，将显示以&ldquo;i&rdquo;开头的set命令；继续按<kbd>Tab</kbd>键，则可以在这些命令列表间移动，按下回车键就可以执行该命令。</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/set_i_tab.png" title="set_i_tab"><img src="https://yyq123.github.io/learn-vim/images/set_i_tab.png" alt="set_i_tab" width="500" height="78" /></a></p>
+	<p>进入命令行模式之后，点击<kbd>Ctrl+r</kbd><kbd>Ctrl+w</kbd>键可以将当前光标下的<a href="https://yyq123.github.io/learn-vim/learn-vi-09-word.html" title="word">word</a>粘贴到命令行中；点击<kbd>Ctrl+r</kbd><kbd>Ctrl+a</kbd>键可以将当前光标下的<a href="https://yyq123.github.io/learn-vim/learn-vi-09-word.html" title="word">WORD</a>粘贴到命令行；点击<kbd>Ctrl+r</kbd><kbd>%</kbd>键可以将当前文件名粘贴到命令行。</p>
+	<p>利用以上快捷键，可以大大简化命令行的输入。比如想要替换光标下的单词，那么只要输入:substitute命令，然后再点击Ctrl+r和Ctrl+w键，就可以将光标下的单词插入到命令行中，而不需要手工输入替换的文字了。</p>
+	<p><code class="inset">:%s/&lt;Ctrl+r&gt;&lt;Ctrl+w&gt;//g</code></p>
+	<p>比如在编辑<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc配置文件</a>时，会面对大量的设置命令，只需要将光标移动到配置选项之上，输入:help命令，然后点击Ctrl+r和Ctrl+w键，就可以查询该关键字的帮助信息：</p>
+	<p><code class="inset">:help &lt;Ctrl+r&gt;&lt;Ctrl+w&gt;</code></p>
+	<p>使用<code class="inset">:help c_CTRL-R_CTRL-W</code>命令，可以查看关于Ctrl+r和Ctrl+w键的帮助信息。使用<code class="inset">:help cmdline-editing</code>命令，可以查看关于命令行编辑的帮助信息。使用<code class="inset">:help :</code>命令，可以查看关于命令行模式的帮助信息。</p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">命令行窗口 (Command-line Window)</p>
+	<p>可以使用以下四种方式，来打开命令行窗口：</p>
+	<ol>
+		<li>在命令行模式下，使用<kbd>CTRL-F</kbd>快捷键打开命令行窗口，并显示命令历史纪录；<br />请注意，您可以使用<code class="inset">:set cedit</code>命令，更改此快捷键。</li>
+		<li>在常规模式下，使用<code class="inset">q:</code>命令打开命令行窗口，并显示命令历史纪录；<br /><a href="https://yyq123.github.io/learn-vim/images/command-line-window-cmd.png" title="command-line-window"><img src="https://yyq123.github.io/learn-vim/images/command-line-window-cmd.png" alt="command-line-window" /></a></li>
+		<li>在常规模式下，使用<code class="inset">q/</code>命令打开命令行窗口，并显示向前查找（search forward）的历史纪录；<br /><a href="https://yyq123.github.io/learn-vim/images/command-line-window-sf.png" title="command-line-window"><img src="https://yyq123.github.io/learn-vim/images/command-line-window-sf.png" alt="command-line-window" /></a></li>
+		<li>在常规模式下，使用<code class="inset">q?</code>命令打开命令行窗口，并显示向后查找（search backward）的历史纪录；<br /><a href="https://yyq123.github.io/learn-vim/images/command-line-window-sb.png" title="command-line-window"><img src="https://yyq123.github.io/learn-vim/images/command-line-window-sb.png" alt="command-line-window" /></a></li>
+	</ol>
+	<p>我们可以将命令行窗口，视为常规的<a href="http://yyq123.github.io/learn-vim/learn-vi-13-MultiBuffers.html" title="Buffer">缓冲区 (Buffer)</a>来操作。使用<kbd>k</kbd>和<kbd>j</kbd>键，可以在命令历史纪录中上下移动；也可以使用<code class="inset">/</code>命令查找命令历史纪录，并在此基础上进行修改，然后点击<kbd>&lt;Enter&gt;</kbd>键来执行命令（命令行窗口也将同时关闭）。</p>
+	<p>如果同时打开多个<a href="http://yyq123.github.io/learn-vim/learn-vi-13-MultiBuffers.html" title="Buffer">缓冲区 (Buffer)</a>，那么可以在一个缓冲区的命令行窗口使用<code class="inset">yy</code>命令复制一条命令，然后在另一个缓冲区的命令行窗口中粘贴并执行该命令，或者在命令行中使用<code class="inset">:@"&lt;CR&gt;</code>来执行复制的命令。也就是说，你可以很方便地在多个缓冲区中，重复执行命令（比如相同的:%s/old/new/g替换操作），而不必多次手工输入命令。</p>
+	<p>使用以下命令，可以设置命令行窗口的高度（默认值为7）：</p>
+	<p style="text-indent:2em"><code class="inset">:set cmdwinheight=n</code></p>
+	<p>使用<code class="inset">:q</code>命令，可以关闭命令行窗口。</p>
+	<p>使用<code class="inset">:help command-line-window</code>命令，可以查看命令行窗口的更多帮助信息。</p>
+
+</body>
+</html>
