@@ -25,9 +25,8 @@
 	<p>点击&ldquo;录像机&rdquo;按钮，然后将ScreenToGif窗口像取景框一样，移动到需要捕捉的屏幕区域之上；点击红色&ldquo;录制&rdquo;按钮，即可以进行屏幕录像：</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/Tools_Screen_ScreenToGif_Recorder.png" title="Tools_Screen_ScreenToGif_Recorder"><img src="https://yyq123.github.io/learn-vim/images/Tools_Screen_ScreenToGif_Recorder.png" alt="Tools_Screen_ScreenToGif_Recorder" width="500" height="524" /></a></p>
 	<p>完成录制之后，可以在ScreenToGif内置的编辑器中，对屏幕录像进行逐帧调整。比如添加文本和图像元素，调整帧的顺序，删除多余的帧等等。也就是说，你可以通过后期制作，来提供更多视觉辅助，并修正操作演示中不够顺畅的步骤。屏幕录像编辑完成之后，可以导出为Gif动画或者Avi视频。</p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/Tools_Screen_ScreenToGif_Editor.png" title="Tools_Screen_ScreenToGif_Tools_Screen_ScreenToGif_Editor"><img src="https://yyq123.github.io/learn-vim/images/Tools_Screen_ScreenToGif_Tools_Screen_ScreenToGif_Editor.png" alt="Tools_Screen_ScreenToGif_Tools_Screen_ScreenToGif_Editor" width="500" height="341" /></a></p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
-	<p>ScreenToGif是Windows下的开源软件。在Mac下，我使用开源的屏幕录像软件<a href="https://getkap.co/">Kap</a>。</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Tools_Screen_ScreenToGif_Editor.png" title="Tools_Screen_ScreenToGif_Editor"><img src="https://yyq123.github.io/learn-vim/images/Tools_Screen_ScreenToGif_Editor.png" alt="Tools_Screen_ScreenToGif_Editor" width="500" height="341" /></a></p>
+	<p>ScreenToGif是Windows下的开源软件。在Linux下，我会使用开源的<a href="https://obsproject.com/" title="OBS">OBS Studio</a>；在Mac下，我使用开源的屏幕录像软件<a href="https://getkap.co/">Kap</a>。</p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">按键屏显</p>
 	<p>对于Vim中大量的按键操作，即使利用屏幕录像来演示，有时仍然显得词不达意。而使用<a style="font-weight:bold" href="http://carnackeys.com/">Carnac</a>，则可以在屏幕上实时显示按键操作，也就可以同步展示输入的命令，以及执行命令的结果。</p>
@@ -35,18 +34,14 @@
 	<p><a href="https://yyq123.github.io/learn-vim/images/Tools_Screen_Carnac_Appearance.png" title="Tools_Screen_Carnac_Appearance"><img src="https://yyq123.github.io/learn-vim/images/Tools_Screen_Carnac_Appearance.png" alt="Tools_Screen_Carnac_Appearance" width="500" height="352" /></a></p>
 	<p>例如以下屏幕录像，演示了在将'j'映射为'gj'之后，向下移动键和j键，对于折行的不同处理（请参阅<a href="http://yyq123.github.io/learn-vim/learn-vi-23-Wrap.html" title="wrap">折行</a>章节的详细说明）。俗话说，&ldquo;一幅图画胜过千言万语&rdquo;，而一段活动的影像更又胜强百倍了吧？</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/j-gj-500.gif" title="j-gj-500"><img src="https://yyq123.github.io/learn-vim/images/j-gj-500.gif" alt="j-gj" /></a></p>
-	<p>Carnac是Windows下的开源软件。在Mac下，我使用开源<a href="https://github.com/keycastr/keycastr">KeyCastr</a>。</p>
+	<p>Carnac是Windows下的开源软件。在Linux下，我会使用开源的<a href="https://www.thregr.org/~wavexx/software/screenkey/" title="Screenkey">Screenkey</a>；在Mac下，我使用开源<a href="https://github.com/keycastr/keycastr">KeyCastr</a>。</p>
 
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
-		<caption>命令小结</caption>
-		<tr>
-			<th></th><th>Windows</th><th>Linux</th><th>Mac</th>
-		</tr>
-		<tr>屏幕截图<td>而<a title="Greenshot" href="https://getgreenshot.org/">Greenshot</a></td><td rowspan="2"></td></tr>
-		<tr><td><code class="inset">:</code></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<caption></caption>
+		<tr><td></td><td>Windows</td><td>Linux</td><td>Mac</td></tr>
+		<tr><td>屏幕截图</td><td style="text-align:center"><a title="Greenshot" href="https://getgreenshot.org/"><img src="https://yyq123.github.io/learn-vim/images/logo-Greenshot.png" alt="logo" width="48" height="48" /></a></td><td style="text-align:center"><a title="Flameshot" href="https://github.com/lupoDharkael/flameshot"><img src="https://yyq123.github.io/learn-vim/images/logo-Flameshot.png" alt="logo" width="48" height="48" /></a></td><td style="text-align:center"><a title="Snappy" href="http://snappy-app.com/"><img src="https://yyq123.github.io/learn-vim/images/logo-Snappy.png" alt="logo" width="48" height="48" /></a></td></tr>
+		<tr><td>屏幕录像</td><td style="text-align:center"><a title="ScreenToGif" href="http://www.screentogif.com/"><img src="https://yyq123.github.io/learn-vim/images/logo-ScreenToGif.png" alt="logo" width="48" height="48" /></a></td><td style="text-align:center"><a title="OBS" href="https://obsproject.com/"><img src="https://yyq123.github.io/learn-vim/images/logo-OBS.png" alt="logo" width="48" height="48" /></a></td><td style="text-align:center"><a title="Kap" href="https://getkap.co//"><img src="https://yyq123.github.io/learn-vim/images/logo-Kap.png" alt="logo" width="48" height="48" /></a></td></tr>
+		<tr><td>按键屏显</td><td style="text-align:center"><a title="Carnac" href="http://carnackeys.com/"><img src="https://yyq123.github.io/learn-vim/images/logo-Carnac.png" alt="logo" width="48" height="48" /></a></td><td style="text-align:center"><a title="screenkey" href="https://www.thregr.org/~wavexx/software/screenkey/"><img src="https://yyq123.github.io/learn-vim/images/logo-Screenkey.png" alt="logo" width="48" height="48" /></a></td><td style="text-align:center"><a title="Keycastr" href="https://github.com/keycastr/keycastr"><img src="https://yyq123.github.io/learn-vim/images/logo-Keycastr.png" alt="logo" width="48" height="48" /></a></td></tr>
 	</table>
 </a></li>
 

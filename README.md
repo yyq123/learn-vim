@@ -32,6 +32,7 @@ Created by yyq123@gmail.com using [vim](http://www.vim.org/)
   - [插入模式 (Insert Mode)](http://yyq123.github.io/learn-vim/learn-vi-42-InsertMode.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/07/vim-insert-mode.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/72335772)
   - [替换模式(Replace Mode)](http://yyq123.github.io/learn-vim/learn-vi-44-ReplaceMode.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/07/vim-replace-mode.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/72577235)
   - [可视化模式 (Visual Mode)](http://yyq123.github.io/learn-vim/learn-vi-45-VisualMode.html)[<sup>B</sup>](http://yyq123.blogspot.com/2010/11/vim-visual-mode.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/58513837)
+  - [命令行模式 (Command-line Mode)](http://yyq123.github.io/learn-vim/learn-vi-46-CommandlineMode.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/08/vim-command-line-mode.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/76531156)
 - **文字处理**
   - [换行（Line Feed）](http://yyq123.blogspot.com/2010/07/vim-line-feed.html)[<sup>B</sup>](http://yyq123.blogspot.com/2010/07/vim-line-feed.html)<sup>/</sup>[<sup>Z</sup>](http://zhuanlan.zhihu.com/p/26133311)
   - [折行（Wrap）](http://yyq123.blogspot.com/2010/07/vim-wrap.html)[<sup>B</sup>](http://yyq123.blogspot.com/2010/07/vim-wrap.html)<sup>/</sup>[<sup>Z</sup>](http://zhuanlan.zhihu.com/p/26301974)
