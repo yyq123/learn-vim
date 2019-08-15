@@ -16,17 +16,11 @@
 	<p>在操作系统的命令行中，使用以下Ex命令，可以进入Vim的Ex模式：</p>
 	<p style="text-indent:2em"><code class="inset">$ ex filename</code></p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/ExMode.png" title="ExMode"><img src="https://yyq123.github.io/learn-vim/images/ExMode.png" alt="ExMode" /></a></p>
-	<p>在Vim的常规模式下，使用<code class="inset">Q</code>，可以进入Vim的Ex模式：</p>
+	<p>在Vim的常规模式下，使用<code class="inset">Q</code>或者<code class="inset">gQ</code>命令，可以进入Vim的Ex模式：</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/ExMode_FromNormalMode.png" title="ExMode_FromNormalMode"><img src="https://yyq123.github.io/learn-vim/images/ExMode_FromNormalMode.png" alt="ExMode_FromNormalMode" width="500" height="40" /></a></p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">执行Ex命令</p>
-	<p>ex命令由行号和命令组成，并以回车键结束。可以使用行号明确指定单行，也可以使用范围来指定多行。</p>
-	<p>使用以下命令，可以打印当前文件的第二行内容（到屏幕）：</p>
-	<p style="text-indent:2em"><code class="inset">: 2 p</code></p>
-	<p>通过在命令中指定行号范围，可以显示多行能容：</p>
-	<p style="text-indent:2em"><code class="inset">：2 , 10 p</code></p>
-
-
+	<p>ex命令由行地址和命令组成，并以回车键结束。</p>
 	<p>如果我们在命令中没有指定行号，那么命令将默认作用于当前行。例如以下命令将在当前行中，将第一个"Hello"替换为"Hi"：</p>
 	<p style="text-indent:2em"><code class="inset">:s/Hello/Hi</code></p>
 	<p>请注意，在命令执行之后，受到影响的当前行，将会被重新打印到屏幕上：</p>
@@ -35,80 +29,78 @@
 	<p style="text-indent:2em"><code class="inset">:1,6s/Hello/Hi</code></p>
 	<p>请注意，在命令执行之后，受到影响的行信息，将会被重新打印到屏幕上：</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/ExMode_ChangeMultiLine.png" title="ExMode_ChangeMultiLine"><img src="https://yyq123.github.io/learn-vim/images/ExMode_ChangeMultiLine.png" alt="ExMode_ChangeMultiLine" /></a></p>
+	<p>在命令中可以使用以下三种方式，来指定行地址：</p>
+	<ul>
+		<li>显式指定行号的绝对地址；</li>
+		<li>使用特殊符号，指定相对地址；</li>
+		<li>由搜索模式指定的地址。</li>
+	</ul>
+	<p style="font-weight:bold">指定行号的绝对地址</p>
+	<p>使用以下命令，可以打印当前文件的第二行内容（到屏幕）：</p>
+	<p style="text-indent:2em"><code class="inset">:2p</code></p>
+	<p>通过在命令中指定行号范围，可以显示多行内容：</p>
+	<p style="text-indent:2em"><code class="inset">:2,10p</code></p>
+	<p>使用以下命令，可以将11至15行移动到23行下面：</p>
+	<p style="text-indent:2em"><code class="inset">:11,15m23</code></p>
+	<p>使用以下命令，可以复制23至29行并粘贴到100行下面：</p>
+	<p style="text-indent:2em"><code class="inset">:23,29co100</code></p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">识别文件</p>
-	<p></p>
-	<p style="text-indent:2em"><code class="inset"></code></p>
-使用ex进行编辑
+	<p style="font-weight:bold">特殊符合指定的相对地址</p>
+	<p>在指定行地址时，可以使用特殊符号：点&ldquo;<code class="inset">.</code>&rdquo;代表当前行；美元符合&ldquo;<code class="inset">$</code>&rdquo;代表文件的最后一行；百分号&ldquo;<code class="inset">%</code>&rdquo;代表文件的每一行，等同于1,$的组合。特殊符号可以与行号组合使用，例如：</p>
+	<p>使用以下命令，可以删除最后一行：</p>
+	<p style="text-indent:2em"><code class="inset">:$d</code></p>
+	<p>使用以下命令，可以删除从当前行到文件末尾：</p>
+	<p style="text-indent:2em"><code class="inset">:.,$d</code></p>
+	<p>使用以下命令，可以删除文件中的所有行：</p>
+	<p style="text-indent:2em"><code class="inset">:1,$d</code></p>
+	<p style="text-indent:2em"><code class="inset">:%d</code></p>
+	<p>使用以下命令，可以把20至当前行的文本移动到文件末尾：</p>
+	<p style="text-indent:2em"><code class="inset">:20,.m$</code></p>
+	<p>使用以下命令，可以复制所有行并粘贴到文件的尾部：</p>
+	<p style="text-indent:2em"><code class="inset">:%t$</code></p>
+	<p>当符号&ldquo;+&rdquo;和&ldquo;-&rdquo;放置在数字前面时，就会像数学运算符一样，表示加上或减去指定的行数。例如：</p>
+	<p>使用以下命令，可以删除当前行之前的所有行：</p>
+	<p style="text-indent:2em"><code class="inset">:1,.-1d</code></p>
+	<p>使用以下命令，可以删除从当前行到当前行以下20行：</p>
+	<p style="text-indent:2em"><code class="inset">:.,.+20d</code></p>
+	<p>使用以下命令，可以把226行到文件末尾的文本移动到当前行的上面两行的后面：</p>
+	<p style="text-indent:2em"><code class="inset">:226,$m.-2</code></p>
+	<p>事实上，由于当前行是假定的开始位置，因此在使用+或-时并不必需输入圆点符号；如果在+或-后面没有数字，那么就等价于+1和-1；数字0代表文件的开头（即0行）。</p>
+	<p>使用以下命令，可以复制三行（当前行，前一行，后一行），并粘贴到文件开头。例如：</p>
+	<p style="text-indent:2em"><code class="inset">:-,+t0</code></p>
 
-ex常用编辑命令：
-d     (delete)   删除行
-m   (move)    移动行
-co  (copy)      复制行
-t    复制行，和co同义
+	<p style="font-weight:bold">搜索模式指定的相对地址</p>
+	<p>使用以下命令，可以删除下一个包含模式pattern的行：</p>
+	<p style="text-indent:2em"><code class="inset">:/pattern/d</code></p>
+	<p>使用以下命令，可以删除下一个包含模式pattern的行的下一行：</p>
+	<p style="text-indent:2em"><code class="inset">:/pattern/+d</code></p>
+	<p>使用以下命令，可以删除第一个包含pattern1的行与第一个包含pattern2的行之间的所有行：</p>
+	<p style="text-indent:2em"><code class="inset">:/pattern1/,/pattern2/d</code></p>
+	<p>使用以下命令，可以从当前行到第一个包含pattern的行之间的文本移动到23行后面：</p>
+	<p style="text-indent:2em"><code class="inset">:.,/pattern/m23</code></p>
 
-：3, 18 d              删除3~18行
-：11, 15 m 23      把11～15行移动到23行下面。
-：23, 29 co 100   复制23～29行并把它们粘贴到100行下面
+	<p style="font-weight:bold">重新定义当前行的位置</p>
+	<p>假设当前光标在第一行。</p>
+	<p style="text-indent:2em"><code class="inset">:100,+5p</code></p>
+	<p>执行以上命令，系统反馈信息认为终止行范围小于起始行范围：</p>
+	<p style="text-indent:2em"><code class="msg">Backwards range given, OK to swap (y/n)</code></p>
+	<p>如果输入y，则意味着交换行范围的起止位置，即显示（1+5=）6至100行；如果输入n，则行范围（100至6行）无效，命令失败。</p>
+	<p>在ex命令中，当使用分号&ldquo;;&rdquo;代替逗号&ldquo;,&rdquo;时，就会将第一个行地址视为“当前行”。</p>
+	<p>不管当前光标处于文件的哪一行，以下命令都将视第100行为当前行，并显示当前行及之后5行（即100至105行）：</p>
+	<p style="text-indent:2em"><code class="inset">:100;+5p</code></p>
+	<p>分号也可以用于搜索模式的相对地址中。例如，显示下一个包含模式pattern的行以及之后的10行：</p>
+	<p style="text-indent:2em"><code class="inset">:/patter/;+10p</code></p>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>ex常用编辑命令</caption>
+		<tr><th>命令</th><th>缩写</th><th>用途</th></tr>
+		<tr><td><code class="inset">delete</code></td><td><code class="inset">d</code></td><td>删除行</td></tr>
+		<tr><td><code class="inset">move</code></td><td><code class="inset">m</code></td><td>移动行</td></tr>
+		<tr><td><code class="inset">copy</code></td><td><code class="inset">co</code></td><td>复制行</td></tr>
+		<tr><td><code class="inset"></code></td><td><code class="inset">t</code></td><td>复制行，与co同义</td></tr>
+	</table>
+
 	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
-
-： =                   显示总行数
-： . =               显示当前行号
-： /pattern/=   显示地一个与模式pattern想匹配的行号
-
-
-行地址符
-
-.（点）  代表当前行
-$           代表文件的最后一行；
-%          代表文件的每一行，等同于1, $的组合
-  
-这些符号可以与绝对行地址组合使用，例如：
-： . ,  $ d    删除从当前行到文件末尾
-：20, . m $  把20～当前行的文本移动到文件末尾
-：% d         删除文件中的所有行
-：% t $        复制所有行并把它们粘贴到文件的尾部（成为连续的副本）
-
-
-除了绝对行地址外，也可以指定一个相对当前行的地址。符号+和-就像数学运算符一样，当将其放置在数字前面时，这些符号就会加上或减去跟在它们后面的数值。例如：
-：. , . + 20 d   删除从当前行到当前行以下20行
-：226 , $  m  .-2  把226行到文件末尾的文本移动到当前行的上面两行的后面。
-：. , +20 #     显示从当前行下面20行的行号
-事实上，由于当前行是假定的开始位置，因此在使用+或-时不需要输入圆点
-
-
-如果在+或-后面没有数字，那么就等价于+1和-1
-
-数字0代表文件的开头（等于0行）。
-
-：-, + t 0  复制三行（当前行，前一行，后一行），并粘贴到文件开头
-
-
-
-搜索模式
-
-ex定位行的另一种方法是使用搜索模式。例如：
-
-：/pattern/ d     删除下一个包行模式pattern的行
-：/pattern/+ d   删除下一个包行模式pattern的行的下一行（也i可使用+1来代替）
-：/pattern1/,/pattern2/ d  删除第一个包行pattern1的行与第一个包行pattern2的行之间的所有行
-：. , /pattern/ m 23    从当前行到第一个包行pattern的行之间的文本移动到23行后面。
-
-
-
-重新定义当前行的位置
-
-假设当前光标在第一行。
-：100, +5 p
-会发生错误， 因为这个命令等价于：100, 6p， 
-而我们是希望显示100～105行， 为了达到这个目的，我们要把当前行为第一行变成当前行为100,然后+5.
-
-ex提供了这个方法， 当使用“分号”代替“逗号”时，就会将第一个行地址当成“当前行”。
-：100 ; +5 p   就会显示100～105行
-
-分号也可以用于搜索模式的相对地址中，例如，显示下一个包行模式pattern的行和它下面的10行：
-：/patter/ ; +10 p  
-
 
 全局搜索
 
@@ -122,86 +114,20 @@ ex提供了这个方法， 当使用“分号”代替“逗号”时，就会�
 ：g!/pattern/nu       寻找并显示文件中所有不包行模式pattern的行，并显示这些行号  
 ：20, 40g/pattern/p  寻找并显示第20到40行之间所有包含模式pattern的行
 
-  
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">组合Ex命令</p>
+	<p>竖直线&ldquo;|&rdquo;作为命令分割符，可以将多个命令组合在一起执行。使用&ldquo;|&rdquo;时，如果前一个命令影响到文件中行的顺序，那么下一个命令将使用新的行位置进行工作。</p>
+	<p>使用以下命令，将首先删除第1行至第3行，然后在当前行（即调用ex命令之前的第4行）进行替换：</p>
+	<p style="text-indent:2em"><code class="inset">:1,3d | s/thier/their/</code></p>
+	<p>使用以下命令，将首先把1至5行移动到第10行之后，然后显示所有包含模式pattern的行：</p>
+	<p style="text-indent:2em"><code class="inset">:1,5m10 | g/pattern/nu</code></p>
 
-组合ex命令
-
-你不必一直输入冒号来开始新的ex命令。在ex中，竖直线（|）是命令的分割符，它允许用户把多个命令组合在同一个ex提示符下（与此类似的是分号分隔符UNIX shell提示符下的多个命令）。同时使用|时，要注意制定的行地址。如果一个命令影响到文件中行的顺序，那么下一个命令将使用新的行位置进行工作。例如：
-：1 , 3d |  s/thier/their/ 
-把第1行到第3行删除，然后在当前行（该行是调用ex提示符以前的第4行）进行替换
-
-：1 , 5 m 10 | g/pattern/nu
-把第1行到第5行移动到第10行后面，然后显示所有包含模式pattern的行。
-
-
-保存和退出文件
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">退出Ex模式</p>
 	<p>使用以下命令，可以退出Ex模式，并进入常规模式：</p>
 	<p style="text-indent:2em"><code class="inset">:vi</code></p>
 	<p>使用以下命令，可以退出Ex模式，并返回到操作系统的命令行提示符下：</p>
 	<p style="text-indent:2em"><code class="inset">:q</code></p>
 
-
-：w   把缓冲区写（保存）到文件中但不退出，可以（和应该）在编辑会话期间使用：w来保护编辑操作以避免系统瘫痪或重大的编辑错误
-：wq  写文件并退出编辑器，即使没有修改文件，写操作也会无条件的进行
-：x 写文件并退出编辑器，只有修改了文件写操作才能进行
-
-有时候vi编辑器会有警告，可以在命令后面加上感叹号！来强制执行，忽略警告
-
-
- 
-保存部分文件到新文件中
-
-有时候，希望把当前文件的一部分保存为一个新的单独文件。
-：20 , $w  newfile   把第20行到文件末尾文本保存到新文件newfile中
-：. , 500 w newfile   从当前行到500行文本保存到新文件newfile中
-
-
-
-
-添加到现有文件中
-
-可以使用重定向添加符（>>）和w把缓冲区的全部或部分内容添加到现有文件尾。
-：30 , $w >> file 把30行到文件末尾添加到文件file的末尾
-
-
-
-把文件复制到另一个文件中
-
-有时想把系统中已有的文本或数据复制到正在编辑的文件中，在vi中可以使用ex命令读取另一个文件的内容：
-：read  filename
-或者使用缩写形式
-：r  filename
-这个命令会把filename文件的内容插入当前编辑文本的光标位置后面一行。
-如果想指定其它行，只需要在read或r命令之前输入行号即可。例如：
-：10 r filename   将会把filename的文本输入到当前第10行后。
-
-如果文件在其他目录下，只需要加上路径即可。例如:
-：r  /home/time/data    把/home/time目录下的data内容插入当前编辑文件
-
-应用地址符组合或搜索模式可以更灵活：
-：$r  /home/tim/data  把读取的文件内容加到当前编辑文件的末尾
-：0r  /home/tim/data   把读取的文件内容加到文件开头位置
-：/pattern/r  /home/tim/data  将读取的文件内容加到当前文件包行模式/pattern的行的后面
-
-
-
 编辑多个文件
-
-ex命令可以在多个文件之间切换。同时编辑多个文件的好处是速度快。在同一编辑会话中，在文件之间切换不仅能加速访问，而且还能保留已制定的缩写和命令序列，以及复制缓冲区，这样可以在文件之间复制文本。
-
-1. 调用vi打开多个文件
-在首次调用vi时，可以制定要编辑的多个文件，然后使用ex命令在文件之间进行切换。例如：
-$ vi  file1  file2    首先编辑file1，完成第一个文件的编辑后，ex的：w命令写（保存）file1，：next 命令（缩写：n）调用下一个文件（file2）
-
-2. 使用参数列表
-除了使用：n移动到下一个文件。还有其他参数可以使用
-：args命令（缩写：ar）列出在所有编辑的文件，当前文件使用方括号括起来。
-：rewind（缩写：rew）  把当前文件设置为上一个编辑的文件
-：last（缩写：la）       把当前文件设置为最后一个文件
-
-3. 调用新文件
-你不必在编辑会话的开始就调用多个文件，可以使用ex的：e命令在任何时候切换到另一个文件。如果想在vi中编辑另一个文件，那么首先需要保存当前文件（：w），然后给出命令：
 ：e  filename
 使用这个命令切换到新文件filename时，vi把之前的文件名记为#， 当前文件名记为%，使用这两个文件可以迅速切换
 ：e #  切换到上一个文件中
@@ -226,4 +152,3 @@ $ vi  file1  file2    首先编辑file1，完成第一个文件的编辑后，ex
 
 </body>
 </html>
-

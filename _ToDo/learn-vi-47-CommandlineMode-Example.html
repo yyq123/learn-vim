@@ -10,20 +10,7 @@
 <body>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">删除</p>
-	<p>使用 :range delete register count 形式的命令，可以删除指定范围内的文本行。其中：range 是指明要使用的行；count 是指出要删除的行数；register 是指删除的文本要放入的寄存器.这个可以是我们用a-z命名的寄存器中的一个.如果我们使用大写的字符做为寄存器的名字,那么这些文本就会被添加到已经存在文本的寄存器中.如果没有指定这个参数,那么就会使用未命名的(unnamed)寄存器.例如以下命令，将删除第1到5行：</p>
-	<p style="text-indent:2em"><code class="inset">:1,5 delete</code></p>
-	<p>删除当前行：</p>
-	<p><code class="inset">:.d</code></p>
-	<p>删除当前行之前的所有行：</p>
-	<p><code class="inset">:1,.-1d</code></p>
-	<p>删除当前行之后的所有行：</p>
-	<p><code class="inset">:.+1,$d</code></p>
-
-	<p>删除最后一行：</p>
-	<p><code class="inset">:$d</code></p>
-	<p>删除所有行：</p>
-	<p><code class="inset">:1,$d</code></p>
-	<p><code class="inset">:%d</code></p>
+	<p>使用 :range delete register count 形式的命令，可以删除指定范围内的文本行。其中：range 是指明要使用的行；count 是指出要删除的行数；register 是指删除的文本要放入的寄存器.这个可以是我们用a-z命名的寄存器中的一个.如果我们使用大写的字符做为寄存器的名字,那么这些文本就会被添加到已经存在文本的寄存器中.如果没有指定这个参数,那么就会使用未命名的(unnamed)寄存器.</p>
 
 	<p>我们还可以在命令中使用搜索模式，来删除含有指定字符串的行。例如，以下命令将删除从第一个包含字符串hello到第一个包含字符串goodbye的行之间所有的行：</p>
 	<p style="text-indent:2em"><code class="inset">:/hello/,/goodbye/ delete</code></p>
@@ -47,14 +34,6 @@
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px"></p>
 	<p></p>
 	<p><code class="inset"></code></p>
-
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">复制</p>
-	<p>使用 :range copy address 形式的命令，可以将range所指定范围的文本复制到address指定行的下面。如果没有指定range，则默认为当前行。例如，以下命令将第一至第三行文本，复制到第四行下面：</p>
-	<p style="text-indent:2em"><code class="inset">:1,3 copy 4</code></p>
-
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">移动</p>
-	<p>与:copy命令相类似的:move命令，用于移动文本。例如，以下命令将第一至第三行文本，移动到第四行下面：</p>
-	<p style="text-indent:2em"><code class="inset">:1,3 move 4</code></p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">插入文本</p>
 	<p>使用命令行的方式，也可以用来插入文本。执行以下命令，然后在屏幕底部继续输入文本，最后在新一行中输入句号(.)来结束录入，输入的文本就会被添加到当前行的下面：</p>
