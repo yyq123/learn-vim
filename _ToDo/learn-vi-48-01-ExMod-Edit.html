@@ -107,11 +107,22 @@
 
 可以对文件中的所有行使用全局命令，也可以使用行地址把全局搜索限定在指定的行或行范围内。
 
+	<p>寻找并显示文件中所有包含模式pattern的行</p>
+	<p style="text-indent:2em"><code class="inset">:g /pattern/p</code></p>
+	<p>寻找并显示文件中所有不包行模式pattern的行，并显示这些行号</p>
+	<p style="text-indent:2em"><code class="inset">:g!/pattern/nu</code></p>
+	<p></p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
 
-：g /pattern             寻找（移动到）模式pattern在文件中最后出现的位置
-：g /pattern/ p         寻找并显示文件中所有包含模式pattern的行
-：g!/pattern/nu       寻找并显示文件中所有不包行模式pattern的行，并显示这些行号  
-：20, 40g/pattern/p  寻找并显示第20到40行之间所有包含模式pattern的行
+	<p>删除包含模式pattern的行：</p>
+	<p style="text-indent:2em"><code class="inset">:g /pattern/d</code></p>
+	<p>删除不包含模式pattern的行：</p>
+	<p style="text-indent:2em"><code class="inset">:g!/pattern/d</code></p>
+	<p>删除所有空行：</p>
+	<p style="text-indent:2em"><code class="inset">:g /^$/d</code></p>
+	<p>寻找并显示第20到40行之间所有包含模式pattern的行</p>
+	<p style="text-indent:2em"><code class="inset">:20,40g/pattern/p</code></p>
+
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">组合Ex命令</p>
 	<p>竖直线&ldquo;|&rdquo;作为命令分割符，可以将多个命令组合在一起执行。使用&ldquo;|&rdquo;时，如果前一个命令影响到文件中行的顺序，那么下一个命令将使用新的行位置进行工作。</p>
