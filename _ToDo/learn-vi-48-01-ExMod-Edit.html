@@ -9,25 +9,24 @@
 </head>
 <body>
 	<h1>VIM学习笔记 Ex模式 (Ex Mode)</h1>
-	<p>很久很久以前，人们还是使用打印设备而非显示器来与计算机进行沟通。比如打印出某行代码以确定需要修改的内容，然后针对文本进行操作，再次打印以检查变更效果。在此情形之下，行号就成为有效的定位工具。虽然，今天我们已经不再如此依赖打印设备，但是基于行编辑的Ex模式，在操作文本时还是有某些优势的。比如将文本从一个文件移动到另一个文件；快速地对大于单个屏幕的文本块进行编辑；针对整个文件中的特定模式进行全局替换等等。</p>
-	<p>甚至可以说，Vim是Ex行编辑器的可视模式。或者说，Ex是Vi的底层行编辑器。</p>
+	<p></p>
+	<p></p>
 	
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">进入Ex模式</p>
-	<p>在操作系统的命令行中，使用以下Ex命令，可以进入Vim的Ex模式：</p>
-	<p style="text-indent:2em"><code class="inset">$ ex filename</code></p>
+	<p></p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/ExMode.png" title="ExMode"><img src="https://yyq123.github.io/learn-vim/images/ExMode.png" alt="ExMode" /></a></p>
 	<p>在Vim的常规模式下，使用<code class="inset">Q</code>或者<code class="inset">gQ</code>命令，可以进入Vim的Ex模式：</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/ExMode_FromNormalMode.png" title="ExMode_FromNormalMode"><img src="https://yyq123.github.io/learn-vim/images/ExMode_FromNormalMode.png" alt="ExMode_FromNormalMode" width="500" height="40" /></a></p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">执行Ex命令</p>
-	<p>ex命令由行地址和命令组成，并以回车键结束。</p>
-	<p>如果我们在命令中没有指定行号，那么命令将默认作用于当前行。例如以下命令将在当前行中，将第一个"Hello"替换为"Hi"：</p>
-	<p style="text-indent:2em"><code class="inset">:s/Hello/Hi</code></p>
-	<p>请注意，在命令执行之后，受到影响的当前行，将会被重新打印到屏幕上：</p>
+	<p></p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+	<p></p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/ExMode_ChangeCurrentLine.png" title="ExMode_ChangeCurrentLine"><img src="https://yyq123.github.io/learn-vim/images/ExMode_ChangeCurrentLine.png" alt="ExMode_ChangeCurrentLine" /></a></p>
-	<p>如果我们在命令中指定了行号，那么命令将作用于指定的行范围。例如以下命令将在多行中，将所有"Hello"替换为"Hi"：</p>
-	<p style="text-indent:2em"><code class="inset">:1,6s/Hello/Hi</code></p>
-	<p>请注意，在命令执行之后，受到影响的行信息，将会被重新打印到屏幕上：</p>
+	<p></p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+	<p></p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/ExMode_ChangeMultiLine.png" title="ExMode_ChangeMultiLine"><img src="https://yyq123.github.io/learn-vim/images/ExMode_ChangeMultiLine.png" alt="ExMode_ChangeMultiLine" /></a></p>
 	<p>在命令中可以使用以下三种方式，来指定行地址：</p>
 	<ul>
@@ -122,10 +121,10 @@
 	<p style="text-indent:2em"><code class="inset">:1,5m10 | g/pattern/nu</code></p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">退出Ex模式</p>
-	<p>使用以下命令，可以退出Ex模式，并进入常规模式：</p>
-	<p style="text-indent:2em"><code class="inset">:vi</code></p>
-	<p>使用以下命令，可以退出Ex模式，并返回到操作系统的命令行提示符下：</p>
-	<p style="text-indent:2em"><code class="inset">:q</code></p>
+	<p></p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+	<p></p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
 
 编辑多个文件
 ：e  filename
