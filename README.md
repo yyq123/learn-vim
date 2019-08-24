@@ -34,6 +34,8 @@ Created by yyq123@gmail.com using [vim](http://www.vim.org/)
   - [可视化模式 (Visual Mode)](http://yyq123.github.io/learn-vim/learn-vi-45-VisualMode.html)[<sup>B</sup>](http://yyq123.blogspot.com/2010/11/vim-visual-mode.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/58513837)
   - [命令行模式 (Command-line Mode)](http://yyq123.github.io/learn-vim/learn-vi-46-CommandlineMode.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/08/vim-command-line-mode.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/76531156)
   - [Ex模式 (Ex Mode)](http://yyq123.github.io/learn-vim/learn-vi-48-ExMode.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/08/vim-ex-mode.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/78778165)
+- **Ex命令**
+  - [Ex命令寻址方式(Ex Command-Address)](http://yyq123.github.io/learn-vim/learn-vi-48-01-ExCommand-Adress.html)[<sup>B</sup>](de.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/72335772)
 - **文字处理**
   - [换行（Line Feed）](http://yyq123.blogspot.com/2010/07/vim-line-feed.html)[<sup>B</sup>](http://yyq123.blogspot.com/2010/07/vim-line-feed.html)<sup>/</sup>[<sup>Z</sup>](http://zhuanlan.zhihu.com/p/26133311)
   - [折行（Wrap）](http://yyq123.blogspot.com/2010/07/vim-wrap.html)[<sup>B</sup>](http://yyq123.blogspot.com/2010/07/vim-wrap.html)<sup>/</sup>[<sup>Z</sup>](http://zhuanlan.zhihu.com/p/26301974)

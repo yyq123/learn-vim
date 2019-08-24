@@ -8,26 +8,40 @@
 	<title>VIM学习笔记 命令行模式 (Command-line Mode)</title>
 </head>
 <body>
+全局搜索
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">删除</p>
-	<p>使用 :range delete register count 形式的命令，可以删除指定范围内的文本行。其中：range 是指明要使用的行；count 是指出要删除的行数；register 是指删除的文本要放入的寄存器.这个可以是我们用a-z命名的寄存器中的一个.如果我们使用大写的字符做为寄存器的名字,那么这些文本就会被添加到已经存在文本的寄存器中.如果没有指定这个参数,那么就会使用未命名的(unnamed)寄存器.</p>
+ex也有全局命令g， 可以让你搜索模式并显示找出的所有包含该模式的行。命令：g!的作用与：g相反，使用：g!（或它的同义词：v）可以搜索不包行该模式的行
 
-	<p>我们还可以在命令中使用搜索模式，来删除含有指定字符串的行。例如，以下命令将删除从第一个包含字符串hello到第一个包含字符串goodbye的行之间所有的行：</p>
-	<p style="text-indent:2em"><code class="inset">:/hello/,/goodbye/ delete</code></p>
-	<p>注意：如果goodbye在hello之前出现，那么命令就不会正常的工作了。</p>
-	<p>在搜索模式中，可以使用偏移量(offset)来精确定位要查找的字符串。例如，以下命令中/hello/+1是指含有hello字符串行的下一行：</p>
-	<p style="text-indent:2em"><code class="inset">:/beach/+1,/seashore/-1 delete</code></p>
-	<p>在命令中指定行号，将从指定行开始进行查找。例如，以下命令将从第七行开始查找，然后删除匹配行：</p>
-	<p style="text-indent:2em"><code class="inset">:7/first/ delete</code></p>
+可以对文件中的所有行使用全局命令，也可以使用行地址把全局搜索限定在指定的行或行范围内。
 
-	<p>使用 :line delete count 形式的命令，可以删除指定范围内的文本，即移动到line所指定的行（默认为当前行），然后删除总数为count行的文本（包括line所指定的行在内）。例如，以下命令将删除第三和第四行，总计两行文本：</p>
-	<p><code class="inset">:3 delete 2</code></p>
-	<p>如果在命令之前指定一个数字n，那么就会删除这个数字所指定的范围（即包括当前行在内的n行）：</p>
-	<p><code class="inset">3:delete</code></p>
-	<p>屏幕底部将显示实际执行的是以下命令：</p>
-	<p><code class="inset">:.,.+2 delete</code></p>
-	<p>也就是数，命令删除当前行以及当前行以下的两行，总计三行文本。</p>
-:change命令与:delete命令相类似,所不同的只是他还同时执行:insert命令,也就是有我们可以同时输入我们要插入的文本.
+	<p>寻找并显示文件中所有包含模式pattern的行</p>
+	<p style="text-indent:2em"><code class="inset">:g /pattern/p</code></p>
+	<p>寻找并显示文件中所有不包行模式pattern的行，并显示这些行号</p>
+	<p style="text-indent:2em"><code class="inset">:g!/pattern/nu</code></p>
+	<p></p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+
+	<p>删除包含模式pattern的行：</p>
+	<p style="text-indent:2em"><code class="inset">:g /pattern/d</code></p>
+	<p>删除不包含模式pattern的行：</p>
+	<p style="text-indent:2em"><code class="inset">:g!/pattern/d</code></p>
+	<p>删除所有空行：</p>
+	<p style="text-indent:2em"><code class="inset">:g /^$/d</code></p>
+	<p>寻找并显示第20到40行之间所有包含模式pattern的行</p>
+	<p style="text-indent:2em"><code class="inset">:20,40g/pattern/p</code></p>
+
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">组合Ex命令</p>
+	<p>竖直线&ldquo;|&rdquo;作为命令分割符，可以将多个命令组合在一起执行。使用&ldquo;|&rdquo;时，如果前一个命令影响到文件中行的顺序，那么下一个命令将使用新的行位置进行工作。</p>
+	<p>使用以下命令，将首先删除第1行至第3行，然后在当前行（即调用ex命令之前的第4行）进行替换：</p>
+	<p style="text-indent:2em"><code class="inset">:1,3d | s/thier/their/</code></p>
+	<p>使用以下命令，将首先把1至5行移动到第10行之后，然后显示所有包含模式pattern的行：</p>
+	<p style="text-indent:2em"><code class="inset">:1,5m10 | g/pattern/nu</code></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px"></p>
+	<p></p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+	<p></p>
 	<p></p>
 	<p><code class="inset"></code></p>
 

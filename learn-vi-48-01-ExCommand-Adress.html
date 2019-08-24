@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 Ex命令寻址方式 (Ex Command-Address)</title>
+</head>
+<body>
+	<h1>VIM学习笔记 Ex命令寻址方式(Ex Command-Address)</h1>
+	<p>使用以冒号&ldquo;:&rdquo;开头的Ex命令，可以非常高效地处理多行的大段文字。例如使用以下Ex命令进行文本编辑：</p>
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<tr><th>命令</th><th>缩写</th><th>用途</th></tr>
+		<tr><td><code class="inset">delete</code></td><td><code class="inset">d</code></td><td>删除行</td></tr>
+		<tr><td><code class="inset">move</code></td><td><code class="inset">m</code></td><td>移动行</td></tr>
+		<tr><td><code class="inset">copy</code></td><td><code class="inset">co</code></td><td>复制行</td></tr>
+		<tr><td></td><td><code class="inset">t</code></td><td>复制行，与co同义</td></tr>
+	</table>
+	<p>Ex命令由行地址和命令组成，并以回车键结束。在Ex命令中，可以使用以下三种方式，来指定命令所影响的行范围：</p>
+	<ul>
+		<li>使用行号，指定绝对地址；</li>
+		<li>使用特殊符号，指定相对地址；</li>
+		<li>使用搜索模式，指定匹配地址。</li>
+	</ul>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">指定行号的绝对地址</p>
+	<p>使用以下命令，可以打印当前文件的第二行内容（到屏幕）：</p>
+	<p style="text-indent:2em"><code class="inset">:2p</code></p>
+	<p>通过在命令中指定行号范围，可以显示多行内容：</p>
+	<p style="text-indent:2em"><code class="inset">:2,10p</code></p>
+	<p>使用以下命令，可以将11至15行移动到23行下面：</p>
+	<p style="text-indent:2em"><code class="inset">:11,15m23</code></p>
+	<p>使用以下命令，可以复制23至29行并粘贴到100行下面：</p>
+	<p style="text-indent:2em"><code class="inset">:23,29co100</code></p>
+	<p>使用:line delete count形式的命令，即移动到line所指定的行（默认为当前行），然后删除总数为count行的文本（包括line所指定的行在内）。例如，以下命令将删除3至4行（总计两行）文本：</p>
+	<p><code class="inset">:3 delete 2</code></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">特殊符合指定的相对地址</p>
+	<p>在指定行地址时，可以将以下特殊符号与行号组合使用：</p>
+	<ul>
+		<li>&ldquo;<code class="inset">.</code>&rdquo;，点代表当前行；</li>
+		<li>&ldquo;<code class="inset">$</code>&rdquo;，美元符号代表最后一行；</li>
+		<li>&ldquo;<code class="inset">%</code>&rdquo;，百分号代表文件的每一行，等同于1,$的组合；</li>
+		<li>&ldquo;<code class="inset">+</code>&rdquo;，加号用于增加偏移量；</li>
+		<li>&ldquo;<code class="inset">-</code>&rdquo;，减号用于减少偏移量。</li>
+	</ul>
+	<p>使用以下命令，可以删除最后一行：</p>
+	<p style="text-indent:2em"><code class="inset">:$d</code></p>
+	<p>使用以下命令，可以删除从当前行到文件末尾：</p>
+	<p style="text-indent:2em"><code class="inset">:.,$d</code></p>
+	<p>使用以下命令，可以删除文件中的所有行：</p>
+	<p style="text-indent:2em"><code class="inset">:1,$d</code></p>
+	<p style="text-indent:2em"><code class="inset">:%d</code></p>
+	<p>使用以下命令，可以把20至当前行的文本移动到文件末尾：</p>
+	<p style="text-indent:2em"><code class="inset">:20,.m$</code></p>
+	<p>使用以下命令，可以复制所有行并粘贴到文件的尾部：</p>
+	<p style="text-indent:2em"><code class="inset">:%t$</code></p>
+	<p>当符号&ldquo;<code class="inset">+</code>&rdquo;和&ldquo;<code class="inset">-</code>&rdquo;放置在数字前面时，就会像数学运算符一样，表示加上或减去指定的行数。</p>
+	<p>使用以下命令，可以删除当前行之前的所有行：</p>
+	<p style="text-indent:2em"><code class="inset">:1,.-1d</code></p>
+	<p>使用以下命令，可以删除从当前行到当前行以下20行：</p>
+	<p style="text-indent:2em"><code class="inset">:.,.+20d</code></p>
+	<p>使用以下命令，可以把226行到文件末尾的文本移动到当前行的上面两行的后面：</p>
+	<p style="text-indent:2em"><code class="inset">:226,$m.-2</code></p>
+	<p>由于当前行是假定的开始位置，因此在使用+或-时并不必需输入圆点符号；如果在+或-后面没有数字，那么就等价于+1和-1；数字0代表文件的开头（即0行）。</p>
+	<p>使用以下命令，可以复制3行（当前行，前一行，后一行），并粘贴到文件开头：</p>
+	<p style="text-indent:2em"><code class="inset">:-,+t0</code></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">搜索模式指定的匹配地址</p>
+	<p>使用以下命令，可以删除下一个包含模式pattern的行：</p>
+	<p style="text-indent:2em"><code class="inset">:/pattern/d</code></p>
+	<p>使用以下命令，可以删除下一个包含模式pattern的行的下一行：</p>
+	<p style="text-indent:2em"><code class="inset">:/pattern/+d</code></p>
+	<p>使用以下命令，可以删除第一个包含pattern1的行与第一个包含pattern2的行之间的所有行：</p>
+	<p style="text-indent:2em"><code class="inset">:/pattern1/,/pattern2/d</code></p>
+	<p>使用以下命令，可以从当前行到第一个包含pattern的行之间的文本移动到23行后面：</p>
+	<p style="text-indent:2em"><code class="inset">:.,/pattern/m23</code></p>
+	<p>在命令中使用偏移量(offset)，可以精确地重置地址定位。例如，以下命令中+1是指匹配行的下一行，-1是指匹配行的上一行：</p>
+	<p style="text-indent:2em"><code class="inset">:/pattern1/+1,/pattern2/-1 delete</code></p>
+	<p>在命令中指定行号，将从指定行开始进行查找。例如，以下命令将从第7行开始查找，然后删除匹配行：</p>
+	<p style="text-indent:2em"><code class="inset">:7/pattern/d</code></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">重新定义当前行的位置</p>
+	<p>假设当前光标在第一行，执行以下命令：</p>
+	<p style="text-indent:2em"><code class="inset">:100,+5p</code></p>
+	<p>系统将反馈以下信息，认为终止行位置小于起始行位置：</p>
+	<p style="text-indent:2em"><code class="msg">Backwards range given, OK to swap (y/n)</code></p>
+	<p>如果输入&ldquo;y&rdquo;，则意味着交换行范围的起止位置，即显示（1+5=）6至100行；如果输入&ldquo;n&rdquo;，则行范围（100至6行）无效，命令失败。</p>
+	<p>如果我们希望将第一个行地址视为“当前行”，那么可以在ex命令中使用分号&ldquo;;&rdquo;代替逗号&ldquo;,&rdquo;。</p>
+	<p>不管当前光标处于文件的哪一行，以下命令都将视第100行为当前行，并显示当前行及之后5行（即100至105行）：</p>
+	<p style="text-indent:2em"><code class="inset">:100;+5p</code></p>
+	<p>分号也可以用于搜索模式的相对地址中。例如，以下命令将显示下一个包含模式pattern的行以及之后的10行：</p>
+	<p style="text-indent:2em"><code class="inset">:/patter/;+10p</code></p>
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="Ex模式(Ex Mode)" href="http://yyq123.github.io/learn-vim/learn-vi-48-ExMode.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="命令行模式(Command-line Mode)" href="http://yyq123.github.io/learn-vim/learn-vi-46-CommandlineMode.html">下一篇</a>&gt;</span></p>
+
+</body>
+</html>
