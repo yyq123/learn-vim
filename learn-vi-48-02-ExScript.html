@@ -10,11 +10,15 @@
 <body>
 	<h1>VIM学习笔记 Ex脚本 (Ex Script)</h1>
 	<p>如果我们希望一次性执行多条Ex命令，那么可以将这些命令首先保存为脚本文件，然后就可以重复调用执行了。</p>
+	<p>例如我的这个<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">VIM学习笔记</a>，都是在Vim里手工编写HTML代码的。相同的代码也会同步粘贴到我的<a href="https://yyq123.blogspot.com" title="语虚">blog</a>里。而在搬运代码之前，我需要删除其中的Tab分隔符和换行符。也就是说，我需要重复执行几个替换命令。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/ExScript_Purpose.png" title="ExScript_Purpose"><img src="https://yyq123.github.io/learn-vim/images/ExScript_Purpose.png" alt="ExScript_Purpose" /></a></p>
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">启用/禁用</p>
-	<p></p>
+	<p>我将以下命令，存储为脚本文件<a href="https://yyq123.github.io/learn-vim/sample/ExScript_Sample.vim" title="ExScript_Sample">ExScript_Sample.vim</a></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/ExScript_Sample.png.png" title="ExScript_Sample"><img src="https://yyq123.github.io/learn-vim/images/g.png" alt="" /></a></p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">注释</p>
+	<p>所有以双引号（"）开头的文本，都将被视为注释。</p>
+	<p>注释可以单独为一行，也可以被放置在行的末尾。</p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">识别文件</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px"></p>
 	<p></p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
 
