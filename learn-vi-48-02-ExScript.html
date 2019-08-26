@@ -9,11 +9,21 @@
 </head>
 <body>
 	<h1>VIM学习笔记 Ex脚本 (Ex Script)</h1>
-	<p>如果我们希望一次性执行多条Ex命令，那么可以将这些命令首先保存为脚本文件，然后就可以重复调用执行了。</p>
-	<p>例如我的这个<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">VIM学习笔记</a>，都是在Vim里手工编写HTML代码的。相同的代码也会同步粘贴到我的<a href="https://yyq123.blogspot.com" title="语虚">blog</a>里。而在搬运代码之前，我需要删除其中的Tab分隔符和换行符。也就是说，我需要重复执行几个替换命令。</p>
+	<p>如果希望一次性执行多条Ex命令，那么可以将这些命令保存为脚本文件，然后重复调用即可。</p>
+	<p>例如我的这个<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">VIM学习笔记</a>，都是在Vim里手工编写HTML代码的。相同的代码也会同步粘贴到我的<a href="https://yyq123.blogspot.com" title="语虚">blog</a>里。而在搬运代码之前，我需要删除其中的Tab分隔符和换行符。也就是说，我需要重复执行几个删除和替换命令。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/ExScript_Purpose.png" title="ExScript_Purpose"><img src="https://yyq123.github.io/learn-vim/images/ExScript_Purpose.png" alt="ExScript_Purpose" /></a></p>
-	<p>我将以下命令，存储为脚本文件<a href="https://yyq123.github.io/learn-vim/sample/ExScript_Sample.vim" title="ExScript_Sample">ExScript_Sample.vim</a></p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/ExScript_Sample.png.png" title="ExScript_Sample"><img src="https://yyq123.github.io/learn-vim/images/g.png" alt="" /></a></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">创建脚本文件</p>
+	<p>我将以下命令，存储为脚本文件<a href="https://yyq123.github.io/learn-vim/samples/ExScript_Sample.vim" title="ExScript_Sample">ExScript_Sample.vim</a></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/ExScript_Sample.png" title="ExScript_Sample"><img src="https://yyq123.github.io/learn-vim/images/ExScript_Sample.png" alt="ExScript_Sample" /></a></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">执行脚本文件</p>
+	<p>在Vim中编辑文件时，可以使用以下命令来调用Ex脚本：</p>
+	<p style="text-indent:2em"><code class="inset">:source samples/ExScript_Sample.vim</code></p>
+	<p>Vim将在屏幕底部显示命令执行的结果（比如修改或替换的行数等）；点击<kbd>Enter</kbd>回车键，将返回常规模式：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/ExScript_Message.png" title="ExScript_Message"><img src="https://yyq123.github.io/learn-vim/images/ExScript_Message.png" alt="ExScript_Message" width="500" height="" /></a></p>
+	<p>如果您对执行结果不满意，那么也可以使用<code class="inset">u</code>命令，<a href="http://yyq123.github.io/learn-vim/learn-vi-06-Undo.html" title="撤销(Undo)">撤销 (Undo)</a>以上操作。</p>
+
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">注释</p>
 	<p>所有以双引号（"）开头的文本，都将被视为注释。</p>
 	<p>注释可以单独为一行，也可以被放置在行的末尾。</p>
@@ -22,7 +32,25 @@
 	<p></p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
 
-	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
+
+
+With all the commands you want to run on each file saved in a script, say "script.vim", you can execute that script on one file like this (as others have mentioned):
+
+vim -c "source script.vim" A.txt
+
+Taking this one step further, you can save your file at the end of the script, either by putting a :w command inside the script itself, or passing it from the command-line:
+
+vim -c "source script.vim | w" A.txt
+
+Now, you can run any command in Vim on multiple files, by using the argdo command. So your command turns into:
+
+vim -c "argdo source script.vim | w" A.txt B.txt C.txt D.txt
+
+Finally, if you want to quit Vim after running your script on every file, just add another command to quit:
+
+vim -c "argdo source script.vim | w" -c "qa" A.txt B.txt C.txt D.txt
+
+
 
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
