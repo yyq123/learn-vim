@@ -14,24 +14,25 @@
 	<p><a href="https://yyq123.github.io/learn-vim/images/ExScript_Purpose.png" title="ExScript_Purpose"><img src="https://yyq123.github.io/learn-vim/images/ExScript_Purpose.png" alt="ExScript_Purpose" /></a></p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">创建脚本文件</p>
-	<p>我将以下命令，存储为脚本文件<a href="https://yyq123.github.io/learn-vim/samples/ExScript_Sample.vim" title="ExScript_Sample">ExScript_Sample.vim</a></p>
+	<p>我将以下命令，存储名为<a href="https://yyq123.github.io/learn-vim/samples/ExScript_Sample.vim" title="ExScript_Sample">ExScript_Sample.vim</a>的脚本文件。其中，所有以双引号（"）开头的文本，都将被视为注释。注释可以单独为一行，也可以被放置在行的末尾。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/ExScript_Sample.png" title="ExScript_Sample"><img src="https://yyq123.github.io/learn-vim/images/ExScript_Sample.png" alt="ExScript_Sample" /></a></p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">执行脚本文件</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">在Vim中执行脚本文件</p>
 	<p>在Vim中编辑文件时，可以使用以下命令来调用Ex脚本：</p>
-	<p style="text-indent:2em"><code class="inset">:source samples/ExScript_Sample.vim</code></p>
+	<p style="text-indent:2em"><code class="inset">:source ExScript_Sample.vim</code></p>
 	<p>Vim将在屏幕底部显示命令执行的结果（比如修改或替换的行数等）；点击<kbd>Enter</kbd>回车键，将返回常规模式：</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/ExScript_Message.png" title="ExScript_Message"><img src="https://yyq123.github.io/learn-vim/images/ExScript_Message.png" alt="ExScript_Message" width="500" height="" /></a></p>
 	<p>如果您对执行结果不满意，那么也可以使用<code class="inset">u</code>命令，<a href="http://yyq123.github.io/learn-vim/learn-vi-06-Undo.html" title="撤销(Undo)">撤销 (Undo)</a>以上操作。</p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">注释</p>
-	<p>所有以双引号（"）开头的文本，都将被视为注释。</p>
-	<p>注释可以单独为一行，也可以被放置在行的末尾。</p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px"></p>
-	<p></p>
-	<p style="text-indent:2em"><code class="inset"></code></p>
-
+	<p>当使用文件名做为参数启动vim，打开多个文件时，例如使用以下操作系统命令打开当前目录下的所有网页文件：</p>
+	<p style="text-indent:2em"><code class="inset">$ vim *.html</code></p>
+	<p>我们可以先在当前文件下，使用<code class="inset">:source</code>命令来执行脚本；然后使用<code class="inset">:next</code>命令，切换到下一个文件，针对各个文件分别执行脚本。</p>
+	<p>而使用以下命令，则可以一次性对所有参数列表中的文件执行脚本：</p>
+	<p style="text-indent:2em"><code class="inset">:argdo</code></p>
+	<p>关于文件参数的更多信息，请参阅<a href="http://yyq123.github.io/learn-vim/learn-vi-16-MultiArguments.html" title="Arguments">参数(Arguments)</a>章节。</p>
 
 
 With all the commands you want to run on each file saved in a script, say "script.vim", you can execute that script on one file like this (as others have mentioned):
@@ -46,7 +47,7 @@ Now, you can run any command in Vim on multiple files, by using the argdo comman
 
 vim -c "argdo source script.vim | w" A.txt B.txt C.txt D.txt
 
-Finally, if you want to quit Vim after running your script on every file, just add another command to quit:
+if you want to quit Vim after running your script on every file, just add another command to quit:
 
 vim -c "argdo source script.vim | w" -c "qa" A.txt B.txt C.txt D.txt
 
