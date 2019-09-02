@@ -5,27 +5,46 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记 执行Ex命令(Ex Command-Run)</title>
+	<title>VIM学习笔记 命令行模式 (Command-line Mode)</title>
 </head>
 <body>
-	<h1>VIM学习笔记 执行Ex命令(Ex Command-Run)</h1>
+全局搜索
 
-	<p><a href="http://yyq123.github.io/learn-vim/learn-vi-48-02-ExScript.html" title="Ex脚本文件">Ex脚本文件(Ex Script)</a></p>
+ex也有全局命令g， 可以让你搜索模式并显示找出的所有包含该模式的行。命令：g!的作用与：g相反，使用：g!（或它的同义词：v）可以搜索不包行该模式的行
+
+可以对文件中的所有行使用全局命令，也可以使用行地址把全局搜索限定在指定的行或行范围内。
+
+	<p>寻找并显示文件中所有包含模式pattern的行</p>
+	<p style="text-indent:2em"><code class="inset">:g /pattern/p</code></p>
+	<p>寻找并显示文件中所有不包行模式pattern的行，并显示这些行号</p>
+	<p style="text-indent:2em"><code class="inset">:g!/pattern/nu</code></p>
+	<p></p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+
+	<p>删除包含模式pattern的行：</p>
+	<p style="text-indent:2em"><code class="inset">:g /pattern/d</code></p>
+	<p>删除不包含模式pattern的行：</p>
+	<p style="text-indent:2em"><code class="inset">:g!/pattern/d</code></p>
+	<p>删除所有空行：</p>
+	<p style="text-indent:2em"><code class="inset">:g /^$/d</code></p>
+	<p>寻找并显示第20到40行之间所有包含模式pattern的行</p>
+	<p style="text-indent:2em"><code class="inset">:20,40g/pattern/p</code></p>
+
+
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">组合执行Ex命令</p>
-	<p>竖直线&ldquo;|&rdquo;作为分割符，可以将多个命令组合在一起执行。使用&ldquo;|&rdquo;时，如果前一个命令影响到文件中行的顺序，那么下一个命令将使用新的行位置进行工作。</p>
+	<p>竖直线&ldquo;|&rdquo;作为命令分割符，可以将多个命令组合在一起执行。使用&ldquo;|&rdquo;时，如果前一个命令影响到文件中行的顺序，那么下一个命令将使用新的行位置进行工作。</p>
 	<p>使用以下命令，将首先删除第1行至第3行，然后在当前行（即调用ex命令之前的第4行）进行替换：</p>
 	<p style="text-indent:2em"><code class="inset">:1,3d | s/thier/their/</code></p>
 	<p>使用以下命令，将首先把1至5行移动到第10行之后，然后显示所有包含模式pattern的行：</p>
 	<p style="text-indent:2em"><code class="inset">:1,5m10 | g/pattern/nu</code></p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">利用寄存器执行Ex命令</p>
-	<p>例如在<a href="https://yyq123.github.io/learn-vim/samples/ExScript_Sample.vim" title="Ex脚本文件">Ex脚本文件(Ex Script)</a>中包含以下命令：</p>
+	<p>例如在<a href="http://yyq123.github.io/learn-vim/learn-vi-48-02-ExScript.html" title="Ex脚本文件">Ex脚本文件(Ex Script)</a>中包含以下命令：</p>
 	<p style="text-indent:2em"><code class="inset">%s/\n//</code></p>
 	<p>我们移动到此行，然后使用以下命令将该行内容删除到命名<a href="http://yyq123.github.io/learn-vim/learn-vi-12-Register.html" title="Register">寄存器(Regists)</a>&ldquo;g&rdquo;之中：</p>
-	<p style="text-indent:2em"><code class="inset">"gdd</code></p>
+	<p><code class="inset">"gdd</code></p>
 	<p>使用以下命令，则可以执行已存储在&ldquo;g&rdquo;寄存器之中的命令：</p>
-	<p style="text-indent:2em"><code class="inset">:@g</code></p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/ExCommand_Run_Register.png" title="ExCommand_Run_by_Register"><img src="https://yyq123.github.io/learn-vim/images/ExCommand_Run_Register.png" alt="ExCommand_Run_by_Register" /></a></p>
+	<p><code class="inset">:@g</code></p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px"></p>
 	<p></p>
@@ -45,7 +64,6 @@
 	<p style="text-indent:2em"><code class="inset">:join</code></p>
 	<p>如果不希望以空格分隔，那么请使用以下命令：</p>
 	<p style="text-indent:2em"><code class="inset">:join!</code></p>
-	<p style="text-indent:2em"><code class="inset">:5put! a</code></p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
