@@ -35,6 +35,7 @@ Created by yyq123@gmail.com using [vim](http://www.vim.org/)
   - [命令行模式 (Command-line Mode)](http://yyq123.github.io/learn-vim/learn-vi-46-CommandlineMode.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/08/vim-command-line-mode.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/76531156)
   - [Ex模式 (Ex Mode)](http://yyq123.github.io/learn-vim/learn-vi-48-ExMode.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/08/vim-ex-mode.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/78778165)
 - **Ex命令**
+  - [执行Ex命令(Ex Command-Run)](http://yyq123.github.io/learn-vim/learn-vi-48-02-ExCommand-Run.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/09/vim-ex-command-run.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/80843823)
   - [Ex命令寻址方式(Ex Command-Address)](http://yyq123.github.io/learn-vim/learn-vi-48-01-ExCommand-Adress.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/08/vim-ex-command-address.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/79802241)
 - **文字处理**
   - [换行（Line Feed）](http://yyq123.blogspot.com/2010/07/vim-line-feed.html)[<sup>B</sup>](http://yyq123.blogspot.com/2010/07/vim-line-feed.html)<sup>/</sup>[<sup>Z</sup>](http://zhuanlan.zhihu.com/p/26133311)

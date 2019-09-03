@@ -46,7 +46,7 @@
 	<tr><td><code class="inset">\{,m}</code></td><td>匹配0次到m次</td></tr>
 	<tr><td><code class="inset">\{-n,m}</code></td><td>匹配n次到m次,尽可能少的进行匹配</td></tr>
 	<tr><td><code class="inset">\{-n,}</code></td><td>至少匹配n次,尽可能少的进行匹配</td></tr>
-	<tr><td><code class="inset">\{-,m}</code></td><td>匹配到m次,尽可能少的进行匹配</td></tr>
+	<tr><td><code class="inset">\{-,m}</code></td><td>匹配0到m次,尽可能少的进行匹配</td></tr>
 	<tr><td><code class="inset">{-}</code></td><td>匹配0次到多次,尽可能少的进行匹配</td></tr>
 	</table>
 
@@ -66,19 +66,19 @@
 		<tr><td><code class="inset">\D</code></td><td>非数字字符 [^0-9]</td></tr>
 		<tr><td><code class="inset">\e</code></td><td>&lt;ESC&gt;</td></tr>
 		<tr><td><code class="inset">\f</code></td><td>由isfname选项定义的文件名字符</td></tr>
-		<tr><td><code class="inset">\F</code></td><td>文件名字符,但是不包含数字</td></tr>
+		<tr><td><code class="inset">\F</code></td><td>由isfname选项定义的文件名字符,但是不包含数字</td></tr>
 		<tr><td><code class="inset">\h</code></td><td>单词的头字符(A-Za-z)</td></tr>
 		<tr><td><code class="inset">\H</code></td><td>不是单词的头字符(A-Za-z)</td></tr>
-		<tr><td><code class="inset">\i</code></td><td>由isdent选项定义的字符</td></tr>
-		<tr><td><code class="inset">\I</code></td><td>定义的字符,但是不包括数字</td></tr>
+		<tr><td><code class="inset">\i</code></td><td>由isident选项定义的字符</td></tr>
+		<tr><td><code class="inset">\I</code></td><td>由isident选项定义的字符,但是不包括数字</td></tr>
 		<tr><td><code class="inset">\k</code></td><td>由iskeyword选项定义的关键字字符</td></tr>
-		<tr><td><code class="inset">\K</code></td><td>关键字字符,但是不包括数字</td></tr>
+		<tr><td><code class="inset">\K</code></td><td>由iskeyword选项定义的关键字字符,但是不包括数字</td></tr>
 		<tr><td><code class="inset">\l</code></td><td>小字字符 [a-z]</td></tr>
 		<tr><td><code class="inset">\L</code></td><td>非小写字符 [^a-z]</td></tr>
 		<tr><td><code class="inset">\o</code></td><td>八进制数字</td></tr>
 		<tr><td><code class="inset">\O</code></td><td>非八进制数字</td></tr>
 		<tr><td><code class="inset">\p</code></td><td>由isprint选项定义的可打印字符</td></tr>
-		<tr><td><code class="inset">\P</code></td><td>可打印字符,但是不包括数字</td></tr>
+		<tr><td><code class="inset">\P</code></td><td>由isprint选项定义的可打印字符,但是不包括数字</td></tr>
 		<tr><td><code class="inset">\r</code></td><td>&lt;CR&gt;</td></tr>
 		<tr><td><code class="inset">\s</code></td><td>空白符&lt;Space&gt;和&lt;Tab&gt; [ 	]</td></tr>
 		<tr><td><code class="inset">\S</code></td><td>非空白符 [^ 	]</td></tr>

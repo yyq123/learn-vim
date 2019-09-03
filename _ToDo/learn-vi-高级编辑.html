@@ -45,7 +45,6 @@
 :set lmap=ch1ch2,ch1ch2
 :set langmap=ch1ch2,ch1ch2
 
-	
 	<p style="font-weight:bold">交换字符</p>
 	How to swap two characters? Press xp.
 	x: delete one character at current cursor position
@@ -55,6 +54,11 @@
 	w one word
 	w move to the next word	
 	P paste before the current cursor position
+	<p>交换行</p>
+	<code class="inset">ddp</code>
+	dd删除行
+	p粘贴行至当前行的下一行
+
 	<p style="font-weight:bold">算术运算</p>
 	<p>Vim可以对文本进行简单的算术运算。命令<code class="inset">CTRL-A</code>可以将当前光标下的数字加1，我们还可以在前面指定参数，这样就可以把指定的数字加在光标下的数字上了。如果这个数字是以0开头，那么Vim就会认为这是一个八进制的数。例如0177在我们执行这个命令后就会变为0200。如果是以0x或是0X开头，Vim就会这是一个十六进制的数，例如0x1E在我们执行这个命令后就会成为0x1F。与CTRL-A命令相类似的是<code class="inset">CTRL-X命令</code>，所不同的是这个命令会使得当前光标下面的数字减1。
 	<p>我们可以通过nrformats来控制Vim所识别的数字形式。在默认情况下，Vim可以识别出十进制、八进制和十六进制的数。</p>

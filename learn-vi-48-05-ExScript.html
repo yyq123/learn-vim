@@ -21,50 +21,26 @@
 	<p>在Vim中编辑文件时，可以使用以下命令来调用Ex脚本：</p>
 	<p style="text-indent:2em"><code class="inset">:source ExScript_Sample.vim</code></p>
 	<p>Vim将在屏幕底部显示命令执行的结果（比如修改或替换的行数等）；点击<kbd>Enter</kbd>回车键，将返回常规模式：</p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/ExScript_Message.png" title="ExScript_Message"><img src="https://yyq123.github.io/learn-vim/images/ExScript_Message.png" alt="ExScript_Message" width="500" height="" /></a></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/ExScript_Message.png" title="ExScript_Message"><img src="https://yyq123.github.io/learn-vim/images/ExScript_Message.png" alt="ExScript_Message" /></a></p>
 	<p>如果您对执行结果不满意，那么也可以使用<code class="inset">u</code>命令，<a href="http://yyq123.github.io/learn-vim/learn-vi-06-Undo.html" title="撤销(Undo)">撤销 (Undo)</a>以上操作。</p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">注释</p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px"></p>
-	<p>当使用文件名做为参数启动vim，打开多个文件时，例如使用以下操作系统命令打开当前目录下的所有网页文件：</p>
+	<p>当使用文件名做为<a href="http://yyq123.github.io/learn-vim/learn-vi-16-MultiArguments.html" title="Arguments">参数(Arguments)</a>启动vim，打开多个文件时，例如使用以下操作系统命令打开当前目录下的所有网页文件：</p>
 	<p style="text-indent:2em"><code class="inset">$ vim *.html</code></p>
-	<p>我们可以先在当前文件下，使用<code class="inset">:source</code>命令来执行脚本；然后使用<code class="inset">:next</code>命令，切换到下一个文件，针对各个文件分别执行脚本。</p>
+	<p>我们可以先在当前文件下，使用<code class="inset">:source</code>命令来执行脚本；然后使用<code class="inset">:next</code>命令，切换到下一个文件，依次针对各个文件分别执行脚本。</p>
 	<p>而使用以下命令，则可以一次性对所有参数列表中的文件执行脚本：</p>
-	<p style="text-indent:2em"><code class="inset">:argdo</code></p>
-	<p>关于文件参数的更多信息，请参阅<a href="http://yyq123.github.io/learn-vim/learn-vi-16-MultiArguments.html" title="Arguments">参数(Arguments)</a>章节。</p>
+	<p style="text-indent:2em"><code class="inset">:argdo source ExScript_Sample.vim</code></p>
 
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">在命令行中执行脚本文件</p>
+	<p>在操作系统的命令中，使用vim的-c选项，可以在加载文件之后自动执行Ex脚本文件：</p>
+	<p style="text-indent:2em"><code class="inset">$ vim -c "source ExScript_Sample.vim" test.html</code></p>
+	<p>利用竖直线&ldquo;|&rdquo;分割符，可以<a href="http://yyq123.github.io/learn-vim/learn-vi-48-02-ExCommand-Run.html" title="执行Ex命令(Ex Command-Run)">组合执行</a>Ex脚本文件和Ex命令：</p>
+	<p style="text-indent:2em"><code class="inset">$ vim -c "source ExScript_Sample.vim | w" test.html</code></p>
+	<p>利用竖直线&ldquo;|&rdquo;分割符和argdo命令，可以针对多个文件分别执行脚本文件，然后保存并退出：</p>
+	<p style="text-indent:2em"><code class="inset">$ vim -c "argdo source ExScript_Sample.vim | w" -c "qa" A.html B.html C.html</code></p>
 
-With all the commands you want to run on each file saved in a script, say "script.vim", you can execute that script on one file like this (as others have mentioned):
-
-vim -c "source script.vim" A.txt
-
-Taking this one step further, you can save your file at the end of the script, either by putting a :w command inside the script itself, or passing it from the command-line:
-
-vim -c "source script.vim | w" A.txt
-
-Now, you can run any command in Vim on multiple files, by using the argdo command. So your command turns into:
-
-vim -c "argdo source script.vim | w" A.txt B.txt C.txt D.txt
-
-if you want to quit Vim after running your script on every file, just add another command to quit:
-
-vim -c "argdo source script.vim | w" -c "qa" A.txt B.txt C.txt D.txt
-
-
-
-	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
-		<caption>命令小结</caption>
-		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
-		<tr><td><code class="inset">:</code></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-	</table>
-&ldquo;&rdquo;
-
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="执行Ex命令(Ex Command-Run)" href="http://yyq123.github.io/learn-vim/learn-vi-48-02-ExCommand-Run.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="Ex命令寻址方式(Ex Command-Address)" href="http://yyq123.github.io/learn-vim/learn-vi-48-01-ExCommand-Adress.html">下一篇</a>&gt;</span></p>
 
 </body>
 </html>
-
