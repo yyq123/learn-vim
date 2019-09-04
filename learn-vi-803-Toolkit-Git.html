@@ -5,20 +5,26 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记 (Git)</title>
+	<title>VIM学习笔记 工具箱-版本控制(Toolkit-Git)</title>
 </head>
 <body>
-	<h1>VIM学习笔记 (Git)</h1>
-	<p>众所周知，几乎所有Vim插件管理器都是使用<a style="font-weight:bold" title="GitHub" href="http://github.com/">GitHub</a>来安装和更新插件；你也可以直接从GitHub<a title="GitHub" href="https://github.com/vim">下载</a>Vim；而我的这个<a title="笔记列表" href=https://github.com/yyq123/learn-vim">VIM学习笔记</a>也是托管在GitHub</p>上的，以实现在多台电脑上同步文档并进行版本管理。</p>
+	<h1>VIM学习笔记 工具箱-版本控制(Toolkit-Git)</h1>
+	<p>众所周知，几乎所有Vim插件管理器都是使用<a style="font-weight:bold" title="GitHub" href="http://github.com/">GitHub</a>来安装和更新插件；你也可以直接从GitHub<a title="GitHub" href="https://github.com/vim">下载</a>Vim；而我的这个<a title="笔记列表" href=https://github.com/yyq123/learn-vim">VIM学习笔记</a>也是托管在GitHub上的，以实现在多台电脑上同步文档并进行版本管理。</p>
+	<p>本文并不会详细介绍GitHub的安装与使用，而是聚焦于如何使用GitHub与Vim相互配合。GitHub有着非常完善的（中文）<a href="https://help.github.com/cn" title="Help">文档</a>；而视觉化的<a href="http://rogerdudler.github.io/git-guide/index.zh.html" title="git - the simple guide">git简明指南</a>更便于快速入门；还有表格化的<a href="http://rogerdudler.github.io/git-guide/files/git_cheat_sheet.pdf" title="git - cheat sheet">速查表</a>可以随时查阅各种命令的参考信息。</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Tools_Github_Doc.png" title="Tools_Github_Doc"><img src="https://yyq123.github.io/learn-vim/images/Tools_Github_Doc.png" alt="" width="500" height="81" /></a></p>
+	<p>除了GitHub官方出品的<a href="https://desktop.github.com/" title="GitHub Desktop">客户端</a>，<a href="https://git-scm.com/downloads/guis" title="GUI Clients">git-scm.com</a>列出了各种操作系统下的更多客户端软件。而我会强烈建议您使用Git命令，而不是依赖于某个客户端软件。事实上，只需要记忆非常有限的几个常用命令，就可以毫无障碍地在各种命令行环境中进行Git操作了。</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Tools_Git_CLI.png" title="Tools_Git_CLI"><img src="https://yyq123.github.io/learn-vim/images/Tools_Git_CLI.png" alt="Tools_Git_CLI" width="500" height="363" /></a></p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">启用/禁用</p>
-	<p></p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">文档写作</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/learn_vim_GitHub.png" title="learn_vim_GitHub"><img src="https://yyq123.github.io/learn-vim/images/learn_vim_GitHub.png" alt="learn_vim_GitHub" width="500" height="229" /></a></p>
+	<p>这个学习笔记都是通过手工编写HTML代码来完成的。也就是说，我需要在多台电脑上的不同操作系统之下测试命令执行，然后持续修改网页源文件。所以，GitHub帮助我完美实现了文档的一致性和版本控制。同时，利用<a href="https://pages.github.com/" title="GitHub Pages">GitHub Pages</a>功能，可以自动发布为<a href="http://yyq123.github.io/learn-vim/" title="learn vim">网页</a>以供浏览器直接阅读。</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Tools_Github_Pages.png" title="Tools_Github_Pages"><img src="https://yyq123.github.io/learn-vim/images/Tools_Github_Pages.png" alt="Tools_Github_Pages" width="500" height="249" /></a></p>
+	<p>在此过程中，也充分体现了如下图所示的Git工作流程：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Git_Workflow.png" title="Git_Workflow"><img src="https://yyq123.github.io/learn-vim/images/Git_Workflow.png" alt="" width="500" height="294" /></a></p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">屏幕截图</p>
-	<p>在屏幕截图领域，有无数优秀的软件。由于使用频率如此之高，我相信每个人也都有自己的偏好。而<a style="font-weight:bold" href="https://getgreenshot.org/">Greenshot</a>则是我在试用多款软件之后，安定下来的选择。Greenshot是免费的开源软件，支持Windows和Mac操作系统。</p>
-	<p>Greenshot可以截取整个屏幕、指定窗口、和矩形区域，而&ldquo;截取上次区域&rdquo;功能，则可以快速截取之前选定的屏幕区域。比如：我想要说明针对同一文字区域执行命令的效果，那么首先在原始状态下通过鼠标拖拽截取屏幕，然后执行命令，接下来只要点击快捷键<kbd>Shift + Print</kbd>就可以针对上次选定的屏幕区域进行截图。这大大提高了多次重复截图的效率，而且确保了多次截时图像素位置和图片尺寸的一致性。
-	<p>Greenshot可以将屏幕截图输出到剪贴板、打印机、文件或者内置的图片编辑器。通过以下快捷菜单设置，可以将屏幕截图同时发送到剪贴板和图片编辑器。你可以在图片编辑器中查看屏幕截图的效果；然后选择继续编辑图片，或者保存为文件，或者直接关闭编辑器，然后将图片粘贴到其他应用程序当中。</p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/Tools_Screen_Greenshot_Destination.png" title="Tools_Screen_Greenshot_Destination"><img src="https://yyq123.github.io/learn-vim/images/Tools_Screen_Greenshot_Destination.png" alt="Tools_Screen_Greenshot_Destination" width="500" height="127" /></a></p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">插件管理</p>
+	<p>不管您是通过<a href="http://yyq123.github.io/learn-vim/learn-vi-102-plugin-plug.html" title="插件管理器(vim-plug)">vim-plug</a>，还是<a href="http://yyq123.github.io/learn-vim/learn-vi-101-plugin-vundle.html" title="插件管理器(Vundle)">Vundle</a>来安装和管理插件，</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
 	<p>在Greenshot内置的图片编辑器中，可以为图片增加注解、标识重点、绘制图形；还可以应用边框、阴影、锯齿、高亮和模糊等多种效果。更重要的是，图片可以保存为greenshot类型的文件。之后您可以多次打开greenshot文件，不断对屏幕截图进行修改，然后再将最终结果输出为PNG或JPG图片格式。这种对于屏幕截图进行多次持续调整的能力，在其他屏幕截图软件中并不多见。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/Tools_Screen_Greenshot_Editor.png" title="Tools_Screen_Greenshot_Editor"><img src="https://yyq123.github.io/learn-vim/images/Tools_Screen_Greenshot_Editor.png" alt="Tools_Screen_Greenshot_Editor" width="500" height="271" /></a></p>
 	<p>在Linux下，我会使用开源的<a href="https://github.com/lupoDharkael/flameshot" title="Flameshot">Flameshot</a>；而在Mac下，则购买了久负盛名的<a href="https://www.techsmith.com/screen-capture.html" title="SnagIt">SnagIt</a>，同时也使用免费的<a href="http://snappy-app.com/">Snappy</a>。</p>
@@ -27,8 +33,9 @@
 	<p style="text-indent:2em"><code class="inset"></code></p>
 	<p></p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">图表制作</p>
-	<p></p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">代码片段管理</p>
+	<p><a href="http://yyq123.github.io/learn-vim/learn-vi-103-plugin-Gist.html"title="代码片段管理器(Gist.vim)">代码片段管理器(Gist.vim)</a></p>
+	<p><a href="http://hackjutsu.com/Lepton/" title=>Lepton</a>支持macOS、Windows和Linux</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/Tools_Diagram_Cacoo.png" title="Cacoo"><img src="https://yyq123.github.io/learn-vim/images/Tools_Diagram_Cacoo.png" alt="Cacoo" width="500" height="359" /></a></p>
 	<p><a href="http://dia-installer.de" title="Dia">Dia</a></p>
 
@@ -40,7 +47,6 @@ After running this command, Machine B will be current with any changes that were
 	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/Git_Workflow.png" title="Git_Workflow"><img src="http://yyq123.github.io/learn-vim/images/Git_Workflow.png" alt="Git_Workflow" /></a></br>Source: medium.com/free-code-camp</p>
 	https://medium.com/free-code-camp/learn-the-basics-of-git-in-under-10-minutes-da548267cc91
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">学习资源</p>
-	<p><a href="http://rogerdudler.github.io/git-guide/" title="git - the simple guide">git - the simple guide</a></p>
 
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
@@ -52,8 +58,7 @@ After running this command, Machine B will be current with any changes that were
 	</table>
 &ldquo;&rdquo;
 
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="屏幕截图(Screenshot Tools)" href="http://yyq123.github.io/learn-vim/learn-vi-801-Other-Tool-Screen.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="屏幕截图(Toolkit-Screenshot)" href="http://yyq123.github.io/learn-vim/learn-vi-801-Toolkit-Screen.html">下一篇</a>&gt;</span></p>
 
 </body>
 </html>
-
