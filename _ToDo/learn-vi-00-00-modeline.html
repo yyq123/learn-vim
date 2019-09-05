@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记  ()</title>
+</head>
+<body>
+	<h1>VIM学习笔记  ()</h1>
+在一个文件中自动设置选项:
+我们可以在我们的文件中放入Vim设置.当我们启动Vim编辑一个文件时,他会读入这个文件中的最初几地并查找如下格式的行:
+vim:set option-command option-command option-command...
+这样的行被称为模式行(modeline)
+例如在一个程序中一个模式行如下:
+/*vim:set shiftwidth=4 autoindent:*/
+相对的格式如下:
+Vim:option-command:option-command:....
+选项modeline可以打开或是关闭这种行为.选项modeline可以控制Vim在查找设置命令时会读入开始的几行.
+例如如果我们设置了下面的选项,Vim就不会查找模式行了:
+:set nomodeline
+如果我们设置了下面的选项,Vim就会在每一个文件的头部或是尾部查找由modeline选项所指定的行数:
+:set modeline
+例如也许我们都会在Vim的帮助文件的末尾看到下面的几行:
+vim:tw=79:ts=8:sw=8:
+在这个设置中是将tw(textwidth)选项设为78,ts(tabstop)选项设为8,sw(shiftwidth)选项设为8.这样的设置使得我们的帮助文件看起来更好看一些.通过使用模式行,帮助文件的制造者就会确保这些文本可以被正确的格式化而不论我们在其他的文件中使用怎么样的本地设置.
+进行不同的设置,一个办法就是在每一个目录中放入.vimrc或是.gvimrc文件.然而这样做还是不够的,因为默认的Vim会忽略这些文件.
+要使得Vim读入这些文件,我们必须执行下面的命令:
+:set exrc
+进行这样的设置却存在着安全问题.毕竟一些不成功的命令是很容易加入到这些文件中的,即使我们是在其他的目录中进行我们的编辑工作,这样的设置也会影响我们的.
+为了避免安全问题,我们可以用下面的命令来设置安全选项:
+:set secure
+这个选项会阻止当前目录下的初始文件中的:autocommand,:write,:shell命令的执行.
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">启用/禁用</p>
+	<p></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">识别文件</p>
+	<p></p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+
+	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
+		<tr><td><code class="inset">:</code></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+	</table>
+&ldquo;&rdquo;
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
+
+</body>
+</html>

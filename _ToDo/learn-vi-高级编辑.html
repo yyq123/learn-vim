@@ -92,6 +92,39 @@ i<c-r>/
 
 <p>使用<code class="inset">:ascii</code>和<code class="inset">ga</code>可以查看光标下字符的二进制值：</p>
 <p><a href="https://www.flickr.com/photos/yyq123/35044099413/in/dateposted/" title="ga"><img src="https://farm5.staticflickr.com/4240/35044099413_09c5d6947e_o.png" width="287" height="22" alt="ga"></a></p>
+我们已经知道用命令[CTRL-D来跳转到当前光标下的宏定义处.下面的命令也可以起到同样的作用:
+:djump name
+例如我们要跳转到宏MAX处,我们可以用下面的命令:
+:djump MAX
+执行这个命令我们并不必需要知道我们定义的宏的全名,如果我们只是知道宏名的一部分,我们就可以使用由斜线括起来的常规表达式来进行相应的查找.如下面的命令:
+:djump /MAX/
+我们还可以指定参数来控制这个命令的查找范围,如下面的命令:
+:50,100 djump /MAX/
+这个命令只在第50到第100行内进行相应的查找.
+如果我们希望查找到是第二个而不是第一个宏定义,我们可以通过指定count参数来做到.例如我们要查找第二个MAX的定义处,我们可以用下面的命令:
+:djump 2 MAX
+下面的命令会在一个新窗口内显示宏定义:
+:range dsplit count [/]pattern[/]
+这个命令是命令:split和命令:djump的组合.
+命令:dlist与命令:dsplit相类似,只是前者并不会移动到一个宏的定义处,而是列出匹配的宏定义.
+而命令:dsearch只是显示第一个匹配的宏定义.如果命令:ilist,ijump,:djump,:dlist,:dsearch带上!选项,那么在注释内的定义也可以进行查找.
+
+
+:normal命令可以使我们执行一个正常模式下的命令.例如下面的命令是将光标下的单词改为DONE:
+:normal cwDONE
+在行这些命令时要求命令必须是一个完整的命令.如果我们已经挂起Vim然后执行命令时,Vim显示全直到命令完全时也会发生变化.
+
+下面的命令会将当前的文本写入文件,然后退出:
+:exit
+如果我们使用!选项,即时这个文件被标记为只读,那么Vim也会强行保存.
+我们还可以在命令行指定一个文件名,那么当前的内容就会在退出以前写入我们所指定的文件,例如下面的命令:
+:exit save.txt
+如果我们只是想着将文件中的一部分保存到另一个文件,我们可以指定一个范围来保存.例如要保存100行,我们可以用下面的命令:
+:1,100 exit save.txt
+下面的命令与:exit命令相类似,不同的是这个命令总是会保存文件:
+:range wq! file
+而:exit命令只是在文件发生改变时才会保存.
+
 
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>

@@ -81,6 +81,44 @@ notimeout    ttimeout    只有代码键超时
 	<p style="text-indent:2em"><code class="inset">:set errorbells</code></p>
 	<p>使用以下命令启用visualbell选项，当输入错误时屏幕就会闪动然后回到正常状态：</p>
 	<p style="text-indent:2em"><code class="inset">:set visualbell</code></p>
+在ex模式下输入命令时,我们可以实现文件名的自动完成.例如如果我们想要读入文件input.txt,我们可以输入下面的命令:
+:read input<Tab>
+Vim就会试着猜出我们想要的文件.如果在我们当前的目录下只有文件input.txt,他就会显示出如下的形式:
+:read input.txt
+如果在当前目录下有几个带有input的文件名,则会显示第一个.如果我们再按下Tab,就会显示出第二个相匹配的结果,再按下Tab就会显示第三个.
+我们可以通过下面的命令来定义完成通配符的键:
+:set wildchar=character
+如果我们是在一个宏内使用文件名,我们要设置wildcharm.这是我们在宏内完成文件名自动完成的字符.例如下面的命令:
+:set wildcharm=<F12>
+:map<F11> :read in<F12>
+这样当我们按下F11时就会读入文件命令.
+也许我们并不希望匹配备份文件或是其他类似的文件.我们可以用下面的命令来告诉Vim哪些是这样的文件:
+:set wildignore=pattern,pattern
+这样与指定类型相匹配的文件都会被忽略掉.例如我们要忽略目录文件和备份文件,我们可以用下面的命令:
+:set wildignore=*.o,*.bak
+suffixes选项会列出一系列文件名的前缀,当遇到这样的前缀时就会得到一个较低的优先级.换句说就是如果一个文件名有这样的前缀就会在匹配时就会一个来显示.
+一般情况下,文件名的完成代码并不会显示一个匹配列表.如果我们设置下面的选项:
+:set wildmenu
+当我们试着要完成一个文件名时,就会在窗口的状态行显示一个可能的文件菜单.
+我们可以通过方向键来完成选择.在一行最末的>表明在右部有更多的选择.下键可以使得编辑器进入一个目录.上键回到父目录,回车选择项目.
+我们可以通过使用wildmode选项来自定义文件完成功能的行为.下面的命令使得Vim只完成第一个的匹配:
+:set wildmode=
+如果我们一直按下wildchar键,则只会显示第一个匹配的结果.
+而下面的命令则会用他可以查找到的第一个文件来完成文件名:
+:set wildmode=full
+这样以后,如果我们一直按下wildchar键,其他的匹配文件就会按顺序来显示.
+下面的命令则会匹配最长的子串:
+:set wildmode=longest
+当我们执行下面的命令时会完成同样的功能,但是只是显示那些位于wildmenu中的文件:
+:set wildmode=longest:full
+下面的命令则会显示一个可能的文件列表:
+:set wildmode=list
+这种模式并不会匹配完成.如果我们希望这样的情况,我们可以使用下面的选项:
+:set wildmode=list:full
+最后要完成最长的子串并列出文件,我们可以使用下面的选项:
+:set wildmode=list:longest
+当我们设置了startofline选项,屏幕的移动命令与一些光标的移动命令例H,M,L,G相同.
+如果我们设置了write选项,我们可以使Vim保存文件.如果我们没有设置这个选项,我们只可以查看文件.如果我们希望Vim作为一个安全的查看者,这样的设置是相当有用的.
 
 
 	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>

@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记  ()</title>
+</head>
+<body>
+	<h1>VIM学习笔记  ()</h1>
+假如我们正在看一个程序文件,但是却碰到一个我们并不理解的函数调用.我们可以用命令CTRL-]跳转到函数定义的地方.但是这样做却有一个问题,那就当前的文件被函数定义的内容所替代,我们也就不可以从屏幕上看到这个文件的内容了.
+这个问题的一个解决办法就是我们使用被称为preview的特殊窗口.我们可以通过执行下面的命令来打开preview的特殊窗口,在这个窗口中显示函数定义的内容:
+:ptag function
+如果我们已经打开了一个preview窗口,那么他就会切换到当前正在查看的函数定义内容.如果我们要关闭这个窗口,我们可以执行下面的命令:
+:pclose
+命令CTRL-Wz和ZZ也可以有关闭这个窗口的作用.
+在preview窗口中我们执行下面的命令来完成我们的工作:
+:ppop        在这个窗口中执行一个:pop命令.
+:ptselect identifier    打开一个新的preview窗口并执行:tselect命令
+:ptjump identifier    打开一个新的preview窗口并执行:ptjump 命令
+:count ptnext        在这个窗口中执行:count tnext命令
+:count ptprevious    在这个窗口中执行:count ptprevious命令
+:count ptrewind        在这个窗口中执行:count ptrewind命令
+:ptlast            在这个窗口中执行:ptlast命令.
+CTRL-W}            以当前光标下的内容执行一个:ptag命令
+CTRL-Wg}        以当前光标下的内容执行一个:ptjump命令
+matchpairs选项可以用来控制哪些字符可以用%命令来进行匹配.这个选项默认的值如下:
+:set matchpairs=(:),{:},[:]
+这就告诉Vim要匹配(),{},[]
+匹配<>,我们可以用下面的命令:
+:set matchpairs=<:>
+这个命令在我们要编写HTML文件时会显得更为有用.
+这个命令仅仅是匹配<>.如果我们要同时匹配其他的字符,我们可以用下面的命令:
+:set matchpairs=(:),{:},[:],<:>
+这样的命令显得似乎是有一些太长了,我们可以用+=命令来达到同样的目的.例如上面的命令我们可以用下面的命令来作到:
+:set matchpairs+=<:>
+如果我们希望我们在输入括号时,光标会跳转到与其匹配的地方进行显示,我们可以执行下面的命令来做到:
+:set showmatch
+通常情况下这个跳转持续的时间为0.5秒(半秒),我们可以用matchtime选项来控制这个时间.例如如果我们希望这个时间持续1.5秒,我们可以用下面的命令:
+:set matchtime=15
+在这里是以0.1秒为单位的.
+我们在Vim编辑器还可以用命令来查找未匹配的括号.如[{查找前一个未匹配的{,]{查找后一个未匹配的{.[}查找前一个未匹配的},而]}查找后一个未匹配的}.
+])查找后一个未匹配的),而[(查找前一个未匹配的(.[#查找前一个未匹配的#if或者是#else.而]#查找后一个未匹配的同类情况.
+下面的命令可以移动一个Java方法的开头或结尾:
+[m    向后查找一个方法的开头
+[M    向后查找一个方法的结尾
+]m    向前查找一个方法的开头
+]M    向前查找一个方法的结尾
+在Vim编辑器还提供了许多的移动命令来帮助程序人员在他们的程序文件中进行浏览.下面的一些命令可以找到位于第一列的{和}:
+count[[        向后查找位于第一列的前一个{
+count[]        向后查找位于第一列的前一个}
+count]]        向前查找位于第一列的后一个{
+count][        向前查找位于第一列的后一个}
+命令[/和[*可向后移动他可以找到的第一个C注释的开始处,而]/和]*可以向前移动他可以找到下一个C注释的结束处.
+Vim编辑器知道C和C++的宏定义.但是如果是其他的语言又会怎么样呢?选项define包含了一个长规的表达式,Vim编辑器可以通过他来查找一个定义.例如如果我们要使Vim查找以字符串function开头的宏,我们可以使用下面的命令:
+:set define=function
+选项include定义一个包含(include)的目录是什么样子的.这个选项可以用来为我们使用命令]CTRL-I,[CTRL-I,]d,[d在这些我们所包含进来的文件中进行查找.这个选项也可以为命令:checkpath所用.正如define选项一样,这个选项的值也是一个长规的表达式.
+命令[i用来查找光标下的内容第一次出现的地方.注释的文本会被忽略掉.
+命令]j用来查找光标下的内容下一次出现的地方.注释的文本会被忽略掉.
+命令[I会列出所有包含当前光标下的内容的句子,命令]I与其相类似,只是这个命令是从当前光标处开始.
+:make命令会产生一个错误列表.Vim编辑器会记住我们前10次:make命令和:grep命令的执行结果.如果我们要到前一次的错误列表,我们可以用下面的命令:
+:colder
+如果我们要到一个新的错误列表,我们可以用下面的命令:
+:cnewer
+当我们执行:make命令时所要执行的程序名称是由makeprg选项来定义的.在通常的情况下会设为make,但是Visual C++的用户可以通过下面的命令将其设为nmake:
+:set makeprg=nmake
+:make命令会重定向Make的输出到一个错误文件.这个文件的名字是由makeef选项来控制的.如果这个选项包含有字符##,字符##就会被专一的数字所代替.这个选项默认的值取决于我们正在使用的操作系统.默认的值如下:
+Amiga        t:vim##.Err
+UNIX        /tmp/vim##.err
+Windows        vim##.err
+我们可以在命令中包含指定的Vim关键字.%字符可以扩展当前文件的名字,所以我们执行下面的命令:
+:set makeprg=make%
+然后我们执行命令:
+:make
+他就会执行下面的命令:
+$ make file.c
+file.c就是我们正在编辑的文件的名字.这个并没有太大的用处,所以我们可以重新定义这个命令并使用:r(root)的权限:
+:set makeprg=make%:r.o
+这样我们就会执行下面的命令:
+$ make file.o
+选项errorformat可以用来控制Vim如何来组织错误文件以使得他可以知道文件名以及错误发生的地方.这个选项的格式如下:
+:set errorformat={string},{string},{string}
+这里的字符是由特殊字符%所指出的典型的错误信息用来指明特殊的操作(与标准C函数scanf很相像).这些特殊的字符如下:
+%f    文件名
+%l    行号
+%c    列号
+%t    错误类型(单一字符)
+%n    错误行号
+%m    错误信息
+%r    匹配一行中的剩余
+%*{char}匹配并跳过由{char}所指定的scanf转换
+%%    字符%
+当我们在编译一个程序的时候,我们也许要在几个目录中进行遍历.GNU make程序会在当我们进入一个目录或是离开一个目录时打印出相应的信息.
+如果要正确的得到文件名,Vim就要清楚的知道这些目录的变化.下面的一些错误格式用来在目录发生变化时告诉Vim一些相关的信息:
+%D    当进入一个目录时打印出指定的信息.字符串的%f指明我们所进入的目录
+%X    指定离开目录时的信息.字符串中的%f指明了make已用毕的目录.
+一些编译器,例如GNU GCC编译器,会输入一些冗长的错误信息.如果我们正在使用默认的errorformat就会导致三种错误信息.这实在是够讨厌的.但是幸运的是Vim编辑器可以识别出不同的错误信息.处理不同信息的模式代码如下:
+%A    开始多行信息
+%E    开始多行错误信息
+%W    开始多行警告信息
+%C    连续多行信息
+%Z    结束多行信息
+%G    全局.只有在+或是-连接时才有用
+%O    单行文件信息:重新读入匹配的部分
+%P    单行文件信息:将%f文件压入栈
+%Q    单行文件信息:将最后一个文件压出栈
++或是-可以放在任何字符的前面,从而组成下面的内容:
+%-letter    不要包含输出中的匹配行
+%+letter    包含%m错误字符串的整个匹配行
+在通常的情况下,我们执行:make命令并有错误发生,Vim会在当前的窗口中显示错误文件.如果我们通过设置switchbuf选项来进行窗口的分裂,Vim就会在一个新的窗口来显示错误文件.:grep命令会运行由选项grepprg所指定的程序.这个选项包含了我们要用的命令行.#和%字符会扩展到当前文件名和交替文件名.而字符串$*将会被:grep命令的参数所代替.
+在这里我们要注意的就是在UNIX系统上,grepprg默认是指grep -n.在Windows系统上,默认是指findstr/s
+:grep命令使用grepformat选项来告诉Vim如何来组织Grep的输出文件.
+在通常的情况下,Vim是使用二分法进行查找指定的标记名字.如果一个标记文件是按序排列的,这样的方法可以是很快速的.否则的话我们可以使用线性查找的方法.如果要强制进行线性查找,我们可以用下面的命令;
+:set notagbsearch
+这个选项会在我们的标记文件不是有序的时有用.
+有一些系统会限制我们在函数名中所使用的字符数.如果我们要在Vim中加入这样的限制,我们可以通过设置taglength选项来限制我们函数名的最大长度.
+我们可以用tags选项来指定标记文件名.这个可以用来指其他目录中的文件.如:
+:set tags+=/home/oualline/tools/vim/tags
+但是这会带来一些令人费解的地方.是我们在当前目录中启动并告诉ctags将标记文件放在目录/home/oualline/tools/vim还是我们在当前的目录执行了ctags呢?现在的Vim编辑器已经用其他的选项来解决了这个问题了.如果我们进行下面的设置,所有的标记都会和含有标记文件的目录有关系:
+:set tagrelative
+否则的话,他们会和当前目录有关系.
+如果我们设置了tagstack选项,那么:tag命令和:tjump命令就会建立一个标记栈.否则是不会保持栈的.
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">启用/禁用</p>
+	<p></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">识别文件</p>
+	<p></p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+
+	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
+		<tr><td><code class="inset">:</code></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+	</table>
+&ldquo;&rdquo;
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
+
+</body>
+</html>

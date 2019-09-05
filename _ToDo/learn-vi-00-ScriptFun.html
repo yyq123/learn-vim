@@ -1,0 +1,390 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记  ()</title>
+</head>
+<body>
+	<h1>VIM学习笔记  ()</h1>
+Vim编辑器有许基本的功能函数.这一部分将会列出所有的功能函数:
+append({line_number},{string})
+作用:在line_number行后新增一行加入string
+参数:
+line_number
+某行的行号,将会在其后插入文本.0将会使得在文件的开始处插入文本.
+string    在指定行后将插入的文本.
+返回值:整数标记.或为0则没有错误,1则是由于line_number超出范围所产生的错误argc()
+作用:计算参数列表中的参数个数.
+返回值:整数.参数个数.
+argv({number})
+作用:返回参数列表中的参数.
+参数:
+number:    参数索引.0则为参数列表中的第一个参数.
+返回值:字符串.返回请求的参数.
+browse(save,title,initial_directory,default)
+作用:显示一个文件查看器,允许用户选择文件.这个只是在GUI版本中工作.
+参数:
+save:一个整数用来表明这个文件是否被读入或是保存.如果save为非0,则查看器选择一个文件写入.如果为0,则这个文件用于读取.
+title:对话框的标题.
+initial_directory:开始查看时的目录.
+default:默认的文件名.
+返回值:字符串.选择的文件名.如果用户选择了关闭或是有错误发生,则会返回一个空字符串.
+例如下面的命令:
+:call browse(0,"Hello","/home/mayuelong/Documents","Shell.txt")
+bufexists(buffer_name)
+作用:检查一个缓冲区是否存在.
+参数:
+buffer_name:要检查的缓冲区的名称.
+返回值:整数标记.若存在则返回真(1),否则为假(0)
+bufloaded(buffer_name)
+作用:查看一个缓冲区是否被装入
+参数:
+buffer_name:查看是否装入的缓冲区的名称.
+返回值:整数标记.若存在则返回真(1),否则为假(0)
+bufname(buffer_specification)
+作用:查看指定的缓冲区
+参数:
+buffer_specification:指明缓冲区的标号或是字符串.如果指定缓冲区标号,那么buffer_specification返回缓冲区标号.如果指定了字符串,他就会被作为一个常规的表达式并且会列出查找得到并且匹配的缓冲区.这里有三个特殊的缓冲区:%当前缓冲区,#交换缓冲区,$列表中的最后一个缓冲区.
+返回值:字符串.包含缓冲区全名的字符串或是有错误发生或是没有匹配时则会返回空串.
+bufnr(buffer_expression)
+作用:得到缓冲区的标号.
+参数:
+buffer_expression:与函数bufname中的相类似.
+返回值:整数.缓冲区的标号.若有错,则返回-1.
+bufwinnr(buffer_expression)
+作用:得到一个缓冲区的窗口号
+参数:
+buffer_expression:与bufname功能函数的参数相同
+返回值:整数.与缓冲区相匹配的第一窗口的标号.或是有错误或是没有匹配的窗口时返回-1
+byte2line(byte_index)
+作用:将字节索引转换为行号
+参数:byte_index    在当前缓冲区的字符索引
+返回值:整数.包含由byte_index所指定的字符的行号或是byte_index超出范围时返回-1
+char2nr(character)
+作用:将字符转换成相应的数字
+参数:
+character:转换单一的字符.如果指定了一个长的字符串,只使用第一个字符.
+返回值:整数.与字符相对应的数字标号.例如:char2nr("A")的值为65(即其相对应的ASCII码)
+col(location)
+作用:返回指定位置的列号
+参数:
+location:标记的描述(如"x)或是"."得到当前光标所在处的列号
+返回值:整数.返回标记或是光标的所在的列号.当有错误发生时则返回0
+confirm({message},{choice_list},[default],[type])
+作用:显示一个对话框可以使得用户一系列的选择并返回用户的选择.
+参数:
+{message}在对话框中显示的提示信息.
+{choice_list}包含选择列表的字符串.每一个新行("n")来分隔每一个选择.用&来表明加速字符.
+[default]表明默认选择的索引.第一个按钮为#1.如果没有指定这个参数,则第一个按钮为默认的.
+[type]要显示的对话框的类型.可用的选择如下"Error","Question","Info","Warning","Generic".默认情况下"Generic"
+返回值:整数.选择的数字(从1开始).如果用户按<ESC>或是CTRL-C来退出则返回0
+如下面的一些例子:
+echo confirm("Choose one","&Onen&Twon&Three",2,"Error")
+echo confirm("Choose one","&Onen&Twon&Three",1,"Question")
+echo confirm("Choose one","&Onen&Twon&Three",0,"Warning")
+echo confirm("Choose one","&Onen&Twon&Three",0,"Info")
+echo confirm("Choose one","&Onen&Twon&Three",0,"Generic")
+delete({file_name})
+作用:删除文件
+参数:
+{file_name}要删除的文件名
+返回值:整数.0表明文件已被删除,非0则表示错误.
+did_filetype()
+作用:检测FileType事件是否发生.这个命令在用自动命令时显得更为有用.
+返回值:整数.如果自动命令正在执行并且至少有一个事件已发生则返回非0,否则返回0
+escape({string},{character_list})
+作用:将{string}字符串的字符转换成转义字符.{character_list}则为要进行转义的字符列表.
+返回值:字符串
+例如下面的命令:
+:echo escape("This is a 'test'"," '")
+其执行结果为:
+This is a 'test'
+exsits({string})
+作用:检测由{string}所指定的内容是否存在.
+参数:
+{string}要检测的内容.这个可以用来指定一个选项('&autoindent'),环境变量('$VIMRUNTIME'),基本的函数名('*escape')或者是一个简单的变量('var_name')(注:在这里我们要指定定这个引号标记,因为我们是在字符串中传递这些值)
+返回值:整数.如果存在则返回1,否则返回0
+expand({string},[flag])
+作用:返回与{string}匹配的文件列表.这个字符串可以包含通配符或是其他的描述.在这里我们要注意的是'suffixes'选项和'wildignore'选项可以影响扩展如何实现.如果一个特殊的单词例如'<cfile>'被扩展,并不会显示更深一些的扩展.如果光标位于字符串'~/.vimrc'上,'expand('<cfile>')的结果为'~/.vimrc'.如果我们要得到全名,我们需要扩展两次.所以'expand(expand('<cfile>'))将会返回'/home/oualline/.vimrc'.选项'wildignore'和'suffixes'将会起作用,除非指定了一个非0的[flag]
+返回值:字符列表.由新行分隔的与{string}相匹配的文件名列表.如果没有匹配的,则会返回回空字符串.
+filereadable({file_name})
+作用:检测一个文件是否可读
+参数:要检测的文件名
+返回值:整数.如果这个文件存在并可读则会返回非0值.0则表明这个文件不存在或是这个文件不可读.
+fnamemodify({file_name},{modifiers})
+作用:对{file_name}执行{modifiers}并返回结果.
+参数:
+{file_name}文件名
+{modifiers}修改标记,如":r:h"
+返回值:字符串.被修改的文件名
+getcwd()
+作用:得到当前的工作目录
+返回值:字符串.当前的工作目录
+getftime({file_name})
+作用:得到一个文件的修改时间
+参数:
+{file_name}    要检测的文件名
+近回值:整数.文件的修改时间,若发生错误则返回-1
+getline({line_number})
+作用:从当前的编辑缓冲区中取出一行
+参数:
+{line_number}    要得到的行号或是"."表明光标所在的行
+返回值:字符串.一行文本.如果{line_number}超出范围则会返回空字符串
+getwinposx()getwinposy()
+作用:返回GUI窗口的x或是y坐标
+返回值:整数.以像素表示的GUI窗口的x或是y坐标.如果这些信息不可得则返回-1.
+glob({file_name})
+作用:在文件名中扩展通配符并返回文件列表.
+参数:
+{file_name}
+表明要匹配文件名类型的字符串.我们还可以使用由反引号(`)构成的外部命令.如下面的例子:glob("`find . -name '*.c' -print'")
+返回值:字符串.由<NL>分隔的匹配的文件列表.如果没有匹配的则会返回空串
+has({feature})
+作用:检测某一个特征已被安装
+参数:
+{feature}    包含特征名的字符串
+返回值:整数标记.如果这个特征已被编译则要返回1,否则返回0
+histadd({history},{command})
+作用:在一个历史列表加入某一个内容
+参数:
+{history}    要用到的历史名.如下:
+"cmd"    ":"    命令历史
+"search" "/"    查找历史
+"expr"    "="    表达式历史
+"input"    "@"    输入历史
+返回值:成功则为1,错误为0
+histdel({history},[pattern])
+作用:从历史中移除命令
+参数:
+{history}    要用到的历史列表
+[pattern]
+定义要移除的内容的表达式.如果没有指定类型,将会从历史中移除所有的内容.
+histget({history},[index])
+作用:从历史记录中得到某一内容
+参数:
+{history}    要用到的历史列表
+[index]
+要得到的内容索引.最新的输入为-1,次新的为-2,依次类推.最后一个输入的为1,次后输入的为2,依次类推.如果没有指定索引,将后返回最后一个输入的命令.
+返回值:字符串.历史记录中指定的命令,如果有错误发生时则会返回空串
+histnr({history})
+作用:返回指定历史列表中的当前输入的标号
+参数:
+{history}    要检测的历史
+返回值:整数.在这个历史列表中的最后一个内容.如果有错误则返回-1
+hlexists({name})
+作用:检测一个语法加亮组是否存在
+参数:
+{name}    要检测的组名
+返回值:整数标记.若存在则为非0,否则为0
+hlID({name})
+作用:指定语法加亮组的名,返回ID号
+参数:
+{name}    语法加亮组的名
+返回值:整数.ID号
+hostname()
+作用:得到电脑的主机名
+返回值:字符串.电脑的主机名
+input({prompt})
+作用:问一个问题并会得到答案
+参数:
+{prompt}    要显示的提示
+返回值:字符串.与用户输入相一致的内容
+isdirectory({file_name})
+作用:检测{file_name}是否为一个目录
+参数:要检测的内容名
+返回值:整数标记.如果是为目录则为1,如果不是目录或不存在则返回0
+libcall({dll_name},{function},{argument})
+作用:在DLL文件中调用函数(只在Windows系统中使用)
+参数:
+{dll_name}    共享库的文件名,在其中定义了{function}
+{function}    函数名
+{argument}
+单一参数.如果这个参数为一个整数,他就会作为整数传递.如果是字符串,就会以"char*"传递.
+返回值:字符串.返回函数.
+line({position})
+作用:指定一个标记或是其他的位置指示,返回行号
+参数:
+{position}    位置标记.可以是一个标记,'x,当前光标所在处".",或是文件尾"$"
+返回值:整数.行号.如果没有标记或是其他的错误,则会返回0
+line2byte({line_number})
+作用:将行号转换成字符索引
+参数:
+{line_number}
+要转换的行号.这个可以是一个标记('x),当前光标处('.')或者是缓冲区的最后一行('$')
+返回值:整数.由1开始的行中第一个字符的索引.如果有错误发生则会返回-1
+localtime()
+作用:以UNIX格式返回当前时间
+返回值:整数.
+maparg({name},[mode])
+作用:返回映射到哪一个键
+参数:
+{name}    {lhs}映射名
+[mode]    字符映射的模式.默认为""
+返回值:字符串.映射结果字符串.如果没有映射返回空串
+mapcheck({name},[mode])
+作用:检测一个映射是否存在
+参数:
+{name}    {lhs}映射名
+[mode]    字符映射的模式,默认为""
+返回值:字符串.返回匹配{name}的任何映射.这个函数与maparg函数有一些不同.前者会在映射中查找相冲突的名字.例如如果我们有一个映射"ax",他就会转换为"axx"
+例如下面的一些例子:
+:map ax test
+:echo maparg("ax")
+test
+:echo maparg("axx")
+
+:echo mapcheck("ax")
+test
+:echo mapcheck("axx")
+test
+match({string},{pattern})
+作用:检测{string}是否与{pattern}相匹配.如果要设置了'ignorecase'就会使得编辑忽略大小的情况.
+参数:
+{string}    要检测的字符串
+{pattern}    要检测的类型
+返回值:整数.{string}中{pattern}出现的第一个字符索引.第一个字符为0.如果没有相匹配的就会返回-1.
+matchend({string},{pattern})
+作用:与match函数相类似,所不同的是他会返回{pattern}后的字符索引.
+matchstr({string},{pattern})
+作用:与match函数相类似,只是他会返回匹配的字符串
+参数:
+{string}    要检测的字符串
+{pattern}    要检测的类型
+返回值:字符串.{string}中匹配的部分.如果没有匹配就会返回空串
+nr2char({number})
+作用:将数转换成字符
+参数:字符的ASCII码值.
+返回值:长度为1的字符串.与数字相对应的字符
+rename({from},{to})
+作用:重命名一个文件.
+参数:
+{from}    存在的文件名
+{to}    要重命名为的文件名
+返回值:整数标记.如果成功则为0,否则为非0
+setline({line_number},{line})
+作用:用{line}的字符串内容替换{line_number}行的内容.
+参数:
+{line_number}    要改变的行号
+{line}        替换行的文本
+返回值:整数标记.如果没有错误则为0,否则为非0
+strftime({format},[time])
+作用:通过{format}返回时间格式.在字符串可以放置的转换字符决定于我们系统的strftime函数.
+参数:字符串.包含时间格式化的时间字符串
+strlen({string})
+作用:计算字符串的长度
+参数:
+{string}    我们要计算长度的字符串
+返回值:整数.字符串的长度
+strpart({string,{start},{length})
+作用:返回由{start}开始的长度为{length}的子串
+例如:
+:echo strpart("This is a test",0,4)
+This
+:echo strpart("This is a test",5,2)
+is
+如果{start}和{length}所指定的为不存在的字符,就会忽略这种情况.例如下面的命令从第一个字符的左边开始.
+:echo strpart("This is a test",-2,4)
+Th
+参数:
+{string}我们要从中查找的字符串
+{start}我们要选取的字符串的开始地址
+{length}我们要选取的字符串的长度
+返回值:字符串.我们要选取的子串
+strtrans({string})
+作用:将字符串不可打印的字符转换成可以打印的字符
+参数:
+{string}    包含不要打印字符的字符串
+返回值:字符串.不可打印字符的结果子.例如CTRL-A就会转换为^A.
+substitute({string},{pattern},{replace},{flag})
+作用:在字符串,将第一个与{pattern}匹配的字符替换成{replace}.这个命令与Vim的编辑命令相同
+参数:
+{string}    要替换的字符串
+{pattern}    用来指定替换部分的字符串
+{replace}    要替换成为的文本
+{flag}
+如果没有指定只是替换第一个出现的,如果为g,就会可以替换全部的情况.
+返回值:字符串.替换后的字符串
+synID({line},{column},{transparent_flag})
+作用:返回由{line}和{column}所指定的语法ID.
+参数:
+{line},{column}    内容所在的位置
+{transparent_flag}If non-0, transparent items are reduced to the items they reveal
+返回值:语法ID.
+synIDattr({sytnax_id},{attribute},[mode])
+作用:得到语法颜色元素的标记
+参数:
+{sytnax_id}    语法描述的标号.
+{attribute}    标记名.可有和的标记名如下:
+"name"    语法内容名
+"fg"    前景色
+"bg"    后景色
+"fg#"    以#RRGGBB格式的前景色
+"bg#"    以#RRGGBB格式的后景色
+"bold"    如果内容为粗体则为1
+"italic"如果内容为斜体则为1
+"reverse"如果内容反转则为1
+"inverse"与上面内容相同
+"underline"如果内容为下划线则为1
+[mode]
+要得到哪种终端标记.这个可以是"gui","cterm","term".默认的终端是我们当前用的.
+返回值:字符串.标记值.
+synIDtrans({syntax_id})
+作用:返回转换的语法ID
+参数:
+{syntax_id}    语法元素的ID
+返回值:整数,转换的语法ID.
+system({command})
+作用:执行外部命令并输出.选项'shell'和'shelldir'可以用于这个函数
+参数:
+{command}    要执行的命令.
+返回值:字符串.输出命令的执行结果.
+tempname()
+作用:产生一个临时文件名
+返回值:字符串.用为临时文件的文件名.
+visualmode()
+作用:得到最后的可视化模式
+返回值:字符串.作为命令字符串得到最后一个可视化模式.这个可以是v,V,或是CTRL-V
+virtcol({location})
+作用:得到给定位置的列号.
+参数:位置可以是."(光标处),'a(标记a),或者是$"(文件最后处)
+返回值:整数.
+winbufnr({number})
+作用:得到窗口内缓冲区的标号.
+参数:
+{number}    窗口标号.0为当前窗口.
+返回值:整数.缓冲区标号.若有错则为-1.
+winheight({number})
+作用:得到窗口高度.
+参数:
+{number}    窗口标号.0为当前窗口.
+返回值:整数.以行数表示的窗口高度.若有错,则为-1
+winnr()
+作用:得到当前窗口号.
+返回值:整数.当前窗口标号.最上的窗口为#1
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">启用/禁用</p>
+	<p></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">识别文件</p>
+	<p></p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+
+	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
+		<tr><td><code class="inset">:</code></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+	</table>
+&ldquo;&rdquo;
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
+
+</body>
+</html>

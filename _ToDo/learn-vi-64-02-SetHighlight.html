@@ -9,6 +9,39 @@
 </head>
 <body>
 	<h1>VIM学习笔记  ()</h1>
+我们可以使用highlight选项来改变许多对象的高亮显示.这个选项的格式如下:
+:set highlight=key:group,[key:group]...
+我们可以使用下面的key值:
+key    Default        Meaning
+8    SpeicalKey    当用:map命令列出特殊键时用来高亮显示
+@    NonText        Vim用~和@来表示不在缓冲区中的内容时适用.
+M    Modemsg        在屏幕下部显示的模式信息.
+S    StatusLineNC    除当前窗口外的每一个窗口的状态行.
+V    VisualNOS    可视化模式下选择的文本.
+w    WildMenu    作为通配符的一部分而显示
+d    Directroy    当我们按下CTRL-D时显示的目录
+e    ErrorMsg    错误信息.
+i    IncSearch    作为增量查找的一部分而显示
+I    Search        作来查找的一部分而显示
+m    MoreMsg        --More--提示
+n    LineNr        由命令:number打印出的行号
+r    Question    按下回车的提示及其他的问题
+s    StatusLine    当前窗口的状态行
+t    Title        输入信息的命令标题.
+v    Visual        在可视化模式下选择的文本
+w    WaringMsg    警告信息.
+我们还可以使用缩写字符:
+r    Reverse
+i    Italic
+b    Bold
+s    Standout
+u    Underline
+n    None
+-    None
+所以我们可以通过下面的命令来使用ErrorMsg组来高亮显示错误信息:
+:set highlight=e:ErrorMsg
+或者我们可以通过下面的命令来以reverse,bold,italic方式来显示错误:
+:set highlight=ervb
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">启用/禁用</p>
 	<p></p>
