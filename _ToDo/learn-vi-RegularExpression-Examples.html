@@ -8,7 +8,17 @@
 	<title>VIM学习笔记 正则表达式-（Regular Expression ）</title>
 </head>
 <body>
-
+	<p>Vim提供以下两种grep(globally search a regular expression and print”)搜索工具：</p>
+	<ul>
+		<li><code class="inset">:vimgrep</code> 使用Vim内置的grep实现；</li>
+		<li><code class="inset">:grep</code> 调用外部的grep工具。</li>
+	</ul>
+	<p>:grep命令会运行由选项grepprg所指定的程序在这里我们要注意的就是在UNIX系统上,grepprg默认是指grep -n.在Windows系统上,默认是指findstr /n
+:grep命令使用grepformat选项来告诉Vim如何来组织Grep的输出文件.</p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+	<p></p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+	<p>搜索结果都将通过<a href="http://yyq123.github.io/learn-vim/learn-vi-70-01-QuickFix.html" title="QuickFix">QuickFix</a>列表显示。</p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">综合应用</p>
 	<p>例如想要查找类似&ldquo;1MGU103&rdquo;的字符串，其由1个数字，3个大写字符和3个数字组成。那么可以使用以下几种方法来匹配：</p>
