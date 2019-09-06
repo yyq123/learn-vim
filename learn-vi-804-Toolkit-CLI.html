@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 工具箱-版本控制(Toolkit-Git)</title>
+</head>
+<body>
+	<h1>VIM学习笔记 工具箱-版本控制(Toolkit-Git)</h1>
+	<p>众所周知，几乎所有Vim插件管理器都是使用<a style="font-weight:bold" title="GitHub" href="http://github.com/">GitHub</a>来安装和更新插件；你也可以直接从GitHub<a title="GitHub" href="https://github.com/vim">下载</a>Vim；而我的这个<a title="笔记列表" href=https://github.com/yyq123/learn-vim">VIM学习笔记</a>也是托管在GitHub上的，以实现在多台电脑上同步文档并进行版本管理。</p>
+	<p>本文并不会详细介绍GitHub的安装与使用，而是聚焦于如何使用GitHub与Vim相互配合。GitHub有着非常完善的（中文）<a href="https://help.github.com/cn" title="Help">文档</a>；而视觉化的<a href="http://rogerdudler.github.io/git-guide/index.zh.html" title="git - the simple guide">git简明指南</a>更便于快速入门；还有表格化的<a href="http://rogerdudler.github.io/git-guide/files/git_cheat_sheet.pdf" title="git - cheat sheet">速查表</a>可以随时查阅各种命令的参考信息。</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Tools_Github_Doc.png" title="Tools_Github_Doc"><img src="https://yyq123.github.io/learn-vim/images/Tools_Github_Doc.png" alt="" width="500" height="81" /></a></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">Git客户端</p>
+	<p>除了GitHub官方出品的<a href="https://desktop.github.com/" title="GitHub Desktop">客户端</a>，<a href="https://git-scm.com/downloads/guis" title="GUI Clients">git-scm.com</a>列出了各种操作系统下的更多客户端软件。</p>
+	<p>我强烈建议您尽量使用Git命令，而不是依赖于某个客户端软件。事实上，只需要记忆非常有限的几个常用命令，就可以毫无障碍地在各种命令行环境中进行Git操作了。关于详细操作说明，推荐阅读<a href="https://www.freecodecamp.org/news/learn-the-basics-of-git-in-under-10-minutes-da548267cc91/" title="Learn the Basics of Git in Under 10 Minutes">Learn the Basics of Git in Under 10 Minutes</a>。</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Tools_Git_CLI.png" title="Tools_Git_CLI"><img src="https://yyq123.github.io/learn-vim/images/Tools_Git_CLI.png" alt="Tools_Git_CLI" width="500" height="363" /></a></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">文档写作</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/learn_vim_GitHub.png" title="learn_vim_GitHub"><img src="https://yyq123.github.io/learn-vim/images/learn_vim_GitHub.png" alt="learn_vim_GitHub" width="500" height="229" /></a></p>
+	<p>这个学习笔记都是通过手工编写HTML代码来完成的。也就是说，我需要在多台电脑上的不同操作系统之下测试命令执行，然后持续修改网页源文件。所以，GitHub帮助我完美实现了文档的一致性和版本控制。同时，利用<a href="https://pages.github.com/" title="GitHub Pages">GitHub Pages</a>功能，可以自动发布为<a href="http://yyq123.github.io/learn-vim/" title="learn vim">网页</a>以供浏览器直接阅读。</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Tools_Github_Pages.png" title="Tools_Github_Pages"><img src="https://yyq123.github.io/learn-vim/images/Tools_Github_Pages.png" alt="Tools_Github_Pages" width="500" height="249" /></a></p>
+	<p>在此过程中，也充分体现了如下图所示的Git工作流程：</p>
+	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/Git_Workflow.png" title="Git_Workflow"><img src="http://yyq123.github.io/learn-vim/images/Git_Workflow.png" alt="Git_Workflow" /></a></br>Source: medium.com/free-code-camp</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Git_Workflow.png" title="Git_Workflow"><img src="https://yyq123.github.io/learn-vim/images/Git_Workflow.png" alt="" width="500" height="294" /></a></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">插件管理</p>
+	<p>不管您是通过<a href="http://yyq123.github.io/learn-vim/learn-vi-102-plugin-plug.html" title="插件管理器(vim-plug)">vim-plug</a>，还是<a href="http://yyq123.github.io/learn-vim/learn-vi-101-plugin-vundle.html" title="插件管理器(Vundle)">Vundle</a>来安装和管理插件，首先都需要使用<code class="inset">git clone</code>命令来安装插件管理器本身。而之后在安装其它插件时，也需要在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>配置文件中指定GitHub Repository的名称。</p>
+	<p>如果您仍然习惯于手工安装插件，那么也可以直接从<a href="https://github.com/topics/vim-plugin" title="vim-plugin">GitHub</a>克隆或者下载插件。</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
+	<p>在Greenshot内置的图片编辑器中，可以为图片增加注解、标识重点、绘制图形；还可以应用边框、阴影、锯齿、高亮和模糊等多种效果。更重要的是，图片可以保存为greenshot类型的文件。之后您可以多次打开greenshot文件，不断对屏幕截图进行修改，然后再将最终结果输出为PNG或JPG图片格式。这种对于屏幕截图进行多次持续调整的能力，在其他屏幕截图软件中并不多见。</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Tools_Screen_Greenshot_Editor.png" title="Tools_Screen_Greenshot_Editor"><img src="https://yyq123.github.io/learn-vim/images/Tools_Screen_Greenshot_Editor.png" alt="Tools_Screen_Greenshot_Editor" width="500" height="271" /></a></p>
+	<p>在Linux下，我会使用开源的<a href="https://github.com/lupoDharkael/flameshot" title="Flameshot">Flameshot</a>；而在Mac下，则购买了久负盛名的<a href="https://www.techsmith.com/screen-capture.html" title="SnagIt">SnagIt</a>，同时也使用免费的<a href="http://snappy-app.com/">Snappy</a>。</p>
+
+	<p></p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+	<p></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">代码片段管理</p>
+	<p><a href="http://yyq123.github.io/learn-vim/learn-vi-103-plugin-Gist.html"title="代码片段管理器(Gist.vim)">代码片段管理器(Gist.vim)</a></p>
+	<p><a href="http://hackjutsu.com/Lepton/" title=>Lepton</a>支持macOS、Windows和Linux</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Tools_Diagram_Cacoo.png" title="Cacoo"><img src="https://yyq123.github.io/learn-vim/images/Tools_Diagram_Cacoo.png" alt="Cacoo" width="500" height="359" /></a></p>
+	<p><a href="http://dia-installer.de" title="Dia">Dia</a></p>
+
+	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
+
+	<p>Updating a Local Git RepoSay we’ve created a repository on our workstation (Machine A) and we’ve pushed our changes to GitHub, then we’ve cloned these changes down to our server (Machine B). We then go back onto our workstation (Machine A), make more changes, and push them to GitHub. How do we get these changes onto our server (Machine B)? To do this, we use the git pull command:git pull origin master
+After running this command, Machine B will be current with any changes that were pushed to GitHub from Machine A. It quite literally pulls any updates to the repo from GitHub.</p>
+	
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">学习资源</p>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
+		<tr><td><code class="inset">:</code></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+	</table>
+&ldquo;&rdquo;
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="屏幕截图(Screenshot Tools)" href="http://yyq123.github.io/learn-vim/learn-vi-801-Other-Tool-Screen.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="屏幕截图(Toolkit-Screenshot)" href="http://yyq123.github.io/learn-vim/learn-vi-801-Toolkit-Screen.html">下一篇</a>&gt;</span></p>
+
+</body>
+</html>
