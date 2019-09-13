@@ -60,8 +60,13 @@
 	<p style="margin-left:1.5em">请在终端窗口中，执行以下命令来安装Xcode命令行工具包：<code class="inset"><br />
 	xcode-select --install
 	</code></p>
+	<p style="font-weight:bold">3、在Windows系统下，安装插件时，出现&ldquo;"Error detected while processing function vundle#installer#new"&rdquo;的报错。</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/plugin_Vundle_Error_Installer.png" title="plugin_Vundle_Error_Installer"><img src="https://yyq123.github.io/learn-vim/images/plugin_Vundle_Error_Installer.png" alt="plugin_Vundle_Error_Installer" width="500" height="169" /></a></p>
+	<p>查看日志文件，发现有以下报错：</p>
+	<p style="text-indent:2em"><code class="msg">fatal: Invalid path 'C:/Usersyiqyuanvimfilesbundlecolorizer': No such file or directory</code></p>
+	<p>可以看到，命令中的路径没有正常包含&ldquo;/&rdquo;。使用以下命令，设置shellslash选项之后，可以正常安装和更新插件。</p>
+	<p style="text-indent:2em"><code class="inset">:set shellslash</code></p>
 
-	<p style="text-indent:2em"><code class="inset"></code></p>
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
 		<tr><td><code class="inset">:PluginInstall</code></td><td>安装插件</td></tr>
