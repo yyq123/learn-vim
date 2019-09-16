@@ -103,6 +103,7 @@ Created by yyq123@gmail.com using [vim](http://www.vim.org/)
   - [搜索结果计数器(searchindex)](http://yyq123.github.io/learn-vim/learn-vi-106-plugin-searchindex.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/06/vim-plugin-searchindex.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/69452874)
 - **工具箱**
   - [屏幕截图(Screenshot)](http://yyq123.github.io/learn-vim/learn-vi-801-Toolkit-Screen.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/08/vim-toolkit-screenshot.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/76965810)
-  - [图表制作(Diagram)](http://yyq123.github.io/learn-vim/learn-vi-802-Other-Tool-Diagram.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/08/vim-toolkit-diagram.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/80209657)
+  - [图表制作(Diagram)](http://yyq123.github.io/learn-vim/learn-vi-802-Toolkit-Diagram.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/08/vim-toolkit-diagram.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/80209657)
+  - [版本控制(Git)](http://yyq123.github.io/learn-vim/learn-vi-803-Toolkit-Git.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/09/vim-toolkit-git.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/82742807)
 - **附录**
   - [参考资料(References)](http://yyq123.github.io/learn-vim/learn-vi-999-Ref.html)[<sup>B</sup>](http://yyq123.blogspot.com/2018/07/vim--plugin-vundle.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/39516694)
