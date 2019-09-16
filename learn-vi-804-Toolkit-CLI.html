@@ -5,22 +5,22 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记 工具箱-版本控制(Toolkit-Git)</title>
+	<title>VIM学习笔记 工具箱-命令行环境(Toolkit-CLI)</title>
 </head>
 <body>
-	<h1>VIM学习笔记 工具箱-版本控制(Toolkit-Git)</h1>
+	<h1>VIM学习笔记 工具箱-命令行环境(Toolkit-CLI)</h1>
 	<p>众所周知，几乎所有Vim插件管理器都是使用<a style="font-weight:bold" title="GitHub" href="http://github.com/">GitHub</a>来安装和更新插件；你也可以直接从GitHub<a title="GitHub" href="https://github.com/vim">下载</a>Vim；而我的这个<a title="笔记列表" href=https://github.com/yyq123/learn-vim">VIM学习笔记</a>也是托管在GitHub上的，以实现在多台电脑上同步文档并进行版本管理。</p>
 	<p>本文并不会详细介绍GitHub的安装与使用，而是聚焦于如何使用GitHub与Vim相互配合。GitHub有着非常完善的（中文）<a href="https://help.github.com/cn" title="Help">文档</a>；而视觉化的<a href="http://rogerdudler.github.io/git-guide/index.zh.html" title="git - the simple guide">git简明指南</a>更便于快速入门；还有表格化的<a href="http://rogerdudler.github.io/git-guide/files/git_cheat_sheet.pdf" title="git - cheat sheet">速查表</a>可以随时查阅各种命令的参考信息。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/Tools_Github_Doc.png" title="Tools_Github_Doc"><img src="https://yyq123.github.io/learn-vim/images/Tools_Github_Doc.png" alt="" width="500" height="81" /></a></p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">Git客户端</p>
-	<p>除了GitHub官方出品的<a href="https://desktop.github.com/" title="GitHub Desktop">客户端</a>，<a href="https://git-scm.com/downloads/guis" title="GUI Clients">git-scm.com</a>列出了各种操作系统下的更多客户端软件。</p>
-	<p>我强烈建议您尽量使用Git命令，而不是依赖于某个客户端软件。事实上，只需要记忆非常有限的几个常用命令，就可以毫无障碍地在各种命令行环境中进行Git操作了。关于详细操作说明，推荐阅读<a href="https://www.freecodecamp.org/news/learn-the-basics-of-git-in-under-10-minutes-da548267cc91/" title="Learn the Basics of Git in Under 10 Minutes">Learn the Basics of Git in Under 10 Minutes</a>。</p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/Tools_Git_CLI.png" title="Tools_Git_CLI"><img src="https://yyq123.github.io/learn-vim/images/Tools_Git_CLI.png" alt="Tools_Git_CLI" width="500" height="363" /></a></p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">Windows下的Linux命令行环境</p>
+	<p><a style="font-weight:bold" href="https://cygwin.com/" title="cygwin.com">Cygwin</a>，是 Windows下的Linux命令行环境。它包括一个提供 GNU 功能性基本子集的 DLL 以及在这之上的一组工具。</p>
+	<p>关于详细操作说明，推荐阅读<a href="https://www.freecodecamp.org/news/learn-the-basics-of-git-in-under-10-minutes-da548267cc91/" title="Learn the Basics of Git in Under 10 Minutes">Learn the Basics of Git in Under 10 Minutes</a>。</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Tools_Cygwin_SelectPackages_vim.png" title="Tools_Cygwin_SelectPackages_vim"><img src="https://yyq123.github.io/learn-vim/images/Tools_Cygwin_SelectPackages_vim.png" alt="Tools_Cygwin_SelectPackages_vim" width="550" height="366" /></a></p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">文档写作</p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/learn_vim_GitHub.png" title="learn_vim_GitHub"><img src="https://yyq123.github.io/learn-vim/images/learn_vim_GitHub.png" alt="learn_vim_GitHub" width="500" height="229" /></a></p>
-	<p>这个学习笔记都是通过手工编写HTML代码来完成的。也就是说，我需要在多台电脑上的不同操作系统之下测试命令执行，然后持续修改网页源文件。所以，GitHub帮助我完美实现了文档的一致性和版本控制。同时，利用<a href="https://pages.github.com/" title="GitHub Pages">GitHub Pages</a>功能，可以自动发布为<a href="http://yyq123.github.io/learn-vim/" title="learn vim">网页</a>以供浏览器直接阅读。</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Tools_ConEmu_CLI.png" title="Tools_ConEmu_CLI"><img src="https://yyq123.github.io/learn-vim/images/Tools_ConEmu_CLI.png" alt="Tools_ConEmu_CLI" width="550" height="432" /></a></p>
+	<p><a style="font-weight:bold" href="https://conemu.github.io/" title="conemu.github.io">ConEmu</a>，是一个非常好用的终端，可以在多个标签也中，同时打开cmd,powershell，Cygwin和Git bash等等。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/Tools_Github_Pages.png" title="Tools_Github_Pages"><img src="https://yyq123.github.io/learn-vim/images/Tools_Github_Pages.png" alt="Tools_Github_Pages" width="500" height="249" /></a></p>
 	<p>在此过程中，也充分体现了如下图所示的Git工作流程：</p>
 	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/Git_Workflow.png" title="Git_Workflow"><img src="http://yyq123.github.io/learn-vim/images/Git_Workflow.png" alt="Git_Workflow" /></a></br>Source: medium.com/free-code-camp</p>
