@@ -9,6 +9,58 @@
 </head>
 <body>
 	<h1>VIM学习笔记 设置选项(set-option)</h1>
+
+	<p>Vim使用viminfo选项，来定义如何保存session信息。这是一组使用逗号分隔的字符串。</p>
+
+Use the viminfo option to set the location of your _viminfo. eg
+
+:set viminfo=nC:\\_viminfo
+
+	<p style="text-indent:2em"><code class="inset">:help viminfo</code></p>
+
+ViM uses the viminfo file as a memory dump to remember information from the last session. On Windows, this file is named _viminfo and stored in the directory %HOMEDRIVE%/%HOMEPATH.
+
+For example, on a home computer %HOMEDRIVE% might be C: and %HOMEPATH% might be \Users\Joe. Thus, ViM will use C:\Users\Joe\_viminfo
+
+For computers which are connected to a work domain, the %HOMEDRIVE% and %HOMEPATH% are typically set to shared folders on the network. These folders might sometimes be down or slow, causing error messages related to viminfo. Therefore, the default viminfo location on Windows is not appropriate if the computer is on a work domain. A good place for it would be the %LOCALAPPDATA% directory.
+
+To indicate a different viminfo directory to ViM, add this to the vimrc file:
+set viminfo+=n$LOCALAPPDATA/_viminfo
+
+The viminfo option is a comma-separated list of parameters. Each parameter is specified by a single character, followed by a number or string that is the value of that parameter. The viminfo file parameter is specified by the letter n, followed by the string that is the path where _viminfo should be stored. Enclosing the path in double quotes does not work! 😡
+
+Note the += operator used to set the viminfo option. The viminfo option already has a bunch of parameters that are specified by default. Thus, we append the viminfo file path parameter to this by using the += operator.
+
+It was indeed in C:\Users\<username>\_viminfo. The command :echo $HOME works a charm as well. 
+<p>在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>配置文件中，定义viminfo选项：</p>
+set viminfo=%,<800,'10,/50,:100,h,f0,n~/.vim/cache/.viminfo
+"           | |    |   |   |    | |  + viminfo文件路径
+"           | |    |   |   |    | + file marks 0-9,A-Z 0=NOT stored
+"           | |    |   |   |    + hlsearch on (H) or off (h)
+"           | |    |   |   + 保存命令历史条数
+"           | |    |   + 保存搜索历史条数
+"           | |    + files marks saved
+"           | + lines saved each register (old name for <, vi6.2)
+"           + save/restore buffer list
+<p>请注意，。</p>
+<ul>
+	<li>如果您没有定义/n和:n子选项，那么将使用history选项的值</li>
+	<li>建议不要将<n设置过大，因为此选项将影响保存至viminfo文件中的信息量。Vim每次启动时，将读取viminfo文件，过大的文件尺寸，将影响Vim启动速度。</li>
+</ul>
+<p>在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>文件开头，定义以下选项：</p>
+<p style="text-indent:2em"><code class="inset">:set nocompatible</code></p>
+
+<p>viminfo主要包括以下内容：</p>
+# Command Line History (newest to oldest)
+# Search String History (newest to oldest)
+# Expression History (newest to oldest):
+# Input Line History (newest to oldest):
+# Debug Line History (newest to oldest):
+# Registers:
+# File marks:
+# Jumplist (newest first)
+# History of marks within files (newest to oldest)
+
 " These commands open folds
 set foldopen=block,insert,jump,mark,percent,quickfix,search,tag,undo
 
@@ -151,6 +203,42 @@ suffixes选项会列出一系列文件名的前缀,当遇到这样的前缀时�
 	<p style="text-indent:2em"><code class="inset">set printheader=%&lt;%f%h%m%40{strftime(\"%c\",getftime(expand(\"%%\")))}%=Page\ %N</code></p>
 	<p>使用以下命令，可以设置页眉为空（请注意，命令末尾包括一个空格）：</p>
 	<p style="text-indent:2em"><code class="inset">:set printheader=\&nbsp;</code></p>
+
+	Vim can be requested to wrap the text using :set wrap command. However, this is only for display and the text width used for wrapping is the width of the terminal or window that Vim is using. This has no effect on printing.
+
+What we need to do is to set a text width and reformat the text by enforcing this text width. Note that you will need to check how many columns of text width will fit into the printed page for your font, font size and paper size.
+
+    First, we set the text width. Let me assume that 80 columns works for my setup:
+
+1
+	
+:set textwidth=80
+
+    Next, we ask Vim to reformat the entire text file by enforcing this text width:
+
+1
+2
+3
+	
+gg
+gq
+G
+
+The breakdown of this command is: gg moves cursor to first line of file. gq is the command to reformat all text from current position to the position specified after this. G is the command to move to last line of file. When applied after gq, this reformats the entire file from first line to last line, enforcing the text width we specified earlier.
+
+The formatted file can now be printed. After printing, you can undo this reformatting if it is not needed.
+
+For more details about these commands:
+1
+2
+3
+	
+:help textwidth
+:help gq
+:help wrap
+
+
+
 	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
 		<tr><th>命令形式</th><th>描述</th><th>示例</th></tr>
 		<tr><td><code class="inset"></code></td><td></td><td><code class="inset"></code></td></tr>
