@@ -10,28 +10,20 @@
 <body>
 	<h1>VIM学习笔记 设置选项(set-option)</h1>
 
-	<p>Vim使用viminfo选项，来定义如何保存session信息。这是一组使用逗号分隔的字符串。</p>
-
-Use the viminfo option to set the location of your _viminfo. eg
+	<p>Vim使用viminfo选项，来定义如何保存会话（session）信息。此选项是一组使用逗号分隔的字符串；其中每个参数，是以单个字符开头的数值或字符串值。</p>
 
 :set viminfo=nC:\\_viminfo
 
+	<p style="text-indent:2em"><code class="inset">:help 'viminfo'</code></p>
 	<p style="text-indent:2em"><code class="inset">:help viminfo</code></p>
 
-ViM uses the viminfo file as a memory dump to remember information from the last session. On Windows, this file is named _viminfo and stored in the directory %HOMEDRIVE%/%HOMEPATH.
+在Windows下，viminfo文件通常为&ldquo;%HOMEDRIVE%\%HOMEPATH\_viminfo&rdquo;，例如:C:\Users\yiqyuan\_viminfo
 
-For example, on a home computer %HOMEDRIVE% might be C: and %HOMEPATH% might be \Users\Joe. Thus, ViM will use C:\Users\Joe\_viminfo
 
-For computers which are connected to a work domain, the %HOMEDRIVE% and %HOMEPATH% are typically set to shared folders on the network. These folders might sometimes be down or slow, causing error messages related to viminfo. Therefore, the default viminfo location on Windows is not appropriate if the computer is on a work domain. A good place for it would be the %LOCALAPPDATA% directory.
 
-To indicate a different viminfo directory to ViM, add this to the vimrc file:
-set viminfo+=n$LOCALAPPDATA/_viminfo
+<p>使用以下命令，可以指定viminfo文件的位置。为了不覆盖viminfo选项的当前值，通常都会在设置命令中使用&ldquo;+=&rdquo;操作符。：</p>
+	<p style="text-indent:2em"><code class="inset">set viminfo+=n$LOCALAPPDATA/_viminfo</code></p>
 
-The viminfo option is a comma-separated list of parameters. Each parameter is specified by a single character, followed by a number or string that is the value of that parameter. The viminfo file parameter is specified by the letter n, followed by the string that is the path where _viminfo should be stored. Enclosing the path in double quotes does not work! 😡
-
-Note the += operator used to set the viminfo option. The viminfo option already has a bunch of parameters that are specified by default. Thus, we append the viminfo file path parameter to this by using the += operator.
-
-It was indeed in C:\Users\<username>\_viminfo. The command :echo $HOME works a charm as well. 
 <p>在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>配置文件中，定义viminfo选项：</p>
 set viminfo=%,<800,'10,/50,:100,h,f0,n~/.vim/cache/.viminfo
 "           | |    |   |   |    | |  + viminfo文件路径
@@ -41,8 +33,8 @@ set viminfo=%,<800,'10,/50,:100,h,f0,n~/.vim/cache/.viminfo
 "           | |    |   + 保存搜索历史条数
 "           | |    + files marks saved
 "           | + lines saved each register (old name for <, vi6.2)
-"           + save/restore buffer list
-<p>请注意，。</p>
+"           + 保存缓冲区列表
+<p>请注意：</p>
 <ul>
 	<li>如果您没有定义/n和:n子选项，那么将使用history选项的值</li>
 	<li>建议不要将<n设置过大，因为此选项将影响保存至viminfo文件中的信息量。Vim每次启动时，将读取viminfo文件，过大的文件尺寸，将影响Vim启动速度。</li>
@@ -51,12 +43,15 @@ set viminfo=%,<800,'10,/50,:100,h,f0,n~/.vim/cache/.viminfo
 <p style="text-indent:2em"><code class="inset">:set nocompatible</code></p>
 
 <p>viminfo主要包括以下内容：</p>
-# Command Line History (newest to oldest)
-# Search String History (newest to oldest)
-# Expression History (newest to oldest):
+<ul>
+	<li></li>
+</ul>
+Command Line History（命令行历史纪录）
+Search String History（搜索历史纪录）
+Expression History（表达式历史纪录）
 # Input Line History (newest to oldest):
 # Debug Line History (newest to oldest):
-# Registers:
+# Registers（寄存器）
 # File marks:
 # Jumplist (newest first)
 # History of marks within files (newest to oldest)
@@ -84,8 +79,9 @@ set foldopen=block,insert,jump,mark,percent,quickfix,search,tag,undo
 :set winaltkeys=menu
 在这种模式下,Alt键可以用于选择菜单,也可以用来映射:map命令.所以Alt-F可以选择文件菜单,而我们还可以用Alt-X来映射命令.
 
-果我们设置了more选项,当一个命令的显示会超出一屏时就会显示More提示.如果没有进行设置只是会翻滚屏幕.默认如下:
-:set more
+<p>默认设置下，more选项是启用的。命令的显示会超出一屏时就会显示More提示.如果没有进行设置只是会翻滚屏幕</p>
+	<p style="text-indent:2em"><code class="inset">:set more</code></p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
 下面的命令定义了可以由CTRL-A,CTRL-X识别的数字格式.
 :set nrformats=octal,hex
 (注:十进制总是可以识别)
@@ -104,13 +100,13 @@ set shellslash
 " Allow backspacing over indent, eol, and the start of an insert
 set backspace=2
 
-
-当我们删除或是修改了一些行的文本,如果这些行数超出了report所指定的行数,Vim编辑器就会告诉这一些情况.所以如果我们要Vim报告所有的变化,我们可以用下面的命令:
-:set report=0
-相反,如果我们不希望Vim来告诉我们这些变化,我们可以将这个值设成一个相当大的值就可了.
+	<p>当我们删除或是修改多行文本时，如果行数超出了report所指定的行数（默认值为2），那么Vim将会在屏幕底部显示所改变的行数。如果我们希望始终显示反馈信息，那么可以使用以下命令，将report选项设置为0：</p>
+	<p style="text-indent:2em"><code class="inset">:set report=0</code></p>
+	<p>此时，即使只是删除了一行文本，Vim也将显示以下信息：</p>
+	<p style="text-indent:2em"><code class="msg">1 line less</code></p>
+	<p>相反地，如果不希望显示变更信息，那么可以将report选项设置为较大的值。</p>
 我们也可以用下面的命令来设置预览窗口的大小:
 :set previewheight={height}
-
 
 但是如何来处理其他键的顺序呢?我们可以通过下面的两个选项来控制区:
 :set timeout
@@ -133,9 +129,13 @@ notimeout    ttimeout    只有代码键超时
 	<p style="text-indent:2em"><code class="inset">:set errorbells</code></p>
 	<p>使用以下命令启用visualbell选项，当输入错误时屏幕就会闪动然后回到正常状态：</p>
 	<p style="text-indent:2em"><code class="inset">:set visualbell</code></p>
-在ex模式下输入命令时,我们可以实现文件名的自动完成.例如如果我们想要读入文件input.txt,我们可以输入下面的命令:
-:read input<Tab>
-Vim就会试着猜出我们想要的文件.如果在我们当前的目录下只有文件input.txt,他就会显示出如下的形式:
+
+	<p>在ex模式下输入命令时，文件名是可以自动补全的。例如希望使用以下命令，来读入文件learn-vi.css：</p>
+	<p style="text-indent:2em"><code class="inset">:read learn&lt;Tab&lt;</code></p>
+	<p>按下<kbd>&lt;Tab&lt;</kbd>键之后，Vim就会在当前目录下查找以&ldquo;learn&rdquo;开头的文件他就会显示出如下的形式:</p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+
+	
 :read input.txt
 如果在当前目录下有几个带有input的文件名,则会显示第一个.如果我们再按下Tab,就会显示出第二个相匹配的结果,再按下Tab就会显示第三个.
 我们可以通过下面的命令来定义完成通配符的键:
@@ -203,41 +203,6 @@ suffixes选项会列出一系列文件名的前缀,当遇到这样的前缀时�
 	<p style="text-indent:2em"><code class="inset">set printheader=%&lt;%f%h%m%40{strftime(\"%c\",getftime(expand(\"%%\")))}%=Page\ %N</code></p>
 	<p>使用以下命令，可以设置页眉为空（请注意，命令末尾包括一个空格）：</p>
 	<p style="text-indent:2em"><code class="inset">:set printheader=\&nbsp;</code></p>
-
-	Vim can be requested to wrap the text using :set wrap command. However, this is only for display and the text width used for wrapping is the width of the terminal or window that Vim is using. This has no effect on printing.
-
-What we need to do is to set a text width and reformat the text by enforcing this text width. Note that you will need to check how many columns of text width will fit into the printed page for your font, font size and paper size.
-
-    First, we set the text width. Let me assume that 80 columns works for my setup:
-
-1
-	
-:set textwidth=80
-
-    Next, we ask Vim to reformat the entire text file by enforcing this text width:
-
-1
-2
-3
-	
-gg
-gq
-G
-
-The breakdown of this command is: gg moves cursor to first line of file. gq is the command to reformat all text from current position to the position specified after this. G is the command to move to last line of file. When applied after gq, this reformats the entire file from first line to last line, enforcing the text width we specified earlier.
-
-The formatted file can now be printed. After printing, you can undo this reformatting if it is not needed.
-
-For more details about these commands:
-1
-2
-3
-	
-:help textwidth
-:help gq
-:help wrap
-
-
 
 	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
 		<tr><th>命令形式</th><th>描述</th><th>示例</th></tr>

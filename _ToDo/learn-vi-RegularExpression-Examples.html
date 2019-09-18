@@ -17,6 +17,14 @@
 :grep命令使用grepformat选项来告诉Vim如何来组织Grep的输出文件.</p>
 	:grep will use the default “find” tool for your operating system (“grep” for linux family, “findstr” for Windows). :vimgrep will use built-in vim search (same as for “/” searching) which is slower than system search (but works if you have problems with grep/findstr/other). On the other hand vimgrep has the same syntax everywhere (:grep depends on external tool used). Search result is presented using Quickfix window (opened with :copen). :lgrep/:lvimgrep will do the same, but using location list (opened with :lopen). In practise the difference is that if you use Quickfix window (:copen) it will stick to the current editor. Location window will show in the same way, but if you select anything then the window will disappear and you will have to run :lopen again.
 
+	* To search for Xanadu in all the files in the PWD: :vim Xanadu * search results in a Quickfix window at the bottom and Vim jumps to the first match right away. You can navigate through this window and press Enter on search results to jump to them.
+
+	* To recurse the directories or files in Vim, you have this strange syntax called star-star. For example, to search recursively in all files and directories in PWD: :vim Xanadu **
+
+	* Once you are comfortable with the star-star syntax, you will find it very convenient to use: :vim Xanadu ../include/**/*.h
+	* One trick I like to use a lot is to search for the current word under the cursor in the files. I first press * so that the word is selected. Then I use this empty pattern to search for it: :vim // *.cpp
+
+
 I guess you have to choose yourself which command you like most.  The syntax is as follows:
 
 :grep searchpattern locationpattern
@@ -29,6 +37,8 @@ In order to search in subdirectories you would have to use **/*.* pattern. Howev
 
 :grep /S MyMethod *.*
 This will work on Windows and will find all “MyMethod” phrases in all files in all subdirectories of current working directory. However you can still make it the default behaviour in VIM. But first you neeed to know one thing:
+
+To search recursively in all files and directory under the PWD: grep -R Xanadu *
 
 :set grepprg
 This is a variable that controls the usage of external grep tool in VIM. Depending on your operating system you will have different results:
