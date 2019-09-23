@@ -47,20 +47,20 @@
 	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
 		<caption style="margin:0.5em; font-weight:bold">viminfo选项列表</caption>
 		<tr><th style="white-space: nowrap">选项</th><th>描述</th><th>帮助信息</th></tr>
-		<tr><td style="background-color:#DCDCDC"><code class="inset">!</code></td><td>如果包含，表示保存和恢复以大写字母开头并且不包含小写字母的全局变量。例如，保存 “KEEPTHIS” 和 “K_L_M”，但不保存 “KeepThis” 和”_K_L_M”。</td><td style="white-space: nowrap"><code class="inset">:help viminfo-!</code></td></tr>
-		<tr><td style="background-color:#DCDCDC"><code class="inset">"</code></td><td>设置每个寄存器最多保存的行数。是&ldquo;&lt;&rdquo;选项的旧称。需要在&ldquo;"&rdquo;之前加上转义反斜杠，否则将会被识别为注释的开始。</td><td><code class="inset">:help viminfo-"</code></tr>
-		<tr><td style="background-color:#DCDCDC"><code class="inset">%</code></td><td>如果包含，表示保存和恢复文件缓冲区列表；如果后跟数值，该数值指定保存缓冲区的最大数目；如果不包含数值，则保存所有缓冲区。如果Vim启动时指定文件名参数，则缓冲区列表不予恢复。如果Vim启动时没有指定文件名参数，则缓冲区列表从viminfo文件里恢复。没有文件名的缓冲区和帮助文件的缓冲区不会写入viminfo文件。不保存quickfix、unlisted、unnamed和在可移动介质上的缓冲区。</td><td><code class="inset">:help viminfo-%</td></tr>
-		<tr><td style="background-color:#DCDCDC"><code class="inset">'</code></td><td>保存指定数目文件中的标记。如果viminfo选项非空，则必须包含此参数。包含本项目意味着jumplist和changelist也保存在viminfo文件里。</td><td><code class="inset">:help viminfo-'</td></tr>
-		<tr><td style="background-color:#DCDCDC"><code class="inset">/</code></td><td>保存搜索历史的最大数目。如果此值非零，那么将保存搜索和替代模式。如果不包含，则使用history选项的值。</td><td><code class="inset">:help viminfo-/</td></tr>
-		<tr><td style="background-color:#DCDCDC"><code class="inset">:</code></td><td>保存命令行历史的最大数目。如果不包含，则使用history选项的值。</td><td><code class="inset">:help viminfo-:</td></tr>
-		<tr><td style="background-color:#DCDCDC"><code class="inset">&lt;</code></td><td>每个寄存器保存的最大行数。如果为零，表示不保存寄存器。如果不包含，则表示保存所有的行。&ldquo;"&rdquo;是本项目的旧称。</td><td><code class="inset">:help viminfo-&lt;</td></tr>
-		<tr><td style="background-color:#DCDCDC"><code class="inset">@</code></td><td>保存输入行历史的最大数目。如果不包含，则使用history选项的值。</td><td><code class="inset">:help viminfo-@</td></tr>
-		<tr><td style="background-color:#DCDCDC"><code class="inset">c</code></td><td>如果包含，则使用viminfo-encoding选项指定的编码格式写入viminfo文件。</td><td><code class="inset">:help viminfo-c</td></tr>
-		<tr><td style="background-color:#DCDCDC"><code class="inset">f</code></td><td>是否保存文件位置标记。如果为零，不保存文件位置标记 (0~9，A~Z)。如果不包含或者非零值，则保存位置标记。</td><td><code class="inset">:help viminfo-f</td></tr>
-		<tr><td style="background-color:#DCDCDC"><code class="inset">h</code></td><td>载入viminfo文件时，关闭高亮效果。如果不包含，则取决于在最近搜索命令之后是否使用过:nohlsearch命令。</td><td><code class="inset">:help viminfo-h</td></tr>
-		<tr><td style="background-color:#DCDCDC"><code class="inset">n</code></td><td>指定viminfo文件的名称。该名称必须紧随在字母&ldquo;n&rdquo;之后，并且必须为最后一个选项。如果启动Vim时指定了-i参数，那么此文件名将覆盖viminfo选项指定的文件名。文件名中的环境变量，将在文件打开时被扩展。</td><td><code class="inset">:help viminfo-n</td></tr>
-		<tr><td style="background-color:#DCDCDC"><code class="inset">r</code></td><td>不保存指定可移动介质或路径内的文件的相关信息。可以设置多个路径参数。例如在Windows上，你可以用&ldquo;rA:,rB:&rdquo;指定软驱或U盘。也可以在Linux上，使用&ldquo;r/tmp&rdquo;来屏蔽临时文件。此选项将忽略大小写。每个参数的最大长度为50个字符。</td><td><code class="inset">:help viminfo-r</td></tr>
-		<tr><td style="background-color:#DCDCDC"><code class="inset">s</code></td><td>如果为零，将不保存寄存器。缺省值&ldquo;s10&rdquo;，将忽略超过10 Kbyte文本的寄存器。</td><td><code class="inset">:help viminfo-s</td></tr>
+		<tr><td><code class="inset">!</code></td><td>如果包含，表示保存和恢复以大写字母开头并且不包含小写字母的全局变量。例如，保存 “KEEPTHIS” 和 “K_L_M”，但不保存 “KeepThis” 和”_K_L_M”。</td><td style="white-space: nowrap"><code class="inset">:help viminfo-!</code></td></tr>
+		<tr><td><code class="inset">"</code></td><td>设置每个寄存器最多保存的行数。是&ldquo;&lt;&rdquo;选项的旧称。需要在&ldquo;"&rdquo;之前加上转义反斜杠，否则将会被识别为注释的开始。</td><td><code class="inset">:help viminfo-"</code></tr>
+		<tr><td><code class="inset">%</code></td><td>如果包含，表示保存和恢复文件缓冲区列表；如果后跟数值，该数值指定保存缓冲区的最大数目；如果不包含数值，则保存所有缓冲区。如果Vim启动时指定文件名参数，则缓冲区列表不予恢复。如果Vim启动时没有指定文件名参数，则缓冲区列表从viminfo文件里恢复。没有文件名的缓冲区和帮助文件的缓冲区不会写入viminfo文件。不保存quickfix、unlisted、unnamed和在可移动介质上的缓冲区。</td><td><code class="inset">:help viminfo-%</td></tr>
+		<tr><td><code class="inset">'</code></td><td>保存指定数目文件中的标记。如果viminfo选项非空，则必须包含此参数。包含本项目意味着jumplist和changelist也保存在viminfo文件里。</td><td><code class="inset">:help viminfo-'</td></tr>
+		<tr><td><code class="inset">/</code></td><td>保存搜索历史的最大数目。如果此值非零，那么将保存搜索和替代模式。如果不包含，则使用history选项的值。</td><td><code class="inset">:help viminfo-/</td></tr>
+		<tr><td><code class="inset">:</code></td><td>保存命令行历史的最大数目。如果不包含，则使用history选项的值。</td><td><code class="inset">:help viminfo-:</td></tr>
+		<tr><td><code class="inset">&lt;</code></td><td>每个寄存器保存的最大行数。如果为零，表示不保存寄存器。如果不包含，则表示保存所有的行。&ldquo;"&rdquo;是本项目的旧称。</td><td><code class="inset">:help viminfo-&lt;</td></tr>
+		<tr><td><code class="inset">@</code></td><td>保存输入行历史的最大数目。如果不包含，则使用history选项的值。</td><td><code class="inset">:help viminfo-@</td></tr>
+		<tr><td><code class="inset">c</code></td><td>如果包含，则使用viminfo-encoding选项指定的编码格式写入viminfo文件。</td><td><code class="inset">:help viminfo-c</td></tr>
+		<tr><td><code class="inset">f</code></td><td>是否保存文件位置标记。如果为零，不保存文件位置标记 (0~9，A~Z)。如果不包含或者非零值，则保存位置标记。</td><td><code class="inset">:help viminfo-f</td></tr>
+		<tr><td><code class="inset">h</code></td><td>载入viminfo文件时，关闭高亮效果。如果不包含，则取决于在最近搜索命令之后是否使用过:nohlsearch命令。</td><td><code class="inset">:help viminfo-h</td></tr>
+		<tr><td><code class="inset">n</code></td><td>指定viminfo文件的名称。该名称必须紧随在字母&ldquo;n&rdquo;之后，并且必须为最后一个选项。如果启动Vim时指定了-i参数，那么此文件名将覆盖viminfo选项指定的文件名。文件名中的环境变量，将在文件打开时被扩展。</td><td><code class="inset">:help viminfo-n</td></tr>
+		<tr><td><code class="inset">r</code></td><td>不保存指定可移动介质或路径内的文件的相关信息。可以设置多个路径参数。例如在Windows上，你可以用&ldquo;rA:,rB:&rdquo;指定软驱或U盘。也可以在Linux上，使用&ldquo;r/tmp&rdquo;来屏蔽临时文件。此选项将忽略大小写。每个参数的最大长度为50个字符。</td><td><code class="inset">:help viminfo-r</td></tr>
+		<tr><td><code class="inset">s</code></td><td>如果为零，将不保存寄存器。缺省值&ldquo;s10&rdquo;，将忽略超过10 Kbyte文本的寄存器。</td><td><code class="inset">:help viminfo-s</td></tr>
 	</table>
 
 	<p>在单独指定viminfo文件的位置时，为了不覆盖viminfo选项的当前值，通常会在设置命令中使用&ldquo;+=&rdquo;操作符：</p>

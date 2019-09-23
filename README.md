@@ -76,6 +76,7 @@ Created by yyq123@gmail.com using [vim](http://www.vim.org/)
   - [备份文件(Backup)](http://yyq123.blogspot.com/2011/11/vim-backup.html)[<sup>B</sup>](http://yyq123.blogspot.com/2011/11/vim-backup.html)<sup>/</sup>[<sup>Z</sup>](http://zhuanlan.zhihu.com/p/26816749)
   - [交换文件(swap)](http://yyq123.blogspot.com/2012/03/vim-swap.html)[<sup>B</sup>](http://yyq123.blogspot.com/2012/03/vim-swap.html)<sup>/</sup>[<sup>Z</sup>](http://zhuanlan.zhihu.com/p/26908358)
   - [配置文件(vimrc)](http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html)[<sup>B</sup>](http://yyq123.blogspot.com/2012/01/vim-vimrc.html)<sup>/</sup>[<sup>Z</sup>](http://zhuanlan.zhihu.com/p/25249316)
+  - [viminfo)](http://yyq123.github.io/learn-vim/learn-vi-59-01-viminfo.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/09/vim-viminfo.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/83801899)
 - **代码开发**
   - [模板(Template)](http://yyq123.blogspot.com/2010/08/vim-template.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/03/vim-starting.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/60260968)
   - [配色方案(Color Scheme)](http://yyq123.blogspot.com/2011/02/vim-color-scheme.html)[<sup>B</sup>](http://yyq123.blogspot.com/2011/02/vim-color-scheme.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/60260968)
