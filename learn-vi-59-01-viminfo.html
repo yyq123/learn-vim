@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 viminfo</title>
+</head>
+<body>
+	<h1>VIM学习笔记 viminfo</h1>
+
+	<p>Vm使用viminfo选项，来定义如何保存会话（session）信息，也就是保存Vim的操作记录和状态信息，以用于重启Vim后能恢复之前的操作状态。</p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">viminfo文件</p>
+	<p>viminfo文件默认存储在以下位置：</p>
+	<ul>
+		<li>Linux和Mac：$HOME/.viminfo，例如：~/.viminfo</li>
+		<li>Windows：$HOME\_viminfo，例如：C:\Users\yiqyuan\_viminfo</li>
+	</ul>
+	<p>viminfo文件主要保存以下内容：</p>
+	<ul>
+		<li>Command Line History（命令行历史纪录）</li>
+		<li>Search String History（搜索历史纪录）</li>
+		<li>Expression History（表达式历史纪录）</li>
+		<li>Input Line History（输入历史记录）</li>
+		<li>Debug Line History（调试历史纪录）</li>
+		<li>Registers（寄存器）</li>
+		<li>File marks（标记）</li>
+		<li>Jumplist（跳转）</li>
+		<li>History of marks within files（文件内标记）</li>
+	</ul>
+	<p>Vim在退出时，会将上述信息存放到viminfo文件中；在启动时，将会自动读取viminfo信息文件。</p>
+	<p>使用以下命令，可以手动创建一个viminfo文件：</p>
+	<p style="text-indent:2em"><code class="inset">:wviminfo file_name</code></p>
+	<p>使用以下命令，可以重新读去viminfo文件：</p>
+	<p style="text-indent:2em"><code class="inset">:rviminfo</code></p>
+	<p>使用以下命令，可以查看关于viminfo文件的帮助信息：</p>
+	<p style="text-indent:2em"><code class="inset">:help viminfo</code></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">viminfo选项</p>
+	<p>viminfo选项可以指定保存哪些内容，以及在何处的viminfo文件中保存这些信息。viminfo选项是一组使用逗号分隔的字符串；其中每个参数，是以单个字符开头的数值或字符串值。</p>
+	<p>Windows下的默认值为：</p>
+	<p style="text-indent:2em"><code class="inset">set viminfo='100,&lt;50,s10,h,rA:,rB:</code></p>
+	<p>Linux和Mac下的默认值为：</p>
+	<p style="text-indent:2em"><code class="inset">set viminfo='100,&lt;50,s10,h</code></p>
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
+		<caption style="margin:0.5em; font-weight:bold">viminfo选项列表</caption>
+		<tr><th style="white-space: nowrap">选项</th><th>描述</th><th>帮助信息</th></tr>
+		<tr><td style="background-color:#DCDCDC"><code class="inset">!</code></td><td>如果包含，表示保存和恢复以大写字母开头并且不包含小写字母的全局变量。例如，保存 “KEEPTHIS” 和 “K_L_M”，但不保存 “KeepThis” 和”_K_L_M”。</td><td style="white-space: nowrap"><code class="inset">:help viminfo-!</code></td></tr>
+		<tr><td style="background-color:#DCDCDC"><code class="inset">"</code></td><td>设置每个寄存器最多保存的行数。是&ldquo;&lt;&rdquo;选项的旧称。需要在&ldquo;"&rdquo;之前加上转义反斜杠，否则将会被识别为注释的开始。</td><td><code class="inset">:help viminfo-"</code></tr>
+		<tr><td style="background-color:#DCDCDC"><code class="inset">%</code></td><td>如果包含，表示保存和恢复文件缓冲区列表；如果后跟数值，该数值指定保存缓冲区的最大数目；如果不包含数值，则保存所有缓冲区。如果Vim启动时指定文件名参数，则缓冲区列表不予恢复。如果Vim启动时没有指定文件名参数，则缓冲区列表从viminfo文件里恢复。没有文件名的缓冲区和帮助文件的缓冲区不会写入viminfo文件。不保存quickfix、unlisted、unnamed和在可移动介质上的缓冲区。</td><td><code class="inset">:help viminfo-%</td></tr>
+		<tr><td style="background-color:#DCDCDC"><code class="inset">'</code></td><td>保存指定数目文件中的标记。如果viminfo选项非空，则必须包含此参数。包含本项目意味着jumplist和changelist也保存在viminfo文件里。</td><td><code class="inset">:help viminfo-'</td></tr>
+		<tr><td style="background-color:#DCDCDC"><code class="inset">/</code></td><td>保存搜索历史的最大数目。如果此值非零，那么将保存搜索和替代模式。如果不包含，则使用history选项的值。</td><td><code class="inset">:help viminfo-/</td></tr>
+		<tr><td style="background-color:#DCDCDC"><code class="inset">:</code></td><td>保存命令行历史的最大数目。如果不包含，则使用history选项的值。</td><td><code class="inset">:help viminfo-:</td></tr>
+		<tr><td style="background-color:#DCDCDC"><code class="inset">&lt;</code></td><td>每个寄存器保存的最大行数。如果为零，表示不保存寄存器。如果不包含，则表示保存所有的行。&ldquo;"&rdquo;是本项目的旧称。</td><td><code class="inset">:help viminfo-&lt;</td></tr>
+		<tr><td style="background-color:#DCDCDC"><code class="inset">@</code></td><td>保存输入行历史的最大数目。如果不包含，则使用history选项的值。</td><td><code class="inset">:help viminfo-@</td></tr>
+		<tr><td style="background-color:#DCDCDC"><code class="inset">c</code></td><td>如果包含，则使用viminfo-encoding选项指定的编码格式写入viminfo文件。</td><td><code class="inset">:help viminfo-c</td></tr>
+		<tr><td style="background-color:#DCDCDC"><code class="inset">f</code></td><td>是否保存文件位置标记。如果为零，不保存文件位置标记 (0~9，A~Z)。如果不包含或者非零值，则保存位置标记。</td><td><code class="inset">:help viminfo-f</td></tr>
+		<tr><td style="background-color:#DCDCDC"><code class="inset">h</code></td><td>载入viminfo文件时，关闭高亮效果。如果不包含，则取决于在最近搜索命令之后是否使用过:nohlsearch命令。</td><td><code class="inset">:help viminfo-h</td></tr>
+		<tr><td style="background-color:#DCDCDC"><code class="inset">n</code></td><td>指定viminfo文件的名称。该名称必须紧随在字母&ldquo;n&rdquo;之后，并且必须为最后一个选项。如果启动Vim时指定了-i参数，那么此文件名将覆盖viminfo选项指定的文件名。文件名中的环境变量，将在文件打开时被扩展。</td><td><code class="inset">:help viminfo-n</td></tr>
+		<tr><td style="background-color:#DCDCDC"><code class="inset">r</code></td><td>不保存指定可移动介质或路径内的文件的相关信息。可以设置多个路径参数。例如在Windows上，你可以用&ldquo;rA:,rB:&rdquo;指定软驱或U盘。也可以在Linux上，使用&ldquo;r/tmp&rdquo;来屏蔽临时文件。此选项将忽略大小写。每个参数的最大长度为50个字符。</td><td><code class="inset">:help viminfo-r</td></tr>
+		<tr><td style="background-color:#DCDCDC"><code class="inset">s</code></td><td>如果为零，将不保存寄存器。缺省值&ldquo;s10&rdquo;，将忽略超过10 Kbyte文本的寄存器。</td><td><code class="inset">:help viminfo-s</td></tr>
+	</table>
+
+	<p>在单独指定viminfo文件的位置时，为了不覆盖viminfo选项的当前值，通常会在设置命令中使用&ldquo;+=&rdquo;操作符：</p>
+	<p style="text-indent:2em"><code class="inset">:set viminfo+=n$LOCALAPPDATA/_viminfo</code></p>
+	<p style="text-indent:2em"><code class="inset">:set viminfo+=nC:\\_viminfo</code></p>
+	<p>您可以参考以下命令，在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>配置文件中，定义viminfo选项：</p>
+	<p style="text-indent:2em"><code class="inset">set viminfo=\"50,'1000,h,f1,rA:,r$TEMP:,r$TMP:,r$TMPDIR:,:500,!,n$VIM/_viminfo</code></p>
+	<p style="text-indent:2em"><a href="https://yyq123.github.io/learn-vim/images/set_viminfo_example.png" title="set_viminfo_example"><img src="https://yyq123.github.io/learn-vim/images/set_viminfo_example.png" alt="" width="500" height="138" /></a></p>
+
+	<p>请注意：</p>
+	<ul>
+	<li>请不要将&ldquo;&lt;&rdquo;设置过大，因为此选项将影响保存至viminfo文件中的信息量。在Vim启动时，如果读取尺寸过大的viminfo文件，将影响Vim启动速度；</li>
+	<li>请在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>文件开头，首先定义<code class="inset">:set nocompatible</code>选项。</li>
+	</ul>
+	<p>使用以下命令，可以查看viminfo选项的更多信息：</p>
+	<p style="text-indent:2em"><code class="inset">:help 'viminfo'</code></p>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:wviminfo</code></td><td>写入viminfo文件</td></tr>
+		<tr><td><code class="inset">:rviminfo</code></td><td>读取viminfo文件</td></tr>
+		<tr><td><code class="inset">:set viminfo</code></td><td>设置viminfo选项</td></tr>
+	</table>
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="vimrc" href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="set-option" href="http://yyq123.github.io/learn-vim/learn-vi-50-SetOption.html">下一篇</a>&gt;</span></p>
+
+</body>
+</html>

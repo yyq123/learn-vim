@@ -10,52 +10,6 @@
 <body>
 	<h1>VIM学习笔记 设置选项(set-option)</h1>
 
-	<p>Vim使用viminfo选项，来定义如何保存会话（session）信息。此选项是一组使用逗号分隔的字符串；其中每个参数，是以单个字符开头的数值或字符串值。</p>
-
-:set viminfo=nC:\\_viminfo
-
-	<p style="text-indent:2em"><code class="inset">:help 'viminfo'</code></p>
-	<p style="text-indent:2em"><code class="inset">:help viminfo</code></p>
-
-在Windows下，viminfo文件通常为&ldquo;%HOMEDRIVE%\%HOMEPATH\_viminfo&rdquo;，例如:C:\Users\yiqyuan\_viminfo
-
-
-
-<p>使用以下命令，可以指定viminfo文件的位置。为了不覆盖viminfo选项的当前值，通常都会在设置命令中使用&ldquo;+=&rdquo;操作符。：</p>
-	<p style="text-indent:2em"><code class="inset">set viminfo+=n$LOCALAPPDATA/_viminfo</code></p>
-
-<p>在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>配置文件中，定义viminfo选项：</p>
-set viminfo=%,<800,'10,/50,:100,h,f0,n~/.vim/cache/.viminfo
-"           | |    |   |   |    | |  + viminfo文件路径
-"           | |    |   |   |    | + file marks 0-9,A-Z 0=NOT stored
-"           | |    |   |   |    + hlsearch on (H) or off (h)
-"           | |    |   |   + 保存命令历史条数
-"           | |    |   + 保存搜索历史条数
-"           | |    + files marks saved
-"           | + lines saved each register (old name for <, vi6.2)
-"           + 保存缓冲区列表
-<p>请注意：</p>
-<ul>
-	<li>如果您没有定义/n和:n子选项，那么将使用history选项的值</li>
-	<li>建议不要将<n设置过大，因为此选项将影响保存至viminfo文件中的信息量。Vim每次启动时，将读取viminfo文件，过大的文件尺寸，将影响Vim启动速度。</li>
-</ul>
-<p>在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>文件开头，定义以下选项：</p>
-<p style="text-indent:2em"><code class="inset">:set nocompatible</code></p>
-
-<p>viminfo主要包括以下内容：</p>
-<ul>
-	<li></li>
-</ul>
-Command Line History（命令行历史纪录）
-Search String History（搜索历史纪录）
-Expression History（表达式历史纪录）
-# Input Line History (newest to oldest):
-# Debug Line History (newest to oldest):
-# Registers（寄存器）
-# File marks:
-# Jumplist (newest first)
-# History of marks within files (newest to oldest)
-
 " These commands open folds
 set foldopen=block,insert,jump,mark,percent,quickfix,search,tag,undo
 
