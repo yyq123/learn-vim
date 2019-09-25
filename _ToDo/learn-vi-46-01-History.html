@@ -5,97 +5,72 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记 命令行模式 (History)</title>
+	<title>VIM学习笔记 命令历史纪录 (History)</title>
 </head>
 <body>
-	:help :
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px"></p>
-	<p></p>
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px"></p>
+	<h1>VIM学习笔记 命令历史纪录 (History)</h1>
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
-		<tr><td><kbd>&uarr;</kbd></td><td rowspan="2">显示上一条命令</td></tr>
-		<tr><td><kbd>Ctrl + p</kbd></td></tr>
-		<tr><td><kbd>&darr;</kbd></td><td rowspan="2">显示下一条命令</td></tr>
-		<tr><td><kbd>Ctrl + n</kbd></td></tr>
-		<tr><td><kbd>Ctrl + b</kbd></td><td>移动到命令行开头</td></tr>
-		<tr><td><kbd>Ctrl + e</kbd></td><td>移动到命令行末尾</td></tr>
-		<tr><td><kbd>Ctrl + &larr;</kbd></td><td rowspan="2">向左移动一个单词</td></tr>
-		<tr><td><kbd>Shift + &larr;</kbd></td></tr>
-		<tr><td><kbd>Ctrl + &rarr;</kbd></td><td rowspan="2">向右移动一个单词</td></tr>
-		<tr><td><kbd>Shift + &rarr;</kbd></td></tr>
-		<tr><td><kbd>Ctrl + w</kbd></td><td>删除光标前的一个单词</td></tr>
-		<tr><td><kbd>Ctrl + u</kbd></td><td>删除光标前的所有字符</td></tr>
+		<tr><td><kbd></kbd></td><td rowspan="2"></td></tr>
+		<tr><td><kbd></kbd></td></tr>
+		<tr><td><kbd></kbd></td><td></td></tr>
+	</table>
+	<p><a href="https://yyq123.github.io/learn-vim/images/" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
+	<p>Vim会将命令历史纪录，保存在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-01-viminfo.html" title="vimifo">viminfo</a>文件中；我们可以通过viminfo和history选项，来控制存储历史纪录的类型和数量；在<a href="http://yyq123.github.io/learn-vim/learn-vi-46-CommandlineMode.html" title="命令行模式(Command-line Mode)">命令行模式</a>和<a href="http://yyq123.blogspot.com/2009/03/vim.html" title="">搜索文本</a>时，则可以重新调用这些历史纪录。</p>
+
+	<p><code class="inset"></code></p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">命令历史类型</p>
+	<p>命令历史可以分为以下几种类型：</p>
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
+		<tr><th style="white-space: nowrap">类型</th><th>标识</th><th>内容</th></tr>
+		<tr><td><code class="inset">c[md]</code></td><td><code class="inset">:</code></td><td>命令行历史</td></tr>
+		<tr><td><code class="inset">s[earch]</code></td><td><code class="inset">/ or ?</code></td><td>查找字符串历史</td></tr>
+		<tr><td><code class="inset">e[xpr]</code></td><td><code class="inset">=</code></td><td>表达式<a href="http://yyq123.github.io/learn-vim/learn-vi-12-Register.html" title="Register">寄存器</a>（"=）历史</td></tr>
+		<tr><td><code class="inset">i[nput]</code></td><td><code class="inset">@</code></td><td>由input()函数输入的历史</td></tr>
+		<tr><td><code class="inset">d[ebug]</code></td><td><code class="inset">&gt;</code></td><td>调试命令历史</td></tr>
+		<tr><td><code class="inset">a[ll]</code></td><td><code class="inset"></code></td><td>所有类型的历史纪录</td></tr>
 	</table>
 
-	<p><a href="https://yyq123.github.io/learn-vim/images/" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
-	<p><code class="inset">:help </code></p>
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">命令行窗口</p>
-	<p>可以使用以下四种方式，来打开命令行窗口（command line window）：</p>
-	<ol>
-		<li>在命令行模式下，使用<kbd>CTRL-F</kbd>快捷键打开命令行窗口，并显示命令历史纪录；</li>
-		<li>在常规模式下，使用<code class="inset">q:</code>命令打开命令行窗口，并显示命令历史纪录；<br /><a href="https://yyq123.github.io/learn-vim/images/command-line-window-cmd.png" title="command-line-window"><img src="https://yyq123.github.io/learn-vim/images/command-line-window-cmd.png" alt="command-line-window" /></a></li>
-		<li>在常规模式下，使用<code class="inset">q/</code>命令打开命令行窗口，并显示向前查找（search forward）的历史纪录；<br /><a href="https://yyq123.github.io/learn-vim/images/command-line-window-sf.png" title="command-line-window"><img src="https://yyq123.github.io/learn-vim/images/command-line-window-sf.png" alt="command-line-window" /></a></li>
-		<li>在常规模式下，使用<code class="inset">q?</code>命令打开命令行窗口，并显示向后查找（search backward）的历史纪录；<br /><a href="https://yyq123.github.io/learn-vim/images/command-line-window-sb.png" title="command-line-window"><img src="https://yyq123.github.io/learn-vim/images/command-line-window-sb.png" alt="command-line-window" /></a></li>
-	</ol>
-	From Command-line mode, use the key specified with the 'cedit' option.
-   The default is CTRL-F when 'compatible' is not set.
-	<p>我们可以将命令行窗口，视为常规的<a href="http://yyq123.github.io/learn-vim/learn-vi-13-MultiBuffers.html" title="Buffer">缓冲区 (Buffer)</a>来编辑。可以在其中查找命令历史纪录，并在此基础上进行修改，然后点击<kbd>&lt;Enter&gt;</kbd>键来执行命令（命令行窗口也将同时关闭）。</p>
-	<p></p>
-	<p>使用一下命令，可以设置命令行窗口的高度（默认值为7）：</p>
-	<p style="text-indent:2em"><code class="inset">set cmdwinheight=n</code></p>
-	<p>使用<code class="inset">:q</code>命令，可以关闭命令行窗口。</p>
-	<p>使用<code class="inset">:help command-line-window</code>命令，可以查看命令行窗口的更多帮助信息。</p>
 
-<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">命令历史</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">查看命令历史</p>
+	<p>使用以下命令，可以显示命令行历史纪录：</p>
 	<p style="text-indent:2em"><code class="inset">:history</code></p>
-	help :history
-命令:history可以显示当前命令模式下的命令历史
-Vim编辑器可以记录各种命令的历史,下面的标记指出所记录的历史类型;
-c    cmd    :    命令行历史
-s    search    /    查找字符串历史
-e    expr    =    表达式寄存器历史 expression register history
-i    input    @    输入行历史 data typed in response to an :input operator
-a    all        所有的历史
-如果我们列出所有的历史,我们可以用下面的命令:
+	<p><a href="https://yyq123.github.io/learn-vim/images/history.png" title="history"><img src="https://yyq123.github.io/learn-vim/images/history.png" alt="history" /></a></p>
+	<p>而使用以下命令，则可以显示所有类型的历史纪录：</p>
 	<p style="text-indent:2em"><code class="inset">:history all</code></p>
-
-:history命令的一般格式如下:
-:history code first,last
-<p>如果没有指定first和last，那么就会列出所有的命令历史。first参数默认是指命令历史的第一条；last是指最后一条；而负数则是相对于最后一条历史纪录的向前位移。</p>
-<p>例如下面的命令列出第一个到第五个的命令行历史:</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/history_all.png" title="history all"><img src="https://yyq123.github.io/learn-vim/images/history_all.png" alt="history all" /></a></p>
+	<p>使用以下格式的:history命令，可以查看指定类型和指定数目的历史纪录：</p>
+	<p style="text-indent:2em"><code class="inset">:his[tory] [{name}] [{first}][, [{last}]]</code></p>
+	<ul>
+		<li><code class="inset">{name}</code>，历史纪录类型；</li>
+		<li><code class="inset">{first}</code>，命令历史的起始位置（默认为第一条纪录）；</li>
+		<li><code class="inset">{last}</code>，命令历史的终止位置（默认为最后一条纪录）。</li>
+	</ul>
+	<p>使用以下命令，可以列出第一到第五条命令行历史：</p>
 	<p style="text-indent:2em"><code class="inset">:history c 1,5</code></p>
-
-而下面的命令则是列出了上五次的查找历史:
+	<p>如果在命令中没有指定{first}和{last}，那么将会列出所有命令历史。</p>
+	<p>在命令中使用正数，将列出指定位置的命令历史。例如以下命令，将列出第五条命令行历史：</p>
+	<p style="text-indent:2em"><code class="inset">:history c 5</code></p>
+	<p>命令行中的负数，则是相对于最后一条历史纪录的向前位移。例如以下命令，将列出了上五次的查找历史：</p>
 	<p style="text-indent:2em"><code class="inset">:history s -5</code></p>
-	<p>通过history选项，可以控制记录历史命令的数量。例如使用以下命令，设置保存1000条命令历史纪录：</p>
-:set history=1000
+:history-indexing
+	<p style="text-indent:2em"><code class="inset">:help :history</code></p>
 
-<p>命令历史是存储在viminfo文件中的; you can configure what (and how many of them) is persisted via the 'viminfo' (and 'history') options.
-	<p><a href="https://yyq123.github.io/learn-vim/images/viminfo.png" title="viminfo"><img src="https://yyq123.github.io/learn-vim/images/viminfo.png" alt="viminfo" width="500" height="332" /></a></p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">删除历史纪录</p>
+	<p>使用以下命令，可以删除命令行历史纪录：</p>
+	<p><code class="inset">:call histdel("")</code></p>
+	<p>我们可以删除指定类型的历史纪录。例如使用以下命令，将删除所有查询历史纪录：</p>
+	<p><code class="inset">:call histdel("seach")</code></p>
+	<p>您也可以直接编辑<a href="http://yyq123.github.io/learn-vim/learn-vi-59-01-viminfo.html" title="vimifo">viminfo</a>文件，直接删除其中的历史纪录。请注意，需要重启Vim，以重新读取修改后的viminfo文件。</p>
 
-	Register : holds the last command, and / holds the last search. Therefore ":p will paste the last command, and "/p will paste the last search.
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">命令历史选项</p>
+	<p></p>
+	<p>通过history选项，可以控制记录历史命令的数量（默认为50）。例如以下命令，设置保存1000条命令历史纪录：</p>
+	<p><code class="inset">:set history=1000</code></p>
+	<p>请注意：在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-01-viminfo.html" title="vimifo">viminfo</a>选项中，也有命令历史相关参数；请在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>配置文件中，检查'viminfo'和'history'设置的的一致性和优先级。</p>
+
 重复执行上一条命令
 	<p><code class="inset">@:</code></p>
 
-You can clear the history via the histdel() function, e.g. for searches:
-
-:call histdel('')
-
-You can even delete just certain history ranges or matching lines.
-
-Alternatively, you could also just edit the ~/.viminfo file directly (when Vim is closed, and either with another editor, or with vim -i NONE).
-
-
-Vim编辑器可以记录上几次的错误以及在屏幕最后一行显示的信息.要查看这些信息,我们可以用下面的命令:
-	<p style="text-indent:2em"><code class="inset">:messages</code></p>
-
-下面的命令可以使得信息的输出在显示在屏幕的同时会拷贝到一个文件中:
-:redir &gt; file
-如果要停止拷贝,可以使用下面的命令:
-:redir END
-这个命令在保存调试信息时会显得更为有用.
-我们还可以用:redir命令将输出追加到文件中:
-:redir &gt;&gt; file
 	
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
