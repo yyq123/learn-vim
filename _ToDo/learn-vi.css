@@ -39,3 +39,10 @@ code.msg {
   font-family: "Courier New", Courier, monospace;
 }
 
+h2 {
+  font-size:1.1em;
+  font-weight:bold;
+  border-bottom:1px solid lightgray;
+  border-left:6px solid lightgray;
+  padding:0 0 3px 5px;
+}
