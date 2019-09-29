@@ -32,7 +32,9 @@ vim:tw=79:ts=8:sw=8:
 为了避免安全问题,我们可以用下面的命令来设置安全选项:
 :set secure
 这个选项会阻止当前目录下的初始文件中的:autocommand,:write,:shell命令的执行.
+Now, this is a file-specific setting, so we can use a modeline to make Vim only use these settings for this file. Modelines are special comments somewhere in a file that can can declare certain Vim settings to be used only for that file. So we'll tell Vim to check just the final line of the file for a modeline.
 
+set modelines=1
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">启用/禁用</p>
 	<p></p>
 

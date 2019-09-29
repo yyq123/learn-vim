@@ -20,7 +20,7 @@
 	<tr><td><code class="inset">-e</code></td><td>Ex模式(与命令ex相同)</td></tr>
 	<tr><td><code class="inset">-E</code></td><td>Improved Ex模式</td></tr>
 	<tr><td><code class="inset">-g</code></td><td>图形模式(与命令gvim相同)</td></tr>
-	<tr><td><code class="inset">-s</code></td><td>静默批处理模式</td></tr>
+	<tr><td><code class="inset">-s</code></td><td>安静(批处理)模式 (只能与"ex"一起使用)</td></tr>
 	<tr><td><code class="inset">-d</code></td><td>Diff模式(与命令vimdiff相同)</td></tr>
 	<tr><td><code class="inset">-y</code></td><td>Easy模式(与命令evim相同)<br /><span style="color:#666666">以插入模式启动，类似普通文本编辑器的操作方式</span></td></tr>
 	<tr><td><code class="inset">-R</code></td><td>只读模式(与命令view相同)</td></tr>
@@ -40,12 +40,13 @@
 	<tr><td><code class="inset">-O[N]</code></td><td>新建N个垂直窗口<br /><span style="color:#666666">(默认为每个文件一个)</span></td></tr>
 	<tr><td><code class="inset">+</code></td><td>打开文件并移动到文件末尾</td></tr>
 	<tr><td><code class="inset">+lnum</code></td><td>打开文件并移动到第lnum行</td></tr>
-	<tr><td><code class="inset">-w script</code></td><td>将用户输入的所有命令，追加到脚本文件末尾</td></tr>
-	<tr><td><code class="inset">-W script</code></td><td>将用户输入的所有命令，覆盖存储到脚本文件</td></tr>
-	<tr><td><code class="inset">-s script</code></td><td>读取用-w参数保存的脚本文件</td></tr>
-	<tr><td><code class="inset">-u file</code></td><td>使用file为初始化文件，而不使用vimrc作为初始化文件；<br />如果没有指定的文件，那么就不使用任何初始化文件。</td></tr>
-	<tr><td><code class="inset">-U file</code></td><td>使用file为初始化文件，而不使用gvimrc作为初始化文件；<br />如果没有指定的文件，那么就不使用任何初始化文件。</td></tr>
-	<tr><td><code class="inset">-i file</code></td><td>使用file而不使用.viminfo作为初始化文件</td></tr>
+	<tr><td><code class="inset">-w &lt;scriptout&gt;</code></td><td>将用户输入的所有命令，追加到脚本文件末尾</td></tr>
+	<tr><td><code class="inset">-W &lt;scriptout&gt;</code></td><td>将用户输入的所有命令，覆盖存储到脚本文件</td></tr>
+	<tr><td><code class="inset">-S &lt;sessin&gt;</code></td><td>读取用-w参数保存的脚本文件</td></tr>
+	<tr><td><code class="inset">-s &lt;scriptin&gt;</code></td><td>读取用-w参数保存的脚本文件</td></tr>
+	<tr><td><code class="inset">-u &lt;file&gt;</code></td><td>使用file为初始化文件，而不使用vimrc作为初始化文件；<br />如果没有指定的文件，那么就不使用任何初始化文件。</td></tr>
+	<tr><td><code class="inset">-U &lt;file&gt;</code></td><td>使用file为初始化文件，而不使用gvimrc作为初始化文件；<br />如果没有指定的文件，那么就不使用任何初始化文件。</td></tr>
+	<tr><td><code class="inset">-i &lt;file&gt;</code></td><td>使用file而不使用.viminfo作为初始化文件</td></tr>
 	<tr><td><code class="inset">--noplugin</code></td><td>不启用插件</td></tr>
 	<tr><td><code class="inset">--startuptime file</code></td><td>将Vim启动过程的耗时信息写入到指定文件</td></tr>
 	<tr><td><code class="inset">--clean</code></td><td>非兼容模式(nocompatible)，不启用插件和viminfo</td></tr>
