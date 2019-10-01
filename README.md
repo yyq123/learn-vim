@@ -77,6 +77,7 @@ Created by yyq123@gmail.com using [vim](http://www.vim.org/)
   - [交换文件(swap)](http://yyq123.blogspot.com/2012/03/vim-swap.html)[<sup>B</sup>](http://yyq123.blogspot.com/2012/03/vim-swap.html)<sup>/</sup>[<sup>Z</sup>](http://zhuanlan.zhihu.com/p/26908358)
   - [配置文件(vimrc)](http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html)[<sup>B</sup>](http://yyq123.blogspot.com/2012/01/vim-vimrc.html)<sup>/</sup>[<sup>Z</sup>](http://zhuanlan.zhihu.com/p/25249316)
   - [viminfo](http://yyq123.github.io/learn-vim/learn-vi-59-01-viminfo.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/09/vim-viminfo.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/83801899)
+  - [会话(Session)](http://yyq123.github.io/learn-vim/learn-vi-59-02-session.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/10/vim-session.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/84959887)
   - [命令历史记录(History)](http://yyq123.github.io/learn-vim/learn-vi-46-01-History.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/09/vim-history.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/84605143)
 - **代码开发**
   - [模板(Template)](http://yyq123.blogspot.com/2010/08/vim-template.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/03/vim-starting.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/60260968)

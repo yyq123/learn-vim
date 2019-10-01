@@ -5,9 +5,11 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>自动完成(Auto-Complete)</title>
+	<title>VIM学习笔记 自动完成(Auto-Complete)</title>
 </head>
 <body>
+	<h1>VIM学习笔记 自动完成(Auto-Complete)</h1>
+
 	<p>利用自动完成（Atuo-Complete）功能，vim能够根据正在输入的字符，查找文件中已经存在的单词，按<kbd>ctrl+n</kbd>，就会自动补全单词剩余的部分。</p>
 	<p>例如，我们想要输入以下句子：</p>
 	<p style="text-indent:2em;font-style:italic">I have beautiful flowers in my flower garde</p>
@@ -25,7 +27,7 @@
 	</ol>
 	<p>我们在使用自动完成功能时，<kbd>ctrl+P</kbd>是向后查找匹配的单词,而<kbd>ctrl+N</kbd>是向前查找匹配的单词。</p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">大小写区分</p>
+	<h2 class="article" id="">大小写区分</h2>
 	<p>我们可以使用以下命令，设置在自动完成的查找过程中忽略大小写。</p>
 	<p style="text-indent:2em"><code class="inset">:set ignorecase</code></p>
 	<p>如果希望精确的进行查找来自动完成，那么可以使用以下命令来设置区分大小写：</p>
@@ -48,13 +50,13 @@
 	<p>例如使用以下命令，将字典文件添加到搜索列表中：</p>
 	<p style="text-indent:2em"><code class="inset">:set complete+=k</code></p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">字典</p>
+	<h2 class="article" id="">字典</h2>
 	<p>我们可以利用以下命令，指定字典：</p>
 	<p style="text-indent:2em"><code class="inset">:set dictionary=file,file,....</code></p>
 	<p>这个选项定义了由命令<kbd>ctrl+P</kbd>和<kbd>ctrl+N</kbd>进行匹配查找时所要查找的文件。在Linux系统中这个定义文件在/usr/dict/words中，所以要将这个文件添加进来进行查找的话，就要用到<code class="inset">:set dictionary=/usr/dict/words</code>命令。如果要使用一个自己的文件，也可以用<code class="inset">:set dictionary=/home/oualline/words,/usr/doc/words</code>来设置。我们也可以指定一个字典文件和k选项组合使用<code class="inset">:set dictionary=k/usr/oualline/words</code>。也可以多次的使用k这个标记选项<code class="inset">:set dictionary=k/usr/dict/words,k/usr/share/words</code></p>
-
+<kbd>ctrl+P</kbd>和<kbd>ctrl+X</kbd>
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">^X模式</p>
-	<p>上面提到的<kbd>ctrl+P</kbd>和<kbd>ctrl+N</kbd>进行查找匹配时，查找的范围比较的宽范。我们可以使用<kbd>ctrl+X</kbd>命令进行一些比较严格的查找。当我们输入CTRL-X时，会进入完成模式（Completion Mode）。这时可以使用下面的命令进行查找:</p>
+	<p>在插入模式下，输入<kbd>ctrl+X</kbd>将进入完成模式（^X mode），此时可以继续输入以下命令进行查找:</p>
 	<table border="0" cellspacing="3" cellpadding="3" style="margin-left:2em">
 		<tr><td style="font-weight:bold">CTRL-]</td><td>标记(tags)</td></tr>
 		<tr><td style="font-weight:bold">CTRL-D</td><td>宏定义</td></tr>
@@ -66,30 +68,24 @@
 		<tr><td style="font-weight:bold">CTRL-N</td><td>向后查找,与没有CTRL-X命令时相同</td></tr>
 		<tr><td style="font-weight:bold">CTRL-P</td><td>向前查找,与没有CTRL-X命令时相同</td></tr>
 		<tr><td style="font-weight:bold"></td><td></td></tr>
-		s Spelling suggestions (Vim 7.0 and newer only)
+		s Spelling suggestions (Vim 6.0 and newer only)
 		<tr><td style="font-weight:bold">CTRL-Y</td><td>向下滚动文本</td></tr>
+
 	</table>
 	<p>例如编辑main.c文件时，按下<kbd>ctrl+X</kbd>进入CTRL-X的子模式。如果我们要查找一个宏定义，就可以按下<kbd>CTRL-D</kbd>，这时屏幕底部就会显示出有多少匹配的选项，然后用CTRL-P和CTRL-N选择想要的条目。而<kbd>CTRL-]</kbd>则是查找下一个标记(tag)，即C函数的定义。</p>
 	<p>我们还可以使用<kbd>CTRL-F</kbd>来匹配文件名。将在当前的目录下查找文件并会显示出匹配的内容。</p>
 
-fuc
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
-		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
+		<tr><td><code class="inset">:</code></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
 	</table>
+&ldquo;&rdquo;
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
 
 </body>
 </html>

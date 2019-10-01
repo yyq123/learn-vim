@@ -10,8 +10,8 @@
 <body>
 	<h1>VIM学习笔记 会话(Session)</h1>
 	<p>会话信息，将保存所有编辑窗口和全局设置。通过恢复会话，可以快速切换回之前工作环境。可以认为，会话是<a href="http://yyq123.github.io/learn-vim/learn-vi-59-01-viminfo.html" title="vimifo">viminfo</a>的扩展补充，viminfo文件中保存了会话所需要使用的具体设置信息。</p>
-	<p>如下图所示，我在编辑本文档的同时，打开了帮助文件和命令终端。首先将当前的编辑状态，保存到会话文件；稍后只需要恢复会话，就可以继续使用之前的窗口布局进行编辑了，而省去了手动打开多个窗口的繁琐。</p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/session.png" title="session"><img src="https://yyq123.github.io/learn-vim/images/session.png" alt="" width="550" height="397" /></a></p>
+	<p>如下图所示，我在编辑本文档的同时，打开了帮助文件和命令终端。首先，将当前编辑状态保存到会话文件；稍后，只需要恢复会话，就可以继续使用之前的窗口布局进行编辑了，而省去了手动打开多个窗口的繁琐。</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/session.png" title="session"><img src="https://yyq123.github.io/learn-vim/images/session.png" alt="Session" width="430" height="311" /></a></p>
 
 	<h2 class="article"><a id="session_save">保存会话</a></h2>
 	<p>使用以下命令，将保存会话信息至当前目录下，以&ldquo;Session.vim&rdquo;命名的文件：</p>
@@ -33,7 +33,7 @@
 
 	<h2 class="article"><a id="session_options">会话选项</a></h2>
 	<p>会话选项sessionoptions，用于指定保存会话的内容，默认值如下：</p>
-	<p style="text-indent:2em"><code class="inset">:set sessionoptions=blank,buffers,curdir,folds, help,options,tabpages,winsize,terminal</code></p>
+	<p style="text-indent:2em"><code class="inset">:set sessionoptions=blank,buffers,curdir,folds,help,options,tabpages,winsize,terminal</code></p>
 	<p>sessionoptions选项是一组使用逗号分隔的字符串，包含以下参数：</p>
 	<ul>
 		<li><p style="padding:5px; margin:0; border-left:1px solid;"><em>blank</em><br />恢复编辑无名缓冲区的<a href="http://yyq123.github.io/learn-vim/learn-vi-14-MultiWindows.html" title="Window">窗口</a>；</p></li>
