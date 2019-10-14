@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记  ()</title>
+</head>
+<body>
+	<h1>VIM学习笔记  ()</h1>
+
+	<h2 class="article"><a id="">启用/禁用</a></h2>
+	<p></p>
+	<a href="#" title=""></a>
+	<p>在ex模式下输入命令时，文件名是可以自动补全的。例如希望使用以下命令，来读入文件learn-vi.css：</p>
+	<p style="text-indent:2em"><code class="inset">:read learn&lt;Tab&lt;</code></p>
+	<p>按下<kbd>&lt;Tab&lt;</kbd>键之后，Vim就会在当前目录下查找以&ldquo;learn&rdquo;开头的文件他就会显示出如下的形式:</p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+
+
+wildmenu and wildmode are used for command line completion. The simplest way to try it would be with :color <Tab>: the command line is "expanded" vertically with a list of all the colorschemes available on your machine displayed in columns and an horizontal strip that you can navigate with <Tab> (forward) and <S-Tab> (backward).
+
+The behaviour of command line completion and wildmenu are dependant on wildmode.
+
+See :help wildmode and :help wildmenu for more details.
+
+	
+:read input.txt
+如果在当前目录下有几个带有input的文件名,则会显示第一个.如果我们再按下Tab,就会显示出第二个相匹配的结果,再按下Tab就会显示第三个.
+我们可以通过下面的命令来定义完成通配符的键:
+:set wildchar=character
+如果我们是在一个宏内使用文件名,我们要设置wildcharm.这是我们在宏内完成文件名自动完成的字符.例如下面的命令:
+:set wildcharm=<F12>
+:map<F11> :read in<F12>
+这样当我们按下F11时就会读入文件命令.
+	<p>通过wildignore选项，可以忽略指定类型的文件：</p>
+	<p style="text-indent:2em"><code class="inset">:set wildignore=*.dll,*.exe,*.jpg,*.gif,*.png</code></p>
+suffixes选项会列出一系列文件名的前缀,当遇到这样的前缀时就会得到一个较低的优先级.换句说就是如果一个文件名有这样的前缀就会在匹配时就会一个来显示.
+	<p style="text-indent:2em"><code class="inset"></code></p>
+一般情况下,文件名的完成代码并不会显示一个匹配列表.如果我们设置下面的选项:
+:set wildmenu
+当我们试着要完成一个文件名时,就会在窗口的状态行显示一个可能的文件菜单.
+我们可以通过方向键来完成选择.在一行最末的>表明在右部有更多的选择.下键可以使得编辑器进入一个目录.上键回到父目录,回车选择项目.
+我们可以通过使用wildmode选项来自定义文件完成功能的行为.
+	<p>使用以下选项，将仅仅使用第一个匹配结果；即使再次按下wildchar键，也不会继续查找其它匹配项：</p>
+	<p style="text-indent:2em"><code class="inset">:set wildmode=</code></p>
+
+命令，则仅会显示匹配的文件列表；点击wildchar键，可以遍历匹配的文件：
+	<p style="text-indent:2em"><code class="inset">:set wildmode=full</code></p>
+下面的命令则会匹配最长的子串:
+	<p style="text-indent:2em"><code class="inset">:set wildmode=longest</code></p>
+命令时会完成同样的功能,但是只是显示那些位于wildmenu中的文件:
+	<p style="text-indent:2em"><code class="inset">:set wildmode=longest:full</code></p>
+下面的命令则会显示一个可能的文件列表:
+
+	<p style="text-indent:2em"><code class="inset">:set wildmode=list</code></p>
+这种模式并不会匹配完成.如果我们希望这样的情况,我们可以使用下面的选项:
+
+	<p style="text-indent:2em"><code class="inset">:set wildmode=list:full</code></p>
+最后要完成最长的子串并列出文件,我们可以使用下面的选项:
+
+	<p style="text-indent:2em"><code class="inset">:set wildmode=list:longest</code></p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">识别文件</p>
+	<p></p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+The meaning of "list:longest,full" is so that when you do completion in the command line via tab, these events will happen:
+
+1. (on the first tab) a list of completions will be shown and the command will be completed to the longest common command.
+
+2. (on second tab) the wildmenu will show up with all the completions that were listed before.
+
+To test it out, type ":spe" and then hit tab once to see 1 and hit tab again to see 2. 
+	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
+
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
+		<caption style="margin:0.5em; font-weight:bold">选项列表</caption>
+		<tr><th style="white-space: nowrap">选项</th><th>描述</th><th>帮助信息</th></tr>
+		<tr><td><code class="inset">!</code></td><td>如果包含，表示。例如，。</td><td style="white-space: nowrap"><code class="inset">:help viminfo-!</code></td></tr>
+	</table>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
+		<tr><td><code class="inset">:</code></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+	</table>
+&ldquo;&rdquo;
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
+
+</body>
+</html>

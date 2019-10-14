@@ -5,78 +5,79 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIMѧϰ�ʼ� �Զ����(Auto-Complete)</title>
+	<title>VIM学习笔记 自动完成(Auto-Complete)</title>
 </head>
 <body>
-	<h1>VIMѧϰ�ʼ� �Զ����(Auto-Complete)</h1>
+	<h1>VIM学习笔记 自动完成(Auto-Complete)</h1>
 
-	<p>�����Զ���ɣ�Atuo-Complete�����ܣ�vim�ܹ���������������ַ��������ļ����Ѿ����ڵĵ��ʣ���<kbd>ctrl+n</kbd>���ͻ��Զ���ȫ����ʣ��Ĳ��֡�</p>
-	<p>���磬������Ҫ�������¾��ӣ�</p>
+	<p>利用自动完成（Atuo-Complete）功能，vim能够根据正在输入的字符，查找文件中已经存在的单词，按<kbd>ctrl+n</kbd>，就会自动补全单词剩余的部分。</p>
+	<p>例如，我们想要输入以下句子：</p>
 	<p style="text-indent:2em;font-style:italic">I have beautiful flowers in my flower garde</p>
-	<p>�����ļ��л�û�����Ƶ��ʿɹ��ο�������������Ҫ�ֹ�������������:</p>
+	<p>由于文件中还没有类似单词可供参考，所以我们需要手工输入以下内容:</p>
 	<p style="text-indent:2em;font-style:italic">I have beautiful flowers in my f</p>
-	<p>��ʱ�ļ����Ѿ������˵���&ldquo;flower&rdquo;���������ֻҪ����<kbd>Ctrl-n</kbd>��ݼ��Ϳ����Զ���ɵ���¼���ˡ�</p>
-	<p>��Ĭ������£�Vim�ǰ������²���������ƥ���ı���</p>
+	<p>此时文件中已经存在了单词&ldquo;flower&rdquo;，因此我们只要按下<kbd>Ctrl-n</kbd>快捷键就可以自动完成单词录入了。</p>
+	<p>在默认情况下，Vim是按照以下步骤来查找匹配文本：</p>
 	<ol>
-		<li>�ڵ�ǰ�ļ��н��в���</li>
-		<li>�����������н��в���</li>
-		<li>��������װ��Ļ������н��в���</li>
-		<li>��û��װ�뻺�������ļ��н��в���</li>
-		<li>�ڵ�ǰ�ı��(tag)�б��ǽ��в���</li>
-		<li>�����е��ɵ�ǰ�ļ���#include�����������ļ��н��в���</li>
+		<li>在当前文件中进行查找</li>
+		<li>在其他窗口中进行查找</li>
+		<li>在其他已装入的缓冲区中进行查找</li>
+		<li>在没有装入缓冲区的文件中进行查找</li>
+		<li>在当前的标记(tag)列表是进行查找</li>
+		<li>在所有的由当前文件的#include包含进来的文件中进行查找</li>
 	</ol>
-	<p>������ʹ���Զ���ɹ���ʱ��<kbd>ctrl+P</kbd>��������ƥ��ĵ���,��<kbd>ctrl+N</kbd>����ǰ����ƥ��ĵ��ʡ�</p>
+	<p>我们在使用自动完成功能时，<kbd>ctrl+P</kbd>是向后查找匹配的单词,而<kbd>ctrl+N</kbd>是向前查找匹配的单词。</p>
 
-	<h2 class="article" id="">��Сд����</h2>
-	<p>���ǿ���ʹ����������������Զ���ɵĲ��ҹ����к��Դ�Сд��</p>
+	<h2 class="article" id="">大小写区分</h2>
+	<p>我们可以使用以下命令，设置在自动完成的查找过程中忽略大小写。</p>
 	<p style="text-indent:2em"><code class="inset">:set ignorecase</code></p>
-	<p>���ϣ����ȷ�Ľ��в������Զ���ɣ���ô����ʹ�������������������ִ�Сд��</p>
+	<p>如果希望精确的进行查找来自动完成，那么可以使用以下命令来设置区分大小写：</p>
 	<p style="text-indent:2em"><code class="inset">:set infercase</code></p>
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">�Զ���ѡ��</p>
-	<p>���ǿ���ʹ����������Զ�����ɣ�complete��ѡ�</p>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">自定义选项</p>
+	<p>我们可以使用以下命令，自定义完成（complete）选项：</p>
 	<p style="text-indent:2em"><code class="inset">:set complete=key,key,key</code></p>
-	<p>�����п��ܳ��ֵ�keyֵ���£�</p>
+	<p>命令中可能出现的key值如下：</p>
 	<table border="0" cellspacing="3" cellpadding="3" style="margin-left:2em">
-		<tr><td style="font-weight:bold">.</td><td>��ǰ�ļ�</td></tr>
-		<tr><td style="font-weight:bold">b</td><td>�ѱ�װ������������û���ڴ����ڵ��ļ�</td></tr>
-		<tr><td style="font-weight:bold">d</td><td>�ڵ�ǰ���ļ��ж������#include�����������ļ�</td></tr>
-		<tr><td style="font-weight:bold">i</td><td>��#include�����������ļ�</td></tr>
-		<tr><td style="font-weight:bold">k</td><td>��dictionaryѡ�����ļ�</td></tr>
-		<tr><td style="font-weight:bold">kfile</td><td>��Ϊ{file}���ļ�</td></tr>
-		<tr><td style="font-weight:bold">t</td><td>���(tags)�ļ�</td></tr>
-		<tr><td style="font-weight:bold">u</td><td>û������Ļ�����</td></tr>
-		<tr><td style="font-weight:bold">w</td><td>�����������е��ļ�</td></tr>
+		<tr><td style="font-weight:bold">.</td><td>当前文件</td></tr>
+		<tr><td style="font-weight:bold">b</td><td>已被装缓冲区，但是没有在窗口内的文件</td></tr>
+		<tr><td style="font-weight:bold">d</td><td>在当前的文件中定义和由#include包含进来的文件</td></tr>
+		<tr><td style="font-weight:bold">i</td><td>由#include包含进来的文件</td></tr>
+		<tr><td style="font-weight:bold">k</td><td>由dictionary选项定义的文件</td></tr>
+		<tr><td style="font-weight:bold">kfile</td><td>名为{file}的文件</td></tr>
+		<tr><td style="font-weight:bold">t</td><td>标记(tags)文件</td></tr>
+		<tr><td style="font-weight:bold">u</td><td>没有载入的缓冲区</td></tr>
+		<tr><td style="font-weight:bold">w</td><td>在其他窗口中的文件</td></tr>
 	</table>
-	<p>����ʹ������������ֵ��ļ����ӵ������б��У�</p>
+	<p>例如使用以下命令，将字典文件添加到搜索列表中：</p>
 	<p style="text-indent:2em"><code class="inset">:set complete+=k</code></p>
 
-	<h2 class="article" id="">�ֵ�</h2>
-	<p>���ǿ��������������ָ���ֵ䣺</p>
+	<h2 class="article" id="">字典</h2>
+	<p>我们可以利用以下命令，指定字典：</p>
 	<p style="text-indent:2em"><code class="inset">:set dictionary=file,file,....</code></p>
-	<p>���ѡ�����������<kbd>ctrl+P</kbd>��<kbd>ctrl+N</kbd>����ƥ�����ʱ��Ҫ���ҵ��ļ�����Linuxϵͳ����������ļ���/usr/dict/words�У�����Ҫ������ļ����ӽ������в��ҵĻ�����Ҫ�õ�<code class="inset">:set dictionary=/usr/dict/words</code>������Ҫʹ��һ���Լ����ļ���Ҳ������<code class="inset">:set dictionary=/home/oualline/words,/usr/doc/words</code>�����á�����Ҳ����ָ��һ���ֵ��ļ���kѡ�����ʹ��<code class="inset">:set dictionary=k/usr/oualline/words</code>��Ҳ���Զ�ε�ʹ��k������ѡ��<code class="inset">:set dictionary=k/usr/dict/words,k/usr/share/words</code></p>
-<kbd>ctrl+P</kbd>��<kbd>ctrl+X</kbd>
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">^Xģʽ</p>
-	<p>�ڲ���ģʽ�£�����<kbd>ctrl+X</kbd>���������ģʽ��^X mode������ʱ���Լ�����������������в���:</p>
+	<p>这个选项定义了由命令<kbd>ctrl+P</kbd>和<kbd>ctrl+N</kbd>进行匹配查找时所要查找的文件。在Linux系统中这个定义文件在/usr/dict/words中，所以要将这个文件添加进来进行查找的话，就要用到<code class="inset">:set dictionary=/usr/dict/words</code>命令。如果要使用一个自己的文件，也可以用<code class="inset">:set dictionary=/home/oualline/words,/usr/doc/words</code>来设置。我们也可以指定一个字典文件和k选项组合使用<code class="inset">:set dictionary=k/usr/oualline/words</code>。也可以多次的使用k这个标记选项<code class="inset">:set dictionary=k/usr/dict/words,k/usr/share/words</code></p>
+<kbd>ctrl+P</kbd>和<kbd>ctrl+X</kbd>
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">^X模式</p>
+	<p>在插入模式下，输入<kbd>ctrl+X</kbd>将进入完成模式（^X mode），此时可以继续输入以下命令进行查找:</p>
 	<table border="0" cellspacing="3" cellpadding="3" style="margin-left:2em">
-		<tr><td style="font-weight:bold">CTRL-]</td><td>���(tags)</td></tr>
-		<tr><td style="font-weight:bold">CTRL-D</td><td>�궨��</td></tr>
-		<tr><td style="font-weight:bold">CTRL-E</td><td>���Ϲ����ı�</td></tr>
-		<tr><td style="font-weight:bold">CTRL-F</td><td>�ļ���</td></tr>
-		<tr><td style="font-weight:bold">CTRL-I</td><td>��ǰ�ļ��Լ���#include�����������ļ�</td></tr>
-		<tr><td style="font-weight:bold">CTRL-K</td><td>�ֵ�</td></tr>
-		<tr><td style="font-weight:bold">CTRL-L</td><td>����</td></tr>
-		<tr><td style="font-weight:bold">CTRL-N</td><td>������,��û��CTRL-X����ʱ��ͬ</td></tr>
-		<tr><td style="font-weight:bold">CTRL-P</td><td>��ǰ����,��û��CTRL-X����ʱ��ͬ</td></tr>
+		<tr><td style="font-weight:bold">CTRL-]</td><td>标记(tags)</td></tr>
+		<tr><td style="font-weight:bold">CTRL-D</td><td>宏定义</td></tr>
+		<tr><td style="font-weight:bold">CTRL-E</td><td>向上滚动文本</td></tr>
+		<tr><td style="font-weight:bold">CTRL-F</td><td>文件名</td></tr>
+		<tr><td style="font-weight:bold">CTRL-I</td><td>当前文件以及由#include包含进来的文件</td></tr>
+		<tr><td style="font-weight:bold">CTRL-K</td><td>字典</td></tr>
+		<tr><td style="font-weight:bold">CTRL-L</td><td>整行</td></tr>
+		<tr><td style="font-weight:bold">CTRL-N</td><td>向后查找,与没有CTRL-X命令时相同</td></tr>
+		<tr><td style="font-weight:bold">CTRL-P</td><td>向前查找,与没有CTRL-X命令时相同</td></tr>
 		<tr><td style="font-weight:bold"></td><td></td></tr>
 		s Spelling suggestions (Vim 6.0 and newer only)
-		<tr><td style="font-weight:bold">CTRL-Y</td><td>���¹����ı�</td></tr>
+		<tr><td style="font-weight:bold">CTRL-Y</td><td>向下滚动文本</td></tr>
 
 	</table>
-	<p>����༭main.c�ļ�ʱ������<kbd>ctrl+X</kbd>����CTRL-X����ģʽ���������Ҫ����һ���궨�壬�Ϳ��԰���<kbd>CTRL-D</kbd>����ʱ��Ļ�ײ��ͻ���ʾ���ж���ƥ���ѡ�Ȼ����CTRL-P��CTRL-Nѡ����Ҫ����Ŀ����<kbd>CTRL-]</kbd>���ǲ�����һ�����(tag)����C�����Ķ��塣</p>
-	<p>���ǻ�����ʹ��<kbd>CTRL-F</kbd>��ƥ���ļ��������ڵ�ǰ��Ŀ¼�²����ļ�������ʾ��ƥ������ݡ�</p>
+	<p>例如编辑main.c文件时，按下<kbd>ctrl+X</kbd>进入CTRL-X的子模式。如果我们要查找一个宏定义，就可以按下<kbd>CTRL-D</kbd>，这时屏幕底部就会显示出有多少匹配的选项，然后用CTRL-P和CTRL-N选择想要的条目。而<kbd>CTRL-]</kbd>则是查找下一个标记(tag)，即C函数的定义。</p>
+	<p>我们还可以使用<kbd>CTRL-F</kbd>来匹配文件名。如果当前光标下的文本不包含任何路径信息，那么将显示当前目录下的文件列表；如果当前光标下的文本包含任何（绝对或相对）路径信息，那么将显示其指定目录下的文件列表；；如果当前光标下的文本包含唯一的路径信息（比如&ldquo;~&rdquo;），那么将自动转换为目录的完整名称；</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/AutoCompletion_FileName.png" title="AutoCompletion_FileName"><img src="https://yyq123.github.io/learn-vim/images/.png" alt="AutoCompletion_FileName" /></a></p>
 
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
-		<caption>����С��</caption>
+		<caption>命令小结</caption>
 		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
 		<tr><td><code class="inset">:</code></td></tr>
 		<tr><td><code class="inset">:</code></td><td></td></tr>
@@ -85,8 +86,7 @@
 	</table>
 &ldquo;&rdquo;
 
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">��һƪ</a>&nbsp;|<a title="�ʼ��б�" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;Ŀ¼&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">��һƪ</a>&gt;</span></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
 
 </body>
 </html>
-
