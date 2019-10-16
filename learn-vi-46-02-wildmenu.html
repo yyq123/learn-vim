@@ -14,6 +14,8 @@
 	<h2 class="article"><a id="wildmenu">wildmenu</a></h2>
 	<p>使用以下命令，可以启用wildmenu：</p>
 	<p style="text-indent:2em"><code class="inset">:set wildmenu</code></p>
+	<p>例如在命令行中输入&ldquo;:spe&rdquo;，然后点击<kbd>Tab</kbd>键，将列出以spe开头的命令列表；再次点击<kbd>Tab</kbd>键，将可以在wildmenu中遍历匹配的命令：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/wildmode_spell.png" title="wildmode_spell"><img src="https://yyq123.github.io/learn-vim/images/wildmode_spell.png" alt="/wildmode_spell.png" /></a></p>
 	<p>使用以下命令，可以查看wildmenu的帮助信息：</p>
 	<p style="text-indent:2em"><code class="inset">:help wildmenu</code></p>
 
@@ -23,7 +25,7 @@
 	<p style="text-indent:2em"><code class="inset">:set wildmode=</code></p>
 	<p>使用"full"选项，将在wildmenu中显示匹配的文件；点击wildchar键，可以遍历匹配的文件：</p>
 	<p style="text-indent:2em"><code class="inset">:set wildmode=full</code></p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/wildmode_full.png" title="wildmode_full"><img src="https://yyq123.github.io/learn-vim/images/wildmode_full.png" alt="" width="550" height="39" /></a></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/wildmode_full.png" title="wildmode_full"><img src="https://yyq123.github.io/learn-vim/images/wildmode_full.png" alt="wildmode_full" width="550" height="39" /></a></p>
 	<p>使用"longest"选项，将用最长的公共子串补全：</p>
 	<p style="text-indent:2em"><code class="inset">:set wildmode=longest</code></p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/wildmode_longest.png" title="wildmode_longest"><img src="https://yyq123.github.io/learn-vim/images/wildmode_longest.png" alt="wildmode_longest" /></a></p>
@@ -66,13 +68,11 @@
 
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
-		<tr><td><code class="inset">:set wildmenu:</code></td><td>启用wildmenu</td></tr>
+		<tr><td><code class="inset">:set wildmenu</code></td><td>启用wildmenu</td></tr>
 		<tr><td><code class="inset">:set wildmode</code></td><td>设置wildmode</td></tr>
 		<tr><td><code class="inset">:set wildignore</code></td><td>设置忽略文件类型</td></tr>
 		<tr><td><code class="inset">:set suffixes</code></td><td>设置低优先级文件</td></tr>
 		<tr><td><code class="inset">:set wildchar</code></td><td>设置命令行自动补全触发键</td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
 	</table>
 
 	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="命令行模式(Command-line Mode)" href="http://yyq123.github.io/learn-vim/learn-vi-46-CommandlineMode.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="历史记录(history)" href="http://yyq123.github.io/learn-vim/learn-vi-46-01-History.html">下一篇</a>&gt;</span></p>
