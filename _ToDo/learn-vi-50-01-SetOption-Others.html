@@ -21,7 +21,10 @@ set foldopen=block,insert,jump,mark,percent,quickfix,search,tag,undo
 		<li><strong>0</strong>，所有折叠都是关闭状态；</li>
 		<li><strong>99</strong>，所有折叠都是打开状态；如果设置为其他正数时，则打开相应级别的折叠。</li>
 	</ul>
-选项winaltkeys可以控制Alt键的使用.
+
+	<h2 class="article"><a id="">键盘选项</a></h2>
+	<p>使用'winaltkeys'选项，可以控制Alt键的使用。</p>
+
 例如,如果我们执行了下面的命令,所有的Alt键就可以通过:map命令来使用之成我们命令中的一部分:
 :set winaltkeys=no
 执行Alt-F并不会选择文件菜单而是执行映射的Alt-F命令.这个可以映射可以是下面的样子:
@@ -33,10 +36,6 @@ set foldopen=block,insert,jump,mark,percent,quickfix,search,tag,undo
 :set winaltkeys=menu
 在这种模式下,Alt键可以用于选择菜单,也可以用来映射:map命令.所以Alt-F可以选择文件菜单,而我们还可以用Alt-X来映射命令.
 
-	<p>默认设置下，more选项是启用的。当命令的输出超出一屏时（例如:version命令的输出），就会显示&ldquo;-- More --&rdquo;提示信息，并等待用户相应以继续显示屏幕输出。</p>
-	<p style="text-indent:2em"><code class="inset">:set more</code></p>
-	<p>使用以下命令关闭more选项，将会持续翻滚屏幕以显示信息，而不会显示&ldquo;-- More --&rdquo;提示信息。</p>
-	<p style="text-indent:2em"><code class="inset">:set nomore</code></p>
 下面的命令定义了可以由CTRL-A,CTRL-X识别的数字格式.
 :set nrformats=octal,hex
 (注:十进制总是可以识别)
@@ -49,10 +48,7 @@ set fileformats=unix,dos,mac " support all three, in this order
 " Set the search scan to wrap around the file
 set wrapscan
 
-" Set the forward slash to be the slash of note. Backslashes suck
-" This is really only applicable to Windows but I like to have a vimrc
-" that works no matter what OS I'm currently on
-set shellslash
+
 
 " Allow backspacing over indent, eol, and the start of an insert
 set backspace=indent,eol,start
@@ -60,11 +56,6 @@ set backspace=indent,eol,start
 符。选项中以逗号分隔的三项内容分别指定了Vim可以删除位于行首的空
 格，断行，以及开始进入Insert模式之前的位置。
 
-	<p>当我们删除或是修改多行文本时，如果行数超出了report所指定的行数（默认值为2），那么Vim将会在屏幕底部显示所改变的行数。如果我们希望始终显示反馈信息，那么可以使用以下命令，将report选项设置为0：</p>
-	<p style="text-indent:2em"><code class="inset">:set report=0</code></p>
-	<p>此时，即使只是删除了一行文本，Vim也将显示以下信息：</p>
-	<p style="text-indent:2em"><code class="msg">1 line less</code></p>
-	<p>相反地，如果不希望显示变更信息，那么可以将report选项设置为较大的值。</p>
 我们也可以用下面的命令来设置预览窗口的大小:
 :set previewheight={height}
 
@@ -82,46 +73,54 @@ notimeout    ttimeout    只有代码键超时
 
 	<p><i>timeoutlen</i>选项，即等待后续按键输入的时间，单位为毫秒（millisecond），默认值为1000毫秒，即1秒。如果希望设置键盘等待时间，可以使用以下命令：</p>
 	<p style="text-indent:2em"><code class="inset">set timeoutlen=500</code></p>
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">自定义信息</p>
-	<p>Vim使用屏幕底部来显示消息，如果消息长度超出一行是，将会得到类似于&ldquo;按回车继续&rdquo;的提示。通过设置 <i>cmdheight</i> 选项来增加消息的行数，可以显示更多的信息以避免不必要的提示。例如使用以下命令，设置命令行高度为3行：</p>
+
+	<h2 class="article"><a id="">命令选项</a></h2>
+	<p>在Windows下，文件路径中使用反斜杠（Backslash）：</p>
+	<p style="text-indent:2em"><code class="msg">C:\Temp</code></p>
+	<p>在Linux和Mac下，文件路径中使用正斜杠（Forward slash）：</p>
+	<p style="text-indent:2em"><code class="msg">/etc/hosts</code></p>
+	<p>'shellslash'选项，仅适用于Windows操作系统，并且默认是关闭的。为了保证与Unix风格的兼容性，建议在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>配置文件中，使用以下命令启用此选项：</p>
+	<p style="text-indent:2em"><code class="inset">:set shellslash</code></p>
+	<p>使用'shellslash'选项，可以在扩展文件名时使用正斜杠。即使你在输入文件名时使用反斜杠，Vim也会自动将其转换为正斜杠。</p>
+	<p>Vim使用屏幕底部来显示消息，默认情况下如果消息长度超出一行时，将会显示类似于&ldquo;按回车继续&rdquo;的提示信息。通过设置'cmdheight'选项来增加消息的行数，可以显示更多的信息以避免不必要的提示。例如使用以下命令，设置命令行高度为3行：</p>
 	<p style="text-indent:2em"><code class="inset">:set cmdheight=3</code></p>
 	<p>当Vim捕获一个错误时，将会显示错误信息。如果希望同时发出声音警告，那么可以执行以下命令：</p>
 	<p style="text-indent:2em"><code class="inset">:set errorbells</code></p>
-	<p>使用以下命令则可以关闭errorbells选项：</p>
+	<p>使用以下命令，则可以关闭errorbells选项：</p>
 	<p style="text-indent:2em"><code class="inset">:set noerrorbells</code></p>
-	<p>使用以下命令启用visualbell选项，当输入错误时屏幕就会闪动然后回到正常状态：</p>
+	<p>使用以下命令启用visualbell选项，当输入错误时，屏幕就会闪动然后回到正常状态：</p>
 	<p style="text-indent:2em"><code class="inset">:set visualbell</code></p>
-	<p>使用以下命令则可以关闭visualbell选项：</p>
+	<p>使用以下命令，则可以关闭visualbell选项：</p>
 	<p style="text-indent:2em"><code class="inset">:set novisualbell</code></p>
-
-
-	<h2 class="article"><a id="">文件选项</a></h2>
-	<p>默认情况下，write选项是启用的，以使Vim可以保存文件。如果关闭此选项，那么将无法保存文件并显示报错信息。</p>
-	<p style="text-indent:2em"><code class="inset">:set nowrite</code></p>
-	<p style="text-indent:2em"><code class="error">E142 File not written: Writing is disabled by 'write' option</code></p>
-
-	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
+	<p>默认情况下，'more'选项是启用的。当命令的输出超出一屏时（例如:version命令的输出），就会显示&ldquo;-- More --&rdquo;提示信息，并等待用户响应以继续显示屏幕输出：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/set_more.png" title="set_more"><img src="https://yyq123.github.io/learn-vim/images/set_more.png" alt="set_more" /></a></p>
+	<p>使用以下命令关闭more选项，将会持续翻滚屏幕以显示信息，而不会显示提示信息：</p>
+	<p style="text-indent:2em"><code class="inset">:set nomore</code></p>
+	<p>当删除或修改多行文本时，如果被影响的行数超出了report所指定的行数（默认值为2），那么Vim将会在屏幕底部显示所改变的行数。如果希望始终显示反馈信息，那么可以将report选项设置为0：</p>
+	<p style="text-indent:2em"><code class="inset">:set report=0</code></p>
+	<p>此时即使只是删除了一行文本，Vim也将显示以下信息：</p>
+	<p style="text-indent:2em"><code class="msg">1 line less</code></p>
+	<p>相反地，如果不希望显示变更信息，那么可以将report选项设置为较大的值。</p>
 
 	<h2 class="article"><a id="">信息显示选项</a></h2>
-	<p>使用以下命令设置showmode选项，将可以在屏幕底部显示当前所处的模式：</p>
+	<p>使用以下命令启用showmode选项，将在屏幕底部显示当前所处的模式：</p>
 	<p style="text-indent:2em"><code class="inset">:set showmode</code></p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" /></a></p>
-
-	<p>使用以下命令启用showcmd选项，将会在输入命令时，在屏幕底部显示出部分命令：</p>
+	<p>使用以下命令启用showcmd选项，将会在输入命令时，在屏幕底部右下角显示出部分命令：</p>
 	<p style="text-indent:2em"><code class="inset">:set showcmd</code></p>
 	<p>例如希望输入fx命令来查找字符&ldquo;x&rdquo;，当我们输入f时就会在底部显示f，这对于我们输入较为复杂的纵使时就会显示尤为有用.</p>
 	<p>在<a href="http://yyq123.github.io/learn-vim/learn-vi-45-VisualMode.html" title="可视化模式(Visual Mode)">可视化模式</a>下，将显示选择区域的大小：</p>
 	<ul>
 		<li>在行内选择若干字符时，显示字符数；</li>
 		<li>选择多于一行时，显示行数；</li>
-		<li>选择可视化列块时，显示行乘以列数（比如&ldquot;2x10&rdquo;）。</li>
+		<li>选择可视化列块时，显示行乘以列数（比如&ldquo;2x10&rdquo;）。</li>
 	</ul>
+	<p><a href="https://yyq123.github.io/learn-vim/images/set_showmode_showcmd.png" title="set_showmode_showcmd"><img src="https://yyq123.github.io/learn-vim/images/set_showmode_showcmd.png" alt="set_showmode_showcmd" /></a></p>
 
 	<p>使用'colorcolumn'选项，可以在指定列显示垂直标尺，以用于文本对齐：</p>
 	<p style="text-indent:2em"><code class="inset">:set colorcolumn=80</code></p>
 	<p>通过'ColorColumn'高亮组，可以设置标尺列的颜色：</p>
 	<p style="text-indent:2em"><code class="inset">:highlight ColorColumn ctermbg=red guibg=darkred</code></p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/set_ColorColumn.png" title="set_ColorColumn"><img src="https://yyq123.github.io/learn-vim/images/set_ColorColumn.png" alt="set_ColorColumn" width="550" height="148" /></a></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/set_ColorColumn.png" title="set_ColorColumn"><img src="https://yyq123.github.io/learn-vim/images/set_ColorColumn.png" alt="set_ColorColumn" width="550" height="145" /></a></p>
 	<p>'colorcolumn'选项，是以逗号分隔的列表，可以是列的绝对值：</p>
 	<p style="text-indent:2em"><code class="inset">:set cc=80,81</code></p>
 	<p>如果'colorcolumn'选项中的数值之前带有'+'或'-'，那么是指以'textwidth'选项值为基数，然后加上或减去指定的值。例如以下命令，将高亮显示'textwidth'之后的三列：</p>
@@ -143,6 +142,14 @@ notimeout    ttimeout    只有代码键超时
 	<p style="text-indent:2em"><code class="inset">set printheader=%&lt;%f%h%m%40{strftime(\"%c\",getftime(expand(\"%%\")))}%=Page\ %N</code></p>
 	<p>使用以下命令，可以设置页眉为空（请注意，命令末尾包括一个空格）：</p>
 	<p style="text-indent:2em"><code class="inset">:set printheader=\&nbsp;</code></p>
+
+	<h2 class="article"><a id="">文件选项</a></h2>
+	<p>默认情况下，write选项是启用的，以使Vim可以保存文件。如果关闭此选项，那么将无法保存文件并显示报错信息。</p>
+	<p style="text-indent:2em"><code class="inset">:set nowrite</code></p>
+	<p style="text-indent:2em"><code class="error">E142 File not written: Writing is disabled by 'write' option</code></p>
+
+	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
+
 
 	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
 		<tr><th>命令形式</th><th>描述</th><th>示例</th></tr>
@@ -167,35 +174,24 @@ notimeout    ttimeout    只有代码键超时
         <td valign="top">noaw</td>
     </tr>
     <tr>
-        <td valign="top">beautify</font></td>
-        <td valign="top">&nbsp;(bf)&nbsp;</font></td>
-        <td valign="top">nobf</font></td>
+        <td valign="top">directory</td>
+        <td valign="top">&nbsp;(dir)&nbsp;</td>
+        <td valign="top">/tmp</td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">directory</font></td>
-        <td valign="top"><font size="2" face="Courier New">&nbsp;(dir)&nbsp;</font></td>
-        <td valign="top"><font size="3"><em>/tmp</em></font></td>
-    </tr>
-    <tr>
-        <td valign="top"><font size="2" face="Courier New">edcompatible</font></td>
+        <td valign="top">edcompatible</td>
         <td valign="top">&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">noedcompatible</font></td>
+        <td valign="top">noedcompatible</td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">errorbells</font></td>
-        <td valign="top"><font size="2" face="Courier New">&nbsp;(eb)&nbsp;</font></td>
-        <td valign="top"><font size="2" face="Courier New">errorbells</font></td>
+        <td valign="top">errorbells</td>
+        <td valign="top">&nbsp;(eb)&nbsp;</td>
+        <td valign="top">errorbells</td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">exrc
-        (ex)</font></td>
-        <td valign="top"><font size="2" face="Courier New">&nbsp;(ex)&nbsp;</font></td>
-        <td valign="top"><font size="2" face="Courier New">noexrc</font></td>
-    </tr>
-    <tr>
-        <td valign="top"><font size="2" face="Courier New">hardtabs</font></td>
-        <td valign="top"><font size="2" face="Courier New">&nbsp;(ht)&nbsp;</font></td>
-        <td valign="top"><font size="2" face="Courier New">8</font></td>
+        <td valign="top">exrc (ex)</td>
+        <td valign="top">&nbsp;(ex)&nbsp;</td>
+        <td valign="top">noexrc</td>
     </tr>
     <tr>
         <td valign="top"><font size="2" face="Courier New">ignorecase</font></td>
@@ -218,24 +214,9 @@ notimeout    ttimeout    只有代码键超时
         <td valign="top"><font size="2" face="Courier New">magic</font></td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">novice</font></td>
-        <td valign="top">&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">nonovice</font></td>
-    </tr>
-    <tr>
         <td valign="top"><font size="2" face="Courier New">number</font></td>
         <td valign="top"><font size="2" face="Courier New">&nbsp;(nu)&nbsp;</font></td>
         <td valign="top"><font size="2" face="Courier New">nonu</font></td>
-    </tr>
-    <tr>
-        <td valign="top"><font size="2" face="Courier New">open</font></td>
-        <td valign="top">&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">open</font></td>
-    </tr>
-    <tr>
-        <td valign="top"><font size="2" face="Courier New">optimize</font></td>
-        <td valign="top"><font size="2" face="Courier New">&nbsp;(opt)&nbsp;</font></td>
-        <td valign="top"><font size="2" face="Courier New">noopt</font></td>
     </tr>
     <tr>
         <td valign="top"><font size="2" face="Courier New">paragraphs</font></td>
@@ -298,11 +279,6 @@ notimeout    ttimeout    只有代码键超时
         <td valign="top"><font size="2" face="Courier New">showmode</font></td>
         <td valign="top">&nbsp;</td>
         <td valign="top"><font size="2" face="Courier New">noshowmode</font></td>
-    </tr>
-    <tr>
-        <td valign="top"><font size="2" face="Courier New">slowopen</font></td>
-        <td valign="top"><font size="2" face="Courier New">&nbsp;(slow)&nbsp;</font></td>
-        <td valign="top">&nbsp;</td>
     </tr>
     <tr>
         <td valign="top"><font size="2" face="Courier New">tabstop</font></td>
