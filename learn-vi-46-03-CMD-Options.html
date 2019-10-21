@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 命令相关选项 (Options-CMD)</title>
+</head>
+<body>
+	<h1>VIM学习笔记 命令相关选项 (Options-CMD)</h1>
+	<h2 class="article"><a id="opt-shellslash">路径分隔符选项</a></h2>
+	<p>在Windows下，文件路径中使用反斜杠（Backslash）：</p>
+	<p style="text-indent:2em"><code class="msg">C:\Temp</code></p>
+	<p>在Linux和Mac下，文件路径中使用正斜杠（Forward slash）：</p>
+	<p style="text-indent:2em"><code class="msg">/etc/hosts</code></p>
+	<p>'shellslash'选项，仅适用于Windows操作系统，并且默认是关闭的。为了保证与Unix风格的兼容性，建议在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>配置文件中，使用以下命令启用此选项：</p>
+	<p style="text-indent:2em"><code class="inset">:set shellslash</code></p>
+	<p>使用'shellslash'选项，可以在扩展文件名时使用正斜杠。即使你在输入文件名时使用反斜杠，Vim也会自动将其转换为正斜杠。</p>
+
+	<h2 class="article"><a id="opt-errorbells">报错响铃选项</a></h2>
+	<p>当Vim捕获一个错误时，将会显示错误信息。如果希望同时发出报错响铃 (鸣叫或屏幕闪烁)，那么可以启用'errorbells'选项：</p>
+	<p style="text-indent:2em"><code class="inset">:set errorbells</code></p>
+	<p>使用以下命令，则可以关闭'errorbells'选项：</p>
+	<p style="text-indent:2em"><code class="inset">:set noerrorbells</code></p>
+	<p><a id="opt-visualbell">'visualbell'</a>选项，用于设置响铃的行为：鸣叫、屏幕闪烁或什么都不做。默认情况下，'visualbell'选项是关闭的。通过以下命令启用visualbell选项，将使用可视响铃代替鸣叫。当输入错误时，屏幕就会闪动然后回到正常状态：</p>
+	<p style="text-indent:2em"><code class="inset">:set visualbell</code></p>
+	<p>通过以下命令，则可以关闭visualbell选项（而使用鸣叫）：</p>
+	<p style="text-indent:2em"><code class="inset">:set novisualbell</code></p>
+	<p>如果既不想要鸣叫也不想要屏幕闪烁，那么可以使用以下设置：</p>
+	<p style="text-indent:2em"><code class="inset">:set vb t_vb=</code></p>
+
+	<h2 class="article"><a id="opt-showinfo">信息显示选项</a></h2>
+	<p>启用<a id="opt-showmode">'showmode'</a>选项，将在屏幕底部显示当前所处的模式：</p>
+	<p style="text-indent:2em"><code class="inset">:set showmode</code></p>
+	<p>启用<a id="opt-showcmd">'showcmd'</a>选项，将会在输入命令时，在屏幕底部显示出部分命令：</p>
+	<p style="text-indent:2em"><code class="inset">:set showcmd</code></p>
+	<p>例如希望输入fx命令来查找字符&ldquo;x&rdquo;时，当我们输入f时就会在底部显示&ldquo;f&rdquo;，这在输入复杂命令时将很有帮助。</p>
+	<p>在<a href="http://yyq123.github.io/learn-vim/learn-vi-45-VisualMode.html" title="可视化模式(Visual Mode)">可视化模式</a>下，将显示选择区域的大小：</p>
+	<ul>
+		<li>在行内选择若干字符时，显示字符数；</li>
+		<li>选择多于一行时，显示行数；</li>
+		<li>选择可视化列块时，显示行乘以列数（比如&ldquo;2x10&rdquo;）。</li>
+	</ul>
+	<p><a href="https://yyq123.github.io/learn-vim/images/set_showmode_showcmd.png" title="set_showmode_showcmd"><img src="https://yyq123.github.io/learn-vim/images/set_showmode_showcmd.png" alt="set_showmode_showcmd" width="378" height="200" /></a></p>
+	<p>默认情况下，如果屏幕底部显示的消息长度超出一行时，将会显示类似于&ldquo;按回车继续&rdquo;的提示信息。通过设置<a id="opt-cmdheight">'cmdheight'</a>选项来增加消息的行数，可以显示更多的信息以避免不必要的提示。例如使用以下命令，设置命令行高度为3行：</p>
+	<p style="text-indent:2em"><code class="inset">:set cmdheight=3</code></p>
+	<p>默认情况下，<a id="opt-more">'more'</a>选项是启用的。当命令的输出超出一屏时（例如:version命令的输出），就会显示&ldquo;-- More --&rdquo;提示信息，并等待用户响应以继续显示屏更多信息：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/set_more.png" title="set_more"><img src="https://yyq123.github.io/learn-vim/images/set_more.png" alt="set_more"  width="378" height="222" /></a></p>
+	<p>使用以下命令关闭more选项，将会持续翻滚屏幕以显示信息，而不会暂停并显示提示信息：</p>
+	<p style="text-indent:2em"><code class="inset">:set nomore</code></p>
+	<p>当删除或修改多行文本时，如果被影响的行数超出了<a id="opt-report">'report'</a>选项所指定的行数（默认值为2行），那么Vim将会在屏幕底部显示所改变的行数。如果希望始终显示反馈信息，那么可以将report选项设置为0：</p>
+	<p style="text-indent:2em"><code class="inset">:set report=0</code></p>
+	<p>此时即使只是删除了一行文本，Vim也将显示反馈信息：</p>
+	<p style="text-indent:2em"><code class="msg">1 line less</code></p>
+	<p>相反地，如果不希望显示变更信息，那么可以将report选项设置为较大的值。</p>
+
+	<h2 class="article"><a id="">选项小结</a></h2>
+	<ul>
+		<li><p style="padding:5px; margin:0; border-left:1px solid;"><a href="#opt-shellslash" title="opt-shellslash">shellslash</a> (ssl) (off)<br />使用正斜杠（Forward slash）作为路径分隔符；</p></li>
+		<li><p style="padding:5px; margin:0; border-left:1px solid;"><a href="#opt-errorbells" title="opt-errorbells">errorbells</a> (eb) (off)<br />是否发出报错响铃；</p></li>
+		<li><p style="padding:5px; margin:0; border-left:1px solid;"><a href="#opt-visualbell" title="opt-visualbell">visualbell</a> (vb) (off)<br />设置响铃的行为：鸣叫、屏幕闪烁或什么都不做；</p></li>
+		<li><p style="padding:5px; margin:0; border-left:1px solid;"><a href="#opt-showmode" title="opt-showmode">showmode</a> (smd) (on)<br />是否显示当前所处的模式；</p></li>
+		<li><p style="padding:5px; margin:0; border-left:1px solid;"><a href="#opt-showcmd" title="opt-showcmd">showcmd</a>(sc) (on, off for Unix)<br />是否显示命令信息；</p></li>
+		<li><p style="padding:5px; margin:0; border-left:1px solid;"><a href="#opt-cmdheight" title="opt-cmdheight">cmdheight</a> (ch) (1)<br />设置命令行高度；</p></li>
+		<li><p style="padding:5px; margin:0; border-left:1px solid;"><a href="#opt-more" title="opt-more">more</a> (on)<br />是否显示&ldquo;-- More --&rdquo;提示信息；</p></li>
+		<li><p style="padding:5px; margin:0; border-left:1px solid;"><a href="#opt-report" title="opt-report">report</a><br />Default: 2<br />设置报告改变行数的阈值；</p></li>
+	</ul>
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="命令行模式(Command-line Mode)" href="http://yyq123.github.io/learn-vim/learn-vi-46-CommandlineMode.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="历史记录(history)" href="http://yyq123.github.io/learn-vim/learn-vi-46-01-History.html">下一篇</a>&gt;</span></p>
+
+</body>
+</html>

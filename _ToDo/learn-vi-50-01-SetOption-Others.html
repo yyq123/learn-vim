@@ -74,48 +74,6 @@ notimeout    ttimeout    只有代码键超时
 	<p><i>timeoutlen</i>选项，即等待后续按键输入的时间，单位为毫秒（millisecond），默认值为1000毫秒，即1秒。如果希望设置键盘等待时间，可以使用以下命令：</p>
 	<p style="text-indent:2em"><code class="inset">set timeoutlen=500</code></p>
 
-	<h2 class="article"><a id="">命令选项</a></h2>
-	<p>在Windows下，文件路径中使用反斜杠（Backslash）：</p>
-	<p style="text-indent:2em"><code class="msg">C:\Temp</code></p>
-	<p>在Linux和Mac下，文件路径中使用正斜杠（Forward slash）：</p>
-	<p style="text-indent:2em"><code class="msg">/etc/hosts</code></p>
-	<p>'shellslash'选项，仅适用于Windows操作系统，并且默认是关闭的。为了保证与Unix风格的兼容性，建议在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>配置文件中，使用以下命令启用此选项：</p>
-	<p style="text-indent:2em"><code class="inset">:set shellslash</code></p>
-	<p>使用'shellslash'选项，可以在扩展文件名时使用正斜杠。即使你在输入文件名时使用反斜杠，Vim也会自动将其转换为正斜杠。</p>
-	<p>Vim使用屏幕底部来显示消息，默认情况下如果消息长度超出一行时，将会显示类似于&ldquo;按回车继续&rdquo;的提示信息。通过设置'cmdheight'选项来增加消息的行数，可以显示更多的信息以避免不必要的提示。例如使用以下命令，设置命令行高度为3行：</p>
-	<p style="text-indent:2em"><code class="inset">:set cmdheight=3</code></p>
-	<p>当Vim捕获一个错误时，将会显示错误信息。如果希望同时发出声音警告，那么可以执行以下命令：</p>
-	<p style="text-indent:2em"><code class="inset">:set errorbells</code></p>
-	<p>使用以下命令，则可以关闭errorbells选项：</p>
-	<p style="text-indent:2em"><code class="inset">:set noerrorbells</code></p>
-	<p>使用以下命令启用visualbell选项，当输入错误时，屏幕就会闪动然后回到正常状态：</p>
-	<p style="text-indent:2em"><code class="inset">:set visualbell</code></p>
-	<p>使用以下命令，则可以关闭visualbell选项：</p>
-	<p style="text-indent:2em"><code class="inset">:set novisualbell</code></p>
-	<p>默认情况下，'more'选项是启用的。当命令的输出超出一屏时（例如:version命令的输出），就会显示&ldquo;-- More --&rdquo;提示信息，并等待用户响应以继续显示屏幕输出：</p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/set_more.png" title="set_more"><img src="https://yyq123.github.io/learn-vim/images/set_more.png" alt="set_more" /></a></p>
-	<p>使用以下命令关闭more选项，将会持续翻滚屏幕以显示信息，而不会显示提示信息：</p>
-	<p style="text-indent:2em"><code class="inset">:set nomore</code></p>
-	<p>当删除或修改多行文本时，如果被影响的行数超出了report所指定的行数（默认值为2），那么Vim将会在屏幕底部显示所改变的行数。如果希望始终显示反馈信息，那么可以将report选项设置为0：</p>
-	<p style="text-indent:2em"><code class="inset">:set report=0</code></p>
-	<p>此时即使只是删除了一行文本，Vim也将显示以下信息：</p>
-	<p style="text-indent:2em"><code class="msg">1 line less</code></p>
-	<p>相反地，如果不希望显示变更信息，那么可以将report选项设置为较大的值。</p>
-
-	<h2 class="article"><a id="">信息显示选项</a></h2>
-	<p>使用以下命令启用showmode选项，将在屏幕底部显示当前所处的模式：</p>
-	<p style="text-indent:2em"><code class="inset">:set showmode</code></p>
-	<p>使用以下命令启用showcmd选项，将会在输入命令时，在屏幕底部右下角显示出部分命令：</p>
-	<p style="text-indent:2em"><code class="inset">:set showcmd</code></p>
-	<p>例如希望输入fx命令来查找字符&ldquo;x&rdquo;，当我们输入f时就会在底部显示f，这对于我们输入较为复杂的纵使时就会显示尤为有用.</p>
-	<p>在<a href="http://yyq123.github.io/learn-vim/learn-vi-45-VisualMode.html" title="可视化模式(Visual Mode)">可视化模式</a>下，将显示选择区域的大小：</p>
-	<ul>
-		<li>在行内选择若干字符时，显示字符数；</li>
-		<li>选择多于一行时，显示行数；</li>
-		<li>选择可视化列块时，显示行乘以列数（比如&ldquo;2x10&rdquo;）。</li>
-	</ul>
-	<p><a href="https://yyq123.github.io/learn-vim/images/set_showmode_showcmd.png" title="set_showmode_showcmd"><img src="https://yyq123.github.io/learn-vim/images/set_showmode_showcmd.png" alt="set_showmode_showcmd" /></a></p>
-
 	<p>使用'colorcolumn'选项，可以在指定列显示垂直标尺，以用于文本对齐：</p>
 	<p style="text-indent:2em"><code class="inset">:set colorcolumn=80</code></p>
 	<p>通过'ColorColumn'高亮组，可以设置标尺列的颜色：</p>
@@ -346,6 +304,6 @@ notimeout    ttimeout    只有代码键超时
         <td valign="top"><font size="2" face="Courier New">nowa</font></td>
     </tr>
 </tbody></table>
-
+cmdwinheight	learn-vi-46-CommandlineMode.html
 </body>
 </html>
