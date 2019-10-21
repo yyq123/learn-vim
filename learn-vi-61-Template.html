@@ -8,6 +8,8 @@
 	<title>VIM学习笔记 模板(Template)</title>
 </head>
 <body>
+	<h1>VIM学习笔记 模板(Template)</h1>
+
 	<p>在新建文件时，如果有针对该文件扩展名的模板存在，那么模板中的内容，将被自动插入进新文档中。</p>
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">创建模板文件</p>
 	<p>首先，创建模板文件（Skeleton Document）。例如，包含以下内容的<a href="http://www.webstandards.org/learn/reference/templates/xhtml10s/">XHTML 1.0 Strict</a>模板。</p>
@@ -21,8 +23,7 @@
 	<p><code class="inset">autocmd! BufNewFile * silent! 0r ~/.vim/skel/Template.%:e</code></p>
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">调用模板文件</p>
 	<p>当你使用<code class="inset">:new test.html</code>命令新建一个HTML文档时，模板中的代码就会被自动添加到新建的页面中。这无疑，非常便于我们创建标准化的网页。</p>
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="()" href="">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="配色方案(Color Scheme)" href="http://yyq123.blogspot.com/2011/02/vim-color-scheme.html">下一篇</a>&gt;</span></p>
-</body>
-#666666
-</html>
 
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="目录结构 (Directory Structure)" href="http://yyq123.github.io/learn-vim/learn-vi-204-vimfiles.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="配色方案(Color Scheme)" href="http://yyq123.github.io/learn-vim/learn-vi-62-ColorScheme.html">下一篇</a>&gt;</span></p>
+</body>
+</html>

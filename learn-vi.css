@@ -36,3 +36,9 @@ h2.article {
   border-left:6px solid lightgray;
   padding:0 0 3px 5px;
 }
+
+p.item {
+  padding:5px;
+  margin:0;
+  border-left:1px solid;
+}

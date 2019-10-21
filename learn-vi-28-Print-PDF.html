@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 打印PDF (Print to PDF)</title>
+</head>
+<body>
+	<h1>VIM学习笔记 打印PDF (Print to PDF)</h1>
+	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
+	PDF虚拟打印机
+	<p>使用<code class="inset">:version</code>命令，确认Vim已经包含PostScript特性：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/version-postscript.png.png" title="version-postscript.png"><img src="https://yyq123.github.io/learn-vim/images/.png" alt="version-postscript.png" width="500" height="" /></a></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">打印到打印机</p>
+	<p>首先使用以下命令，将文件打印至postscript文件：</p>
+	<p style="text-indent:2em"><code class="inset">:hardcopy &gt; test.ps</code></p>
+	<p>然后调用Linux的<a href="http://web.mit.edu/ghostscript/www/Ps2pdf.htm" title="ps2pdf">ps2pdf</a>命令，将postscript文件转换为PDF文件：</p>
+	<p style="text-indent:2em"><code class="inset">:!ps2pdf test.ps test.pdf</code></p>
+	<p>其中，命令v进入可视模式，100j向下移动100行，这些行将被高亮显示。然后用:hardcopy命令，打印出选中的行。</p>
+	<p>我们也可以使用命令<code class="inset">V</code>进入可视化模式，并选定一段内容，这时输入:就会在Vim的底部显示&lt;,&gt;两个字符，这两个字符分别指选定内容的开头和结束部分。然后就可以用:hardcopy命，令打印出选择的部分了。</p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">打印选项</p>
+	<p>利用以下命令，设置printoptions选项，可以控制Vim的打印效果。</p>
+	<p style="text-indent:2em"><code class="inset">set printoptions=paper:A4,syntax:y,wrap:y</code></p>
+	<p><em>paper</em>选项，用于选择纸张。可以设置为A3、A4、letter和legal。</p>
+	<p><em>syntax</em>选项，确定是否按照语法高亮度打印文件。默认值&ldquo;a&rdquo;，意味着仅在使用彩色打印机时，打印语法高亮度；你也可以将值设为&ldquo;y&rdquo; ，强制打印语法高亮度。</p>
+	<p><em>wrap</em>选项，确定是否折行打印。默认值&ldquo;:y&rdquo;，意味着自动折行；如果你将值设为&ldquo;n&rdquo;，那么过长的行在打印时将被截断。</p>
+	<p><em>header</em>选项，设为&ldquo;0&rdquo;时，将取消打印页眉。</p>
+	<p><em>number</em>选项，设为&ldquo;y&rdquo;时，将会打印行号。</p>
+	<p>关于printoptions的更多选项，请使用<code class="inset">:help popt</code>命令，查看帮助信息。</p>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:print</code></td><td>打印到屏幕</td></tr>
+		<tr><td><code class="inset">:number</code></td><td>带行号打印</td></tr>
+		<tr><td><code class="inset">:list</code></td><td>打印不可见字符</td></tr>
+		<tr><td><code class="inset">:hardcopy</code></td><td>打印到打印机</td></tr>
+		<tr><td><code class="inset">set printoptions</code></td><td>设置打印选项</td></tr>
+	</table>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="打印(Print)" href="http://yyq123.github.io/learn-vim/learn-vi-07-Print.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="帮助信息(Help)" href="http://yyq123.github.io/learn-vim/learn-vi-08-help.html">下一篇</a>&gt;</span></p>
+</body>
+</html>
