@@ -5,59 +5,46 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记 打印PDF (Print to PDF)</title>
+	<title>VIM学习笔记 打印到PDF (Print to PDF)</title>
 </head>
 <body>
-	<h1>VIM学习笔记 打印PDF (Print to PDF)</h1>
+	<h1>VIM学习笔记 打印到PDF (Print to PDF)</h1>
 
-	<h2 class="article"><a id="">For Windows</a></h2>
-	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
-	&lt;,&gt;
-	<h2 class="article"><a id="">For Linux</a></h2>
-	<p>在Linux和Mac下，Vim会产生一个PostScript文件。该文件能够直接发送到PostScript打印机上，也能够通过类似ghostscript的程序进行处理。</p>
-	<p>使用<code class="inset">:version</code>命令，可以确认Vim是否已经包含PostScript特性：</p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/version-postscript.png.png" title="version-postscript.png"><img src="https://yyq123.github.io/learn-vim/images/.png" alt="version-postscript.png" width="500" height="" /></a></p>
+	<h2 class="article"><a id="print-pdf-win">在Linux下打印PDF</a></h2>
+	<p>在Linux和Mac下，Vim会产生一个PostScript文件。该文件能够直接发送到PostScript打印机上，或者通过类似ghostscript的程序进行处理。</p>
+	<p>为了使用PostScript功能，请使用<code class="inset">:version</code>命令，确认Vim已经包含&ldquo;+postscript&rdquo;特性：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/version-postscript.png" title="version-postscript.png"><img src="https://yyq123.github.io/learn-vim/images/version-postscript.png" alt="version-postscript.png" width="500" height="259" /></a></p>
 	<p>首先使用以下命令，将文件打印至postscript文件：</p>
 	<p style="text-indent:2em"><code class="inset">:hardcopy &gt; test.ps</code></p>
-	<p>使用以上打印方式所生成的postscript文件，无法正常显示中文。推荐使用<a href="http://paps.sourceforge.net/" title="paps">paps</a>，来生成包含中文的文件：</p>
+	<p>此打印方式所生成的postscript文件，无法正常显示包括中文在内的UTF-8编码格式。推荐使用<a style="font-weight:bold" href="http://paps.sourceforge.net/" title="paps">paps</a>，来生成包含中文的文件：</p>
 	<p style="text-indent:2em"><code class="inset">:!paps &lt; % &gt; test.ps</code></p>
-	<p>然后调用Linux的<a href="http://web.mit.edu/ghostscript/www/Ps2pdf.htm" title="ps2pdf">ps2pdf</a>命令，将postscript文件转换为PDF文件：</p>
+	<p>然后调用<a style="font-weight:bold" href="http://web.mit.edu/ghostscript/www/Ps2pdf.htm" title="ps2pdf">ps2pdf</a>命令，将postscript文件转换为PDF文件：</p>
 	<p style="text-indent:2em"><code class="inset">:!ps2pdf test.ps test.pdf</code></p>
-	<p>通过在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>配置文件中增加以下自定义命令，可以组合paps和ps2pdf命令，以直接生成PDF文件：</p>
-	<p style="text-indent:2em"><code class="inset">command Paps write !paps % | ps2pdf - %:r'.pdf'</code></p>
-	<p>在Vim中执行以下命令，即可生成以当前文件名命名的PDF文件：</p>
+	<p>通过在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>配置文件中增加以下自定义命令，可以组合paps和ps2pdf命令，来直接生成PDF文件：</p>
+	<p style="text-indent:2em"><code class="inset">command Paps !paps % | ps2pdf - %:r.pdf</code></p>
+	<p>之后在Vim中执行以下命令，即可生成以当前文件名命名的PDF文件：</p>
 	<p style="text-indent:2em"><code class="inset">:Paps</code></p>
-	<p>利用以下命令，安装CUPS PDF打印机：</p>
+	<p>我们也可以利用CUPS PDF打印机，来生成PDF文件。首先使用包管理命令（以Fedora为例），安装<a style="font-weight:bold" href="https://www.cups.org/" title="cups-pdf">cups-pdf</a>：</p>
 	<p style="text-indent:2em"><code class="inset">$ dnf install cups-pdf</code></p>
-	<p>你可以在以下网址，查看打印机是否安装成功，并将其设置为默认打印机：</p>
+	<p>使用以下网址，可以查看打印机是否安装成功，并将其设置为默认打印机：</p>
 	<p style="text-indent:2em"><code class="inset">http://localhost:631/printers/</code></p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/Cups-PDF-Set Default.png" title="Cups-PDF-Set Default"><img src="https://yyq123.github.io/learn-vim/images/Cups-PDF-Set Default.png" alt="Cups-PDF-Set Default" width="500" height="325" /></a></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Cups-PDF-SetDefault.png" title="Cups-PDF-Set Default"><img src="https://yyq123.github.io/learn-vim/images/Cups-PDF-SetDefault.png" alt="Cups-PDF-Set Default" width="500" height="325" /></a></p>
 	<p>在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>配置文件中，增加以下<a href="http://yyq123.github.io/learn-vim/learn-vi-51-KeyMapping.html" title="Map">键盘映射</a>：</p>
 	<p style="text-indent:2em"><code class="inset">nmap PpP :%w !lpr -o lpi=8 -o cpi=14&lt;CR&gt;&lt;CR&gt;</code></p>
-	<p>使用<kbd>PpP</kbd>快捷键，即可以生成PDF文件，默认存储在桌面。你可以通过修改 /etc/cups/cups-pdf.conf 配置文件，来指定文件输出位置。</p>
+	<p>此后使用<kbd>PpP</kbd>快捷键，即可生成PDF文件（默认保存在桌面）。你可以通过修改 /etc/cups/cups-pdf.conf 配置文件，来指定文件输出位置。</p>
 
-	<p></p>
+	<h2 class="article"><a id="print-pdf-mac">在Mac下打印PDF</a></h2>
+	<p>在<a href="https://macvim-dev.github.io/macvim/" title="MacVim">MacVim</a>中，使用<code class="inset">:set printexpr?</code>命令，可以发现Mac使用预览程序来生成PDF文件，同样也无法正常显示中文：</p>
+	<p style="text-indent:2em"><code class="msg">:set printexp=system('open -a Preview '.v:fname_in) + v:shell_error</code></p>
+	<p>通过在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>配置文件中增加以下自定义命令，可以使用<a style="font-weight:bold" href="https://www.cups.org/doc/man-cupsfilter.html" title="cupsfilter">cupsfilter</a>命令，来直接生成PDF文件：</p>
+	<p style="text-indent:2em"><code class="inset">command Print2PDF !cupsfilter % &gt; %:r.pdf 2&gt; /dev/null</code></p>
 
-	<h2 class="article"><a id="">For Windows</a></h2>
-	<p>在Windows下的GVim中，使用<code class="inset">:hardcopy</code>命令将打开打印对话框；在其中选择PDF虚拟打印机（例如<a href="https://www.foxitsoftware.com/pdf-reader/create-pdf/" title="Foxit Reader PDF Printer">Foxit PDF Printer</a>, <a href="https://www.pdfforge.org/pdfcreator" title="PDFCreator">PDFCreator</a>等），则可以生成PDF文件：</p>
+	<h2 class="article"><a id="print-pdf-linux">在Windows下打印PDF</a></h2>
+	<p>在Windows下的GVim中，使用<code class="inset">:hardcopy</code>命令将打开打印对话框；在其中选择PDF虚拟打印机（例如<a href="https://www.foxitsoftware.com/pdf-reader/create-pdf/" title="Foxit Reader PDF Printer">Foxit PDF Printer</a>, <a href="https://www.pdfforge.org/pdfcreator" title="PDFCreator">PDFCreator</a>等），即可生成PDF文件：</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/hardcopy_printer_win_pdf.png" title="hardcopy_printer_win_pdf"><img src="https://yyq123.github.io/learn-vim/images/hardcopy_printer_win_pdf.png" alt="hardcopy_printer_win_pdf" /></a></p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">打印选项</p>
-	<p><em>paper</em>选项，用于选择纸张。可以设置为A3、A4、letter和legal。</p>
-	<p><em>syntax</em>选项，确定是否按照语法高亮度打印文件。默认值&ldquo;a&rdquo;，意味着仅在使用彩色打印机时，打印语法高亮度；你也可以将值设为&ldquo;y&rdquo; ，强制打印语法高亮度。</p>
-	<p><em>wrap</em>选项，确定是否折行打印。默认值&ldquo;:y&rdquo;，意味着自动折行；如果你将值设为&ldquo;n&rdquo;，那么过长的行在打印时将被截断。</p>
-	<p><em>header</em>选项，设为&ldquo;0&rdquo;时，将取消打印页眉。</p>
-	<p><em>number</em>选项，设为&ldquo;y&rdquo;时，将会打印行号。</p>
-	<p>关于printoptions的更多选项，请使用<code class="inset">:help popt</code>命令，查看帮助信息。</p>
+	<p>请使用<code class="inset">:help printing</code>命令，查看关于打印的帮助信息。</p>
 
-	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
-		<caption>命令小结</caption>
-		<tr><td><code class="inset">:print</code></td><td>打印到屏幕</td></tr>
-		<tr><td><code class="inset">:number</code></td><td>带行号打印</td></tr>
-		<tr><td><code class="inset">:list</code></td><td>打印不可见字符</td></tr>
-		<tr><td><code class="inset">:hardcopy</code></td><td>打印到打印机</td></tr>
-		<tr><td><code class="inset">set printoptions</code></td><td>设置打印选项</td></tr>
-	</table>
 	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="打印(Print)" href="http://yyq123.github.io/learn-vim/learn-vi-07-Print.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="帮助信息(Help)" href="http://yyq123.github.io/learn-vim/learn-vi-08-help.html">下一篇</a>&gt;</span></p>
 </body>
 </html>
