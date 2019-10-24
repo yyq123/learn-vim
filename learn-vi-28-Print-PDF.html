@@ -35,7 +35,7 @@
 
 	<h2 class="article"><a id="print-pdf-mac">在Mac下打印PDF</a></h2>
 	<p>在<a href="https://macvim-dev.github.io/macvim/" title="MacVim">MacVim</a>中，使用<code class="inset">:set printexpr?</code>命令，可以发现Mac使用预览程序来生成PDF文件，同样也无法正常显示中文：</p>
-	<p style="text-indent:2em"><code class="msg">:set printexp=system('open -a Preview '.v:fname_in) + v:shell_error</code></p>
+	<p style="text-indent:2em"><code class="msg">system('open -a Preview '.v:fname_in) + v:shell_error</code></p>
 	<p>通过在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>配置文件中增加以下自定义命令，可以使用<a style="font-weight:bold" href="https://www.cups.org/doc/man-cupsfilter.html" title="cupsfilter">cupsfilter</a>命令，来直接生成PDF文件：</p>
 	<p style="text-indent:2em"><code class="inset">command Print2PDF !cupsfilter % &gt; %:r.pdf 2&gt; /dev/null</code></p>
 

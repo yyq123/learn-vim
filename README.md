@@ -46,6 +46,7 @@ Created by yyq123@gmail.com using [vim](http://www.vim.org/)
   - [加密（crypt）](http://yyq123.blogspot.com/2011/01/vim-encyption.html)[<sup>B</sup>](http://yyq123.blogspot.com/2011/01/vim-encyption.html)<sup>/</sup>[<sup>Z</sup>](http://zhuanlan.zhihu.com/p/26336606)
   - [宏(Macro)](http://yyq123.blogspot.com/2011/03/vim-macro.html)[<sup>B</sup>](http://yyq123.blogspot.com/2011/03/vim-macro.html)<sup>/</sup>[<sup>Z</sup>](http://zhuanlan.zhihu.com/p/26401360)
   - [多编码处理（Multi-Encodings）](http://yyq123.blogspot.com/2010/07/vim-multi-encoding.html)[<sup>B</sup>](http://yyq123.blogspot.com/2010/07/vim-multi-encoding.htm)<sup>/</sup>[<sup>Z</sup>](http://zhuanlan.zhihu.com/p/25451437)
+  - [打印到PDF (Print to PDF)](http://yyq123.github.io/learn-vim/learn-vi-28-Print-PDF.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/10/vim-print-to-pdf.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/88343229)
 - **图形界面**
   - [启动图形界面(gui-start)](http://yyq123.github.io/learn-vim/learn-vi-30-01-GUI-Start.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/06/vim-gui-start.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/69699141)
   - [图形界面选项(guioptions)](http://yyq123.github.io/learn-vim/learn-vi-30-01-GUI-Start.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/06/vim-guioptions.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/70365639)
