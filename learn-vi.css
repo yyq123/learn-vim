@@ -5,6 +5,22 @@ kbd {
   font-family: "Courier New", Courier, monospace;
   font-weight: bold;
 }
+
+pre, code {
+  color: #930;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+}
+pre {
+  overflow: auto;
+  padding: 0 0 0 2em;
+}
+pre > code {
+  margin:0;
+  display: block;
+  word-wrap: normal;
+}
+
 code.inset {
   margin: 0 0.2em;
   padding: 0;
