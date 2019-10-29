@@ -5,86 +5,97 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记 工具箱-命令行环境(Toolkit-CLI)</title>
+	<title>VIM学习笔记 工具箱-Windows命令行环境(Toolkit-CLI-Win)</title>
 </head>
 <body>
-	<h1>VIM学习笔记 工具箱-命令行环境(Toolkit-CLI)</h1>
-	<h2 class="article"><a id="">启用/禁用</a></h2>
-	<p></p>
-	<a href="#" title=""></a>
+	<h1>VIM学习笔记 Windows命令行环境(Toolkit-CLI-Win)</h1>
 
-	<p>通过命令行环境（Command-Line Interface, CLI），我们可以更快速地执行操作，并且更方便地自动化一系列繁琐的任务。比如在多个文件中，批量替换指定的字符串等。</p>
-	<p>众所周知，几乎所有Vim插件管理器都是使用<a style="font-weight:bold" title="GitHub" href="http://github.com/">GitHub</a>来安装和更新插件；你也可以直接从GitHub<a title="GitHub" href="https://github.com/vim">下载</a>Vim；而我的这个<a title="笔记列表" href=https://github.com/yyq123/learn-vim">VIM学习笔记</a>也是托管在GitHub上的，以实现在多台电脑上同步文档并进行版本管理。</p>
-	<p>本文并不会详细介绍GitHub的安装与使用，而是聚焦于如何使用GitHub与Vim相互配合。GitHub有着非常完善的（中文）<a href="https://help.github.com/cn" title="Help">文档</a>；而视觉化的<a href="http://rogerdudler.github.io/git-guide/index.zh.html" title="git - the simple guide">git简明指南</a>更便于快速入门；还有表格化的<a href="http://rogerdudler.github.io/git-guide/files/git_cheat_sheet.pdf" title="git - cheat sheet">速查表</a>可以随时查阅各种命令的参考信息。</p>
+	<p>通过命令行环境（Command-Line Interface, CLI），可以更快速地执行操作，并且能够自动化一系列繁琐的任务。比如在多个文件中，批量替换指定的字符串等。下文将介绍在Windows下，搭建运行Linux命令的虚拟终端，并将Vim配置至此Shell环境。</p>
+	<p>本文并不会详细介绍每个工具的安装步骤和使用细节，而是聚焦于各个工具与Vim相互配合。文中推荐的工具，完全基于个人主观的偏好，您可以在<a href="https://alternativeto.net/" title="AlternativeTo">AlternativeTo</a>网站中寻找功能类似的软件。</p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">Windows下的Linux命令行环境</p>
-	<p><a style="font-weight:bold" href="https://cygwin.com/" title="cygwin.com">Cygwin</a>，是 Windows下的Linux命令行环境。它包括一个提供 GNU 功能性基本子集的 DLL 以及在这之上的一组工具。</p>
+	<h2 class="article"><a id="">Cygwin</a></h2>
+	<p><a style="font-weight:bold" href="https://cygwin.com/" title="cygwin.com">Cygwin</a>，是 Windows下的Linux命令行环境。它包括一个提供GNU功能性基本子集的DLL以及在这之上的一组工具。</p>
 	<p>在安装过程中，您可以选择需要的软件包，比如grep、sed、curl等等。你也可以搜索&ldquo;vim&rdquo;关键字，找到vim以及相关的工具。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/Tools_Cygwin_SelectPackages_vim.png" title="Tools_Cygwin_SelectPackages_vim"><img src="https://yyq123.github.io/learn-vim/images/Tools_Cygwin_SelectPackages_vim.png" alt="Tools_Cygwin_SelectPackages_vim" width="550" height="366" /></a></p>
-	<p>之后，您可以随时再次运行Cygwin安装程序，以安装和更新软件包。</p>
-	<p>使用<code class="inset">uname -a</code>命令，可以查看当前版本：</p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/Tools_Cygwin_uname.png" title="Tools_Cygwin_uname"><img src="https://yyq123.github.io/learn-vim/images/Tools_Cygwin_uname.png" alt="uname" width="550" height="78" /></a></p>
-	<p>列示当前已安装的程序：</p>
-	cygcheck --check-setup
-	<p>你可以通过<code class="inset">/cygdrive/c</code>路径，来访问本地磁盘C：</p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/Tools_Cygwin_cygdrive.png" title="Tools_Cygwin_cygdrive"><img src="https://yyq123.github.io/learn-vim/images/Tools_Cygwin_cygdrive.png" alt="Tools_Cygwin_cygdrive" width="550" height="33" /></a></p>
+	<p>请选择安装&ldquo;zsh&rdquo;。之后您可以随时再次运行Cygwin安装程序，以安装和更新软件包。</p>
 
+	<h2 class="article"><a id="">ConEmu</a></h2>
+	<p><a style="font-weight:bold" href="https://conemu.github.io/" title="conemu.github.io">ConEmu</a>，是一个美观易用的虚拟终端，可以在多个标签中，同时打开Windows命令提示符（Command Prompt）,powershell，Cygwin和Git bash等等。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/Tools_ConEmu_CLI.png" title="Tools_ConEmu_CLI"><img src="https://yyq123.github.io/learn-vim/images/Tools_ConEmu_CLI.png" alt="Tools_ConEmu_CLI" width="550" height="432" /></a></p>
-	<p><a style="font-weight:bold" href="https://conemu.github.io/" title="conemu.github.io">ConEmu</a>，是一个非常好用的终端，可以在多个标签也中，同时打开Windows命令提示符（Command Prompt）,powershell，Cygwin和Git bash等等。</p>
-	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/Git_Workflow.png" title="Git_Workflow"><img src="http://yyq123.github.io/learn-vim/images/Git_Workflow.png" alt="Git_Workflow" /></a></br>Source: medium.com/free-code-camp</p>
-	<p></p>
+	<p>在&ldquo;Settings...&rdquo;窗口中，选择&ldquo;Startup &gt; Tasks&rdquo;项目，请在&ldquo;Predefined Tasks&rdquo;列表中新建打开Zsh的<a href="https://conemu.github.io/en/CygwinMsysConnector.html" title="CygwinMsysConnector">任务</a>：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Tools_ConEmu_Cygwin_Zsh.png.png" title="Tools_ConEmu_Cygwin_Zsh.png"><img src="https://yyq123.github.io/learn-vim/images/Tools_ConEmu_Cygwin_Zsh.png.png" alt="" width="550" height="358" /></a></p>
+	<p>请在以上屏幕截图的黄色高亮区域内，输入以下命令：</p>
+	<p><code class="inset">set CHERE_INVOKING=1 &amp; set "PATH=D:\cygwin64\bin;%PATH%" &amp; %ConEmuBaseDirShort%\conemu-cyg-64.exe -new_console:p D:\cygwin64\bin\zsh.exe --login -i -new_console:C:"D:\cygwin64\Cygwin.ico"</code></p>
+	<p>请注意，本文假设Cygwin安装在&ldquo;D:\cygwin64&rdquo;目录；请根据您的实践安装位置，相应调整命令。</p>
+	<p>请使用&ldquo;Create new console&rdquo;按钮，打开{Zsh::CygWin zsh}；</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Tools_ConEmu_NewConsole.png" title="Tools_ConEmu_NewConsole"><img src="https://yyq123.github.io/learn-vim/images/Tools_ConEmu_NewConsole.png" alt="Tools_ConEmu_NewConsole" width="550" height="247" /></a></p>
+	<p>在终端中使用<code class="inset">uname -a</code>命令，可以查看当前Cygwin的版本：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Tools_Cygwin_uname.png" title="Tools_Cygwin_uname"><img src="https://yyq123.github.io/learn-vim/images/Tools_Cygwin_uname.png" alt="uname" width="550" height="33" /></a></p>
+	<p>使用<code class="inset">cygcheck --check-setup</code>命令，可以列示当前已安装的软件包：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Tools_Cygwin_cygcheck.png" title="Tools_Cygwin_cygcheck"><img src="https://yyq123.github.io/learn-vim/images/Tools_Cygwin_cygcheck.png" alt="" width="550" height="169" /></a></p>
+	<p>使用<code class="inset">echo $SHELL</code>命令，可以查看当前的shell：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Tools_Cygwin_echo_shell.png" title="Tools_Cygwin_echo_shell"><img src="https://yyq123.github.io/learn-vim/images/Tools_Cygwin_echo_shell.png" alt="Tools_Cygwin_echo_shell" /></a></p>
+	<p>通过<code class="inset">/cygdrive</code>路径，可以访问本地磁盘：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Tools_Cygwin_cygdrive.png" title="Tools_Cygwin_cygdrive"><img src="https://yyq123.github.io/learn-vim/images/Tools_Cygwin_cygdrive.png" alt="Tools_Cygwin_cygdrive" width="550" height="78" /></a></p>
 
-	<h2 class="article"><a id="">使用Oh My ZSH</a></h2>
-git clone git://github.com/robbyrussell/oh-my-zsh.git C:\Users\yiqyuan/.oh-my-zsh
-cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
+	<h2 class="article"><a id="">Oh My Zsh</a></h2>
+	<p><a style="font-weight:bold" href="http://ohmyz.sh/" title="ohmyz">Oh My Zsh</a>，是由Robby Russell开发的zsh管理框架，使用其预配置的选项，大大提高了使用zsh的便捷性。</p>
+	<p>使用以下命令，安装Oh My Zsh：</p>
+	<p><code class="inset">git clone git://github.com/robbyrussell/oh-my-zsh.git C:\Users\username\.oh-my-zsh</code></p>
+	<p>使用以下命令，生成默认的配置文件：</p>
+	<p><code class="inset">cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc</code></p>
 
-echo $SHELL
-	<h2 class="article"><a id="">使用Cygwin Shell</a></h2>
+	<h2 class="article"><a id="">配置Vim使用Cygwin Shell</a></h2>
 	<p>Vim在Windows下，默认使用命令提示符 "Command Prompt"：</p>
 	<p style="text-indent:2em"><code class="inset">set shell=$COMSPEC</code></p>
 	<p style="text-indent:2em"><code class="msg">shell=C:\WINDOWS\system32\cmd.exe</code></p>
-	<p>使用以下命令，可以使用Cygwin的Shell环境：</p>
+	<p>在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>配置文件中增加以下命令，将配置Vim使用Cygwin的Shell环境：</p>
 	<pre><code>
-" Makes bash open in the working directory
+" 在当前目录打开bash
 let $CHERE_INVOKING=1
-
-" Default path for Cygwin 64-bit, change accordingly
-set shell=C:\cygwin64\bin\bash.exe
-
-" Without --login, Cygwin won't mount some directories such as /usr/bin/
+" 使用Cygwin bash
+set shell=D:\cygwin64\bin\bash.exe
+" 缺少--login参数将无法挂载/usr/bin/等目录
 set shellcmdflag=--login\ -c
-
-" Default value is (, but bash needs "
+" 缺省值为(, 需要为bash设置为"
 set shellxquote=\"
-
-" Paths will use / instead of \
+" 在路径中使用/以替代\
 set shellslash
-	</code></pre>
-	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
+" 在PATH变量中增加cygwin
+let $PATH .= ';D:\cygwin64\bin'
+</code></pre>
+	<p>在Vime中使用<code class="inset">:terminal</code>命令，即可新建Cygwin bash终端窗口：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Tools_Cygwin_vim_terminal.png" title="Tools_Cygwin_vim_terminal"><img src="https://yyq123.github.io/learn-vim/images/Tools_Cygwin_vim_terminal.png" alt="Tools_Cygwin_vim_terminal" /></a></p>
+	<p>也可以使用<code class="inset">:!</code>或<code class="inset">:shell</code>命令，来<a href="http://yyq123.github.io/learn-vim/learn-vi-71-Shell.html" title="Shell">执行Cygwin bash命令</a>。</p>
 
-	<p></p>
-	<p style="text-indent:2em"><code class="inset"></code></p>
-	<p></p>
+	<h2 class="article"><a id="">打开Windows命令行</a></h2>
+	<p>在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>配置文件中增加以下命令，将配置<a href="http://yyq123.github.io/learn-vim/learn-vi-54-Leader.html" title="前缀键(leader)">leader</a>快捷键以打开Windows命令提示符：</p>
+	<p style="text-indent:2em"><code class="inset">nnoremap &lt;leader&gt;cc :!start cmd /k cd %:p:h:8&lt;cr&gt;</code></p>
 
-	<p><a href="https://tldr.sh/" title="tldr">tldr</a></p>
-	<p><a href="https://tldr.ostera.io/" title="tldr web client"></a></p>
-	<p><a href="https://apps.apple.com/us/app/tldr-pages/id1071725095" title="iOS client"></a></p>
-	<p><a href="http://dia-installer.de" title="Dia">Dia</a></p>
+	<h2 class="article"><a id="">One more thing...</a></h2>
+<p>You have to manually modify the ConEmu config file.</p>
 
-	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
-
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">学习资源</p>
-
-	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
-		<caption>命令小结</caption>
-		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
-		<tr><td><code class="inset">:</code></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-	</table>
-&ldquo;&rdquo;
-
+	<ol>
+		<li>Open <code>ConEmu.xml</code> file. It is in the installation directory of ConEmu or the user directory like <code>C:\Users\UserName</code>.</li>
+		<li>Find the palette definition. It is a xml tag starts with the following code:
+			<pre><code>&lt;key name="Palette1" modified="2016-02-21 19:15:02" build="160218"&gt;
+&lt;value name="Name" type="string" data="ThemeName"/&gt;
+&lt;value name="ExtendColors" type="hex" data="00"/&gt;
+...
+&lt;value name="ColorTable00" type="dword" data="00000000"/&gt;
+&lt;value name="ColorTable01" type="dword" data="00800000"/>
+...</code></pre></li>
+		<li>If you don't find the xml above, you may not have any custom color scheme.
+So open ConEmu <code>Settings</code> dialog (Win+Alt+P), and go to <code>Features -> Colors
+-> Schemes</code>, enter a name and click Save, then the palette definition will be
+generated. Close ConEmu.</li>
+		<li>Replace the color table in the palette tag with the dracula color table
+(see <code>conemu/dracula.xml</code>, there are 32 color values), save the <code>ConEmu.xml</code>.</li>
+		<li>Reopen ConEmu.</li>
+		<li>Notice that ConEmu's color scheme may not change in the later version, because
+the <code>&lt;Current color scheme&gt;</code> is used by ConEmu instead of the <code>dracula</code>, you need
+to go to <code>Features -> Colors -> Schemes</code> and switch to <code>dracula</code>.</li>
+	</ol>
 	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="屏幕截图(Screenshot Tools)" href="http://yyq123.github.io/learn-vim/learn-vi-801-Other-Tool-Screen.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="屏幕截图(Toolkit-Screenshot)" href="http://yyq123.github.io/learn-vim/learn-vi-801-Toolkit-Screen.html">下一篇</a>&gt;</span></p>
 
 </body>
