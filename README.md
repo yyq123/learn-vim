@@ -108,6 +108,7 @@ Created by yyq123@gmail.com using [vim](http://www.vim.org/)
   - [文件浏览器(Netrw)](http://yyq123.github.io/learn-vim/learn-vi-105-plugin-Netrw.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/04/vim-netrw.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/61588081)
   - [搜索结果计数器(searchindex)](http://yyq123.github.io/learn-vim/learn-vi-106-plugin-searchindex.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/06/vim-plugin-searchindex.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/69452874)
 - **工具箱**
+  - [Windows命令行环境(Toolkit-CLI-Win)](http://yyq123.github.io/learn-vim/learn-vi-804-Toolkit-CLI-Win.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/10/vim-toolkit-cli-win.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/89370092)
   - [屏幕截图(Screenshot)](http://yyq123.github.io/learn-vim/learn-vi-801-Toolkit-Screen.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/08/vim-toolkit-screenshot.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/76965810)
   - [图表制作(Diagram)](http://yyq123.github.io/learn-vim/learn-vi-802-Toolkit-Diagram.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/08/vim-toolkit-diagram.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/80209657)
   - [版本控制(Git)](http://yyq123.github.io/learn-vim/learn-vi-803-Toolkit-Git.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/09/vim-toolkit-git.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/82742807)
