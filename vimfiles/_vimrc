@@ -68,7 +68,24 @@ set esckeys       " Allow cursor keys in insert mode
 set modeline      " Respect modeline in files
 set modelines=4
 set report=0      " Always display message
-set shellslash    " Set the forward slash to be the slash of note
+" }}}
+
+" Shell {{{
+"set shell=$COMSPEC " sets shell to correct path for cmd.exe
+
+" Makes bash open in the working directory
+let $CHERE_INVOKING=1
+" Default path for Cygwin 64-bit, change accordingly
+set shell=D:\cygwin64\bin\bash.exe
+" Without --login, Cygwin won't mount some directories such as /usr/bin/
+set shellcmdflag=--login\ -c
+" Default value is (, but bash needs "
+set shellxquote=\"
+" Paths will use / instead of \
+set shellslash
+" PATH to determine available checkers
+let $PATH .= ';D:\cygwin64\bin'
+
 " }}}
 
 " Handle long lines
@@ -379,6 +396,10 @@ nnoremap <leader>v :browse tabe E:\Anthony_GitHub\learn-vim<CR>
 
 " Set current directory to current file with ,cd
 nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
+"open windows command prompt in the current file's directory
+nnoremap <leader>cc :!start cmd /k cd %:p:h:8<cr>
+"open explorer in the current file's directory
+nnoremap <leader>ce :!start explorer %:p:h:8<cr>
 
 " 复制当前文件/路径到剪贴板
 nmap ,fn :let @*=substitute(expand("%"), "/", "\\", "g")<CR>
