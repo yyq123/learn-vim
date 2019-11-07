@@ -5,51 +5,41 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记 工具箱-命令行环境(Toolkit-CLI)</title>
+	<title>VIM学习笔记 工具箱-Linux命令行环境(Toolkit-CLI-Linux)</title>
 </head>
 <body>
-	<h1>VIM学习笔记 工具箱-命令行环境(Toolkit-CLI)</h1>
-	<p>通过命令行环境（Command-Line Interface, CLI），我们可以更快速地执行操作，并且更方便地自动化一系列繁琐的任务。比如在多个文件中，批量替换指定的字符串等。</p>
-	<p>众所周知，几乎所有Vim插件管理器都是使用<a style="font-weight:bold" title="GitHub" href="http://github.com/">GitHub</a>来安装和更新插件；你也可以直接从GitHub<a title="GitHub" href="https://github.com/vim">下载</a>Vim；而我的这个<a title="笔记列表" href=https://github.com/yyq123/learn-vim">VIM学习笔记</a>也是托管在GitHub上的，以实现在多台电脑上同步文档并进行版本管理。</p>
-	<p>本文并不会详细介绍GitHub的安装与使用，而是聚焦于如何使用GitHub与Vim相互配合。GitHub有着非常完善的（中文）<a href="https://help.github.com/cn" title="Help">文档</a>；而视觉化的<a href="http://rogerdudler.github.io/git-guide/index.zh.html" title="git - the simple guide">git简明指南</a>更便于快速入门；还有表格化的<a href="http://rogerdudler.github.io/git-guide/files/git_cheat_sheet.pdf" title="git - cheat sheet">速查表</a>可以随时查阅各种命令的参考信息。</p>
+	<h1>VIM学习笔记 工具箱-Linux命令行环境(Toolkit-CLI-Linux)</h1>
+	<p>通过命令行环境（Command-Line Interface, CLI），我们可以更快速地执行操作，并且更方便地自动化一系列繁琐的任务。比如在多个文件中，批量替换指定的字符串等。下文将以Fedora</p>
+	<p>本文并不会详细介绍每个工具的安装步骤和使用细节，而是聚焦于各个工具与Vim相互配合。文中推荐的工具，完全基于个人主观的偏好，您可以在<a href="https://alternativeto.net/" title="AlternativeTo">AlternativeTo</a>网站中寻找功能类似的软件。</p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">Windows下的Linux命令行环境</p>
-	<p><a style="font-weight:bold" href="https://cygwin.com/" title="cygwin.com">Cygwin</a>，是 Windows下的Linux命令行环境。它包括一个提供 GNU 功能性基本子集的 DLL 以及在这之上的一组工具。</p>
-	<p>在安装过程中，您可以选择需要的软件包，比如grep、sed、curl等等。你也可以搜索&ldquo;vim&rdquo;关键字，找到vim以及相关的工具。</p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/Tools_Cygwin_SelectPackages_vim.png" title="Tools_Cygwin_SelectPackages_vim"><img src="https://yyq123.github.io/learn-vim/images/Tools_Cygwin_SelectPackages_vim.png" alt="Tools_Cygwin_SelectPackages_vim" width="550" height="366" /></a></p>
-	<p>之后，您可以随时再次运行Cygwin安装程序，以安装和更新软件包。</p>
-	<p>使用<code class="inset">uname -a</code>命令，可以查看当前版本：</p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/Tools_Cygwin_uname.png" title="Tools_Cygwin_uname"><img src="https://yyq123.github.io/learn-vim/images/Tools_Cygwin_uname.png" alt="uname" width="550" height="78" /></a></p>
-	<p>你可以通过<code class="inset">/cygdrive/c</code>路径，来访问本地磁盘C：</p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/Tools_Cygwin_cygdrive.png" title="Tools_Cygwin_cygdrive"><img src="https://yyq123.github.io/learn-vim/images/Tools_Cygwin_cygdrive.png" alt="Tools_Cygwin_cygdrive" width="550" height="33" /></a></p>
+	<h2 class="article"><a id="Oh-My-Zsh">Terminal</a></h2>
+	<p>使用传统的<a href="https://wiki.gnome.org/Apps/Terminal" title="GNOME Terminal">GNOME Terminal</a>，或者可以一键打开的下拉式终端<a href="https://extensions.gnome.org/extension/442/drop-down-terminal/" title="Drop-down Terminal">Drop-down Terminal</a></p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">文档写作</p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/Tools_ConEmu_CLI.png" title="Tools_ConEmu_CLI"><img src="https://yyq123.github.io/learn-vim/images/Tools_ConEmu_CLI.png" alt="Tools_ConEmu_CLI" width="550" height="432" /></a></p>
-	<p><a style="font-weight:bold" href="https://conemu.github.io/" title="conemu.github.io">ConEmu</a>，是一个非常好用的终端，可以在多个标签也中，同时打开Windows命令提示符（Command Prompt）,powershell，Cygwin和Git bash等等。</p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/Tools_Github_Pages.png" title="Tools_Github_Pages"><img src="https://yyq123.github.io/learn-vim/images/Tools_Github_Pages.png" alt="Tools_Github_Pages" width="500" height="249" /></a></p>
-	<p>在此过程中，也充分体现了如下图所示的Git工作流程：</p>
+
+	<h2 class="article"><a id="Oh-My-Zsh">Zsh</a></h2>
+	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="550" height="366" /></a></p>
+	<p>Zsh Bash，除了具有Bash的基本功能之外，还具有更多高级功能：比如交互式制表符补全、自动文件搜索、支持正则表达式、用于定义命令范围的高级速记符，以及丰富的主题引擎等等。</p>
+	<p>使用包管理器安装Zsh：</p>
+	<p style="text-indent:2em"><code class="inset">$ sudo dnf install zsh</code></p>
+	<p>使用<code class="inset"></code>命令，可以查看当前版本：</p>
+	<p><a href="https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins" title="plugin">插件</a></p>
+
+	<h2 class="article"><a id="Oh-My-Zsh">Oh My Zsh</a></h2>
 	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/Git_Workflow.png" title="Git_Workflow"><img src="http://yyq123.github.io/learn-vim/images/Git_Workflow.png" alt="Git_Workflow" /></a></br>Source: medium.com/free-code-camp</p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/Git_Workflow.png" title="Git_Workflow"><img src="https://yyq123.github.io/learn-vim/images/Git_Workflow.png" alt="" width="500" height="294" /></a></p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">插件管理</p>
 	<p><a href="https://ohmyz.sh/" title="Oh My ZSH">Oh My ZSH</a>，<a href="https://github.com/tmux/tmux" title="tmux">tmux</a>，首先都需要使用<code class="inset">git clone</code>命令来安装插件管理器本身。而之后在安装其它插件时，也需要在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>配置文件中指定GitHub Repository的名称。</p>
 
 	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
-	<p>在Greenshot内置的图片编辑器中，可以为图片增加注解、标识重点、绘制图形；还可以应用边框、阴影、锯齿、高亮和模糊等多种效果。更重要的是，图片可以保存为greenshot类型的文件。之后您可以多次打开greenshot文件，不断对屏幕截图进行修改，然后再将最终结果输出为PNG或JPG图片格式。这种对于屏幕截图进行多次持续调整的能力，在其他屏幕截图软件中并不多见。</p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/Tools_Screen_Greenshot_Editor.png" title="Tools_Screen_Greenshot_Editor"><img src="https://yyq123.github.io/learn-vim/images/Tools_Screen_Greenshot_Editor.png" alt="Tools_Screen_Greenshot_Editor" width="500" height="271" /></a></p>
-	<p>在Linux下，我会使用开源的<a href="https://github.com/lupoDharkael/flameshot" title="Flameshot">Flameshot</a>；而在Mac下，则购买了久负盛名的<a href="https://www.techsmith.com/screen-capture.html" title="SnagIt">SnagIt</a>，同时也使用免费的<a href="http://snappy-app.com/">Snappy</a>。</p>
 
 	<p></p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
 	<p></p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">代码片段管理</p>
 	<p><a href="https://tldr.sh/" title="tldr">tldr</a></p>
 	<p><a href="https://tldr.ostera.io/" title="tldr web client"></a></p>
 	<p><a href="https://apps.apple.com/us/app/tldr-pages/id1071725095" title="iOS client"></a></p>
-	<p><a href="http://dia-installer.de" title="Dia">Dia</a></p>
-
-	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Tools_tldr.png" title="Tools_tldr"><img src="https://yyq123.github.io/learn-vim/images/.png" alt="Tools_tldr" /></a></p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">学习资源</p>
 
