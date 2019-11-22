@@ -5,50 +5,36 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记  ()</title>
+	<title>VIM学习笔记 色彩测试(colortest)</title>
 </head>
 <body>
-	<h1>VIM学习笔记  ()</h1>
+	<h1>VIM学习笔记 色彩测试(colortest)</h1>
 
-	<h2 class="article"><a id="">启用/禁用</a></h2>
-	<p></p>
-	<a href="#" title=""></a>
-
-
+	<h2 class="article"><a id="colortest_gvim">GVim中的色彩测试</a></h2>
 	<p>运行以下内置脚本（Vimscript），可以查看各种颜色作为前景（foreground）和背景（background）的显示效果，以及在浅色（white）和深色（black）背景下的显示效果。</p>
 	<p style="text-indent:2em"><code class="inset">:runtime syntax/colortest.vim</code></p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/colortest.png" title="colortest"><img src="https://yyq123.github.io/learn-vim/images/.png" alt="colortest" width="550" height="365" /></a></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/colortest.png" title="colortest"><img src="https://yyq123.github.io/learn-vim/images/colortest.png" alt="colortest" width="550" height="365" /></a></p>
 	<p>通过以下内置文件，可以查看Vim预定义的色彩名称：</p>
 	<p style="text-indent:2em"><code class="inset">:view $VIMRUNTIME/rgb.txt</code></p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/rgb_txt.png" title="rgb_txt"><img src="https://yyq123.github.io/learn-vim/images/rgb_txt.png" alt="rgb_txt" /></a></p>
 	<p>你可以下载并在GVim中打开<a href="https://yyq123.github.io/learn-vim/samples/colorname.vim" title="colorname.vim">colorname.vim</a>，然后执行<code class="inset">:so %</code>命令。此脚本文件将新建缓冲区，显示rgb.txt文件中色彩的显示效果：</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/colorname.png" title="colorname"><img src="https://yyq123.github.io/learn-vim/images/colorname.png" alt="colorname" width="550" height="123" /></a></p>
 
-	<p>你可以下载并在GVim中打开<a href="https://yyq123.github.io/learn-vim/samples/colorlist.vim" title="colorlist.vim">colorlist.vim</a>，然后执行<code class="inset">:so %</code>命令。此脚本文件将以紧密列表的形式，显示rgb.txt文件中色彩的显示效果：</p>
+	<p>你可以下载并在GVim中打开<a href="https://yyq123.github.io/learn-vim/samples/colorlist.vim" title="colorlist.vim">colorlist.vim</a>，然后执行<code class="inset">:so %</code>命令。此脚本文件将以紧凑列表的形式，显示rgb.txt文件中色彩的显示效果：</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/colorlist.png" title="colorlist"><img src="https://yyq123.github.io/learn-vim/images/colorlist.png" alt="colorlist" width="550" height="109" /></a></p>
-	<p style="text-indent:2em"><code class="inset"></code></p>
-	<p style="text-indent:2em"><code class="inset"></code></p>
 
-	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
-	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
+	<h2 class="article"><a id="colortest_term">Terminal中的色彩测试</a></h2>
+	<p>现今，几乎所有虚拟终端（比如<a href="https://wiki.gnome.org/Apps/Terminal" title="GNOME Terminal">GNOME Terminal</a>，<a href="https://iterm2.com/" title="iTerm2">iTerm2</a>，<a href="https://conemu.github.io/" title="ConEmu">ConEmu</a>等）都是支持256 (Xterm)色的。</p>
+	<p>在终端中执行以下命令，可以查看256色的显示效果：</p>
+	<p style="text-indent:2em"><code class="inset">$ curl -s https://gist.githubusercontent.com/HaleTom/89ffe32783f89f403bba96bd7bcd1263/raw/ | bash</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/colortest_term_256.png" title="colortest_term_256"><img src="https://yyq123.github.io/learn-vim/images/colortest_term_256.png" alt="colortest_term_256" width="550" height="264" /></a></p>
+	<p>为了启用256色，请在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>配置文件的<a href="http://yyq123.github.io/learn-vim/learn-vi-62-ColorScheme.html" title="Color Scheme">colorscheme</a>配色方案设置之前增加以下命令：</p>
+	<p style="text-indent:2em"><code class="inset">set t_Co=256</code></p>
+	<p>你可以在<a href="https://jonasjacek.github.io/colors/" title="256 COLORS - CHEAT SHEET">256 COLORS - CHEAT SHEET</a>中，查看256色的Xterm Number和Xterm Name，以及与HEX和RGB格式的对应关系：</p>
+	<p><a href="http://yyq123.github.io/learn-vim/images/colortest_term_256_HEX_RGB.png" title="colortest_term_256_HEX_RGB"><img src="http://yyq123.github.io/learn-vim/images/colortest_term_256_HEX_RGB.png" alt="colortest_term_256_HEX_RGB" width="550" height="175" /></a></p>
+	<p>也就是说，在您选择使用特定色彩时，需要同时考虑在GUI图形界面和Xterm虚拟终端中的显示效果，以便能够获得理想且一致的感官。</p>
 
-	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
-		<caption style="margin:0.5em; font-weight:bold">选项列表</caption>
-		<tr><th style="white-space: nowrap">选项</th><th>描述</th><th>帮助信息</th></tr>
-		<tr><td><code class="inset">!</code></td><td>如果包含，表示。例如，。</td><td style="white-space: nowrap"><code class="inset">:help viminfo-!</code></td></tr>
-	</table>
-
-	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
-		<caption>命令小结</caption>
-		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
-		<tr><td><code class="inset">:</code></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-	</table>
-&ldquo;&rdquo;
-
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="配色方案(Color Scheme)" href="http://yyq123.github.io/learn-vim/learn-vi-62-ColorScheme.html.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="语法高亮文件(Syntax)" href="http://yyq123.github.io/learn-vim/learn-vi-64-Syntax.html">下一篇</a>&gt;</span></p>
 
 </body>
 </html>
