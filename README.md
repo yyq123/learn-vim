@@ -85,6 +85,7 @@ Created by yyq123@gmail.com using [vim](http://www.vim.org/)
 - **代码开发**
   - [模板(Template)](http://yyq123.blogspot.com/2010/08/vim-template.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/03/vim-starting.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/60260968)
   - [配色方案(Color Scheme)](http://yyq123.blogspot.com/2011/02/vim-color-scheme.html)[<sup>B</sup>](http://yyq123.blogspot.com/2011/02/vim-color-scheme.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/60260968)
+  - [色彩测试(colortest)](http://yyq123.github.io/learn-vim/learn-vi-62-02-colortest.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/11/vim-colortest.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/93231686)
   - [语法高亮文件 (Syntax)](http://yyq123.blogspot.com/2011/02/vim-syntax.html)[<sup>B</sup>](http://yyq123.blogspot.com/2011/02/vim-syntax.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/43194380)
   - [语法高亮度(Syntax Highlight)](http://yyq123.blogspot.com/2017/02/vim-syntax-highlight.html)[<sup>B</sup>](http://yyq123.blogspot.com/2017/02/vim-syntax-highlight.html)<sup>/</sup>[<sup>Z</sup>](http://zhuanlan.zhihu.com/p/25292625)
   - [折叠(Fold)](http://yyq123.blogspot.com/2011/09/vim-fold.html)[<sup>B</sup>](http://yyq123.blogspot.com/2011/09/vim-fold.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/60260968)
