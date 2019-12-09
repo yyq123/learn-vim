@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记  语法高亮度-日志文件(Syntax-Logfile)</title>
+</head>
+<body>
+	<h1>VIM学习笔记  语法高亮度-日志文件(Syntax-Logfile)</h1>
+	<a href="#" title=""></a>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">识别文件</p>
+	<p>在系统排错过程中，常常需要在日志文件里大海捞针。面对数量巨大的繁杂信息，如何快速准确地找到线索，就显得格外重要了。</p>
+	<p>我们可以利用<a href="http://yyq123.github.io/learn-vim/learn-vi-64-Syntax.html" title="Syntax">语法高亮文件(Syntax)</a>，来突出显示重要的信息，比如：</p>
+	<ul>
+		<li>包含&ldquo;Error&rdquo;，&ldquo;Fail&rdquo;，&ldquo;Fatal&rdquo;等关键词的报错信息；</li>
+		<li>日期、网址、文件名等对象；</li>
+		<li>数字、字符串、操作符等元素</li>
+	</ul>
+
+	<h2 class="article"><a id="">启用/禁用</a></h2>
+	<p>首先，定义需要着重显示的文本内容：</p>
+	<p>匹配指定的关键字：</p>
+	<p style="text-indent:2em"><code class="inset">syn keyword logLevelError error fail failure</code></p>
+	<p>匹配特定模式的字符串：</p>
+	<p style="text-indent:2em"><code class="inset">syn match logDate 'd{2}/d{2}/d{4}s*d{2}:d{2}:d{2}'</code></p>
+	<p>然后，定义如何显示特定的文本内容：</p>
+	<p>将以上定义的语法高亮组，链接到已由<a href="http://yyq123.github.io/learn-vim/learn-vi-62-ColorScheme.html" title="Color Scheme">配色方案</a>定义过的语法高亮组：</p>
+	<p style="text-indent:2em"><code class="inset">hi def link logLevelError ErrorMsg</code></p>
+	<p>也可以直接定义文本的显示色彩：</p>
+	<p style="text-indent:2em"><code class="inset">hi def logLevelError guifg=#ddddff guibg=#444444</code></p>
+
+
+	<h2 class="article"><a id="">安装配置</a></h2>
+	<p><a href="https://github.com/yyq123/vim-syntax-logfile" title="Vim Syntax for Log file "></a> 将语法高亮文件，放置在以下目录：</p>
+	<p style="text-indent:2em"><code class="inset">$VIM/vimfiles/syntax</code></p>
+	<p>在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>配置文件中增加以下命令，以侦测.log为后缀名的日志文件：</p>
+	<p style="text-indent:2em"><code class="inset">	au BufNewFile,BufRead *.log setfiletype log</code></p>
+
+	<h2 class="article"><a id="">显示效果</a></h2>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Syntax_logfile.png" title="Syntax_logfile"><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="550" height="274" /></a></p>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
+		<tr><td><code class="inset">:</code></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+	</table>
+&ldquo;&rdquo;
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="Syntax" href="http://yyq123.github.io/learn-vim/learn-vi-64-Syntax.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="Syntax Highlight" href="http://yyq123.github.io/learn-vim/learn-vi-64-02-SyntaxHighlight.html">下一篇</a>&gt;</span></p>
+
+</body>
+</html>
