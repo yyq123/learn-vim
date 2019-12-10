@@ -9,48 +9,44 @@
 </head>
 <body>
 	<h1>VIM学习笔记  语法高亮度-日志文件(Syntax-Logfile)</h1>
-	<a href="#" title=""></a>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">识别文件</p>
 	<p>在系统排错过程中，常常需要在日志文件里大海捞针。面对数量巨大的繁杂信息，如何快速准确地找到线索，就显得格外重要了。</p>
-	<p>我们可以利用<a href="http://yyq123.github.io/learn-vim/learn-vi-64-Syntax.html" title="Syntax">语法高亮文件(Syntax)</a>，来突出显示重要的信息，比如：</p>
+	<p>利用<a href="http://yyq123.github.io/learn-vim/learn-vi-64-Syntax.html" title="Syntax">语法高亮度(Syntax)</a>，可以突出显示重要的信息，比如：</p>
 	<ul>
-		<li>包含&ldquo;Error&rdquo;，&ldquo;Fail&rdquo;，&ldquo;Fatal&rdquo;等关键词的报错信息；</li>
+		<li>包含&ldquo;Error&rdquo;和&ldquo;Fail&rdquo;等关键词的报错信息；</li>
 		<li>日期、网址、文件名等对象；</li>
-		<li>数字、字符串、操作符等元素</li>
+		<li>数字、字符串、操作符等元素。</li>
 	</ul>
 
-	<h2 class="article"><a id="">启用/禁用</a></h2>
+	<h2 class="article"><a id="(Syntax-Logfile-Define">定义语法高亮度</a></h2>
 	<p>首先，定义需要着重显示的文本内容：</p>
 	<p>匹配指定的关键字：</p>
 	<p style="text-indent:2em"><code class="inset">syn keyword logLevelError error fail failure</code></p>
 	<p>匹配特定模式的字符串：</p>
 	<p style="text-indent:2em"><code class="inset">syn match logDate 'd{2}/d{2}/d{4}s*d{2}:d{2}:d{2}'</code></p>
 	<p>然后，定义如何显示特定的文本内容：</p>
-	<p>将以上定义的语法高亮组，链接到已由<a href="http://yyq123.github.io/learn-vim/learn-vi-62-ColorScheme.html" title="Color Scheme">配色方案</a>定义过的语法高亮组：</p>
+	<p>将以上定义的语法高亮组，链接到<a href="http://yyq123.github.io/learn-vim/learn-vi-62-ColorScheme.html" title="Color Scheme">配色方案</a>定义过的语法高亮组：</p>
 	<p style="text-indent:2em"><code class="inset">hi def link logLevelError ErrorMsg</code></p>
 	<p>也可以直接定义文本的显示色彩：</p>
 	<p style="text-indent:2em"><code class="inset">hi def logLevelError guifg=#ddddff guibg=#444444</code></p>
 
+	<h2 class="article"><a id="(Syntax-Logfile-Install">配置语法高亮度</a></h2>
+	<p>首先，将<a href="https://github.com/yyq123/vim-syntax-logfile" title="Vim Syntax for Log file ">语法高亮文件</a>，放置在以下目录：</p>
+	<p style="text-indent:2em">Linux: <code class="inset">$HOME/.vim/syntax</code></p>
+	<p style="text-indent:2em">Windows: <code class="inset">$HOME/vimfiles/syntax</code></p>
+	<p>然后，在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>配置文件中增加以下命令，以侦测.log为后缀名的日志文件并启用语法高亮度：</p>
+	<p style="text-indent:2em"><code class="inset">au BufNewFile,BufRead *.log setfiletype log</code></p>
 
-	<h2 class="article"><a id="">安装配置</a></h2>
-	<p><a href="https://github.com/yyq123/vim-syntax-logfile" title="Vim Syntax for Log file "></a> 将语法高亮文件，放置在以下目录：</p>
-	<p style="text-indent:2em"><code class="inset">$VIM/vimfiles/syntax</code></p>
-	<p>在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>配置文件中增加以下命令，以侦测.log为后缀名的日志文件：</p>
-	<p style="text-indent:2em"><code class="inset">	au BufNewFile,BufRead *.log setfiletype log</code></p>
+	<h2 class="article"><a id="(Syntax-Logfile-Screen">语法高亮度效果</a></h2>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Syntax_logfile.png" title="Syntax_logfile"><img src="https://yyq123.github.io/learn-vim/images/Syntax_logfile.png" alt="Syntax_logfile" width="550" height="274" /></a></p>
 
-	<h2 class="article"><a id="">显示效果</a></h2>
-	<p><a href="https://yyq123.github.io/learn-vim/images/Syntax_logfile.png" title="Syntax_logfile"><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="550" height="274" /></a></p>
-
-	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
-		<caption>命令小结</caption>
-		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
-		<tr><td><code class="inset">:</code></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-	</table>
-&ldquo;&rdquo;
+	<h2 class="article"><a id="(Syntax-Logfile-Tips">关于日志查看的一点想法</a></h2>
+	<ul>
+		<li>对于动辄百兆的大型日志文件，Vim并非理想的工具。通常情况下：首先，利用<a href="https://tldr.ostera.io/tail" title="tail">tail</a>和<a href="https://tldr.ostera.io/grep" title="grep">grep</a>等命令，将日志文件截取为较小的片段；然后，再使用Vim进行细致地分析。</li>
+		<li>过多的语法高亮度，不但会影响打开文件的速度，而且还会增加阅读的干扰。应该克制地使用视觉元素，仅仅突出显示最为关键的信息。比如，您可以在<a href="https://github.com/yyq123/vim-syntax-logfile" title="Vim Syntax for Log file ">语法高亮文件</a>中，注释掉关于日期和网址等元素的定义，而仅仅保留对于报错信息的突出显示。</li>
+		<li>对于日志分析，并没有捷径。虽然<a href="https://github.com/andreshazard/vim-logreview">vim-logreview</a>等插件，可以移除日志文件中的正常统计输出，而仅仅保留报错信息。但异常事件通常并非孤立的单点问题，而其前后的上下文信息对于建立时间线和还原事件场景都有着极高的价值。对于大多数问题，并不能通过单一的报错信息，直接指向确定的解决方案。</li>
+		<li>由此看来，利用语法高亮度来突出显示报错信息，然后小心厘清来龙去脉，算是现实可行的权宜之计吧？</li>
+	</ul>
 
 	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="Syntax" href="http://yyq123.github.io/learn-vim/learn-vi-64-Syntax.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="Syntax Highlight" href="http://yyq123.github.io/learn-vim/learn-vi-64-02-SyntaxHighlight.html">下一篇</a>&gt;</span></p>
 
