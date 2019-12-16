@@ -1,0 +1,2864 @@
+
+
+--- Autocommands ---
+buffer_list  BufAdd
+    *         call <SID>BMAdd()
+buffer_list  BufDelete
+    *         call <SID>BMRemove()
+filetypedetect  BufEnter
+    *.xpm     if getline(1) =~ "XPM2" |   setf xpm2 | else |   setf xpm | endif
+    *.xpm2    setf xpm2
+LargeFile  BufEnter
+    *         let f=getfsize(expand("<afile>")) | if f > g:LargeFile || f == -2 | call LargeFile() | endif
+sig_autocmds  BufEnter
+    *         call signature#sign#Refresh()
+FileExplorer  BufEnter
+    *         sil call s:LocalBrowse(expand("<amatch>"))
+    .*        sil call s:LocalBrowse(expand("<amatch>"))
+Colorizer  BufEnter
+    *         silent call colorizer#ColorHighlight(1)
+buffer_list  BufFilePost
+    *         call <SID>BMAdd()
+buffer_list  BufFilePre
+    *         call <SID>BMRemove()
+FileExplorer  BufLeave
+    *         if &ft != "netrw"|let w:netrw_prvfile= expand("%:p")|endif
+filetypedetect  BufNewFile
+    ?\+.orig  exe "doau filetypedetect BufRead " . fnameescape(expand("<afile>:r"))
+    ?\+.bak   exe "doau filetypedetect BufRead " . fnameescape(expand("<afile>:r"))
+    ?\+.old   exe "doau filetypedetect BufRead " . fnameescape(expand("<afile>:r"))
+    ?\+.new   exe "doau filetypedetect BufRead " . fnameescape(expand("<afile>:r"))
+    ?\+.dpkg-dist
+              exe "doau filetypedetect BufRead " . fnameescape(expand("<afile>:r"))
+    ?\+.dpkg-old
+              exe "doau filetypedetect BufRead " . fnameescape(expand("<afile>:r"))
+    ?\+.dpkg-new
+              exe "doau filetypedetect BufRead " . fnameescape(expand("<afile>:r"))
+    ?\+.dpkg-bak
+              exe "doau filetypedetect BufRead " . fnameescape(expand("<afile>:r"))
+    ?\+.rpmsave
+              exe "doau filetypedetect BufRead " . fnameescape(expand("<afile>:r"))
+    ?\+.rpmnew
+              exe "doau filetypedetect BufRead " . fnameescape(expand("<afile>:r"))
+    ?\+.pacsave
+              exe "doau filetypedetect BufRead " . fnameescape(expand("<afile>:r"))
+    ?\+.pacnew
+              exe "doau filetypedetect BufRead " . fnameescape(expand("<afile>:r"))
+    *~        let s:name = expand("<afile>") | let s:short = substitute(s:name, '\~$', '', '') | if s:name != s:short && s:short != "" |   exe "doau filetypedetect BufRead " . fnameescape(s:short) | endif | unlet! s:name s:short
+    ?\+.in    if expand("<afile>:t") != "configure.in" |   exe "doau filetypedetect BufRead " . fnameescape(expand("<afile>:r")) | endif
+    C:/Program Files (x86)/Vim/vim81/doc/*.txt
+              setf help
+    *.inp     call dist#ft#Check_inp()
+    *.8th     setf 8th
+    *.aap     setf aap
+    */etc/a2ps.cfg
+              setf a2ps
+    */etc/a2ps/*.cfg
+              setf a2ps
+    a2psrc    setf a2ps
+    .a2psrc   setf a2ps
+    *.abap    setf abap
+    *.abc     setf abc
+    *.abl     setf abel
+    *.wrm     setf acedb
+    *.adb     setf ada
+    *.ads     setf ada
+    *.ada     setf ada
+    *.gpr     setf ada
+    *.tdf     setf ahdl
+    *.run     setf ampl
+    build.xml setf ant
+    *.ino     setf arduino
+    *.pde     setf arduino
+    .htaccess setf apache
+    */etc/httpd/*.conf
+              setf apache
+    */etc/apache2/sites-*/*.com
+              setf apache
+    *.a65     setf a65
+    *.scpt    setf applescript
+    *.am      if expand("<afile>") !~? 'Makefile.am\>' | setf elf | endif
+    .asoundrc setf alsaconf
+    */usr/share/alsa/alsa.conf
+              setf alsaconf
+    */etc/asound.conf
+              setf alsaconf
+    *.aml     setf aml
+    apt.conf  setf aptconf
+    */.aptitude/config
+              setf aptconf
+    */etc/apt/apt.conf.d/{[-_[:alnum:]]\+,[-_.[:alnum:]]\+.conf}
+              setf aptconf
+    .arch-inventory
+              setf arch
+    =tagging-method
+              setf arch
+    *.art     setf art
+    *.asciidoc
+              setf asciidoc
+    *.adoc    setf asciidoc
+    *.asn     setf asn
+    *.asn1    setf asn
+    *.asa     if exists("g:filetype_asa") |   exe "setf " . g:filetype_asa | else |   setf aspvbs | endif
+    *.asp     if exists("g:filetype_asp") |   exe "setf " . g:filetype_asp | elseif getline(1) . getline(2) . getline(3) =~? "perlscript" |   setf aspperl | else |   setf aspvbs | endif
+    */boot/grub/menu.lst
+              setf grub
+    */boot/grub/grub.conf
+              setf grub
+    */etc/grub.conf
+              setf grub
+    *.asm     call dist#ft#FTasm()
+    *.[sS]    call dist#ft#FTasm()
+    *.[aA]    call dist#ft#FTasm()
+    *.mac     call dist#ft#FTasm()
+    *.lst     call dist#ft#FTasm()
+    *.mar     setf vmasm
+    *.atl     setf atlas
+    *.as      setf atlas
+    *.au3     setf autoit
+    *.ahk     setf autohotkey
+    [mM]akefile.am
+              setf automake
+    GNUmakefile.am
+              setf automake
+    *.at      setf m4
+    *.ave     setf ave
+    *.awk     setf awk
+    *.mch     setf b
+    *.ref     setf b
+    *.imp     setf b
+    *.bas     call dist#ft#FTVB("basic")
+    *.vb      setf vb
+    *.vbs     setf vb
+    *.dsm     setf vb
+    *.ctl     setf vb
+    *.iba     setf ibasic
+    *.ibi     setf ibasic
+    *.fb      setf freebasic
+    *.bi      setf freebasic
+    *.bat     setf dosbatch
+    *.sys     setf dosbatch
+    *.cmd     if getline(1) =~ '^/\*' | setf rexx | else | setf dosbatch | endif
+    *.btm     call dist#ft#FTbtm()
+    *.bc      setf bc
+    *.bdf     setf bdf
+    *.bib     setf bib
+    *.bst     setf bst
+    named*.conf
+              setf named
+    rndc*.conf
+              setf named
+    rndc*.key setf named
+    named.root
+              setf bindzone
+    *.db      call dist#ft#BindzoneCheck('')
+    *.bl      setf blank
+    */etc/blkid.tab
+              setf xml
+    */etc/blkid.tab.old
+              setf xml
+    *.bzl     setf bzl
+    WORKSPACE setf bzl
+    BUILD.bazel
+              setf bzl
+    *.c       call dist#ft#FTlpc()
+    *.lpc     setf lpc
+    *.ulpc    setf lpc
+    calendar  setf calendar
+    *.cs      setf cs
+    *.csdl    setf csdl
+    *.cabal   setf cabal
+    *.toc     setf cdrtoc
+    */etc/cdrdao.conf
+              setf cdrdaoconf
+    */etc/defaults/cdrdao
+              setf cdrdaoconf
+    */etc/default/cdrdao
+              setf cdrdaoconf
+    .cdrdao   setf cdrdaoconf
+    cfengine.conf
+              setf cfengine
+    *.chai    setf chaiscript
+    *.cdl     setf cdl
+    *.recipe  setf conaryrecipe
+    *.crm     setf crm
+    *.cyn     setf cynpp
+    *.cc      if exists("cynlib_syntax_for_cc")|setf cynlib|else|setf cpp|endif
+    *.cpp     if exists("cynlib_syntax_for_cpp")|setf cynlib|else|setf cpp|endif
+    *.cxx     setf cpp
+    *.c++     setf cpp
+    *.hh      setf cpp
+    *.hxx     setf cpp
+    *.hpp     setf cpp
+    *.ipp     setf cpp
+    *.moc     setf cpp
+    *.tcc     setf cpp
+    *.inl     setf cpp
+    *.h       call dist#ft#FTheader()
+    *.chf     setf ch
+    *.tlh     setf cpp
+    *.css     setf css
+    *.con     setf cterm
+    changelog.Debian
+              setf debchangelog
+    changelog.dch
+              setf debchangelog
+    NEWS.Debian
+              setf debchangelog
+    NEWS.dch  setf debchangelog
+    [cC]hange[lL]og
+              if getline(1) =~ '; urgency='|   setf debchangelog| else|   setf changelog| endif
+    NEWS      if getline(1) =~ '; urgency='|   setf debchangelog| endif
+    *..ch     setf chill
+    *.ch      call dist#ft#FTchange()
+    *.chopro  setf chordpro
+    *.crd     setf chordpro
+    *.cho     setf chordpro
+    *.crdpro  setf chordpro
+    *.chordpro
+              setf chordpro
+    *.dcl     setf clean
+    *.icl     setf clean
+    *.eni     setf cl
+    *.ent     call dist#ft#FTent()
+    *.prg     if exists("g:filetype_prg") |   exe "setf " . g:filetype_prg | else |   setf clipper | endif
+    *.clj     setf clojure
+    *.cljs    setf clojure
+    *.cljx    setf clojure
+    *.cljc    setf clojure
+    CMakeLists.txt
+              setf cmake
+    *.cmake   setf cmake
+    *.cmake.in
+              setf cmake
+    */.cmus/{autosave,rc,command-history,*.theme}
+              setf cmusrc
+    */cmus/{rc,*.theme}
+              setf cmusrc
+    *.cbl     setf cobol
+    *.cob     setf cobol
+    *.lib     setf cobol
+    *.cpy     if getline(1) =~ '^##' |   setf python | else |   setf cobol | endif
+    *.atg     setf coco
+    *.cfm     setf cf
+    *.cfi     setf cf
+    *.cfc     setf cf
+    configure.in
+              setf config
+    configure.ac
+              setf config
+    *.cu      setf cuda
+    *.cuh     setf cuda
+    Containerfile
+              setf dockerfile
+    Dockerfile
+              setf dockerfile
+    *.Dockerfile
+              setf dockerfile
+    *.dcd     setf dcd
+    *enlightenment/*.cfg
+              setf c
+    *Eterm/*.cfg
+              setf eterm
+    *.eu      call dist#ft#EuphoriaCheck()
+    *.ew      call dist#ft#EuphoriaCheck()
+    *.ex      call dist#ft#EuphoriaCheck()
+    *.exu     call dist#ft#EuphoriaCheck()
+    *.exw     call dist#ft#EuphoriaCheck()
+    lynx.cfg  setf lynx
+    *baseq[2-3]/*.cfg
+              setf quake
+    *id1/*.cfg
+              setf quake
+    *quake[1-3]/*.cfg
+              setf quake
+    *.qc      setf c
+    *.cfg     setf cfg
+    *.feature setf cucumber
+    *.csp     setf csp
+    *.fdr     setf csp
+    *.pld     setf cupl
+    *.si      setf cuplsim
+    *.dart    setf dart
+    *.drt     setf dart
+    */debian/control
+              setf debcontrol
+    control   if getline(1) =~ '^Source:'|   setf debcontrol| endif
+    */debian/copyright
+              setf debcopyright
+    copyright if getline(1) =~ '^Format:'|   setf debcopyright| endif
+    */etc/apt/sources.list
+              setf debsources
+    */etc/apt/sources.list.d/*.list
+              setf debsources
+    denyhosts.conf
+              setf denyhosts
+    */etc/dnsmasq.conf
+              setf dnsmasq
+    *.desc    setf desc
+    *.d       call dist#ft#DtraceCheck()
+    *.desktop setf desktop
+    .directory
+              setf desktop
+    dict.conf setf dictconf
+    .dictrc   setf dictconf
+    dictd.conf
+              setf dictdconf
+    *.diff    setf diff
+    *.rej     setf diff
+    *.patch   if getline(1) =~ '^From [0-9a-f]\{40\} Mon Sep 17 00:00:00 2001$' |   setf gitsendemail | else |   setf diff | endif
+    .dir_colors
+              setf dircolors
+    .dircolors
+              setf dircolors
+    */etc/DIR_COLORS
+              setf dircolors
+    *.rul     if getline(1).getline(2).getline(3).getline(4).getline(5).getline(6) =~? 'InstallShield' |   setf ishd | else |   setf diva | endif
+    *.com     call dist#ft#BindzoneCheck('dcl')
+    *.dot     setf dot
+    *.lid     setf dylanlid
+    *.intr    setf dylanintr
+    *.dylan   setf dylan
+    *.def     setf def
+    *.drac    setf dracula
+    *.drc     setf dracula
+    *lvs      setf dracula
+    *lpe      setf dracula
+    *.ds      setf datascript
+    *.dsl     setf dsl
+    *.dtd     setf dtd
+    *.dts     setf dts
+    *.dtsi    setf dts
+    *.ed\(f\|if\|o\)
+              setf edif
+    *.edn     if getline(1) =~ '^\s*(\s*edif\>' |   setf edif | else |   setf clojure | endif
+    .editorconfig
+              setf dosini
+    *.ecd     setf ecd
+    *.e       call dist#ft#FTe()
+    *.E       call dist#ft#FTe()
+    */etc/elinks.conf
+              setf elinks
+    */.elinks/elinks.conf
+              setf elinks
+    *.erl     setf erlang
+    *.hrl     setf erlang
+    *.yaws    setf erlang
+    filter-rules
+              setf elmfilt
+    *esmtprc  setf esmtprc
+    *.ec      setf esqlc
+    *.EC      setf esqlc
+    *.strl    setf esterel
+    *.csc     setf csc
+    exim.conf setf exim
+    *.exp     setf expect
+    exports   setf exports
+    *.fal     setf falcon
+    *.fan     setf fan
+    *.fwt     setf fan
+    *.factor  setf factor
+    .fetchmailrc
+              setf fetchmail
+    *.fex     setf focexec
+    *.focexec setf focexec
+    auto.master
+              setf conf
+    *.mas     setf master
+    *.master  setf master
+    *.fs      setf forth
+    *.ft      setf forth
+    *.fth     setf forth
+    *.frt     setf reva
+    *.f       setf fortran
+    *.for     setf fortran
+    *.fortran setf fortran
+    *.fpp     setf fortran
+    *.ftn     setf fortran
+    *.f77     setf fortran
+    *.f90     setf fortran
+    *.f95     setf fortran
+    *.f03     setf fortran
+    *.f08     setf fortran
+    *.fsl     setf framescript
+    fstab     setf fstab
+    mtab      setf fstab
+    .gdbinit  setf gdb
+    *.mo      setf gdmo
+    *.gdmo    setf gdmo
+    *.ged     setf gedcom
+    lltxxxxx.txt
+              setf gedcom
+    COMMIT_EDITMSG
+              setf gitcommit
+    MERGE_MSG setf gitcommit
+    TAG_EDITMSG
+              setf gitcommit
+    *.git/config
+              setf gitconfig
+    .gitconfig
+              setf gitconfig
+    /etc/gitconfig
+              setf gitconfig
+    */.config/git/config
+              setf gitconfig
+    .gitmodules
+              setf gitconfig
+    *.git/modules/*/config
+              setf gitconfig
+    git-rebase-todo
+              setf gitrebase
+    .gitsendemail.msg.??????
+              setf gitsendemail
+    .msg.[0-9]*
+              if getline(1) =~ '^From.*# This line is ignored.$' |   setf gitsendemail | endif
+    *.git/*   if getline(1) =~ '^\x\{40\}\>\|^ref: ' |   setf git | endif
+    gkrellmrc setf gkrellmrc
+    gkrellmrc_?
+              setf gkrellmrc
+    *.gp      setf gp
+    .gprc     setf gp
+    */.gnupg/options
+              setf gpg
+    */.gnupg/gpg.conf
+              setf gpg
+    */usr/*/gnupg/options.skel
+              setf gpg
+    gnashrc   setf gnash
+    .gnashrc  setf gnash
+    gnashpluginrc
+              setf gnash
+    .gnashpluginrc
+              setf gnash
+    gitolite.conf
+              setf gitolite
+    {,.}gitolite.rc
+              setf perl
+    example.gitolite.rc
+              setf perl
+    *.gpi     setf gnuplot
+    *.go      setf go
+    *.gs      setf grads
+    *.gretl   setf gretl
+    *.gradle  setf groovy
+    *.groovy  setf groovy
+    *.gsp     setf gsp
+    */etc/group
+              setf group
+    */etc/group-
+              setf group
+    */etc/group.edit
+              setf group
+    */etc/gshadow
+              setf group
+    */etc/gshadow-
+              setf group
+    */etc/gshadow.edit
+              setf group
+    */var/backups/group.bak
+              setf group
+    */var/backups/gshadow.bak
+              setf group
+    .gtkrc    setf gtkrc
+    gtkrc     setf gtkrc
+    *.haml    setf haml
+    *.hsc     setf hamster
+    *.hsm     setf hamster
+    *.hs      setf haskell
+    *.hs-boot setf haskell
+    *.lhs     setf lhaskell
+    *.chs     setf chaskell
+    *.ht      setf haste
+    *.htpp    setf hastepreproc
+    *.vc      setf hercules
+    *.ev      setf hercules
+    *.sum     setf hercules
+    *.errsum  setf hercules
+    *.hex     setf hex
+    *.h32     setf hex
+    *.hws     setf hollywood
+    *.t.html  setf tilde
+    *.html    call dist#ft#FThtml()
+    *.htm     call dist#ft#FThtml()
+    *.shtml   call dist#ft#FThtml()
+    *.stm     call dist#ft#FThtml()
+    *.erb     setf eruby
+    *.rhtml   setf eruby
+    *.html.m4 setf htmlm4
+    *.tmpl    setf template
+    */etc/host.conf
+              setf hostconf
+    */etc/hosts.allow
+              setf hostsaccess
+    */etc/hosts.deny
+              setf hostsaccess
+    *.hb      setf hb
+    *.htt     setf httest
+    *.htb     setf httest
+    *.icn     setf icon
+    *.idl     call dist#ft#FTidl()
+    *.odl     setf msidl
+    *.mof     setf msidl
+    */.icewm/menu
+              setf icemenu
+    .indent.pro
+              setf indent
+    indent.pro
+              call dist#ft#ProtoCheck('indent')
+    *.pro     call dist#ft#ProtoCheck('idlang')
+    indentrc  setf indent
+    *.inf     setf inform
+    *.INF     setf inform
+    */etc/initng/*/*.i
+              setf initng
+    *.ii      setf initng
+    upstream.dat\c
+              setf upstreamdat
+    upstream.*.dat\c
+              setf upstreamdat
+    *.upstream.dat\c
+              setf upstreamdat
+    fdrupstream.log
+              setf upstreamlog
+    upstream.log\c
+              setf upstreamlog
+    upstream.*.log\c
+              setf upstreamlog
+    *.upstream.log\c
+              setf upstreamlog
+    UPSTREAM-*.log\c
+              setf upstreamlog
+    upstreaminstall.log\c
+              setf upstreaminstalllog
+    upstreaminstall.*.log\c
+              setf upstreaminstalllog
+    *.upstreaminstall.log\c
+              setf upstreaminstalllog
+    usserver.log\c
+              setf usserverlog
+    usserver.*.log\c
+              setf usserverlog
+    *.usserver.log\c
+              setf usserverlog
+    usw2kagt.log\c
+              setf usw2kagtlog
+    usw2kagt.*.log\c
+              setf usw2kagtlog
+    *.usw2kagt.log\c
+              setf usw2kagtlog
+    ipf.conf  setf ipfilter
+    ipf6.conf setf ipfilter
+    ipf.rules setf ipfilter
+    *.4gl     setf fgl
+    *.4gh     setf fgl
+    *.m4gl    setf fgl
+    *.ini     setf dosini
+    inittab   setf inittab
+    *.iss     setf iss
+    *.ijs     setf j
+    *.jal     setf jal
+    *.JAL     setf jal
+    *.jpl     setf jam
+    *.jpr     setf jam
+    *.java    setf java
+    *.jav     setf java
+    *.jj      setf javacc
+    *.jjt     setf javacc
+    *.js      setf javascript
+    *.javascript
+              setf javascript
+    *.es      setf javascript
+    *.mjs     setf javascript
+    *.jsx     setf javascriptreact
+    *.jsp     setf jsp
+    *.properties
+              setf jproperties
+    *.properties_??
+              setf jproperties
+    *.properties_??_??
+              setf jproperties
+    *.clp     setf jess
+    *.jgr     setf jgraph
+    *.jov     setf jovial
+    *.j73     setf jovial
+    *.jovial  setf jovial
+    *.json    setf json
+    *.jsonp   setf json
+    *.webmanifest
+              setf json
+    *.kix     setf kix
+    *.k       setf kwt
+    *.kv      setf kivy
+    *.ks      setf kscript
+    Kconfig   setf kconfig
+    Kconfig.debug
+              setf kconfig
+    *.ace     setf lace
+    *.ACE     setf lace
+    *.latte   setf latte
+    *.lte     setf latte
+    */etc/limits
+              setf limits
+    */etc/*limits.conf
+              setf limits
+    */etc/*limits.d/*.conf
+              setf limits
+    *.sig     setf lprolog
+    *.ldif    setf ldif
+    *.ld      setf ld
+    *.less    setf less
+    *.lex     setf lex
+    *.l       setf lex
+    *.lxx     setf lex
+    *.l++     setf lex
+    */etc/libao.conf
+              setf libao
+    */.libao  setf libao
+    */etc/sensors.conf
+              setf sensors
+    */etc/sensors3.conf
+              setf sensors
+    lftp.conf setf lftp
+    .lftprc   setf lftp
+    *lftp/rc  setf lftp
+    *.ll      setf lifelines
+    lilo.conf setf lilo
+    *.lsp     setf lisp
+    *.lisp    setf lisp
+    *.el      setf lisp
+    *.cl      setf lisp
+    *.jl      setf lisp
+    .emacs    setf lisp
+    .sawfishrc
+              setf lisp
+    sbclrc    setf lisp
+    .sbclrc   setf lisp
+    *.liquid  setf liquid
+    *.lite    setf lite
+    *.lt      setf lite
+    */LiteStep/*/*.rc
+              setf litestep
+    */etc/login.access
+              setf loginaccess
+    */etc/login.defs
+              setf logindefs
+    *.lgt     setf logtalk
+    *.lot     setf lotos
+    *.lotos   setf lotos
+    *.lou     setf lout
+    *.lout    setf lout
+    *.lua     setf lua
+    *.rockspec
+              setf lua
+    *.lsl     setf lsl
+    *.lss     setf lss
+    *.m4      if expand("<afile>") !~? 'html.m4$\|fvwm2rc' | setf m4 | endif
+    *.mgp     setf mgp
+    snd.\d\+  setf mail
+    .letter   setf mail
+    .letter.\d\+
+              setf mail
+    .followup setf mail
+    .article  setf mail
+    .article.\d\+
+              setf mail
+    pico.\d\+ setf mail
+    mutt{ng,}-*-\w\+
+              setf mail
+    mutt[[:alnum:]_-]\\\{6\}
+              setf mail
+    neomutt-*-\w\+
+              setf mail
+    neomutt[[:alnum:]_-]\\\{6\}
+              setf mail
+    ae\d\+.txt
+              setf mail
+    /tmp/SLRN[0-9A-Z.]\+
+              setf mail
+    *.eml     setf mail
+    */etc/mail/aliases
+              setf mailaliases
+    */etc/aliases
+              setf mailaliases
+    .mailcap  setf mailcap
+    mailcap   setf mailcap
+    *[mM]akefile
+              setf make
+    *.mk      setf make
+    *.mak     setf make
+    *.dsp     setf make
+    *.ist     setf ist
+    *.mst     setf ist
+    *.page    setf mallard
+    *.man     setf man
+    */etc/man.conf
+              setf manconf
+    man.config
+              setf manconf
+    *.mv      setf maple
+    *.mpl     setf maple
+    *.mws     setf maple
+    *.map     setf map
+    *.markdown
+              setf markdown
+    *.mdown   setf markdown
+    *.mkd     setf markdown
+    *.mkdn    setf markdown
+    *.mdwn    setf markdown
+    *.md      setf markdown
+    *.mason   setf mason
+    *.mhtml   setf mason
+    *.comp    setf mason
+    *.m       call dist#ft#FTm()
+    *.nb      setf mma
+    *.mel     setf mel
+    hg-editor-*.txt
+              setf hgcommit
+    *.hgrc    setf cfg
+    *hgrc     setf cfg
+    meson.build
+              setf meson
+    meson_options.txt
+              setf meson
+    */log/{auth,cron,daemon,debug,kern,lpr,mail,messages,news/news,syslog,user}{,.log,.err,.info,.warn,.crit,.notice}{,.[0-9]*,-[0-9]*}
+              setf messages
+    *.mf      setf mf
+    *.mp      setf mp
+    *.mgl     setf mgl
+    *.mix     setf mix
+    *.mixal   setf mix
+    *.mms     call dist#ft#FTmms()
+    *.mmp     setf mmp
+    *.mod     if getline(1) =~ '\<module\>' |   setf lprolog | else |   setf modsim3 | endif
+    *.m2      setf modula2
+    *.DEF     setf modula2
+    *.MOD     setf modula2
+    *.mi      setf modula2
+    *.[mi][3g]
+              setf modula3
+    *.isc     setf monk
+    *.monk    setf monk
+    *.ssc     setf monk
+    *.tsc     setf monk
+    *.moo     setf moo
+    */etc/modules.conf
+              setf modconf
+    */etc/modules
+              setf modconf
+    */etc/conf.modules
+              setf modconf
+    mplayer.conf
+              setf mplayerconf
+    */.mplayer/config
+              setf mplayerconf
+    *.s19     setf srec
+    *.s28     setf srec
+    *.s37     setf srec
+    *.mot     setf srec
+    *.srec    setf srec
+    mrxvtrc   setf mrxvtrc
+    .mrxvtrc  setf mrxvtrc
+    *.msql    setf msql
+    *.mysql   setf mysql
+    */etc/Muttrc.d/*
+              call s:StarSetf('muttrc')
+    *.rc      setf rc
+    *.rch     setf rc
+    *.mu      setf mupad
+    *.mush    setf mush
+    Mutt{ng,}rc
+              setf muttrc
+    *.n1ql    setf n1ql
+    *.nql     setf n1ql
+    */etc/nanorc
+              setf nanorc
+    *.nanorc  setf nanorc
+    *.NS[ACGLMNPS]
+              setf natural
+    Neomuttrc setf neomuttrc
+    .netrc    setf netrc
+    *.ninja   setf ninja
+    *.ncf     setf ncf
+    *.me      if expand("<afile>") != "read.me" && expand("<afile>") != "click.me" |   setf nroff | endif
+    *.tr      setf nroff
+    *.nr      setf nroff
+    *.roff    setf nroff
+    *.tmac    setf nroff
+    *.mom     setf nroff
+    *.[1-9]   call dist#ft#FTnroff()
+    *.mm      call dist#ft#FTmm()
+    *.nqc     setf nqc
+    *.nse     setf lua
+    *.nsi     setf nsis
+    *.nsh     setf nsis
+    *.ml      setf ocaml
+    *.mli     setf ocaml
+    *.mll     setf ocaml
+    *.mly     setf ocaml
+    .ocamlinit
+              setf ocaml
+    *.occ     setf occam
+    *.xom     setf omnimark
+    *.xin     setf omnimark
+    *.or      setf openroad
+    *.[Oo][Pp][Ll]
+              setf opl
+    *.ora     setf ora
+    pf.conf   setf pf
+    */etc/pam.conf
+              setf pamconf
+    *.papp    setf papp
+    *.pxml    setf papp
+    *.pxsl    setf papp
+    */etc/passwd
+              setf passwd
+    */etc/passwd-
+              setf passwd
+    */etc/passwd.edit
+              setf passwd
+    */etc/shadow
+              setf passwd
+    */etc/shadow-
+              setf passwd
+    */etc/shadow.edit
+              setf passwd
+    */var/backups/passwd.bak
+              setf passwd
+    */var/backups/shadow.bak
+              setf passwd
+    *.pas     setf pascal
+    *.dpr     setf pascal
+    *.pdf     setf pdf
+    *.pcmk    setf pcmk
+    *.pl      call dist#ft#FTpl()
+    *.plx     setf perl
+    *.al      setf perl
+    *.psgi    setf perl
+    *.p6      setf perl6
+    *.pm6     setf perl6
+    *.pl6     setf perl6
+    *.pm      if getline(1) =~ "XPM2" |   setf xpm2 | elseif getline(1) =~ "XPM" |   setf xpm | else |   setf perl | endif
+    *.pod     setf pod
+    *.pod6    setf pod6
+    *.php     setf php
+    *.php\d   setf php
+    *.phtml   setf php
+    *.ctp     setf php
+    *.pike    setf pike
+    *.pmod    setf pike
+    *.cmod    setf cmod
+    */etc/pinforc
+              setf pinfo
+    */.pinforc
+              setf pinfo
+    *.rcp     setf pilrc
+    .pinerc   setf pine
+    pinerc    setf pine
+    .pinercex setf pine
+    pinercex  setf pine
+    Pipfile   setf config
+    Pipfile.lock
+              setf json
+    *.pli     setf pli
+    *.pl1     setf pli
+    *.plm     setf plm
+    *.p36     setf plm
+    *.pac     setf plm
+    *.pls     setf plsql
+    *.plsql   setf plsql
+    *.plp     setf plp
+    *.po      setf po
+    *.pot     setf po
+    main.cf   setf pfmain
+    *.ps      setf postscr
+    *.pfa     setf postscr
+    *.afm     setf postscr
+    *.eps     setf postscr
+    *.epsf    setf postscr
+    *.epsi    setf postscr
+    *.ai      setf postscr
+    *.ppd     setf ppd
+    *.pov     setf pov
+    .povrayrc setf povini
+    *.inc     call dist#ft#FTinc()
+    *printcap let b:ptcap_type = "print" | setf ptcap
+    *termcap  let b:ptcap_type = "term" | setf ptcap
+    *.g       setf pccts
+    *.it      setf ppwiz
+    *.ih      setf ppwiz
+    *.obj     setf obj
+    *.pc      setf proc
+    *.action  setf privoxy
+    .procmail setf procmail
+    .procmailrc
+              setf procmail
+    *.w       call dist#ft#FTprogress_cweb()
+    *.i       call dist#ft#FTprogress_asm()
+    *.p       call dist#ft#FTprogress_pascal()
+    *.psf     setf psf
+    INDEX     if getline(1) =~ '^\s*\(distribution\|installed_software\|root\|bundle\|product\)\s*$' |   setf psf | endif
+    INFO      if getline(1) =~ '^\s*\(distribution\|installed_software\|root\|bundle\|product\)\s*$' |   setf psf | endif
+    *.pdb     setf prolog
+    *.pml     setf promela
+    *.proto   setf proto
+    */etc/protocols
+              setf protocols
+    *.pyx     setf pyrex
+    *.pxd     setf pyrex
+    *.py      setf python
+    *.pyw     setf python
+    .pythonstartup
+              setf python
+    .pythonrc setf python
+    *.ptl     setf python
+    *.pyi     setf python
+    *.rad     setf radiance
+    *.mat     setf radiance
+    .ratpoisonrc
+              setf ratpoison
+    ratpoisonrc
+              setf ratpoison
+    *\,v      setf rcs
+    .inputrc  setf readline
+    inputrc   setf readline
+    *.reg     if getline(1) =~? '^REGEDIT[0-9]*\s*$\|^Windows Registry Editor Version \d*\.\d*\s*$' | setf registry | endif
+    *.rib     setf rib
+    *.rex     setf rexx
+    *.orx     setf rexx
+    *.rxo     setf rexx
+    *.rxj     setf rexx
+    *.jrexx   setf rexx
+    *.rexxj   setf rexx
+    *.rexx    setf rexx
+    *.testGroup
+              setf rexx
+    *.testUnit
+              setf rexx
+    *.s       setf r
+    *.rd      setf rhelp
+    *.rnw     setf rnoweb
+    *.snw     setf rnoweb
+    *.rmd     setf rmd
+    *.smd     setf rmd
+    *.rrst    setf rrst
+    *.srst    setf rrst
+    *.r       call dist#ft#FTr()
+    *.R       call dist#ft#FTr()
+    .reminders
+              setf remind
+    *.remind  setf remind
+    *.rem     setf remind
+    resolv.conf
+              setf resolv
+    *.rnc     setf rnc
+    *.rng     setf rng
+    *.rpl     setf rpl
+    robots.txt
+              setf robots
+    *.x       setf rpcgen
+    *.rst     setf rst
+    *.rtf     setf rtf
+    .irbrc    setf ruby
+    irbrc     setf ruby
+    *.rb      setf ruby
+    *.rbw     setf ruby
+    *.gemspec setf ruby
+    *.rs      setf rust
+    *.ru      setf ruby
+    Gemfile   setf ruby
+    *.builder setf ruby
+    *.rxml    setf ruby
+    *.rjs     setf ruby
+    [rR]antfile
+              setf ruby
+    *.rant    setf ruby
+    [rR]akefile
+              setf ruby
+    *.rake    setf ruby
+    *.sl      setf slang
+    smb.conf  setf samba
+    *.sas     setf sas
+    *.sass    setf sass
+    *.sa      setf sather
+    *.scala   setf scala
+    *.sbt     setf sbt
+    *.sci     setf scilab
+    *.sce     setf scilab
+    *.scss    setf scss
+    *.sd      setf sd
+    *.sdl     setf sdl
+    *.pr      setf sdl
+    *.sed     setf sed
+    *.siv     setf sieve
+    *.sieve   setf sieve
+    sendmail.cf
+              setf sm
+    *.mc      call dist#ft#McSetf()
+    */etc/services
+              setf services
+    */etc/slp.conf
+              setf slpconf
+    */etc/slp.reg
+              setf slpreg
+    */etc/slp.spi
+              setf slpspi
+    */etc/serial.conf
+              setf setserial
+    *.sgm     if getline(1).getline(2).getline(3).getline(4).getline(5) =~? 'linuxdoc' |   setf sgmllnx | elseif getline(1) =~ '<!DOCTYPE.*DocBook' || getline(2) =~ '<!DOCTYPE.*DocBook' |   let b:docbk_type = "sgml" |   let b:docbk_ver = 4 |   setf docbk | else |   setf sgml | endif
+    *.sgml    if getline(1).getline(2).getline(3).getline(4).getline(5) =~? 'linuxdoc' |   setf sgmllnx | elseif getline(1) =~ '<!DOCTYPE.*DocBook' || getline(2) =~ '<!DOCTYPE.*DocBook' |   let b:docbk_type = "sgml" |   let b:docbk_ver = 4 |   setf docbk | else |   setf sgml | endif
+    *.decl    if getline(1).getline(2).getline(3) =~? '^<!SGML' |    setf sgmldecl | endif
+    *.dcl     if getline(1).getline(2).getline(3) =~? '^<!SGML' |    setf sgmldecl | endif
+    *.dec     if getline(1).getline(2).getline(3) =~? '^<!SGML' |    setf sgmldecl | endif
+    catalog   setf catalog
+    .bashrc   call dist#ft#SetFileTypeSH("bash")
+    bashrc    call dist#ft#SetFileTypeSH("bash")
+    bash.bashrc
+              call dist#ft#SetFileTypeSH("bash")
+    .bash[_-]profile
+              call dist#ft#SetFileTypeSH("bash")
+    .bash[_-]logout
+              call dist#ft#SetFileTypeSH("bash")
+    .bash[_-]aliases
+              call dist#ft#SetFileTypeSH("bash")
+    bash-fc[-.]
+              call dist#ft#SetFileTypeSH("bash")
+    *.bash    call dist#ft#SetFileTypeSH("bash")
+    */{,.}bash[_-]completion{,.d,.sh}{,/*}
+              call dist#ft#SetFileTypeSH("bash")
+    *.ebuild  call dist#ft#SetFileTypeSH("bash")
+    *.eclass  call dist#ft#SetFileTypeSH("bash")
+    PKGBUILD  call dist#ft#SetFileTypeSH("bash")
+    .kshrc    call dist#ft#SetFileTypeSH("ksh")
+    *.ksh     call dist#ft#SetFileTypeSH("ksh")
+    */etc/profile
+              call dist#ft#SetFileTypeSH(getline(1))
+    .profile  call dist#ft#SetFileTypeSH(getline(1))
+    *.sh      call dist#ft#SetFileTypeSH(getline(1))
+    *.env     call dist#ft#SetFileTypeSH(getline(1))
+    *.install if getline(1) =~ '<?php' |   setf php | else |   call dist#ft#SetFileTypeSH("bash") | endif
+    .tcshrc   call dist#ft#SetFileTypeShell("tcsh")
+    *.tcsh    call dist#ft#SetFileTypeShell("tcsh")
+    tcsh.tcshrc
+              call dist#ft#SetFileTypeShell("tcsh")
+    tcsh.login
+              call dist#ft#SetFileTypeShell("tcsh")
+    .login    call dist#ft#CSH()
+    .cshrc    call dist#ft#CSH()
+    csh.cshrc call dist#ft#CSH()
+    csh.login call dist#ft#CSH()
+    csh.logout
+              call dist#ft#CSH()
+    *.csh     call dist#ft#CSH()
+    .alias    call dist#ft#CSH()
+    .zprofile setf zsh
+    */etc/zprofile
+              setf zsh
+    .zfbfmarks
+              setf zsh
+    .zshrc    setf zsh
+    .zshenv   setf zsh
+    .zlogin   setf zsh
+    .zlogout  setf zsh
+    .zcompdump
+              setf zsh
+    *.zsh     setf zsh
+    *.scm     setf scheme
+    *.ss      setf scheme
+    *.rkt     setf scheme
+    .screenrc setf screen
+    screenrc  setf screen
+    *.sim     setf simula
+    *.sin     setf sinda
+    *.s85     setf sinda
+    *.sst     setf sisu
+    *.ssm     setf sisu
+    *.ssi     setf sisu
+    *.-sst    setf sisu
+    *._sst    setf sisu
+    *.sst.meta
+              setf sisu
+    *.-sst.meta
+              setf sisu
+    *._sst.meta
+              setf sisu
+    *.il      setf skill
+    *.ils     setf skill
+    *.cdf     setf skill
+    .slrnrc   setf slrnrc
+    *.score   setf slrnsc
+    *.st      setf st
+    *.cls     if getline(1) =~ '^%' |  setf tex | elseif getline(1)[0] == '#' && getline(1) =~ 'rexx' |  setf rexx | else |  setf st | endif
+    *.tpl     setf smarty
+    *.smil    if getline(1) =~ '<?\s*xml.*?>' |   setf xml | else |   setf smil | endif
+    *.smi     if getline(1) =~ '\<smil\>' |   setf smil | else |   setf mib | endif
+    *.smt     setf smith
+    *.smith   setf smith
+    *.sno     setf snobol4
+    *.spt     setf snobol4
+    *.mib     setf mib
+    *.my      setf mib
+    *.hog     setf hog
+    snort.conf
+              setf hog
+    vision.conf
+              setf hog
+    *.rules   call dist#ft#FTRules()
+    *.spec    setf spec
+    *.speedup setf spup
+    *.spdata  setf spup
+    *.spd     setf spup
+    *.ice     setf slice
+    *.sp      setf spice
+    *.spice   setf spice
+    *.spy     setf spyce
+    *.spi     setf spyce
+    squid.conf
+              setf squid
+    *.tyb     setf sql
+    *.typ     setf sql
+    *.tyc     setf sql
+    *.pkb     setf sql
+    *.pks     setf sql
+    *.sql     call dist#ft#SQL()
+    *.sqlj    setf sqlj
+    *.sqr     setf sqr
+    *.sqi     setf sqr
+    ssh_config
+              setf sshconfig
+    */.ssh/config
+              setf sshconfig
+    sshd_config
+              setf sshdconfig
+    *.ado     setf stata
+    *.do      setf stata
+    *.imata   setf stata
+    *.mata    setf stata
+    *.class   if getline(1) !~ "^\xca\xfe\xba\xbe" | setf stata | endif
+    *.hlp     setf smcl
+    *.ihlp    setf smcl
+    *.smcl    setf smcl
+    *.stp     setf stp
+    *.sml     setf sml
+    *.cm      setf voscm
+    */etc/sysctl.conf
+              setf sysctl
+    */etc/sysctl.d/*.conf
+              setf sysctl
+    */systemd/*.{automount,mount,path,service,socket,swap,target,timer}
+              setf systemd
+    /etc/systemd/system/*.d/*.conf
+              setf systemd
+    /etc/systemd/system/*.d/.#*
+              setf systemd
+    *.sdc     setf sdc
+    */etc/sudoers
+              setf sudoers
+    sudoers.tmp
+              setf sudoers
+    *.svg     setf svg
+    *.t       if !dist#ft#FTnroff() && !dist#ft#FTperl() | setf tads | endif
+    tags      setf tags
+    *.tak     setf tak
+    {pending,completed,undo}.data
+              setf taskdata
+    *.task    setf taskedit
+    *.tcl     setf tcl
+    *.tk      setf tcl
+    *.itcl    setf tcl
+    *.itk     setf tcl
+    *.jacl    setf tcl
+    *.tli     setf tli
+    *.slt     setf tsalt
+    *.ttl     setf teraterm
+    *.ti      setf terminfo
+    *.latex   setf tex
+    *.sty     setf tex
+    *.dtx     setf tex
+    *.ltx     setf tex
+    *.bbl     setf tex
+    *.tex     call dist#ft#FTtex()
+    *.mkii    setf context
+    *.mkiv    setf context
+    *.mkvi    setf context
+    *.texinfo setf texinfo
+    *.texi    setf texinfo
+    *.txi     setf texinfo
+    texmf.cnf setf texmf
+    .tidyrc   setf tidy
+    tidyrc    setf tidy
+    *.tf      setf tf
+    .tfrc     setf tf
+    tfrc      setf tf
+    {.,}tmux*.conf
+              setf tmux
+    *.tpp     setf tpp
+    *.treetop setf treetop
+    trustees.conf
+              setf trustees
+    *.tssgm   setf tssgm
+    *.tssop   setf tssop
+    *.tsscl   setf tsscl
+    *.twig    setf twig
+    *.ts      setf typescript
+    *.tsx     setf typescriptreact
+    *.uit     setf uil
+    *.uil     setf uil
+    */etc/udev/udev.conf
+              setf udevconf
+    */etc/udev/permissions.d/*.permissions
+              setf udevperm
+    */etc/udev/cdsymlinks.conf
+              setf sh
+    *.uc      setf uc
+    */etc/updatedb.conf
+              setf updatedb
+    */usr/share/upstart/*.conf
+              setf upstart
+    */usr/share/upstart/*.override
+              setf upstart
+    */etc/init/*.conf
+              setf upstart
+    */etc/init/*.override
+              setf upstart
+    */.init/*.conf
+              setf upstart
+    */.init/*.override
+              setf upstart
+    */.config/upstart/*.conf
+              setf upstart
+    */.config/upstart/*.override
+              setf upstart
+    *.vr      setf vera
+    *.vri     setf vera
+    *.vrh     setf vera
+    *.v       setf verilog
+    *.va      setf verilogams
+    *.vams    setf verilogams
+    *.sv      setf systemverilog
+    *.svh     setf systemverilog
+    *.hdl     setf vhdl
+    *.vhd     setf vhdl
+    *.vhdl    setf vhdl
+    *.vbe     setf vhdl
+    *.vst     setf vhdl
+    *.vim     setf vim
+    *.vba     setf vim
+    .exrc     setf vim
+    _exrc     setf vim
+    .viminfo  setf viminfo
+    _viminfo  setf viminfo
+    *.hw      if getline(1) =~ '<?php' |   setf php | else |   setf virata | endif
+    *.module  if getline(1) =~ '<?php' |   setf php | else |   setf virata | endif
+    *.pkg     if getline(1) =~ '<?php' |   setf php | else |   setf virata | endif
+    *.frm     call dist#ft#FTVB("form")
+    *.sba     setf vb
+    vgrindefs setf vgrindefs
+    *.wrl     setf vrml
+    *.vroom   setf vroom
+    *.vue     setf vue
+    *.wast    setf wast
+    *.wat     setf wast
+    *.wm      setf webmacro
+    .wgetrc   setf wget
+    wgetrc    setf wget
+    *.wml     setf wml
+    *.wbt     setf winbatch
+    *.wsml    setf wsml
+    *.wpl     setf xml
+    wvdial.conf
+              setf wvdial
+    .wvdialrc setf wvdial
+    .cvsrc    setf cvsrc
+    cvs\d\+   setf cvs
+    *.web     if getline(1)[0].getline(2)[0].getline(3)[0].getline(4)[0].getline(5)[0] =~ "%" |   setf web | else |   setf winbatch | endif
+    *.ws[fc]  setf wsh
+    *.xhtml   setf xhtml
+    *.xht     setf xhtml
+    XF86Config
+              if getline(1) =~ '\<XConfigurator\>' |   let b:xf86conf_xfree86_version = 3 | endif | setf xf86conf
+    */xorg.conf.d/*.conf
+              let b:xf86conf_xfree86_version = 4 | setf xf86conf
+    xorg.conf let b:xf86conf_xfree86_version = 4 | setf xf86conf
+    xorg.conf-4
+              let b:xf86conf_xfree86_version = 4 | setf xf86conf
+    */etc/xinetd.conf
+              setf xinetd
+    *.xs      setf xs
+    .Xdefaults
+              setf xdefaults
+    .Xpdefaults
+              setf xdefaults
+    .Xresources
+              setf xdefaults
+    xdm-config
+              setf xdefaults
+    *.ad      setf xdefaults
+    *.msc     setf xmath
+    *.msf     setf xmath
+    *.ms      if !dist#ft#FTnroff() | setf xmath | endif
+    *.xml     call dist#ft#FTxml()
+    *.xmi     setf xml
+    *.csproj  setf xml
+    *.csproj.user
+              setf xml
+    *.ui      setf xml
+    *.tpm     setf xml
+    */etc/xdg/menus/*.menu
+              setf xml
+    fglrxrc   setf xml
+    *.wsdl    setf xml
+    *.xlf     setf xml
+    *.xliff   setf xml
+    *.xul     setf xml
+    *Xmodmap  setf xmodmap
+    *.xq      setf xquery
+    *.xql     setf xquery
+    *.xqm     setf xquery
+    *.xquery  setf xquery
+    *.xqy     setf xquery
+    *.xsd     setf xsd
+    *.xsl     setf xslt
+    *.xslt    setf xslt
+    *.yy      setf yacc
+    *.yxx     setf yacc
+    *.y++     setf yacc
+    *.y       call dist#ft#FTy()
+    *.yaml    setf yaml
+    *.yml     setf yaml
+    *.raml    setf raml
+    */etc/yum.conf
+              setf dosini
+    *.zu      setf zimbu
+    *.zut     setf zimbutempl
+    *.dtml    call dist#ft#FThtml()
+    *.pt      call dist#ft#FThtml()
+    *.cpt     call dist#ft#FThtml()
+    *.zsql    call dist#ft#SQL()
+    *.z8a     setf z8a
+    *         if !did_filetype() && expand("<amatch>") !~ g:ft_ignore_pat | runtime! scripts.vim | endif
+    */etc/proftpd/*.conf*
+              call s:StarSetf('apachestyle')
+    */etc/proftpd/conf.*/*
+              call s:StarSetf('apachestyle')
+    proftpd.conf*
+              call s:StarSetf('apachestyle')
+    access.conf*
+              call s:StarSetf('apache')
+    apache.conf*
+              call s:StarSetf('apache')
+    apache2.conf*
+              call s:StarSetf('apache')
+    httpd.conf*
+              call s:StarSetf('apache')
+    srm.conf* call s:StarSetf('apache')
+    */etc/apache2/*.conf*
+              call s:StarSetf('apache')
+    */etc/apache2/conf.*/*
+              call s:StarSetf('apache')
+    */etc/apache2/mods-*/*
+              call s:StarSetf('apache')
+    */etc/apache2/sites-*/*
+              call s:StarSetf('apache')
+    */etc/httpd/conf.d/*.conf*
+              call s:StarSetf('apache')
+    *asterisk/*.conf*
+              call s:StarSetf('asterisk')
+    *asterisk*/*voicemail.conf*
+              call s:StarSetf('asteriskvm')
+    bzr_log.* setf bzr
+    BUILD     setf bzl
+    */named/db.*
+              call s:StarSetf('bindzone')
+    */bind/db.*
+              call s:StarSetf('bindzone')
+    */.calendar/*
+              call s:StarSetf('calendar')
+    */share/calendar/*/calendar.*
+              call s:StarSetf('calendar')
+    */share/calendar/calendar.*
+              call s:StarSetf('calendar')
+    [cC]hange[lL]og*
+              if getline(1) =~ '; urgency='|  call s:StarSetf('debchangelog')|else|  call s:StarSetf('changelog')|endif
+    crontab   call s:StarSetf('crontab')
+    crontab.* call s:StarSetf('crontab')
+    */etc/cron.d/*
+              call s:StarSetf('crontab')
+    */etc/dnsmasq.d/*
+              call s:StarSetf('dnsmasq')
+    drac.*    call s:StarSetf('dracula')
+    */.fvwm/* call s:StarSetf('fvwm')
+    *fvwmrc*  let b:fvwm_version = 1 | call s:StarSetf('fvwm')
+    *fvwm95*.hook
+              let b:fvwm_version = 1 | call s:StarSetf('fvwm')
+    *fvwm2rc* if expand("<afile>:e") == "m4"|  call s:StarSetf('fvwm2m4')|else|  let b:fvwm_version = 2 | call s:StarSetf('fvwm')|endif
+    */tmp/lltmp*
+              call s:StarSetf('gedcom')
+    */.gitconfig.d/*
+              call s:StarSetf('gitconfig')
+    /etc/gitconfig.d/*
+              call s:StarSetf('gitconfig')
+    */gitolite-admin/conf/*
+              call s:StarSetf('gitolite')
+    .gtkrc*   call s:StarSetf('gtkrc')
+    gtkrc*    call s:StarSetf('gtkrc')
+    Prl*.*    call s:StarSetf('jam')
+    JAM*.*    call s:StarSetf('jam')
+    *jarg*    if getline(1).getline(2).getline(3).getline(4).getline(5) =~? 'THIS IS THE JARGON FILE'|  call s:StarSetf('jargon')|endif
+    *.properties_??_??_*
+              call s:StarSetf('jproperties')
+    Kconfig.* call s:StarSetf('kconfig')
+    lilo.conf*
+              call s:StarSetf('lilo')
+    */etc/logcheck/*.d*/*
+              call s:StarSetf('logcheck')
+    [mM]akefile*
+              call s:StarSetf('make')
+    [rR]akefile*
+              call s:StarSetf('ruby')
+    {neo,}mutt[[:alnum:]._-]\\\{6\}
+              setf mail
+    reportbug-*
+              call s:StarSetf('mail')
+    */etc/modutils/*
+              if executable(expand("<afile>")) != 1|  call s:StarSetf('modconf')|endif
+    */etc/modprobe.*
+              call s:StarSetf('modconf')
+    .mutt{ng,}rc*
+              call s:StarSetf('muttrc')
+    */.mutt{ng,}/mutt{ng,}rc*
+              call s:StarSetf('muttrc')
+    mutt{ng,}rc*
+              call s:StarSetf('muttrc')
+    Mutt{ng,}rc*
+              call s:StarSetf('muttrc')
+    .neomuttrc*
+              call s:StarSetf('neomuttrc')
+    */.neomutt/neomuttrc*
+              call s:StarSetf('neomuttrc')
+    neomuttrc*
+              call s:StarSetf('neomuttrc')
+    Neomuttrc*
+              call s:StarSetf('neomuttrc')
+    tmac.*    call s:StarSetf('nroff')
+    /etc/hostname.*
+              call s:StarSetf('config')
+    */etc/pam.d/*
+              call s:StarSetf('pamconf')
+    *printcap*
+              if !did_filetype()|  let b:ptcap_type = "print" | call s:StarSetf('ptcap')|endif
+    *termcap* if !did_filetype()|  let b:ptcap_type = "term" | call s:StarSetf('ptcap')|endif
+    *.rdf     call dist#ft#Redif()
+    .reminders*
+              call s:StarSetf('remind')
+    sgml.catalog*
+              call s:StarSetf('catalog')
+    .bashrc*  call dist#ft#SetFileTypeSH("bash")
+    .bash[_-]profile*
+              call dist#ft#SetFileTypeSH("bash")
+    .bash[_-]logout*
+              call dist#ft#SetFileTypeSH("bash")
+    .bash[_-]aliases*
+              call dist#ft#SetFileTypeSH("bash")
+    bash-fc[-.]*
+              call dist#ft#SetFileTypeSH("bash")
+    PKGBUILD* call dist#ft#SetFileTypeSH("bash")
+    .kshrc*   call dist#ft#SetFileTypeSH("ksh")
+    .profile* call dist#ft#SetFileTypeSH(getline(1))
+    .tcshrc*  call dist#ft#SetFileTypeShell("tcsh")
+    .login*   call dist#ft#CSH()
+    .cshrc*   call dist#ft#CSH()
+    *.vhdl_[0-9]*
+              call s:StarSetf('vhdl')
+    *vimrc*   call s:StarSetf('vim')
+    svn-commit*.tmp
+              setf svn
+    Xresources*
+              call s:StarSetf('xdefaults')
+    */app-defaults/*
+              call s:StarSetf('xdefaults')
+    */Xresources/*
+              call s:StarSetf('xdefaults')
+    XF86Config-4*
+              let b:xf86conf_xfree86_version = 4 | call s:StarSetf('xf86conf')
+    XF86Config*
+              if getline(1) =~ '\<XConfigurator\>'|  let b:xf86conf_xfree86_version = 3|endif|call s:StarSetf('xf86conf')
+    *xmodmap* call s:StarSetf('xmodmap')
+    */etc/xinetd.d/*
+              call s:StarSetf('xinetd')
+    */etc/yum.repos.d/*
+              call s:StarSetf('dosini')
+    .zsh*     call s:StarSetf('zsh')
+    .zlog*    call s:StarSetf('zsh')
+    .zcompdump*
+              call s:StarSetf('zsh')
+    zsh*      call s:StarSetf('zsh')
+    zlog*     call s:StarSetf('zsh')
+    *.text    setf text
+    README    setf text
+    *.txt     if getline('$') !~ 'vim:.*ft=help'|   setf text| endif
+    *         if !did_filetype() && expand("<amatch>") !~ g:ft_ignore_pat    && (getline(1) =~ '^#' || getline(2) =~ '^#' || getline(3) =~ '^#'^I|| getline(4) =~ '^#' || getline(5) =~ '^#') |   setf FALLBACK conf | endif
+BufNewFile
+    *         silent! 0r $VIM/vimfiles/skel/Template.%:e
+filetypedetect  BufNewFile
+    *.csc     setfiletype csc
+    *.msh     setfiletype mxl
+    *.mxl     setfiletype mxl
+    *.rle     setfiletype rle
+    *.log     setfiletype log
+SnipMateDetect  BufNewFile
+    *.snippet setlocal filetype=snippets
+    *.snippets
+              setlocal filetype=snippets
+Network  BufReadCmd
+    file://*  call netrw#FileUrlEdit(expand("<amatch>"))
+    ftp://*   exe "sil doau BufReadPre ".fnameescape(expand("<amatch>"))|call netrw#Nread(2,expand("<amatch>"))|exe "sil doau BufReadPost ".fnameescape(expand("<amatch>"))
+    rcp://*   exe "sil doau BufReadPre ".fnameescape(expand("<amatch>"))|call netrw#Nread(2,expand("<amatch>"))|exe "sil doau BufReadPost ".fnameescape(expand("<amatch>"))
+    scp://*   exe "sil doau BufReadPre ".fnameescape(expand("<amatch>"))|call netrw#Nread(2,expand("<amatch>"))|exe "sil doau BufReadPost ".fnameescape(expand("<amatch>"))
+    http://*  exe "sil doau BufReadPre ".fnameescape(expand("<amatch>"))|call netrw#Nread(2,expand("<amatch>"))|exe "sil doau BufReadPost ".fnameescape(expand("<amatch>"))
+    https://* exe "sil doau BufReadPre ".fnameescape(expand("<amatch>"))|call netrw#Nread(2,expand("<amatch>"))|exe "sil doau BufReadPost ".fnameescape(expand("<amatch>"))
+    dav://*   exe "sil doau BufReadPre ".fnameescape(expand("<amatch>"))|call netrw#Nread(2,expand("<amatch>"))|exe "sil doau BufReadPost ".fnameescape(expand("<amatch>"))
+    davs://*  exe "sil doau BufReadPre ".fnameescape(expand("<amatch>"))|call netrw#Nread(2,expand("<amatch>"))|exe "sil doau BufReadPost ".fnameescape(expand("<amatch>"))
+    rsync://* exe "sil doau BufReadPre ".fnameescape(expand("<amatch>"))|call netrw#Nread(2,expand("<amatch>"))|exe "sil doau BufReadPost ".fnameescape(expand("<amatch>"))
+    sftp://*  exe "sil doau BufReadPre ".fnameescape(expand("<amatch>"))|call netrw#Nread(2,expand("<amatch>"))|exe "sil doau BufReadPost ".fnameescape(expand("<amatch>"))
+tar  BufReadCmd
+    tarfile::*
+              call tar#Read(expand("<amatch>"), 1)
+    *.tar.gz  call tar#Browse(expand("<amatch>"))
+    *.tar     call tar#Browse(expand("<amatch>"))
+    *.lrp     call tar#Browse(expand("<amatch>"))
+    *.tar.bz2 call tar#Browse(expand("<amatch>"))
+    *.tar.Z   call tar#Browse(expand("<amatch>"))
+    *.tgz     call tar#Browse(expand("<amatch>"))
+    *.tbz     call tar#Browse(expand("<amatch>"))
+    *.tar.lzma
+              call tar#Browse(expand("<amatch>"))
+    *.tar.xz  call tar#Browse(expand("<amatch>"))
+    *.txz     call tar#Browse(expand("<amatch>"))
+zip  BufReadCmd
+    zipfile:* call zip#Read(expand("<amatch>"), 1)
+    *.apk     call zip#Browse(expand("<amatch>"))
+    *.celzip  call zip#Browse(expand("<amatch>"))
+    *.crtx    call zip#Browse(expand("<amatch>"))
+    *.docm    call zip#Browse(expand("<amatch>"))
+    *.docx    call zip#Browse(expand("<amatch>"))
+    *.dotm    call zip#Browse(expand("<amatch>"))
+    *.dotx    call zip#Browse(expand("<amatch>"))
+    *.ear     call zip#Browse(expand("<amatch>"))
+    *.epub    call zip#Browse(expand("<amatch>"))
+    *.gcsx    call zip#Browse(expand("<amatch>"))
+    *.glox    call zip#Browse(expand("<amatch>"))
+    *.gqsx    call zip#Browse(expand("<amatch>"))
+    *.ja      call zip#Browse(expand("<amatch>"))
+    *.jar     call zip#Browse(expand("<amatch>"))
+    *.kmz     call zip#Browse(expand("<amatch>"))
+    *.oxt     call zip#Browse(expand("<amatch>"))
+    *.potm    call zip#Browse(expand("<amatch>"))
+    *.potx    call zip#Browse(expand("<amatch>"))
+    *.ppam    call zip#Browse(expand("<amatch>"))
+    *.ppsm    call zip#Browse(expand("<amatch>"))
+    *.ppsx    call zip#Browse(expand("<amatch>"))
+    *.pptm    call zip#Browse(expand("<amatch>"))
+    *.pptx    call zip#Browse(expand("<amatch>"))
+    *.sldx    call zip#Browse(expand("<amatch>"))
+    *.thmx    call zip#Browse(expand("<amatch>"))
+    *.vdw     call zip#Browse(expand("<amatch>"))
+    *.war     call zip#Browse(expand("<amatch>"))
+    *.wsz     call zip#Browse(expand("<amatch>"))
+    *.xap     call zip#Browse(expand("<amatch>"))
+    *.xlam    call zip#Browse(expand("<amatch>"))
+              call zip#Browse(expand("<amatch>"))
+    *.xlsb    call zip#Browse(expand("<amatch>"))
+    *.xlsm    call zip#Browse(expand("<amatch>"))
+    *.xlsx    call zip#Browse(expand("<amatch>"))
+    *.xltm    call zip#Browse(expand("<amatch>"))
+    *.xltx    call zip#Browse(expand("<amatch>"))
+    *.xpi     call zip#Browse(expand("<amatch>"))
+    *.zip     call zip#Browse(expand("<amatch>"))
+filetypedetect  BufRead
+    ?\+.orig  exe "doau filetypedetect BufRead " . fnameescape(expand("<afile>:r"))
+    ?\+.bak   exe "doau filetypedetect BufRead " . fnameescape(expand("<afile>:r"))
+    ?\+.old   exe "doau filetypedetect BufRead " . fnameescape(expand("<afile>:r"))
+    ?\+.new   exe "doau filetypedetect BufRead " . fnameescape(expand("<afile>:r"))
+    ?\+.dpkg-dist
+              exe "doau filetypedetect BufRead " . fnameescape(expand("<afile>:r"))
+    ?\+.dpkg-old
+              exe "doau filetypedetect BufRead " . fnameescape(expand("<afile>:r"))
+    ?\+.dpkg-new
+              exe "doau filetypedetect BufRead " . fnameescape(expand("<afile>:r"))
+    ?\+.dpkg-bak
+              exe "doau filetypedetect BufRead " . fnameescape(expand("<afile>:r"))
+    ?\+.rpmsave
+              exe "doau filetypedetect BufRead " . fnameescape(expand("<afile>:r"))
+    ?\+.rpmnew
+              exe "doau filetypedetect BufRead " . fnameescape(expand("<afile>:r"))
+    ?\+.pacsave
+              exe "doau filetypedetect BufRead " . fnameescape(expand("<afile>:r"))
+    ?\+.pacnew
+              exe "doau filetypedetect BufRead " . fnameescape(expand("<afile>:r"))
+    *~        let s:name = expand("<afile>") | let s:short = substitute(s:name, '\~$', '', '') | if s:name != s:short && s:short != "" |   exe "doau filetypedetect BufRead " . fnameescape(s:short) | endif | unlet! s:name s:short
+    ?\+.in    if expand("<afile>:t") != "configure.in" |   exe "doau filetypedetect BufRead " . fnameescape(expand("<afile>:r")) | endif
+    C:/Program Files (x86)/Vim/vim81/doc/*.txt
+              setf help
+    *.inp     call dist#ft#Check_inp()
+    *.8th     setf 8th
+    *.aap     setf aap
+    */etc/a2ps.cfg
+              setf a2ps
+    */etc/a2ps/*.cfg
+              setf a2ps
+    a2psrc    setf a2ps
+    .a2psrc   setf a2ps
+    *.abap    setf abap
+    *.abc     setf abc
+    *.abl     setf abel
+    *.wrm     setf acedb
+    *.adb     setf ada
+    *.ads     setf ada
+    *.ada     setf ada
+    *.gpr     setf ada
+    *.tdf     setf ahdl
+    *.run     setf ampl
+    build.xml setf ant
+    *.ino     setf arduino
+    *.pde     setf arduino
+    .htaccess setf apache
+    */etc/httpd/*.conf
+              setf apache
+    */etc/apache2/sites-*/*.com
+              setf apache
+    *.a65     setf a65
+    *.scpt    setf applescript
+    *.am      if expand("<afile>") !~? 'Makefile.am\>' | setf elf | endif
+    .asoundrc setf alsaconf
+    */usr/share/alsa/alsa.conf
+              setf alsaconf
+    */etc/asound.conf
+              setf alsaconf
+    *.aml     setf aml
+    apt.conf  setf aptconf
+    */.aptitude/config
+              setf aptconf
+    */etc/apt/apt.conf.d/{[-_[:alnum:]]\+,[-_.[:alnum:]]\+.conf}
+              setf aptconf
+    .arch-inventory
+              setf arch
+    =tagging-method
+              setf arch
+    *.art     setf art
+    *.asciidoc
+              setf asciidoc
+    *.adoc    setf asciidoc
+    *.asn     setf asn
+    *.asn1    setf asn
+    *.asa     if exists("g:filetype_asa") |   exe "setf " . g:filetype_asa | else |   setf aspvbs | endif
+    *.asp     if exists("g:filetype_asp") |   exe "setf " . g:filetype_asp | elseif getline(1) . getline(2) . getline(3) =~? "perlscript" |   setf aspperl | else |   setf aspvbs | endif
+    */boot/grub/menu.lst
+              setf grub
+    */boot/grub/grub.conf
+              setf grub
+    */etc/grub.conf
+              setf grub
+    *.asm     call dist#ft#FTasm()
+    *.[sS]    call dist#ft#FTasm()
+    *.[aA]    call dist#ft#FTasm()
+    *.mac     call dist#ft#FTasm()
+    *.lst     call dist#ft#FTasm()
+    *.mar     setf vmasm
+    *.atl     setf atlas
+    *.as      setf atlas
+    *.au3     setf autoit
+    *.ahk     setf autohotkey
+    [mM]akefile.am
+              setf automake
+    GNUmakefile.am
+              setf automake
+    *.at      setf m4
+    *.ave     setf ave
+    *.awk     setf awk
+    *.mch     setf b
+    *.ref     setf b
+    *.imp     setf b
+    *.bas     call dist#ft#FTVB("basic")
+    *.vb      setf vb
+    *.vbs     setf vb
+    *.dsm     setf vb
+    *.ctl     setf vb
+    *.iba     setf ibasic
+    *.ibi     setf ibasic
+    *.fb      setf freebasic
+    *.bi      setf freebasic
+    *.bat     setf dosbatch
+    *.sys     setf dosbatch
+    *.cmd     if getline(1) =~ '^/\*' | setf rexx | else | setf dosbatch | endif
+    *.btm     call dist#ft#FTbtm()
+    *.bc      setf bc
+    *.bdf     setf bdf
+    *.bib     setf bib
+    *.bst     setf bst
+    named*.conf
+              setf named
+    rndc*.conf
+              setf named
+    rndc*.key setf named
+    named.root
+              setf bindzone
+    *.db      call dist#ft#BindzoneCheck('')
+    *.bl      setf blank
+    */etc/blkid.tab
+              setf xml
+    */etc/blkid.tab.old
+              setf xml
+    *.bzl     setf bzl
+    WORKSPACE setf bzl
+    BUILD.bazel
+              setf bzl
+    *.c       call dist#ft#FTlpc()
+    *.lpc     setf lpc
+    *.ulpc    setf lpc
+    calendar  setf calendar
+    *.cs      setf cs
+    *.csdl    setf csdl
+    *.cabal   setf cabal
+    *.toc     setf cdrtoc
+    */etc/cdrdao.conf
+              setf cdrdaoconf
+    */etc/defaults/cdrdao
+              setf cdrdaoconf
+    */etc/default/cdrdao
+              setf cdrdaoconf
+    .cdrdao   setf cdrdaoconf
+    cfengine.conf
+              setf cfengine
+    *.chai    setf chaiscript
+    *.cdl     setf cdl
+    *.recipe  setf conaryrecipe
+    *.crm     setf crm
+    *.cyn     setf cynpp
+    *.cc      if exists("cynlib_syntax_for_cc")|setf cynlib|else|setf cpp|endif
+    *.cpp     if exists("cynlib_syntax_for_cpp")|setf cynlib|else|setf cpp|endif
+    *.cxx     setf cpp
+    *.c++     setf cpp
+    *.hh      setf cpp
+    *.hxx     setf cpp
+    *.hpp     setf cpp
+    *.ipp     setf cpp
+    *.moc     setf cpp
+    *.tcc     setf cpp
+    *.inl     setf cpp
+    *.h       call dist#ft#FTheader()
+    *.chf     setf ch
+    *.tlh     setf cpp
+    *.css     setf css
+    *.con     setf cterm
+    changelog.Debian
+              setf debchangelog
+    changelog.dch
+              setf debchangelog
+    NEWS.Debian
+              setf debchangelog
+    NEWS.dch  setf debchangelog
+    [cC]hange[lL]og
+              if getline(1) =~ '; urgency='|   setf debchangelog| else|   setf changelog| endif
+    NEWS      if getline(1) =~ '; urgency='|   setf debchangelog| endif
+    *..ch     setf chill
+    *.ch      call dist#ft#FTchange()
+    *.chopro  setf chordpro
+    *.crd     setf chordpro
+    *.cho     setf chordpro
+    *.crdpro  setf chordpro
+    *.chordpro
+              setf chordpro
+    *.dcl     setf clean
+    *.icl     setf clean
+    *.eni     setf cl
+    *.ent     call dist#ft#FTent()
+    *.prg     if exists("g:filetype_prg") |   exe "setf " . g:filetype_prg | else |   setf clipper | endif
+    *.clj     setf clojure
+    *.cljs    setf clojure
+    *.cljx    setf clojure
+    *.cljc    setf clojure
+    CMakeLists.txt
+              setf cmake
+    *.cmake   setf cmake
+    *.cmake.in
+              setf cmake
+    */.cmus/{autosave,rc,command-history,*.theme}
+              setf cmusrc
+    */cmus/{rc,*.theme}
+              setf cmusrc
+    *.cbl     setf cobol
+    *.cob     setf cobol
+    *.lib     setf cobol
+    *.cpy     if getline(1) =~ '^##' |   setf python | else |   setf cobol | endif
+    *.atg     setf coco
+    *.cfm     setf cf
+    *.cfi     setf cf
+    *.cfc     setf cf
+    configure.in
+              setf config
+    configure.ac
+              setf config
+    *.cu      setf cuda
+    *.cuh     setf cuda
+    Containerfile
+              setf dockerfile
+    Dockerfile
+              setf dockerfile
+    *.Dockerfile
+              setf dockerfile
+    *.dcd     setf dcd
+    *enlightenment/*.cfg
+              setf c
+    *Eterm/*.cfg
+              setf eterm
+    *.eu      call dist#ft#EuphoriaCheck()
+    *.ew      call dist#ft#EuphoriaCheck()
+    *.ex      call dist#ft#EuphoriaCheck()
+    *.exu     call dist#ft#EuphoriaCheck()
+    *.exw     call dist#ft#EuphoriaCheck()
+    lynx.cfg  setf lynx
+    *baseq[2-3]/*.cfg
+              setf quake
+    *id1/*.cfg
+              setf quake
+    *quake[1-3]/*.cfg
+              setf quake
+    *.qc      setf c
+    *.cfg     setf cfg
+    *.feature setf cucumber
+    *.csp     setf csp
+    *.fdr     setf csp
+    *.pld     setf cupl
+    *.si      setf cuplsim
+    *.dart    setf dart
+    *.drt     setf dart
+    */debian/control
+              setf debcontrol
+    control   if getline(1) =~ '^Source:'|   setf debcontrol| endif
+    */debian/copyright
+              setf debcopyright
+    copyright if getline(1) =~ '^Format:'|   setf debcopyright| endif
+    */etc/apt/sources.list
+              setf debsources
+    */etc/apt/sources.list.d/*.list
+              setf debsources
+    denyhosts.conf
+              setf denyhosts
+    */etc/dnsmasq.conf
+              setf dnsmasq
+    *.desc    setf desc
+    *.d       call dist#ft#DtraceCheck()
+    *.desktop setf desktop
+    .directory
+              setf desktop
+    dict.conf setf dictconf
+    .dictrc   setf dictconf
+    dictd.conf
+              setf dictdconf
+    *.diff    setf diff
+    *.rej     setf diff
+    *.patch   if getline(1) =~ '^From [0-9a-f]\{40\} Mon Sep 17 00:00:00 2001$' |   setf gitsendemail | else |   setf diff | endif
+    .dir_colors
+              setf dircolors
+    .dircolors
+              setf dircolors
+    */etc/DIR_COLORS
+              setf dircolors
+    *.rul     if getline(1).getline(2).getline(3).getline(4).getline(5).getline(6) =~? 'InstallShield' |   setf ishd | else |   setf diva | endif
+    *.com     call dist#ft#BindzoneCheck('dcl')
+    *.dot     setf dot
+    *.lid     setf dylanlid
+    *.intr    setf dylanintr
+    *.dylan   setf dylan
+    *.def     setf def
+    *.drac    setf dracula
+    *.drc     setf dracula
+    *lvs      setf dracula
+    *lpe      setf dracula
+    *.ds      setf datascript
+    *.dsl     setf dsl
+    *.dtd     setf dtd
+    *.dts     setf dts
+    *.dtsi    setf dts
+    *.ed\(f\|if\|o\)
+              setf edif
+    *.edn     if getline(1) =~ '^\s*(\s*edif\>' |   setf edif | else |   setf clojure | endif
+    .editorconfig
+              setf dosini
+    *.ecd     setf ecd
+    *.e       call dist#ft#FTe()
+    *.E       call dist#ft#FTe()
+    */etc/elinks.conf
+              setf elinks
+    */.elinks/elinks.conf
+              setf elinks
+    *.erl     setf erlang
+    *.hrl     setf erlang
+    *.yaws    setf erlang
+    filter-rules
+              setf elmfilt
+    *esmtprc  setf esmtprc
+    *.ec      setf esqlc
+    *.EC      setf esqlc
+    *.strl    setf esterel
+    *.csc     setf csc
+    exim.conf setf exim
+    *.exp     setf expect
+    exports   setf exports
+    *.fal     setf falcon
+    *.fan     setf fan
+    *.fwt     setf fan
+    *.factor  setf factor
+    .fetchmailrc
+              setf fetchmail
+    *.fex     setf focexec
+    *.focexec setf focexec
+    auto.master
+              setf conf
+    *.mas     setf master
+    *.master  setf master
+    *.fs      setf forth
+    *.ft      setf forth
+    *.fth     setf forth
+    *.frt     setf reva
+    *.f       setf fortran
+    *.for     setf fortran
+    *.fortran setf fortran
+    *.fpp     setf fortran
+    *.ftn     setf fortran
+    *.f77     setf fortran
+    *.f90     setf fortran
+    *.f95     setf fortran
+    *.f03     setf fortran
+    *.f08     setf fortran
+    *.fsl     setf framescript
+    fstab     setf fstab
+    mtab      setf fstab
+    .gdbinit  setf gdb
+    *.mo      setf gdmo
+    *.gdmo    setf gdmo
+    *.ged     setf gedcom
+    lltxxxxx.txt
+              setf gedcom
+    COMMIT_EDITMSG
+              setf gitcommit
+    MERGE_MSG setf gitcommit
+    TAG_EDITMSG
+              setf gitcommit
+    *.git/config
+              setf gitconfig
+    .gitconfig
+              setf gitconfig
+    /etc/gitconfig
+              setf gitconfig
+    */.config/git/config
+              setf gitconfig
+    .gitmodules
+              setf gitconfig
+    *.git/modules/*/config
+              setf gitconfig
+    git-rebase-todo
+              setf gitrebase
+    .gitsendemail.msg.??????
+              setf gitsendemail
+    .msg.[0-9]*
+              if getline(1) =~ '^From.*# This line is ignored.$' |   setf gitsendemail | endif
+    *.git/*   if getline(1) =~ '^\x\{40\}\>\|^ref: ' |   setf git | endif
+    gkrellmrc setf gkrellmrc
+    gkrellmrc_?
+              setf gkrellmrc
+    *.gp      setf gp
+    .gprc     setf gp
+    */.gnupg/options
+              setf gpg
+    */.gnupg/gpg.conf
+              setf gpg
+    */usr/*/gnupg/options.skel
+              setf gpg
+    gnashrc   setf gnash
+    .gnashrc  setf gnash
+    gnashpluginrc
+              setf gnash
+    .gnashpluginrc
+              setf gnash
+    gitolite.conf
+              setf gitolite
+    {,.}gitolite.rc
+              setf perl
+    example.gitolite.rc
+              setf perl
+    *.gpi     setf gnuplot
+    *.go      setf go
+    *.gs      setf grads
+    *.gretl   setf gretl
+    *.gradle  setf groovy
+    *.groovy  setf groovy
+    *.gsp     setf gsp
+    */etc/group
+              setf group
+    */etc/group-
+              setf group
+    */etc/group.edit
+              setf group
+    */etc/gshadow
+              setf group
+    */etc/gshadow-
+              setf group
+    */etc/gshadow.edit
+              setf group
+    */var/backups/group.bak
+              setf group
+    */var/backups/gshadow.bak
+              setf group
+    .gtkrc    setf gtkrc
+    gtkrc     setf gtkrc
+    *.haml    setf haml
+    *.hsc     setf hamster
+    *.hsm     setf hamster
+    *.hs      setf haskell
+    *.hs-boot setf haskell
+    *.lhs     setf lhaskell
+    *.chs     setf chaskell
+    *.ht      setf haste
+    *.htpp    setf hastepreproc
+    *.vc      setf hercules
+    *.ev      setf hercules
+    *.sum     setf hercules
+    *.errsum  setf hercules
+    *.hex     setf hex
+    *.h32     setf hex
+    *.hws     setf hollywood
+    *.t.html  setf tilde
+    *.html    call dist#ft#FThtml()
+    *.htm     call dist#ft#FThtml()
+    *.shtml   call dist#ft#FThtml()
+    *.stm     call dist#ft#FThtml()
+    *.erb     setf eruby
+    *.rhtml   setf eruby
+    *.html.m4 setf htmlm4
+    *.tmpl    setf template
+    */etc/host.conf
+              setf hostconf
+    */etc/hosts.allow
+              setf hostsaccess
+    */etc/hosts.deny
+              setf hostsaccess
+    *.hb      setf hb
+    *.htt     setf httest
+    *.htb     setf httest
+    *.icn     setf icon
+    *.idl     call dist#ft#FTidl()
+    *.odl     setf msidl
+    *.mof     setf msidl
+    */.icewm/menu
+              setf icemenu
+    .indent.pro
+              setf indent
+    indent.pro
+              call dist#ft#ProtoCheck('indent')
+    *.pro     call dist#ft#ProtoCheck('idlang')
+    indentrc  setf indent
+    *.inf     setf inform
+    *.INF     setf inform
+    */etc/initng/*/*.i
+              setf initng
+    *.ii      setf initng
+    upstream.dat\c
+              setf upstreamdat
+    upstream.*.dat\c
+              setf upstreamdat
+    *.upstream.dat\c
+              setf upstreamdat
+    fdrupstream.log
+              setf upstreamlog
+    upstream.log\c
+              setf upstreamlog
+    upstream.*.log\c
+              setf upstreamlog
+    *.upstream.log\c
+              setf upstreamlog
+    UPSTREAM-*.log\c
+              setf upstreamlog
+    upstreaminstall.log\c
+              setf upstreaminstalllog
+    upstreaminstall.*.log\c
+              setf upstreaminstalllog
+    *.upstreaminstall.log\c
+              setf upstreaminstalllog
+    usserver.log\c
+              setf usserverlog
+    usserver.*.log\c
+              setf usserverlog
+    *.usserver.log\c
+              setf usserverlog
+    usw2kagt.log\c
+              setf usw2kagtlog
+    usw2kagt.*.log\c
+              setf usw2kagtlog
+    *.usw2kagt.log\c
+              setf usw2kagtlog
+    ipf.conf  setf ipfilter
+    ipf6.conf setf ipfilter
+    ipf.rules setf ipfilter
+    *.4gl     setf fgl
+    *.4gh     setf fgl
+    *.m4gl    setf fgl
+    *.ini     setf dosini
+    inittab   setf inittab
+    *.iss     setf iss
+    *.ijs     setf j
+    *.jal     setf jal
+    *.JAL     setf jal
+    *.jpl     setf jam
+    *.jpr     setf jam
+    *.java    setf java
+    *.jav     setf java
+    *.jj      setf javacc
+    *.jjt     setf javacc
+    *.js      setf javascript
+    *.javascript
+              setf javascript
+    *.es      setf javascript
+    *.mjs     setf javascript
+    *.jsx     setf javascriptreact
+    *.jsp     setf jsp
+    *.properties
+              setf jproperties
+    *.properties_??
+              setf jproperties
+    *.properties_??_??
+              setf jproperties
+    *.clp     setf jess
+    *.jgr     setf jgraph
+    *.jov     setf jovial
+    *.j73     setf jovial
+    *.jovial  setf jovial
+    *.json    setf json
+    *.jsonp   setf json
+    *.webmanifest
+              setf json
+    *.kix     setf kix
+    *.k       setf kwt
+    *.kv      setf kivy
+    *.ks      setf kscript
+    Kconfig   setf kconfig
+    Kconfig.debug
+              setf kconfig
+    *.ace     setf lace
+    *.ACE     setf lace
+    *.latte   setf latte
+    *.lte     setf latte
+    */etc/limits
+              setf limits
+    */etc/*limits.conf
+              setf limits
+    */etc/*limits.d/*.conf
+              setf limits
+    *.sig     setf lprolog
+    *.ldif    setf ldif
+    *.ld      setf ld
+    *.less    setf less
+    *.lex     setf lex
+    *.l       setf lex
+    *.lxx     setf lex
+    *.l++     setf lex
+    */etc/libao.conf
+              setf libao
+    */.libao  setf libao
+    */etc/sensors.conf
+              setf sensors
+    */etc/sensors3.conf
+              setf sensors
+    lftp.conf setf lftp
+    .lftprc   setf lftp
+    *lftp/rc  setf lftp
+    *.ll      setf lifelines
+    lilo.conf setf lilo
+    *.lsp     setf lisp
+    *.lisp    setf lisp
+    *.el      setf lisp
+    *.cl      setf lisp
+    *.jl      setf lisp
+    .emacs    setf lisp
+    .sawfishrc
+              setf lisp
+    sbclrc    setf lisp
+    .sbclrc   setf lisp
+    *.liquid  setf liquid
+    *.lite    setf lite
+    *.lt      setf lite
+    */LiteStep/*/*.rc
+              setf litestep
+    */etc/login.access
+              setf loginaccess
+    */etc/login.defs
+              setf logindefs
+    *.lgt     setf logtalk
+    *.lot     setf lotos
+    *.lotos   setf lotos
+    *.lou     setf lout
+    *.lout    setf lout
+    *.lua     setf lua
+    *.rockspec
+              setf lua
+    *.lsl     setf lsl
+    *.lss     setf lss
+    *.m4      if expand("<afile>") !~? 'html.m4$\|fvwm2rc' | setf m4 | endif
+    *.mgp     setf mgp
+    snd.\d\+  setf mail
+    .letter   setf mail
+    .letter.\d\+
+              setf mail
+    .followup setf mail
+    .article  setf mail
+    .article.\d\+
+              setf mail
+    pico.\d\+ setf mail
+    mutt{ng,}-*-\w\+
+              setf mail
+    mutt[[:alnum:]_-]\\\{6\}
+              setf mail
+    neomutt-*-\w\+
+              setf mail
+    neomutt[[:alnum:]_-]\\\{6\}
+              setf mail
+    ae\d\+.txt
+              setf mail
+    /tmp/SLRN[0-9A-Z.]\+
+              setf mail
+    *.eml     setf mail
+    */etc/mail/aliases
+              setf mailaliases
+    */etc/aliases
+              setf mailaliases
+    .mailcap  setf mailcap
+    mailcap   setf mailcap
+    *[mM]akefile
+              setf make
+    *.mk      setf make
+    *.mak     setf make
+    *.dsp     setf make
+    *.ist     setf ist
+    *.mst     setf ist
+    *.page    setf mallard
+    *.man     setf man
+    */etc/man.conf
+              setf manconf
+    man.config
+              setf manconf
+    *.mv      setf maple
+    *.mpl     setf maple
+    *.mws     setf maple
+    *.map     setf map
+    *.markdown
+              setf markdown
+    *.mdown   setf markdown
+    *.mkd     setf markdown
+    *.mkdn    setf markdown
+    *.mdwn    setf markdown
+    *.md      setf markdown
+    *.mason   setf mason
+    *.mhtml   setf mason
+    *.comp    setf mason
+    *.m       call dist#ft#FTm()
+    *.nb      setf mma
+    *.mel     setf mel
+    hg-editor-*.txt
+              setf hgcommit
+    *.hgrc    setf cfg
+    *hgrc     setf cfg
+    meson.build
+              setf meson
+    meson_options.txt
+              setf meson
+    */log/{auth,cron,daemon,debug,kern,lpr,mail,messages,news/news,syslog,user}{,.log,.err,.info,.warn,.crit,.notice}{,.[0-9]*,-[0-9]*}
+              setf messages
+    *.mf      setf mf
+    *.mp      setf mp
+    *.mgl     setf mgl
+    *.mix     setf mix
+    *.mixal   setf mix
+    *.mms     call dist#ft#FTmms()
+    *.mmp     setf mmp
+    *.mod     if getline(1) =~ '\<module\>' |   setf lprolog | else |   setf modsim3 | endif
+    *.m2      setf modula2
+    *.DEF     setf modula2
+    *.MOD     setf modula2
+    *.mi      setf modula2
+    *.[mi][3g]
+              setf modula3
+    *.isc     setf monk
+    *.monk    setf monk
+    *.ssc     setf monk
+    *.tsc     setf monk
+    *.moo     setf moo
+    */etc/modules.conf
+              setf modconf
+    */etc/modules
+              setf modconf
+    */etc/conf.modules
+              setf modconf
+    mplayer.conf
+              setf mplayerconf
+    */.mplayer/config
+              setf mplayerconf
+    *.s19     setf srec
+    *.s28     setf srec
+    *.s37     setf srec
+    *.mot     setf srec
+    *.srec    setf srec
+    mrxvtrc   setf mrxvtrc
+    .mrxvtrc  setf mrxvtrc
+    *.msql    setf msql
+    *.mysql   setf mysql
+    */etc/Muttrc.d/*
+              call s:StarSetf('muttrc')
+    *.rc      setf rc
+    *.rch     setf rc
+    *.mu      setf mupad
+    *.mush    setf mush
+    Mutt{ng,}rc
+              setf muttrc
+    *.n1ql    setf n1ql
+    *.nql     setf n1ql
+    */etc/nanorc
+              setf nanorc
+    *.nanorc  setf nanorc
+    *.NS[ACGLMNPS]
+              setf natural
+    Neomuttrc setf neomuttrc
+    .netrc    setf netrc
+    *.ninja   setf ninja
+    *.ncf     setf ncf
+    *.me      if expand("<afile>") != "read.me" && expand("<afile>") != "click.me" |   setf nroff | endif
+    *.tr      setf nroff
+    *.nr      setf nroff
+    *.roff    setf nroff
+    *.tmac    setf nroff
+    *.mom     setf nroff
+    *.[1-9]   call dist#ft#FTnroff()
+    *.mm      call dist#ft#FTmm()
+    *.nqc     setf nqc
+    *.nse     setf lua
+    *.nsi     setf nsis
+    *.nsh     setf nsis
+    *.ml      setf ocaml
+    *.mli     setf ocaml
+    *.mll     setf ocaml
+    *.mly     setf ocaml
+    .ocamlinit
+              setf ocaml
+    *.occ     setf occam
+    *.xom     setf omnimark
+    *.xin     setf omnimark
+    *.or      setf openroad
+    *.[Oo][Pp][Ll]
+              setf opl
+    *.ora     setf ora
+    pf.conf   setf pf
+    */etc/pam.conf
+              setf pamconf
+    *.papp    setf papp
+    *.pxml    setf papp
+    *.pxsl    setf papp
+    */etc/passwd
+              setf passwd
+    */etc/passwd-
+              setf passwd
+    */etc/passwd.edit
+              setf passwd
+    */etc/shadow
+              setf passwd
+    */etc/shadow-
+              setf passwd
+    */etc/shadow.edit
+              setf passwd
+    */var/backups/passwd.bak
+              setf passwd
+    */var/backups/shadow.bak
+              setf passwd
+    *.pas     setf pascal
+    *.dpr     setf pascal
+    *.pdf     setf pdf
+    *.pcmk    setf pcmk
+    *.pl      call dist#ft#FTpl()
+    *.plx     setf perl
+    *.al      setf perl
+    *.psgi    setf perl
+    *.p6      setf perl6
+    *.pm6     setf perl6
+    *.pl6     setf perl6
+    *.pm      if getline(1) =~ "XPM2" |   setf xpm2 | elseif getline(1) =~ "XPM" |   setf xpm | else |   setf perl | endif
+    *.pod     setf pod
+    *.pod6    setf pod6
+    *.php     setf php
+    *.php\d   setf php
+    *.phtml   setf php
+    *.ctp     setf php
+    *.pike    setf pike
+    *.pmod    setf pike
+    *.cmod    setf cmod
+    */etc/pinforc
+              setf pinfo
+    */.pinforc
+              setf pinfo
+    *.rcp     setf pilrc
+    .pinerc   setf pine
+    pinerc    setf pine
+    .pinercex setf pine
+    pinercex  setf pine
+    Pipfile   setf config
+    Pipfile.lock
+              setf json
+    *.pli     setf pli
+    *.pl1     setf pli
+    *.plm     setf plm
+    *.p36     setf plm
+    *.pac     setf plm
+    *.pls     setf plsql
+    *.plsql   setf plsql
+    *.plp     setf plp
+    *.po      setf po
+    *.pot     setf po
+    main.cf   setf pfmain
+    *.ps      setf postscr
+    *.pfa     setf postscr
+    *.afm     setf postscr
+    *.eps     setf postscr
+    *.epsf    setf postscr
+    *.epsi    setf postscr
+    *.ai      setf postscr
+    *.ppd     setf ppd
+    *.pov     setf pov
+    .povrayrc setf povini
+    *.inc     call dist#ft#FTinc()
+    *printcap let b:ptcap_type = "print" | setf ptcap
+    *termcap  let b:ptcap_type = "term" | setf ptcap
+    *.g       setf pccts
+    *.it      setf ppwiz
+    *.ih      setf ppwiz
+    *.obj     setf obj
+    *.pc      setf proc
+    *.action  setf privoxy
+    .procmail setf procmail
+    .procmailrc
+              setf procmail
+    *.w       call dist#ft#FTprogress_cweb()
+    *.i       call dist#ft#FTprogress_asm()
+    *.p       call dist#ft#FTprogress_pascal()
+    *.psf     setf psf
+    INDEX     if getline(1) =~ '^\s*\(distribution\|installed_software\|root\|bundle\|product\)\s*$' |   setf psf | endif
+    INFO      if getline(1) =~ '^\s*\(distribution\|installed_software\|root\|bundle\|product\)\s*$' |   setf psf | endif
+    *.pdb     setf prolog
+    *.pml     setf promela
+    *.proto   setf proto
+    */etc/protocols
+              setf protocols
+    *.pyx     setf pyrex
+    *.pxd     setf pyrex
+    *.py      setf python
+    *.pyw     setf python
+    .pythonstartup
+              setf python
+    .pythonrc setf python
+    *.ptl     setf python
+    *.pyi     setf python
+    *.rad     setf radiance
+    *.mat     setf radiance
+    .ratpoisonrc
+              setf ratpoison
+    ratpoisonrc
+              setf ratpoison
+    *\,v      setf rcs
+    .inputrc  setf readline
+    inputrc   setf readline
+    *.reg     if getline(1) =~? '^REGEDIT[0-9]*\s*$\|^Windows Registry Editor Version \d*\.\d*\s*$' | setf registry | endif
+    *.rib     setf rib
+    *.rex     setf rexx
+    *.orx     setf rexx
+    *.rxo     setf rexx
+    *.rxj     setf rexx
+    *.jrexx   setf rexx
+    *.rexxj   setf rexx
+    *.rexx    setf rexx
+    *.testGroup
+              setf rexx
+    *.testUnit
+              setf rexx
+    *.s       setf r
+    *.rd      setf rhelp
+    *.rnw     setf rnoweb
+    *.snw     setf rnoweb
+    *.rmd     setf rmd
+    *.smd     setf rmd
+    *.rrst    setf rrst
+    *.srst    setf rrst
+    *.r       call dist#ft#FTr()
+    *.R       call dist#ft#FTr()
+    .reminders
+              setf remind
+    *.remind  setf remind
+    *.rem     setf remind
+    resolv.conf
+              setf resolv
+    *.rnc     setf rnc
+    *.rng     setf rng
+    *.rpl     setf rpl
+    robots.txt
+              setf robots
+    *.x       setf rpcgen
+    *.rst     setf rst
+    *.rtf     setf rtf
+    .irbrc    setf ruby
+    irbrc     setf ruby
+    *.rb      setf ruby
+    *.rbw     setf ruby
+    *.gemspec setf ruby
+    *.rs      setf rust
+    *.ru      setf ruby
+    Gemfile   setf ruby
+    *.builder setf ruby
+    *.rxml    setf ruby
+    *.rjs     setf ruby
+    [rR]antfile
+              setf ruby
+    *.rant    setf ruby
+    [rR]akefile
+              setf ruby
+    *.rake    setf ruby
+    *.sl      setf slang
+    smb.conf  setf samba
+    *.sas     setf sas
+    *.sass    setf sass
+    *.sa      setf sather
+    *.scala   setf scala
+    *.sbt     setf sbt
+    *.sci     setf scilab
+    *.sce     setf scilab
+    *.scss    setf scss
+    *.sd      setf sd
+    *.sdl     setf sdl
+    *.pr      setf sdl
+    *.sed     setf sed
+    *.siv     setf sieve
+    *.sieve   setf sieve
+    sendmail.cf
+              setf sm
+    *.mc      call dist#ft#McSetf()
+    */etc/services
+              setf services
+    */etc/slp.conf
+              setf slpconf
+    */etc/slp.reg
+              setf slpreg
+    */etc/slp.spi
+              setf slpspi
+    */etc/serial.conf
+              setf setserial
+    *.sgm     if getline(1).getline(2).getline(3).getline(4).getline(5) =~? 'linuxdoc' |   setf sgmllnx | elseif getline(1) =~ '<!DOCTYPE.*DocBook' || getline(2) =~ '<!DOCTYPE.*DocBook' |   let b:docbk_type = "sgml" |   let b:docbk_ver = 4 |   setf docbk | else |   setf sgml | endif
+    *.sgml    if getline(1).getline(2).getline(3).getline(4).getline(5) =~? 'linuxdoc' |   setf sgmllnx | elseif getline(1) =~ '<!DOCTYPE.*DocBook' || getline(2) =~ '<!DOCTYPE.*DocBook' |   let b:docbk_type = "sgml" |   let b:docbk_ver = 4 |   setf docbk | else |   setf sgml | endif
+    *.decl    if getline(1).getline(2).getline(3) =~? '^<!SGML' |    setf sgmldecl | endif
+    *.dcl     if getline(1).getline(2).getline(3) =~? '^<!SGML' |    setf sgmldecl | endif
+    *.dec     if getline(1).getline(2).getline(3) =~? '^<!SGML' |    setf sgmldecl | endif
+    catalog   setf catalog
+    .bashrc   call dist#ft#SetFileTypeSH("bash")
+    bashrc    call dist#ft#SetFileTypeSH("bash")
+    bash.bashrc
+              call dist#ft#SetFileTypeSH("bash")
+    .bash[_-]profile
+              call dist#ft#SetFileTypeSH("bash")
+    .bash[_-]logout
+              call dist#ft#SetFileTypeSH("bash")
+    .bash[_-]aliases
+              call dist#ft#SetFileTypeSH("bash")
+    bash-fc[-.]
+              call dist#ft#SetFileTypeSH("bash")
+    *.bash    call dist#ft#SetFileTypeSH("bash")
+    */{,.}bash[_-]completion{,.d,.sh}{,/*}
+              call dist#ft#SetFileTypeSH("bash")
+    *.ebuild  call dist#ft#SetFileTypeSH("bash")
+    *.eclass  call dist#ft#SetFileTypeSH("bash")
+    PKGBUILD  call dist#ft#SetFileTypeSH("bash")
+    .kshrc    call dist#ft#SetFileTypeSH("ksh")
+    *.ksh     call dist#ft#SetFileTypeSH("ksh")
+    */etc/profile
+              call dist#ft#SetFileTypeSH(getline(1))
+    .profile  call dist#ft#SetFileTypeSH(getline(1))
+    *.sh      call dist#ft#SetFileTypeSH(getline(1))
+    *.env     call dist#ft#SetFileTypeSH(getline(1))
+    *.install if getline(1) =~ '<?php' |   setf php | else |   call dist#ft#SetFileTypeSH("bash") | endif
+    .tcshrc   call dist#ft#SetFileTypeShell("tcsh")
+    *.tcsh    call dist#ft#SetFileTypeShell("tcsh")
+    tcsh.tcshrc
+              call dist#ft#SetFileTypeShell("tcsh")
+    tcsh.login
+              call dist#ft#SetFileTypeShell("tcsh")
+    .login    call dist#ft#CSH()
+    .cshrc    call dist#ft#CSH()
+    csh.cshrc call dist#ft#CSH()
+    csh.login call dist#ft#CSH()
+    csh.logout
+              call dist#ft#CSH()
+    *.csh     call dist#ft#CSH()
+    .alias    call dist#ft#CSH()
+    .zprofile setf zsh
+    */etc/zprofile
+              setf zsh
+    .zfbfmarks
+              setf zsh
+    .zshrc    setf zsh
+    .zshenv   setf zsh
+    .zlogin   setf zsh
+    .zlogout  setf zsh
+    .zcompdump
+              setf zsh
+    *.zsh     setf zsh
+    *.scm     setf scheme
+    *.ss      setf scheme
+    *.rkt     setf scheme
+    .screenrc setf screen
+    screenrc  setf screen
+    *.sim     setf simula
+    *.sin     setf sinda
+    *.s85     setf sinda
+    *.sst     setf sisu
+    *.ssm     setf sisu
+    *.ssi     setf sisu
+    *.-sst    setf sisu
+    *._sst    setf sisu
+    *.sst.meta
+              setf sisu
+    *.-sst.meta
+              setf sisu
+    *._sst.meta
+              setf sisu
+    *.il      setf skill
+    *.ils     setf skill
+    *.cdf     setf skill
+    .slrnrc   setf slrnrc
+    *.score   setf slrnsc
+    *.st      setf st
+    *.cls     if getline(1) =~ '^%' |  setf tex | elseif getline(1)[0] == '#' && getline(1) =~ 'rexx' |  setf rexx | else |  setf st | endif
+    *.tpl     setf smarty
+    *.smil    if getline(1) =~ '<?\s*xml.*?>' |   setf xml | else |   setf smil | endif
+    *.smi     if getline(1) =~ '\<smil\>' |   setf smil | else |   setf mib | endif
+    *.smt     setf smith
+    *.smith   setf smith
+    *.sno     setf snobol4
+    *.spt     setf snobol4
+    *.mib     setf mib
+    *.my      setf mib
+    *.hog     setf hog
+    snort.conf
+              setf hog
+    vision.conf
+              setf hog
+    *.rules   call dist#ft#FTRules()
+    *.spec    setf spec
+    *.speedup setf spup
+    *.spdata  setf spup
+    *.spd     setf spup
+    *.ice     setf slice
+    *.sp      setf spice
+    *.spice   setf spice
+    *.spy     setf spyce
+    *.spi     setf spyce
+    squid.conf
+              setf squid
+    *.tyb     setf sql
+    *.typ     setf sql
+    *.tyc     setf sql
+    *.pkb     setf sql
+    *.pks     setf sql
+    *.sql     call dist#ft#SQL()
+    *.sqlj    setf sqlj
+    *.sqr     setf sqr
+    *.sqi     setf sqr
+    ssh_config
+              setf sshconfig
+    */.ssh/config
+              setf sshconfig
+    sshd_config
+              setf sshdconfig
+    *.ado     setf stata
+    *.do      setf stata
+    *.imata   setf stata
+    *.mata    setf stata
+    *.class   if getline(1) !~ "^\xca\xfe\xba\xbe" | setf stata | endif
+    *.hlp     setf smcl
+    *.ihlp    setf smcl
+    *.smcl    setf smcl
+    *.stp     setf stp
+    *.sml     setf sml
+    *.cm      setf voscm
+    */etc/sysctl.conf
+              setf sysctl
+    */etc/sysctl.d/*.conf
+              setf sysctl
+    */systemd/*.{automount,mount,path,service,socket,swap,target,timer}
+              setf systemd
+    /etc/systemd/system/*.d/*.conf
+              setf systemd
+    /etc/systemd/system/*.d/.#*
+              setf systemd
+    *.sdc     setf sdc
+    */etc/sudoers
+              setf sudoers
+    sudoers.tmp
+              setf sudoers
+    *.svg     setf svg
+    *.t       if !dist#ft#FTnroff() && !dist#ft#FTperl() | setf tads | endif
+    tags      setf tags
+    *.tak     setf tak
+    {pending,completed,undo}.data
+              setf taskdata
+    *.task    setf taskedit
+    *.tcl     setf tcl
+    *.tk      setf tcl
+    *.itcl    setf tcl
+    *.itk     setf tcl
+    *.jacl    setf tcl
+    *.tli     setf tli
+    *.slt     setf tsalt
+    *.ttl     setf teraterm
+    *.ti      setf terminfo
+    *.latex   setf tex
+    *.sty     setf tex
+    *.dtx     setf tex
+    *.ltx     setf tex
+    *.bbl     setf tex
+    *.tex     call dist#ft#FTtex()
+    *.mkii    setf context
+    *.mkiv    setf context
+    *.mkvi    setf context
+    *.texinfo setf texinfo
+    *.texi    setf texinfo
+    *.txi     setf texinfo
+    texmf.cnf setf texmf
+    .tidyrc   setf tidy
+    tidyrc    setf tidy
+    *.tf      setf tf
+    .tfrc     setf tf
+    tfrc      setf tf
+    {.,}tmux*.conf
+              setf tmux
+    *.tpp     setf tpp
+    *.treetop setf treetop
+    trustees.conf
+              setf trustees
+    *.tssgm   setf tssgm
+    *.tssop   setf tssop
+    *.tsscl   setf tsscl
+    *.twig    setf twig
+    *.ts      setf typescript
+    *.tsx     setf typescriptreact
+    *.uit     setf uil
+    *.uil     setf uil
+    */etc/udev/udev.conf
+              setf udevconf
+    */etc/udev/permissions.d/*.permissions
+              setf udevperm
+    */etc/udev/cdsymlinks.conf
+              setf sh
+    *.uc      setf uc
+    */etc/updatedb.conf
+              setf updatedb
+    */usr/share/upstart/*.conf
+              setf upstart
+    */usr/share/upstart/*.override
+              setf upstart
+    */etc/init/*.conf
+              setf upstart
+    */etc/init/*.override
+              setf upstart
+    */.init/*.conf
+              setf upstart
+    */.init/*.override
+              setf upstart
+    */.config/upstart/*.conf
+              setf upstart
+    */.config/upstart/*.override
+              setf upstart
+    *.vr      setf vera
+    *.vri     setf vera
+    *.vrh     setf vera
+    *.v       setf verilog
+    *.va      setf verilogams
+    *.vams    setf verilogams
+    *.sv      setf systemverilog
+    *.svh     setf systemverilog
+    *.hdl     setf vhdl
+    *.vhd     setf vhdl
+    *.vhdl    setf vhdl
+    *.vbe     setf vhdl
+    *.vst     setf vhdl
+    *.vim     setf vim
+    *.vba     setf vim
+    .exrc     setf vim
+    _exrc     setf vim
+    .viminfo  setf viminfo
+    _viminfo  setf viminfo
+    *.hw      if getline(1) =~ '<?php' |   setf php | else |   setf virata | endif
+    *.module  if getline(1) =~ '<?php' |   setf php | else |   setf virata | endif
+    *.pkg     if getline(1) =~ '<?php' |   setf php | else |   setf virata | endif
+    *.frm     call dist#ft#FTVB("form")
+    *.sba     setf vb
+    vgrindefs setf vgrindefs
+    *.wrl     setf vrml
+    *.vroom   setf vroom
+    *.vue     setf vue
+    *.wast    setf wast
+    *.wat     setf wast
+    *.wm      setf webmacro
+    .wgetrc   setf wget
+    wgetrc    setf wget
+    *.wml     setf wml
+    *.wbt     setf winbatch
+    *.wsml    setf wsml
+    *.wpl     setf xml
+    wvdial.conf
+              setf wvdial
+    .wvdialrc setf wvdial
+    .cvsrc    setf cvsrc
+    cvs\d\+   setf cvs
+    *.web     if getline(1)[0].getline(2)[0].getline(3)[0].getline(4)[0].getline(5)[0] =~ "%" |   setf web | else |   setf winbatch | endif
+    *.ws[fc]  setf wsh
+    *.xhtml   setf xhtml
+    *.xht     setf xhtml
+    XF86Config
+              if getline(1) =~ '\<XConfigurator\>' |   let b:xf86conf_xfree86_version = 3 | endif | setf xf86conf
+    */xorg.conf.d/*.conf
+              let b:xf86conf_xfree86_version = 4 | setf xf86conf
+    xorg.conf let b:xf86conf_xfree86_version = 4 | setf xf86conf
+    xorg.conf-4
+              let b:xf86conf_xfree86_version = 4 | setf xf86conf
+    */etc/xinetd.conf
+              setf xinetd
+    *.xs      setf xs
+    .Xdefaults
+              setf xdefaults
+    .Xpdefaults
+              setf xdefaults
+    .Xresources
+              setf xdefaults
+    xdm-config
+              setf xdefaults
+    *.ad      setf xdefaults
+    *.msc     setf xmath
+    *.msf     setf xmath
+    *.ms      if !dist#ft#FTnroff() | setf xmath | endif
+    *.xml     call dist#ft#FTxml()
+    *.xmi     setf xml
+    *.csproj  setf xml
+    *.csproj.user
+              setf xml
+    *.ui      setf xml
+    *.tpm     setf xml
+    */etc/xdg/menus/*.menu
+              setf xml
+    fglrxrc   setf xml
+    *.wsdl    setf xml
+    *.xlf     setf xml
+    *.xliff   setf xml
+    *.xul     setf xml
+

@@ -1,20 +1,26 @@
 kbd {
   color: #404040;
+  margin: 0;
+  padding: 0 0.5em;
   font-family: "Courier New", Courier, monospace;
   font-weight: bold;
-  display: inline-block;
-  margin: 0 .1em;
-  padding: .1em .6em;
-  text-shadow: 0 1px 0 #FFF;
-  background-color: #e1e3e5;
-  border: 1px solid #adb3b9;
-  border-radius: 3px;
-  box-shadow: 0 1px 0 rgba(12,13,14,0.2),0 0 0 2px #FFF inset;
-  white-space: nowrap;
-/*    line-height: 1.4;
-    color: #242729;
-*/
 }
+
+pre, code {
+  color: #930;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+}
+pre {
+  overflow: auto;
+  padding: 0 0 0 2em;
+}
+pre > code {
+  margin:0;
+  display: block;
+  word-wrap: normal;
+}
+
 code.inset {
   margin: 0 0.2em;
   padding: 0;
@@ -39,10 +45,16 @@ code.msg {
   font-family: "Courier New", Courier, monospace;
 }
 
-h2 {
+h2.article {
   font-size:1.1em;
   font-weight:bold;
   border-bottom:1px solid lightgray;
   border-left:6px solid lightgray;
   padding:0 0 3px 5px;
+}
+
+p.item {
+  padding:5px;
+  margin:0;
+  border-left:1px solid;
 }

@@ -8,69 +8,73 @@
 	<title>VIM学习笔记 自动命令(autocmd)</title>
 </head>
 <body>
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">启用/禁用</p>
-	<p></p>
-自动命令.所谓的自动命令就是一条命令，所不同的只是他可以在某些事件发生时自动执行.
-例如通过Vim的这样自动命令，我们可以使用Vim来编辑压缩文件，这是因为我们可以定义一个自动命令在我们读取文件时解压缩，在我们写入文件时进行压缩.
-我们在处理文件时有时希望文件在保存时在文件的结尾处插入当前的日期，而这在Vim当中我们可以使用自动命令来完成.我们可以定义这样的一个函数:
-:function DateInsert()
-:    $read !date    "在文件的结尾处插入日期
-:endfunction
-当我们要保存文件时可以调用这个函数:
-:call DateInsert()
-然后我们就可以保存退出了.
-我们还可以将这个功能绑定在一个按键上:
-:map <F12>:call DateInsert()<CR>|:write<CR>
-这种方法使用问题的解决更简单，因为我们只需在要保存文件时按一下F12键就可以了.
-但是也许有时我们会忘记这样的步骤，而使用正常的保存命令，那么这时这个函数也就失去了意义.我们希望这个插入日期的命令可以自动被执行，这也正是自动命令的意义所在.
-下面的命令就可以来满足我们的要求了:
-:autocmd FileWritePre * :callDateInsert()<CR>
-这个命令会使得所有的文件在保存之前调用这个插入日期的函数.我们并不需要每一次都要输入:write来保存文件，也就是说当我们定义了这个命令以后，当我们输入一次:write命令，vim就会自动检查所有未保存的文件并执行我们定义的这个命令，然后执行保存命令.
+	<h1>VIM学习笔记 自动命令(autocmd)</h1>
 
-:autocmd命令的一般格式如下:
-:autocmd group events file_patter nested command
-在这个格式中组名(group)是一个可选项，他被用于管理和调用命令.参数事件(events)是一个事件列表，指明引发命令的事件，而嵌套标记(nested)可以允许嵌套自动命令，最后是所要执行的命令.
-命令:augroup可以使得我们定义一组自动命令.这个组名最好应是一个和我们要定义的一组自动命令相关联的名字，如下面的例子:
-:augroup cprograms
-:    autocmd FileReadPost *.c :set cindent
-:    autocmd FileReadPost *.cpp :set cindent
-:augroup END
-在这里因为这些自动命令是在:augroup的作用域之内的，所以他们被放在cprogram这个组内.这组自动命令是在读取C和Cpp之后执行的.如果我们想在这个组中添加关于头文件的自动命令，我们可以使用:augroup命令，或者是在我们的定义中包含这个组名.
-如果我们正在编辑的文件名为sam.cx，而我们想将他当作C程序文件来对处理.这时我们可以通过命令来告诉Vim编辑器在文件读入以后将他与*.c文件相匹配.我们所用的命令如下:
-:doautocmd group event file_name
-在这个命令执行的时候，Vim是将假定当前文件的名字为file_name，而实际上这并不是他真正的文件名.如果在这个命令中我们并没有指明组(group)，那么所有的组都会被用到.而且我们必须指明事件，并且Vim会认为这个事件已经发生.与命令:doautocmd相类似的是命令:doautoall，所不同的只是后者是针对每一个缓冲区(buffer).这个命令的格式为:
-:doautoall group event file_name
-我们可以使用下列的命令来引发命令:
-BufNewFile            当编辑一个新文件时引发命令
-BufReadPre    BufReadPost    在读入之前或是读入之后引发命令
-        BufRead        BufReadPost的另一种说法
-BufFilePre    BufFilePost    在通过:file命令更改缓冲区名字之前或是之后引发
-FileReadPre    FileReadPost
-在用:read命令读入文件之前或之后.在文件读入之后，在文件的开头和结尾处有由[和]来标记
-FilterReadPre    FilterReadPost    在用过滤命令(filter)读入文件之前或之后
-FileType            当FileType设置时有效
-Syntax                当Syntax设置时有效
-StdinReadPre    StdReadPost    由标准输入设备读入或是输出
-BufWritePre    BufWritePost    在将整个缓冲区写入文件之前或是之后
-BufWrite            BufWritePre的另一种说法
-FileWritePre    FileWritePost    将部分缓冲区内容写入文件之前或是之后
-FileAppendPre    FileAppendPost    将一个文件由过滤命令输入之前或之后
-FileChangedShell
-这个事件是在Vim运行Shell命令而文件的修改时间已经改变时引发
-FocusGained    FocusLost
-这个事件是在Vim编辑器得到或是失运输入光标时引发.这意味着vim运行图形界面，并且是Vim成为当前窗口或是其他的成为当前窗口
-CursorHold
-用户停止输入的时间长于由updatetime所指定的时间时引发
-BufEnter    BufLeave    当进入或离开缓冲区时引发
-BufUnload            在缓冲区未载入之前引发
-BufCreate    BufDelete    在缓冲区产生以后或是在缓冲区删除以前引发
-GuiEnter            启动GUI时引发
-VimEnter            Vim启动而初始化文件还没有读入进引发
-VimLeave            退出Vim编辑器而.viminfo还没有改写时引发
-FileEncoding            fileencoding已经被设置时有效
-TermChanged            term选项被更改时引发
-User
-并不是一个真正的事件，而是命令:doautocmd一起使用的一个事件
+	<p>自动命令，就是可以在某些事件发生时自动执行的命令。例如可以通过自动命令来编辑压缩文件：即定义一个自动命令在读取文件时解压缩，在写入文件时再重新进行压缩。</p>
+	<p>将自动命令与<a href="http://yyq123.github.io/learn-vim/learn-vi-93-ScriptUDF.html" title="Script-User Defined Function">函数</a>相结合，则可以完成更复杂的操作。比如自定义以下函数，用于在保存文件时插入当前日期：</p>
+<pre><code>
+:function DateInsert()
+:    $read !date
+:endfunction
+</code></pre>
+	<p>使用以下命令，可以手动调用函数：</p>
+	<p style="text-indent:2em"><code class="inset">:call DateInsert()</code></p>
+	<p>使用以下自动命令，则可以在保存文件时自动执行函数，以插入当前日期：</p>
+	<p style="text-indent:2em"><code class="inset">:autocmd FileWritePre * :callDateInsert()<CR></code></p>
+	<p>也就是说，vim将在保存文件之前执行指定的函数，然后再进行文件保存。</p>
+
+	<h2 class="article"><a id="">autocmd</a></h2>
+	<p>autocmd命令的一般格式如下：</p>
+	<p style="text-indent:2em"><code class="inset">:autocmd [group] events pattern [nested] command</code></p>
+	<ul>
+		<li><p class="item">group<br />组名是可选项，用于分组管理多条自动命令；</p></li>
+		<li><p class="item">events<br />事件参数，用于指明引发命令的一个或多个事件；</p></li>
+		<li><p class="item">pattern<br />在符合匹配模式的文件中执行命令（*任意文件）；</p></li>
+		<li><p class="item">nested<br />嵌套标记是可选项，用于允许嵌套自动命令；</p></li>
+		<li><p class="item">command<br />指明需要执行的命令、函数或脚本；</p></li>
+		<li><p class="item"><br />；</p></li>
+		<li><p class="item"><br />；</p></li>
+	</ul>
+
+	<p style="font-weight:bold">events参数</p>
+	<ul>
+
+		<li><p class="item">BufNewFile<br />当编辑一个新文件时触发命令；</p></li>
+		<li><p class="item">BufReadPre<br />在读入新缓冲区之前触发命令；</p></li>
+		<li><p class="item">BufRead, BufReadPost<br />在读入新缓冲区之后触发命令；</p></li>
+		<li><p class="item">BufWrite, BufWritePre<br />在将缓冲区写入文件之前触发命令；</p></li>
+		<li><p class="item">BufWritePost<br />在将缓冲区写入文件之后触发命令；</p></li>
+		<li><p class="item">BufEnter<br />进入缓冲区时触发命令；</p></li>
+		<li><p class="item">BufLeave<br />离开缓冲区时触发命令；</p></li>
+		<li><p class="item">BufCreate<br />创建缓冲区以后触发命令；</p></li>
+		<li><p class="item">BufDelete<br />删除缓冲区之前触发命令；</p></li>
+		<li><p class="item">FileReadPre<br />在使用:read命令读入文件之前触发命令；</p></li>
+		<li><p class="item">FileReadPost<br />在使用:read命令读入文件之后触发命令；</p></li>
+		<li><p class="item">FileChangedShell<br />当文件的最后修改时间、属性或尺寸发生改变时触发命令；</p></li>
+		<li><p class="item">FileType<br />设置FileType之后触发命令；</p></li>
+		<li><p class="item">Syntax<br />设置Syntax之后触发命令；</p></li>
+		<li><p class="item">GUIEnter<br />启动GUI之后触发命令；</p></li>
+		<li><p class="item">VimEnter<br />Vim启动并载入初始化文件之后触发命令；</p></li>
+		<li><p class="item">VimLeave<br />改写.viminfo文件之后，退出Vim之前触发命令；</p></li>
+		<li><p class="item">FocusGained<br />Vim成为当前窗口时触发命令；</p></li>
+		<li><p class="item">FocusLost<br />Vim不再是当前窗口时触发命令；</p></li>
+		<li><p class="item">vimResized<br />窗口尺寸变化之后触发命令；</p></li>
+		<li><p class="item">WinEnter<br />进入窗口时触发命令；</p></li>
+		<li><p class="item">WinLeave<br />离开窗口时触发命令；</p></li>
+		<li><p class="item">CursorMoved<br />在常规模式下移动光标时触发命令；</p></li>
+		<li><p class="item">CursorMovedI<br />在插入模式下移动光标时触发命令；</p></li>
+		<li><p class="item">CursorHold<br />当超过'updatetime'所指定时间用户没有输入时触发命令；</p></li>
+		<li><p class="item">StdinReadPre<br />由标准输入设备读入缓冲区之前触发命令；</p></li>
+		<li><p class="item">StdinReadPost<br />由标准输入设备读入缓冲区之后触发命令；</p></li>
+		<li><p class="item">EncodingChanged<br />'encoding'选项改变之后触发命令；</p></li>
+		<li><p class="item">User<br />与:doautocmd命令组合使用的事件；</p></li>
+		<li><p class="item"><br />触发命令；</p></li>
+	</ul>
+	<p>Vim内置了超过80个事件，您可以使用以下命令，获得详细的说明信息：</p>
+	<p style="text-indent:2em"><code class="inset">:help autocommand-events</code></p>
+
+:help :autocmd
+
 当存文件时，只有下列事件成对出现时才引发:
 BufWritePre    BufWritePost
 FilterWritePre    FilterWritePost
@@ -81,23 +85,32 @@ BufNewFile
 BufReadPre    BufReadPost
 FilterReadPre    FilterReadPost
 FileReadPre    FileReadPost
+	<p style="font-weight:bold">pattern参数</p>
+	<p></p>
 文件名类型与UNIX标准系统相匹配.下面列出是一些特殊字符匹配的情况:
 *    匹配任意长度的任意字符
 ?    匹配单个字符
 '    分隔交替的类型
-?    字符?
-,    字符,
-character
-将这个字符看作是一个要查找的类型字符，例如:a+可以匹配，aa，aaa等等
-一般情况下一个命令的执行结果并不会引发另一个事件.例如Syntax的执行结果并不会引发FileReadPre事件.但是如果我们在自动命令中加入nested关键字就可以来引发了，例如下面的命令:
-:autocmd FileChangedShell *.c nested e!
-我们可以使用命令:autocmd列出所有的自动命令.
-如果我们想要得到所有这些命令中的一个子集命令，我们可以使用如下的命令:
+\?   匹配字符?
+.    匹配字符.
+,    用于分割多个pattern
+\,   匹配字符,
+	<p>您可以使用以下命令，获得详细的帮助信息：</p>
+	<p style="text-indent:2em"><code class="inset">:help autocmd-patterns</code></p>
+
+	<p style="font-weight:bold">nested参数</p>
+	<p>通常一个命令的执行结果并不会引发另一个事件。例如Syntax的执行结果并不会引发FileReadPre事件。但是如果在自动命令中加入nested关键字，则可以触发，例如下面的命令：</p>
+	<p style="text-indent:2em"><code class="inset">:autocmd FileChangedShell *.c nested e!</code></p>
+
+	<p>使用以下命令，可以列出所有自动命令：</p>
+	<p style="text-indent:2em"><code class="inset">:autocmd</code></p>
 :autocmd group event pattern
 在这个命令中如果我们指定了group，那么就会所有与group相匹配的命令.event可以是以前定义的或是所有的事件，pattern指了与类型相匹配的文件选项.只有那些与命令相匹配的命令才会被列出来.
-我们可以建立我们自已的自动命令，当然了我们也可以移除那些我们不再需要的自动命令.例如命令:autocmd!就可以移除所有的自动命令.
-我们也可以用下面的命令来移除指定的组命令:
-:autocmd! group
+	<p>使用以下命令，可以删除所有自动命令：</p>
+	<p style="text-indent:2em"><code class="inset">:autocmd!</code></p>
+	<p>使用以下命令，可以删除指定组的自动命令：</p>
+	<p style="text-indent:2em"><code class="inset">:autocmd! group</code></p>
+
 在这个命令中我们当然也可以为这个组指定事件或是类型
 :autocmd! group event pattern
 event可以用*代替所有的事件
@@ -106,19 +119,51 @@ event可以用*代替所有的事件
 这个命令等价于下面的两个命令:
 :autocmd! group event pattern
 :autocmd group event pattern nested command
-有时我们并不想引发某个命令，在这样的情况下我们可以设置eventignore选项来指定那些要忽略的事件.例如下面的命令将进入窗口和离开窗口的事件忽略掉:
-:set eventignore=WinEnter,WinLeave
-如果要忽略所有的事件，可以用下面的命令:
-:set eventignore=all
 
+	<h2 class="article"><a id="">augroup</a></h2>
+	<p>通过eventignore选项，可以忽略指定的事件，而不触发自动命令。例如使用以下命令，将忽略进入窗口和离开窗口的事件：</p>
+	<p style="text-indent:2em"><code class="inset">:set eventignore=WinEnter,WinLeave</code></p>
+	<p>如果希望忽略所有事件，那么可以使用以下设置：</p>
+	<p style="text-indent:2em"><code class="inset">:set eventignore=all</code></p>
+
+	<p>针对特定类型的文件，执行自动命令</p>
+	<p>Vim会根据文件后缀名和文件内容来侦测文件类型，然后为其应用相应的<a href="http://yyq123.github.io/learn-vim/learn-vi-64-Syntax.html" title="Syntax">语法高亮度</a>和<a href="http://yyq123.github.io/learn-vim/learn-vi-66-Indent.html" title="Indent">缩进规则</a>。</p>
+	<p>如果希望将特定文件后缀与已有的文件类型相关联，那么可以在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>配置文件中，使用以下自动命令进行设置：</p>
+	<p style="text-indent:2em"><code class="inset">autocmd BufRead,BufNewFile *.foo set filetype=html</code></p>
+For more info, try :help new-filetype in your Vim
+<p>针对不同的文件类型，设置不同的属性：</p>
+	<p style="text-indent:2em"><code class="inset">autocmd BufRead,BufNewFile *.html set shiftwidth=2</code></p>
+
+
+	<h2 class="article"><a id="">augroup</a></h2>
+	<p>通过<code class="inset">:augroup</code>命令，可以将多个相关联的自动命令来分组管理。例如以下命令，将C语言开发的相关自动命令，组织在&ldquo;cprogram&rdquo;组内：</p>
+<pre><code>
+:augroup cprograms
+:    autocmd FileReadPost *.c :set cindent
+:    autocmd FileReadPost *.cpp :set cindent
+:augroup END
+</code></pre>
+
+<p>如果我们正在编辑的文件名为sam.cx，而我们想将他当作C程序文件来对处理.这时我们可以通过命令来告诉Vim编辑器在文件读入以后将他与*.c文件相匹配.我们所用的命令如下:</p>
+:doautocmd group event file_name
+在这个命令执行的时候，Vim是将假定当前文件的名字为file_name，而实际上这并不是他真正的文件名.如果在这个命令中我们并没有指明组(group)，那么所有的组都会被用到.而且我们必须指明事件，并且Vim会认为这个事件已经发生.与命令:doautocmd相类似的是命令:doautoall，所不同的只是后者是针对每一个缓冲区(buffer).这个命令的格式为:
+:doautoall group event file_name
+<h2 class="article"><a id="">启用/禁用</a></h2>
+	<p></p>
+	<a href="#" title=""></a>
+:help :augroup
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">识别文件</p>
 	<p></p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
 
 	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
+	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
 
-	<p>使用以下命令，可以查看关于自动命令的帮助信息：</p>
-	<p style="text-indent:2em"><code class="inset">:help :autocmd</code></p>
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
+		<caption style="margin:0.5em; font-weight:bold">选项列表</caption>
+		<tr><th style="white-space: nowrap">选项</th><th>描述</th><th>帮助信息</th></tr>
+		<tr><td><code class="inset">!</code></td><td>如果包含，表示。例如，。</td><td style="white-space: nowrap"><code class="inset">:help viminfo-!</code></td></tr>
+	</table>
 
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
@@ -130,8 +175,21 @@ event可以用*代替所有的事件
 	</table>
 &ldquo;&rdquo;
 
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
+	<p></p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
 
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
+		<tr><td><code class="inset">:</code></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+	</table>
+&ldquo;&rdquo;
 </body>
 </html>
 
