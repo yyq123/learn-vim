@@ -10,51 +10,58 @@
 <body>
 	<h1>VIM学习笔记 自动命令(autocmd)</h1>
 
-	<p>自动命令，就是可以在某些事件发生时自动执行的命令。例如可以通过自动命令来编辑压缩文件：即定义一个自动命令在读取文件时解压缩，在写入文件时再重新进行压缩。</p>
-	<p>将自动命令与<a href="http://yyq123.github.io/learn-vim/learn-vi-93-ScriptUDF.html" title="Script-User Defined Function">函数</a>相结合，则可以完成更复杂的操作。比如自定义以下函数，用于在保存文件时插入当前日期：</p>
+	<p>自动命令，是可以在指定事件发生时自动执行的命令。可以将重复的手工操作自动化，以提高编辑效率并减少人为操作的差错。</p>
+	<p>比如自定义以下函数，用于在保存文件时插入当前日期：</p>
 <pre><code>
 :function DateInsert()
 :    $read !date
 :endfunction
 </code></pre>
-	<p>使用以下命令，可以手动调用函数：</p>
+	<p>使用以下命令，可以手动调用此函数：</p>
 	<p style="text-indent:2em"><code class="inset">:call DateInsert()</code></p>
-	<p>使用以下自动命令，则可以在保存文件时自动执行函数，以插入当前日期：</p>
+	<p>通过以下自动命令，则可以在保存文件时自动执行函数，而不再需要额外的手动操作：</p>
 	<p style="text-indent:2em"><code class="inset">:autocmd FileWritePre * :callDateInsert()<CR></code></p>
-	<p>也就是说，vim将在保存文件之前执行指定的函数，然后再进行文件保存。</p>
 
-	<h2 class="article"><a id="">autocmd</a></h2>
-	<p>autocmd命令的一般格式如下：</p>
+	<h2 class="article"><a id="">定义自动命令</a></h2>
+	<p>可以使用以下格式的autocmd命令，来定义自动命令：</p>
 	<p style="text-indent:2em"><code class="inset">:autocmd [group] events pattern [nested] command</code></p>
 	<ul>
-		<li><p class="item">group<br />组名是可选项，用于分组管理多条自动命令；</p></li>
-		<li><p class="item">events<br />事件参数，用于指明引发命令的一个或多个事件；</p></li>
-		<li><p class="item">pattern<br />在符合匹配模式的文件中执行命令（*任意文件）；</p></li>
-		<li><p class="item">nested<br />嵌套标记是可选项，用于允许嵌套自动命令；</p></li>
-		<li><p class="item">command<br />指明需要执行的命令、函数或脚本；</p></li>
-		<li><p class="item"><br />；</p></li>
-		<li><p class="item"><br />；</p></li>
+		<li><strong>group</strong>，组名是可选项，用于分组管理多条自动命令；</li>
+		<li><strong>events</strong>，事件参数，用于指明引发命令的一个或多个事件；</p></li>
+		<li><strong>pattern</strong>，在符合匹配模式的文件中执行命令（*任意文件）；</p></li>
+		<li><strong>nested</strong>，嵌套标记是可选项，用于允许嵌套自动命令；</p></li>
+		<li><strong>command</strong>，指明需要执行的命令、<a href="http://yyq123.github.io/learn-vim/learn-vi-93-ScriptUDF.html" title="Script-User Defined Function">函数</a>或脚本。</p></li>
 	</ul>
 
 	<p style="font-weight:bold">events参数</p>
 	<ul>
+		<li><p class="item">BufWinEnter<br />创建窗口之后触发命令；</p></li>
+		<li><p class="item">BufEnter<br />进入缓冲区时触发命令；</p></li>
+		<li><p class="item">VimEnter<br />Vim启动并载入初始化文件之后触发命令；</p></li>
+		<li><p class="item">BufNew<br />创建缓冲区之后触发命令；</p></li>
+		<li><p class="item">BufAdd<br />将缓冲区加入缓冲区列表之后触发命令；</p></li>
+		<li><p class="item">BufLeave<br />离开缓冲区时触发命令；</p></li>
+		<li><p class="item">BufWinLeave<br />从窗口中关闭缓冲区之前触发命令；</p></li>
+		<li><p class="item">BufUnload<br />卸载缓冲区之前触发命令；</p></li>
+		<li><p class="item">BufDelete<br />删除缓冲区之前触发命令；</p></li>
+		<li><p class="item">BufReadCmd<br />开始编辑缓冲区之前触发命令；</p></li>
+		<li><p class="item">InsertEnter<br />进入插入模式时触发命令；</p></li>
+		<li><p class="item">InsertLeave<br />离开插入模式时触发命令；</p></li>
+		<li><p class="item">BufWriteCmd<br />将缓冲区写入文件之前触发命令；</p></li>
 
 		<li><p class="item">BufNewFile<br />当编辑一个新文件时触发命令；</p></li>
 		<li><p class="item">BufReadPre<br />在读入新缓冲区之前触发命令；</p></li>
 		<li><p class="item">BufRead, BufReadPost<br />在读入新缓冲区之后触发命令；</p></li>
 		<li><p class="item">BufWrite, BufWritePre<br />在将缓冲区写入文件之前触发命令；</p></li>
 		<li><p class="item">BufWritePost<br />在将缓冲区写入文件之后触发命令；</p></li>
-		<li><p class="item">BufEnter<br />进入缓冲区时触发命令；</p></li>
-		<li><p class="item">BufLeave<br />离开缓冲区时触发命令；</p></li>
 		<li><p class="item">BufCreate<br />创建缓冲区以后触发命令；</p></li>
-		<li><p class="item">BufDelete<br />删除缓冲区之前触发命令；</p></li>
 		<li><p class="item">FileReadPre<br />在使用:read命令读入文件之前触发命令；</p></li>
 		<li><p class="item">FileReadPost<br />在使用:read命令读入文件之后触发命令；</p></li>
 		<li><p class="item">FileChangedShell<br />当文件的最后修改时间、属性或尺寸发生改变时触发命令；</p></li>
 		<li><p class="item">FileType<br />设置FileType之后触发命令；</p></li>
 		<li><p class="item">Syntax<br />设置Syntax之后触发命令；</p></li>
 		<li><p class="item">GUIEnter<br />启动GUI之后触发命令；</p></li>
-		<li><p class="item">VimEnter<br />Vim启动并载入初始化文件之后触发命令；</p></li>
+		<li><p class="item">VimLeavePre<br />改写.viminfo文件之前，退出Vim之前触发命令；</p></li>
 		<li><p class="item">VimLeave<br />改写.viminfo文件之后，退出Vim之前触发命令；</p></li>
 		<li><p class="item">FocusGained<br />Vim成为当前窗口时触发命令；</p></li>
 		<li><p class="item">FocusLost<br />Vim不再是当前窗口时触发命令；</p></li>
@@ -70,7 +77,7 @@
 		<li><p class="item">User<br />与:doautocmd命令组合使用的事件；</p></li>
 		<li><p class="item"><br />触发命令；</p></li>
 	</ul>
-	<p>Vim内置了超过80个事件，您可以使用以下命令，获得详细的说明信息：</p>
+	<p>Vim内置了近80个事件，您可以使用以下命令，获得详细的说明信息：</p>
 	<p style="text-indent:2em"><code class="inset">:help autocommand-events</code></p>
 
 :help :autocmd
@@ -86,8 +93,7 @@ BufReadPre    BufReadPost
 FilterReadPre    FilterReadPost
 FileReadPre    FileReadPost
 	<p style="font-weight:bold">pattern参数</p>
-	<p></p>
-文件名类型与UNIX标准系统相匹配.下面列出是一些特殊字符匹配的情况:
+	<p>利用匹配模式来指定应用自动命令的文件，可以使用以下特殊字符：</p>
 *    匹配任意长度的任意字符
 ?    匹配单个字符
 '    分隔交替的类型
@@ -102,30 +108,32 @@ FileReadPre    FileReadPost
 	<p>通常一个命令的执行结果并不会引发另一个事件。例如Syntax的执行结果并不会引发FileReadPre事件。但是如果在自动命令中加入nested关键字，则可以触发，例如下面的命令：</p>
 	<p style="text-indent:2em"><code class="inset">:autocmd FileChangedShell *.c nested e!</code></p>
 
+	<h2 class="article"><a id="">查看自动命令</a></h2>
 	<p>使用以下命令，可以列出所有自动命令：</p>
 	<p style="text-indent:2em"><code class="inset">:autocmd</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/autocmd.png" title="autocmd"><img src="https://yyq123.github.io/learn-vim/images/autocmd.png" alt="" width="550" height="276" /></a></p>
+	<p>你会发现自动命令的列表将会非常的长，其中既包括了在vimrc文件中用户定义的自动命令，也包括了各种插件定义的自动命令。</p>
 :autocmd group event pattern
 在这个命令中如果我们指定了group，那么就会所有与group相匹配的命令.event可以是以前定义的或是所有的事件，pattern指了与类型相匹配的文件选项.只有那些与命令相匹配的命令才会被列出来.
+
+	<h2 class="article"><a id="">删除自动命令</a></h2>
 	<p>使用以下命令，可以删除所有自动命令：</p>
 	<p style="text-indent:2em"><code class="inset">:autocmd!</code></p>
+	<p>注意，此操作也将删除插件所定义的自动命令，请谨慎操作。</p>
 	<p>使用以下命令，可以删除指定组的自动命令：</p>
 	<p style="text-indent:2em"><code class="inset">:autocmd! group</code></p>
+	<p>在命令中指定组、事件和匹配模式，可以删除特定的自动命令：</p>
+	<p style="text-indent:2em"><code class="inset">autocmd! Unfocussed FocusLost *.txt</code></p>
+	<p>在命令中使用特殊字符&ldquo;*&rdquo;来指代所有事件或文件。例如以下命令，将删除Unfocussed组中所有针对txt文件的自动命令：</p>
+	<p style="text-indent:2em"><code class="inset">autocmd! Unfocussed * *.txt</code></p>
+	<p>在命令中忽略文件匹配模式，那么所有针对指定事件的针对命令都将被删除。例如以下命令，将删除Unfocussed组在所有针对FocusLost事件的自动命令：</p>
+	<p style="text-indent:2em"><code class="inset">autocmd! Unfocussed FocusLost</code></p>
 
-在这个命令中我们当然也可以为这个组指定事件或是类型
-:autocmd! group event pattern
-event可以用*代替所有的事件
-我们可以用命令:autocmd!来移除那些已经存在的自动命令，我们还可以同时在一个命令中再新建一个我们自己的自动命令.这个语法的格式如下:
-:autocmd! group event pattern nested command
-这个命令等价于下面的两个命令:
-:autocmd! group event pattern
-:autocmd group event pattern nested command
-
-	<h2 class="article"><a id="">augroup</a></h2>
+	<h2 class="article"><a id="">自动命令选项</a></h2>
 	<p>通过eventignore选项，可以忽略指定的事件，而不触发自动命令。例如使用以下命令，将忽略进入窗口和离开窗口的事件：</p>
 	<p style="text-indent:2em"><code class="inset">:set eventignore=WinEnter,WinLeave</code></p>
 	<p>如果希望忽略所有事件，那么可以使用以下设置：</p>
 	<p style="text-indent:2em"><code class="inset">:set eventignore=all</code></p>
-
 	<p>针对特定类型的文件，执行自动命令</p>
 	<p>Vim会根据文件后缀名和文件内容来侦测文件类型，然后为其应用相应的<a href="http://yyq123.github.io/learn-vim/learn-vi-64-Syntax.html" title="Syntax">语法高亮度</a>和<a href="http://yyq123.github.io/learn-vim/learn-vi-66-Indent.html" title="Indent">缩进规则</a>。</p>
 	<p>如果希望将特定文件后缀与已有的文件类型相关联，那么可以在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>配置文件中，使用以下自动命令进行设置：</p>
@@ -139,10 +147,26 @@ For more info, try :help new-filetype in your Vim
 	<p>通过<code class="inset">:augroup</code>命令，可以将多个相关联的自动命令来分组管理。例如以下命令，将C语言开发的相关自动命令，组织在&ldquo;cprogram&rdquo;组内：</p>
 <pre><code>
 :augroup cprograms
+:    autocmd!
 :    autocmd FileReadPost *.c :set cindent
 :    autocmd FileReadPost *.cpp :set cindent
 :augroup END
 </code></pre>
+<p>如果我们针对同样的文件和同样的事件定义了多条自动命令，那么当满足触发条件时将分别执行多条自动命令。因此，建议在自动命令组的开头增加:autocmd!命令，以确保没有重复的自动命令存在。</p>
+
+:set filetype?
+"enable file type detection
+:filetype on
+
+"enable loading the plugin files for specific file types with:
+:filetype plugin on
+
+"enable loading the indent file for specific file types with:
+:filetype plugin indent on
+
+to list the filetypes that your Vim can understand, list these files using these commands:
+:echo glob($VIMRUNTIME . '/ftplugin/*.vim')
+:echo glob($VIMRUNTIME . '/syntax/*.vim')
 
 <p>如果我们正在编辑的文件名为sam.cx，而我们想将他当作C程序文件来对处理.这时我们可以通过命令来告诉Vim编辑器在文件读入以后将他与*.c文件相匹配.我们所用的命令如下:</p>
 :doautocmd group event file_name
