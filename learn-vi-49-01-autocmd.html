@@ -35,38 +35,42 @@
 
 	<p style="font-weight:bold">events参数</p>
 	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
-		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><th>类别</th><th>事件</th><th>触发条件</th></tr>
+		<tr><td rowspan="8">读取</td><td><code class="inset">BufNewFile</code></td><td>编辑一个新文件时</td></tr>
+		<tr><td><code class="inset">BufReadPre</code></td><td>读入新缓冲区之前</td></tr>
+		<tr><td><code class="inset">BufRead, BufReadPost</code></td><td>读入新缓冲区之后</td></tr>
+		<tr><td><code class="inset">BufReadCmd</code></td><td>开始编辑新缓冲区之前</td></tr>
+		<tr><td><code class="inset">FileReadPre</code></td><td>使用:read命令读入文件之前</td></tr>
+		<tr><td><code class="inset">FileReadPost</code></td><td>使用:read命令读入文件之后</td></tr>
+		<tr><td><code class="inset">StdinReadPre</code></td><td>由标准输入设备读入缓冲区之前</td></tr>
+		<tr><td><code class="inset">StdinReadPost</code></td><td>由标准输入设备读入缓冲区之后</td></tr>
+		<tr><td rowspan="3">写入</td><td><code class="inset">BufWrite, BufWritePre</code></td><td>将整个缓冲区写入文件时</td></tr>
+		<tr><td><code class="inset">BufWritePost</code></td><td>将整个缓冲区写入文件之后</td></tr>
+		<tr><td><code class="inset">BufWriteCmd</code></td><td>将整个缓冲区写入文件之前</td></tr>
+		<tr><td rowspan="8">缓冲区</td><td><code class="inset">BufAdd, BufCreate</code></td><td>将缓冲区加入缓冲区列表之后</td></tr>
+		<tr><td><code class="inset">BufDelete</code></td><td>从缓冲区列表中移除缓冲区之前</td></tr>
+		<tr><td><code class="inset">BufEnter</code></td><td>进入缓冲区之后</td></tr>
+		<tr><td><code class="inset">BufLeave</code></td><td>离开缓冲区之前</td></tr>
+		<tr><td><code class="inset">BufWinEnter</code></td><td>在窗口中显示缓冲区之后</td></tr>
+		<tr><td><code class="inset">BufWinLeave</code></td><td>从窗口中关闭缓冲区之前</td></tr>
+		<tr><td><code class="inset">BufNew</code></td><td>创建缓冲区之后</td></tr>
+		<tr><td><code class="inset">BufUnload</code></td><td>卸载缓冲区之前</td></tr>
+		<tr><td rowspan="4"></td><td><code class="inset"></code></td><td>设置'filetype'选项之后</td></tr>
+		<tr><td><code class="inset">Syntax</code></td><td>设置'syntax'选项之后</td></tr>
 		<tr><td><code class="inset">EncodingChanged</code></td><td>'encoding'选项改变之后触发命令；</td></tr>
+		<tr><td><code class="inset">OptionSet</code></td><td>设置任何选项之后</td></tr>
+		<tr><td rowspan="4">启动<br />退出</td><td><code class="inset">VimEnter</code></td><td>Vim启动并载入初始化文件之后</td></tr>
+		<tr><td><code class="inset">GUIEnter</code></td><td>启动GUI之后</td></tr>
+		<tr><td><code class="inset">VimLeavePre</code></td><td>改写viminfo文件之前，退出Vim之前</td></tr>
+		<tr><td><code class="inset">VimLeave</code></td><td>改写viminfo文件之后，退出Vim之前</td></tr>
 	</table>
+		<tr><td rowspan="2">其它</td><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
 	<ul>
-		<li><p class="item">BufWinEnter<br />创建窗口之后触发命令；</p></li>
-		<li><p class="item">BufEnter<br />进入缓冲区时触发命令；</p></li>
-		<li><p class="item">VimEnter<br />Vim启动并载入初始化文件之后触发命令；</p></li>
-		<li><p class="item">BufNew<br />创建缓冲区之后触发命令；</p></li>
-		<li><p class="item">BufAdd<br />将缓冲区加入缓冲区列表之后触发命令；</p></li>
-		<li><p class="item">BufLeave<br />离开缓冲区时触发命令；</p></li>
-		<li><p class="item">BufWinLeave<br />从窗口中关闭缓冲区之前触发命令；</p></li>
-		<li><p class="item">BufUnload<br />卸载缓冲区之前触发命令；</p></li>
-		<li><p class="item">BufDelete<br />删除缓冲区之前触发命令；</p></li>
-		<li><p class="item">BufReadCmd<br />开始编辑缓冲区之前触发命令；</p></li>
 		<li><p class="item">InsertEnter<br />进入插入模式时触发命令；</p></li>
 		<li><p class="item">InsertLeave<br />离开插入模式时触发命令；</p></li>
-		<li><p class="item">BufWriteCmd<br />将缓冲区写入文件之前触发命令；</p></li>
-
-		<li><p class="item">BufNewFile<br />当编辑一个新文件时触发命令；</p></li>
-		<li><p class="item">BufReadPre<br />在读入新缓冲区之前触发命令；</p></li>
-		<li><p class="item">BufRead, BufReadPost<br />在读入新缓冲区之后触发命令；</p></li>
-		<li><p class="item">BufWrite, BufWritePre<br />在将缓冲区写入文件之前触发命令；</p></li>
-		<li><p class="item">BufWritePost<br />在将缓冲区写入文件之后触发命令；</p></li>
-		<li><p class="item">BufCreate<br />创建缓冲区以后触发命令；</p></li>
-		<li><p class="item">FileReadPre<br />在使用:read命令读入文件之前触发命令；</p></li>
-		<li><p class="item">FileReadPost<br />在使用:read命令读入文件之后触发命令；</p></li>
 		<li><p class="item">FileChangedShell<br />当文件的最后修改时间、属性或尺寸发生改变时触发命令；</p></li>
-		<li><p class="item">FileType<br />设置FileType之后触发命令；</p></li>
-		<li><p class="item">Syntax<br />设置Syntax之后触发命令；</p></li>
-		<li><p class="item">GUIEnter<br />启动GUI之后触发命令；</p></li>
-		<li><p class="item">VimLeavePre<br />改写.viminfo文件之前，退出Vim之前触发命令；</p></li>
-		<li><p class="item">VimLeave<br />改写.viminfo文件之后，退出Vim之前触发命令；</p></li>
 		<li><p class="item">FocusGained<br />Vim成为当前窗口时触发命令；</p></li>
 		<li><p class="item">FocusLost<br />Vim不再是当前窗口时触发命令；</p></li>
 		<li><p class="item">vimResized<br />窗口尺寸变化之后触发命令；</p></li>
@@ -75,10 +79,32 @@
 		<li><p class="item">CursorMoved<br />在常规模式下移动光标时触发命令；</p></li>
 		<li><p class="item">CursorMovedI<br />在插入模式下移动光标时触发命令；</p></li>
 		<li><p class="item">CursorHold<br />当超过'updatetime'所指定时间用户没有输入时触发命令；</p></li>
-		<li><p class="item">StdinReadPre<br />由标准输入设备读入缓冲区之前触发命令；</p></li>
-		<li><p class="item">StdinReadPost<br />由标准输入设备读入缓冲区之后触发命令；</p></li>
-		<li><p class="item">EncodingChanged<br />'encoding'选项改变之后触发命令；</p></li>
 	</ul>
+	<p>假设我们打开文件并输入文本，然后保存并退出，那么这些操作将以下顺序触发一系列事件：</p>
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
+		<tr><th>操作</th><th>事件</th></tr>
+		<tr><td>启动Vim并创建默认窗口</td><td><code class="inset">BufWinEnter</code></td></tr>
+		<tr><td>创建默认缓冲区</td><td><code class="inset">BufEnter</code></td></tr>
+		<tr><td>:edit a.txt</td><td><code class="inset">VimEnter</code></td></tr>
+		<tr><td>创建新缓冲区</td><td><code class="inset">BufNew</code></td></tr>
+		<tr><td>将新缓冲区加入到缓冲区列表之中</td><td><code class="inset">BufAdd</code></td></tr>
+		<tr><td>退出默认缓冲区</td><td><code class="inset">BufLeave</code></td></tr>
+		<tr><td>退出默认窗口</td><td><code class="inset">BufWinLeave</code></td></tr>
+		<tr><td>将默认缓冲区从缓冲区列表之中移除</td><td><code class="inset">BufUnload</code></td></tr>
+		<tr><td>删除默认缓冲区</td><td><code class="inset">BufDelete</code></td></tr>
+		<tr><td>将a.txt文件读入新缓冲区</td><td><code class="inset">BufReadCmd</code></td></tr>
+		<tr><td>激活新缓冲区</td><td><code class="inset">BufEnter</code></td></tr>
+		<tr><td>激活新窗口</td><td><code class="inset">BufWinEnter</code></td></tr>
+		<tr><td>进入插入模式</td><td><code class="inset">InsertEnter</code></td></tr>
+		<tr><td>输入文本</td><td><code class="inset">CursorMovedI</code></td></tr>
+		<tr><td>退出插入模式</td><td><code class="inset">InsertLeave</code></td></tr>
+		<tr><td>:wq</td><td><code class="inset">BufWriteCmd</code></td></tr>
+		<tr><td>退出新窗口</td><td><code class="inset">BufWinLeave</code></td></tr>
+		<tr><td>将新缓冲区从缓冲区列表之中移除</td><td><code class="inset">BufUnload</code></td></tr>
+		<tr><td>准备退出Vim</td><td><code class="inset">VimLeavePre</code></td></tr>
+		<tr><td>退出Vim</td><td><code class="inset">VimLeave</code></td></tr>
+	</table>
+	<p style="color:gray; font-size:0.6em; margin:0; padding:0"><a href="https://developer.ibm.com/tutorials/l-vim-script-5/" title="">Source: Event-driven scripting and automation</a></p>
 	<p>Vim内置了近80个事件，您可以使用以下命令，获得详细的说明信息：</p>
 	<p style="text-indent:2em"><code class="inset">:help autocommand-events</code></p>
 
@@ -169,14 +195,7 @@ FileReadPre    FileReadPost
 		<tr><td><code class="inset">!</code></td><td>如果包含，表示。例如，。</td><td style="white-space: nowrap"><code class="inset">:help viminfo-!</code></td></tr>
 	</table>
 
-	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
-		<caption>命令小结</caption>
-		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
-		<tr><td><code class="inset">:</code></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-	</table>
+
 &ldquo;&rdquo;
 
 	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
