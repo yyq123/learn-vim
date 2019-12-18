@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记  ()</title>
+</head>
+<body>
+	<h1>VIM学习笔记  ()</h1>
+
+	<h2 class="article"><a id="">启用/禁用</a></h2>
+	<p></p>
+	<a href="#" title=""></a>
+This code will prompt you to create the directory with :w, or just do it with :w!:
+
+augroup vimrc-auto-mkdir
+  autocmd!
+  autocmd BufWritePre * call s:auto_mkdir(expand('<afile>:p:h'), v:cmdbang)
+  function! s:auto_mkdir(dir, force)
+    if !isdirectory(a:dir)
+          \   && (a:force
+          \       || input("'" . a:dir . "' does not exist. Create? [y/N]") =~? '^y\%[es]$')
+      call mkdir(iconv(a:dir, &encoding, &termencoding), 'p')
+    endif
+  endfunction
+augroup END
+
+
+" Source vim configuration file whenever it is saved
+augroup Reload_Vimrc       " Group name.  Always use a unique name!
+    autocmd!                " Clear any preexisting autocommands from this group
+    autocmd! BufWritePost $MYVIMRC source % | echom "Reloaded " . $MYVIMRC | redraw
+    autocmd! BufWritePost $MYGVIMRC if has('gui_running') | so % | echom "Reloaded " . $MYGVIMRC | endif | redraw
+augroup END
+
+Features:
+
+    echom tells the user what has happened (and also logs to :messages).
+    $MYVIMRC and $MYGVIMRC handle platform-specific names for the configuration files,
+    and only match the actual configuration files (ignoring copies in other directories, or a fugitive:// diff)
+    has() will prevent an error if using incompatible versions, such as vim-tiny.
+    autocmd! avoids buildup of multiple identical autocommands if this file is sourced again. (It clears all commands in the named group, so the group name is important.)
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">识别文件</p>
+	<p></p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+
+	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
+	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
+
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
+		<caption style="margin:0.5em; font-weight:bold">选项列表</caption>
+		<tr><th style="white-space: nowrap">选项</th><th>描述</th><th>帮助信息</th></tr>
+		<tr><td><code class="inset">!</code></td><td>如果包含，表示。例如，。</td><td style="white-space: nowrap"><code class="inset">:help viminfo-!</code></td></tr>
+	</table>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
+		<tr><td><code class="inset">:</code></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+	</table>
+&ldquo;&rdquo;
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
+
+</body>
+</html>

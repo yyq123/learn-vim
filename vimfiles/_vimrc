@@ -31,6 +31,7 @@ else
 	let $VIMFILES = $HOME."/.vim"
 endif
 
+set t_Co=256
 set background=dark
 
 "set diffexpr=
@@ -68,6 +69,7 @@ set esckeys       " Allow cursor keys in insert mode
 set modeline      " Respect modeline in files
 set modelines=4
 set report=0      " Always display message
+set shortmess-=S  "display number of search matches & index of a current match
 " }}}
 
 " Shell {{{
@@ -257,7 +259,7 @@ set number
 " set relativenumber
 hi CursorLineNr guifg=silver
 
-autocmd! GUIEnter * simalt ~x		" 启动时最大化
+autocmd GUIEnter * simalt ~x		" 启动时最大化
 set ruler                               " Always show current positions along the bottom
 
 
@@ -454,14 +456,34 @@ function! TwiddleCase(str)
 endfunction
 vnoremap ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgvl
 
+" file is large from 10mb
+let g:LargeFile = 1024 * 1024 * 5
+augroup LargeFile
+autocmd BufEnter,BufReadPre * let f=getfsize(expand("<afile>")) | if f > g:LargeFile || f == -2 | call LargeFile() | endif
+augroup END
+
+function LargeFile()
+ " no syntax highlighting etc
+ set eventignore+=FileType
+"setlocal noswapfile
+ " save memory when other file is viewed
+ setlocal bufhidden=unload
+ " is read-only (write with :w new_filename)
+ setlocal buftype=nowrite
+ " no undo possible
+ setlocal undolevels=-1
+ " display message
+ autocmd VimEnter *  echo "The file is larger than " . (g:LargeFile / 1024 / 1024) . " MB, so some options are changed (see .vimrc for details)."
+endfunction
+ 
 " Autocommand {{{
-" au!
 
 augroup filetypedetect
 	au BufNewFile,BufRead *.csc setfiletype csc
 	au BufNewFile,BufRead *.msh setfiletype mxl
 	au BufNewFile,BufRead *.mxl setfiletype mxl
 	au BufNewFile,BufRead *.rle setfiletype rle
+	au BufNewFile,BufRead *.log setfiletype log
 augroup end
 
 " }}}
@@ -498,8 +520,9 @@ Plugin 'yyq123/HTML-Editor'
 Plugin 'mattn/webapi-vim'
 Plugin 'mattn/gist-vim'
 Plugin 'mbbill/fencview'
-Plugin 'google/vim-searchindex'		"display number of search matches & index of a current match
 Plugin 'liuchengxu/vim-which-key'
+"Plugin 'andreshazard/vim-logreview'
+"Plugin 'MTDL9/vim-log-highlighting'
 "Plugin 'LargeFile'
 "Plugin 'landonb/dubs_html_entities'
 "plugin from http://vim-scripts.org/vim/scripts.html
@@ -638,4 +661,5 @@ unmap <C-F>
 
 "set colorcolumn=70	" show a colored column (so I can see when I write a too-long line of code)
 "highlight ColorColumn ctermbg=darkred guibg=darkred
+
 " }}}
