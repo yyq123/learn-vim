@@ -82,6 +82,7 @@ Created by yyq123@gmail.com using [vim](http://www.vim.org/)
   - [命令历史记录(History)](http://yyq123.github.io/learn-vim/learn-vi-46-01-History.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/09/vim-history.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/84605143)
   - [wildmenu](http://yyq123.github.io/learn-vim/learn-vi-46-02-wildmenu.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/10/vim-wildmenu.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/87021392)
   - [命令相关选项(Options-CMD)](http://yyq123.github.io/learn-vim/learn-vi-46-03-CMD-Options.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/10/vim-options-cmd.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/87786860)
+  - [自动命令(autocmd)](http://yyq123.github.io/learn-vim/learn-vi-49-01-autocmd.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/12/vim-autocmd.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/98360630)
 - **代码开发**
   - [模板(Template)](http://yyq123.blogspot.com/2010/08/vim-template.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/03/vim-starting.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/60260968)
   - [配色方案(Color Scheme)](http://yyq123.blogspot.com/2011/02/vim-color-scheme.html)[<sup>B</sup>](http://yyq123.blogspot.com/2011/02/vim-color-scheme.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/60260968)
