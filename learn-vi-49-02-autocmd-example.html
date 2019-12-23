@@ -5,67 +5,71 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记  ()</title>
+	<title>VIM学习笔记 自动命令-实例(autocmd-examples)</title>
 </head>
 <body>
-	<h1>VIM学习笔记  ()</h1>
+	<h1>VIM学习笔记 自动命令-实例(autocmd-examples)</h1>
 
-	<h2 class="article"><a id="">启用/禁用</a></h2>
-	<p></p>
-	<a href="#" title=""></a>
-This code will prompt you to create the directory with :w, or just do it with :w!:
+	<p>以下实例，将为您使用自动命令提高编辑效率提供灵感。关于自动命令的创建和管理，请参阅<a href="http://yyq123.github.io/learn-vim/learn-vi-49-01-autocmd.html" title="自动命令(autocmd)">自动命令(autocmd)</a>章节。</p>
 
+	<p>例如以下自动命令，将在离开Vim编辑器时，自动保存文件：</p>
+	<p style="text-indent:2em"><code class="inset">autocmd FocusLost * :wa</code></p>
+
+	<h2 class="article"><a id="autocmd-ex-filetyp">根据文件类型执行自动命令</a></h2>
+	<p>可以根据文件类型，执行特定命令。例如以下自动命令，将删除php文件行尾的空格</a>：</p>
+	<p style="text-indent:2em"><code class="inset">autocmd BufEnter *.php :%s/[ \t\r]\+$//e</code></p>
+	<p>可以根据文件类型，载入相关插件：</p>
+	<p style="text-indent:2em"><code class="inset">autocmd Filetype html,xml,xsl source $VIM/vimfile/plugin/closetag.vim</code></p>
+	<p>可以根据文件类型，设置<a href="http://yyq123.github.io/learn-vim/learn-vi-51-KeyMapping.html" title="Map">键盘映射</a>：</p>
+	<p style="text-indent:2em"><code class="inset">autocmd bufenter *.tex map &lt;F1&gt; :!latex %&lt;CR&gt;</code></p>
+	<p>可以根据文件类型，设置不同的选项：</p>
+	<p style="text-indent:2em"><code class="inset">autocmd FileType ruby setlocal ts=2 sts=2 sw=2 expandtab</code></p>
+
+	<h2 class="article"><a id="autocmd-ex-mkdir">自动创建目录</a></h2>
+	<p>定义以下自动命令，将在保存文件时，检查所指定的目录是否存在：</p>
+<pre><code>
 augroup vimrc-auto-mkdir
   autocmd!
-  autocmd BufWritePre * call s:auto_mkdir(expand('<afile>:p:h'), v:cmdbang)
+  autocmd BufWritePre * call s:auto_mkdir(expand('&lt;afile&gt;:p:h'), v:cmdbang)
   function! s:auto_mkdir(dir, force)
     if !isdirectory(a:dir)
-          \   && (a:force
+          \   &amp;&amp; (a:force
           \       || input("'" . a:dir . "' does not exist. Create? [y/N]") =~? '^y\%[es]$')
-      call mkdir(iconv(a:dir, &encoding, &termencoding), 'p')
+      call mkdir(iconv(a:dir, &amp;encoding, &amp;termencoding), 'p')
     endif
   endfunction
 augroup END
+</code></pre>
+	<p>如果使用<code class="inset">:w</code>命令保存文件时，引用了不存在的目录，那么将显示以下询问信息：</p>
+	<p><code class="msg">'XXXXX' does not exist. Create? [y/N]</code></p>
+	<p>你可以输入&ldquo;y&rdquo;，以自动创建目录并保存文件。</p>
+	<p>如果使用<code class="inset">:w!</code>命令保存文件时，引用了不存在的目录，那么将不会显示询问信息，而直接创建目录并保存文件。</p>
 
-
-" Source vim configuration file whenever it is saved
-augroup Reload_Vimrc       " Group name.  Always use a unique name!
+	<h2 class="article"><a id="autocmd-ex-sovimrc">自动应用配置文件</a></h2>
+	<p>在保存<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>配置文件时，将自动重载并生效变更之后设置，而免去了关闭并重新打开Vim的手工操作：</p>
+<pre><code>
+augroup Reload_Vimrc        " Group name.  Always use a unique name!
     autocmd!                " Clear any preexisting autocommands from this group
     autocmd! BufWritePost $MYVIMRC source % | echom "Reloaded " . $MYVIMRC | redraw
     autocmd! BufWritePost $MYGVIMRC if has('gui_running') | so % | echom "Reloaded " . $MYGVIMRC | endif | redraw
 augroup END
+</code></pre>
 
-Features:
+	<h2 class="article"><a id="autocmd-ex-timestamp">自动更新时间戳</a></h2>
+	<p>利用以下自动命令，将在保存文件时，自动更新文件中的时间戳信息。首先将查找以&ldquo;This file last updated:&rdquo;开头的行，然后将&ldquo;:&rdquo;之后的时间替换为当前时间。</p>
+	<p><code class="msg">This file last updated: 12/23/2019 4:05:10 PM</code></p>
+<pre><code>
+function! UpdateTimestamp ()
+  '[,']s/^This file last updated: \zs.*/\= strftime("%c") /
+endfunction
 
-    echom tells the user what has happened (and also logs to :messages).
-    $MYVIMRC and $MYGVIMRC handle platform-specific names for the configuration files,
-    and only match the actual configuration files (ignoring copies in other directories, or a fugitive:// diff)
-    has() will prevent an error if using incompatible versions, such as vim-tiny.
-    autocmd! avoids buildup of multiple identical autocommands if this file is sourced again. (It clears all commands in the named group, so the group name is important.)
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">识别文件</p>
-	<p></p>
-	<p style="text-indent:2em"><code class="inset"></code></p>
+augroup TimeStamping
+  autocmd!
+  autocmd BufWritePre,FileWritePre,FileAppendPre * :call UpdateTimestamp()
+augroup END
+</code></pre>
 
-	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
-	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
-
-	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
-		<caption style="margin:0.5em; font-weight:bold">选项列表</caption>
-		<tr><th style="white-space: nowrap">选项</th><th>描述</th><th>帮助信息</th></tr>
-		<tr><td><code class="inset">!</code></td><td>如果包含，表示。例如，。</td><td style="white-space: nowrap"><code class="inset">:help viminfo-!</code></td></tr>
-	</table>
-
-	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
-		<caption>命令小结</caption>
-		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
-		<tr><td><code class="inset">:</code></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-	</table>
-&ldquo;&rdquo;
-
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="自动命令(autocmd)" href="http://yyq123.github.io/learn-vim/learn-vi-49-01-autocmd.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="命令相关选项 (Options-CMD)" href="http://yyq123.github.io/learn-vim/learn-vi-46-03-CMD-Options.html">下一篇</a>&gt;</span></p>
 
 </body>
 </html>

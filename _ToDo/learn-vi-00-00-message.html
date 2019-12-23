@@ -9,38 +9,15 @@
 </head>
 <body>
 	<h1>VIM学习笔记  ()</h1>
-	<p>针对特定类型的文件，执行自动命令</p>
-	:set filetype?
-"enable file type detection
-:filetype on
 
-"enable loading the plugin files for specific file types with:
-:filetype plugin on
-
-"enable loading the indent file for specific file types with:
-:filetype plugin indent on
-
-to list the filetypes that your Vim can understand, list these files using these commands:
-:echo glob($VIMRUNTIME . '/ftplugin/*.vim')
-:echo glob($VIMRUNTIME . '/syntax/*.vim')
-	<p>Vim会根据文件后缀名和文件内容来侦测文件类型，然后为其应用相应的<a href="http://yyq123.github.io/learn-vim/learn-vi-64-Syntax.html" title="Syntax">语法高亮度</a>和<a href="http://yyq123.github.io/learn-vim/learn-vi-66-Indent.html" title="Indent">缩进规则</a>。</p>
-	<p>如果希望将特定文件后缀与已有的文件类型相关联，那么可以在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>配置文件中，使用以下自动命令进行设置：</p>
-	<p style="text-indent:2em"><code class="inset">autocmd BufRead,BufNewFile *.foo set filetype=html</code></p>
-For more info, try :help new-filetype in your Vim
-http://vimdoc.sourceforge.net/htmldoc/usr_43.html
-augroup filetypedetect
-	au BufNewFile,BufRead *.csc setfiletype csc
-	au BufNewFile,BufRead *.msh setfiletype mxl
-	au BufNewFile,BufRead *.mxl setfiletype mxl
-	au BufNewFile,BufRead *.rle setfiletype rle
-	au BufNewFile,BufRead *.log setfiletype log
-augroup end
-
-filetype-detect
-<h2 class="article"><a id="">启用/禁用</a></h2>
+	<h2 class="article"><a id="">启用/禁用</a></h2>
 	<p></p>
 	<a href="#" title=""></a>
+Vim编辑器可以记录上几次的错误以及在屏幕最后一行显示的信息.要查看这些信息,我们可以用下面的命令:
+    <p style="text-indent:2em"><code class="inset">:messages</code></p>
 
+:echom Echo the expression(s) as a true message, saving the
+            message in the |message-history|
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">识别文件</p>
 	<p></p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
