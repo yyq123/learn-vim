@@ -25,21 +25,29 @@
 :ptlast            在这个窗口中执行:ptlast命令.
 CTRL-W}            以当前光标下的内容执行一个:ptag命令
 CTRL-Wg}        以当前光标下的内容执行一个:ptjump命令
-matchpairs选项可以用来控制哪些字符可以用%命令来进行匹配.这个选项默认的值如下:
-:set matchpairs=(:),{:},[:]
-这就告诉Vim要匹配(),{},[]
-匹配<>,我们可以用下面的命令:
-:set matchpairs=<:>
-这个命令在我们要编写HTML文件时会显得更为有用.
+	<p style="text-indent:2em"><code class="inset"></code></p>
+
+
+
+<	A more exotic example, to jump between the '=' and ';' in an
+	assignment, useful for languages like C and Java: >
+		:au FileType c,cpp,java set mps+==:;
+	<p>matchpairs选项，用来控制哪些字符可以通过<code class="inset">%</code>命令进行匹配。此选项的默认值如下：</p>
+	<p style="text-indent:2em"><code class="inset">:set matchpairs=(:),{:},[:]</code></p>
+	<p>也就是说，在开括号&ldquo;(,{,[&rdquo;上点击<code class="inset">%</code>命令，那么将自动跳转到对应的闭括号上&ldquo;),},]&rdquo;；同理，在闭括号上点击<code class="inset">%</code>命令，则将跳转回到对应的开括号上；同时，匹配跳转也会正确处理括号嵌套的情况。</p>
+	<p>如果需要新增匹配类型，例如增加对于HTML文件中的尖括号的匹配，那么可以使用以下命令：</p>
+	<p style="text-indent:2em"><code class="inset">:set mps+=&lt;:&gt;</code></p>
 这个命令仅仅是匹配<>.如果我们要同时匹配其他的字符,我们可以用下面的命令:
 :set matchpairs=(:),{:},[:],<:>
-这样的命令显得似乎是有一些太长了,我们可以用+=命令来达到同样的目的.例如上面的命令我们可以用下面的命令来作到:
-:set matchpairs+=<:>
+	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/matchit-vim-example.gif" title="matchit-vim-example"><img src="http://yyq123.github.io/learn-vim/images/matchit-vim-example.gif" alt="" /></a></br>Source: https://catonmat.net/vim-plugins-matchit-vim</p>
+<p></p>
 如果我们希望我们在输入括号时,光标会跳转到与其匹配的地方进行显示,我们可以执行下面的命令来做到:
-:set showmatch
+	<p style="text-indent:2em"><code class="inset">:set showmatch</code></p>
+
 通常情况下这个跳转持续的时间为0.5秒(半秒),我们可以用matchtime选项来控制这个时间.例如如果我们希望这个时间持续1.5秒,我们可以用下面的命令:
 :set matchtime=15
 在这里是以0.1秒为单位的.
+<p></p>
 我们在Vim编辑器还可以用命令来查找未匹配的括号.如[{查找前一个未匹配的{,]{查找后一个未匹配的{.[}查找前一个未匹配的},而]}查找后一个未匹配的}.
 ])查找后一个未匹配的),而[(查找前一个未匹配的(.[#查找前一个未匹配的#if或者是#else.而]#查找后一个未匹配的同类情况.
 下面的命令可以移动一个Java方法的开头或结尾:
@@ -120,11 +128,12 @@ $ make file.o
 :set tagrelative
 否则的话,他们会和当前目录有关系.
 如果我们设置了tagstack选项,那么:tag命令和:tjump命令就会建立一个标记栈.否则是不会保持栈的.
+	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
+	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">启用/禁用</p>
+
 	<p></p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">识别文件</p>
 	<p></p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
 
