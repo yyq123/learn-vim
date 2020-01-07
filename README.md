@@ -118,5 +118,6 @@ Created by yyq123@gmail.com using [vim](http://www.vim.org/)
   - [屏幕截图(Screenshot)](http://yyq123.github.io/learn-vim/learn-vi-801-Toolkit-Screen.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/08/vim-toolkit-screenshot.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/76965810)
   - [图表制作(Diagram)](http://yyq123.github.io/learn-vim/learn-vi-802-Toolkit-Diagram.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/08/vim-toolkit-diagram.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/80209657)
   - [版本控制(Git)](http://yyq123.github.io/learn-vim/learn-vi-803-Toolkit-Git.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/09/vim-toolkit-git.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/82742807)
+  - [Qutebrowser浏览器](http://yyq123.github.io/learn-vim/learn-vi-807-Toolkit-Qutebrowser.html)[<sup>B</sup>](https://yyq123.blogspot.com/2020/01/vim-toolkit-qutebrowser.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/101539098)
 - **附录**
   - [参考资料(References)](http://yyq123.github.io/learn-vim/learn-vi-999-Ref.html)[<sup>B</sup>](http://yyq123.blogspot.com/2018/07/vim--plugin-vundle.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/39516694)
