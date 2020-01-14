@@ -76,18 +76,17 @@ set shortmess-=S  "display number of search matches & index of a current match
 "set shell=$COMSPEC " sets shell to correct path for cmd.exe
 
 " Makes bash open in the working directory
-let $CHERE_INVOKING=1
+"let $CHERE_INVOKING=1
 " Default path for Cygwin 64-bit, change accordingly
-set shell=D:\cygwin64\bin\bash.exe
+"set shell=D:\cygwin64\bin\bash.exe
 " Without --login, Cygwin won't mount some directories such as /usr/bin/
-set shellcmdflag=--login\ -c
+"set shellcmdflag=--login\ -c
 " Default value is (, but bash needs "
 set shellxquote=\"
 " Paths will use / instead of \
-set shellslash
+"set shellslash
 " PATH to determine available checkers
-let $PATH .= ';D:\cygwin64\bin'
-
+"let $PATH .= ';D:\cygwin64\bin'
 " }}}
 
 " Handle long lines
@@ -170,7 +169,7 @@ amenu Tabs.&Close :confirm tabclose<CR>
 	an icon=WinMax 1.410 ToolBar.Maximize <C-w>_
 	an icon=WinVSplit 1.420 ToolBar.ResizeEqual <C-w>=
 
-"an icon=~/.gvim/bitmaps/16/stock_spellcheck.png 1.130 ToolBar.Syntastic :SyntasticCheck<CR>
+    "an icon=~/.gvim/bitmaps/16/stock_spellcheck.png 1.130 ToolBar.Syntastic :SyntasticCheck<CR>
     "an icon=~/.gvim/bitmaps/16/document-revert.png 1.140 ToolBar.Alternate :A<CR>
 
     "an 1.195 ToolBar.-sep4- <Nop>
@@ -341,6 +340,13 @@ vnoremap > >gv
 nnoremap <C-Insert> :tabnew<CR>
 nnoremap <C-Delete> :tabclose<CR>
 
+noremap <silent><tab>m :tabnew<cr>
+noremap <silent><tab>e :tabclose<cr>
+noremap <silent><tab>n :tabn<cr>
+noremap <silent><tab>p :tabp<cr>
+noremap <silent><s-tab> :tabnext<CR>
+inoremap <silent><s-tab> <ESC>:tabnext<CR>
+
 " Search for visually highlighted text
 vmap <silent> //    y/<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
 
@@ -379,7 +385,10 @@ endfunction
 let mapleader="," "Default \
 
 nmap <silent> <leader><space> <Esc>:call ToggleHLSearch()<CR>
-inoremap <leader>\ <C-x><C-o>
+
+"Close tag
+"inoremap <lt>/ </<C-x><C-o>
+inoremap <C-Enter> </<C-x><C-o>
 
 " Mark any tabs that are not at the beginning of the lines
 nnoremap <leader>mt :match errorMsg /[^\t]\zs\t\+/<CR>
@@ -415,10 +424,12 @@ set nospell
 " }}}
 
 " Abbreviations {{{
+" Ctrl-] is used to expand an abbreviation without inserting any extra characters
 abbreviate #b /**********************
 abbreviate #e **********************/
-iabbrev pcode <p style="text-indent:2em"><code class="inset"></code></p>
-iabbrev icode <code class="inset">!cursor!</code><Esc>:call search('!cursor!','b')<cr>cf!
+iabbrev pcode <p style="text-indent:2em"><code class="inset"></code></p><Esc>2F<i
+iabbrev icode <code class="inset"></code><Esc>F<i
+"iabbrev icode <code class="inset">!cursor!</code><Esc>:call search('!cursor!','b')<cr>cf!
 "cabbrev h tab h
 " }}}
 
@@ -440,7 +451,6 @@ set listchars=tab:\|.,trail:,nbsp:.,extends:¬
 
 "au FocusLost * :wa	"save on losing focus
 
-":au Filetype html,xml,xsl source $VIM/vimfile/plugin/closetag.vim
 
 " visually select text then press ~ to convert the text to  UPPER CASE,
 " then to lower case, then to Title Case.
@@ -475,7 +485,31 @@ function LargeFile()
  " display message
  autocmd VimEnter *  echo "The file is larger than " . (g:LargeFile / 1024 / 1024) . " MB, so some options are changed (see .vimrc for details)."
 endfunction
- 
+
+" HTML {{{
+" Escape/unescape & < > HTML entities in range (default current line).
+function! HtmlEntities(line1, line2, action)
+	let search = @/
+	let range = 'silent ' . a:line1 . ',' . a:line2
+	if a:action == 0 " must convert &amp; last
+		execute range . 'sno/&lt;/</eg'
+		execute range . 'sno/&gt;/>/eg'
+		execute range . 'sno/&amp;/&/eg'
+	else " must convert & first
+		execute range . 'sno/&/&amp;/eg'
+		execute range . 'sno/</&lt;/eg'
+		execute range . 'sno/>/&gt;/eg'
+	endif
+	nohl
+	let @/ = search
+endfunction
+
+command! -range -nargs=1 Entities call HtmlEntities(<line1>, <line2>, <args>)
+
+noremap <silent> <Leader>he :Entities 0<CR>
+noremap <silent> <Leader>hu :Entities 1<CR>
+" }}}
+
 " Autocommand {{{
 
 augroup filetypedetect
@@ -486,6 +520,30 @@ augroup filetypedetect
 	au BufNewFile,BufRead *.log setfiletype log
 augroup end
 
+"au Filetype html,xml,xsl source $VIM/vimfile/plugin/closetag.vim
+"au FileType html,xml set omnifunc=xmlcomplete#CompleteTags
+
+augroup vimrc-auto-mkdir
+  autocmd!
+  autocmd BufWritePre * call s:auto_mkdir(expand('<afile>:p:h'), v:cmdbang)
+  function! s:auto_mkdir(dir, force)
+    if !isdirectory(a:dir)
+          \   && (a:force
+          \       || input("'" . a:dir . "' does not exist. Create? [y/N]") =~? '^y\%[es]$')
+      call mkdir(iconv(a:dir, &encoding, &termencoding), 'p')
+    endif
+  endfunction
+augroup END
+
+"function! UpdateTimestamp ()
+"  '[,']s/Last Updated: 12/23/2019 4:04:19 PM
+"endfunction
+
+"augroup TimeStamping
+"  autocmd!
+"  autocmd BufWritePre,FileWritePre,FileAppendPre * :call UpdateTimestamp()
+"augroup END
+
 " }}}
 
 " User Defined Command {{{
@@ -493,6 +551,10 @@ command! -bar DelTab %s/	//
 command! DelLF %s/\n//
 command! FmtCode DelTab|DelLF
 "}}}
+
+" BeforPlugin {{{
+let g:no_html_tab_mapping = 'yes'
+" }}}
 
 " Plugin Vundle {{{
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -509,7 +571,6 @@ Plugin 'VundleVim/Vundle.vim'
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
-"Plugin 'luochen1990/rainbow'
 Plugin 'lilydjwg/colorizer'
 Plugin 'kshenoy/vim-signature'		"toggle, display and navigate marks
 Plugin 'MarcWeber/vim-addon-mw-utils'	"interpret a file by function and cache file automatically
@@ -521,7 +582,6 @@ Plugin 'mattn/webapi-vim'
 Plugin 'mattn/gist-vim'
 Plugin 'mbbill/fencview'
 Plugin 'liuchengxu/vim-which-key'
-"Plugin 'andreshazard/vim-logreview'
 "Plugin 'MTDL9/vim-log-highlighting'
 "Plugin 'LargeFile'
 "Plugin 'landonb/dubs_html_entities'

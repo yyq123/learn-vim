@@ -11,7 +11,7 @@
 	<h1>VIM学习笔记 工具箱-Qutebrowser浏览器</h1>
 
 	<p>如果您正在寻找一款使用Vim风格的键盘操作的浏览器，那么开源的<a style="font-weight:bold" href="https://qutebrowser.org/" title="Qutebrowser">Qutebrowser</a>将会是个不错的选择。</p>
-	<p>Qutebrowser使用<a href="https://wiki.qt.io/QtWebEngine" title="QtWebEngine">QtWebEngine</a>展现引擎，而QtWebEngine则是基于Google's Chromium的。使用<code class="inset">:version</code>命令，可以查看Qutebrowser的版本信息，以及其依赖的相关组件。</p>
+	<p>Qutebrowser使用<a href="https://wiki.qt.io/QtWebEngine" title="QtWebEngine">QtWebEngine</a>展现引擎，而QtWebEngine则是基于Google's Chromium的。使用<code class="inset">:version</code>命令，可以查看Qutebrowser的版本信息 、依赖的相关组件以及配置文件目录等。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/Tools_Qutebrowser_version.png" title="Tools_Qutebrowser_version"><img src="https://yyq123.github.io/learn-vim/images/Tools_Qutebrowser_version.png" alt="Tools_Qutebrowser_version" /></a></p>
 
 	<h2 class="article"><a id="qutebrowser_basic">浏览操作</a></h2>
@@ -24,6 +24,7 @@
 
 	<h2 class="article"><a id="qutebrowser_cmd">命令行模式</a></h2>
 	<p>像Vim一样，点击<kbd>:</kbd>键将进入命令行模式，可以使用命令来下载文件（<code class="inset">:download</code>）、查看历史纪录（<code class="inset">:history</code>）、管理收藏夹（<code class="inset">:bookmark-add</code>）和缩放屏幕（<code class="inset">:zoom</code>）等。</p>
+	<p>收藏夹纪录存放在config文件目录下的urls文件中（例如&ldquo;C:\Users\username\AppData\Roaming\qutebrowser\config\bookmarks\urls&rdquo;）。您可以针对此纯文本文件执行同步操作，以保持多台电脑间收藏夹的一致性。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/Tools_Qutebrowser_download.png" title="Tools_Qutebrowser_download"><img src="https://yyq123.github.io/learn-vim/images/Tools_Qutebrowser_download.png" alt="Tools_Qutebrowser_download" width="550" height="363" /></a></p>
 	<p>您可以在<a href="https://qutebrowser.org/doc/help/commands.html" title="Commands">命令列表</a>中，查看各种命令的使用方法。</p>
 	
@@ -36,7 +37,6 @@
 	<h2 class="article"><a id="qutebrowser_help">帮助信息</a></h2>
 	<p>使用<code class="inset">:help</code>命令，可以查看帮助信息。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/Tools_Qutebrowser_Help.png" title="Tools_Qutebrowser_Help"><img src="https://yyq123.github.io/learn-vim/images/Tools_Qutebrowser_Help.png" alt="" width="550" height="488" /></a></p>
-
 
 	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="屏幕截图(Screenshot Tools)" href="http://yyq123.github.io/learn-vim/learn-vi-801-Toolkit-Screen.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="Firefox浏览器" href="http://yyq123.github.io/learn-vim/learn-vi-605-WebDesign-Firefox.html">下一篇</a>&gt;</span></p>
 

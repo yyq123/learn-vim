@@ -1,0 +1,2396 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 网页开发-HTML字符实体(Character Entity)</title>
+</head>
+<body>
+	<h2 class="article">VIM学习笔记 网页开发-HTML字符实体(Character Entity)<a id=""></a></h2>
+	<h2 class="article"><a id=""></a></h2>
+	<p><a href="" title=""></a><p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="550" height="" /></a></p>
+	<p>字符实体（Character entity） references, provide a method of entering characters that cannot be expressed in the document's character encoding or that cannot easily be entered on a keyboard. Entities are case-sensitive and take the form <strong>&amp;<var>name</var>;</strong>. Examples of entities include <strong class="html">&amp;copy;</strong> for the copyright symbol and <strong class="html">&amp;Alpha;</strong> for the Greek capital letter alpha.</p>
+<p>In addition to entities, authors can use <em>numeric character references</em>. While entities are limited to a subset of <a href="http://www.unicode.org/charts/">Unicode characters</a>, numeric character references can specify any character. Numeric character references may be given in decimal or hexadecimal, though browser support is stronger for decimal references. Decimal references are of the form <strong class="html">&amp;#<var>number</var>;</strong> while hexadecimal references take the case-insensitive form <strong class="html">&amp;#x<var>number</var>;</strong>. Examples of numeric character references include <strong class="html">&amp;#169;</strong> or <strong class="html">&amp;#xA9;</strong> for the copyright symbol, <strong class="html">&amp;#913;</strong> or <strong class="html">&amp;#x391;</strong> for the Greek capital letter alpha, and <strong class="html">&amp;#1575;</strong> or <strong class="html">&amp;#x627;</strong> for the Arabic letter alef.</p>
+<p>The following documents feature tables of the character entity references in HTML 4, along with the numeric character reference in decimal and hexadecimal. A rendering of each character reference is provided so that users may check their browsers' compliance.</p>
+<h1>Special Entities</h1>
+<p>The following table gives the character entity reference, decimal character reference, and hexadecimal character reference for markup-significant and internationalization characters, as well as the rendering of each in your browser. <a href="http://www.unicode.org/charts/">Glyphs</a> of the characters are available at the <a href="http://www.unicode.org/">Unicode Consortium</a>.</p>
+<p>With the exception of <a href="http://www.w3.org/MarkUp/html-spec/">HTML 2.0</a>'s <strong class="html">&amp;quot;</strong>, <strong class="html">&amp;amp;</strong>, <strong>&amp;lt;</strong>, and <strong class="html">&amp;gt;</strong>, these entities are all new in HTML 4.0 and may not be supported by old browsers. Support in recent browsers is good.</p>
+<table border="1">
+  <colgroup>
+  </colgroup><colgroup class="entity" span="3">
+  </colgroup><colgroup class="entity" span="3">
+  </colgroup><thead>
+    <tr>
+      <th scope="col" rowspan="2">Character</th>
+      <th scope="col" rowspan="2">Entity</th>
+      <th scope="col" rowspan="2">Decimal</th>
+      <th scope="col" rowspan="2">Hex</th>
+      <th scope="colgroup" colspan="3">Rendering in Your Browser</th>
+    </tr>
+    <tr>
+      <th scope="col">Entity</th>
+      <th scope="col">Decimal</th>
+      <th scope="col">Hex</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>&quot;</td>
+      <td>quotation mark = APL quote</td>
+      <td>&amp;quot;</td>
+      <td>&amp;#34;</td>
+      <td>&amp;#x22;</td>
+      <td><code class="inset">&amp;'</code></td>
+    </tr>
+    <tr>
+      <td>&amp;</td>
+      <td>ampersand</td>
+      <td>&amp;amp;</td>
+      <td>&amp;#38;</td>
+      <td>&amp;#x26;</td>
+      <td><code class="inset">&amp;&amp;</code></td>
+    </tr>
+    <tr>
+      <td>&lt;</td>
+      <td>less-than sign</td>
+      <td>&amp;lt;</td>
+      <td>&amp;#60;</td>
+      <td>&amp;#x3C;</td>
+      <td><code class="inset">&amp;&lt;</code></td>
+    </tr>
+    <tr>
+      <td>&gt;</td>
+      <td>greater-than sign</td>
+      <td>&amp;gt;</td>
+      <td>&amp;#62;</td>
+      <td>&amp;#x3E;</td>
+      <td><code class="inset">&amp;&gt;</code></td>
+    </tr>
+    <tr>
+      <td>Latin capital ligature OE</td>
+      <td>&amp;OElig;</td>
+      <td>&amp;#338;</td>
+      <td>&amp;#x152;</td>
+      <td><code class="inset">&amp;</code></td>
+      <td>Œ</td>
+      <td>Œ</td>
+    </tr>
+    <tr>
+      <td>Latin small ligature oe</td>
+      <td>&amp;oelig;</td>
+      <td>&amp;#339;</td>
+      <td>&amp;#x153;</td>
+      <td><code class="inset">&amp;</code></td>
+      <td>œ</td>
+      <td>œ</td>
+      <td>œ</td>
+    </tr>
+    <tr>
+      <td>Latin capital letter S with caron</td>
+      <td>&amp;Scaron;</td>
+      <td>&amp;#352;</td>
+      <td>&amp;#x160;</td>
+      <td><code class="inset">&amp;</code></td>
+      <td>Š</td>
+      <td>Š</td>
+      <td>Š</td>
+    </tr>
+    <tr>
+      <td>Latin small letter s with caron</td>
+      <td>&amp;scaron;</td>
+      <td>&amp;#353;</td>
+      <td>&amp;#x161;</td>
+      <td><code class="inset">&amp;</code></td>
+      <td>š</td>
+      <td>š</td>
+      <td>š</td>
+    </tr>
+    <tr>
+      <td>&Yuml;</td>
+      <td>Latin capital letter Y with diaeresis</td>
+      <td>&amp;Yuml;</td>
+      <td>&amp;#376;</td>
+      <td>&amp;#x178;</td>
+      <td><code class="inset">&amp;Y"</code></td>
+      <td>Ÿ</td>
+    </tr>
+    <tr>
+      <td>modifier letter circumflex accent</td>
+      <td>&amp;circ;</td>
+      <td>&amp;#710;</td>
+      <td>&amp;#x2C6;</td>
+      <td><code class="inset">&amp;</code></td>
+      <td>ˆ</td>
+      <td>ˆ</td>
+      <td>ˆ</td>
+    </tr>
+    <tr>
+      <td>small tilde</td>
+      <td>&amp;tilde;</td>
+      <td>&amp;#732;</td>
+      <td>&amp;#x2DC;</td>
+      <td><code class="inset">&amp;</code></td>
+      <td>˜</td>
+      <td>˜</td>
+      <td>˜</td>
+    </tr>
+    <tr>
+      <td>en space</td>
+      <td>&amp;ensp;</td>
+      <td>&amp;#8194;</td>
+      <td>&amp;#x2002;</td>
+      <td><code class="inset">&amp;</code></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>em space</td>
+      <td>&amp;emsp;</td>
+      <td>&amp;#8195;</td>
+      <td>&amp;#x2003;</td>
+      <td><code class="inset">&amp;</code></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>thin space</td>
+      <td>&amp;thinsp;</td>
+      <td>&amp;#8201;</td>
+      <td>&amp;#x2009;</td>
+      <td> </td>
+      <td><code class="inset">&amp;</code></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>zero width non-joiner</td>
+      <td>&amp;zwnj;</td>
+      <td>&amp;#8204;</td>
+      <td>&amp;#x200C;</td>
+      <td>‌</td>
+      <td><code class="inset">&amp;</code></td>
+      <td>‌</td>
+      <td>‌</td>
+    </tr>
+    <tr>
+      <td>zero width joiner</td>
+      <td>&amp;zwj;</td>
+      <td>&amp;#8205;</td>
+      <td>&amp;#x200D;</td>
+      <td>‍</td>
+      <td><code class="inset">&amp;</code></td>
+      <td>‍</td>
+      <td>‍</td>
+    </tr>
+    <tr>
+      <td>left-to-right mark</td>
+      <td>&amp;lrm;</td>
+      <td>&amp;#8206;</td>
+      <td>&amp;#x200E;</td>
+      <td>‎</td>
+      <td>‎</td>
+      <td>‎</td>
+    </tr>
+    <tr>
+      <td>right-to-left mark</td>
+      <td>&amp;rlm;</td>
+      <td>&amp;#8207;</td>
+      <td>&amp;#x200F;</td>
+      <td>‏</td>
+      <td>‏</td>
+      <td>‏</td>
+    </tr>
+    <tr>
+      <td>&ndash;</td>
+      <td>en dash</td>
+      <td>&amp;ndash;</td>
+      <td>&amp;#8211;</td>
+      <td>&amp;#x2013;</td>
+      <td><code class="inset">&amp;n-</code></td>
+      <td>–</td>
+    </tr>
+    <tr>
+      <td>&mdash;</td>
+      <td>em dash</td>
+      <td>&amp;mdash;</td>
+      <td>&amp;#8212;</td>
+      <td>&amp;#x2014;</td>
+      <td><code class="inset">&amp;m-</code></td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td>left single quotation mark</td>
+      <td>&amp;lsquo;</td>
+      <td>&amp;#8216;</td>
+      <td>&amp;#x2018;</td>
+      <td>‘</td>
+      <td>‘</td>
+      <td>‘</td>
+    </tr>
+    <tr>
+      <td>right single quotation mark</td>
+      <td>&amp;rsquo;</td>
+      <td>&amp;#8217;</td>
+      <td>&amp;#x2019;</td>
+      <td>’</td>
+      <td>’</td>
+      <td>’</td>
+    </tr>
+    <tr>
+      <td>single low-9 quotation mark</td>
+      <td>&amp;sbquo;</td>
+      <td>&amp;#8218;</td>
+      <td>&amp;#x201A;</td>
+      <td>‚</td>
+      <td>‚</td>
+      <td>‚</td>
+    </tr>
+    <tr>
+      <td>left double quotation mark</td>
+      <td>&amp;ldquo;</td>
+      <td>&amp;#8220;</td>
+      <td>&amp;#x201C;</td>
+      <td>“</td>
+      <td>“</td>
+      <td>“</td>
+    </tr>
+    <tr>
+      <td>right double quotation mark</td>
+      <td>&amp;rdquo;</td>
+      <td>&amp;#8221;</td>
+      <td>&amp;#x201D;</td>
+      <td>”</td>
+      <td>”</td>
+      <td>”</td>
+    </tr>
+    <tr>
+      <td>double low-9 quotation mark</td>
+      <td>&amp;bdquo;</td>
+      <td>&amp;#8222;</td>
+      <td>&amp;#x201E;</td>
+      <td>„</td>
+      <td>„</td>
+      <td>„</td>
+    </tr>
+    <tr>
+      <td>dagger</td>
+      <td>&amp;dagger;</td>
+      <td>&amp;#8224;</td>
+      <td>&amp;#x2020;</td>
+      <td>†</td>
+      <td>†</td>
+      <td>†</td>
+    </tr>
+    <tr>
+      <td>double dagger</td>
+      <td>&amp;Dagger;</td>
+      <td>&amp;#8225;</td>
+      <td>&amp;#x2021;</td>
+      <td>‡</td>
+      <td>‡</td>
+      <td>‡</td>
+    </tr>
+    <tr>
+      <td>per mille sign</td>
+      <td>&amp;permil;</td>
+      <td>&amp;#8240;</td>
+      <td>&amp;#x2030;</td>
+      <td>‰</td>
+      <td>‰</td>
+      <td>‰</td>
+    </tr>
+    <tr>
+      <td>single left-pointing angle quotation mark</td>
+      <td>&amp;lsaquo;</td>
+      <td>&amp;#8249;</td>
+      <td>&amp;#x2039;</td>
+      <td>‹</td>
+      <td>‹</td>
+      <td>‹</td>
+    </tr>
+    <tr>
+      <td>single right-pointing angle quotation mark</td>
+      <td>&amp;rsaquo;</td>
+      <td>&amp;#8250;</td>
+      <td>&amp;#x203A;</td>
+      <td>›</td>
+      <td>›</td>
+      <td>›</td>
+    </tr>
+    <tr>
+      <td>&euro;</td>
+      <td>euro sign</td>
+      <td>&amp;euro;</td>
+      <td>&amp;#8364;</td>
+      <td>&amp;#x20AC;</td>
+      <td><code class="inset">&amp;E=</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h1>Entities for Symbols and Greek Letters</h1>
+<p>The following table gives the character entity reference, decimal character reference, and hexadecimal character reference for symbols and Greek letters, as well as the rendering of each in your browser. <a href="http://www.unicode.org/charts/">Glyphs</a> of the characters are available at the <a href="http://www.unicode.org/">Unicode Consortium</a>.</p>
+<p>These entities are all new in HTML 4.0 and may not be supported by old browsers. Support in recent browsers is good.</p>
+<table border="1">
+  <colgroup>
+  </colgroup><colgroup class="entity" span="3">
+  </colgroup><colgroup class="entity" span="3">
+  </colgroup><thead>
+    <tr>
+      <th scope="col" rowspan="2">Character</th>
+      <th scope="col" rowspan="2">Entity</th>
+      <th scope="col" rowspan="2">Decimal</th>
+      <th scope="col" rowspan="2">Hex</th>
+      <th scope="colgroup" colspan="3">Rendering in Your Browser</th>
+    </tr>
+    <tr>
+      <th scope="col">Entity</th>
+      <th scope="col">Decimal</th>
+      <th scope="col">Hex</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Latin small f with hook = function = florin</td>
+      <td>&amp;fnof;</td>
+      <td>&amp;#402;</td>
+      <td>&amp;#x192;</td>
+      <td>ƒ</td>
+      <td>ƒ</td>
+      <td>ƒ</td>
+    </tr>
+    <tr>
+      <td>Greek capital letter alpha</td>
+      <td>&amp;Alpha;</td>
+      <td>&amp;#913;</td>
+      <td>&amp;#x391;</td>
+      <td>Α</td>
+      <td>Α</td>
+      <td>Α</td>
+    </tr>
+    <tr>
+      <td>Greek capital letter beta</td>
+      <td>&amp;Beta;</td>
+      <td>&amp;#914;</td>
+      <td>&amp;#x392;</td>
+      <td>Β</td>
+      <td>Β</td>
+      <td>Β</td>
+    </tr>
+    <tr>
+      <td>Greek capital letter gamma</td>
+      <td>&amp;Gamma;</td>
+      <td>&amp;#915;</td>
+      <td>&amp;#x393;</td>
+      <td>Γ</td>
+      <td>Γ</td>
+      <td>Γ</td>
+    </tr>
+    <tr>
+      <td>Greek capital letter delta</td>
+      <td>&amp;Delta;</td>
+      <td>&amp;#916;</td>
+      <td>&amp;#x394;</td>
+      <td>Δ</td>
+      <td>Δ</td>
+      <td>Δ</td>
+    </tr>
+    <tr>
+      <td>Greek capital letter epsilon</td>
+      <td>&amp;Epsilon;</td>
+      <td>&amp;#917;</td>
+      <td>&amp;#x395;</td>
+      <td>Ε</td>
+      <td>Ε</td>
+      <td>Ε</td>
+    </tr>
+    <tr>
+      <td>Greek capital letter zeta</td>
+      <td>&amp;Zeta;</td>
+      <td>&amp;#918;</td>
+      <td>&amp;#x396;</td>
+      <td>Ζ</td>
+      <td>Ζ</td>
+      <td>Ζ</td>
+    </tr>
+    <tr>
+      <td>Greek capital letter eta</td>
+      <td>&amp;Eta;</td>
+      <td>&amp;#919;</td>
+      <td>&amp;#x397;</td>
+      <td>Η</td>
+      <td>Η</td>
+      <td>Η</td>
+    </tr>
+    <tr>
+      <td>Greek capital letter theta</td>
+      <td>&amp;Theta;</td>
+      <td>&amp;#920;</td>
+      <td>&amp;#x398;</td>
+      <td>Θ</td>
+      <td>Θ</td>
+      <td>Θ</td>
+    </tr>
+    <tr>
+      <td>Greek capital letter iota</td>
+      <td>&amp;Iota;</td>
+      <td>&amp;#921;</td>
+      <td>&amp;#x399;</td>
+      <td>Ι</td>
+      <td>Ι</td>
+      <td>Ι</td>
+    </tr>
+    <tr>
+      <td>Greek capital letter kappa</td>
+      <td>&amp;Kappa;</td>
+      <td>&amp;#922;</td>
+      <td>&amp;#x39A;</td>
+      <td>Κ</td>
+      <td>Κ</td>
+      <td>Κ</td>
+    </tr>
+    <tr>
+      <td>Greek capital letter lambda</td>
+      <td>&amp;Lambda;</td>
+      <td>&amp;#923;</td>
+      <td>&amp;#x39B;</td>
+      <td>Λ</td>
+      <td>Λ</td>
+      <td>Λ</td>
+    </tr>
+    <tr>
+      <td>Greek capital letter mu</td>
+      <td>&amp;Mu;</td>
+      <td>&amp;#924;</td>
+      <td>&amp;#x39C;</td>
+      <td>Μ</td>
+      <td>Μ</td>
+      <td>Μ</td>
+    </tr>
+    <tr>
+      <td>Greek capital letter nu</td>
+      <td>&amp;Nu;</td>
+      <td>&amp;#925;</td>
+      <td>&amp;#x39D;</td>
+      <td>Ν</td>
+      <td>Ν</td>
+      <td>Ν</td>
+    </tr>
+    <tr>
+      <td>Greek capital letter xi</td>
+      <td>&amp;Xi;</td>
+      <td>&amp;#926;</td>
+      <td>&amp;#x39E;</td>
+      <td>Ξ</td>
+      <td>Ξ</td>
+      <td>Ξ</td>
+    </tr>
+    <tr>
+      <td>Greek capital letter omicron</td>
+      <td>&amp;Omicron;</td>
+      <td>&amp;#927;</td>
+      <td>&amp;#x39F;</td>
+      <td>Ο</td>
+      <td>Ο</td>
+      <td>Ο</td>
+    </tr>
+    <tr>
+      <td>Greek capital letter pi</td>
+      <td>&amp;Pi;</td>
+      <td>&amp;#928;</td>
+      <td>&amp;#x3A0;</td>
+      <td>Π</td>
+      <td>Π</td>
+      <td>Π</td>
+    </tr>
+    <tr>
+      <td>Greek capital letter rho</td>
+      <td>&amp;Rho;</td>
+      <td>&amp;#929;</td>
+      <td>&amp;#x3A1;</td>
+      <td>Ρ</td>
+      <td>Ρ</td>
+      <td>Ρ</td>
+    </tr>
+    <tr>
+      <td>Greek capital letter sigma</td>
+      <td>&amp;Sigma;</td>
+      <td>&amp;#931;</td>
+      <td>&amp;#x3A3;</td>
+      <td>Σ</td>
+      <td>Σ</td>
+      <td>Σ</td>
+    </tr>
+    <tr>
+      <td>Greek capital letter tau</td>
+      <td>&amp;Tau;</td>
+      <td>&amp;#932;</td>
+      <td>&amp;#x3A4;</td>
+      <td>Τ</td>
+      <td>Τ</td>
+      <td>Τ</td>
+    </tr>
+    <tr>
+      <td>Greek capital letter upsilon</td>
+      <td>&amp;Upsilon;</td>
+      <td>&amp;#933;</td>
+      <td>&amp;#x3A5;</td>
+      <td>Υ</td>
+      <td>Υ</td>
+      <td>Υ</td>
+    </tr>
+    <tr>
+      <td>Greek capital letter phi</td>
+      <td>&amp;Phi;</td>
+      <td>&amp;#934;</td>
+      <td>&amp;#x3A6;</td>
+      <td>Φ</td>
+      <td>Φ</td>
+      <td>Φ</td>
+    </tr>
+    <tr>
+      <td>Greek capital letter chi</td>
+      <td>&amp;Chi;</td>
+      <td>&amp;#935;</td>
+      <td>&amp;#x3A7;</td>
+      <td>Χ</td>
+      <td>Χ</td>
+      <td>Χ</td>
+    </tr>
+    <tr>
+      <td>Greek capital letter psi</td>
+      <td>&amp;Psi;</td>
+      <td>&amp;#936;</td>
+      <td>&amp;#x3A8;</td>
+      <td>Ψ</td>
+      <td>Ψ</td>
+      <td>Ψ</td>
+    </tr>
+    <tr>
+      <td>Greek capital letter omega</td>
+      <td>&amp;Omega;</td>
+      <td>&amp;#937;</td>
+      <td>&amp;#x3A9;</td>
+      <td>Ω</td>
+      <td>Ω</td>
+      <td>Ω</td>
+    </tr>
+    <tr>
+      <td>Greek small letter alpha</td>
+      <td>&amp;alpha;</td>
+      <td>&amp;#945;</td>
+      <td>&amp;#x3B1;</td>
+      <td>α</td>
+      <td>α</td>
+      <td>α</td>
+    </tr>
+    <tr>
+      <td>Greek small letter beta</td>
+      <td>&amp;beta;</td>
+      <td>&amp;#946;</td>
+      <td>&amp;#x3B2;</td>
+      <td>β</td>
+      <td>β</td>
+      <td>β</td>
+    </tr>
+    <tr>
+      <td>Greek small letter gamma</td>
+      <td>&amp;gamma;</td>
+      <td>&amp;#947;</td>
+      <td>&amp;#x3B3;</td>
+      <td>γ</td>
+      <td>γ</td>
+      <td>γ</td>
+    </tr>
+    <tr>
+      <td>Greek small letter delta</td>
+      <td>&amp;delta;</td>
+      <td>&amp;#948;</td>
+      <td>&amp;#x3B4;</td>
+      <td>δ</td>
+      <td>δ</td>
+      <td>δ</td>
+    </tr>
+    <tr>
+      <td>Greek small letter epsilon</td>
+      <td>&amp;epsilon;</td>
+      <td>&amp;#949;</td>
+      <td>&amp;#x3B5;</td>
+      <td>ε</td>
+      <td>ε</td>
+      <td>ε</td>
+    </tr>
+    <tr>
+      <td>Greek small letter zeta</td>
+      <td>&amp;zeta;</td>
+      <td>&amp;#950;</td>
+      <td>&amp;#x3B6;</td>
+      <td>ζ</td>
+      <td>ζ</td>
+      <td>ζ</td>
+    </tr>
+    <tr>
+      <td>Greek small letter eta</td>
+      <td>&amp;eta;</td>
+      <td>&amp;#951;</td>
+      <td>&amp;#x3B7;</td>
+      <td>η</td>
+      <td>η</td>
+      <td>η</td>
+    </tr>
+    <tr>
+      <td>Greek small letter theta</td>
+      <td>&amp;theta;</td>
+      <td>&amp;#952;</td>
+      <td>&amp;#x3B8;</td>
+      <td>θ</td>
+      <td>θ</td>
+      <td>θ</td>
+    </tr>
+    <tr>
+      <td>Greek small letter iota</td>
+      <td>&amp;iota;</td>
+      <td>&amp;#953;</td>
+      <td>&amp;#x3B9;</td>
+      <td>ι</td>
+      <td>ι</td>
+      <td>ι</td>
+    </tr>
+    <tr>
+      <td>Greek small letter kappa</td>
+      <td>&amp;kappa;</td>
+      <td>&amp;#954;</td>
+      <td>&amp;#x3BA;</td>
+      <td>κ</td>
+      <td>κ</td>
+      <td>κ</td>
+    </tr>
+    <tr>
+      <td>Greek small letter lambda</td>
+      <td>&amp;lambda;</td>
+      <td>&amp;#955;</td>
+      <td>&amp;#x3BB;</td>
+      <td>λ</td>
+      <td>λ</td>
+      <td>λ</td>
+    </tr>
+    <tr>
+      <td>Greek small letter mu</td>
+      <td>&amp;mu;</td>
+      <td>&amp;#956;</td>
+      <td>&amp;#x3BC;</td>
+      <td>μ</td>
+      <td>μ</td>
+      <td>μ</td>
+    </tr>
+    <tr>
+      <td>Greek small letter nu</td>
+      <td>&amp;nu;</td>
+      <td>&amp;#957;</td>
+      <td>&amp;#x3BD;</td>
+      <td>ν</td>
+      <td>ν</td>
+      <td>ν</td>
+    </tr>
+    <tr>
+      <td>Greek small letter xi</td>
+      <td>&amp;xi;</td>
+      <td>&amp;#958;</td>
+      <td>&amp;#x3BE;</td>
+      <td>ξ</td>
+      <td>ξ</td>
+      <td>ξ</td>
+    </tr>
+    <tr>
+      <td>Greek small letter omicron</td>
+      <td>&amp;omicron;</td>
+      <td>&amp;#959;</td>
+      <td>&amp;#x3BF;</td>
+      <td>ο</td>
+      <td>ο</td>
+      <td>ο</td>
+    </tr>
+    <tr>
+      <td>Greek small letter pi</td>
+      <td>&amp;pi;</td>
+      <td>&amp;#960;</td>
+      <td>&amp;#x3C0;</td>
+      <td>π</td>
+      <td>π</td>
+      <td>π</td>
+    </tr>
+    <tr>
+      <td>Greek small letter rho</td>
+      <td>&amp;rho;</td>
+      <td>&amp;#961;</td>
+      <td>&amp;#x3C1;</td>
+      <td>ρ</td>
+      <td>ρ</td>
+      <td>ρ</td>
+    </tr>
+    <tr>
+      <td>Greek small letter final sigma</td>
+      <td>&amp;sigmaf;</td>
+      <td>&amp;#962;</td>
+      <td>&amp;#x3C2;</td>
+      <td>ς</td>
+      <td>ς</td>
+      <td>ς</td>
+    </tr>
+    <tr>
+      <td>Greek small letter sigma</td>
+      <td>&amp;sigma;</td>
+      <td>&amp;#963;</td>
+      <td>&amp;#x3C3;</td>
+      <td>σ</td>
+      <td>σ</td>
+      <td>σ</td>
+    </tr>
+    <tr>
+      <td>Greek small letter tau</td>
+      <td>&amp;tau;</td>
+      <td>&amp;#964;</td>
+      <td>&amp;#x3C4;</td>
+      <td>τ</td>
+      <td>τ</td>
+      <td>τ</td>
+    </tr>
+    <tr>
+      <td>Greek small letter upsilon</td>
+      <td>&amp;upsilon;</td>
+      <td>&amp;#965;</td>
+      <td>&amp;#x3C5;</td>
+      <td>υ</td>
+      <td>υ</td>
+      <td>υ</td>
+    </tr>
+    <tr>
+      <td>Greek small letter phi</td>
+      <td>&amp;phi;</td>
+      <td>&amp;#966;</td>
+      <td>&amp;#x3C6;</td>
+      <td>φ</td>
+      <td>φ</td>
+      <td>φ</td>
+    </tr>
+    <tr>
+      <td>Greek small letter chi</td>
+      <td>&amp;chi;</td>
+      <td>&amp;#967;</td>
+      <td>&amp;#x3C7;</td>
+      <td>χ</td>
+      <td>χ</td>
+      <td>χ</td>
+    </tr>
+    <tr>
+      <td>Greek small letter psi</td>
+      <td>&amp;psi;</td>
+      <td>&amp;#968;</td>
+      <td>&amp;#x3C8;</td>
+      <td>ψ</td>
+      <td>ψ</td>
+      <td>ψ</td>
+    </tr>
+    <tr>
+      <td>Greek small letter omega</td>
+      <td>&amp;omega;</td>
+      <td>&amp;#969;</td>
+      <td>&amp;#x3C9;</td>
+      <td>ω</td>
+      <td>ω</td>
+      <td>ω</td>
+    </tr>
+    <tr>
+      <td>Greek small letter theta symbol</td>
+      <td>&amp;thetasym;</td>
+      <td>&amp;#977;</td>
+      <td>&amp;#x3D1;</td>
+      <td>ϑ</td>
+      <td>ϑ</td>
+      <td>ϑ</td>
+    </tr>
+    <tr>
+      <td>Greek upsilon with hook symbol</td>
+      <td>&amp;upsih;</td>
+      <td>&amp;#978;</td>
+      <td>&amp;#x3D2;</td>
+      <td>ϒ</td>
+      <td>ϒ</td>
+      <td>ϒ</td>
+    </tr>
+    <tr>
+      <td>Greek pi symbol</td>
+      <td>&amp;piv;</td>
+      <td>&amp;#982;</td>
+      <td>&amp;#x3D6;</td>
+      <td>ϖ</td>
+      <td>ϖ</td>
+      <td>ϖ</td>
+    </tr>
+    <tr>
+      <td>&bull;</td>
+      <td>bullet = black small circle</td>
+      <td>&amp;bull;</td>
+      <td>&amp;#8226;</td>
+      <td>&amp;#x2022;</td>
+      <td><code class="inset">&amp;*</code></td>
+      <td>•</td>
+      <td>•</td>
+    </tr>
+    <tr>
+      <td>&hellip;</td>
+      <td>horizontal ellipsis = three dot leader</td>
+      <td>&amp;hellip;</td>
+      <td>&amp;#8230;</td>
+      <td>&amp;#x2026;</td>
+      <td><code class="inset">&amp;3.</code></td>
+      <td>…</td>
+      <td>…</td>
+    </tr>
+    <tr>
+      <td>prime = minutes = feet</td>
+      <td>&amp;prime;</td>
+      <td>&amp;#8242;</td>
+      <td>&amp;#x2032;</td>
+      <td>′</td>
+      <td>′</td>
+      <td>′</td>
+    </tr>
+    <tr>
+      <td>double prime = seconds = inches</td>
+      <td>&amp;Prime;</td>
+      <td>&amp;#8243;</td>
+      <td>&amp;#x2033;</td>
+      <td>″</td>
+      <td>″</td>
+      <td>″</td>
+    </tr>
+    <tr>
+      <td>overline = spacing overscore</td>
+      <td>&amp;oline;</td>
+      <td>&amp;#8254;</td>
+      <td>&amp;#x203E;</td>
+      <td>‾</td>
+      <td>‾</td>
+      <td>‾</td>
+    </tr>
+    <tr>
+      <td>fraction slash</td>
+      <td>&amp;frasl;</td>
+      <td>&amp;#8260;</td>
+      <td>&amp;#x2044;</td>
+      <td>⁄</td>
+      <td>⁄</td>
+      <td>⁄</td>
+    </tr>
+    <tr>
+      <td>script capital P = power set = Weierstrass p</td>
+      <td>&amp;weierp;</td>
+      <td>&amp;#8472;</td>
+      <td>&amp;#x2118;</td>
+      <td>℘</td>
+      <td>℘</td>
+      <td>℘</td>
+    </tr>
+    <tr>
+      <td>blackletter capital I = imaginary part</td>
+      <td>&amp;image;</td>
+      <td>&amp;#8465;</td>
+      <td>&amp;#x2111;</td>
+      <td>ℑ</td>
+      <td>ℑ</td>
+      <td>ℑ</td>
+    </tr>
+    <tr>
+      <td>blackletter capital R = real part symbol</td>
+      <td>&amp;real;</td>
+      <td>&amp;#8476;</td>
+      <td>&amp;#x211C;</td>
+      <td>ℜ</td>
+      <td>ℜ</td>
+      <td>ℜ</td>
+    </tr>
+    <tr>
+      <td>&trade;</td>
+      <td>trade mark sign</td>
+      <td>&amp;trade;</td>
+      <td>&amp;#8482;</td>
+      <td>&amp;#x2122;</td>
+      <td><code class="inset">&amp;tm</code></td>
+    </tr>
+    <tr>
+      <td>alef symbol = first transfinite cardinal</td>
+      <td>&amp;alefsym;</td>
+      <td>&amp;#8501;</td>
+      <td>&amp;#x2135;</td>
+      <td>ℵ</td>
+      <td>ℵ</td>
+      <td>ℵ</td>
+    </tr>
+    <tr>
+      <td>&larr;</td>
+      <td>leftwards arrow = Left single arrow</td>
+      <td>&amp;larr;</td>
+      <td>&amp;#8592;</td>
+      <td>&amp;#x2190;</td>
+      <td><code class="inset">&amp;la</code></td>
+      <td>←</td>
+      <td>←</td>
+    </tr>
+    <tr>
+      <td>&uarr;</td>
+      <td>upwards arrow = Up single arrow</td>
+      <td>&amp;uarr;</td>
+      <td>&amp;#8593;</td>
+      <td>&amp;#x2191;</td>
+      <td><code class="inset">&amp;ua</code></td>
+      <td>↑</td>
+      <td>↑</td>
+    </tr>
+    <tr>
+      <td>&rarr;</td>
+      <td>rightwards arrow = Right single arrow</td>
+      <td>&amp;rarr;</td>
+      <td>&amp;#8594;</td>
+      <td>&amp;#x2192;</td>
+      <td><code class="inset">&amp;ra</code></td>
+      <td>→</td>
+      <td>→</td>
+    </tr>
+    <tr>
+      <td>&darr;</td>
+      <td>downwards arrow = Down single arrow</td>
+      <td>&amp;darr;</td>
+      <td>&amp;#8595;</td>
+      <td>&amp;#x2193;</td>
+      <td><code class="inset">&amp;da</code></td>
+      <td>↓</td>
+      <td>↓</td>
+    </tr>
+    <tr>
+      <td>&harr;</td>
+      <td>left right single arrow</td>
+      <td>&amp;harr;</td>
+      <td>&amp;#8596;</td>
+      <td>&amp;#x2194;</td>
+      <td><code class="inset">&amp;ha</code></td>
+      <td>↔</td>
+      <td>↔</td>
+    </tr>
+    <tr>
+      <td>downwards arrow with corner leftwards = carriage return</td>
+      <td>&amp;crarr;</td>
+      <td>&amp;#8629;</td>
+      <td>&amp;#x21B5;</td>
+      <td>↵</td>
+      <td>↵</td>
+      <td>↵</td>
+    </tr>
+    <tr>
+      <td>&lArr;</td>
+      <td>leftwards double arrow</td>
+      <td>&amp;lArr;</td>
+      <td>&amp;#8656;</td>
+      <td>&amp;#x21D0;</td>
+      <td><code class="inset">&amp;lA</code></td>
+      <td>⇐</td>
+      <td>⇐</td>
+    </tr>
+    <tr>
+      <td>&uArr;</td>
+      <td>upwards double arrow</td>
+      <td>&amp;uArr;</td>
+      <td>&amp;#8657;</td>
+      <td>&amp;#x21D1;</td>
+      <td><code class="inset">&amp;uA</code></td>
+      <td>⇑</td>
+      <td>⇑</td>
+    </tr>
+    <tr>
+      <td>&rArr;</td>
+      <td>rightwards double arrow</td>
+      <td>&amp;rArr;</td>
+      <td>&amp;#8658;</td>
+      <td>&amp;#x21D2;</td>
+      <td><code class="inset">&amp;rA</code></td>
+      <td>⇒</td>
+      <td>⇒</td>
+    </tr>
+    <tr>
+      <td>&dArr;</td>
+      <td>downwards double arrow</td>
+      <td>&amp;dArr;</td>
+      <td>&amp;#8659;</td>
+      <td>&amp;#x21D3;</td>
+      <td><code class="inset">&amp;dA</code></td>
+      <td>⇓</td>
+      <td>⇓</td>
+    </tr>
+    <tr>
+      <td>&hArr;</td>
+      <td>left right double arrow</td>
+      <td>&amp;hArr;</td>
+      <td>&amp;#8660;</td>
+      <td>&amp;#x21D4;</td>
+      <td><code class="inset">&amp;hA</code></td>
+      <td>⇔</td>
+      <td>⇔</td>
+    </tr>
+    <tr>
+      <td>for all</td>
+      <td>&amp;forall;</td>
+      <td>&amp;#8704;</td>
+      <td>&amp;#x2200;</td>
+      <td>∀</td>
+      <td>∀</td>
+      <td>∀</td>
+    </tr>
+    <tr>
+      <td>partial differential</td>
+      <td>&amp;part;</td>
+      <td>&amp;#8706;</td>
+      <td>&amp;#x2202;</td>
+      <td>∂</td>
+      <td>∂</td>
+      <td>∂</td>
+    </tr>
+    <tr>
+      <td>there exists</td>
+      <td>&amp;exist;</td>
+      <td>&amp;#8707;</td>
+      <td>&amp;#x2203;</td>
+      <td>∃</td>
+      <td>∃</td>
+      <td>∃</td>
+    </tr>
+    <tr>
+      <td>empty set = null set = diameter</td>
+      <td>&amp;empty;</td>
+      <td>&amp;#8709;</td>
+      <td>&amp;#x2205;</td>
+      <td>∅</td>
+      <td>∅</td>
+      <td>∅</td>
+    </tr>
+    <tr>
+      <td>nabla = backward difference</td>
+      <td>&amp;nabla;</td>
+      <td>&amp;#8711;</td>
+      <td>&amp;#x2207;</td>
+      <td>∇</td>
+      <td>∇</td>
+      <td>∇</td>
+    </tr>
+    <tr>
+      <td>element of</td>
+      <td>&amp;isin;</td>
+      <td>&amp;#8712;</td>
+      <td>&amp;#x2208;</td>
+      <td>∈</td>
+      <td>∈</td>
+      <td>∈</td>
+    </tr>
+    <tr>
+      <td>not an element of</td>
+      <td>&amp;notin;</td>
+      <td>&amp;#8713;</td>
+      <td>&amp;#x2209;</td>
+      <td>∉</td>
+      <td>∉</td>
+      <td>∉</td>
+    </tr>
+    <tr>
+      <td>contains as member</td>
+      <td>&amp;ni;</td>
+      <td>&amp;#8715;</td>
+      <td>&amp;#x220B;</td>
+      <td>∋</td>
+      <td>∋</td>
+      <td>∋</td>
+    </tr>
+    <tr>
+      <td>&pound;</td>
+      <td>n-ary product = product sign</td>
+      <td>&amp;prod;</td>
+      <td>&amp;#8719;</td>
+      <td>&amp;#x220F;</td>
+    </tr>
+    <tr>
+      <td>n-ary sumation</td>
+      <td>&amp;sum;</td>
+      <td>&amp;#8721;</td>
+      <td>&amp;#x2211;</td>
+      <td>∑</td>
+      <td>∑</td>
+      <td>∑</td>
+    </tr>
+    <tr>
+      <td>minus sign</td>
+      <td>&amp;minus;</td>
+      <td>&amp;#8722;</td>
+      <td>&amp;#x2212;</td>
+      <td>−</td>
+      <td>−</td>
+      <td>−</td>
+    </tr>
+    <tr>
+      <td>asterisk operator</td>
+      <td>&amp;lowast;</td>
+      <td>&amp;#8727;</td>
+      <td>&amp;#x2217;</td>
+      <td>∗</td>
+      <td>∗</td>
+      <td>∗</td>
+    </tr>
+    <tr>
+      <td>square root = radical sign</td>
+      <td>&amp;radic;</td>
+      <td>&amp;#8730;</td>
+      <td>&amp;#x221A;</td>
+      <td>√</td>
+      <td>√</td>
+      <td>√</td>
+    </tr>
+    <tr>
+      <td>proportional to</td>
+      <td>&amp;prop;</td>
+      <td>&amp;#8733;</td>
+      <td>&amp;#x221D;</td>
+      <td>∝</td>
+      <td>∝</td>
+      <td>∝</td>
+    </tr>
+    <tr>
+      <td>infinity</td>
+      <td>&amp;infin;</td>
+      <td>&amp;#8734;</td>
+      <td>&amp;#x221E;</td>
+      <td>∞</td>
+      <td>∞</td>
+      <td>∞</td>
+    </tr>
+    <tr>
+      <td>angle</td>
+      <td>&amp;ang;</td>
+      <td>&amp;#8736;</td>
+      <td>&amp;#x2220;</td>
+      <td>∠</td>
+      <td>∠</td>
+      <td>∠</td>
+    </tr>
+    <tr>
+      <td>logical and = wedge</td>
+      <td>&amp;and;</td>
+      <td>&amp;#8743;</td>
+      <td>&amp;#x2227;</td>
+      <td>∧</td>
+      <td>∧</td>
+      <td>∧</td>
+    </tr>
+    <tr>
+      <td>logical or = vee</td>
+      <td>&amp;or;</td>
+      <td>&amp;#8744;</td>
+      <td>&amp;#x2228;</td>
+      <td>∨</td>
+      <td>∨</td>
+      <td>∨</td>
+    </tr>
+    <tr>
+      <td>intersection = cap</td>
+      <td>&amp;cap;</td>
+      <td>&amp;#8745;</td>
+      <td>&amp;#x2229;</td>
+      <td>∩</td>
+      <td>∩</td>
+      <td>∩</td>
+    </tr>
+    <tr>
+      <td>union = cup</td>
+      <td>&amp;cup;</td>
+      <td>&amp;#8746;</td>
+      <td>&amp;#x222A;</td>
+      <td>∪</td>
+      <td>∪</td>
+      <td>∪</td>
+    </tr>
+    <tr>
+      <td>integral</td>
+      <td>&amp;int;</td>
+      <td>&amp;#8747;</td>
+      <td>&amp;#x222B;</td>
+      <td>∫</td>
+      <td>∫</td>
+      <td>∫</td>
+    </tr>
+    <tr>
+      <td>therefore</td>
+      <td>&amp;there4;</td>
+      <td>&amp;#8756;</td>
+      <td>&amp;#x2234;</td>
+      <td>∴</td>
+      <td>∴</td>
+      <td>∴</td>
+    </tr>
+    <tr>
+      <td>tilde operator = varies with = similar to</td>
+      <td>&amp;sim;</td>
+      <td>&amp;#8764;</td>
+      <td>&amp;#x223C;</td>
+      <td>∼</td>
+      <td>∼</td>
+      <td>∼</td>
+    </tr>
+    <tr>
+      <td>approximately equal to</td>
+      <td>&amp;cong;</td>
+      <td>&amp;#8773;</td>
+      <td>&amp;#x2245;</td>
+      <td>≅</td>
+      <td>≅</td>
+      <td>≅</td>
+    </tr>
+    <tr>
+      <td>almost equal to = asymptotic to</td>
+      <td>&amp;asymp;</td>
+      <td>&amp;#8776;</td>
+      <td>&amp;#x2248;</td>
+      <td>≈</td>
+      <td>≈</td>
+      <td>≈</td>
+    </tr>
+    <tr>
+      <td>not equal to</td>
+      <td>&amp;ne;</td>
+      <td>&amp;#8800;</td>
+      <td>&amp;#x2260;</td>
+      <td>≠</td>
+      <td>≠</td>
+      <td>≠</td>
+    </tr>
+    <tr>
+      <td>identical to</td>
+      <td>&amp;equiv;</td>
+      <td>&amp;#8801;</td>
+      <td>&amp;#x2261;</td>
+      <td>≡</td>
+      <td>≡</td>
+      <td>≡</td>
+    </tr>
+    <tr>
+      <td>less-than or equal to</td>
+      <td>&amp;le;</td>
+      <td>&amp;#8804;</td>
+      <td>&amp;#x2264;</td>
+      <td>≤</td>
+      <td>≤</td>
+      <td>≤</td>
+    </tr>
+    <tr>
+      <td>greater-than or equal to</td>
+      <td>&amp;ge;</td>
+      <td>&amp;#8805;</td>
+      <td>&amp;#x2265;</td>
+      <td>≥</td>
+      <td>≥</td>
+      <td>≥</td>
+    </tr>
+    <tr>
+      <td>subset of</td>
+      <td>&amp;sub;</td>
+      <td>&amp;#8834;</td>
+      <td>&amp;#x2282;</td>
+      <td>⊂</td>
+      <td>⊂</td>
+      <td>⊂</td>
+    </tr>
+    <tr>
+      <td>superset of</td>
+      <td>&amp;sup;</td>
+      <td>&amp;#8835;</td>
+      <td>&amp;#x2283;</td>
+      <td>⊃</td>
+      <td>⊃</td>
+      <td>⊃</td>
+    </tr>
+    <tr>
+      <td>not a subset of</td>
+      <td>&amp;nsub;</td>
+      <td>&amp;#8836;</td>
+      <td>&amp;#x2284;</td>
+      <td>⊄</td>
+      <td>⊄</td>
+      <td>⊄</td>
+    </tr>
+    <tr>
+      <td>subset of or equal to</td>
+      <td>&amp;sube;</td>
+      <td>&amp;#8838;</td>
+      <td>&amp;#x2286;</td>
+      <td>⊆</td>
+      <td>⊆</td>
+      <td>⊆</td>
+    </tr>
+    <tr>
+      <td>superset of or equal to</td>
+      <td>&amp;supe;</td>
+      <td>&amp;#8839;</td>
+      <td>&amp;#x2287;</td>
+      <td>⊇</td>
+      <td>⊇</td>
+      <td>⊇</td>
+    </tr>
+    <tr>
+      <td>circled plus = direct sum</td>
+      <td>&amp;oplus;</td>
+      <td>&amp;#8853;</td>
+      <td>&amp;#x2295;</td>
+      <td>⊕</td>
+      <td>⊕</td>
+      <td>⊕</td>
+    </tr>
+    <tr>
+      <td>circled times = vector product</td>
+      <td>&amp;otimes;</td>
+      <td>&amp;#8855;</td>
+      <td>&amp;#x2297;</td>
+      <td>⊗</td>
+      <td>⊗</td>
+      <td>⊗</td>
+    </tr>
+    <tr>
+      <td>up tack = orthogonal to = perpendicular</td>
+      <td>&amp;perp;</td>
+      <td>&amp;#8869;</td>
+      <td>&amp;#x22A5;</td>
+      <td>⊥</td>
+      <td>⊥</td>
+      <td>⊥</td>
+    </tr>
+    <tr>
+      <td>dot operator</td>
+      <td>&amp;sdot;</td>
+      <td>&amp;#8901;</td>
+      <td>&amp;#x22C5;</td>
+      <td>⋅</td>
+      <td>⋅</td>
+      <td>⋅</td>
+    </tr>
+    <tr>
+      <td>left ceiling = APL upstile</td>
+      <td>&amp;lceil;</td>
+      <td>&amp;#8968;</td>
+      <td>&amp;#x2308;</td>
+      <td>⌈</td>
+      <td>⌈</td>
+      <td>⌈</td>
+    </tr>
+    <tr>
+      <td>right ceiling</td>
+      <td>&amp;rceil;</td>
+      <td>&amp;#8969;</td>
+      <td>&amp;#x2309;</td>
+      <td>⌉</td>
+      <td>⌉</td>
+      <td>⌉</td>
+    </tr>
+    <tr>
+      <td>left floor = APL downstile</td>
+      <td>&amp;lfloor;</td>
+      <td>&amp;#8970;</td>
+      <td>&amp;#x230A;</td>
+      <td>⌊</td>
+      <td>⌊</td>
+      <td>⌊</td>
+    </tr>
+    <tr>
+      <td>right floor</td>
+      <td>&amp;rfloor;</td>
+      <td>&amp;#8971;</td>
+      <td>&amp;#x230B;</td>
+      <td>⌋</td>
+      <td>⌋</td>
+      <td>⌋</td>
+    </tr>
+    <tr>
+      <td>left-pointing angle bracket = bra</td>
+      <td>&amp;lang;</td>
+      <td>&amp;#9001;</td>
+      <td>&amp;#x2329;</td>
+      <td>⟨</td>
+      <td>〈</td>
+      <td>〈</td>
+    </tr>
+    <tr>
+      <td>right-pointing angle bracket = ket</td>
+      <td>&amp;rang;</td>
+      <td>&amp;#9002;</td>
+      <td>&amp;#x232A;</td>
+      <td>⟩</td>
+      <td>〉</td>
+      <td>〉</td>
+    </tr>
+    <tr>
+      <td>lozenge</td>
+      <td>&amp;loz;</td>
+      <td>&amp;#9674;</td>
+      <td>&amp;#x25CA;</td>
+      <td>◊</td>
+      <td>◊</td>
+      <td>◊</td>
+    </tr>
+    <tr>
+      <td>black spade suit</td>
+      <td>&amp;spades;</td>
+      <td>&amp;#9824;</td>
+      <td>&amp;#x2660;</td>
+      <td>♠</td>
+      <td>♠</td>
+      <td>♠</td>
+    </tr>
+    <tr>
+      <td>black club suit = shamrock</td>
+      <td>&amp;clubs;</td>
+      <td>&amp;#9827;</td>
+      <td>&amp;#x2663;</td>
+      <td>♣</td>
+      <td>♣</td>
+      <td>♣</td>
+    </tr>
+    <tr>
+      <td>black heart suit = valentine</td>
+      <td>&amp;hearts;</td>
+      <td>&amp;#9829;</td>
+      <td>&amp;#x2665;</td>
+      <td>♥</td>
+      <td>♥</td>
+      <td>♥</td>
+    </tr>
+    <tr>
+      <td>black diamond suit</td>
+      <td>&amp;diams;</td>
+      <td>&amp;#9830;</td>
+      <td>&amp;#x2666;</td>
+      <td>♦</td>
+      <td>♦</td>
+      <td>♦</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1>Latin-1 Entities</h1>
+<p>The following table gives the character entity reference, decimal character reference, and hexadecimal character reference for 8-bit characters in the Latin-1 (ISO-8859-1) character set, as well as the rendering of each in your browser. <a href="http://www.unicode.org/charts/">Glyphs</a> of the characters are available at the <a href="http://www.unicode.org/">Unicode Consortium</a>.</p>
+<table border="1">
+  <colgroup>
+  </colgroup><colgroup class="entity" span="3">
+  </colgroup><colgroup class="entity" span="3">
+  </colgroup><thead>
+    <tr>
+      <th scope="col" rowspan="2">Character</th>
+      <th scope="col" rowspan="2">Entity</th>
+      <th scope="col" rowspan="2">Decimal</th>
+      <th scope="col" rowspan="2">Hex</th>
+      <th scope="colgroup" colspan="3">Rendering in Your Browser</th>
+    </tr>
+    <tr>
+      <th scope="col">Entity</th>
+      <th scope="col">Decimal</th>
+      <th scope="col">Hex</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>&nbsp;</td>
+      <td>no-break space = non-breaking space</td>
+      <td>&amp;nbsp;</td>
+      <td>&amp;#160;</td>
+      <td>&amp;#xA0;</td>
+      <td><code class="inset">&amp;&lt;space&gt;</code></td>
+    </tr>
+    <tr>
+      <td>&iexcl;</td>
+      <td>inverted exclamation mark</td>
+      <td>&amp;iexcl;</td>
+      <td>&amp;#161;</td>
+      <td>&amp;#xA1;</td>
+      <td><code class="inset">&amp;!</code></td>
+    </tr>
+    <tr>
+      <td>&cent;</td>
+      <td>cent sign</td>
+      <td>&amp;cent;</td>
+      <td>&amp;#162;</td>
+      <td>&amp;#xA2;</td>
+      <td><code class="inset">&amp;c|</code></td>
+    </tr>
+    <tr>
+      <td>&pound;</td>
+      <td>pound sign</td>
+      <td>&amp;pound;</td>
+      <td>&amp;#163;</td>
+      <td>&amp;#xA3;</td>
+      <td><code class="inset">&amp;#</code></td>
+    </tr>
+    <tr>
+      <td>currency sign</td>
+      <td>&amp;curren;</td>
+      <td>&amp;#164;</td>
+      <td>&amp;#xA4;</td>
+      <td>¤</td>
+      <td>¤</td>
+      <td>¤</td>
+    </tr>
+    <tr>
+      <td>&yen;</td>
+      <td>yen sign = yuan sign</td>
+      <td>&amp;yen;</td>
+      <td>&amp;#165;</td>
+      <td>&amp;#xA5;</td>
+      <td><code class="inset">&amp;Y=</code></td>
+    </tr>
+    <tr>
+      <td>broken bar = broken vertical bar</td>
+      <td>&amp;brvbar;</td>
+      <td>&amp;#166;</td>
+      <td>&amp;#xA6;</td>
+      <td>¦</td>
+      <td>¦</td>
+      <td>¦</td>
+    </tr>
+    <tr>
+      <td>&sect;</td>
+      <td>section sign</td>
+      <td>&amp;sect;</td>
+      <td>&amp;#167;</td>
+      <td>&amp;#xA7;</td>
+      <td><code class="inset">&amp;se</code></td>
+      <td>§</td>
+    </tr>
+    <tr>
+      <td>&uml;</td>
+      <td>diaeresis = spacing diaeresis</td>
+      <td>&amp;uml;</td>
+      <td>&amp;#168;</td>
+      <td>&amp;#xA8;</td>
+      <td><code class="inset">&amp;uml</code></td>
+      <td>¨</td>
+      <td>¨</td>
+    </tr>
+    <tr>
+      <td>&copy;</td>
+      <td>copyright sign</td>
+      <td>&amp;copy;</td>
+      <td>&amp;#169;</td>
+      <td>&amp;#xA9;</td>
+      <td><code class="inset">&amp;cO</code></td>
+    </tr>
+    <tr>
+      <td>feminine ordinal indicator</td>
+      <td>&amp;ordf;</td>
+      <td>&amp;#170;</td>
+      <td>&amp;#xAA;</td>
+      <td>ª</td>
+      <td>ª</td>
+      <td>ª</td>
+    </tr>
+    <tr>
+      <td>&laquo;</td>
+      <td>left-pointing double angle quotation mark = left pointing guillemet</td>
+      <td>&amp;laquo;</td>
+      <td>&amp;#171;</td>
+      <td>&amp;#xAB;</td>
+      <td><code class="inset">&amp;2&lt;</code></td>
+    </tr>
+    <tr>
+      <td>not sign</td>
+      <td>&amp;not;</td>
+      <td>&amp;#172;</td>
+      <td>&amp;#xAC;</td>
+      <td>¬</td>
+      <td>¬</td>
+      <td>¬</td>
+    </tr>
+    <tr>
+      <td>soft hyphen = discretionary hyphen</td>
+      <td>&amp;shy;</td>
+      <td>&amp;#173;</td>
+      <td>&amp;#xAD;</td>
+      <td>­</td>
+      <td>­</td>
+      <td>­</td>
+    </tr>
+    <tr>
+      <td>&reg;</td>
+      <td>registered sign = registered trade mark sign</td>
+      <td>&amp;reg;</td>
+      <td>&amp;#174;</td>
+      <td>&amp;#xAE;</td>
+      <td><code class="inset">&amp;rO</code></td>
+    </tr>
+    <tr>
+      <td>macron = spacing macron = overline = APL overbar</td>
+      <td>&amp;macr;</td>
+      <td>&amp;#175;</td>
+      <td>&amp;#xAF;</td>
+      <td>¯</td>
+      <td>¯</td>
+      <td>¯</td>
+    </tr>
+    <tr>
+      <td>&deg;</td>
+      <td>degree sign</td>
+      <td>&amp;deg;</td>
+      <td>&amp;#176;</td>
+      <td>&amp;#xB0;</td>
+      <td><code class="inset">&amp;dg</code></td>
+    </tr>
+    <tr>
+      <td>&plusmn;</td>
+      <td>plus-minus sign = plus-or-minus sign</td>
+      <td>&amp;plusmn;</td>
+      <td>&amp;#177;</td>
+      <td>&amp;#xB1;</td>
+      <td><code class="inset">&amp;+-</code></td>
+    </tr>
+    <tr>
+      <td>&sup2;</td>
+      <td>superscript two = superscript digit two = squared</td>
+      <td>&amp;sup2;</td>
+      <td>&amp;#178;</td>
+      <td>&amp;#xB2;</td>
+      <td><code class="inset">&amp;2^</code></td>
+      <td>²</td>
+      <td>²</td>
+    </tr>
+    <tr>
+      <td>&sup3;</td>
+      <td>superscript three = superscript digit three = cubed</td>
+      <td>&amp;sup3;</td>
+      <td>&amp;#179;</td>
+      <td>&amp;#xB3;</td>
+      <td><code class="inset">&amp;3^</code></td>
+      <td>³</td>
+      <td>³</td>
+    </tr>
+    <tr>
+      <td>acute accent = spacing acute</td>
+      <td>&amp;acute;</td>
+      <td>&amp;#180;</td>
+      <td>&amp;#xB4;</td>
+      <td>´</td>
+      <td>´</td>
+      <td>´</td>
+    </tr>
+    <tr>
+      <td>&micro;</td>
+      <td>micro sign</td>
+      <td>&amp;micro;</td>
+      <td>&amp;#181;</td>
+      <td>&amp;#xB5;</td>
+      <td><code class="inset">&amp;mi</code></td>
+    </tr>
+    <tr>
+      <td>&para;</td>
+      <td>pilcrow sign = paragraph sign</td>
+      <td>&amp;para;</td>
+      <td>&amp;#182;</td>
+      <td>&amp;#xB6;</td>
+      <td><code class="inset">&amp;pa</code></td>
+      <td>¶</td>
+    </tr>
+    <tr>
+      <td>&middot;</td>
+      <td>middle dot = Georgian comma = Greek middle dot</td>
+      <td>&amp;middot;</td>
+      <td>&amp;#183;</td>
+      <td>&amp;#xB7;</td>
+      <td><code class="inset">&amp;.</code></td>
+      <td>·</td>
+    </tr>
+    <tr>
+      <td>cedilla = spacing cedilla</td>
+      <td>&amp;cedil;</td>
+      <td>&amp;#184;</td>
+      <td>&amp;#xB8;</td>
+      <td>¸</td>
+      <td>¸</td>
+      <td>¸</td>
+    </tr>
+    <tr>
+      <td>&sup1;</td>
+      <td>superscript one = superscript digit one</td>
+      <td>&amp;sup1;</td>
+      <td>&amp;#185;</td>
+      <td>&amp;#xB9;</td>
+      <td><code class="inset">&amp;1^</code></td>
+      <td>¹</td>
+      <td>¹</td>
+    </tr>
+    <tr>
+      <td>masculine ordinal indicator</td>
+      <td>&amp;ordm;</td>
+      <td>&amp;#186;</td>
+      <td>&amp;#xBA;</td>
+      <td>º</td>
+      <td>º</td>
+      <td>º</td>
+    </tr>
+    <tr>
+      <td>&raquo;</td>
+      <td>right-pointing double angle quotation mark = right pointing guillemet</td>
+      <td>&amp;raquo;</td>
+      <td>&amp;#187;</td>
+      <td>&amp;#xBB;</td>
+      <td><code class="inset">&amp;2&gt;</code></td>
+      <td>»</td>
+      <td>»</td>
+    </tr>
+    <tr>
+      <td>&frac14;</td>
+      <td>vulgar fraction one quarter = fraction one quarter</td>
+      <td>&amp;frac14;</td>
+      <td>&amp;#188;</td>
+      <td>&amp;#xBC;</td>
+      <td><code class="inset">&amp;14</code></td>
+      <td>¼</td>
+      <td>¼</td>
+    </tr>
+    <tr>
+      <td>&frac12;</td>
+      <td>vulgar fraction one half = fraction one half</td>
+      <td>&amp;frac12;</td>
+      <td>&amp;#189;</td>
+      <td>&amp;#xBD;</td>
+      <td><code class="inset">&amp;12</code></td>
+      <td>½</td>
+      <td>½</td>
+    </tr>
+    <tr>
+      <td>&frac34;</td>
+      <td>vulgar fraction three quarters = fraction three quarters</td>
+      <td>&amp;frac34;</td>
+      <td>&amp;#190;</td>
+      <td>&amp;#xBE;</td>
+      <td><code class="inset">&amp;34</code></td>
+      <td>¾</td>
+      <td>¾</td>
+    </tr>
+    <tr>
+      <td>&iquest;</td>
+      <td>inverted question mark = turned question mark</td>
+      <td>&amp;iquest;</td>
+      <td>&amp;#191;</td>
+      <td>&amp;#xBF;</td>
+      <td><code class="inset">&amp;?</code></td>
+    </tr>
+    <tr>
+      <td>Latin capital letter A with grave = Latin capital letter A grave</td>
+      <td>&amp;Agrave;</td>
+      <td>&amp;#192;</td>
+      <td>&amp;#xC0;</td>
+      <td></td>
+      <td>À</td>
+      <td>À</td>
+    </tr>
+    <tr>
+      <td>&Aacute;</td>
+      <td>Latin capital letter A with acute</td>
+      <td>&amp;Aacute;</td>
+      <td>&amp;#193;</td>
+      <td>&amp;#xC1;</td>
+      <td><code class="inset">&amp;A'</code></td>
+      <td>Á</td>
+      <td>Á</td>
+    </tr>
+    <tr>
+      <td>Latin capital letter A with circumflex</td>
+      <td>&amp;Acirc;</td>
+      <td>&amp;#194;</td>
+      <td>&amp;#xC2;</td>
+      <td>Â</td>
+      <td>Â</td>
+      <td>Â</td>
+    </tr>
+    <tr>
+      <td>Latin capital letter A with tilde</td>
+      <td>&amp;Atilde;</td>
+      <td>&amp;#195;</td>
+      <td>&amp;#xC3;</td>
+      <td>Ã</td>
+      <td>Ã</td>
+      <td>Ã</td>
+    </tr>
+    <tr>
+      <td>&Auml;</td>
+      <td>Latin capital letter A with diaeresis</td>
+      <td>&amp;Auml;</td>
+      <td>&amp;#196;</td>
+      <td>&amp;#xC4;</td>
+      <td><code class="inset">&amp;A"</code></td>
+      <td>Ä</td>
+      <td>Ä</td>
+    </tr>
+    <tr>
+      <td>&Aring;</td>
+      <td>Latin capital letter A with ring above = Latin capital letter A ring</td>
+      <td>&amp;Aring;</td>
+      <td>&amp;#197;</td>
+      <td>&amp;#xC5;</td>
+      <td><code class="inset">&amp;Ao</code></td>
+      <td>Å</td>
+      <td>Å</td>
+    </tr>
+    <tr>
+      <td>&AElig;</td>
+      <td>Latin capital letter AE = Latin capital ligature AE</td>
+      <td>&amp;AElig;</td>
+      <td>&amp;#198;</td>
+      <td>&amp;#xC6;</td>
+      <td><code class="inset">&amp;AE</code></td>
+      <td>Æ</td>
+      <td>Æ</td>
+    </tr>
+    <tr>
+      <td>&Ccedil;</td>
+      <td>Latin capital letter C with cedilla</td>
+      <td>&amp;Ccedil;</td>
+      <td>&amp;#199;</td>
+      <td>&amp;#xC7;</td>
+      <td><code class="inset">&amp;C,</code></td>
+      <td>Ç</td>
+    </tr>
+    <tr>
+      <td>Latin capital letter E with grave</td>
+      <td>&amp;Egrave;</td>
+      <td>&amp;#200;</td>
+      <td>&amp;#xC8;</td>
+      <td>È</td>
+      <td>È</td>
+      <td>È</td>
+    </tr>
+    <tr>
+      <td>&Eacute;</td>
+      <td>Latin capital letter E with acute</td>
+      <td>&amp;Eacute;</td>
+      <td>&amp;#201;</td>
+      <td>&amp;#xC9;</td>
+      <td><code class="inset">&amp;E'</code></td>
+      <td>É</td>
+      <td>É</td>
+    </tr>
+    <tr>
+      <td>Latin capital letter E with circumflex</td>
+      <td>&amp;Ecirc;</td>
+      <td>&amp;#202;</td>
+      <td>&amp;#xCA;</td>
+      <td>Ê</td>
+      <td>Ê</td>
+      <td>Ê</td>
+    </tr>
+    <tr>
+      <td>&Euml;</td>
+      <td>Latin capital letter E with diaeresis</td>
+      <td>&amp;Euml;</td>
+      <td>&amp;#203;</td>
+      <td>&amp;#xCB;</td>
+      <td><code class="inset">&amp;E"</code></td>
+      <td>Ë</td>
+      <td>Ë</td>
+    </tr>
+    <tr>
+      <td>Latin capital letter I with grave</td>
+      <td>&amp;Igrave;</td>
+      <td>&amp;#204;</td>
+      <td>&amp;#xCC;</td>
+      <td>Ì</td>
+      <td>Ì</td>
+      <td>Ì</td>
+    </tr>
+    <tr>
+      <td>&Iacute;</td>
+      <td>Latin capital letter I with acute</td>
+      <td>&amp;Iacute;</td>
+      <td>&amp;#205;</td>
+      <td>&amp;#xCD;</td>
+      <td><code class="inset">&amp;I'</code></td>
+      <td>Í</td>
+      <td>Í</td>
+    </tr>
+    <tr>
+      <td>Latin capital letter I with circumflex</td>
+      <td>&amp;Icirc;</td>
+      <td>&amp;#206;</td>
+      <td>&amp;#xCE;</td>
+      <td>Î</td>
+      <td>Î</td>
+      <td>Î</td>
+    </tr>
+    <tr>
+      <td>&Iuml;</td>
+      <td>Latin capital letter I with diaeresis</td>
+      <td>&amp;Iuml;</td>
+      <td>&amp;#207;</td>
+      <td>&amp;#xCF;</td>
+      <td><code class="inset">&amp;I"</code></td>
+      <td>Ï</td>
+      <td>Ï</td>
+    </tr>
+    <tr>
+      <td>Latin capital letter ETH</td>
+      <td>&amp;ETH;</td>
+      <td>&amp;#208;</td>
+      <td>&amp;#xD0;</td>
+      <td>Ð</td>
+      <td>Ð</td>
+      <td>Ð</td>
+    </tr>
+    <tr>
+      <td>Latin capital letter N with tilde</td>
+      <td>&amp;Ntilde;</td>
+      <td>&amp;#209;</td>
+      <td>&amp;#xD1;</td>
+      <td>Ñ</td>
+      <td>Ñ</td>
+      <td>Ñ</td>
+    </tr>
+    <tr>
+      <td>Latin capital letter O with grave</td>
+      <td>&amp;Ograve;</td>
+      <td>&amp;#210;</td>
+      <td>&amp;#xD2;</td>
+      <td>Ò</td>
+      <td>Ò</td>
+      <td>Ò</td>
+    </tr>
+    <tr>
+      <td>&Oacute;</td>
+      <td>Latin capital letter O with acute</td>
+      <td>&amp;Oacute;</td>
+      <td>&amp;#211;</td>
+      <td>&amp;#xD3;</td>
+      <td><code class="inset">&amp;O'</code></td>
+      <td>Ó</td>
+      <td>Ó</td>
+    </tr>
+    <tr>
+      <td>Latin capital letter O with circumflex</td>
+      <td>&amp;Ocirc;</td>
+      <td>&amp;#212;</td>
+      <td>&amp;#xD4;</td>
+      <td>Ô</td>
+      <td>Ô</td>
+      <td>Ô</td>
+    </tr>
+    <tr>
+      <td>Latin capital letter O with tilde</td>
+      <td>&amp;Otilde;</td>
+      <td>&amp;#213;</td>
+      <td>&amp;#xD5;</td>
+      <td>Õ</td>
+      <td>Õ</td>
+      <td>Õ</td>
+    </tr>
+    <tr>
+      <td>&Ouml;</td>
+      <td>Latin capital letter O with diaeresis</td>
+      <td>&amp;Ouml;</td>
+      <td>&amp;#214;</td>
+      <td>&amp;#xD6;</td>
+      <td><code class="inset">&amp;O"</code></td>
+      <td>Ö</td>
+      <td>Ö</td>
+    </tr>
+    <tr>
+      <td>&times;</td>
+      <td>multiplication sign</td>
+      <td>&amp;times;</td>
+      <td>&amp;#215;</td>
+      <td>&amp;#xD7;</td>
+      <td><code class="inset">&amp;x</code></td>
+    </tr>
+    <tr>
+      <td>&Oslash;</td>
+      <td>Latin capital letter O with stroke = Latin capital letter O slash</td>
+      <td>&amp;Oslash;</td>
+      <td>&amp;#216;</td>
+      <td>&amp;#xD8;</td>
+      <td><code class="inset">&amp;O/</code></td>
+      <td>Ø</td>
+      <td>Ø</td>
+    </tr>
+    <tr>
+      <td>Latin capital letter U with grave</td>
+      <td>&amp;Ugrave;</td>
+      <td>&amp;#217;</td>
+      <td>&amp;#xD9;</td>
+      <td>Ù</td>
+      <td>Ù</td>
+      <td>Ù</td>
+    </tr>
+    <tr>
+      <td>&Uacute;</td>
+      <td>Latin capital letter U with acute</td>
+      <td>&amp;Uacute;</td>
+      <td>&amp;#218;</td>
+      <td>&amp;#xDA;</td>
+      <td><code class="inset">&amp;U'</code></td>
+      <td>Ú</td>
+    </tr>
+    <tr>
+      <td>Latin capital letter U with circumflex</td>
+      <td>&amp;Ucirc;</td>
+      <td>&amp;#219;</td>
+      <td>&amp;#xDB;</td>
+      <td>Û</td>
+      <td>Û</td>
+      <td>Û</td>
+    </tr>
+    <tr>
+      <td>&Uuml;</td>
+      <td>Latin capital letter U with diaeresis</td>
+      <td>&amp;Uuml;</td>
+      <td>&amp;#220;</td>
+      <td>&amp;#xDC;</td>
+      <td><code class="inset">&amp;U"</code></td>
+      <td>Ü</td>
+    </tr>
+    <tr>
+      <td>&Yacute;</td>
+      <td>Latin capital letter Y with acute</td>
+      <td>&amp;Yacute;</td>
+      <td>&amp;#221;</td>
+      <td>&amp;#xDD;</td>
+      <td><code class="inset">&amp;Y'</code></td>
+      <td>Ý</td>
+      <td>Ý</td>
+    </tr>
+    <tr>
+      <td>Latin capital letter THORN</td>
+      <td>&amp;THORN;</td>
+      <td>&amp;#222;</td>
+      <td>&amp;#xDE;</td>
+      <td>Þ</td>
+      <td>Þ</td>
+      <td>Þ</td>
+    </tr>
+    <tr>
+      <td>&szlig;</td>
+      <td>Latin small letter sharp s = ess-zed</td>
+      <td>&amp;szlig;</td>
+      <td>&amp;#223;</td>
+      <td>&amp;#xDF;</td>
+      <td><code class="inset">&amp;sz</code></td>
+      <td>ß</td>
+      <td>ß</td>
+    </tr>
+    <tr>
+      <td>Latin small letter a with grave = Latin small letter a grave</td>
+      <td>&amp;agrave;</td>
+      <td>&amp;#224;</td>
+      <td>&amp;#xE0;</td>
+      <td>à</td>
+      <td>à</td>
+      <td>à</td>
+    </tr>
+    <tr>
+      <td>&aacute;</td>
+      <td>Latin small letter a with acute</td>
+      <td>&amp;aacute;</td>
+      <td>&amp;#225;</td>
+      <td>&amp;#xE1;</td>
+      <td><code class="inset">&amp;a'</code></td>
+      <td>á</td>
+      <td>á</td>
+    </tr>
+    <tr>
+      <td>&acirc;</td>
+      <td>Latin small letter a with circumflex</td>
+      <td>&amp;acirc;</td>
+      <td>&amp;#226;</td>
+      <td>&amp;#xE2;</td>
+      <td><code class="inset">&amp;a^</code></td>
+      <td>â</td>
+      <td>â</td>
+    </tr>
+    <tr>
+      <td>&atilde;</td>
+      <td>Latin small letter a with tilde</td>
+      <td>&amp;atilde;</td>
+      <td>&amp;#227;</td>
+      <td>&amp;#xE3;</td>
+      <td><code class="inset">&amp;a~</code></td>
+      <td>ã</td>
+    </tr>
+    <tr>
+      <td>&auml;</td>
+      <td>Latin small letter a with diaeresis</td>
+      <td>&amp;auml;</td>
+      <td>&amp;#228;</td>
+      <td>&amp;#xE4;</td>
+      <td><code class="inset">&amp;a"</code></td>
+      <td>ä</td>
+      <td>ä</td>
+    </tr>
+    <tr>
+      <td>&aring;</td>
+      <td>Latin small letter a with ring above = Latin small letter a ring</td>
+      <td>&amp;aring;</td>
+      <td>&amp;#229;</td>
+      <td>&amp;#xE5;</td>
+      <td><code class="inset">&amp;ao</code></td>
+      <td>å</td>
+      <td>å</td>
+    </tr>
+    <tr>
+      <td>&aelig;</td>
+      <td>Latin small letter ae = Latin small ligature ae</td>
+      <td>&amp;aelig;</td>
+      <td>&amp;#230;</td>
+      <td>&amp;#xE6;</td>
+      <td><code class="inset">&amp;ae</code></td>
+      <td>æ</td>
+      <td>æ</td>
+    </tr>
+    <tr>
+      <td>&ccedil;</td>
+      <td>Latin small letter c with cedilla</td>
+      <td>&amp;ccedil;</td>
+      <td>&amp;#231;</td>
+      <td>&amp;#xE7;</td>
+      <td><code class="inset">&amp;c,</code></td>
+      <td>ç</td>
+    </tr>
+    <tr>
+      <td>Latin small letter e with grave</td>
+      <td>&amp;egrave;</td>
+      <td>&amp;#232;</td>
+      <td>&amp;#xE8;</td>
+      <td>è</td>
+      <td>è</td>
+      <td>è</td>
+    </tr>
+    <tr>
+      <td>&eacute;</td>
+      <td>Latin small letter e with acute</td>
+      <td>&amp;eacute;</td>
+      <td>&amp;#233;</td>
+      <td>&amp;#xE9;</td>
+      <td><code class="inset">&amp;e'</code></td>
+      <td>é</td>
+      <td>é</td>
+    </tr>
+    <tr>
+      <td>Latin small letter e with circumflex</td>
+      <td>&amp;ecirc;</td>
+      <td>&amp;#234;</td>
+      <td>&amp;#xEA;</td>
+      <td>ê</td>
+      <td>ê</td>
+      <td>ê</td>
+    </tr>
+    <tr>
+      <td>&euml;</td>
+      <td>Latin small letter e with diaeresis</td>
+      <td>&amp;euml;</td>
+      <td>&amp;#235;</td>
+      <td>&amp;#xEB;</td>
+      <td><code class="inset">&amp;e"</code></td>
+      <td>ë</td>
+      <td>ë</td>
+    </tr>
+    <tr>
+      <td>Latin small letter i with grave</td>
+      <td>&amp;igrave;</td>
+      <td>&amp;#236;</td>
+      <td>&amp;#xEC;</td>
+      <td>ì</td>
+      <td>ì</td>
+      <td>ì</td>
+    </tr>
+    <tr>
+      <td>&iacute;</td>
+      <td>Latin small letter i with acute</td>
+      <td>&amp;iacute;</td>
+      <td>&amp;#237;</td>
+      <td>&amp;#xED;</td>
+      <td><code class="inset">&amp;i'</code></td>
+      <td>í</td>
+    </tr>
+    <tr>
+      <td>Latin small letter i with circumflex</td>
+      <td>&amp;icirc;</td>
+      <td>&amp;#238;</td>
+      <td>&amp;#xEE;</td>
+      <td>î</td>
+      <td>î</td>
+      <td>î</td>
+    </tr>
+    <tr>
+      <td>&iuml;</td>
+      <td>Latin small letter i with diaeresis</td>
+      <td>&amp;iuml;</td>
+      <td>&amp;#239;</td>
+      <td>&amp;#xEF;</td>
+      <td><code class="inset">&amp;i"</code></td>
+      <td>ï</td>
+      <td>ï</td>
+    </tr>
+    <tr>
+      <td>Latin small letter eth</td>
+      <td>&amp;eth;</td>
+      <td>&amp;#240;</td>
+      <td>&amp;#xF0;</td>
+      <td>ð</td>
+      <td>ð</td>
+      <td>ð</td>
+    </tr>
+    <tr>
+      <td>Latin small letter n with tilde</td>
+      <td>&amp;ntilde;</td>
+      <td>&amp;#241;</td>
+      <td>&amp;#xF1;</td>
+      <td>ñ</td>
+      <td>ñ</td>
+      <td>ñ</td>
+    </tr>
+    <tr>
+      <td>Latin small letter o with grave</td>
+      <td>&amp;ograve;</td>
+      <td>&amp;#242;</td>
+      <td>&amp;#xF2;</td>
+      <td>ò</td>
+      <td>ò</td>
+      <td>ò</td>
+    </tr>
+    <tr>
+      <td>&oacute;</td>
+      <td>Latin small letter o with acute</td>
+      <td>&amp;oacute;</td>
+      <td>&amp;#243;</td>
+      <td>&amp;#xF3;</td>
+      <td><code class="inset">&amp;o'</code></td>
+      <td>ó</td>
+    </tr>
+    <tr>
+      <td>Latin small letter o with circumflex</td>
+      <td>&amp;ocirc;</td>
+      <td>&amp;#244;</td>
+      <td>&amp;#xF4;</td>
+      <td>ô</td>
+      <td>ô</td>
+      <td>ô</td>
+    </tr>
+    <tr>
+      <td>Latin small letter o with tilde</td>
+      <td>&amp;otilde;</td>
+      <td>&amp;#245;</td>
+      <td>&amp;#xF5;</td>
+      <td>õ</td>
+      <td>õ</td>
+      <td>õ</td>
+    </tr>
+    <tr>
+      <td>&ouml;</td>
+      <td>Latin small letter o with diaeresis</td>
+      <td>&amp;ouml;</td>
+      <td>&amp;#246;</td>
+      <td>&amp;#xF6;</td>
+      <td><code class="inset">&amp;o"</code></td>
+      <td>ö</td>
+      <td>ö</td>
+    </tr>
+    <tr>
+      <td>&divide;</td>
+      <td>division sign</td>
+      <td>&amp;divide;</td>
+      <td>&amp;#247;</td>
+      <td>&amp;#xF7;</td>
+      <td><code class="inset">&amp;/</code></td>
+    </tr>
+    <tr>
+      <td>&oslash;</td>
+      <td>Latin small letter o with stroke = Latin small letter o slash</td>
+      <td>&amp;oslash;</td>
+      <td>&amp;#248;</td>
+      <td>&amp;#xF8;</td>
+      <td><code class="inset">&amp;o/</code></td>
+      <td>ø</td>
+      <td>ø</td>
+    </tr>
+    <tr>
+      <td>Latin small letter u with grave</td>
+      <td>&amp;ugrave;</td>
+      <td>&amp;#249;</td>
+      <td>&amp;#xF9;</td>
+      <td>ù</td>
+      <td>ù</td>
+      <td>ù</td>
+    </tr>
+    <tr>
+      <td>&uacute;</td>
+      <td>Latin small letter u with acute</td>
+      <td>&amp;uacute;</td>
+      <td>&amp;#250;</td>
+      <td>&amp;#xFA;</td>
+      <td><code class="inset">&amp;u'</code></td>
+      <td>ú</td>
+    </tr>
+    <tr>
+      <td>Latin small letter u with circumflex</td>
+      <td>&amp;ucirc;</td>
+      <td>&amp;#251;</td>
+      <td>&amp;#xFB;</td>
+      <td>û</td>
+      <td>û</td>
+      <td>û</td>
+    </tr>
+    <tr>
+      <td>&uuml;</td>
+      <td>Latin small letter u with diaeresis</td>
+      <td>&amp;uuml;</td>
+      <td>&amp;#252;</td>
+      <td>&amp;#xFC;</td>
+      <td><code class="inset">&amp;u"</code></td>
+      <td>ü</td>
+    </tr>
+    <tr>
+      <td>&yacute;</td>
+      <td>Latin small letter y with acute</td>
+      <td>&amp;yacute;</td>
+      <td>&amp;#253;</td>
+      <td>&amp;#xFD;</td>
+      <td><code class="inset">&amp;y'</code></td>
+      <td>ý</td>
+      <td>ý</td>
+    </tr>
+    <tr>
+      <td>Latin small letter thorn</td>
+      <td>&amp;thorn;</td>
+      <td>&amp;#254;</td>
+      <td>&amp;#xFE;</td>
+      <td>þ</td>
+      <td>þ</td>
+      <td>þ</td>
+    </tr>
+    <tr>
+      <td>&yuml;</td>
+      <td>Latin small letter y with diaeresis</td>
+      <td>&amp;yuml;</td>
+      <td>&amp;#255;</td>
+      <td>&amp;#xFF;</td>
+      <td><code class="inset">&amp;yuml</code></td>
+      <td>ÿ</td>
+      <td>ÿ</td>
+    </tr>
+  </tbody>
+</table>
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="屏幕截图(Toolkit-Screen)" href="http://yyq123.github.io/learn-vim/learn-vi-801-Toolkit-Screen.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="图表制作(Toolkit-Diagram" href="http://yyq123.github.io/learn-vim/learn-vi-802-Toolkit-Diagram.html">下一篇</a>&gt;</span></p>
+
+</body>
+</html>

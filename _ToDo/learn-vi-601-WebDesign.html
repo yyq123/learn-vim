@@ -15,6 +15,10 @@
 	<a href=""></a>
 	<a href="#" title=""></a>
 
+	<h2 class="article"><a id="html_close_tag">自动关闭标签</a></h2>
+	<p><code class="inset">inoremap &lt;lt&gt;/ &lt;/&lt;C-x&gt;&lt;C-o&gt;</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/HTML_CloseTag.png" title="HTML_CloseTag"><img src="https://yyq123.github.io/learn-vim/images/HTML_CloseTag.png" alt="HTML_CloseTag" /></a></p>
+
 	<p>在任意标签内，点击<code class="inset">vat</code>命令，将进入<a href="http://yyq123.github.io/learn-vim/learn-vi-45-VisualMode.html" title="可视化模式(Visual Mode)">可视化模式</a>并选中该标签包含的所有内容。之后则可以将选中的标签作为一个整体，来进行编辑或删除等操作。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/vat.png" title="vat"><img src="https://yyq123.github.io/learn-vim/images/vat.png" alt="" width="550" height="60" /></a></p>
 	<p>使用<code class="inset">cit</code>命令，你甚至不用将光标移动到标签之内，就可以快速修改其中的内容。</p>
@@ -28,6 +32,14 @@
 
 	<p>从以上实例中可以发现，将在命令中灵活引用单引号、双引号和括号等分隔符，可以大大提高编辑代码的效率。请参阅<a href="https://yyq123.github.io/learn-vim/learn-vi-10-TextObjects.html" title="文本对象(Text Objects)">文本对象(Text Objects)</a>章节，以获得更详细的介绍。</p>
 
+	<h2 class="article"><a id="">安装配置</a></h2>
+	<p>在Windows系统或用户变量PATH中，包含以下目录</p>
+	<ul>
+		<li>C:\Program Files (x86)\Vim\vim82</li>
+		<li>C:\Program Files\internet explorer</li>
+	</ul>
+	<p>在&ldquo;Insert (paste)&rdquo;状态下，无法使用快捷键，请在vimrc中添加以下命令：</p>
+	<p style="text-indent:2em">:set nopaste<code class="inset"></code></p>
 	<p>如果侦测文件类型为XHTML，那么将自动使用小写的标签。也可以定义以下变量，以强制使用小写标签：:let g:do_xhtml_mappings = 'yes'</p>
 	<p>Tab键，在属性间导航；</p>
 	<p>在插入模式下，输入以&ldquo;;&rdquo;开头的关键词，比如&ldquo;;pp&rdquo;，将自动扩展为完整的段落标签；可以使用以下命令来自定义前缀键:let g:html_map_leader = g:maplocalleader</p>
@@ -47,11 +59,13 @@
 		<tr><td><code class="inset">!</code></td><td>如果包含，表示。例如，。</td><td style="white-space: nowrap"><code class="inset">:help viminfo-!</code></td></tr>
 	</table>
 	
+	<h2 class="article"><a id="">输入标签</a></h2>
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
 		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
 		<tr><td><code class="inset">:</code></td></tr>
 		<tr><td><code class="inset">;;</code></td><td>插入字符&ldquo;;&rdquo;</td></tr>
+		<tr><td><code class="inset">;&amp;</code></td><td>插入字符&ldquo;&amp;&rdquo;（&amp;用于输入character-entities）</td></tr>
 		<tr><td><code class="inset">;ab</code></td><td><abbr title=""></abbr></td></tr>
 		<tr><td><code class="inset">;ad</code></td><td><address></address></td></tr>
 		<tr><td><code class="inset">;ah</code></td><td><a href="" title=""></a></td></tr>
@@ -96,6 +110,13 @@
 		<tr><td><code class="inset">;</code></td><td></td></tr>
 	</table>
 		
+	<h2 class="article"><a id="">预览网页</a></h2>
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td rowspan="2">For Windows</td><td><code class="inset">;db</code></td><td>使用默认浏览器打开当前文件</td></tr>
+		<tr><td><code class="inset">;ie</code></td><td>使用Internet Explorer打开当前文件</td></tr>
+	</table>
+
 	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
 
 </body>
