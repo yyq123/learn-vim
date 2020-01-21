@@ -5,41 +5,50 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记 网页开发-HTML字符实体(Character Entity)</title>
+	<title>VIM学习笔记 网页开发-输入字符实体(Input Character Entity)</title>
 </head>
 <body>
-	<h1>VIM学习笔记 网页开发-HTML字符实体(Character Entity)</h1>
+	<h1>VIM学习笔记 网页开发-输入字符实体(Input Character Entity)</h1>
 
-	<h2 class="article"><a id=""></a></h2>
-	<p><a href="" title=""></a><p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="550" height="" /></a></p>
 	<p>字符实体（Character Entity），也称为转义字符串（Escape Sequence），主要用于在HTML代码中，输入如&ldquo;&lt;&rdquo;和&ldquo;&gt;&rdquo;等标签关键字，以及如&ldquo;&copy;&rdquo;等在ASCII字符集中没有定义的需要转义的特殊符号。当解释程序遇到此类字符串时，将会解释并显示为真实的字符。</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/HTML_CharacterEntity.png" title="HTML_CharacterEntity"><img src="https://yyq123.github.io/learn-vim/images/HTML_CharacterEntity.png" alt="HTML_CharacterEntity" width="550" height="302" /></a></p>
 	<p>对于同一个字符实体，可以使用名称和数字两种引用方式。</p>
 	<p>名称引用方式为<strong>&amp;<var>name</var>;</strong>，并且严格区分大小写。比如<code class="inset">&amp;alpha;</code>代表小写希腊字母&ldquo;&alpha;&rdquo;；而<code class="inset">&amp;Alpha;</code>则代表大写希腊字母&ldquo;&Alpha;&rdquo;。</p>
 	<p>数字引用，又可以使用十进制（decimal）和十六进制（hexadecimal）两种格式。十进制引用格式为<strong>&amp;#<var>number</var>;</strong>。十六进制引用格式为<strong>&amp;#x<var>number</var>;</strong>。例如<code class="inset">&amp;#169;</code>和<code class="inset">&amp;#xA9;</code>都代表版权符号&ldquo;&copy;&rdquo;。</p>
-	<p>以下表格将列出字符实体的名称和数字代码in HTML 4, A rendering of each character reference is provided so that users may check their browsers' compliance.</p>
+	<p>关于字符实体的更多信息，请参考<a href="https://dev.w3.org/html5/html-author/charref" title="Character Entities Cheat Sheet">Character Entity Reference</a>。</p>
+
+	<h2 class="article"><a id="HTML-Editor-plugin">HTML-Editor插件</a></h2>
+	<p>我在Christian J Robinson开发的<a href="http://christianrobinson.name/vim/HTML/" title="HTML">HTML</a>插件的基础之上，制作了<a href="https://github.com/yyq123/HTML-Editor" title="HTML-Editor">HTML-Editor</a>插件，通过快捷键和菜单来提高编写HTML代码的效率，并提供色彩选择和网页预览等功能。</p>
+	<p>您可以在<code class="inset">HTML-&gt;Character Entities</code>菜单中选择输入字符实体：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/HTML-Editor-Menu-CharacterEntities.png" title="HTML-Editor-Menu-CharacterEntities"><img src="https://yyq123.github.io/learn-vim/images/HTML-Editor-Menu-CharacterEntities.png" alt="HTML-Editor-Menu-CharacterEntities" width="550" height="634" /></a></p>
+	<p>以下表格将列出字符实体的名称和数字代码，以及在HTML-Editor插件中定义的快捷键。请注意：</p>
+	<ul>
+		<li>除非在描述中指明HTML5，否则均是在HTML4中的定义；</li>
+		<li>如果快捷键列为空，则说明插件中并没有定义相应的快捷键；</li>
+		<li>如果Entity列为空，则说明该字符并没有定义相应的名称，而只能使用数字引用格式；</li>
+	</ul>
+
 	<h2 class="article"><a id="Special_Entities">特殊实体</a></h2>
-<p>for markup-significant and internationalization characters, </p>
-<p>With the exception of <a href="http://www.w3.org/MarkUp/html-spec/">HTML 2.0</a>'s <strong class="html">&amp;quot;</strong>, <strong class="html">&amp;amp;</strong>, <strong>&amp;lt;</strong>, and <strong class="html">&amp;gt;</strong>, these entities are all new in HTML 4.0</p>
-<table border="1">
-  <colgroup>
-  </colgroup><colgroup class="entity" span="3">
-  </colgroup><colgroup class="entity" span="3">
-  </colgroup><thead>
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
+  <thead>
     <tr>
-      <th scope="col" rowspan="2">Character</th>
-      <th scope="col" rowspan="2">Entity</th>
-      <th scope="col" rowspan="2">Decimal</th>
-      <th scope="col" rowspan="2">Hex</th>
-      <th scope="colgroup" colspan="3">Rendering in Your Browser</th>
-    </tr>
-    <tr>
-      <th scope="col">Entity</th>
-      <th scope="col">Decimal</th>
-      <th scope="col">Hex</th>
+      <th>字符</th>
+      <th style="width:18em;">描述</th>
+      <th style="width:6em;">Entity</th>
+      <th>Decimal</th>
+      <th>Hex</th>
+      <th style="width:5em;">快捷键</th>
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <td>&nbsp;</td>
+      <td>non-breaking space</td>
+      <td>&amp;nbsp;</td>
+      <td>&amp;#160;</td>
+      <td>&amp;#xA0;</td>
+      <td><code class="inset">&amp;&lt;space&gt;</code></td>
+    </tr>
     <tr>
       <td>&quot;</td>
       <td>quotation mark = APL quote</td>
@@ -73,314 +82,6 @@
       <td><code class="inset">&amp;&gt;</code></td>
     </tr>
     <tr>
-      <td>modifier letter circumflex accent</td>
-      <td>&amp;circ;</td>
-      <td>&amp;#710;</td>
-      <td>&amp;#x2C6;</td>
-      <td><code class="inset">&amp;</code></td>
-      <td>ˆ</td>
-      <td>ˆ</td>
-      <td>ˆ</td>
-    </tr>
-    <tr>
-      <td>small tilde</td>
-      <td>&amp;tilde;</td>
-      <td>&amp;#732;</td>
-      <td>&amp;#x2DC;</td>
-      <td><code class="inset">&amp;</code></td>
-      <td>˜</td>
-      <td>˜</td>
-      <td>˜</td>
-    </tr>
-    <tr>
-      <td>en space</td>
-      <td>&amp;ensp;</td>
-      <td>&amp;#8194;</td>
-      <td>&amp;#x2002;</td>
-      <td><code class="inset">&amp;</code></td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>em space</td>
-      <td>&amp;emsp;</td>
-      <td>&amp;#8195;</td>
-      <td>&amp;#x2003;</td>
-      <td><code class="inset">&amp;</code></td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>thin space</td>
-      <td>&amp;thinsp;</td>
-      <td>&amp;#8201;</td>
-      <td>&amp;#x2009;</td>
-      <td> </td>
-      <td><code class="inset">&amp;</code></td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>zero width non-joiner</td>
-      <td>&amp;zwnj;</td>
-      <td>&amp;#8204;</td>
-      <td>&amp;#x200C;</td>
-      <td>‌</td>
-      <td><code class="inset">&amp;</code></td>
-      <td>‌</td>
-      <td>‌</td>
-    </tr>
-    <tr>
-      <td>zero width joiner</td>
-      <td>&amp;zwj;</td>
-      <td>&amp;#8205;</td>
-      <td>&amp;#x200D;</td>
-      <td>‍</td>
-      <td><code class="inset">&amp;</code></td>
-      <td>‍</td>
-      <td>‍</td>
-    </tr>
-    <tr>
-      <td>left-to-right mark</td>
-      <td>&amp;lrm;</td>
-      <td>&amp;#8206;</td>
-      <td>&amp;#x200E;</td>
-      <td>‎</td>
-      <td>‎</td>
-      <td>‎</td>
-    </tr>
-    <tr>
-      <td>right-to-left mark</td>
-      <td>&amp;rlm;</td>
-      <td>&amp;#8207;</td>
-      <td>&amp;#x200F;</td>
-      <td>‏</td>
-      <td>‏</td>
-      <td>‏</td>
-    </tr>
-    <tr>
-      <td>&ndash;</td>
-      <td>en dash</td>
-      <td>&amp;ndash;</td>
-      <td>&amp;#8211;</td>
-      <td>&amp;#x2013;</td>
-      <td><code class="inset">&amp;n-</code></td>
-      <td>–</td>
-    </tr>
-    <tr>
-      <td>&mdash;</td>
-      <td>em dash</td>
-      <td>&amp;mdash;</td>
-      <td>&amp;#8212;</td>
-      <td>&amp;#x2014;</td>
-      <td><code class="inset">&amp;m-</code></td>
-      <td>—</td>
-    </tr>
-    <tr>
-      <td>left single quotation mark</td>
-      <td>&amp;lsquo;</td>
-      <td>&amp;#8216;</td>
-      <td>&amp;#x2018;</td>
-      <td>‘</td>
-      <td>‘</td>
-      <td>‘</td>
-    </tr>
-    <tr>
-      <td>right single quotation mark</td>
-      <td>&amp;rsquo;</td>
-      <td>&amp;#8217;</td>
-      <td>&amp;#x2019;</td>
-      <td>’</td>
-      <td>’</td>
-      <td>’</td>
-    </tr>
-    <tr>
-      <td>single low-9 quotation mark</td>
-      <td>&amp;sbquo;</td>
-      <td>&amp;#8218;</td>
-      <td>&amp;#x201A;</td>
-      <td>‚</td>
-      <td>‚</td>
-      <td>‚</td>
-    </tr>
-    <tr>
-      <td>&ldquo;</td>
-      <td>left double quotation mark</td>
-      <td>&amp;ldquo;</td>
-      <td>&amp;#8220;</td>
-      <td>&amp;#x201C;</td>
-      <td><code class="inset">&amp;ld</code></td>
-    </tr>
-    <tr>
-      <td>&rdquo;</td>
-      <td>right double quotation mark</td>
-      <td>&amp;rdquo;</td>
-      <td>&amp;#8221;</td>
-      <td>&amp;#x201D;</td>
-      <td><code class="inset">&amp;rd</code></td>
-    </tr>
-    <tr>
-      <td>double low-9 quotation mark</td>
-      <td>&amp;bdquo;</td>
-      <td>&amp;#8222;</td>
-      <td>&amp;#x201E;</td>
-      <td>„</td>
-      <td>„</td>
-      <td>„</td>
-    </tr>
-    <tr>
-      <td>dagger</td>
-      <td>&amp;dagger;</td>
-      <td>&amp;#8224;</td>
-      <td>&amp;#x2020;</td>
-      <td>†</td>
-      <td>†</td>
-      <td>†</td>
-    </tr>
-    <tr>
-      <td>double dagger</td>
-      <td>&amp;Dagger;</td>
-      <td>&amp;#8225;</td>
-      <td>&amp;#x2021;</td>
-      <td>‡</td>
-      <td>‡</td>
-      <td>‡</td>
-    </tr>
-    <tr>
-      <td>per mille sign</td>
-      <td>&amp;permil;</td>
-      <td>&amp;#8240;</td>
-      <td>&amp;#x2030;</td>
-      <td>‰</td>
-      <td>‰</td>
-      <td>‰</td>
-    </tr>
-    <tr>
-      <td>single left-pointing angle quotation mark</td>
-      <td>&amp;lsaquo;</td>
-      <td>&amp;#8249;</td>
-      <td>&amp;#x2039;</td>
-      <td>‹</td>
-      <td>‹</td>
-      <td>‹</td>
-    </tr>
-    <tr>
-      <td>single right-pointing angle quotation mark</td>
-      <td>&amp;rsaquo;</td>
-      <td>&amp;#8250;</td>
-      <td>&amp;#x203A;</td>
-      <td>›</td>
-      <td>›</td>
-      <td>›</td>
-    </tr>
-
-  </tbody>
-</table>
-
-	<h2 class="article"><a id="Special Symbols">特殊符号</a></h2>
-<table border="1">
-  <colgroup>
-  </colgroup><colgroup class="entity" span="3">
-  </colgroup><colgroup class="entity" span="3">
-  </colgroup><thead>
-    <tr>
-      <th scope="col" rowspan="2">Character</th>
-      <th scope="col" rowspan="2">Entity</th>
-      <th scope="col" rowspan="2">Decimal</th>
-      <th scope="col" rowspan="2">Hex</th>
-      <th scope="colgroup" colspan="3">Rendering in Your Browser</th>
-    </tr>
-    <tr>
-      <th scope="col">Entity</th>
-      <th scope="col">Decimal</th>
-      <th scope="col">Hex</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>&bull;</td>
-      <td>bullet = black small circle</td>
-      <td>&amp;bull;</td>
-      <td>&amp;#8226;</td>
-      <td>&amp;#x2022;</td>
-      <td><code class="inset">&amp;*</code></td>
-      <td>•</td>
-    </tr>
-    <tr>
-      <td>&hellip;</td>
-      <td>horizontal ellipsis = three dot leader</td>
-      <td>&amp;hellip;</td>
-      <td>&amp;#8230;</td>
-      <td>&amp;#x2026;</td>
-      <td><code class="inset">&amp;3.</code></td>
-      <td>…</td>
-    </tr>
-    <tr>
-      <td>prime = minutes = feet</td>
-      <td>&amp;prime;</td>
-      <td>&amp;#8242;</td>
-      <td>&amp;#x2032;</td>
-      <td>′</td>
-      <td>′</td>
-      <td>′</td>
-    </tr>
-    <tr>
-      <td>double prime = seconds = inches</td>
-      <td>&amp;Prime;</td>
-      <td>&amp;#8243;</td>
-      <td>&amp;#x2033;</td>
-      <td>″</td>
-      <td>″</td>
-      <td>″</td>
-    </tr>
-    <tr>
-      <td>overline = spacing overscore</td>
-      <td>&amp;oline;</td>
-      <td>&amp;#8254;</td>
-      <td>&amp;#x203E;</td>
-      <td>‾</td>
-      <td>‾</td>
-      <td>‾</td>
-    </tr>
-    <tr>
-      <td>fraction slash</td>
-      <td>&amp;frasl;</td>
-      <td>&amp;#8260;</td>
-      <td>&amp;#x2044;</td>
-      <td>⁄</td>
-      <td>⁄</td>
-      <td>⁄</td>
-    </tr>
-    <tr>
-      <td>script capital P = power set = Weierstrass p</td>
-      <td>&amp;weierp;</td>
-      <td>&amp;#8472;</td>
-      <td>&amp;#x2118;</td>
-      <td>℘</td>
-      <td>℘</td>
-      <td>℘</td>
-    </tr>
-    <tr>
-      <td>blackletter capital I = imaginary part</td>
-      <td>&amp;image;</td>
-      <td>&amp;#8465;</td>
-      <td>&amp;#x2111;</td>
-      <td>ℑ</td>
-      <td>ℑ</td>
-      <td>ℑ</td>
-    </tr>
-    <tr>
-      <td>blackletter capital R = real part symbol</td>
-      <td>&amp;real;</td>
-      <td>&amp;#8476;</td>
-      <td>&amp;#x211C;</td>
-      <td>ℜ</td>
-      <td>ℜ</td>
-      <td>ℜ</td>
-    </tr>
-    <tr>
       <td>&trade;</td>
       <td>trade mark sign</td>
       <td>&amp;trade;</td>
@@ -389,128 +90,130 @@
       <td><code class="inset">&amp;tm</code></td>
     </tr>
     <tr>
-      <td>alef symbol = first transfinite cardinal</td>
-      <td>&amp;alefsym;</td>
-      <td>&amp;#8501;</td>
-      <td>&amp;#x2135;</td>
-      <td>ℵ</td>
-      <td>ℵ</td>
-      <td>ℵ</td>
-    </tr>
-
+      <td>&iexcl;</td>
+      <td>inverted exclamation mark</td>
+      <td>&amp;iexcl;</td>
+      <td>&amp;#161;</td>
+      <td>&amp;#xA1;</td>
+      <td><code class="inset">&amp;!</code></td>
     </tr>
     <tr>
-      <td>left ceiling = APL upstile</td>
-      <td>&amp;lceil;</td>
-      <td>&amp;#8968;</td>
-      <td>&amp;#x2308;</td>
-      <td>⌈</td>
-      <td>⌈</td>
-      <td>⌈</td>
+      <td>&cent;</td>
+      <td>cent sign</td>
+      <td>&amp;cent;</td>
+      <td>&amp;#162;</td>
+      <td>&amp;#xA2;</td>
+      <td><code class="inset">&amp;c|</code></td>
     </tr>
     <tr>
-      <td>right ceiling</td>
-      <td>&amp;rceil;</td>
-      <td>&amp;#8969;</td>
-      <td>&amp;#x2309;</td>
-      <td>⌉</td>
-      <td>⌉</td>
-      <td>⌉</td>
+      <td>&pound;</td>
+      <td>pound sign</td>
+      <td>&amp;pound;</td>
+      <td>&amp;#163;</td>
+      <td>&amp;#xA3;</td>
+      <td><code class="inset">&amp;#</code></td>
     </tr>
     <tr>
-      <td>left floor = APL downstile</td>
-      <td>&amp;lfloor;</td>
-      <td>&amp;#8970;</td>
-      <td>&amp;#x230A;</td>
-      <td>⌊</td>
-      <td>⌊</td>
-      <td>⌊</td>
+      <td>&yen;</td>
+      <td>yen sign = yuan sign</td>
+      <td>&amp;yen;</td>
+      <td>&amp;#165;</td>
+      <td>&amp;#xA5;</td>
+      <td><code class="inset">&amp;Y=</code></td>
     </tr>
     <tr>
-      <td>right floor</td>
-      <td>&amp;rfloor;</td>
-      <td>&amp;#8971;</td>
-      <td>&amp;#x230B;</td>
-      <td>⌋</td>
-      <td>⌋</td>
-      <td>⌋</td>
+      <td>&euro;</td>
+      <td>euro sign</td>
+      <td>&amp;euro;</td>
+      <td>&amp;#8364;</td>
+      <td>&amp;#x20AC;</td>
+      <td><code class="inset">&amp;E=</code></td>
     </tr>
     <tr>
-      <td>left-pointing angle bracket = bra</td>
-      <td>&amp;lang;</td>
-      <td>&amp;#9001;</td>
-      <td>&amp;#x2329;</td>
-      <td>⟨</td>
-      <td>〈</td>
-      <td>〈</td>
+      <td>&brvbar;</td>
+      <td>broken vertical bar</td>
+      <td>&amp;brvbar;</td>
+      <td>&amp;#166;</td>
+      <td>&amp;#xA6;</td>
+      <td><code class="inset">&amp;bb</code></td>
     </tr>
     <tr>
-      <td>right-pointing angle bracket = ket</td>
-      <td>&amp;rang;</td>
-      <td>&amp;#9002;</td>
-      <td>&amp;#x232A;</td>
-      <td>⟩</td>
-      <td>〉</td>
-      <td>〉</td>
+      <td>&sect;</td>
+      <td>section sign</td>
+      <td>&amp;sect;</td>
+      <td>&amp;#167;</td>
+      <td>&amp;#xA7;</td>
+      <td><code class="inset">&amp;se</code></td>
     </tr>
     <tr>
-      <td>lozenge</td>
-      <td>&amp;loz;</td>
-      <td>&amp;#9674;</td>
-      <td>&amp;#x25CA;</td>
-      <td>◊</td>
-      <td>◊</td>
-      <td>◊</td>
+      <td>&uml;</td>
+      <td>diaeresis = spacing diaeresis</td>
+      <td>&amp;uml;</td>
+      <td>&amp;#168;</td>
+      <td>&amp;#xA8;</td>
+      <td><code class="inset">&amp;_"</code></td>
     </tr>
     <tr>
-      <td>black spade suit</td>
-      <td>&amp;spades;</td>
-      <td>&amp;#9824;</td>
-      <td>&amp;#x2660;</td>
-      <td>♠</td>
-      <td>♠</td>
-      <td>♠</td>
+      <td>&copy;</td>
+      <td>copyright sign</td>
+      <td>&amp;copy;</td>
+      <td>&amp;#169;</td>
+      <td>&amp;#xA9;</td>
+      <td><code class="inset">&amp;cO</code></td>
     </tr>
     <tr>
-      <td>black club suit = shamrock</td>
-      <td>&amp;clubs;</td>
-      <td>&amp;#9827;</td>
-      <td>&amp;#x2663;</td>
-      <td>♣</td>
-      <td>♣</td>
-      <td>♣</td>
+      <td>&reg;</td>
+      <td>registered trade mark sign</td>
+      <td>&amp;reg;</td>
+      <td>&amp;#174;</td>
+      <td>&amp;#xAE;</td>
+      <td><code class="inset">&amp;rO</code></td>
     </tr>
     <tr>
-      <td>black heart suit = valentine</td>
-      <td>&amp;hearts;</td>
-      <td>&amp;#9829;</td>
-      <td>&amp;#x2665;</td>
-      <td>♥</td>
-      <td>♥</td>
-      <td>♥</td>
+      <td>&micro;</td>
+      <td>micro sign</td>
+      <td>&amp;micro;</td>
+      <td>&amp;#181;</td>
+      <td>&amp;#xB5;</td>
+      <td><code class="inset">&amp;mi</code></td>
     </tr>
     <tr>
-      <td>black diamond suit</td>
-      <td>&amp;diams;</td>
-      <td>&amp;#9830;</td>
-      <td>&amp;#x2666;</td>
-      <td>♦</td>
-      <td>♦</td>
-      <td>♦</td>
+      <td>&para;</td>
+      <td>pilcrow sign = paragraph sign</td>
+      <td>&amp;para;</td>
+      <td>&amp;#182;</td>
+      <td>&amp;#xB6;</td>
+      <td><code class="inset">&amp;pa</code></td>
+    </tr>
+    <tr>
+      <td>&middot;</td>
+      <td>middle dot = Georgian comma</td>
+      <td>&amp;middot;</td>
+      <td>&amp;#183;</td>
+      <td>&amp;#xB7;</td>
+      <td><code class="inset">&amp;.</code></td>
+    </tr>
+    <tr>
+      <td>&iquest;</td>
+      <td>inverted/turned question mark</td>
+      <td>&amp;iquest;</td>
+      <td>&amp;#191;</td>
+      <td>&amp;#xBF;</td>
+      <td><code class="inset">&amp;?</code></td>
     </tr>
   </tbody>
 </table>
 
-	<h2 class="article"><a id="Arrow _Symbols">箭头符号</a></h2>
-<table border="1">
+	<h2 class="article"><a id="Arrow_Symbols">箭头符号</a></h2>
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
   <thead>
     <tr>
       <th>字符</th>
-      <th>描述</th>
-      <th>Entity</th>
+      <th style="width:18em;">描述</th>
+      <th style="width:6em;">Entity</th>
       <th>Decimal</th>
       <th>Hex</th>
-      <th>快捷键</th>
+      <th style="width:5em;">快捷键</th>
     </tr>
   </thead>
   <tbody>
@@ -604,16 +307,200 @@
   </tbody>
 </table>
 
-	<h2 class="article"><a id="Greek_Letters">希腊字母</a></h2>
-<table border="1">
+	<h2 class="article"><a id="Punctuation_Symbols"></a>标点符号</h2>
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
   <thead>
     <tr>
       <th>字符</th>
-      <th>描述</th>
-      <th>Entity</th>
+      <th style="width:18em;">描述</th>
+      <th style="width:6em;">Entity</th>
       <th>Decimal</th>
       <th>Hex</th>
-      <th>快捷键</th>
+      <th style="width:5em;">快捷键</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>&ndash;</td>
+      <td>en dash</td>
+      <td>&amp;ndash;</td>
+      <td>&amp;#8211;</td>
+      <td>&amp;#x2013;</td>
+      <td><code class="inset">&amp;n-</code></td>
+    </tr>
+    <tr>
+      <td>&mdash;</td>
+      <td>em dash</td>
+      <td>&amp;mdash;</td>
+      <td>&amp;#8212;</td>
+      <td>&amp;#x2014;</td>
+      <td><code class="inset">&amp;m-</code></td>
+    </tr>
+    <tr>
+      <td>&lsquo;</td>
+      <td>left single quotation mark</td>
+      <td>&amp;lsquo;</td>
+      <td>&amp;#8216;</td>
+      <td>&amp;#x2018;</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>&rsquo;</td>
+      <td>right single quotation mark</td>
+      <td>&amp;rsquo;</td>
+      <td>&amp;#8217;</td>
+      <td>&amp;#x2019;</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>&sbquo;</td>
+      <td>single low-9 quotation mark</td>
+      <td>&amp;sbquo;</td>
+      <td>&amp;#8218;</td>
+      <td>&amp;#x201A;</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>&ldquo;</td>
+      <td>left double quotation mark</td>
+      <td>&amp;ldquo;</td>
+      <td>&amp;#8220;</td>
+      <td>&amp;#x201C;</td>
+      <td><code class="inset">&amp;ld</code></td>
+    </tr>
+    <tr>
+      <td>&rdquo;</td>
+      <td>right double quotation mark</td>
+      <td>&amp;rdquo;</td>
+      <td>&amp;#8221;</td>
+      <td>&amp;#x201D;</td>
+      <td><code class="inset">&amp;rd</code></td>
+    </tr>
+    <tr>
+      <td>&bdquo;</td>
+      <td>double low-9 quotation mark</td>
+      <td>&amp;bdquo;</td>
+      <td>&amp;#8222;</td>
+      <td>&amp;#x201E;</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>&dagger;</td>
+      <td>dagger</td>
+      <td>&amp;dagger;</td>
+      <td>&amp;#8224;</td>
+      <td>&amp;#x2020;</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>&Dagger;</td>
+      <td>double dagger</td>
+      <td>&amp;Dagger;</td>
+      <td>&amp;#8225;</td>
+      <td>&amp;#x2021;</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>&permil;</td>
+      <td>per mille sign</td>
+      <td>&amp;permil;</td>
+      <td>&amp;#8240;</td>
+      <td>&amp;#x2030;</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>&lsaquo;</td>
+      <td>single left angle quotation mark</td>
+      <td>&amp;lsaquo;</td>
+      <td>&amp;#8249;</td>
+      <td>&amp;#x2039;</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>&rsaquo;</td>
+      <td>single right angle quotation mark</td>
+      <td>&amp;rsaquo;</td>
+      <td>&amp;#8250;</td>
+      <td>&amp;#x203A;</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>&bull;</td>
+      <td>bullet = black small circle</td>
+      <td>&amp;bull;</td>
+      <td>&amp;#8226;</td>
+      <td>&amp;#x2022;</td>
+      <td><code class="inset">&amp;*</code></td>
+    </tr>
+    <tr>
+      <td>&hellip;</td>
+      <td>horizontal ellipsis = three dot leader</td>
+      <td>&amp;hellip;</td>
+      <td>&amp;#8230;</td>
+      <td>&amp;#x2026;</td>
+      <td><code class="inset">&amp;3.</code></td>
+    </tr>
+    <tr>
+      <td>&laquo;</td>
+      <td>left double angle quotation mark</td>
+      <td>&amp;laquo;</td>
+      <td>&amp;#171;</td>
+      <td>&amp;#xAB;</td>
+      <td><code class="inset">&amp;2&lt;</code></td>
+    </tr>
+    <tr>
+      <td>&raquo;</td>
+      <td>right double angle quotation mark</td>
+      <td>&amp;raquo;</td>
+      <td>&amp;#187;</td>
+      <td>&amp;#xBB;</td>
+      <td><code class="inset">&amp;2&gt;</code></td>
+    </tr>
+    <tr>
+      <td>&prime;</td>
+      <td>prime = minutes = feet</td>
+      <td>&amp;prime;</td>
+      <td>&amp;#8242;</td>
+      <td>&amp;#x2032;</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>&Prime;</td>
+      <td>double prime = seconds = inches</td>
+      <td>&amp;Prime;</td>
+      <td>&amp;#8243;</td>
+      <td>&amp;#x2033;</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>&oline;</td>
+      <td>overline = spacing overscore</td>
+      <td>&amp;oline;</td>
+      <td>&amp;#8254;</td>
+      <td>&amp;#x203E;</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>&frasl;</td>
+      <td>fraction slash</td>
+      <td>&amp;frasl;</td>
+      <td>&amp;#8260;</td>
+      <td>&amp;#x2044;</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+	<h2 class="article"><a id="Greek_Letters">希腊字母</a></h2>
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
+  <thead>
+    <tr>
+      <th>字符</th>
+      <th style="width:18em;">描述</th>
+      <th style="width:6em;">Entity</th>
+      <th>Decimal</th>
+      <th>Hex</th>
+      <th style="width:5em;">快捷键</th>
     </tr>
   </thead>
   <tbody>
@@ -1037,15 +924,15 @@
 </table>
 
 	<h2 class="article"><a id="Latin_Letters">拉丁字母</a></h2>
-<table border="1">
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
   <thead>
     <tr>
       <th>字符</th>
-      <th>描述</th>
-      <th>Entity</th>
+      <th style="width:18em;">描述</th>
+      <th style="width:6em;">Entity</th>
       <th>Decimal</th>
       <th>Hex</th>
-      <th>快捷键</th>
+      <th style="width:5em;">快捷键</th>
     </tr>
   </thead>
   <tbody>
@@ -1067,7 +954,7 @@
     </tr>
     <tr>
       <td>&Agrave;</td>
-      <td>Latin capital letter A with grave = Latin capital letter A grave</td>
+      <td>Latin capital letter A with grave</td>
       <td>&amp;Agrave;</td>
       <td>&amp;#192;</td>
       <td>&amp;#xC0;</td>
@@ -1107,7 +994,7 @@
     </tr>
     <tr>
       <td>&Aring;</td>
-      <td>Latin capital letter A with ring above = Latin capital letter A ring</td>
+      <td>Latin capital letter A with ring above</td>
       <td>&amp;Aring;</td>
       <td>&amp;#197;</td>
       <td>&amp;#xC5;</td>
@@ -1115,7 +1002,7 @@
     </tr>
     <tr>
       <td>&AElig;</td>
-      <td>Latin capital letter AE = Latin capital ligature AE</td>
+      <td>Latin capital letter AE</td>
       <td>&amp;AElig;</td>
       <td>&amp;#198;</td>
       <td>&amp;#xC6;</td>
@@ -1175,7 +1062,7 @@
       <td>&amp;Iacute;</td>
       <td>&amp;#205;</td>
       <td>&amp;#xCD;</td>
-      <td><code class="inset">&amp;I'</code></td>
+      <td><code class="inset">&amp;I'</code></td>
     </tr>
     <tr>
       <td>&Icirc;</td>
@@ -1251,7 +1138,7 @@
     </tr>
     <tr>
       <td>&Oslash;</td>
-      <td>Latin capital letter O with stroke = Latin capital letter O slash</td>
+      <td>Latin capital letter O with stroke</td>
       <td>&amp;Oslash;</td>
       <td>&amp;#216;</td>
       <td>&amp;#xD8;</td>
@@ -1287,7 +1174,7 @@
       <td>&amp;Uuml;</td>
       <td>&amp;#220;</td>
       <td>&amp;#xDC;</td>
-      <td><code class="inset">&amp;U"</code></td>
+      <td><code class="inset">&amp;U"</code></td>
     </tr>
     <tr>
       <td>&Yacute;</td>
@@ -1323,7 +1210,7 @@
     </tr>
     <tr>
       <td>&agrave;</td>
-      <td>Latin small letter a with grave = Latin small letter a grave</td>
+      <td>Latin small letter a with grave</td>
       <td>&amp;agrave;</td>
       <td>&amp;#224;</td>
       <td>&amp;#xE0;</td>
@@ -1363,7 +1250,7 @@
     </tr>
     <tr>
       <td>&aring;</td>
-      <td>Latin small letter a with ring above = Latin small letter a ring</td>
+      <td>Latin small letter a with ring above</td>
       <td>&amp;aring;</td>
       <td>&amp;#229;</td>
       <td>&amp;#xE5;</td>
@@ -1371,11 +1258,11 @@
     </tr>
     <tr>
       <td>&aelig;</td>
-      <td>Latin small letter ae = Latin small ligature ae</td>
+      <td>Latin small letter ae</td>
       <td>&amp;aelig;</td>
       <td>&amp;#230;</td>
       <td>&amp;#xE6;</td>
-      <td><code class="inset">&amp;ae</code></td>
+      <td><code class="inset">&amp;ae</code></td>
     </tr>
     <tr>
       <td>&ccedil;</td>
@@ -1506,7 +1393,7 @@
     </tr>
     <tr>
       <td>&oslash;</td>
-      <td>Latin small letter o with stroke = Latin small letter o slash</td>
+      <td>Latin small letter o with stroke</td>
       <td>&amp;oslash;</td>
       <td>&amp;#248;</td>
       <td>&amp;#xF8;</td>
@@ -1542,7 +1429,7 @@
       <td>&amp;uuml;</td>
       <td>&amp;#252;</td>
       <td>&amp;#xFC;</td>
-      <td><code class="inset">&amp;u"</code></td>
+      <td><code class="inset">&amp;u"</code></td>
     </tr>
     <tr>
       <td>&yacute;</td>
@@ -1570,16 +1457,289 @@
     </tr>
     </tbody>
 </table>
-	<h2 class="article"><a id="Math_Symbols">数学符号</a></h2>
-<table border="1">
+
+	<h2 class="article"><a id="Roman_Numerals">罗马数字</a></h2>
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
   <thead>
     <tr>
       <th>字符</th>
-      <th>描述</th>
-      <th>Entity</th>
+      <th style="width:18em;">描述</th>
+      <th style="width:6em;">Entity</th>
       <th>Decimal</th>
       <th>Hex</th>
-      <th>快捷键</th>
+      <th style="width:5em;">快捷键</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>&#x2160;</td>
+      <td>Roman Numeral One</td>
+      <td></td>
+      <td>&amp;#8544;</td>
+      <td>&amp;#x2160;</td>
+      <td><code class="inset">&amp;R1</code></td>
+    </tr>
+    <tr>
+      <td>&#x2161;</td>
+      <td>Roman Numeral Two</td>
+      <td></td>
+      <td>&amp;#8545;</td>
+      <td>&amp;#x2161;</td>
+      <td><code class="inset">&amp;R2</code></td>
+    </tr>
+    <tr>
+      <td>&#x2162;</td>
+      <td>Roman Numeral Three</td>
+      <td></td>
+      <td>&amp;#8546;</td>
+      <td>&amp;#x2162;</td>
+      <td><code class="inset">&amp;R3</code></td>
+    </tr>
+    <tr>
+      <td>&#x2163;</td>
+      <td>Roman Numeral Four</td>
+      <td></td>
+      <td>&amp;#8547;</td>
+      <td>&amp;#x2163;</td>
+      <td><code class="inset">&amp;R4</code></td>
+    </tr>
+    <tr>
+      <td>&#x2164;</td>
+      <td>Roman Numeral Five</td>
+      <td></td>
+      <td>&amp;#8548;</td>
+      <td>&amp;#x2164;</td>
+      <td><code class="inset">&amp;R5</code></td>
+    </tr>
+    <tr>
+      <td>&#x2165;</td>
+      <td>Roman Numeral Six</td>
+      <td></td>
+      <td>&amp;#8549;</td>
+      <td>&amp;#x2165;</td>
+      <td><code class="inset">&amp;R6</code></td>
+    </tr>
+    <tr>
+      <td>&#x2166;</td>
+      <td>Roman Numeral Seven</td>
+      <td></td>
+      <td>&amp;#8550;</td>
+      <td>&amp;#x2166;</td>
+      <td><code class="inset">&amp;R7</code></td>
+    </tr>
+    <tr>
+      <td>&#x2167;</td>
+      <td>Roman Numeral Eight</td>
+      <td></td>
+      <td>&amp;#8551;</td>
+      <td>&amp;#x2167;</td>
+      <td><code class="inset">&amp;R8</code></td>
+    </tr>
+    <tr>
+      <td>&#x2168;</td>
+      <td>Roman Numeral Nine</td>
+      <td></td>
+      <td>&amp;#8552;</td>
+      <td>&amp;#x2168;</td>
+      <td><code class="inset">&amp;R9</code></td>
+    </tr>
+    <tr>
+      <td>&#x2169;</td>
+      <td>Roman Numeral Ten</td>
+      <td></td>
+      <td>&amp;#8553;</td>
+      <td>&amp;#x2169;</td>
+      <td><code class="inset">&amp;R10</code></td>
+    </tr>
+    <tr>
+      <td>&#x216a;</td>
+      <td>Roman Numeral Eleven</td>
+      <td></td>
+      <td>&amp;#8554;</td>
+      <td>&amp;#x216a;</td>
+      <td><code class="inset">&amp;R11</code></td>
+    </tr>
+    <tr>
+      <td>&#x216b;</td>
+      <td>Roman Numeral Twelve</td>
+      <td></td>
+      <td>&amp;#8555;</td>
+      <td>&amp;#x216b;</td>
+      <td><code class="inset">&amp;R12</code></td>
+    </tr>
+    <tr>
+      <td>&#x216c;</td>
+      <td>Roman Numeral Fifty</td>
+      <td></td>
+      <td>&amp;#8556;</td>
+      <td>&amp;#x216c;</td>
+      <td><code class="inset">&amp;R50</code></td>
+    </tr>
+    <tr>
+      <td>&#x216d;</td>
+      <td>Roman Numeral One Hundred</td>
+      <td></td>
+      <td>&amp;#8557;</td>
+      <td>&amp;#x216d;</td>
+      <td><code class="inset">&amp;R100</code></td>
+    </tr>
+    <tr>
+      <td>&#x216e;</td>
+      <td>Roman Numeral Five Hundred</td>
+      <td></td>
+      <td>&amp;#8558;</td>
+      <td>&amp;#x216e;</td>
+      <td><code class="inset">&amp;R500</code></td>
+    </tr>
+    <tr>
+      <td>&#x216f;</td>
+      <td>Roman Numeral One Thousand</td>
+      <td></td>
+      <td>&amp;#8559;</td>
+      <td>&amp;#x216f;</td>
+      <td><code class="inset">&amp;R1000</code></td>
+    </tr>
+    <tr>
+      <td>&#x2170;</td>
+      <td>Small Roman Numeral One</td>
+      <td></td>
+      <td>&amp;#8560;</td>
+      <td>&amp;#x2170;</td>
+      <td><code class="inset">&amp;r1</code></td>
+    </tr>
+    <tr>
+      <td>&#x2171;</td>
+      <td>Small Roman Numeral Two</td>
+      <td></td>
+      <td>&amp;#8561;</td>
+      <td>&amp;#x2171;</td>
+      <td><code class="inset">&amp;r2</code></td>
+    </tr>
+    <tr>
+      <td>&#x2172;</td>
+      <td>Small Roman Numeral Three</td>
+      <td></td>
+      <td>&amp;#8562;</td>
+      <td>&amp;#x2172;</td>
+      <td><code class="inset">&amp;r3</code></td>
+    </tr>
+    <tr>
+      <td>&#x2173;</td>
+      <td>Small Roman Numeral Four</td>
+      <td></td>
+      <td>&amp;#8563;</td>
+      <td>&amp;#x2173;</td>
+      <td><code class="inset">&amp;r4</code></td>
+    </tr>
+    <tr>
+      <td>&#x2174;</td>
+      <td>Small Roman Numeral Five</td>
+      <td></td>
+      <td>&amp;#8564;</td>
+      <td>&amp;#x2174;</td>
+      <td><code class="inset">&amp;r5</code></td>
+    </tr>
+    <tr>
+      <td>&#x2175;</td>
+      <td>Small Roman Numeral Six</td>
+      <td></td>
+      <td>&amp;#8565;</td>
+      <td>&amp;#x2175;</td>
+      <td><code class="inset">&amp;r6</code></td>
+    </tr>
+    <tr>
+      <td>&#x2176;</td>
+      <td>Small Roman Numeral Seven</td>
+      <td></td>
+      <td>&amp;#8566;</td>
+      <td>&amp;#x2176;</td>
+      <td><code class="inset">&amp;r7</code></td>
+    </tr>
+    <tr>
+      <td>&#x2177;</td>
+      <td>Small Roman Numeral Eight</td>
+      <td></td>
+      <td>&amp;#8567;</td>
+      <td>&amp;#x2177;</td>
+      <td><code class="inset">&amp;r8</code></td>
+    </tr>
+    <tr>
+      <td>&#x2178;</td>
+      <td>Small Roman Numeral Nine</td>
+      <td></td>
+      <td>&amp;#8568;</td>
+      <td>&amp;#x2178;</td>
+      <td><code class="inset">&amp;r9</code></td>
+    </tr>
+    <tr>
+      <td>&#x2179;</td>
+      <td>Small Roman Numeral Ten</td>
+      <td></td>
+      <td>&amp;#8569;</td>
+      <td>&amp;#x2179;</td>
+      <td><code class="inset">&amp;r10</code></td>
+    </tr>
+    <tr>
+      <td>&#x217a;</td>
+      <td>Small Roman Numeral Eleven</td>
+      <td></td>
+      <td>&amp;#8570;</td>
+      <td>&amp;#x217a;</td>
+      <td><code class="inset">&amp;r11</code></td>
+    </tr>
+    <tr>
+      <td>&#x217b;</td>
+      <td>Small Roman Numeral Twelve</td>
+      <td></td>
+      <td>&amp;#8571;</td>
+      <td>&amp;#x217b;</td>
+      <td><code class="inset">&amp;r12</code></td>
+    </tr>
+    <tr>
+      <td>&#x217c;</td>
+      <td>Small Roman Numeral Fifty</td>
+      <td></td>
+      <td>&amp;#8572;</td>
+      <td>&amp;#x217c;</td>
+      <td><code class="inset">&amp;r50</code></td>
+    </tr>
+    <tr>
+      <td>&#x217d;</td>
+      <td>Small Roman Numeral One Hundred</td>
+      <td></td>
+      <td>&amp;#8573;</td>
+      <td>&amp;#x217d;</td>
+      <td><code class="inset">&amp;r100</code></td>
+    </tr>
+    <tr>
+      <td>&#x217e;</td>
+      <td>Small Roman Numeral Five Hundred</td>
+      <td></td>
+      <td>&amp;#8574;</td>
+      <td>&amp;#x217e;</td>
+      <td><code class="inset">&amp;r500</code></td>
+    </tr>
+    <tr>
+      <td>&#x217f;</td>
+      <td>Small Roman Numeral OneThousand</td>
+      <td></td>
+      <td>&amp;#8575;</td>
+      <td>&amp;#x217f;</td>
+      <td><code class="inset">&amp;r1000</code></td>
+    </tr>
+    </tbody>
+</table>
+
+	<h2 class="article"><a id="Math_Symbols">数学符号</a></h2>
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
+  <thead>
+    <tr>
+      <th>字符</th>
+      <th style="width:18em;">描述</th>
+      <th style="width:6em;">Entity</th>
+      <th>Decimal</th>
+      <th>Hex</th>
+      <th style="width:5em;">快捷键</th>
     </tr>
   </thead>
   <tbody>
@@ -1593,7 +1753,7 @@
     </tr>
     <tr>
       <td>&plusmn;</td>
-      <td>plus-minus sign = plus-or-minus sign</td>
+      <td>plus-minus sign</td>
       <td>&amp;plusmn;</td>
       <td>&amp;#177;</td>
       <td>&amp;#xB1;</td>
@@ -1617,7 +1777,7 @@
     </tr>
     <tr>
       <td>&sim;</td>
-      <td>tilde operator = varies with = similar to</td>
+      <td>tilde = varies with = similar to</td>
       <td>&amp;sim;</td>
       <td>&amp;#8764;</td>
       <td>&amp;#x223C;</td>
@@ -1729,7 +1889,7 @@
     </tr>
     <tr>
       <td>&perp;</td>
-      <td>up tack = orthogonal to = perpendicular</td>
+      <td>up tack = orthogonal/perpendicular</td>
       <td>&amp;perp;</td>
       <td>&amp;#8869;</td>
       <td>&amp;#x22A5;</td>
@@ -1921,7 +2081,7 @@
     </tr>
     <tr>
       <td>&sup1;</td>
-      <td>superscript one = superscript digit one</td>
+      <td>superscript digit one</td>
       <td>&amp;sup1;</td>
       <td>&amp;#185;</td>
       <td>&amp;#xB9;</td>
@@ -1929,7 +2089,7 @@
     </tr>
     <tr>
       <td>&sup2;</td>
-      <td>superscript two = superscript digit two = squared</td>
+      <td>superscript digit two = squared</td>
       <td>&amp;sup2;</td>
       <td>&amp;#178;</td>
       <td>&amp;#xB2;</td>
@@ -1937,7 +2097,7 @@
     </tr>
     <tr>
       <td>&sup3;</td>
-      <td>superscript three = superscript digit three = cubed</td>
+      <td>superscript digit three = cubed</td>
       <td>&amp;sup3;</td>
       <td>&amp;#179;</td>
       <td>&amp;#xB3;</td>
@@ -1945,7 +2105,7 @@
     </tr>
     <tr>
       <td>&fnof;</td>
-      <td>Latin small f with hook = function = florin</td>
+      <td>Latin small f with hook = function</td>
       <td>&amp;fnof;</td>
       <td>&amp;#402;</td>
       <td>&amp;#x192;</td>
@@ -2074,152 +2234,210 @@
   </tbody>
 </table>
 
-<table border="1">
+	<h2 class="article"><a id="Misc_Symbols">其它符号</a></h2>
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
+  <thead>
     <tr>
       <th>字符</th>
-      <th>描述</th>
-      <th>Entity</th>
+      <th style="width:18em;">描述</th>
+      <th style="width:6em;">Entity</th>
       <th>Decimal</th>
       <th>Hex</th>
-      <th>快捷键</th>
+      <th style="width:5em;">快捷键</th>
     </tr>
-    </thead>
+  </thead>
   <tbody>
     <tr>
-      <td>&nbsp;</td>
-      <td>no-break space = non-breaking space</td>
-      <td>&amp;nbsp;</td>
-      <td>&amp;#160;</td>
-      <td>&amp;#xA0;</td>
-      <td><code class="inset">&amp;&lt;space&gt;</code></td>
+      <td>&ensp;</td>
+      <td>en space</td>
+      <td>&amp;ensp;</td>
+      <td>&amp;#8194;</td>
+      <td>&amp;#x2002;</td>
+      <td></td>
     </tr>
     <tr>
-      <td>&iexcl;</td>
-      <td>inverted exclamation mark</td>
-      <td>&amp;iexcl;</td>
-      <td>&amp;#161;</td>
-      <td>&amp;#xA1;</td>
-      <td><code class="inset">&amp;!</code></td>
+      <td>&emsp;</td>
+      <td>em space</td>
+      <td>&amp;emsp;</td>
+      <td>&amp;#8195;</td>
+      <td>&amp;#x2003;</td>
+      <td></td>
     </tr>
     <tr>
-      <td>&cent;</td>
-      <td>cent sign</td>
-      <td>&amp;cent;</td>
-      <td>&amp;#162;</td>
-      <td>&amp;#xA2;</td>
-      <td><code class="inset">&amp;c|</code></td>
+      <td>&thinsp;</td>
+      <td>thin space</td>
+      <td>&amp;thinsp;</td>
+      <td>&amp;#8201;</td>
+      <td>&amp;#x2009;</td>
+      <td></td>
     </tr>
     <tr>
-      <td>&pound;</td>
-      <td>pound sign</td>
-      <td>&amp;pound;</td>
-      <td>&amp;#163;</td>
-      <td>&amp;#xA3;</td>
-      <td><code class="inset">&amp;#</code></td>
+      <td>&zwnj;</td>
+      <td>zero width non-joiner</td>
+      <td>&amp;zwnj;</td>
+      <td>&amp;#8204;</td>
+      <td>&amp;#x200C;</td>
+      <td></td>
     </tr>
     <tr>
-      <td>&yen;</td>
-      <td>yen sign = yuan sign</td>
-      <td>&amp;yen;</td>
-      <td>&amp;#165;</td>
-      <td>&amp;#xA5;</td>
-      <td><code class="inset">&amp;Y=</code></td>
+      <td>&zwj;</td>
+      <td>zero width joiner</td>
+      <td>&amp;zwj;</td>
+      <td>&amp;#8205;</td>
+      <td>&amp;#x200D;</td>
+      <td></td>
     </tr>
     <tr>
-      <td>&euro;</td>
-      <td>euro sign</td>
-      <td>&amp;euro;</td>
-      <td>&amp;#8364;</td>
-      <td>&amp;#x20AC;</td>
-      <td><code class="inset">&amp;E=</code></td>
+      <td>&lrm;</td>
+      <td>left-to-right mark</td>
+      <td>&amp;lrm;</td>
+      <td>&amp;#8206;</td>
+      <td>&amp;#x200E;</td>
+      <td></td>
     </tr>
     <tr>
-      <td>&brvbar;</td>
-      <td>broken bar = broken vertical bar</td>
-      <td>&amp;brvbar;</td>
-      <td>&amp;#166;</td>
-      <td>&amp;#xA6;</td>
-      <td><code class="inset">&amp;bb</code></td>
+      <td>&rlm;</td>
+      <td>right-to-left mark</td>
+      <td>&amp;rlm;</td>
+      <td>&amp;#8207;</td>
+      <td>&amp;#x200F;</td>
+      <td></td>
     </tr>
     <tr>
-      <td>&sect;</td>
-      <td>section sign</td>
-      <td>&amp;sect;</td>
-      <td>&amp;#167;</td>
-      <td>&amp;#xA7;</td>
-      <td><code class="inset">&amp;se</code></td>
+      <td>&circ;</td>
+      <td>modifier letter circumflex accent</td>
+      <td>&amp;circ;</td>
+      <td>&amp;#710;</td>
+      <td>&amp;#x2C6;</td>
+      <td></td>
     </tr>
     <tr>
-      <td>&uml;</td>
-      <td>diaeresis = spacing diaeresis</td>
-      <td>&amp;uml;</td>
-      <td>&amp;#168;</td>
-      <td>&amp;#xA8;</td>
-      <td><code class="inset">&amp;_"</code></td>
+      <td>&tilde;</td>
+      <td>small tilde</td>
+      <td>&amp;tilde;</td>
+      <td>&amp;#732;</td>
+      <td>&amp;#x2DC;</td>
+      <td></td>
     </tr>
     <tr>
-      <td>&copy;</td>
-      <td>copyright sign</td>
-      <td>&amp;copy;</td>
-      <td>&amp;#169;</td>
-      <td>&amp;#xA9;</td>
-      <td><code class="inset">&amp;cO</code></td>
+      <td>&weierp;</td>
+      <td>script capital P = Weierstrass p</td>
+      <td>&amp;weierp;</td>
+      <td>&amp;#8472;</td>
+      <td>&amp;#x2118;</td>
+      <td></td>
     </tr>
     <tr>
-      <td>&laquo;</td>
-      <td>left-pointing double angle quotation mark</td>
-      <td>&amp;laquo;</td>
-      <td>&amp;#171;</td>
-      <td>&amp;#xAB;</td>
-      <td><code class="inset">&amp;2&lt;</code></td>
+      <td>&image;</td>
+      <td>blackletter capital I = imaginary part</td>
+      <td>&amp;image;</td>
+      <td>&amp;#8465;</td>
+      <td>&amp;#x2111;</td>
+      <td></td>
     </tr>
     <tr>
-      <td>&reg;</td>
-      <td>registered sign = registered trade mark sign</td>
-      <td>&amp;reg;</td>
-      <td>&amp;#174;</td>
-      <td>&amp;#xAE;</td>
-      <td><code class="inset">&amp;rO</code></td>
+      <td>&real;</td>
+      <td>blackletter capital R = real part</td>
+      <td>&amp;real;</td>
+      <td>&amp;#8476;</td>
+      <td>&amp;#x211C;</td>
+      <td></td>
     </tr>
     <tr>
-      <td>&micro;</td>
-      <td>micro sign</td>
-      <td>&amp;micro;</td>
-      <td>&amp;#181;</td>
-      <td>&amp;#xB5;</td>
-      <td><code class="inset">&amp;mi</code></td>
+      <td>&alefsym;</td>
+      <td>alef symbol = first transfinite cardinal</td>
+      <td>&amp;alefsym;</td>
+      <td>&amp;#8501;</td>
+      <td>&amp;#x2135;</td>
+      <td></td>
     </tr>
     <tr>
-      <td>&para;</td>
-      <td>pilcrow sign = paragraph sign</td>
-      <td>&amp;para;</td>
-      <td>&amp;#182;</td>
-      <td>&amp;#xB6;</td>
-      <td><code class="inset">&amp;pa</code></td>
+      <td>&lceil;</td>
+      <td>left ceiling = APL upstile</td>
+      <td>&amp;lceil;</td>
+      <td>&amp;#8968;</td>
+      <td>&amp;#x2308;</td>
+      <td></td>
     </tr>
     <tr>
-      <td>&middot;</td>
-      <td>middle dot = Georgian comma = Greek middle dot</td>
-      <td>&amp;middot;</td>
-      <td>&amp;#183;</td>
-      <td>&amp;#xB7;</td>
-      <td><code class="inset">&amp;.</code></td>
+      <td>&rceil;</td>
+      <td>right ceiling</td>
+      <td>&amp;rceil;</td>
+      <td>&amp;#8969;</td>
+      <td>&amp;#x2309;</td>
+      <td></td>
     </tr>
     <tr>
-      <td>&raquo;</td>
-      <td>right-pointing double angle quotation mark</td>
-      <td>&amp;raquo;</td>
-      <td>&amp;#187;</td>
-      <td>&amp;#xBB;</td>
-      <td><code class="inset">&amp;2&gt;</code></td>
+      <td>&lfloor;</td>
+      <td>left floor = APL downstile</td>
+      <td>&amp;lfloor;</td>
+      <td>&amp;#8970;</td>
+      <td>&amp;#x230A;</td>
+      <td></td>
     </tr>
     <tr>
-      <td>&iquest;</td>
-      <td>inverted/turned question mark</td>
-      <td>&amp;iquest;</td>
-      <td>&amp;#191;</td>
-      <td>&amp;#xBF;</td>
-      <td><code class="inset">&amp;?</code></td>
+      <td>&rfloor;</td>
+      <td>right floor</td>
+      <td>&amp;rfloor;</td>
+      <td>&amp;#8971;</td>
+      <td>&amp;#x230B;</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>&lang;</td>
+      <td>left-pointing angle bracket = bra</td>
+      <td>&amp;lang;</td>
+      <td>&amp;#9001;</td>
+      <td>&amp;#x2329;</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>&rang;</td>
+      <td>right-pointing angle bracket = ket</td>
+      <td>&amp;rang;</td>
+      <td>&amp;#9002;</td>
+      <td>&amp;#x232A;</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>&loz;</td>
+      <td>lozenge</td>
+      <td>&amp;loz;</td>
+      <td>&amp;#9674;</td>
+      <td>&amp;#x25CA;</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>&spades;</td>
+      <td>black spade suit</td>
+      <td>&amp;spades;</td>
+      <td>&amp;#9824;</td>
+      <td>&amp;#x2660;</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>&clubs;</td>
+      <td>black club suit = shamrock</td>
+      <td>&amp;clubs;</td>
+      <td>&amp;#9827;</td>
+      <td>&amp;#x2663;</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>&hearts;</td>
+      <td>black heart suit = valentine</td>
+      <td>&amp;hearts;</td>
+      <td>&amp;#9829;</td>
+      <td>&amp;#x2665;</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>&diams;</td>
+      <td>black diamond suit</td>
+      <td>&amp;diams;</td>
+      <td>&amp;#9830;</td>
+      <td>&amp;#x2666;</td>
+      <td></td>
     </tr>
   </tbody>
 </table>
