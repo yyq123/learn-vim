@@ -10,22 +10,26 @@
 <body>
 	<h1>VIM学习笔记 网页开发-输入字符实体(Input Character Entity)</h1>
 
-	<p>字符实体（Character Entity），也称为转义字符串（Escape Sequence），主要用于在HTML代码中，输入如&ldquo;&lt;&rdquo;和&ldquo;&gt;&rdquo;等标签关键字，以及如&ldquo;&copy;&rdquo;等在ASCII字符集中没有定义的需要转义的特殊符号。当解释程序遇到此类字符串时，将会解释并显示为真实的字符。</p>
+	<p>字符实体（Character Entity），也称为转义字符串（Escape Sequence），主要用于在HTML代码中，输入如&ldquo;&lt;&rdquo;和&ldquo;&gt;&rdquo;等标签关键字，以及如&ldquo;&copy;&rdquo;等在ASCII字符集中没有定义的需要转义的特殊符号。当解释程序遇到此类字符串时，将会解释并在网页中显示为真实的字符。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/HTML_CharacterEntity.png" title="HTML_CharacterEntity"><img src="https://yyq123.github.io/learn-vim/images/HTML_CharacterEntity.png" alt="HTML_CharacterEntity" width="550" height="302" /></a></p>
 	<p>对于同一个字符实体，可以使用名称和数字两种引用方式。</p>
 	<p>名称引用方式为<strong>&amp;<var>name</var>;</strong>，并且严格区分大小写。比如<code class="inset">&amp;alpha;</code>代表小写希腊字母&ldquo;&alpha;&rdquo;；而<code class="inset">&amp;Alpha;</code>则代表大写希腊字母&ldquo;&Alpha;&rdquo;。</p>
-	<p>数字引用，又可以使用十进制（decimal）和十六进制（hexadecimal）两种格式。十进制引用格式为<strong>&amp;#<var>number</var>;</strong>。十六进制引用格式为<strong>&amp;#x<var>number</var>;</strong>。例如<code class="inset">&amp;#169;</code>和<code class="inset">&amp;#xA9;</code>都代表版权符号&ldquo;&copy;&rdquo;。</p>
+	<p>数字引用，又可以使用十进制（decimal）和十六进制（hexadecimal）两种格式。十进制引用格式为<strong>&amp;#<var>number</var>;</strong>。十六进制引用格式为<strong>&amp;#x<var>number</var>;</strong>。例如<code class="inset">&amp;#169;</code>和<code class="inset">&amp;#xA9;</code>均代表版权符号&ldquo;&copy;&rdquo;。</p>
 	<p>关于字符实体的更多信息，请参考<a href="https://dev.w3.org/html5/html-author/charref" title="Character Entities Cheat Sheet">Character Entity Reference</a>。</p>
 
 	<h2 class="article"><a id="HTML-Editor-plugin">HTML-Editor插件</a></h2>
-	<p>我在Christian J Robinson开发的<a href="http://christianrobinson.name/vim/HTML/" title="HTML">HTML</a>插件的基础之上，制作了<a href="https://github.com/yyq123/HTML-Editor" title="HTML-Editor">HTML-Editor</a>插件，通过快捷键和菜单来提高编写HTML代码的效率，并提供色彩选择和网页预览等功能。</p>
-	<p>您可以在<code class="inset">HTML-&gt;Character Entities</code>菜单中选择输入字符实体：</p>
+	<p>我在Christian J Robinson开发的<a href="http://christianrobinson.name/vim/HTML/" title="HTML">HTML</a>插件的基础之上，制作了<a href="https://github.com/yyq123/HTML-Editor" title="HTML-Editor">HTML-Editor</a>插件，通过快捷键和菜单项来提高编写HTML代码的效率，并提供代码模板、色彩选择和网页预览等功能。</p>
+	<p>在<a href="http://yyq123.github.io/learn-vim/learn-vi-42-InsertMode.html" title="插入模式(Insert Mode)">插入模式</a>下，使用以<kbd>&amp;</kbd>开头的快捷键，可以自动输入相对应的字符实体。例如点击<kbd>&amp;&amp;</kbd>快捷键，将自动扩展为&ldquo;&amp;&rdquo;：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/HTML-Editor-Kbd-CharacterEntities.png" title="HTML-Editor-Kbd-CharacterEntities"><img src="https://yyq123.github.io/learn-vim/images/HTML-Editor-Kbd-CharacterEntities.png" alt="HTML-Editor-Kbd-CharacterEntities" /></a></p>
+	<p>通过在载入插件之前设置g:html_map_entity_leader变量，可以指定其它前缀键：</p>
+	<p style="text-indent:2em"><code class="inset">:let g:html_map_entity_leader = '\'</code></p>
+	<p>您也可以在<code class="inset">HTML-&gt;Character Entities</code>菜单中选择输入字符实体：</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/HTML-Editor-Menu-CharacterEntities.png" title="HTML-Editor-Menu-CharacterEntities"><img src="https://yyq123.github.io/learn-vim/images/HTML-Editor-Menu-CharacterEntities.png" alt="HTML-Editor-Menu-CharacterEntities" width="550" height="634" /></a></p>
 	<p>以下表格将列出字符实体的名称和数字代码，以及在HTML-Editor插件中定义的快捷键。请注意：</p>
 	<ul>
 		<li>除非在描述中指明HTML5，否则均是在HTML4中的定义；</li>
 		<li>如果快捷键列为空，则说明插件中并没有定义相应的快捷键；</li>
-		<li>如果Entity列为空，则说明该字符并没有定义相应的名称，而只能使用数字引用格式；</li>
+		<li>如果Entity列为空，则说明该字符并没有名称，而只能使用数字引用格式。</li>
 	</ul>
 
 	<h2 class="article"><a id="Special_Entities">特殊实体</a></h2>
