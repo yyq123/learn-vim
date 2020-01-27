@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 网页开发-转义字符实体(Escape Character Entity)</title>
+</head>
+<body>
+	<h1>VIM学习笔记 网页开发-转义字符实体(Escape Character Entity)</h1>
+
+	<p>在<a href="http://yyq123.github.io/learn-vim/learn-vi-602-WebDesign-CharacterEntity.html" title="Input Character Entity">输入字符实体(Input Character Entity)</a>章节中，已经介绍了利用<a href="https://github.com/yyq123/HTML-Editor" title="HTML-Editor">HTML-Editor</a>插件来快速输入HTML字符实体。本节将介绍，如何在字符实体和实际文本之间相互转换。</p>
+	<p>在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>配置文件中，定义以下函数：</p>
+<div style="overflow:auto;width:auto;padding:0em 0em;"><pre style="margin: 0; line-height: 125%"><span style="color: #cdcd00">function</span><span style="color: #cccccc">!</span> HtmlEntities<span style="color: #cccccc">(</span>line1<span style="color: #cccccc">,</span> line2<span style="color: #cccccc">,</span> action<span style="color: #cccccc">)</span>
+	<span style="color: #cdcd00">let</span> search <span style="color: #cccccc">=</span> @/
+	<span style="color: #cdcd00">let</span> range <span style="color: #cccccc">=</span> <span style="color: #cd0000">&#39;silent &#39;</span> . <span style="color: #cdcd00">a</span>:line1 . <span style="color: #cd0000">&#39;,&#39;</span> . <span style="color: #cdcd00">a</span>:line2
+	<span style="color: #cdcd00">if</span> <span style="color: #cdcd00">a</span>:action <span style="color: #cccccc">==</span> <span style="color: #cd00cd">0</span> <span style="color: #000080">&quot; must convert &amp;amp; last</span>
+		execute range . <span style="color: #cd0000">&#39;sno/&amp;lt;/&lt;/eg&#39;</span>
+		execute range . <span style="color: #cd0000">&#39;sno/&amp;gt;/&gt;/eg&#39;</span>
+		execute range . <span style="color: #cd0000">&#39;sno/&amp;amp;/&amp;/eg&#39;</span>
+	<span style="color: #cdcd00">else</span> <span style="color: #000080">&quot; must convert &amp; first</span>
+		execute range . <span style="color: #cd0000">&#39;sno/&amp;/&amp;amp;/eg&#39;</span>
+		execute range . <span style="color: #cd0000">&#39;sno/&lt;/&amp;lt;/eg&#39;</span>
+		execute range . <span style="color: #cd0000">&#39;sno/&gt;/&amp;gt;/eg&#39;</span>
+	<span style="color: #cdcd00">endif</span>
+	<span style="color: #cdcd00">nohl</span>
+	<span style="color: #cdcd00">let</span> @/ <span style="color: #cccccc">=</span> search
+<span style="color: #cdcd00">endfunction</span>
+</pre></div>
+	<p>定义以下<a href="http://yyq123.github.io/learn-vim/learn-vi-94-ScriptUDC.html" title="Script-User Defined Command">自定义命令</a>：</p>
+	<p style="text-indent:2em"><code class="inset">command! -range -nargs=1 HEntities call HtmlEntities(&lt;line1&gt;, &lt;line2&gt;, &lt;args&gt;)</code></p>
+
+	<h2 class="article"><a id="Escape_Character_Entity">转义（Escape）字符实体</a></h2>
+	<p>定义以下<a href="http://yyq123.github.io/learn-vim/learn-vi-54-Leader.html" title="前缀键(leader)">快捷键</a>，可以将当前行中的特殊字符转义为字符实体代码：</p>
+	<p style="text-indent:2em"><code class="inset">noremap &lt;silent&gt; &lt;Leader&gt;he :HEntities 1&lt;CR&gt;</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/CharacterEntity_Escape.png" title="CharacterEntity_Escape"><img src="https://yyq123.github.io/learn-vim/images/CharacterEntity_Escape.png" /></a></p>
+	<h2 class="article"><a id="Special_Entities">特殊实体</a></h2>
+	<p>您也可以在<a href="http://www.htmlescape.net/htmlescape_tool.html" title="Escape Character Entity">HTML Escape</a>网页上，实现相同的功能。</p>
+
+
+	<h2 class="article"><a id="UnEscape_Character_Entity">反转义（Unescape）字符实体</a></h2>
+	<p>定义以下<a href="http://yyq123.github.io/learn-vim/learn-vi-54-Leader.html" title="前缀键(leader)">快捷键</a>，可以将当前行中的字符实体代码反转义为特殊字符：</p>
+	<p style="text-indent:2em"><code class="inset">noremap &lt;silent&gt; &lt;Leader&gt;hu :HEntities 0&lt;CR&gt;</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/CharacterEntity_Unescape.png" title="CharacterEntity_Unescape"><img src="https://yyq123.github.io/learn-vim/images/CharacterEntity_Unescape.png" /></a></p>
+	<p>您也可以在<a href="http://www.htmlescape.net/htmlunescape_tool.html" title="UnEscape Character Entity">HTML un-escape</a>网页上，实现相同的功能。</p>
+
+	<p>以上快捷键和命令，均可在<a href="http://yyq123.github.io/learn-vim/learn-vi-45-VisualMode.html" title="可视化模式(Visual Mode)">可视化模式</a>和选择模式下使用。例如进入可视化模式或者用鼠标选中多行代码之后，点击<kbd>&lt;Leader&gt;he</kbd>快捷键，可以转义已选中的多行文本。</p>
+	<p>我们也可以直接在命令中，指定进行转义的文本范围。例如使用以下命令，针对当前行及之后3行进行反转义：</p>
+	<p style="text-indent:2em"><code class="inset">:.,.+3HEntities 0</code></p>
+	<p>使用以下命令，则可以针对整个文件进行字符转义：</p>
+	<p style="text-indent:2em"><code class="inset">:%Entities 1</code></p>
+
+	<p>请注意，以上代码只是实现了<code class="inset">&lt;</code>、<code class="inset">&gt;</code>和<code class="inset">&amp;</code>三个常用字符实体的转义。您可以自行扩展代码，以实现更多字符实体的转义功能。</p>
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="输入字符实体(Input Character Entity)" href="http://yyq123.github.io/learn-vim/learn-vi-602-WebDesign-CharacterEntity.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="Firefox浏览器" href="http://yyq123.github.io/learn-vim/learn-vi-605-WebDesign-Firefox.html">下一篇</a>&gt;</span></p>
+
+</body>
+</html>
