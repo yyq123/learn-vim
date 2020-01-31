@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 网页开发-输入网页标签(Input HTML Tags)</title>
+</head>
+<body>
+	<h1>VIM学习笔记 网页开发-输入网页标签(Input HTML Tags)</h1>
+	<p></p>
+	<h2 class="article"><a id="">启用/禁用</a></h2>
+	<p></p>
+	<a href=""></a>
+	<a href="#" title=""></a>
+
+	<h2 class="article"><a id="html_close_tag"></a></h2>
+	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" /></a></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/HTML_StartFresh.png" title="HTML_StartFresh"><img src="https://yyq123.github.io/learn-vim/images/HTML_StartFresh.png" alt="HTML_StartFresh" width="550" height="183" /></a></p>
+	<p>在编写HTML代码时，重复录入标签显然是相当低效的。我制作了<a href="https://github.com/yyq123/HTML-Editor" title="HTML-Editor">HTML-Editor</a>插件，通过快捷键和菜单项来提高输入HTML标签的效率。</p>
+	<p>关于完整的HTML标签索引，请参考<a href="https://meiert.com/en/indices/html-elements/" title=HTML Elements Index"">HTML Elements Index</a>。</p>
+
+	<h2 class="article"><a id="">安装配置</a></h2>
+	<p>请在vimrc中添加以下命令，以便在&ldquo;Insert (paste)&rdquo;状态下正常使用快捷键：</p>
+	<p style="text-indent:2em">:set nopaste<code class="inset"></code></p>
+	<p>如果侦测文件类型为XHTML，那么将自动使用小写的标签。也可以定义以下变量，以强制使用小写标签：</p>
+	<p><code class="inset">:let g:do_xhtml_mappings = 'yes'</code></p>
+	<p>Tab键，在属性间导航；</p>
+	<p>在插入模式下，输入以&ldquo;;&rdquo;开头的关键词，比如&ldquo;;pp&rdquo;，将自动扩展为完整的段落标签；可以使用以下命令来自定义前缀键</p>
+	<p style="text-indent:2em"><code class="inset">:let g:html_map_leader = g:maplocalleader</code></p>
+
+	<p>创建以下<a href="http://yyq123.github.io/learn-vim/learn-vi-51-KeyMapping.html" title="Map">键盘映射</a>，可以自动关闭标签。</p>
+	<p style="text-indent:2em"><code class="inset">imap ,/ &lt;/&lt;C-X&gt;&lt;C-O&gt;&lt;Esc&gt;F&lt;i</code></p>
+	<p>关于快速关闭标签的其它选项，可以关注<a href="https://stackoverflow.com/questions/130734/how-can-one-close-html-tags-in-vim-quickly" title="How can one close HTML tags in Vim quickly?">How can one close HTML tags in Vim quickly?</a></p>
+
+
+	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
+	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
+	
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
+		<caption style="margin:0.5em; font-weight:bold">选项列表</caption>
+		<tr><th style="white-space: nowrap">选项</th><th>描述</th><th>帮助信息</th></tr>
+		<tr><td><code class="inset">!</code></td><td>如果包含，表示。例如，。</td><td style="white-space: nowrap"><code class="inset">:help viminfo-!</code></td></tr>
+	</table>
+	
+	<h2 class="article"><a id="">输入标签</a></h2>
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
+		<tr><td><code class="inset">:</code></td></tr>
+		<tr><td><code class="inset">;;</code></td><td>插入字符&ldquo;;&rdquo;</td></tr>
+		<tr><td><code class="inset">;&amp;</code></td><td>插入字符&ldquo;&amp;&rdquo;（&amp;用于输入character-entities）</td></tr>
+		<tr><td><code class="inset">;ab</code></td><td><abbr title=""></abbr></td></tr>
+		<tr><td><code class="inset">;ad</code></td><td><address></address></td></tr>
+		<tr><td><code class="inset">;ah</code></td><td><a href="" title="">Visual mode</a></td></tr>
+		<tr><td><code class="inset">;bd</code></td><td><body><CR></body></td></tr>
+		<tr><td><code class="inset">;bl</code></td><td><blockquote><CR></blockquote></td></tr>
+		<tr><td><code class="inset">;br</code></td><td><br /></td></tr>
+		<tr><td><code class="inset">;ci</code></td><td><cite></cite></td></tr>
+		<tr><td><code class="inset">;cm</code></td><td>注释<!--  --></td></tr>
+		<tr><td><code class="inset">;co</code></td><td><code></code></td></tr>
+		<tr><td><code class="inset">;ct</code></td><td><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /></td>charset属性是根据'fileencoding'或'encoding'属性自动判断的。也可以在g:html_default_charset变量中强制控制。</td></tr>
+		<tr><td><code class="inset">;dd</code></td><td><dd></dd></td></tr>
+		<tr><td><code class="inset">;de</code></td><td><del></del></td></tr>
+		<tr><td><code class="inset">;df</code></td><td><dfn></dfn></td></tr>
+		<tr><td><code class="inset">;dl</code></td><td><dl><CR></dl></td></tr>
+		<tr><td><code class="inset">;dt</code></td><td><dt></dt></td></tr>
+		<tr><td><code class="inset">;dv</code></td><td><div><CR></div></td></tr>
+		<tr><td><code class="inset">;eb</code></td><td><embed type="" src="" width="" height="" /></td></tr>
+		<tr><td><code class="inset">;em</code></td><td><em></em></td></tr>
+		<tr><td><code class="inset">;h1</code></td><td><h1></h1></td></tr>
+		<tr><td><code class="inset">;h2</code></td><td><h2></h2></td></tr>
+		<tr><td><code class="inset">;h3</code></td><td><h3></h3></td></tr>
+		<tr><td><code class="inset">;h4</code></td><td><h4></h4></td></tr>
+		<tr><td><code class="inset">;h5</code></td><td><h5></h5></td></tr>
+		<tr><td><code class="inset">;h6</code></td><td><h6></h6></td></tr>
+		<tr><td><code class="inset">;he</code></td><td><head><CR></head></td></tr>
+		<tr><td><code class="inset">;hr</code></td><td><hr /></td></tr>
+		<tr><td><code class="inset">;ht</code></td><html xmlns="http://www.w3.org/1999/xhtml"><CR></html><td></td></tr>
+		<tr><td><code class="inset">;it</code></td><td><i></i></td></tr>
+		<tr><td><code class="inset">;im</code></td><td><img src="" alt="" /></td></tr>
+		<tr><td><code class="inset">;in</code></td><td><ins></ins></td></tr>
+		<tr><td><code class="inset">;js</code></td><td><script type="text/javascript"><!--//--></script></td></tr>
+		<tr><td><code class="inset">;li</code></td><td><li></li></td></tr>
+		<tr><td><code class="inset">;sj</code></td><td><script src="" type="text/javascript"></script></td></tr>
+		<tr><td><code class="inset">;</code></td><td></td></tr>
+		<tr><td><code class="inset">;</code></td><td></td></tr>
+		<tr><td><code class="inset">;</code></td><td></td></tr>
+		<tr><td><code class="inset">;</code></td><td></td></tr>
+		<tr><td><code class="inset">;</code></td><td></td></tr>
+		<tr><td><code class="inset">;</code></td><td></td></tr>
+		<tr><td><code class="inset">;</code></td><td></td></tr>
+		<tr><td><code class="inset">;</code></td><td></td></tr>
+		<tr><td><code class="inset">;</code></td><td></td></tr>
+		<tr><td><code class="inset">;</code></td><td></td></tr>
+	</table>
+		
+	<h2 class="article"><a id=""></a></h2>
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
+
+</body>
+</html>
