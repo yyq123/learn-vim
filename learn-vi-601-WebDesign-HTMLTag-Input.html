@@ -9,143 +9,132 @@
 </head>
 <body>
 	<h1>VIM学习笔记 网页开发-输入网页标签(Input HTML Tags)</h1>
-	<p></p>
-	<h2 class="article"><a id="">启用/禁用</a></h2>
-	<p></p>
-	<a href=""></a>
-	<a href="#" title=""></a>
 
-	<h2 class="article"><a id="html_close_tag"></a></h2>
 	<p><a href="https://yyq123.github.io/learn-vim/images/HTML_StartFresh.png" title="HTML_StartFresh"><img src="https://yyq123.github.io/learn-vim/images/HTML_StartFresh.png" alt="HTML_StartFresh" width="550" height="183" /></a></p>
 	<p>在编写HTML代码时，重复录入标签显然是相当低效的。我制作了<a href="https://github.com/yyq123/HTML-Editor" title="HTML-Editor">HTML-Editor</a>插件，通过快捷键和菜单项来提高输入HTML标签的效率。</p>
 
-	<h2 class="article"><a id="">安装配置</a></h2>
+	<h2 class="article"><a id="HTML-Editor-Config">安装配置插件</a></h2>
 	<p>请在vimrc中添加以下命令，以便在&ldquo;Insert (paste)&rdquo;状态下正常使用快捷键：</p>
 	<p style="text-indent:2em"><code class="inset">:set nopaste</code></p>
 	<p>如果侦测文件类型为XHTML，那么将自动使用小写的标签。也可以定义以下变量，以强制使用小写标签：</p>
 	<p style="text-indent:2em"><code class="inset">:let g:do_xhtml_mappings = 'yes'</code></p>
-	<p>在插入模式下，输入以&ldquo;;&rdquo;开头的关键词，比如&ldquo;;pp&rdquo;，将自动扩展为完整的段落标签；使用以下命令，可以自定义前缀键：</p>
-	<p style="text-indent:2em"><code class="inset">let g:html_map_leader = ','</code></p>
-	<p>假设使用<kbd>;ah</kbd>快捷键，输入以下链接标签。光标将自动定位到href属性的括号之内；输入链接地址之后，点击<kbd>Tab</kbd>键将移动至title属性的括号之内；输入链接标题之后，点击<kbd>Tab</kbd>键将移动至&lt;/a&gt;标签之前。也就是说，可以使用<kbd>Tab</kbd>键快速跳转至下一标签属性，以提高输入HTML代码的效率。</p>
+	<p>在插入模式下，输入以&ldquo;;&rdquo;开头的关键词，比如&ldquo;;pp&rdquo;，将自动扩展为完整的段落标签；使用以下命令，可以修改默认的前缀键为逗号：</p>
+	<p style="text-indent:2em"><code class="inset">:let g:html_map_leader = ','</code></p>
+	<p>假设使用<kbd>;ah</kbd>快捷键，输入以下链接标签。光标将自动定位到href属性的引号之内；输入链接地址之后，点击<kbd>Tab</kbd>键将移动至title属性的引号之内；输入链接标题之后，点击<kbd>Tab</kbd>键将移动至&lt;/a&gt;标签之前。也就是说，使用<kbd>Tab</kbd>键可以快速跳转至下一标签属性，进一步提高输入HTML代码的效率。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/HTML-Editor-Kbd-Tab.png" title="HTML-Editor-Kbd-Tab"><img src="https://yyq123.github.io/learn-vim/images/HTML-Editor-Kbd-Tab.png" alt="HTML-Editor-Kbd-Tab" width="550" height="88" /></a></p>
 	<p>如果您需要输入真正的Tab制表符，那么可以使用<kbd>;Tab</kbd>快捷键。</p>
-	<p>如果您希望恢复通常的<kbd>Tab</kbd>键使用行为，那么请设置以下变量：</p>
+	<p>如果您希望恢复通常的<kbd>Tab</kbd>键操作行为，那么请设置以下变量：</p>
 	<p style="text-indent:2em"><code class="inset">let g:no_html_tab_mapping = 'yes'</code></p>
 
-	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
-		<caption style="margin:0.5em; font-weight:bold">选项列表</caption>
-		<tr><th style="white-space: nowrap">选项</th><th>描述</th><th>帮助信息</th></tr>
-		<tr><td><code class="inset">!</code></td><td>如果包含，表示。例如，。</td><td style="white-space: nowrap"><code class="inset">:help viminfo-!</code></td></tr>
-	</table>
-	<h2 class="article"><a id="">输入标签</a></h2>
+	<h2 class="article"><a id="HTML-Editor-Tags-Input-Kbd">利用快捷键输入标签</a></h2>
 	<p>以下表格列示了在<a href="http://yyq123.github.io/learn-vim/learn-vi-42-InsertMode.html" title="插入模式(Insert Mode)">插入模式</a>和<a href="http://yyq123.github.io/learn-vim/learn-vi-45-VisualMode.html" title="可视化模式(Visual Mode)">可视化模式</a>下，用于输入HTML标签的快捷键：</p>
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
-		<tr><th>快捷键</th><th>输入代码</th><th>描述</th></tr>
-		<tr><td><code class="inset">;;</code></td><td>插入字符&ldquo;;&rdquo;</td><td></td></tr>
-		<tr><td><code class="inset">;&amp;</code></td><td>插入字符&ldquo;&amp;&rdquo;</td><td>因为&amp;用于输入<a href="http://yyq123.github.io/learn-vim/learn-vi-602-WebDesign-CharacterEntity.html" title="Input Character Entity">字符实体(Character Entity)</a></td></tr>
-		<tr><td rowspan="2"><code class="inset">;4</code></td><td>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;<br/>&quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;</td><td>针对HTML文件</td></tr>
-		<tr><td>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot;<br />&quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;</td><td>针对XHTML文件</td></tr>
-		<tr><td rowspan="2"><code class="inset">;s4</code></td><td>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot;<br/> &quot;http://www.w3.org/TR/html4/strict.dtd&quot;&gt;</td><td>针对HTML文件</td></tr>
-		<tr><td>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Strict//EN&quot;<br/>&quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&quot;&gt;</td><td>针对XHTML文件</td></tr>
-		<tr><td><code class="inset">;ab</code></td><td>&lt;abbr title=&quot;&quot;&gt;VisualMode&lt;/abbr&gt;</td><td></td></tr>
-		<tr><td><code class="inset">;ad</code></td><td>&lt;address&gt;VisualMode&lt;/address&gt;</td><td></td></tr>
-		<tr><td><code class="inset">;ah</code></td><td>&lt;a href="" title=""&gt;VisualMode&lt;/a&gt;</td><td></td></tr>
-		<tr><td><code class="inset">;an</code></td><td>&lt;a id=""&gt;&lt;/a&gt;</td><td></td></tr>
-		<tr><td><code class="inset">;bd</code></td><td> &lt;body&gt;&lt;CR&gt;&lt;/body&gt;</td><td></td></tr>
-		<tr><td><code class="inset">;bh</code></td><td>&lt;base href="" /&gt;</td><td></td></tr>
-		<tr><td><code class="inset">;bl</code></td><td>&lt;blockquote&gt;&lt;CR&gt;&lt;/blockquote&gt;</td><td></td></tr>
-		<tr><td><code class="inset">;br</code></td><td><br /></td></tr>
-		<tr><td><code class="inset">;bu</code></td><td><input type="button" name="" value="Visual mode" /></td></tr>
-		<tr><td><code class="inset">;ca</code></td><td><caption></caption></td></tr>
-		<tr><td><code class="inset">;ch</code></td><td><input type="checkbox" name="" value="Visual mode" /></td></tr>
-		<tr><td><code class="inset">;ci</code></td><td><cite></cite></td></tr>
-		<tr><td><code class="inset">;cm</code></td><td>注释<!--  --></td></tr>
-		<tr><td><code class="inset">;co</code></td><td><code></code></td></tr>
-		<tr><td><code class="inset">;cs</code></td><td><style type="text/css"><!--<CR>--></style></td></tr>
-		<tr><td><code class="inset">;ct</code></td><td>&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;</td><td>charset属性根据'fileencoding'或'encoding'属性自动判断；<br />也可以在g:html_default_charset变量中强制控制。</td></tr>
-		<tr><td><code class="inset">;dd</code></td><td><dd></dd></td></tr>
-		<tr><td><code class="inset">;de</code></td><td><del></del></td></tr>
-		<tr><td><code class="inset">;df</code></td><td><dfn></dfn></td></tr>
-		<tr><td><code class="inset">;dl</code></td><td><dl><CR></dl></td></tr>
-		<tr><td><code class="inset">;dt</code></td><td><dt></dt></td></tr>
-		<tr><td><code class="inset">;dv</code></td><td><div><CR></div></td></tr>
-		<tr><td><code class="inset">;eb</code></td><td><embed type="" src="" width="" height="" /></td></tr>
-		<tr><td><code class="inset">;em</code></td><td><em></em></td></tr>
-		<tr><td><code class="inset">;fi</code></td><td><input type="file" name="" value="Visual mode" size="20" /></td></tr>
-		<tr><td><code class="inset">;fm</code></td><td><form action="">&lt;CR&gt;</form></td></tr>
-		<tr><td><code class="inset">;h1</code></td><td><h1></h1></td></tr>
-		<tr><td><code class="inset">;h2</code></td><td><h2></h2></td></tr>
-		<tr><td><code class="inset">;h3</code></td><td><h3></h3></td></tr>
-		<tr><td><code class="inset">;h4</code></td><td><h4></h4></td></tr>
-		<tr><td><code class="inset">;h5</code></td><td><h5></h5></td></tr>
-		<tr><td><code class="inset">;h6</code></td><td><h6></h6></td></tr>
-		<tr><td><code class="inset">;he</code></td><td><head><CR></head></td></tr>
-		<tr><td><code class="inset">;hi</code></td><td><input type="hidden" name="" value="Visual mode" /></td></tr>
-		<tr><td><code class="inset">;hr</code></td><td><hr /></td></tr>
-		<tr><td><code class="inset">;ht</code></td><html xmlns="http://www.w3.org/1999/xhtml"><CR></html><td></td></tr>
-		<tr><td><code class="inset">;if</code></td><td><iframe src="">&lt;CR&gt;</iframe></td></tr>
-		<tr><td><code class="inset">;it</code></td><td><i></i></td></tr>
-		<tr><td><code class="inset">;im</code></td><td><img src="" alt="visual mode" /></td></tr>
-		<tr><td><code class="inset">;in</code></td><td><ins></ins></td></tr>
-		<tr><td><code class="inset">;it</code></td><td><i></i></td></tr>
-		<tr><td><code class="inset">;js</code></td><td><script type="text/javascript"><!--//--></script></td></tr>
-		<tr><td><code class="inset">;la</code></td><td><label for="">Visual mode</label></td></tr>
-		<tr><td><code class="inset">;li</code></td><td><li></li></td></tr>
-		<tr><td><code class="inset">;lk</code></td><td><link href="" /></td></tr>
-		<tr><td><code class="inset">;ls</code></td><td><link rel="stylesheet" type="text/css" href="" /></td></tr>
-		<tr><td><code class="inset">;me</code></td><td><meta name="Visual mode" content="" /></td></tr>
-		<tr><td><code class="inset">;mh</code></td><td><meta http-equiv="" content="Visual mode" /></td></tr>
-		<tr><td><code class="inset">;mi</code></td><td><img src="" width="" height="" alt="" />查找src指定的图片文件，并将获得的尺寸信息更新到width和height属性</td></tr>
-		<tr><td><code class="inset">;ms</code></td><td><select name="" multiple>&lt;CR&gt;</select></td></tr>
-		<tr><td><code class="inset">;ns</code></td><td><noscript><CR></noscript></td></tr>
-		<tr><td><code class="inset">;ob</code></td><td><object data="" width="" height=""><CR>Visual mode</object></td></tr>
-		<tr><td><code class="inset">;og</code></td><td><optgroup label="">&lt;CR&gt;</optgroup></td></tr>
-		<tr><td><code class="inset">;ol</code></td><td><ol><CR></ol></td></tr>
-		<tr><td><code class="inset">;op</code></td><td><option></option></td></tr>
-		<tr><td><code class="inset">;pa</code></td><td><input type="password" name="" value="Visual mode" size="20" /></td></tr>
-		<tr><td><code class="inset">;pm</code></td><td><param name="Visual mode" value="" /></td></tr>
-		<tr><td><code class="inset">;pp</code></td><td><p></p></td></tr>
-		<tr><td><code class="inset">;pr</code></td><td><pre><CR></pre></td></tr>
-		<tr><td><code class="inset">;qu</code></td><td><q></q></td></tr>
-		<tr><td><code class="inset">;ra</code></td><td><input type="radio" name="" value="Visual mode" /></td></tr>
-		<tr><td><code class="inset">;re</code></td><td><input type="reset" value="Reset" /></td></tr>
-		<tr><td><code class="inset">;sa</code></td><td><samp></samp></td></tr>
-		<tr><td><code class="inset">;sb</code></td><td><sub></sub></td></tr>
-		<tr><td><code class="inset">;se</code></td><td><select name="">&lt;CR&gt;</select></td></tr>
-		<tr><td><code class="inset">;sj</code></td><td><script src="" type="text/javascript"></script></td></tr>
-		<tr><td><code class="inset">;sm</code></td><td><small></small></td></tr>
-		<tr><td><code class="inset">;sn</code></td><td><span></span></td></tr>
-		<tr><td><code class="inset">;sp</code></td><td><sup></sup></td></tr>
-		<tr><td><code class="inset">;st</code></td><td><strong></strong></td></tr>
-		<tr><td><code class="inset">;su</code></td><td><input type="submit" value="Submit" /></td></tr>
-		<tr><td><code class="inset">;ta</code></td><td><table>&lt;CR&gt;</table></td></tr>
-		<tr><td><code class="inset">;tA</code></td><td>将提示输入行列数，并自动生成表格代码</td></tr>
-		<tr><td><code class="inset">;tb</code></td><td><tbody>&lt;CR&gt;</tbody></td></tr>
-		<tr><td><code class="inset">;td</code></td><td><td></td></td></tr>
-		<tr><td><code class="inset">;te</code></td><td><input type="text" name="" value="Visual mode" size="20" /></td></tr>
-		<tr><td><code class="inset">;tf</code></td><td><tfoot>&lt;CR&gt;</tfoot></td></tr>
-		<tr><td><code class="inset">;th</code></td><td><th></th></td></tr>
-		<tr><td><code class="inset">;tH</code></td><td><thead>&lt;CR&gt;</thead></td></tr>
-		<tr><td><code class="inset">;ti</code></td><td><title></title></td></tr>
-		<tr><td><code class="inset">;tr</code></td><td><tr></tr></td></tr>
-		<tr><td><code class="inset">;tx</code></td><td><textarea name="" rows="10" cols="50">&lt;CR&gt;</textarea></td></tr>
-		<tr><td><code class="inset">;ul</code></td><td><ul>&lt;CR&gt;</ul></td></tr>
-		<tr><td><code class="inset">;</code></td><td></td></tr>
+		<tr><th>快捷键</th><th>输入代码</th></tr>
+		<tr><td><code class="inset">;;</code></td><td>插入字符&ldquo;;&rdquo;</td></tr>
+		<tr><td><code class="inset">;&amp;</code></td><td>插入字符&ldquo;&amp;&rdquo;<sup>[1]</sup></td></tr>
+		<tr><td rowspan="2"><code class="inset">;4</code></td><td>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;<br/>&quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;</td></tr>
+		<tr><td>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot;<br />&quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;</td></tr>
+		<tr><td rowspan="2"><code class="inset">;s4</code></td><td>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot;<br/> &quot;http://www.w3.org/TR/html4/strict.dtd&quot;&gt;</td></tr>
+		<tr><td>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Strict//EN&quot;<br/>&quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&quot;&gt;</td></tr>
+		<tr><td><code class="inset">;ab</code></td><td>&lt;abbr title=&quot;&quot;&gt;&lt;/abbr&gt;</td></tr>
+		<tr><td><code class="inset">;ad</code></td><td>&lt;address&gt;&lt;/address&gt;</td></tr>
+		<tr><td><code class="inset">;ah</code></td><td>&lt;a href="" title=""&gt;&lt;/a&gt;</td></tr>
+		<tr><td><code class="inset">;an</code></td><td>&lt;a id=""&gt;&lt;/a&gt;</td></tr>
+		<tr><td><code class="inset">;bd</code></td><td> &lt;body&gt;&lt;CR&gt;&lt;/body&gt;</td></tr>
+		<tr><td><code class="inset">;bh</code></td><td>&lt;base href="" /&gt;</td></tr>
+		<tr><td><code class="inset">;bl</code></td><td>&lt;blockquote&gt;&lt;CR&gt;&lt;/blockquote&gt;</td></tr>
+		<tr><td><code class="inset">;br</code></td><td>&lt;br /&gt;</td></tr>
+		<tr><td><code class="inset">;bu</code></td><td>&lt;input type="button" name="" value="" /&gt;</td></tr>
+		<tr><td><code class="inset">;ca</code></td><td>&lt;caption&gt;&lt;/caption&gt;</td></tr>
+		<tr><td><code class="inset">;ch</code></td><td>&lt;input type="checkbox" name="" value="" /&gt;</td></tr>
+		<tr><td><code class="inset">;ci</code></td><td>&lt;cite&gt;&lt;/cite&gt;</td></tr>
+		<tr><td><code class="inset">;cm</code></td><td>&lt;!--  --&gt;</td></tr>
+		<tr><td><code class="inset">;co</code></td><td>&lt;code&gt;&lt;/code&gt;</td></tr>
+		<tr><td><code class="inset">;cs</code></td><td>&lt;style type="text/css"&gt;&lt;!--&lt;CR&gt;--&gt;&lt;/style&gt;</td></tr>
+		<tr><td><code class="inset">;ct</code></td><td>&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;&nbsp;<sup>[2]</sup></td></tr>
+		<tr><td><code class="inset">;dd</code></td><td>&lt;dd&gt;&lt;/dd&gt;</td></tr>
+		<tr><td><code class="inset">;de</code></td><td>&lt;del&gt;&lt;/del&gt;</td></tr>
+		<tr><td><code class="inset">;df</code></td><td>&lt;dfn&gt;&lt;/dfn&gt;</td></tr>
+		<tr><td><code class="inset">;dl</code></td><td>&lt;dl&gt;&lt;CR&gt;&lt;/dl&gt;</td></tr>
+		<tr><td><code class="inset">;dt</code></td><td>&lt;dt&gt;&lt;/dt&gt;</td></tr>
+		<tr><td><code class="inset">;dv</code></td><td>&lt;div&gt;&lt;CR&gt;&lt;/div&gt;</td></tr>
+		<tr><td><code class="inset">;eb</code></td><td>&lt;embed type="" src="" width="" height="" /&gt;</td></tr>
+		<tr><td><code class="inset">;em</code></td><td>&lt;em&gt;&lt;/em&gt;</td></tr>
+		<tr><td><code class="inset">;fi</code></td><td>&lt;input type="file" name="" value="" size="20" /&gt;</td></tr>
+		<tr><td><code class="inset">;fm</code></td><td>&lt;form action=""&gt;&lt;CR&gt;&lt;/form&gt;</td></tr>
+		<tr><td><code class="inset">;h1</code></td><td>&lt;h1&gt;&lt;/h1&gt;</td></tr>
+		<tr><td><code class="inset">;h2</code></td><td>&lt;h2&gt;&lt;/h2&gt;</td></tr>
+		<tr><td><code class="inset">;h3</code></td><td>&lt;h3&gt;&lt;/h3&gt;</td></tr>
+		<tr><td><code class="inset">;h4</code></td><td>&lt;h4&gt;&lt;/h4&gt;</td></tr>
+		<tr><td><code class="inset">;h5</code></td><td>&lt;h5&gt;&lt;/h5&gt;</td></tr>
+		<tr><td><code class="inset">;h6</code></td><td>&lt;h6&gt;&lt;/h6&gt;</td></tr>
+		<tr><td><code class="inset">;he</code></td><td>&lt;head&gt;&lt;CR&gt;&lt;/head&gt;</td></tr>
+		<tr><td><code class="inset">;hi</code></td><td>&lt;input type="hidden" name="" value="" /&gt;</td></tr>
+		<tr><td><code class="inset">;hr</code></td><td>&lt;hr /&gt;</td></tr>
+		<tr><td><code class="inset">;ht</code></td><td>&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;CR&gt;&lt;/html&gt;</td></tr>
+		<tr><td><code class="inset">;if</code></td><td>&lt;iframe src=""&gt;&lt;CR&gt;&lt;/iframe&gt;</td></tr>
+		<tr><td><code class="inset">;im</code></td><td>&lt;img src="" alt="" /&gt;</td></tr>
+		<tr><td><code class="inset">;in</code></td><td>&lt;ins&gt;&lt;/ins&gt;</td></tr>
+		<tr><td><code class="inset">;it</code></td><td>&lt;i&gt;&lt;/i&gt;</td></tr>
+		<tr><td><code class="inset">;js</code></td><td>&lt;script type="text/javascript"&gt;&lt;!--&lt;CR&gt;//--&gt;&lt;/script&gt;</td></tr>
+		<tr><td><code class="inset">;la</code></td><td>&lt;label for=""&gt;&lt;/label&gt;</td></tr>
+		<tr><td><code class="inset">;li</code></td><td>&lt;li&gt;&lt;/li&gt;</td></tr>
+		<tr><td><code class="inset">;lk</code></td><td>&lt;link href="" /&gt;</td></tr>
+		<tr><td><code class="inset">;ls</code></td><td>&lt;link rel="stylesheet" type="text/css" href="" /&gt;</td></tr>
+		<tr><td><code class="inset">;me</code></td><td>&lt;meta name="" content="" /&gt;</td></tr>
+		<tr><td><code class="inset">;mh</code></td><td>&lt;meta http-equiv="" content="" /&gt;</td></tr>
+		<tr><td><code class="inset">;mi</code></td><td>&lt;img src="" width="" height="" alt="" /&gt;&nbsp;<sup>[3]</sup></td></tr>
+		<tr><td><code class="inset">;ms</code></td><td>&lt;select name="" multiple&gt;&lt;CR&gt;&lt;/select&gt;</td></tr>
+		<tr><td><code class="inset">;ns</code></td><td>&lt;noscript&gt;&lt;CR&gt;&lt;/noscript&gt;</td></tr>
+		<tr><td><code class="inset">;ob</code></td><td>&lt;object data="" width="" height=""&gt;&lt;CR&gt;&lt;/object&gt;</td></tr>
+		<tr><td><code class="inset">;og</code></td><td>&lt;optgroup label=""&gt;&lt;CR&gt;&lt;/optgroup&gt;</td></tr>
+		<tr><td><code class="inset">;ol</code></td><td>&lt;ol&gt;&lt;CR&gt;&lt;/ol&gt;</td></tr>
+		<tr><td><code class="inset">;op</code></td><td>&lt;option&gt;&lt;/option&gt;</td></tr>
+		<tr><td><code class="inset">;pa</code></td><td>&lt;input type="password" name="" value="" size="20" /&gt;</td></tr>
+		<tr><td><code class="inset">;pm</code></td><td>&lt;param name="" value="" /&gt;</td></tr>
+		<tr><td><code class="inset">;pp</code></td><td>&lt;p&gt;&lt;/p&gt;</td></tr>
+		<tr><td><code class="inset">;pr</code></td><td>&lt;pre&gt;&lt;CR&gt;&lt;/pre&gt;</td></tr>
+		<tr><td><code class="inset">;qu</code></td><td>&lt;q&gt;&lt;/q&gt;</td></tr>
+		<tr><td><code class="inset">;ra</code></td><td>&lt;input type="radio" name="" value="" /&gt;</td></tr>
+		<tr><td><code class="inset">;re</code></td><td>&lt;input type="reset" value="Reset" /&gt;</td></tr>
+		<tr><td><code class="inset">;sa</code></td><td>&lt;samp&gt;&lt;/samp&gt;</td></tr>
+		<tr><td><code class="inset">;sb</code></td><td>&lt;sub&gt;&lt;/sub&gt;</td></tr>
+		<tr><td><code class="inset">;se</code></td><td>&lt;select name=""&gt;&lt;CR&gt;&lt;/select&gt;</td></tr>
+		<tr><td><code class="inset">;sj</code></td><td>&lt;script src="" type="text/javascript"&gt;&lt;/script&gt;</td></tr>
+		<tr><td><code class="inset">;sm</code></td><td>&lt;small&gt;&lt;/small&gt;</td></tr>
+		<tr><td><code class="inset">;sn</code></td><td>&lt;span&gt;&lt;/span&gt;</td></tr>
+		<tr><td><code class="inset">;sp</code></td><td>&lt;sup&gt;&lt;/sup&gt;</td></tr>
+		<tr><td><code class="inset">;st</code></td><td>&lt;strong&gt;&lt;/strong&gt;</td></tr>
+		<tr><td><code class="inset">;su</code></td><td>&lt;input type="submit" value="Submit" /&gt;</td></tr>
+		<tr><td><code class="inset">;ta</code></td><td>&lt;table&gt;&lt;CR&gt;&lt;/table&gt;</td></tr>
+		<tr><td><code class="inset">;tA</code></td><td>在常规模式或可视化模式下，提示输入行列数，并自动生成表格代码</td></tr>
+		<tr><td><code class="inset">;tb</code></td><td>&lt;tbody&gt;&lt;CR&gt;&lt;/tbody&gt;</td></tr>
+		<tr><td><code class="inset">;td</code></td><td>&lt;td&gt;&lt;/td&gt;</td></tr>
+		<tr><td><code class="inset">;te</code></td><td>&lt;input type="text" name="" value="" size="20" /&gt;</td></tr>
+		<tr><td><code class="inset">;tf</code></td><td>&lt;tfoot&gt;&lt;CR&gt;&lt;/tfoot&gt;</td></tr>
+		<tr><td><code class="inset">;th</code></td><td>&lt;th&gt;&lt;/th&gt;</td></tr>
+		<tr><td><code class="inset">;tH</code></td><td>&lt;thead&gt;&lt;CR&gt;&lt;/thead&gt;</td></tr>
+		<tr><td><code class="inset">;ti</code></td><td>&lt;title&gt;&lt;/title&gt;</td></tr>
+		<tr><td><code class="inset">;tr</code></td><td>&lt;tr&gt;&lt;/tr&gt;</td></tr>
+		<tr><td><code class="inset">;tx</code></td><td>&lt;textarea name="" rows="10" cols="50"&gt;&lt;CR&gt;&lt;/textarea&gt;</td></tr>
+		<tr><td><code class="inset">;ul</code></td><td>&lt;ul&gt;&lt;CR&gt;&lt;/ul&gt;</td></tr>
 	</table>
 	<p>请注意：</p>
-	<ul>
-		<li>代码列中的&lt;CR&gt;，代表换行符；</li>
+	<ol>
+		<li><td>由于&ldquo;&amp;&rdquo;作为前缀键用于输入<a href="http://yyq123.github.io/learn-vim/learn-vi-602-WebDesign-CharacterEntity.html" title="Input Character Entity">字符实体(Character Entity)</a>，所以定义快捷键用来输入此特殊字符；</td></li>
+		<li>charset属性根据文件的'fileencoding'或'encoding'属性自动判断；您也可以通过g:html_default_charset变量进行强制定义；</li>
+		<li>点击<kbd>;mi</kbd>将查找src指定的图片文件，然后将获得的图片尺寸信息更新到width和height属性中；</li>
+		<li>代码列中的&ldquo;&lt;CR&gt;&rdquo;，代表换行符；</li>
+		<li>在<a href="http://yyq123.github.io/learn-vim/learn-vi-45-VisualMode.html" title="可视化模式(Visual Mode)">可视化模式</a>下选则文本然后点击快捷键，将插入标签并将选中的文本放置在name、value或content属性中；</li>
 		<li>对于&lt;acronym&gt;,&lt;big&gt;,&lt;center&gt;,&lt;font&gt;,&lt;isindex&gt;,&lt;strike&gt;,&lt;tt&gt;,&lt;frame&gt;,&lt;frameset&gt;,&lt;noframes&gt;,&lt;b&gt;,&lt;u&gt;等等已废弃的标签，不建议继续使用；</li>
-		<li>关于完整的HTML标签索引，请参考<a href="https://meiert.com/en/indices/html-elements/" title=HTML Elements Index"">HTML Elements Index</a>。</li>
-	</ul>
-	
-	
+		<li>关于完整的HTML标签索引，请参考<a href="https://meiert.com/en/indices/html-elements/" title="HTML Elements Index">HTML Elements Index</a>。</li>
+	</ol>
 
-
+	<h2 class="article"><a id="HTML-Editor-Tags-Input-Menu">利用菜单输入标签</a></h2>
+	<p>您也可以使用&ldquo;HTML&rdquo;菜单来输入HTML标签；</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/HTML-Editor-Menu-Tags.png" title="HTML-Editor-Menu-Tags"><img src="https://yyq123.github.io/learn-vim/images/HTML-Editor-Menu-Tags.png" alt="HTML-Editor-Menu-Tags" /></a></p>
-	<h2 class="article"><a id=""></a></h2>
 
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="输入字符实体(Input Character Entity)" href="http://yyq123.github.io/learn-vim/learn-vi-602-WebDesign-CharacterEntity.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="转义字符实体(Escape Character Entity)" href="http://yyq123.github.io/learn-vim/learn-vi-603-WebDesign-CharacterEntity-Escape.html">下一篇</a>&gt;</span></p>
 
 </body>
 </html>

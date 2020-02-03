@@ -97,6 +97,7 @@ Created by yyq123@gmail.com using [vim](http://www.vim.org/)
   - [多重色彩括号(Parentheses)](http://yyq123.blogspot.com/2011/11/vim-rainbow-parentheses.html)[<sup>B</sup>](http://yyq123.blogspot.com/2011/11/vim-rainbow-parentheses.html)<sup>/</sup>[<sup>Z</sup>](http://zhuanlan.zhihu.com/p/25727722)
 - **网页开发**
   - [Firefox浏览器](http://yyq123.github.io/learn-vim/learn-vi-605-WebDesign-Firefox.html)[<sup>B</sup>](https://yyq123.blogspot.com/2020/01/vim-firefox.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/101174707)
+  - [输入网页标签(Input HTML Tags)](http://yyq123.github.io/learn-vim/learn-vi-601-WebDesign-HTMLTag-Input.html)[<sup>B</sup>](https://yyq123.blogspot.com/2020/02/vim-input-html-tags.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/104878849)
   - [输入字符实体(Input Character Entity)](http://yyq123.github.io/learn-vim/learn-vi-602-WebDesign-CharacterEntity.html)[<sup>B</sup>](https://yyq123.blogspot.com/2020/01/vim-input-character-entity.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/103799904)
   - [转义字符实体(Escape Character Entity)](http://yyq123.github.io/learn-vim/learn-vi-603-WebDesign-CharacterEntity-Escape.html)[<sup>B</sup>](https://yyq123.blogspot.com/2020/01/vim-escape-character-entity.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/104136197)
 - **正则表达式**

@@ -15,10 +15,11 @@
 	<a href=""></a>
 	<a href="#" title=""></a>
 
-	<h2 class="article"><a id="html_close_tag">自动关闭标签</a></h2>
+	<h2 class="article"><a id="html_close_tag">关闭标签</a></h2>
 	<p><code class="inset">inoremap &lt;lt&gt;/ &lt;/&lt;C-x&gt;&lt;C-o&gt;</code></p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/HTML_CloseTag.png" title="HTML_CloseTag"><img src="https://yyq123.github.io/learn-vim/images/HTML_CloseTag.png" alt="HTML_CloseTag" /></a></p>
 
+	<h2 class="article"><a id="html_close_tag">编辑标签</a></h2>
 	<p>在任意标签内，点击<code class="inset">vat</code>命令，将进入<a href="http://yyq123.github.io/learn-vim/learn-vi-45-VisualMode.html" title="可视化模式(Visual Mode)">可视化模式</a>并选中该标签包含的所有内容。之后则可以将选中的标签作为一个整体，来进行编辑或删除等操作。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/vat.png" title="vat"><img src="https://yyq123.github.io/learn-vim/images/vat.png" alt="" width="550" height="60" /></a></p>
 	<p>使用<code class="inset">cit</code>命令，你甚至不用将光标移动到标签之内，就可以快速修改其中的内容。</p>
@@ -27,8 +28,14 @@
 	<p><a href="https://yyq123.github.io/learn-vim/images/cidq_html.png" title="cidq_html"><img src="https://yyq123.github.io/learn-vim/images/cidq_html.png" alt="cidq_html" /></a></p>
 	<p>如果需要修改标签本身，那么可以在标签之内执行<code class="inset">ci&gt;</code>命令：</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/cigt_html.png" title="cigt_html"><img src="https://yyq123.github.io/learn-vim/images/cigt_html.png" alt="cigt_html" /></a></p>
+
+	<h2 class="article"><a id="html_close_tag">删除标签</a></h2>
 	<p>如果需要删除整个标签，那么可以在标签之内执行<code class="inset">ca&gt;</code>命令：</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/cagt_html.png" title="cagt_html"><img src="https://yyq123.github.io/learn-vim/images/cagt_html.png" alt="cagt_html" /></a></p>
+	<p>如果需要删除标签包围的文本，那么可以在标签之内执行<code class="inset">dit</code>命令：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/dit_html.png" title="dit_html"><img src="https://yyq123.github.io/learn-vim/images/dit_html.png" alt="dit_html" /></a></p>
+	<p>如果需要删除成对的标签以及其包围的文本，那么可以在标签之内执行<code class="inset">dat</code>命令：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/dat_html.gif" title="dat_html"><img src="https://yyq123.github.io/learn-vim/images/dat_html.gif" alt="dat_html" /></a></p>
 
 	<p>从以上实例中可以发现，将在命令中灵活引用单引号、双引号和括号等分隔符，可以大大提高编辑代码的效率。请参阅<a href="https://yyq123.github.io/learn-vim/learn-vi-10-TextObjects.html" title="文本对象(Text Objects)">文本对象(Text Objects)</a>章节，以获得更详细的介绍。</p>
 
