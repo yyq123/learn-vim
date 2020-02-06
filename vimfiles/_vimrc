@@ -48,6 +48,7 @@ set undolevels=1000 " use many muchos levels of undo
 set history=1000 " remember more commands and<LeftMouse> search history
 
 set ignorecase    " ignore case when searching
+set infercase     " ignore case whet auto-complete
 set smartcase     " ignore case if search pattern is all lowercase, case-sensitive otherwise
 
 set smarttab      " insert tabs on the start of a line according to shiftwidth, not tabstop
@@ -56,7 +57,7 @@ set backspace=indent,eol,start        " allow backspacing over everything in ins
 set confirm       " Show confirm dialog
 set autoindent    " always set autoindenting on
 set copyindent    " copy the previous indentation on autoindenting
-set gdefault      " applies substitutions globally on lines
+"set gdefault      " applies substitutions globally on lines
 set showmatch     " set show matching parenthesis
 set incsearch     " show search matches as you type
 set visualbell    " Silence the bell, use a flash instead
@@ -96,6 +97,21 @@ map <S-F2> <Esc>:set wrap<CR>
 " Makes gj/gk move by virtual lines when used without a count, and by physical lines when used with a count.
 noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
 noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
+
+" Like gJ, but always remove spaces
+fun! JoinSpaceless()
+    execute 'normal gJ'
+
+    " Character under cursor is whitespace?
+    if matchstr(getline('.'), '\%' . col('.') . 'c.') =~ '\s'
+        " When remove it!
+        execute 'normal dw'
+    endif
+endfun
+
+" Map it to a key
+nnoremap <F10> :call JoinSpaceless()<CR>
+
 
 set pastetoggle=<F5>	" Vim will switch to paste mode, disabling all kinds of smartness and just pasting a whole buffer of text. When in paste-mode auto indent will be turned off.
 
@@ -307,7 +323,7 @@ if has('gui_running')
 	" 确保所有的文件类型会在菜单“语法”（“Syntax”）下出现，而不是出现一个菜单项“Show filetypes in menu”
 	"let do_syntax_sel_menu=1
 	"set guioptions+=b
-	set guioptions+=m
+	set guioptions-=m
 	set guioptions-=T
 	set guioptions-=r
 	set guioptions-=l
@@ -466,26 +482,6 @@ function! TwiddleCase(str)
 endfunction
 vnoremap ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgvl
 
-" file is large from 10mb
-let g:LargeFile = 1024 * 1024 * 5
-augroup LargeFile
-autocmd BufEnter,BufReadPre * let f=getfsize(expand("<afile>")) | if f > g:LargeFile || f == -2 | call LargeFile() | endif
-augroup END
-
-function LargeFile()
- " no syntax highlighting etc
- set eventignore+=FileType
-"setlocal noswapfile
- " save memory when other file is viewed
- setlocal bufhidden=unload
- " is read-only (write with :w new_filename)
- setlocal buftype=nowrite
- " no undo possible
- setlocal undolevels=-1
- " display message
- autocmd VimEnter *  echo "The file is larger than " . (g:LargeFile / 1024 / 1024) . " MB, so some options are changed (see .vimrc for details)."
-endfunction
-
 " HTML {{{
 " Escape/unescape & < > HTML entities in range (default current line).
 function! HtmlEntities(line1, line2, action)
@@ -504,10 +500,13 @@ function! HtmlEntities(line1, line2, action)
 	let @/ = search
 endfunction
 
-command! -range -nargs=1 Entities call HtmlEntities(<line1>, <line2>, <args>)
+command! -range -nargs=1 HEntities call HtmlEntities(<line1>, <line2>, <args>)
 
-noremap <silent> <Leader>he :Entities 0<CR>
-noremap <silent> <Leader>hu :Entities 1<CR>
+noremap <silent> <Leader>hu :HEntities 0<CR>
+noremap <silent> <Leader>he :HEntities 1<CR>
+
+map <silent> <F9> <Esc>:HEntities 1<CR>
+
 " }}}
 
 " Autocommand {{{
@@ -553,7 +552,8 @@ command! FmtCode DelTab|DelLF
 "}}}
 
 " BeforPlugin {{{
-let g:no_html_tab_mapping = 'yes'
+"let g:no_html_tab_mapping = 'yes'
+"let g:html_map_leader = mapleader 
 " }}}
 
 " Plugin Vundle {{{
@@ -582,7 +582,7 @@ Plugin 'mattn/webapi-vim'
 Plugin 'mattn/gist-vim'
 Plugin 'mbbill/fencview'
 Plugin 'liuchengxu/vim-which-key'
-"Plugin 'MTDL9/vim-log-highlighting'
+Plugin 'YankRing.vim'
 "Plugin 'LargeFile'
 "Plugin 'landonb/dubs_html_entities'
 "plugin from http://vim-scripts.org/vim/scripts.html
@@ -706,6 +706,8 @@ let g:which_key_map.F = {
       \ 'F6'   : ['call ToggleCursor()'     , 'ToggleCursorLine']     ,
       \ 'F7'   : ['hi'           , 'highlight']     ,
       \ 'F8'   : ['tabs'         , 'Show all buffers in tabs'] ,
+      \ 'F9'   : ['HTML Escape'  , 'Escape Character Entity)'] ,
+      \ 'F10'  : ['gJ'           , 'join lines without producing a space'] ,
       \ 'C-F1' : ['set go-=m'    , 'Show Menu']      ,
       \ 'C-F2' : ['set go-=T'    , 'Show Toolbar']      ,
       \ 'C-F3' : ['set go-=r'    , 'Show Scroolba']      ,

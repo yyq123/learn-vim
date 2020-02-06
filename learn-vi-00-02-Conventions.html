@@ -8,26 +8,57 @@
 	<title>VIM学习笔记 表示法/约定(Conventions)</title>
 </head>
 <body>
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">快捷键 KEY PRESSES</p>
-	
-<Esc> - Indicates that the named key should be pressed.
-<Ctrl>-p - Keys joined with a - should be pressed simultaneously. In this example the
-<Ctrl> should be held down while the p key is pressed.
-NORMAL MODE COMMANDS
-gqap - The named characters should be entered in order while in Normal mode.
-COMMAND-LINE COMMANDS
-:set spell - The command should be typed in Command-Line mode. (If you're in a
-different mode, press <Esc> before you type the command).
-:!command - As above, but command is a variable which should be substituted for its value.
-MONOSPACED FONT
-A fixed width font is used for filenames, code, and variable names.
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">命令 COMMANDS</p>
-命令将使用"Courier New", Courier,字体
+	<h1>VIM学习笔记 表示法/约定(Conventions)</h1>
+
+	<h2 class="article"><a id="con_key">快捷键（KEY PRESSES）</a></h2>
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
+		<tr><th>按键</th><th>描述</th><th>帮助信息</th></tr>
+		<tr><td><kbd>&lt;Esc&gt;</kbd></td><td>指定按键</td><td></td></tr>
+		<tr><td><kbd>&lt;Ctrl&gt;-x</kbd></td>组合键，同时按下修饰键和字母<td></td><td></td></tr>
+		<tr><td><kbd></kbd></td><td></td><td></td></tr>
+		<tr><td><kbd></kbd></td><td></td><td></td></tr>
+		<tr><td><kbd></kbd></td><td></td><td></td></tr>
+		<tr><td><kbd></kbd></td><td></td><td></td></tr>
+	</table>
+
+	<h2 class="article"><a id="con_commands">命令（COMMANDS）</a></h2>
+	<p>命令将使用等宽字体（Monospaced font），例如"Courier New"和Courier等。</p>
 	<p>用户应该用时间的文件名和目录来分别替换</p>
 中括号[]之间的内容是可选的，中括号本身是不需要输入的
 使用&ldquo;$&rdquo;开头的命令，是在Linux或Windows命令行中输入的操作系统命令。
 
-	<p>如果要将当前窗口的标题改为正在编辑的文件名，可以使用以下命令：</p>
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
+		<tr><th style="white-space: nowrap">命令</th><th>描述</th><th>帮助信息</th></tr>
+		<tr><td><code class="inset">gqap</code></td><td>NORMAL MODE COMMANDS在常规模式下的命令</td><td></td></tr>
+		<tr><td><code class="inset">:set spell</code></td><td>COMMAND-LINE COMMANDS命令行模式下的命令</td><td></td></tr>
+		<tr><td><code class="inset">:!command</code></td><td>调用外部shell命令</td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td><td></td></tr>
+	</table>
+
+	<p>命令缩写</p>
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
+		<tr><th style="white-space: nowrap">命令缩写</th><th>完整命令</th></tr>
+		<tr><td><code class="inset">q</code></td><td><code class="inset">quit</code></td></tr>
+		<tr><td><code class="inset">w</code></td><td><code class="inset">write</code></td></tr>
+		<tr><td><code class="inset"></code></td><td><code class="inset"></code></td></tr>
+		<tr><td><code class="inset"></code></td><td><code class="inset"></code></td></tr>
+		<tr><td><code class="inset"></code></td><td><code class="inset"></code></td></tr>
+		<tr><td><code class="inset"></code></td><td><code class="inset"></code></td></tr>
+	</table>
+
+	<p>选项缩写</p>
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
+		<tr><th style="white-space: nowrap">选项缩写</th><th>完整选项</th></tr>
+		<tr><td><code class="inset">ai</code></td><td><code class="inset">autoindent</code></td></tr>
+		<tr><td><code class="inset">bg</code></td><td><code class="inset">background</code></td></tr>
+		<tr><td><code class="inset">isk</code></td><td><code class="inset">iskeyword</code></td></tr>
+		<tr><td><code class="inset">tsr</code></td><td><code class="inset">thesaurus</code></td></tr>
+		<tr><td><code class="inset"></code></td><td><code class="inset"></code></td></tr>
+		<tr><td><code class="inset"></code></td><td><code class="inset"></code></td></tr>
+	</table>
+
+'<p>如果要将当前窗口的标题改为正在编辑的文件名，可以使用以下命令：</p>
 	<p style="text-indent:2em"><code class="inset">:set title</code></p>
 	<p>默认情况下，窗口标题将显示当前编辑的文件名，随后是一个状态标识码，以及文件路径：</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/set title.png" title="set title.png"><img src="https://yyq123.github.io/learn-vim/images/set title.png" alt="set title"></a></p>
@@ -43,10 +74,16 @@ A fixed width font is used for filenames, code, and variable names.
 	<p>使用以下命令，可以直接改变标题：</p>
 	<p style="text-indent:2em"><code class="inset">:set titlestring=Hello World!</code></p>
 	<p>使用<code class="inset">:help titlestring</code>命令，可以查看关于GUI选项的更多帮助信息。</p>
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">识别文件</p>
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
+		<caption style="margin:0.5em; font-weight:bold">选项列表</caption>
+		<tr><th style="white-space: nowrap">选项</th><th>描述</th><th>帮助信息</th></tr>
+		<tr><td><code class="inset">!</code></td><td>如果包含，表示。例如，。</td><td style="white-space: nowrap"><code class="inset">:help viminfo-!</code></td></tr>
+	</table>
+
 	<p></p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
 
+	<h2 class="article"><a id="">启用/禁用</a></h2>
 	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
 
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
