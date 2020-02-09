@@ -25,6 +25,34 @@
 		<li>在当前的标签（tags）列表进行查找；</li>
 		<li>在由当前文件（如#include）包含进来的头文件中进行查找。</li>
 	</ul>
+	<p>假设文件中包含以下句子：</p>
+	<p style="text-indent:2em;font-style:italic">I have beautiful flowers in my flower garden</p>
+	<p>我们另起一行并输入&ldquo;f&rdquo;字母，然后点击<kbd>Ctrl-X&nbsp;Ctrl-N</kbd>快捷键，将会在当前文件内查找已经存在的单词：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/AutoCompletion_Ctrl_X_N.png" title="AutoCompletion_Ctrl_X_N"><img src="https://yyq123.github.io/learn-vim/images/AutoCompletion_Ctrl_X_N.png" alt="AutoCompletion_Ctrl_X_N" width="550" height="243" /></a></p>
+	<p>而使用<kbd>Ctrl-N</kbd>快捷键，将会根据'complete'选项指定的范围进行查找。比如在其它缓冲区内找到了更多以f开头的单词：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/AutoCompletion_Ctrl_N.png" title="AutoCompletion_Ctrl_N"><img src="https://yyq123.github.io/learn-vim/images/AutoCompletion_Ctrl_N.png" alt="AutoCompletion_Ctrl_N" width="550" height="243" /></a></p>
+	<p>通过以下命令设置'complete'选项，可以定义自动补全的查找范围：</p>
+	<p style="text-indent:2em"><code class="inset">:set complete=key,key,key</code></p>
+	<p>命令中可能出现的key值如下：</p>
+	<table summary="complete" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3" style="margin-left:2em">
+		<tr><td style="font-weight:bold">.</td><td>当前缓冲区</td></tr>
+		<tr><td style="font-weight:bold">b</td><td>缓冲区列表中的其它已载入的缓冲区</td></tr>
+		<tr><td style="font-weight:bold">d</td><td>当前文件以及由'include'选项指定的包含进来的文件<br />查找由'define'选项定义的宏（definition/macro）</td></tr>
+		<tr><td style="font-weight:bold">i</td><td>当前文件以及由'include'选项指定的包含进来的文件</td></tr>
+		<tr><td style="font-weight:bold">k</td><td>由'dictionary'选项指定的文件</td></tr>
+		<tr><td style="font-weight:bold">kspell</td><td>当前激活的拼写检查</td></tr>
+		<tr><td style="font-weight:bold">k{dict}</td><td>名为{dict}的文件</td></tr>
+		<tr><td style="font-weight:bold">s</td><td>由'thesaurus'选项指定的文件</td></tr>
+		<tr><td style="font-weight:bold">t</td><td rowspan="2">标签(tags)文件</td></tr>
+		<tr><td style="font-weight:bold">]</td></tr>
+		<tr><td style="font-weight:bold">u</td><td>缓冲区列表中的没有载入的缓冲区</td></tr>
+		<tr><td style="font-weight:bold">w</td><td>在其他窗口中载入的文件</td></tr>
+	</table>
+	<p>使用以下命令，可以将字典文件添加到搜索列表中：</p>
+	<p style="text-indent:2em"><code class="inset">:set complete+=k</code></p>
+	<p>使用以下命令，可以将包含的文件从搜索列表中移除：</p>
+	<p style="text-indent:2em"><code class="inset">:set complete-=i</code></p>
+	<p>使用<code class="inset">:h 'complete'</code>命令，可以查看'complete'选项的帮助信息。</p>
 
 	<h2 class="article" id="ctrl-x-mode">^X模式</h2>
 	<p>在插入模式下，输入<kbd>Ctrl-X</kbd>将进入^X模式（可以认为这是插入和替换模式的一个子模式）。屏幕底部将显示以下提示信息：</p>
@@ -62,6 +90,12 @@
 	<p>请注意，如果您不希望应用任何匹配项完成补全时，应该使用<kbd>Ctrl-E</kbd>键，而不是使用<kbd>Esc</kbd>键来取消操作。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/AutoCompletion_popupmenu.gif" title="AutoCompletion_popupmenu"><img src="https://yyq123.github.io/learn-vim/images/AutoCompletion_popupmenu.gif" alt="AutoCompletion_popupmenu" /></a></p>
 	<p>使用<code class="inset">:h popupmenu-keys</code>命令，可以查看关于弹出菜单快捷键的帮助信息。</p>
+
+	<h2 class="article" id="complete-ignorecase">忽略大小写</h2>
+	<p>如果我们使用以下命令，设置了在查找过程中忽略大小写，那么在自动完成时，反而会造成区分大小写：</p>
+	<p style="text-indent:2em"><code class="inset">:set ignorecase</code></p>
+	<p>使用以下命令，则可以设置在自动完成时忽略大小写：</p>
+	<p style="text-indent:2em"><code class="inset">:set infercase</code></p>
 
 	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="缩进(Indent)" href="http://yyq123.github.io/learn-vim/learn-vi-66-Indent.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/learn-vi-80-02-AutoCompletion-Detail.html">下一篇</a>&gt;</span></p>
 
