@@ -11,10 +11,10 @@
 	<h1>VIM学习笔记 自动补全(Auto-Completion)</h1>
 
 	<p>在<a href="http://yyq123.github.io/learn-vim/learn-vi-42-InsertMode.html" title="插入模式(Insert Mode)">插入模式</a>下，利用自动补全（<a href="http://vimcdoc.sourceforge.net/doc/insert.html#ins-completion" title="ins-completion">Insertion-Completion</a>）功能，vim能够根据正在输入的字符，查找匹配的关键字并显示在弹出菜单（popup menu）中。通过选择匹配项，可以补全输入的部分关键字甚至整行文本。</p>
-	<p>Vim可以针对整行文字、关键字、字典、词典、标签、文件名、宏、命令和拼写等等进行补全。本节将首先介绍进入补全模式的操作方法；<a href="http://yyq123.github.io/learn-vim/learn-vi-80-02-AutoCompletion-Detail.html" title="AutoCompletion-Detail">下节</a>将详细介绍各种补全方式的特点。</p> 
+	<p>Vim可以针对整行文字、关键字、字典、词典、标签、文件名、宏、命令和拼写等等进行补全。本节将首先介绍进入补全模式的操作方法；<a href="http://yyq123.github.io/learn-vim/learn-vi-80-02-AutoCompletion-Detail.html" title="AutoCompletion-Detail">下节</a>将详细介绍各种补全方式的特点。</p>
 
 	<h2 class="article"><a id="compl-generic">关键字补全（Generic keyword completion）</a></h2>
-	<p>使用<kbd>Ctrl-N</kbd>快捷键，将按照'complete'选项指定的范围来搜索匹配的关键字。其默认值为：</p>
+	<p>使用<kbd>Ctrl-N</kbd>或<kbd>Ctrl-P</kbd>键，将按照<a href="http://yyq123.github.io/learn-vim/learn-vi-80-03-AutoCompletion-Option.html#complete" title="complete">'complete'</a>选项指定的范围来搜索匹配的关键字。其默认值为：</p>
 	<p style="text-indent:2em"><code class="inset">:set complete=.,w,b,u,t,i</code></p>
 	<p>也就是说，默认将在以下来源中查找关键字：</p>
 	<ul>
@@ -26,8 +26,8 @@
 		<li>在由当前文件（如#include）包含进来的头文件中进行查找。</li>
 	</ul>
 
-	<h2 class="article" id="ctrl-x-mode">^X模式</h2>
-	<p>在插入模式下，输入<kbd>Ctrl-X</kbd>将进入^X模式（可以认为这是插入和替换模式的一个子模式）。屏幕底部将显示以下提示信息：</p>
+	<h2 class="article" id="ctrl-x-mode">^X模式（Ctrl-X Mode）</h2>
+	<p>在插入模式下，输入<kbd>Ctrl-X</kbd>将进入^X模式（插入和替换模式的一个子模式）。屏幕底部将显示以下提示信息：</p>
 	<p style="text-indent:2em"><code class="msg">-- ^X mode (^]^D^E^F^I^K^L^N^O^Ps^U^V^Y)</code></p>
 	<p>您可以选择以下自动补全方式：</p>
 	<table border="0" cellspacing="3" cellpadding="3" style="margin-left:2em">
@@ -46,7 +46,7 @@
 		<tr><td><kbd>Ctrl-V</kbd></td><td><a href="http://yyq123.github.io/learn-vim/learn-vi-80-02-AutoCompletion-Detail.html#compl-vim">Vim命令补全</a></td></tr>
 		<tr><td><kbd>Ctrl-Y</kbd></td><td>向下滚动文本</td></tr>
 	</table>
-	<p>假设在编辑main.c文件时，想要查找一个宏定义，那么首先按下<kbd>ctrl-X</kbd>键进入^X模式，然后再按下<kbd>CTRL-D</kbd>键，这时就会再弹出菜单中显示匹配项。</p>
+	<p>假设在编辑main.c文件时，想要查找一个宏定义，那么首先按下<kbd>ctrl-X</kbd>键进入^X模式，然后再按下<kbd>CTRL-D</kbd>键，这时就会在弹出菜单中显示匹配项。</p>
 
 	<h2 class="article"><a id="popupmenu-completion">补全弹出菜单（popupmenu-completion）</a></h2>
 	<p>随着弹出菜单的显示，将会自动应用第一个匹配项。</p>
@@ -63,7 +63,7 @@
 	<p><a href="https://yyq123.github.io/learn-vim/images/AutoCompletion_popupmenu.gif" title="AutoCompletion_popupmenu"><img src="https://yyq123.github.io/learn-vim/images/AutoCompletion_popupmenu.gif" alt="AutoCompletion_popupmenu" /></a></p>
 	<p>使用<code class="inset">:h popupmenu-keys</code>命令，可以查看关于弹出菜单快捷键的帮助信息。</p>
 
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="缩进(Indent)" href="http://yyq123.github.io/learn-vim/learn-vi-66-Indent.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/learn-vi-80-02-AutoCompletion-Detail.html">下一篇</a>&gt;</span></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="缩进(Indent)" href="http://yyq123.github.io/learn-vim/learn-vi-66-Indent.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="自动补全详解(AutoCompletion-Detail)" href="http://yyq123.github.io/learn-vim/learn-vi-80-02-AutoCompletion-Detail.html">下一篇</a>&gt;</span></p>
 
 </body>
 </html>
