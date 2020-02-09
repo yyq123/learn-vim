@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 自动补全(Auto-Completion)</title>
+</head>
+<body>
+	<h1>VIM学习笔记 自动补全(Auto-Completion)</h1>
+
+	<p>在<a href="http://yyq123.github.io/learn-vim/learn-vi-42-InsertMode.html" title="插入模式(Insert Mode)">插入模式</a>下，利用自动补全（<a href="http://vimcdoc.sourceforge.net/doc/insert.html#ins-completion" title="ins-completion">Insertion-Completion</a>）功能，vim能够根据正在输入的字符，查找匹配的关键字并显示在弹出菜单（popup menu）中。通过选择匹配项，可以补全输入的部分关键字甚至整行文本。</p>
+	<p></p>
+	<a href="#" title=""></a>
+	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="550" height="" /></a></p>
+
+	<h2 class="article"><a id="compl-generic">关键字补全（Generic keyword completion）</a></h2>
+	<p>使用<kbd>Ctrl-N</kbd>快捷键，将按照'complete'选项指定的范围来搜索匹配的关键字。其默认值为：</p>
+	<p style="text-indent:2em"><code class="inset">:set complete=.,w,b,u,t,i</code></p>
+	<p>也就是说，默认将在以下来源中查找关键字：</p>
+	<ul>
+		<li>在当前缓冲区中进行查找；</li>
+		<li>在其他窗口中进行查找；</li>
+		<li>在其他已载入的缓冲区中进行查找；</li>
+		<li>在没有载入缓冲区的文件中进行查找；</li>
+		<li>在当前的标签（tags）列表进行查找；</li>
+		<li>在由当前文件（如#include）包含进来的头文件中进行查找。</li>
+	</ul>
+	<p>假设文件中包含以下句子：</p>
+	<p style="text-indent:2em;font-style:italic">I have beautiful flowers in my flower garden</p>
+	<p>当我们另起一行并输入&ldquo;f&rdquo;字母，然后点击<kbd>Ctrl-X&nbsp;Ctrl-N</kbd>快捷键，将会在当前文件内查找已经存在的单词：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/AutoCompletion_Ctrl_X_N.png" title="AutoCompletion_Ctrl_X_N"><img src="https://yyq123.github.io/learn-vim/images/AutoCompletion_Ctrl_X_N.png" alt="AutoCompletion_Ctrl_X_N" width="550" height="243" /></a></p>
+	<p>而使用<kbd>Ctrl-N</kbd>快捷键，将会根据'complete'选项扩展查找范围，比如在其它缓冲区内找到了更多以f开头的单词：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/AutoCompletion_Ctrl_N.png" title="AutoCompletion_Ctrl_N"><img src="https://yyq123.github.io/learn-vim/images/AutoCompletion_Ctrl_N.png" alt="AutoCompletion_Ctrl_N" width="550" height="243" /></a></p>
+`	<p>通过设置'complete'选项，可以定义自动补全的查找范围：</p>
+	<p style="text-indent:2em"><code class="inset">:set complete=key,key,key</code></p>
+	<p>命令中可能出现的key值如下：</p>
+	<table summary="complete" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
+		<tr><td style="font-weight:bold">.</td><td>当前缓冲区</td></tr>
+		<tr><td style="font-weight:bold">b</td><td>缓冲区列表中的其它已载入的缓冲区</td></tr>
+		<tr><td style="font-weight:bold">d</td><td>在当前的文件中定义和由#include包含进来的文件</td></tr>
+		<tr><td style="font-weight:bold">i</td><td>由#include包含进来的文件</td></tr>
+		<tr><td style="font-weight:bold">k</td><td>由dictionary选项指定的文件</td></tr>
+		<tr><td style="font-weight:bold">kspell</td><td>当前激活的拼写检查</td></tr>
+		<tr><td style="font-weight:bold">k{dict}</td><td>名为{dict}的文件</td></tr>
+		<tr><td style="font-weight:bold"></td><td></td></tr>
+		<tr><td style="font-weight:bold">s</td><td>由thesaurus选项指定的文件</td></tr>
+		<tr><td style="font-weight:bold">t</td><td>标签(tags)文件</td></tr>
+		<tr><td style="font-weight:bold">u</td><td>缓冲区列表中的没有载入的缓冲区</td></tr>
+		<tr><td style="font-weight:bold">w</td><td>在其他窗口中载入的文件</td></tr>
+	</table>
+	<p>使用以下命令，可以将字典文件添加到搜索列表中：</p>
+	<p style="text-indent:2em"><code class="inset">:set complete+=k</code></p>
+	<p>使用以下命令，可以将头文件从搜索列表中移除：</p>
+	<p style="text-indent:2em"><code class="inset">:set complete-=i</code></p>
+	<p>您可以使用<code class="inset"> :h 'complete'</code>命令，查看'complete'选项的帮助信息。</p>
+
+	<h2 class="article"><a id="popupmenu-completion">补全弹出菜单（popupmenu-completion）</a></h2>
+	<p>可以使用以下快捷键，在弹出菜单中移动和选择匹配项：</p>
+	<table summary="Commands for the Pop-Up Menu" border="1" cellspacing="3" cellpadding="3" style="margin-left:2em">
+		<tr><td><kbd>Ctrl-N</kbd></td><td>使用下一匹配项</td></tr>
+		<tr><td><kbd>Ctrl-P</kbd></td><td>使用上一匹配项</td></tr>
+		<tr><td><kbd>&darr;</kbd></td><td>向下移动</td></tr>
+		<tr><td><kbd>&uarr;</kbd></td><td>向上移动</td></tr>
+		<tr><td><kbd>Ctrl-Y</kbd></td><td>使用当前匹配项</td></tr>
+		<tr><td><kbd>Ctrl-E</kbd></td><td>关闭菜单并保持原始文字不便</td></tr>
+	</table>
+	<p>随着弹出菜单的显示，将会自动应用第一个匹配项。</p>
+	<p>使用<kbd>Ctrl-N</kbd>和<kbd>Ctrl-P</kbd>上下移动时，输入的文本也会随之变化。</p>
+	<p>使用<kbd>&darr;</kbd>和<kbd>&uarr;</kbd>上下移动时，输入的文字并不会变化。需要使用<kbd>Ctrl-Y</kbd>或<kbd>Enter</kbd>回车键，以使用当前匹配项完成补全。</p>
+	<p>请注意，点击<kbd>Esc</kbd>键将关闭弹出菜单，但会保留之前应用的匹配项。也即是说，如果您不希望应用任何匹配项完成补全时，应该使用<kbd>Ctrl-E</kbd>键退回到原始状态，而不是使用<kbd>Esc</kbd>键来取消操作。</p>
+	<p>使用<code class="inset">:h popupmenu-keys</code>命令，可以查看关于弹出菜单快捷键的帮助信息。</p>
+
+
+
+	<h2 class="article" id="ctrl-x-mode">^X模式</h2>
+	<p>在插入模式下，输入<kbd>ctrl-X</kbd>将进入完成模式（^X mode），屏幕底部将显示以下提示信息：</p>
+	<p style="text-indent:2em"><code class="msg">-- ^X mode (^]^D^E^F^I^K^L^N^O^Ps^U^V^Y)</code></p>
+	<p>您可以继续进行以下自动完成操作:</p>
+	<table border="0" cellspacing="3" cellpadding="3" style="margin-left:2em">
+		<tr><td><kbd>CTRL-]</kbd></td><td>标签(tags)补全</td></tr>
+		<tr><td><kbd>CTRL-D</kbd></td><td>定义补全</td></tr>
+		<tr><td><kbd>CTRL-E</kbd></td><td>向上滚动文本</td></tr>
+		<tr><td><kbd>CTRL-F</kbd></td><td>文件名补全</td></tr>
+		<tr><td><kbd>CTRL-I</kbd></td><td>当前文件以及包含进来的文件补全</td></tr>
+		<tr><td><kbd>CTRL-K</kbd></td><td>字典补全</td></tr>
+		<tr><td><kbd>CTRL-L</kbd></td><td>整行补全</td></tr>
+		<tr><td><kbd>CTRL-N</kbd></td><td>当前文件内的关键字补全，向下选择匹配项</td></tr>
+		<tr><td><kbd>CTRL-O</kbd></td><td>全能补全</td></tr>
+		<tr><td><kbd>CTRL-P</kbd></td><td>当前文件内的关键字补全，向上选择匹配项</td></tr>
+		<tr><td><kbd>CTRL-S</kbd></td><td>拼写建议补全补全</td></tr>
+		<tr><td><kbd>CTRL-U</kbd></td><td>用户自定义补全</td></tr>
+		<tr><td><kbd>CTRL-V</kbd></td><td>Vim命令补全</td></tr>
+		<tr><td><kbd>CTRL-Y</kbd></td><td>向下滚动文本</td></tr>
+	</table>
+	<p>例如编辑main.c文件时，按下<kbd>ctrl-X</kbd>进入CTRL-X的子模式。如果我们要查找一个宏定义，就可以按下<kbd>CTRL-D</kbd>，这时屏幕底部就会显示出有多少匹配的选项，然后用CTRL-P和CTRL-N选择想要的条目。而<kbd>CTRL-]</kbd>则是查找下一个标记(tag)，即C函数的定义。</p>
+
+
+	<h2 class="article" id="complete-opt">自动完成选项</h2>
+	<p>通过设置'completeopt'选项，可以控制匹配列表的显示方式。根据以下默认设置，将在弹出菜单中显示匹配列表，并显示匹配来源文件的额外信息。</p>
+	<p style="text-indent:2em"><code class="inset">:set completeopt=menu,preview</code></p>
+<p></p>
+
+	<h2 class="article" id="complete-ignorecase">忽略大小写</h2>
+	<p>如果我们使用以下命令，设置了在查找过程中忽略大小写，那么在自动完成时，反而会造成区分大小写：</p>
+	<p style="text-indent:2em"><code class="inset">:set ignorecase</code></p>
+	<p>使用以下命令，则可以设置在自动完成时忽略大小写：</p>
+	<p style="text-indent:2em"><code class="inset">:set infercase</code></p>
+
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
+		<tr><td><code class="inset">:</code></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+	</table>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
+
+</body>
+</html>
