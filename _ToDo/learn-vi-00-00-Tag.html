@@ -9,6 +9,244 @@
 </head>
 <body>
 	<h1>VIM学习笔记  ()</h1>
+    <p><a href="http://ctags.sourceforge.net/" title="ctags">Ctags</a></p>
+
+<h2 id="what-is-ctags"><a class="anchor" aria-hidden="true" href="#what-is-ctags">🔗</a>What is ctags?</h2>
+http://ctags.sourceforge.net/languages.html
+<p>Ctags is a tool that extracts important constructs from the code you’re working
+on. If you’re coding in ruby, it’ll find methods, classes and modules. With
+vimscript, it pulls out functions, commands and mappings. The extracted data is
+dumped in a file called “tags” by default, which has a single item per line –
+a “tag”. Depending on the command-line flags and the programming language, you
+could get a lot of information out of these. For example, with C++ and Java,
+ctags can save the inheritance chain for a class. A text editor can then easily
+use that for code navigation and completion.</p>
+
+<h2 id="installation-and-simplest-use-case"><a class="anchor" aria-hidden="true" href="#installation-and-simplest-use-case">🔗</a>Installation and simplest use case</h2>
+
+<p>The actual program is called “Exuberant ctags”, since it’s a rewrite of the original one.</p>
+
+<ul>
+  <li>对于Mac<code class="highlighter-rouge">brew
+install ctags</code> or <code class="highlighter-rouge">port install ctags</code>.</li>
+  <li>On Linux, I’ve yet to see a package manager that doesn’t provide ctags.</li>
+  <li>On Windows, just download the binary from
+<a href="http://ctags.sourceforge.net/">the homepage</a> choco install ctags.</li>
+</ul>
+
+<p>Assuming the executable is in your <code class="highlighter-rouge">PATH</code> (it might not be if you’re running
+Windows), you can simply go to a directory with some code and run:</p>
+	<p>使用以下命令，可以针对指定文件生成tags文件：</p>
+	<p style="text-indent:2em"><code class="inset">:!ctags HTML.vim</code></p>
+	<p>你也可以针对当前目录及其子目录中的所有文件生成tags文件：</p>
+	<p style="text-indent:2em"><code class="inset">:!ctags -R .</code></p>
+
+	<p>使用以下命令，可以直接跳转到定义函数的位置：</p>
+	<p style="text-indent:2em"><code class="inset">:tag <var>name</var></code></p>
+	<p>在常规模式下，使用<kbd>Ctrl-]</kbd>快捷键，将查找光标下的标签（比如函数或宏等），并跳转到定义该标签的位置：</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Foo</span>
+  <span class="k">def</span> <span class="nf">bar</span>
+    <span class="s2">"baz"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="no">Foo</span><span class="p">.</span><span class="nf">new</span><span class="p">.</span><span class="nf">bar</span>
+</code></pre></div></div>
+
+<p>If the cursor is on <code class="highlighter-rouge">Foo</code> at the <code class="highlighter-rouge">Foo.new.bar</code> line and you type <code class="highlighter-rouge">&lt;C-]&gt;</code>, vim
+will jump on the <code class="highlighter-rouge">class Foo</code> line. This works across files as well. To get back
+to where you followed something, just type <code class="highlighter-rouge">&lt;C-t&gt;</code> in normal mode. Using these
+two mappings, you can navigate your entire project pretty easily. Note that
+it’s extremely fast, even if you have a large tag file. That’s because the tags
+are sorted and vim uses a binary search to quickly locate them. It’s simple and
+highly effective.</p>
+
+<h2 id="multiple-matches"><a class="anchor" aria-hidden="true" href="#multiple-matches">🔗</a>Multiple matches</h2>
+
+<p>If you have multiple definitions for a tag, the default <code class="highlighter-rouge">&lt;C-]&gt;</code> behavior is to
+drop you off at the first one it finds. By default, vim gives more priority to
+tags in the current file, which is often what you want. While doing that,
+you’ll also be shown a message:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>tag 1 of x or more
+</code></pre></div></div>
+
+<p>There are various ways to jump through the rest of the matches:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">:tnext</code> and <code class="highlighter-rouge">:tprev</code> will send you to the next and previous tag in the
+list, respectively.</li>
+  <li><code class="highlighter-rouge">:tselect</code> will display the tag list and let you choose one with a number.</li>
+  <li><code class="highlighter-rouge">:ltag</code> will load the tags into the location list window. You can then view
+that window by executing <code class="highlighter-rouge">:lopen</code>.</li>
+</ul>
+<p>These commands will also accept regular expressions, so, for example, <code class="inline">:tag /^asserts_*</code> would find all tags that start with ‘asserts_’. By default vim will
+jump to the first result, but a number of commands can be used to sort through
+the list of tags:</p>
+<ul>
+<li><code class="inline">:ts</code> or <code class="inline">:tselect</code> shows the list
+</li>
+<li><code class="inline">:tn</code> or <code class="inline">:tnext</code> goes to the next tag in that list
+</li>
+<li><code class="inline">:tp</code> or <code class="inline">:tprev</code> goes to the previous tag in that list
+</li>
+<li><code class="inline">:tf</code> or <code class="inline">:tfirst</code> goes to the first tag of the list
+</li>
+<li><code class="inline">:tl</code> or <code class="inline">:tlast</code> goes to the last tag of the list
+</li>
+</ul>
+<p>To show the tags you’ve traversed since you opened vim, run <code class="inline">:tags</code>.</p>
+<p>For an easier time, you could always create some shortcuts. For example, you
+could follow the convention of the
+<a href="http://www.vim.org/scripts/script.php?script_id=1590">unimpaired.vim</a>
+plugin and map <code class="highlighter-rouge">]t</code> for <code class="highlighter-rouge">:tnext</code> and <code class="highlighter-rouge">[t</code> for <code class="highlighter-rouge">:tprev.</code></p>
+
+<h2 id="dynamic-tags-and-autotag"><a class="anchor" aria-hidden="true" href="#dynamic-tags-and-autotag">🔗</a>Dynamic tags and autotag</h2>
+
+<p>I’m going to call the tags generated for your code “dynamic”, since you’re
+probably constantly making changes there. So, what happens when the tags are no
+longer correct? While you could regularly invoke ctags on the working
+directory, that’s going to get annoying pretty fast. Thankfully, the tool has
+an <code class="highlighter-rouge">-a</code> flag that makes it append to a tag file instead of overwriting it. That
+way, you can update the tags very quickly every time a file changes. With vim’s
+autocommands, this could work like this:</p>
+
+<div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code>autocmd <span class="nb">BufWritePost</span> *
+<span class="se">      \</span> <span class="k">if</span> filereadable<span class="p">(</span><span class="s1">'tags'</span><span class="p">)</span> <span class="p">|</span>
+<span class="se">      \</span>   <span class="k">call</span> system<span class="p">(</span><span class="s1">'ctags -a '</span><span class="p">.</span>expand<span class="p">(</span><span class="s1">'%'</span><span class="p">))</span> <span class="p">|</span>
+<span class="se">      \</span> <span class="k">endif</span>
+</code></pre></div></div>
+
+<p>Unfortunately, there’s an issue with this approach. Ctags will only add new
+tags, it won’t remove ones that are no longer present. If you delete a
+function, it will still appear in the tag file.</p>
+
+<p>That’s where the
+<a href="http://www.vim.org/scripts/script.php?script_id=1343">autotag.vim</a>
+plugin comes in. Whenever you save a file, it deletes all of its entries and
+invokes ctags in append mode. I’ve been using it for a long time and I haven’t
+noticed any overhead at all, even on Windows boxes. Unfortunately, your vim
+build needs to have python support to use it. Even if it doesn’t, though, no
+errors are raised, which is nice if you use the same vimfiles across different
+vim builds like I do.</p>
+
+<h2 id="static-tags"><a class="anchor" aria-hidden="true" href="#static-tags">🔗</a>Static tags</h2>
+
+<p>Another way you could use ctags is to index libraries that your project uses,
+assuming you have their source locally. For example, until recently, I would
+checkout the rails source code at <code class="highlighter-rouge">~/src/rails</code>, run ctags on it and save the
+resulting file as <code class="highlighter-rouge">~/tags/rails.tags</code>. I use the nifty
+<a href="http://www.vim.org/scripts/script.php?script_id=2719">Proj plugin</a>
+to
+source project-specific vimfiles, so I just have to add it to the
+<a href="http://vimdoc.sourceforge.net/htmldoc/options.html#%27tags%27">‘tags’</a>
+option:</p>
+
+<div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">set</span> <span class="k">tags</span><span class="p">+=~</span><span class="sr">/tags/</span>rails<span class="p">.</span><span class="k">tags</span>
+</code></pre></div></div>
+
+<p>This allows me to easily jump to a definition of a method within the framework
+itself. Since rails is pretty well commented, I don’t have to google for method
+signatures, at least.</p>
+
+<p>A better approach I eventually discovered was generating tags for <em>all gems</em> I
+was using. Of course, I can’t build an index of every single gem on my system.
+There are different versions installed side-by-side and I’d get a whole lot of
+duplication (if nothing else). But since bundler made its way into ruby, the
+Gemfile always contains a nice snapshot of all gems your particular application
+is using. Thankfully, we don’t have to parse the actual file for that.
+<a href="https://gist.github.com/893236">This little ruby snippet</a>
+taps into bundler’s API to retrieve the gem locations and builds the tag file:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'bundler'</span>
+
+<span class="n">paths</span> <span class="o">=</span> <span class="no">Bundler</span><span class="p">.</span><span class="nf">load</span><span class="p">.</span><span class="nf">specs</span><span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:full_gem_path</span><span class="p">)</span>
+
+<span class="nb">system</span><span class="p">(</span><span class="s2">"ctags -R -f gems.tags </span><span class="si">#{</span><span class="n">paths</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s1">' '</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Even if this script is specific to ruby, the general approach could be used for
+any kind of project. Just maintain a list of all libraries your application is
+using, find them locally and run ctags on that.</p>
+
+<h2 id="code-completion"><a class="anchor" aria-hidden="true" href="#code-completion">🔗</a>Code completion</h2>
+
+<p>Vim has quite a few completion types to deal with different situations, but
+<a href="http://vimdoc.sourceforge.net/htmldoc/insert.html#compl-omni">omnicompletion</a>,
+which is meant to intelligently decide what to do, is just not very good
+ for some languages. That’s why, whenever I want to complete a method 
+call or class name that I know is defined somewhere, I just use
+<a href="http://vimdoc.sourceforge.net/htmldoc/insert.html#compl-tag">tag completion</a>:</p>
+
+<div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code>inoremap <span class="p">&lt;</span><span class="k">c</span><span class="p">-</span><span class="k">x</span><span class="p">&gt;&lt;</span><span class="k">c</span><span class="p">-]&gt;</span> <span class="p">&lt;</span><span class="k">c</span><span class="p">-]&gt;</span>
+</code></pre></div></div>
+
+<p>If you’d like to have it appear automatically as you type, you could try the
+<a href="http://www.vim.org/scripts/script.php?script_id=1879">Acp plugin</a>.
+It’s fast and pretty customizable – you can define the type of completion
+you’d like to use per filetype and depending on some specific condition.</p>
+
+<h2 id="accessing-tag-data-in-vimscript"><a class="anchor" aria-hidden="true" href="#accessing-tag-data-in-vimscript">🔗</a>Accessing tag data in vimscript</h2>
+
+<p>If you’d like to use the tags for your own custom needs, vim provides a
+straightforward way to do that through the
+<a href="http://vimdoc.sourceforge.net/htmldoc/eval.html#taglist\(\)">taglist</a>
+function. It’s called with a regular expression and it will return all the data
+from the matching tags in the form of a list of dictionaries. An example of
+what you could do with it is the following command, which finds function
+definitions:</p>
+
+<div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code>command<span class="p">!</span> <span class="p">-</span>nargs<span class="p">=</span><span class="m">1</span> Function <span class="k">call</span> <span class="nv">s:Function</span><span class="p">(&lt;</span><span class="k">f</span><span class="p">-</span>args<span class="p">&gt;)</span>
+<span class="k">function</span><span class="p">!</span> <span class="nv">s:Function</span><span class="p">(</span>name<span class="p">)</span>
+  <span class="c">" Retrieve tags of the 'f' kind</span>
+  <span class="k">let</span> <span class="k">tags</span> <span class="p">=</span> taglist<span class="p">(</span><span class="s1">'^'</span><span class="p">.</span><span class="nv">a:name</span><span class="p">)</span>
+  <span class="k">let</span> <span class="k">tags</span> <span class="p">=</span> <span class="k">filter</span><span class="p">(</span><span class="k">tags</span><span class="p">,</span> <span class="s1">'v:val["kind"] == "f"'</span><span class="p">)</span>
+
+  <span class="c">" Prepare them for inserting in the quickfix window</span>
+  <span class="k">let</span> qf_taglist <span class="p">=</span> <span class="p">[]</span>
+  <span class="k">for</span> entry <span class="k">in</span> <span class="k">tags</span>
+    <span class="k">call</span> add<span class="p">(</span>qf_taglist<span class="p">,</span> <span class="p">{</span>
+<span class="se">          \</span> <span class="s1">'pattern'</span><span class="p">:</span>  entry<span class="p">[</span><span class="s1">'cmd'</span><span class="p">],</span>
+<span class="se">          \</span> <span class="s1">'filename'</span><span class="p">:</span> entry<span class="p">[</span><span class="s1">'filename'</span><span class="p">],</span>
+<span class="se">          \</span> <span class="p">})</span>
+  <span class="k">endfor</span>
+
+  <span class="c">" Place the tags in the quickfix window, if possible</span>
+  <span class="k">if</span> len<span class="p">(</span>qf_taglist<span class="p">)</span> <span class="p">&gt;</span> <span class="m">0</span>
+    <span class="k">call</span> setqflist<span class="p">(</span>qf_taglist<span class="p">)</span>
+    <span class="k">copen</span>
+  <span class="k">else</span>
+    echo <span class="s2">"No tags found for "</span><span class="p">.</span><span class="nv">a:name</span>
+  <span class="k">endif</span>
+<span class="k">endfunction</span>
+</code></pre></div></div>
+
+<p>Invoking <code class="highlighter-rouge">:Function foo</code> will look for functions in the tag file that start
+with “foo” and load them all in the
+<a href="http://vimdoc.sourceforge.net/htmldoc/quickfix.html#quickfix">quickfix</a>
+window. This could be even more useful with some tab-completion and it’s also
+not very portable across filetypes. It shouldn’t be too difficult to generalize
+it a bit, so I might devote a separate blog post for that when I get around to
+doing it.</p>
+
+<h2 id="summary"><a class="anchor" aria-hidden="true" href="#summary">🔗</a>Summary</h2>
+
+<ul>
+  <li>You can use ctags to index the code you’re working on. The autotag plugin
+can keep the tag file up to date, but you need a vim with python support
+for that.</li>
+  <li>Generating tags for any libraries you’re using is even easier, since they
+won’t be changing any time soon. A potential problem is figuring out a way
+to add the extra tag files just where you need them.</li>
+  <li>Tag completion can often be good enough when you can’t remember an exact
+name for a function or class.</li>
+  <li>Accessing the tag data for your own hardcore customization needs is done
+through the <code class="highlighter-rouge">taglist</code> function.</li>
+</ul>
+
+For more on this stuff, run <code class="inline">:help tags</code> and <code class="inline">:help CTRL-]</code>
+https://vim.fandom.com/wiki/Browsing_programs_with_tags
 假如我们正在看一个程序文件,但是却碰到一个我们并不理解的函数调用.我们可以用命令CTRL-]跳转到函数定义的地方.但是这样做却有一个问题,那就当前的文件被函数定义的内容所替代,我们也就不可以从屏幕上看到这个文件的内容了.
 这个问题的一个解决办法就是我们使用被称为preview的特殊窗口.我们可以通过执行下面的命令来打开preview的特殊窗口,在这个窗口中显示函数定义的内容:
 :ptag function

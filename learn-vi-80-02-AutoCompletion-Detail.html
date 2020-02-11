@@ -5,63 +5,65 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记 全能补全(Omnicompletion)</title>
+	<title>VIM学习笔记 自动补全详解(Auto-Completion Detail)</title>
 </head>
 <body>
+	<h1>VIM学习笔记 自动补全详解(Auto-Completion Detail)</h1>
+
 	<p>在<a href="http://yyq123.github.io/learn-vim/learn-vi-42-InsertMode.html" title="插入模式(Insert Mode)">插入模式</a>下，利用自动补全（<a href="http://vimcdoc.sourceforge.net/doc/insert.html#ins-completion" title="ins-completion">Insertion-Completion</a>）功能，vim能够根据正在输入的字符，查找匹配的关键字并显示在弹出菜单（popup menu）中。通过选择匹配项，可以补全输入的部分关键字甚至整行文本。</p>
 	<p>Vim可以针对整行文字、关键字、字典、词典、标签、文件名、宏、命令和拼写等等进行补全。<a href="http://yyq123.github.io/learn-vim/learn-vi-80-01-AutoCompletion-Intro.html" title="AutoCompletion-Intro">上节</a>介绍了进入补全模式的操作方法；本节将详细介绍各种补全方式的特点。</p> 
 
 	<h2 class="article"><a id="compl-whole-line">整行补全（Whole line completion）</a></h2>
-	<p>使用<kbd>Ctrl-X&nbsp;Ctrl-L</kbd>快捷键，将在<a href="#complete-opt" title="complete-opt">'complet'</a>选项定义的范围内查找匹配的行。例如输入&ldquo;&lt;h&rdquo;，然后调用整行匹配，将会显示所有以&ldquo;h&rdquo;开头的HTML标签。</p>
+	<p>使用<kbd>Ctrl-X&nbsp;Ctrl-L</kbd>快捷键，将在<a href="http://yyq123.github.io/learn-vim/learn-vi-80-03-AutoCompletion-Option.html#complete" title="complete option">'complet'</a>选项定义的范围内查找匹配的行。假设在编辑网页文档时输入&ldquo;&lt;h&rdquo;，然后调用整行匹配，将会显示所有以&ldquo;h&rdquo;开头的HTML标签。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/AutoCompletion_WholeLine.png" title="AutoCompletion_WholeLine"><img src="https://yyq123.github.io/learn-vim/images/AutoCompletion_WholeLine.png" alt="" width="550" height="92" /></a></p>
-	
+
 	<h2 class="article"><a id="compl-current">当前文件内关键字补全（Keyword local completion）</a></h2>
-	<p>使用<kbd>Ctrl-X&nbsp;Ctrl-N</kbd>快捷键，将在当前文件中查找匹配的关键字。</p>
-	<p>此处的关键字，是指由<a href="https://yyq123.github.io/learn-vim/learn-vi-09-word.html" title="iskeyword">'iskeyword'</a>选项定义的字符串。默认情况下，iskeyword=@,48-57,_,192-255，认为由数字、字母和下划线组成的字符串为关键词。而句点和短横线，则被是为关键词之间的分隔符。您可以通过设置'iskeyword'选项，来改变关键词的定义。</p>
+	<p>使用<kbd>Ctrl-X&nbsp;Ctrl-N</kbd>或<kbd>Ctrl-X&nbsp;Ctrl-P</kbd>快捷键，将在当前文件中查找匹配的关键字。</p>
+	<p>此处的关键字，是指由<a href="https://yyq123.github.io/learn-vim/learn-vi-09-word.html" title="iskeyword">'iskeyword'</a>选项定义的字符串。默认情况下，iskeyword=@,48-57,_,192-255，认为由数字、字母和下划线组成的字符串为关键词。而句点和短横线，则被是为关键词之间的分隔符。您可以使用<code class="inset">set iskeyword</code>命令，来改变关键词的定义。</p>
 
 	<h2 class="article"><a id="compl-dictionary">字典补全（Dictionary completion）</a></h2>
 	<p>使用<kbd>Ctrl-X&nbsp;Ctrl-K</kbd>快捷键，将在'dictionary'选项定义的文件中查找匹配的关键词。</p>
-	<p>默认情况下'dictionary'选项为空。可以使用<code class="inset">:set dictionary</code>命令，指定字典文件。</p>
-	<p>对于Linux系统，通常会查找/usr/dict/words或/usr/share/dict/words目录下的字典文件：</p>
+	<p>默认情况下'dictionary'选项为空。可以使用<code class="inset">:set dictionary</code>命令，来指定字典文件。</p>
+	<p>对于Linux系统，通常会查找/usr/dict/words或/usr/share/dict/words：</p>
 	<p style="text-indent:2em"><code class="inset">:set dictionary=/usr/dict/words,/usr/share/dict/words</code></p>
-	<p>你也可以包括自定义的字典文件：</p>
-	<p style="text-indent:2em"><code class="inset">:set dictionary+=home/oualline/words</code></p>
 	<p>对于Windows系统，如果已经安装了<a href="http://yyq123.github.io/learn-vim/learn-vi-804-Toolkit-CLI-Win.html#Cygwin" title="Windows命令行环境(Toolkit-CLI-Win)">Cygwin</a>，那么可以选择添加<a href="https://cygwin.com/packages/summary/words.html" title="words">words</a>软件包；然后根据您的Cygwin安装目录，来指定字典文件：</p>
 	<p style="text-indent:2em"><code class="inset">set dictionary=D:\cygwin64\usr\share\dict\linux.words</code></p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/Tools_Cygwin_SelectPackages_dict.png" title="Tools_Cygwin_SelectPackages_dict"><img src="https://yyq123.github.io/learn-vim/images/Tools_Cygwin_SelectPackages_dict.png" alt="Tools_Cygwin_SelectPackages_dict" width="550" height="140" /></a></p>
-	<p>假设我们需要输入单词&ldquo;acknowledged&rdquo;，只需要首先输入&ldquo;ack&rdquo;三个字母，然后点击快捷键即可进行匹配：</p>
+	<p>你也可以包括其它自定义的字典文件：</p>
+	<p style="text-indent:2em"><code class="inset">:set dictionary+=home/oualline/words</code></p>
+	<p>假设我们需要输入单词&ldquo;acknowledged&rdquo;，只需要首先输入&ldquo;ack&rdquo;三个字母，然后点击<kbd>Ctrl-X&nbsp;Ctrl-K</kbd>快捷键即可进行匹配：</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/AutoCompletion_Dictionary.png" title="AutoCompletion_Dictionary"><img src="https://yyq123.github.io/learn-vim/images/AutoCompletion_Dictionary.png" alt="AutoCompletion_Dictionary" width="550" height="197" /></a></p>
-	<code class="inset"></code>命令。<code class="inset"></code>来设置。我们也可以指定一个字典文件和k选项组合使用<code class="inset">:set dictionary=k/usr/oualline/words</code>。也可以多次的使用k这个标记选项<code class="inset">:set dictionary=k/usr/dict/words,k/usr/share/words</code></p>
 
 	<h2 class="article"><a id="complete-thesaurus">词典补全（Thesaurus completion）</a></h2>
 	<p>使用<kbd>Ctrl-X&nbsp;Ctrl-T</kbd>快捷键，将在'thesaurus'选项定义的文件中查找匹配的关键词。</p>
 	<p>默认情况下'thesaurus'选项为空。可以使用<code class="inset">:set thesaurus</code>命令，指定字典文件。</p>
-	<p>首先，<a href="https://github.com/vim/vim/issues/629#issuecomment-443293282" title="Thesaurus Zip">下载</a>词典文件；然后，解压缩后将其中的thesaurus.txt文件复制为~/.vim/thesaurus/english.txt,；最后使用以下命令，来指定词典文件：</p>
+	<p>首先<a href="https://github.com/vim/vim/issues/629#issuecomment-443293282" title="Thesaurus Zip">下载</a>词典文件；然后解压缩后将其中的thesaurus.txt文件复制为~/.vim/thesaurus/english.txt；最后使用以下命令，来指定词典文件：</p>
 	<p style="text-indent:2em"><code class="inset">:set thesaurus=$HOME\vimfiles\thesaurus\english.txt</code></p>
 	<p>假设我们输入单词&ldquo;enjoy&rdquo;，然后点击<kbd>Ctrl-X&nbsp;Ctrl-T</kbd>快捷键，将会在词典文件中查找光标下的单词：</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/AutoCompletion_Thesaurus.png" title="AutoCompletion_Thesaurus"><img src="https://yyq123.github.io/learn-vim/images/AutoCompletion_Thesaurus.png" alt="AutoCompletion_Thesaurus" width="550" height="137" /></a></p>
 	<p>因为在词典文件中，每行会包含多个单词，所以将显示匹配行中的所有单词：</p>
-	<p style="text-indent:2em"><code class="msg">bask enjoy relish savor savour lie</code></p>
+	<p style="text-indent:2em;font-style:italic">bask enjoy relish savor savour lie</p>
 
-	<h2 class="article"><a id="compl-keyword">当前文件及其头文件内关键字补全（Path pattern completion）</a></h2>
+	<h2 class="article"><a id="compl-keyword">当前文件及其包含的文件关键字补全（Path pattern completion）</a></h2>
 	<p>使用<kbd>Ctrl-X&nbsp;Ctrl-I</kbd>快捷键，将在当前文件以及由'include'选项指定的包含进来的文件中查找匹配的关键词。</p>
-	<p>很多编程语言都会提供从外部文件中调用代码的功能。比如，C语言的#include语法和Python的import语法等。Vim将根据文件类型所对应的'include'选项，自动查找指定包含的文件。您可以使用<code class="inset">:set include?</code>命令，查看当前的'include'选项设置。</p>
-	<p>您可以使用<code class="inset">:h 'include'</code>命令，查看'include'选项的帮助信息。</p>
+	<p>很多编程语言都会提供从外部文件中调用代码的功能。比如，C语言的#include语法和Python的import语法等。Vim将根据文件类型所对应的'include'选项，来查找指定包含的文件。您可以使用<code class="inset">:set include?</code>命令，查看当前的'include'选项设置。</p>
 
 	<h2 class="article"><a id="compl-tag">标签补全（Tag completion）</a></h2>
 	<p>使用<kbd>Ctrl-X&nbsp;Ctrl-]</kbd>快捷键，将在当前文件以及由'include'选项指定的包含进来的文件中查找匹配的标签。</p>
 
-	<h2 class="article"><a id="compl-filename">文件名匹配（File name completion）</a></h2>
-	<p>使用<kbd>Ctrl-X&nbsp;Ctrl-F</kbd>快捷键，可以匹配并补全文件名。如果当前光标下的文本不包含任何路径信息，那么将显示当前目录下的文件列表；如果当前光标下的文本包含任何（绝对或相对）路径信息，那么将显示其指定目录下的文件列表；如果当前光标下的文本包含唯一的路径信息（比如&ldquo;~&rdquo;），那么将自动转换为目录的完整名称。</p>
+	<h2 class="article"><a id="compl-filename">文件名补全（File name completion）</a></h2>
+	<p>使用<kbd>Ctrl-X&nbsp;Ctrl-F</kbd>快捷键，可以匹配并补全文件名。</p>
+	<p>如果当前光标下的文本不包含任何路径信息，那么将显示当前目录下的文件列表。</p>
+	<p>如果当前光标下的文本包含任何（绝对或相对）路径信息，那么将显示其指定目录下的文件列表。</p>
+	<p>如果当前光标下的文本包含唯一的路径信息（比如&ldquo;~&rdquo;），那么将自动转换为目录的完整名称。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/AutoCompletion_FileName.png" title="AutoCompletion_FileName"><img src="https://yyq123.github.io/learn-vim/images/AutoCompletion_FileName.png" alt="AutoCompletion_FileName" /></a></p>
 
 	<h2 class="article"><a id="compl-define">定义补全（Definition completion）</a></h2>
 	<p>使用<kbd>Ctrl-X&nbsp;Ctrl-D</kbd>快捷键，将在当前文件以及由'include'选项指定的包含进来的文件中，查找由'define'选项定义的宏（definition/macro）。</p>
-	<p>Vim将根据'define'选项定义的正则表达式，来查找查找宏。您可以使用<code class="inset">:set define?</code>命令，查看当前的'define'选项设置。</p>
-	<p>您可以使用<code class="inset">:h 'define'</code>命令，查看'define'选项的帮助信息。</p>
+	<p>'define'选项定义的正则表达式默认为&ldquo;^\s*#\s*define&rdquo;，将查找以&ldquo;define&rdquo;语法定义的宏。您可以使用<code class="inset">:set define?</code>命令，查看当前的'define'选项设置。</p>
 
 	<h2 class="article"><a id="compl-vim">Vim命令补全（Command-line completion）</a></h2>
-	<p>使用<kbd>Ctrl-X&nbsp;Ctrl-V</kbd>快捷键，将匹配Vim命令，以辅助脚本开发。</p>
+	<p>使用<kbd>Ctrl-X&nbsp;Ctrl-V</kbd>快捷键，将匹配Vim命令，以便在您开发Vim脚本时加速代码录入。</p>
 
 	<h2 class="article"><a id="compl-function">用户自定义补全（User defined completion）</a></h2>
 	<p>使用<kbd>Ctrl-X&nbsp;Ctrl-U</kbd>快捷键，将由'completefunc'选项指定的自定义函数来进行匹配。</p>
@@ -72,32 +74,39 @@
 	<p style="text-indent:2em"><code class="inset">:set spell</code></p>
 	
 	<h2 class="article"><a id="compl-omni">全能补全（Omni completion）</a></h2>
-	<p>使用<kbd>Ctrl-X&nbsp;Ctrl-O</kbd>快捷键，将由'omnifunc'选项指定的自定义函数来进行匹配。Vim通过$VIMRUNTIME/autoload/{filetype}complete.vim文件来实现全能补全特性，现在支持8种语言，包括C, (X)HTML with CSS, JavaScript, PHP, Python, Ruby, SQL和XML。</p>
-	<p>在插入状态下，输入HTML标签的前几个字母（例如下图所示&ldquo;&lt;p cl&rdquo;），按下<kbd>Ctrl+X</kbd>和<kbd>Ctrl+O</kbd>键，将显示匹配弹出菜单：</p>
+	<p>使用<kbd>Ctrl-X&nbsp;Ctrl-O</kbd>快捷键，将由'omnifunc'选项指定的自定义函数来进行匹配。Vim将通过$VIMRUNTIME/autoload/{filetype}complete.vim文件来实现全能补全特性，现在支持8种语言，包括C, (X)HTML with CSS, JavaScript, PHP, Python, Ruby, SQL和XML。</p>
+	<p>例如首先输入HTML标签的前几个字母&ldquo;&lt;p cl&rdquo;，然后按下<kbd>Ctrl+X</kbd>和<kbd>Ctrl+O</kbd>键，将根据语法显示匹配菜单：</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/OmniCompletion_HTML.png" title="OmniCompletion_HTML"><img src="https://yyq123.github.io/learn-vim/images/OmniCompletion_HTML.png" alt="OmniCompletion_HTML" /></a></p>
 	<p>建议将以下命令，加入vimrc配置文件的:filetype命令之后，以更好地利用全能补全功能：</p>
-	<p><script src="https://gist.github.com/751037.js?file=gistfile1.vim"></script></p>
+	<div><pre style="margin: 0; line-height: 125%"><span style="color: #cdcd00">if</span> has<span style="color: #cccccc">(</span><span style="color: #cd0000">&quot;autocmd&quot;</span><span style="color: #cccccc">)</span> &amp;&amp; exists<span style="color: #cccccc">(</span><span style="color: #cd0000">&quot;+omnifunc&quot;</span><span style="color: #cccccc">)</span>
+autocmd Filetype *
+\ <span style="color: #cdcd00">if</span> &amp;<span style="color: #cd00cd">omnifunc</span> <span style="color: #cccccc">==</span> <span style="color: #cd0000">&quot;&quot;</span> <span style="color: #cccccc">|</span>
+\ <span style="color: #cdcd00">setlocal</span> <span style="color: #cd00cd">omnifunc</span><span style="color: #cccccc">=</span>syntaxcomplete#Complete <span style="color: #cccccc">|</span>
+\ <span style="color: #cdcd00">endif</span>
+<span style="color: #cdcd00">endif</span></pre></div>
 	<p>您可以使用<code class="inset">:set omnifunc?</code>命令，查看当前的'omnifunc'选项设置。</p>
 
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>补全方式</caption>
 		<tr><th>方式</th><th>快捷键</th><th>相关选项</th><th>帮助信息</th></tr>
-		<tr><td>整行</td><td><kbd>Ctrl-X&nbsp;Ctrl-L</kbd></td><td></td><td><code class="inset">:</code></td></tr>
-		<tr><td>当前文件内的关键字</td><td><kbd>Ctrl-X&nbsp;Ctrl-N</kbd></td><td></td><td><code class="inset">:</code></td></tr>
-		<tr><td>字典</td><td><kbd>Ctrl-X&nbsp;Ctrl-K</kbd></td><td>'dictionary'</td><td><code class="inset">:</code></td></tr>
-		<tr><td>词典</td><td><kbd>Ctrl-X&nbsp;Ctrl-T</kbd></td><td>'thesaurus'</td><td><code class="inset">:</code></td></tr>
-		<tr><td>当前文件及其包含的头文件</td><td><kbd>Ctrl-X&nbsp;Ctrl-I</kbd></td><td>'include'</td><td><code class="inset">:</code></td></tr>
-		<tr><td>标签（Tag）</td><td><kbd>Ctrl-X&nbsp;Ctrl-]</kbd></td><td></td><td><code class="inset">:</code></td></tr>
-		<tr><td>文件名</td><td><kbd>Ctrl-X&nbsp;Ctrl-F</kbd></td><td></td><td><code class="inset">:</code></td></tr>
-		<tr><td>定义或宏</td><td><kbd>Ctrl-X&nbsp;Ctrl-D</kbd></td><td>'define'</td><td><code class="inset">:</code></td></tr>
-		<tr><td> Vim 命令</td><td><kbd>Ctrl-X&nbsp;Ctrl-V</kbd></td><td></td><td><code class="inset">:</code></td></tr>
-		<tr><td>用户自定义</td><td><kbd>Ctrl-X&nbsp;Ctrl-U</kbd></td><td>'completefunc'</td><td><code class="inset">:</code></td></tr>
-		<tr><td>全能 (omni) </td><td><kbd>Ctrl-X&nbsp;Ctrl-O</kbd></td><td>'omnifunc'</td><td><code class="inset">:</code></td></tr>
-		<tr><td>拼写建议</td><td><kbd>Ctrl-X&nbsp;Ctrl-S</kbd></td><td></td><td><code class="inset">:</code></td></tr>
-		<tr><td>关键字</td><td><kbd>Ctrl-N<br />Ctrl-P</kbd></td><td>'complete'</td><td><code class="inset">:</code></td></tr>
+		<tr><td>整行</td><td><kbd>Ctrl-X&nbsp;Ctrl-L</kbd></td><td></td><td><code class="inset">:h compl-whole-line</code></td></tr>
+		<tr><td rowspan="2">当前文件内的关键字</td><td><kbd>Ctrl-X&nbsp;Ctrl-N</kbd></td><td rowspan="2"></td><td rowspan="2"><code class="inset">:h compl-current</code></td></tr>
+		<tr><td><kbd>Ctrl-X&nbsp;Ctrl-P</kbd></td></tr>
+		<tr><td>字典</td><td><kbd>Ctrl-X&nbsp;Ctrl-K</kbd></td><td>'dictionary'</td><td><code class="inset">:h compl-dictionary</code></td></tr>
+		<tr><td>词典</td><td><kbd>Ctrl-X&nbsp;Ctrl-T</kbd></td><td>'thesaurus'</td><td><code class="inset">:h i_CTRL-X_CTRL-T</code></td></tr>
+		<tr><td>当前文件及其包含的文件</td><td><kbd>Ctrl-X&nbsp;Ctrl-I</kbd></td><td>'include'</td><td><code class="inset">:h compl-keyword</code></td></tr>
+		<tr><td>标签（Tag）</td><td><kbd>Ctrl-X&nbsp;Ctrl-]</kbd></td><td></td><td><code class="inset">:h compl-tag</code></td></tr>
+		<tr><td>文件名</td><td><kbd>Ctrl-X&nbsp;Ctrl-F</kbd></td><td></td><td><code class="inset">:h compl-filename</code></td></tr>
+		<tr><td>定义或宏</td><td><kbd>Ctrl-X&nbsp;Ctrl-D</kbd></td><td>'define'</td><td><code class="inset">:h compl-define</code></td></tr>
+		<tr><td>Vim 命令</td><td><kbd>Ctrl-X&nbsp;Ctrl-V</kbd></td><td></td><td><code class="inset">:h compl-vim</code></td></tr>
+		<tr><td>用户自定义</td><td><kbd>Ctrl-X&nbsp;Ctrl-U</kbd></td><td>'completefunc'</td><td><code class="inset">:h compl-function</code></td></tr>
+		<tr><td>全能 (omni) </td><td><kbd>Ctrl-X&nbsp;Ctrl-O</kbd></td><td>'omnifunc'</td><td><code class="inset">:h compl-omni</code></td></tr>
+		<tr><td>拼写建议</td><td><kbd>Ctrl-X&nbsp;Ctrl-S</kbd></td><td></td><td><code class="inset">:h compl-spelling</code></td></tr>
+		<tr><td rowspan="2">关键字</td><td><kbd>Ctrl-N</kbd></td><td rowspan="2">'complete'</td><td rowspan="2"><code class="inset">:h compl-generic</code></td></tr>
+		<tr><td><kbd>Ctrl-P</kbd></td></tr>
 	</table>
 
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="自动补全详解(AutoCompletion-Detail)" href="http://yyq123.github.io/learn-vim/learn-vi-80-02-AutoCompletion-Detail.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="自动补全选项(AutoCompletion-Option)" href="http://yyq123.github.io/learn-vim/learn-vi-80-03-AutoCompletion-Option.html">下一篇</a>&gt;</span></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="自动补全模式(AutoCompletion-Intro)" href="http://yyq123.github.io/learn-vim/learn-vi-80-01-AutoCompletion-Intro.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="自动补全选项(AutoCompletion-Option)" href="http://yyq123.github.io/learn-vim/learn-vi-80-03-AutoCompletion-Option.html">下一篇</a>&gt;</span></p>
 
 </body>
 </html>
