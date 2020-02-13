@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 </title>
+</head>
+<body>
+	<h1>VIM学习笔记 </h1>
+	<p style="text-indent:2em"><code class="inset"></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<tr><td><kbd></kbd></td><td></td><td><kbd></kbd></td></tr>
+	</table>
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<tr><td><code class="inset"></code></td><td></td></tr>
+	</table>
+
+	<p style="text-indent:2em"><code class="inset"></code></p>
+
+	<p>使用<code class="inset">:help </code>命令，可以查看关于的更多帮助信息。</p>
+:make命令会产生一个错误列表.Vim编辑器会记住我们前10次:make命令和:grep命令的执行结果.如果我们要到前一次的错误列表,我们可以用下面的命令:
+:colder
+如果我们要到一个新的错误列表,我们可以用下面的命令:
+:cnewer
+当我们执行:make命令时所要执行的程序名称是由makeprg选项来定义的.在通常的情况下会设为make,但是Visual C++的用户可以通过下面的命令将其设为nmake:
+:set makeprg=nmake
+:make命令会重定向Make的输出到一个错误文件.这个文件的名字是由makeef选项来控制的.如果这个选项包含有字符##,字符##就会被专一的数字所代替.这个选项默认的值取决于我们正在使用的操作系统.默认的值如下:
+Amiga        t:vim##.Err
+UNIX        /tmp/vim##.err
+Windows        vim##.err
+我们可以在命令中包含指定的Vim关键字.%字符可以扩展当前文件的名字,所以我们执行下面的命令:
+:set makeprg=make%
+然后我们执行命令:
+:make
+他就会执行下面的命令:
+$ make file.c
+file.c就是我们正在编辑的文件的名字.这个并没有太大的用处,所以我们可以重新定义这个命令并使用:r(root)的权限:
+:set makeprg=make%:r.o
+这样我们就会执行下面的命令:
+$ make file.o
+选项errorformat可以用来控制Vim如何来组织错误文件以使得他可以知道文件名以及错误发生的地方.这个选项的格式如下:
+:set errorformat={string},{string},{string}
+这里的字符是由特殊字符%所指出的典型的错误信息用来指明特殊的操作(与标准C函数scanf很相像).这些特殊的字符如下:
+%f    文件名
+%l    行号
+%c    列号
+%t    错误类型(单一字符)
+%n    错误行号
+%m    错误信息
+%r    匹配一行中的剩余
+%*{char}匹配并跳过由{char}所指定的scanf转换
+%%    字符%
+当我们在编译一个程序的时候,我们也许要在几个目录中进行遍历.GNU make程序会在当我们进入一个目录或是离开一个目录时打印出相应的信息.
+如果要正确的得到文件名,Vim就要清楚的知道这些目录的变化.下面的一些错误格式用来在目录发生变化时告诉Vim一些相关的信息:
+%D    当进入一个目录时打印出指定的信息.字符串的%f指明我们所进入的目录
+%X    指定离开目录时的信息.字符串中的%f指明了make已用毕的目录.
+一些编译器,例如GNU GCC编译器,会输入一些冗长的错误信息.如果我们正在使用默认的errorformat就会导致三种错误信息.这实在是够讨厌的.但是幸运的是Vim编辑器可以识别出不同的错误信息.处理不同信息的模式代码如下:
+%A    开始多行信息
+%E    开始多行错误信息
+%W    开始多行警告信息
+%C    连续多行信息
+%Z    结束多行信息
+%G    全局.只有在+或是-连接时才有用
+%O    单行文件信息:重新读入匹配的部分
+%P    单行文件信息:将%f文件压入栈
+%Q    单行文件信息:将最后一个文件压出栈
++或是-可以放在任何字符的前面,从而组成下面的内容:
+%-letter    不要包含输出中的匹配行
+%+letter    包含%m错误字符串的整个匹配行
+在通常的情况下,我们执行:make命令并有错误发生,Vim会在当前的窗口中显示错误文件.如果我们通过设置switchbuf选项来进行窗口的分裂,Vim就会在一个新的窗口来显示错误文件..#和%字符会扩展到当前文件名和交替文件名.而字符串$*将会被:grep命令的参数所代替.
+编译或者 grep 的时候，信息输出到 Quickfix窗口中，按回车就容易把buf给切换走，使用标签后设置下面一项，即可更改quickfix行为为：如果有已打开文件，先复用，没有的话使用标签：
+set switchbuf=useopen,usetab,newtab
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="持久性撤销 (Undo Persistence)" href="http://yyq123.github.io/learn-vim/learn-vi-06-Undo-Persistence.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="运行外部命令(Shell Command)" href="http://yyq123.github.io/learn-vim/learn-vi-71-Shell.html">下一篇</a>&gt;</span></p>
+
+</body>
+</html>

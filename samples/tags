@@ -1,0 +1,17 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+0jzt	colorlist.vim	/^normal 0jzt$/;"	m
+GvimColorTest	colornumber.vim	/^command! GvimColorTest call GvimColorTest('gvim-color-test.tmp')$/;"	c
+GvimColorTest	colornumber.vim	/^function! GvimColorTest(outfile)$/;"	f
+Rename	Rename.vim	/^command! -nargs=* -complete=file -bang Rename call Rename(<q-args>, '<bang>')$/;"	c
+Rename	Rename.vim	/^function! Rename(name, bang)$/;"	f
+VimColorTest	colornumber.vim	/^command! VimColorTest call VimColorTest('vim-color-test.tmp', 12, 16)$/;"	c
+VimColorTest	colornumber.vim	/^function! VimColorTest(outfile, fgend, bgend)$/;"	f
+find_color	colorname.vim	/^let find_color = '^\\s*\\(\\d\\+\\s*\\)\\{3}\\zs\\w*$'$/;"	v
+namedcolors	colorname.vim	/^let namedcolors=[]$/;"	v
+w	colorlist.vim	/^let w = expand('<cword>')$/;"	v
+w	colorname.vim	/^    let w = expand('<cword>')$/;"	v

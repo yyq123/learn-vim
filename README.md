@@ -103,6 +103,7 @@ Created by yyq123@gmail.com using [vim](http://www.vim.org/)
 - **自动补全**
   - [自动补全模式(Auto-Completion-Intro)](http://yyq123.github.io/learn-vim/learn-vi-80-01-AutoCompletion-Intro.html)[<sup>B</sup>](https://yyq123.blogspot.com/2020/02/vim-auto-completion-intro.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/105939375)
   - [自动补全详解(Auto-Completion-Detail)](http://yyq123.github.io/learn-vim/learn-vi-80-02-AutoCompletion-Detail.html)[<sup>B</sup>](https://yyq123.blogspot.com/2020/02/vim-auto-completion-detail.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/106309525)
+  - [自动补全选项(Auto-Completion-Option)](http://yyq123.github.io/learn-vim/learn-vi-80-03-AutoCompletion-Option.html)[<sup>B</sup>](https://yyq123.blogspot.com/2020/02/vim-auto-completion-option.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/106751186)
 - **正则表达式**
   - [基础(Basic)](http://yyq123.blogspot.com/2017/04/vim-regular-expression-basic.html)[<sup>B</sup>](http://yyq123.blogspot.com/2017/04/vim-regular-expression-basic.html)<sup>/</sup>[<sup>Z</sup>](http://zhuanlan.zhihu.com/p/26448230)
   - [进阶(Advanced)](http://yyq123.blogspot.com/2017/05/vim-regular-expression-advanced.html)[<sup>B</sup>](http://yyq123.blogspot.com/2017/05/vim-regular-expression-advanced.html)<sup>/</sup>[<sup>Z</sup>](http://zhuanlan.zhihu.com/p/26708976)
