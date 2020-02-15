@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 生成标签文件(Generates Tags File)</title>
+</head>
+<body>
+	<h1>VIM学习笔记 生成标签文件(Generates Tags File)</h1>
+
+	<p>本节将介绍如何使用Ctag工具，来扫描代码库并生成包含关键词索引的标签文件（Tags File）。基于标签文件，Vim可以在标签之间快速跳转，并可以针对<a href="http://yyq123.github.io/learn-vim/learn-vi-80-02-AutoCompletion-Detail.html#compl-tag" title="compl-tag">标签自动补全</a>。</p>
+
+	<h2 class="article"><a id="ctags">Ctags</a></h2>
+	<p><a href="http://ctags.sourceforge.net/" title="ctags">Ctags</a>是一个开源的命令行工具，用于从代码中索引标签（比如method, class, function等）并生成tags文件。</p>
+	<p>目前Ctags支持包括Vim在内的41种<a href="http://ctags.sourceforge.net/languages.html" title="languages">编程语言</a>。对于vimscript脚本，其中的functions, class, commands, menu, map, variable等语法，将会作为关键字被索引至tags文件中。</p>
+	<p>对于Mac操作系统，您可以使用包管理器<a href="https://brew.sh/" title="Homebrew">Homebre</a>进行安装：</p>
+	<p style="text-indent:2em"><code class="inset">$ brew install ctags</code></p>
+	<p>对于Linux操作系统，您可以使用相应的包管理器进行安装：</li>
+	<p style="text-indent:2em"><code class="inset">$ sudo yum install ctags</code></p>
+	<p>对于Windows操作系统，您可以直接将<a href="https://sourceforge.net/projects/ctags/files/ctags/" title="download">可执行文件</a>放置在&nbsp;<var>PATH</var>&nbsp;环境变量指定的目录之内；也可以使用包管理器<a href="https://chocolatey.org/" title="chocolatey">Chocolatey</a>进行安装：</p>
+	<p style="text-indent:2em"><code class="inset">$ choco install ctags</code></p>
+	<p>您可以在操作系统的命令行中使用以下命令，来验证ctags是否安装成功，并获得相关的帮助信息：</p>
+	<p style="text-indent:2em"><code class="inset">$ ctags --help</code></p>
+	<p>在Vim中使用以下命令，可以针对指定的文件生成tags文件：</p>
+	<p style="text-indent:2em"><code class="inset">:!ctags <var>filename</var> </code></p>
+	<p>你也可以针对当前目录及其子目录中的所有文件生成tags文件：</p>
+	<p style="text-indent:2em"><code class="inset">:!ctags -R .</code></p>
+
+	<h2 class="article"><a id="tags-file">标签文件（Tags File）</a></h2>
+	<p>默认生成的标签文件，是名为<var>tags</var>的文本文件。其开头包含若干行元数据，之后每行包含一个关键字以及与之匹配的文件名和位置信息。其中的关键字，按字母排序；并且以正则表达式作为定位信息。</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/tags_file_anatomy.png" title="The Anatomy of a tags File"><img src="https://yyq123.github.io/learn-vim/images/tags_file_anatomy.png" alt="The Anatomy of a tags File" width="550" height="196" /></a></p>
+	<p>你可以使用<code class="inset">:help tags-file-format</code>命令，查看标签文件的格式说明。</p>
+
+	<h2 class="article"><a id="ctags-au">自动生成标签文件</a></h2>
+	<p>利用<a href="http://yyq123.github.io/learn-vim/learn-vi-49-01-autocmd.html" title="自动命令(autocmd)">自动命令</a>（autocmd），可以在保存文件时自动更新tags文件：</p>
+	<p style="text-indent:2em"><code class="inset">:autocmd BufWritePost * call system("ctags -R")</code></p>
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="自动补全详解(AutoCompletion-Detail)" href="http://yyq123.github.io/learn-vim/learn-vi-80-02-AutoCompletion-Detail.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="自动命令(autocmd)" href="http://yyq123.github.io/learn-vim/learn-vi-49-01-autocmd.html">下一篇</a>&gt;</span></p>
+
+</body>
+</html>

@@ -10,226 +10,115 @@
 <body>
 	<h1>VIM学习笔记 生成标签文件(Generates Tags File)</h1>
 
-	<p>本节将介绍如何使用Ctag工具，来扫描代码库并生成包含关键词索引的标签文件（Tags File）。基于标签文件，Vim可以在标签之间快速跳转，并可以为<a href="http://yyq123.github.io/learn-vim/learn-vi-80-02-AutoCompletion-Detail.html#compl-tag" title="compl-tag">标签自动补全</a>提供依据。</p>
+	<p><a href="http://yyq123.github.io/learn-vim/learn-vi-79-01-Tag-File.html" title="Generates Tags File">上节</a>介绍了如何使用Ctag工具来生成标签文件（Tags File）。本节将介绍基于标签文件，快速在标签之间进行跳转的操作。</p>
+	<p>标签是出现在标签文件（Tags File）中的一个标识符。它是一种能够跳转的标记。例如，在 C 程序里，每个函数名都可以是一个标签。</p>
 
-	<h2 class="article"><a id="ctags">Ctags</a></h2>
-	<p><a href="http://ctags.sourceforge.net/" title="ctags">Ctags</a>是一个开源的命令行工具，用于从代码中索引标签（比如method, class, function等待）并生成tags文件。</p>
-	<p>目前Ctags支持包括Vim在内的41中<a href="http://ctags.sourceforge.net/languages.html" title="languages">编程语言</a>。vimscript脚本中的functions, class, commands, menu, map, variable等语法，将会作为关键字被索引至tags文件中。</p>
-	<p>对于Mac操作系统，您可以使用包管理器<a href="https://brew.sh/" title="Homebrew">Homebre</a>进行安装：</p>
-	<p style="text-indent:2em"><code class="inset">$ brew install ctags</code></p>
-	<p>对于Linux操作系统，您可以使用相应的包管理器进行安装：</li>
-	<p style="text-indent:2em"><code class="inset">$ sudo yum install ctags</code></p>
-	<p>对于Windows操作系统，您可以直接将<a href="https://sourceforge.net/projects/ctags/files/ctags/" title="download">可执行文件</a>放置在<var>PATH</var>环境变量包括的目录之内；也可以使用包管理器<a href="https://chocolatey.org/" title="chocolatey">Chocolatey</a>进行安装：</p>
-	<p style="text-indent:2em"><code class="inset">$ choco install ctags</code></p>
-	<p>您可以在操作系统的命令行中使用以下命令，来验证ctags是否安装成功，并获得更多帮助信息：</p>
-	<p style="text-indent:2em"><code class="inset">$ ctags --help</code></p>
-	<p>在Vim中使用以下命令，可以针对指定文件生成tags文件：</p>
-	<p style="text-indent:2em"><code class="inset">:!ctags <var>filename</var> </code></p>
-	<p>你也可以针对当前目录及其子目录中的所有文件生成tags文件：</p>
-	<p style="text-indent:2em"><code class="inset">:!ctags -R .</code></p>
+	<h2 class="article"><a id=""></a></h2>
+	<p>：</p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
 
-	<h2 class="article"><a id="tags-file">标签文件（Tags File）</a></h2>
-	<p>默认生成标签文件，是名为<var>tags</var>的文本文件。其开头包含若干行元数据，之后每行包含一个关键字以及与之匹配的文件名和位置信息。<var>tags</var>中的关键字，以字母顺序排序，并以正则表达式作为定位信息。</p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/tags_file_anatomy.png" title="The Anatomy of a tags File"><img src="https://yyq123.github.io/learn-vim/images/tags_file_anatomy.png" alt="The Anatomy of a tags File" width="550" height="196" /></a></p>
 
-	<h2 class="article"><a id="ctags-au">自动生成标签文件</a></h2>
-	<p>利用<a href="http://yyq123.github.io/learn-vim/learn-vi-49-01-autocmd.html" title="自动命令(autocmd)">自动命令（autocmd）</a>，可以在保存文件时自动更新tags文件：</p>
-	<p style="text-indent:2em"><code class="inset">:autocmd BufWritePost * call system("ctags -R")</code></p>
-
-	<h2 class="article"><a id="ctags">标签跳转（Tag Navigation）</a></h2>
-	<p>使用以下命令，可以直接跳转到定义函数的位置：</p>
-	<p style="text-indent:2em"><code class="inset">:tag <var>{name}</var></code></p>
-	<p>在常规模式下，使用<kbd>Ctrl-]</kbd>快捷键，也可以查找光标下的标签（比如函数或宏等），并跳转到定义该标签的位置：</p>
-	<p>Vim会保存在标签之间的跳转记录，因此可以使用<kbd>Ctrl-T</kbd>键，依次返回之前所处的位置。
-If we pressed it now, we would jump from the Speaker definition back
-to the Francophone definition, and if we pressed it a second time, it would take
-us back to where we started. For more information on interacting with the
-tag jump list, look up :h tag-stack .
+	<h2 class="article"><a id="tag-commands">标签跳转（Tag Navigation）</a></h2>
+	<p>使用以下命令，可以直接跳转至定义标签的位置：</p>
+	<p style="text-indent:2em"><code class="inset">:tag <var>{tagname}</var></code></p>
+	<p>在常规模式下，使用<kbd>Ctrl-]</kbd>快捷键，也可以查找光标下的标签（比如函数或宏等），并跳转到定义该标签的位置。</p>
+	<p>在常规模式和插入模式下，按住<kbd>Ctrl</kbd>键并点击鼠标左键（<kbd>&lt;C-LeftMouse&gt;</kbd>），也可以跳转至标签定义处。</p>
+	<p>使用以下命令，可以在新建窗口中跳转到定义标签的位置：</p>
+	<p style="text-indent:2em"><code class="inset">:stag <var>name</var></code></p>
+	<p>在常规模式下，使用<kbd>Ctrl-W]</kbd>快捷键，也将在当前窗口上方新建水平窗口，并跳转到定义函数的位置。</p>
 (see :h :tag
 and :h :tjump )
 
-我们可以在文件的任何位置上执行<code class="inset">:tag</code>和<code class="inset">:tjump</code>命令，以跳转至指定的匹配处。而省去了将光标移动至标签之上，然后再点击快捷键的操作。而在输入以上命令，我们只需要输入标签的开头几个字母，然后点击<kbd>Tab</kbd>键即可以自动补全标签名。
+	<h2 class="article"><a id="tag-regexp">标签搜索（Tag Search Pattern）</a></h2>
+	<p>我们可以在文件的任意位置上执行<code class="inset">:tag</code>和<code class="inset">:tjump</code>命令，以跳转至指定的匹配处。而省去了将光标移动至标签之上，然后再点击快捷键的操作。</p>
+	<p>如果启用了<a href="http://yyq123.github.io/learn-vim/learn-vi-46-02-wildmenu.html" title="wildmenu">wildmenu</a>选项，那么在输入命令时，我们只需要输入标签的开头几个字母，然后点击<kbd>Tab</kbd>键即可以自动补全标签名。</p>
 <p>在命令中可以使用<a href="http://yyq123.github.io/learn-vi-81-RegularExpressionBasic.html" title="Regular Expression Basic">正则表达式</a>。例如<code class="inset">:tag /^HTML*</code>命令，将查找所有以&ldquo;HTML&rdquo;开头的标签，并跳转至第一个匹配项。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/tag_tab_wildmenu.png" title="tag_tab_wildmenu"><img src="https://yyq123.github.io/learn-vim/images/tag_tab_wildmenu.png" alt="tag_tab_wildmenu" /></a></p>
 	<p>而<code class="inset">:tjump /^Color*</code>命令，将会显示所有以&ldquo;Color&rdquo;开头的标签，你可以选择跳转至某一匹配项。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/tjump_regex.png" title="tjump_regex"><img src="https://yyq123.github.io/learn-vim/images/tjump_regex.png" alt="tjump_regex" /></a></p>
 
-
-<p>使用以下命令，可以在拆分窗口中跳转到定义函数的位置：</p>
-	<p style="text-indent:2em"><code class="inset">:stag <var>name</var></code></p>
-	<p><kbd>Ctrl-W]</kbd>，将在当前窗口上方新建水平窗口，并跳转到定义函数的位置。</p>
-	<p><kbd>Ctrl-Wg]</kbd>，将执行:tselect命令，在当前窗口上方新建水平窗口，并跳转到定义函数的位置。</p>
-
-will jump on the <code class="highlighter-rouge">class Foo</code> line. This works across files as well. 
-it’s extremely fast, even if you have a large tag file. That’s because the tags
-are sorted and vim uses a binary search to quickly locate them. </p>
-
-<h2 id="multiple-matches"><a class="anchor" aria-hidden="true" href="#multiple-matches">🔗</a>Multiple matches</h2>
-
-<p>如果有多个匹配项存在，比如在几个文件中都定义了同名的函数，那么默认情况下，优先跳转至当前文件中的匹配项。</p>
-<p>您可以使用<code class="inset">:h tag-priority</code>命令，查看优先级的帮助信息。
-</p>使用<kbd>gCtrl-]</kbd>快捷键，将显示所有匹配项，您可以选择想要跳转的目的地：</p>
+	<h2 class="article"><a id="tag-matchlist">标签匹配列表（Tag Match List）</a></h2>
+	<p>如果有多个匹配项存在，比如在几个文件中都定义了同名的函数，那么默认情况下，将优先跳转至当前文件中的匹配项。</p>
+	<p>您可以使用<code class="inset">:h tag-priority</code>命令，查看优先级的帮助信息。
+	<p>使用以下命令，将在屏幕底部显示标签匹配列表，然后根据您的选择在当前窗口中显示标签定义：</p>
+	<p style="text-indent:2em"><code class="inset">:tselect <var>[tagname]</var></code></p>
+	</p>使用<kbd>g]</kbd>快捷键，将显示与光标下标签匹配的列表：</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/g-ctrl-].png" title="g-ctrl-]"><img src="https://yyq123.github.io/learn-vim/images/g-ctrl-].png" alt="g-ctrl-]" width="500" height="" /></a></p>
-
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>tag 1 of x or more
-
-
-	<h2 class="article"><a id="ctags">标签匹配列表（Tag Match List）</a></h2>
-<p>There are various ways to jump through the rest of the matches:</p>
-
-</code> </li>
-  <li><code class="highlighter-rouge">:ltag</code> will load the tags into the location list window. You can then view
-that window by executing <code class="highlighter-rouge">:lopen</code>.</li>
-</ul>
-
-
+	<p>使用以下命令，将在屏幕底部显示标签匹配列表，然后根据您的选择在新建窗口中显示标签定义：</p>
+	<p style="text-indent:2em"><code class="inset">:stselect <var>[tagname]</var></code></p>
+	<p>在常规模式下，使用<kbd>Ctrl-Wg]</kbd>快捷键，将针对光标下的标签执行:tselect命令。</p>
+	<p>使用以下命令，可以根据匹配列表中的顺序进行跳转，并在屏幕底部显示相对位置：</p>
+	<p style="text-indent:2em"><code class="msg">tag 1 of n or more</code></p>
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption></caption>
 		<tr><th></th><th></th><th></th></tr>
-		<tr><td><code class="inset">:ts</code></td><td><code class="inset">:tselect</code></td><td>显示标签匹配列表以供用户选择</td></tr>
+		<tr><td><code class="inset">:ts</code></td><td><code class="inset">:tselect</code></td><td>显示标签匹配列表</td></tr>
 		<tr><td><code class="inset">:tn</code></td><td><code class="inset">:tnext</code></td><td>跳转至下一个匹配项</td></tr>
 		<tr><td><code class="inset">:tp</code></td><td><code class="inset">:tprevious</code></td><td>跳转至上一个匹配项</td></tr>
 		<tr><td><code class="inset">:tf</code></td><td><code class="inset">:tfirst</code></td><td>跳转至第一个匹配项</td></tr>
 		<tr><td><code class="inset">:tl</code></td><td><code class="inset">:tlast</code></td><td>跳转至最后一个匹配项</td></tr>
 		<tr><td><code class="inset">:</code></td><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td><code class="inset">:</code></td><td></td></tr>
 	</table>
-<p>To show the tags you’ve traversed since you opened vim, run <code class="inline">:tags</code>.</p>
+
+	<h2 class="article"><a id="tag-stack">标签栈（Tag Stack）</a></h2>
+	<p>默认情况下，'tagstack'选项是打开的。Vim会在标签栈中记录你跳转过的标签，以及是从哪里跳转到这些标签。</p>
+	<p>使用以下命令，可以查看标签栈的内容：</p>
+	<p style="text-indent:2em"><code class="inset">:tags</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/tags.png" title=":tags"><img src="https://yyq123.github.io/learn-vim/images/tags.png" alt=":tags" width="550" height="141" /></a></p>
+	<p>使用以下不带任何参数命令，可以跳转到较新的标签处：</p>
+	<p style="text-indent:2em"><code class="inset">:tag</code></p>
+	<p>使用以下命令，可以返回到之前的标签处：</p>
+	<p style="text-indent:2em"><code class="inset">:pop</code></p>
+	<p>在常规模式下，使用使用<kbd>Ctrl-T</kbd>键，依次返回之前所处的位置。</p>
+	<p>在常规模式和插入模式下，按住<kbd>Ctrl</kbd>键并点击鼠标右键（<kbd>&lt;C-RightMouse&gt;</kbd>），也可以返回之前所处的位置。</p>
+	<p>使用<code class="inset">:h tag-stack</code>命令，可以查看标签栈的帮助信息。</p>
+ 
 
 <p>通过安装<a href="http://www.vim.org/scripts/script.php?script_id=1590" title="unimpaired.vim">unimpaired.vim</a>插件，可以映射快捷键 <code class="highlighter-rouge">]t</code> for <code class="highlighter-rouge">:tnext</code> and <code class="highlighter-rouge">[t</code> for <code class="highlighter-rouge">:tprev.</code></p>
 
-
-<h2 id="accessing-tag-data-in-vimscript"><a class="anchor" aria-hidden="true" href="#accessing-tag-data-in-vimscript">🔗</a>Accessing tag data in vimscript</h2>
-
-<p>If you’d like to use the tags for your own custom needs, vim provides a
-straightforward way to do that through the
-<a href="http://vimdoc.sourceforge.net/htmldoc/eval.html#taglist\(\)">taglist</a>
-function. It’s called with a regular expression and it will return all the data
-from the matching tags in the form of a list of dictionaries. An example of
-what you could do with it is the following command, which finds function
-definitions:</p>
-
-<div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code>command<span class="p">!</span> <span class="p">-</span>nargs<span class="p">=</span><span class="m">1</span> Function <span class="k">call</span> <span class="nv">s:Function</span><span class="p">(&lt;</span><span class="k">f</span><span class="p">-</span>args<span class="p">&gt;)</span>
-<span class="k">function</span><span class="p">!</span> <span class="nv">s:Function</span><span class="p">(</span>name<span class="p">)</span>
-  <span class="c">" Retrieve tags of the 'f' kind</span>
-  <span class="k">let</span> <span class="k">tags</span> <span class="p">=</span> taglist<span class="p">(</span><span class="s1">'^'</span><span class="p">.</span><span class="nv">a:name</span><span class="p">)</span>
-  <span class="k">let</span> <span class="k">tags</span> <span class="p">=</span> <span class="k">filter</span><span class="p">(</span><span class="k">tags</span><span class="p">,</span> <span class="s1">'v:val["kind"] == "f"'</span><span class="p">)</span>
-
-  <span class="c">" Prepare them for inserting in the quickfix window</span>
-  <span class="k">let</span> qf_taglist <span class="p">=</span> <span class="p">[]</span>
-  <span class="k">for</span> entry <span class="k">in</span> <span class="k">tags</span>
-    <span class="k">call</span> add<span class="p">(</span>qf_taglist<span class="p">,</span> <span class="p">{</span>
-<span class="se">          \</span> <span class="s1">'pattern'</span><span class="p">:</span>  entry<span class="p">[</span><span class="s1">'cmd'</span><span class="p">],</span>
-<span class="se">          \</span> <span class="s1">'filename'</span><span class="p">:</span> entry<span class="p">[</span><span class="s1">'filename'</span><span class="p">],</span>
-<span class="se">          \</span> <span class="p">})</span>
-  <span class="k">endfor</span>
-
-  <span class="c">" Place the tags in the quickfix window, if possible</span>
-  <span class="k">if</span> len<span class="p">(</span>qf_taglist<span class="p">)</span> <span class="p">&gt;</span> <span class="m">0</span>
-    <span class="k">call</span> setqflist<span class="p">(</span>qf_taglist<span class="p">)</span>
-    <span class="k">copen</span>
-  <span class="k">else</span>
-    echo <span class="s2">"No tags found for "</span><span class="p">.</span><span class="nv">a:name</span>
-  <span class="k">endif</span>
-<span class="k">endfunction</span>
-</code></pre></div></div>
-
-<p>Invoking <code class="highlighter-rouge">:Function foo</code> will look for functions in the tag file that start
-with “foo” and load them all in the
-<a href="http://vimdoc.sourceforge.net/htmldoc/quickfix.html#quickfix">quickfix</a>
-window. This could be even more useful with some tab-completion and it’s also
-not very portable across filetypes. It shouldn’t be too difficult to generalize
-it a bit, so I might devote a separate blog post for that when I get around to
-doing it.</p>
-
-<code class="inline">:help tags</code> and <code class="inline">:help CTRL-]</code>
 https://vim.fandom.com/wiki/Browsing_programs_with_tags
 
-	<h2 class="article"><a id="preview-window">Preview窗口</a></h2>
-	<p>当我们使用<kbd>Ctrl-]</kbd>键跳转至函数定义处时，当前屏幕将会显示函数定义的代码，稍后我们仍需退回到之前的位置继续程序编辑。如果我们希望在编辑当前代码段的同时参考具体的函数定义，那么可以使用Preview窗口。</p>
+	<h2 class="article"><a id="tag-preview">预览窗口（Preview Window）</a></h2>
+	<p>当我们使用<kbd>Ctrl-]</kbd>键跳转至函数定义处时，当前屏幕将会显示函数定义的代码，稍后我们仍需退回到之前的位置继续程序编辑。如果我们希望在编辑当前代码段的同时参考具体的函数定义，那么可以使用预览窗口（Preview Window）。</p>
+	<p>请注意，为了使用预览窗口，Vim必须包含<a href="https://yyq123.github.io/learn-vim/learn-vi-70-01-QuickFix.html" title="QuickFix">QuickFix</a>特性。</p>
 	<p>使用以下命令，将在屏幕上方的Preview窗口中显示指定标签名的内容，而不会改变当前光标的位置：</p>
 	<p style="text-indent:2em"><code class="inset">:ptag <var>[tagname]</var></code></p>
+	<p>使用<kbd>Ctrl-W}</kbd>快捷键，也可以针对当前光标下的标签执行:ptag命令：</p>
 	<p>如果当前已经存在一个Preview窗口，那么将重用此窗口。</p>
-	<p>如果希望关闭窗口，请使用以下命令：</p>
-	<p style="text-indent:2em"><code class="inset">:pclose</code></p>
-	<p>您也可以使用<kbd>Ctrl-Wz</kbd>快捷键，来关闭Preview窗口。</p>
-	
-在preview窗口中我们执行下面的命令来完成我们的工作:
-:ppop        在这个窗口中执行一个:pop命令.
-:ptselect identifier    打开一个新的preview窗口并执行:tselect命令
-:ptjump identifier    打开一个新的preview窗口并执行:ptjump 命令
-:count ptnext        在这个窗口中执行:count tnext命令
-:count ptprevious    在这个窗口中执行:count ptprevious命令
-:count ptrewind        在这个窗口中执行:count ptrewind命令
-:ptlast            在这个窗口中执行:ptlast命令.
-CTRL-W}            以当前光标下的内容执行一个:ptag命令
-CTRL-Wg}        以当前光标下的内容执行一个:ptjump命令
-	<p style="text-indent:2em"><code class="inset"></code></p>
+	<p>如果希望，请使用以下命令：</p>
+	<p style="text-indent:2em"><code class="inset">:</code></p>
+	<p>您也可以使用<kbd></kbd>快捷键，来关闭Preview窗口。</p>
 
+	<p>在preview窗口中我们执行下面的命令来完成我们的工作:</p>
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption></caption>
+		<tr><th></th><th></th><th></th></tr>
+		<tr><td><code class="inset">:pts</code></td><td><code class="inset">:ptselect</code></td><td>preview窗口并执行:tselect命令</td></tr>
+		<tr><td><code class="inset">:ptj</code></td><td><code class="inset">:ptjump</code></td><td><kbd>Ctrl-Wg}</kbd></td><td>preview窗口并执行:ptjump 命令</td></tr>
+		<tr><td><code class="inset">:ptn</code></td><td><code class="inset">:ptnext</code></td><td> tnext命令</td></tr>
+		<tr><td><code class="inset">:ptp</code></td><td><code class="inset">:ptprevious</code></td><td>tprevious命令</td></tr>
+		<tr><td><code class="inset">:ptf</code></td><td><code class="inset">:ptfirst</code></td><td></td></tr>
+		<tr><td><code class="inset">:ptl</code></td><td><code class="inset">:ptlast</code></td><td></td></tr>
+		<tr><td><code class="inset">:pp</code></td><td><code class="inset">:ppop</code></td><td>窗口中执行一个:pop命令</td></tr>
+		<tr><td><code class="inset">:pc</code></td><td><code class="inset">:pclose</code></td><td><kbd>Ctrl-Wz</kbd></td><td>关闭Preview窗口</td></tr>
+		<tr><td><code class="inset">:</code></td><td><code class="inset">:</code></td><td></td></tr>
+	</table>	
 
+	<h2 class="article"><a id="tag-preview">快速修复（Quickfix）</a></h2>
+	<p>使用以下命令，</p>
+	<p style="text-indent:2em"><code class="inset">:ltag [<var>name</var>]</code></p>
+	跳转到标签 [name] 上并在当前窗口的新位置列表中加入匹配的标签。
+	<p>使用以下命令，可以打开快速修复（Quickfix）窗口：</p>
+	<p style="text-indent:2em"><code class="inset">:lopen</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/ltag.png" title="ltag"><img src="https://yyq123.github.io/learn-vim/images/ltag.png" alt="ltag" width="550" height="183" /></a></p>
+	<p>关于快速修复的使用，请参阅<a href="https://yyq123.github.io/learn-vim/learn-vi-70-01-QuickFix.html" title="QuickFix">QuickFix</a>章节。</p>
 
-<	A more exotic example, to jump between the '=' and ';' in an
-	assignment, useful for languages like C and Java: >
-		:au FileType c,cpp,java set mps+==:;
-	<p>matchpairs选项，用来控制哪些字符可以通过<code class="inset">%</code>命令进行匹配。此选项的默认值如下：</p>
-	<p style="text-indent:2em"><code class="inset">:set matchpairs=(:),{:},[:]</code></p>
-	<p>也就是说，在开括号&ldquo;(,{,[&rdquo;上点击<code class="inset">%</code>命令，那么将自动跳转到对应的闭括号上&ldquo;),},]&rdquo;；同理，在闭括号上点击<code class="inset">%</code>命令，则将跳转回到对应的开括号上；同时，匹配跳转也会正确处理括号嵌套的情况。</p>
-	<p>如果需要新增匹配类型，例如增加对于HTML文件中的尖括号的匹配，那么可以使用以下命令：</p>
-	<p style="text-indent:2em"><code class="inset">:set mps+=&lt;:&gt;</code></p>
-这个命令仅仅是匹配<>.如果我们要同时匹配其他的字符,我们可以用下面的命令:
-:set matchpairs=(:),{:},[:],<:>
-	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/matchit-vim-example.gif" title="matchit-vim-example"><img src="http://yyq123.github.io/learn-vim/images/matchit-vim-example.gif" alt="" /></a></br>Source: https://catonmat.net/vim-plugins-matchit-vim</p>
-<p></p>
-如果我们希望我们在输入括号时,光标会跳转到与其匹配的地方进行显示,我们可以执行下面的命令来做到:
-	<p style="text-indent:2em"><code class="inset">:set showmatch</code></p>
-
-通常情况下这个跳转持续的时间为0.5秒(半秒),我们可以用matchtime选项来控制这个时间.例如如果我们希望这个时间持续1.5秒,我们可以用下面的命令:
-:set matchtime=15
-在这里是以0.1秒为单位的.
-<p></p>
-我们在Vim编辑器还可以用命令来查找未匹配的括号.如[{查找前一个未匹配的{,]{查找后一个未匹配的{.[}查找前一个未匹配的},而]}查找后一个未匹配的}.
-])查找后一个未匹配的),而[(查找前一个未匹配的(.[#查找前一个未匹配的#if或者是#else.而]#查找后一个未匹配的同类情况.
-下面的命令可以移动一个Java方法的开头或结尾:
-[m    向后查找一个方法的开头
-[M    向后查找一个方法的结尾
-]m    向前查找一个方法的开头
-]M    向前查找一个方法的结尾
-在Vim编辑器还提供了许多的移动命令来帮助程序人员在他们的程序文件中进行浏览.下面的一些命令可以找到位于第一列的{和}:
-count[[        向后查找位于第一列的前一个{
-count[]        向后查找位于第一列的前一个}
-count]]        向前查找位于第一列的后一个{
-count][        向前查找位于第一列的后一个}
-命令[/和[*可向后移动他可以找到的第一个C注释的开始处,而]/和]*可以向前移动他可以找到下一个C注释的结束处.
-include选项可以用来为我们使用命令]CTRL-I,[CTRL-I,]d,[d在这些我们所包含进来的文件中进行查找.这个选项也可以为命令:checkpath所用.
-命令[i用来查找光标下的内容第一次出现的地方.注释的文本会被忽略掉.
-命令]j用来查找光标下的内容下一次出现的地方.注释的文本会被忽略掉.
-命令[I会列出所有包含当前光标下的内容的句子,命令]I与其相类似,只是这个命令是从当前光标处开始.
-
-
-	<p>默认设置下，Vim使用二分法来查找指定的标签名。我们也可以使用以下命令，启用线性查找方式：</p>
-	<p style="text-indent:2em"><code class="inset">:set notagbsearch</code></p>
-
-有一些系统会限制我们在函数名中所使用的字符数.如果我们要在Vim中加入这样的限制,我们可以通过设置taglength选项来限制我们函数名的最大长度.
-
-	<p>通过'tags'选项，可以指定查找tags文件的位置。根据默认设置&ldquo;tags=./tags,tags&rdquo;，将在当前目录查找tags文件。</p>
-	<p>假设我们针对rails源码库（<em>~/src/rails</em>）生成tags文件，并在'tags'选项中包含此文件，那么就可以在编写代码时，方便地跳转至各种语法地定义处，获得相关地使用说明。</p>
-	<p style="text-indent:2em"><code class="inset">set tags+=~/tags/rails.tags</code></p>
-<p></p>
-但是这会带来一些令人费解的地方.是我们在当前目录中启动并告诉ctags将标记文件放在目录/home/oualline/tools/vim还是我们在当前的目录执行了ctags呢?现在的Vim编辑器已经用其他的选项来解决了这个问题了.如果我们进行下面的设置,所有的标记都会和含有标记文件的目录有关系:
-:set tagrelative
-否则的话,他们会和当前目录有关系.
-如果我们设置了tagstack选项,那么:tag命令和:tjump命令就会建立一个标记栈.否则是不会保持栈的.
-	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
-	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
-
-
-	<p></p>
-
+	<h2 class="article"><a id=""></a></h2>
+	<p>看了那么多命令，是不是有些心烦意乱了？比较理想的状况应该是：如果只有只有一个匹配标签，那么直接跳转；如果发现多个匹配标签，则显示匹配列表。</p>
+	<p>使用<code class="inset">:tjump <var>name</var></code>命令，如果只发现一个匹配标签，将直接跳转至标签定义处；如果发现多个匹配标签，那么将显示标签匹配列表。</p>
+	<p>在常规模式下，使用<kbd>gCtrl-]</kbd>快捷键，将针对光标下的标签执行:tjupm命令。</p>
+	<p>使用<code class="inset">:stjump</code>命令，则可以在新建窗口中执行:tjupm命令。</p>
+	<p>在常规模式下，使用<kbd>Ctrl-W g Ctrl-]</kbd>快捷键，将针对光标下的标签在新建窗口中执行:tjupm命令。</p>
 	<p></p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
 
@@ -245,7 +134,7 @@ include选项可以用来为我们使用命令]CTRL-I,[CTRL-I,]d,[d在这些我�
 	</table>
 &ldquo;&rdquo;
 
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="生成标签文件(Generates Tags File)" href="http://yyq123.github.io/learn-vim/learn-vi-79-01-Tag-File.html.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
 
 </body>
 </html>

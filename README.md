@@ -100,6 +100,8 @@ Created by yyq123@gmail.com using [vim](http://www.vim.org/)
   - [输入网页标签(Input HTML Tags)](http://yyq123.github.io/learn-vim/learn-vi-601-WebDesign-HTMLTag-Input.html)[<sup>B</sup>](https://yyq123.blogspot.com/2020/02/vim-input-html-tags.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/104878849)
   - [输入字符实体(Input Character Entity)](http://yyq123.github.io/learn-vim/learn-vi-602-WebDesign-CharacterEntity.html)[<sup>B</sup>](https://yyq123.blogspot.com/2020/01/vim-input-character-entity.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/103799904)
   - [转义字符实体(Escape Character Entity)](http://yyq123.github.io/learn-vim/learn-vi-603-WebDesign-CharacterEntity-Escape.html)[<sup>B</sup>](https://yyq123.blogspot.com/2020/01/vim-escape-character-entity.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/104136197)
+- **Tag标签**
+  - [生成标签文件(Generates Tags File)](http://yyq123.github.io/learn-vim/learn-vi-79-01-Tag-File.html)[<sup>B</sup>](https://yyq123.blogspot.com/2020/02/vim-generates-tags-file.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/107046319)
 - **自动补全**
   - [自动补全模式(Auto-Completion-Intro)](http://yyq123.github.io/learn-vim/learn-vi-80-01-AutoCompletion-Intro.html)[<sup>B</sup>](https://yyq123.blogspot.com/2020/02/vim-auto-completion-intro.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/105939375)
   - [自动补全详解(Auto-Completion-Detail)](http://yyq123.github.io/learn-vim/learn-vi-80-02-AutoCompletion-Detail.html)[<sup>B</sup>](https://yyq123.blogspot.com/2020/02/vim-auto-completion-detail.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/106309525)

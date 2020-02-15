@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记  ()</title>
+</head>
+<body>
+	<h1>VIM学习笔记  ()</h1>
+
+	<h2 class="article"><a id="">启用/禁用</a></h2>
+	<p></p>
+	<a href="#" title=""></a>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">识别文件</p>
+	<p></p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+
+	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
+	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
+
+	<h2 class="article"><a id="tag-option">标签选项</a></h2>
+	<p>通过'tags'选项，可以指定查找tags文件的位置。根据以下默认设置，Vim将在当前目录查找tags文件：</p>
+	<p style="text-indent:2em"><code class="inset">set tags=tags=./tags,tags</code></p>
+	<p>假设我们针对rails源码库（<em>~/src/rails</em>）生成tags文件，并在'tags'选项中包含此文件，那么就可以在编写代码时，方便地跳转至标签的定义处，获得相关地使用说明。</p>
+	<p style="text-indent:2em"><code class="inset">set tags+=~/tags/rails.tags</code></p>
+	<p>默认设置下，Vim使用二分法（binary search）来查找指定的标签名。如果您生成的<a href="http://yyq123.github.io/learn-vim/learn-vi-79-01-Tag-File.html" title="Generates Tags File">标签文件(Tags File)</a>没有经过排序，那么可以切换至线性查找（linear search）方式：</p>
+	<p style="text-indent:2em"><code class="inset">:set notagbsearch</code></p>
+
+	<h2>Accessing tag data in vimscript</h2>
+
+<p>If you’d like to use the tags for your own custom needs, vim provides a
+straightforward way to do that through the
+<a href="http://vimdoc.sourceforge.net/htmldoc/eval.html#taglist\(\)">taglist</a>
+function. It’s called with a regular expression and it will return all the data
+from the matching tags in the form of a list of dictionaries. An example of
+what you could do with it is the following command, which finds function
+definitions:</p>
+
+	<div><pre style="margin: 0; line-height: 125%">command<span style="color: #cccccc">!</span> <span style="color: #cccccc">-</span>nargs<span style="color: #cccccc">=</span><span style="color: #cd00cd">1</span> Function <span style="color: #cdcd00">call</span> <span style="color: #cdcd00">s</span>:Function<span style="color: #cccccc">(&lt;</span><span style="color: #cdcd00">f</span><span style="color: #cccccc">-</span>args<span style="color: #cccccc">&gt;)</span>
+<span style="color: #cdcd00">function</span><span style="color: #cccccc">!</span> <span style="color: #cdcd00">s</span>:Function<span style="color: #cccccc">(</span>name<span style="color: #cccccc">)</span>
+<span style="color: #000080">  &quot; Retrieve tags of the &#39;f&#39; kind</span>
+  <span style="color: #cdcd00">let</span> <span style="color: #cdcd00">tags</span> <span style="color: #cccccc">=</span> taglist<span style="color: #cccccc">(</span><span style="color: #cd0000">&#39;^&#39;</span>.<span style="color: #cdcd00">a</span>:name<span style="color: #cccccc">)</span>
+  <span style="color: #cdcd00">let</span> <span style="color: #cdcd00">tags</span> <span style="color: #cccccc">=</span> filter<span style="color: #cccccc">(</span><span style="color: #cdcd00">tags</span><span style="color: #cccccc">,</span> <span style="color: #cd0000">&#39;v:val[&quot;kind&quot;] == &quot;f&quot;&#39;</span><span style="color: #cccccc">)</span>
+
+<span style="color: #000080">  &quot; Prepare them for inserting in the quickfix window</span>
+  <span style="color: #cdcd00">let</span> qf_taglist <span style="color: #cccccc">=</span> []
+  <span style="color: #cdcd00">for</span> entry <span style="color: #cdcd00">in</span> <span style="color: #cdcd00">tags</span>
+    <span style="color: #cdcd00">call</span> add<span style="color: #cccccc">(</span>qf_taglist<span style="color: #cccccc">,</span> {
+          \ <span style="color: #cd0000">&#39;pattern&#39;</span>:  entry[<span style="color: #cd0000">&#39;cmd&#39;</span>]<span style="color: #cccccc">,</span>
+          \ <span style="color: #cd0000">&#39;filename&#39;</span>: entry[<span style="color: #cd0000">&#39;filename&#39;</span>]<span style="color: #cccccc">,</span>
+          \ }<span style="color: #cccccc">)</span>
+  <span style="color: #cdcd00">endfor</span>
+
+<span style="color: #000080">  &quot; Place the tags in the quickfix window, if possible</span>
+  <span style="color: #cdcd00">if</span> len<span style="color: #cccccc">(</span>qf_taglist<span style="color: #cccccc">)</span> <span style="color: #cccccc">&gt;</span> <span style="color: #cd00cd">0</span>
+    <span style="color: #cdcd00">call</span> setqflist<span style="color: #cccccc">(</span>qf_taglist<span style="color: #cccccc">)</span>
+    <span style="color: #cdcd00">copen</span>
+  <span style="color: #cdcd00">else</span>
+    echo <span style="color: #cd0000">&quot;No tags found for &quot;</span>.<span style="color: #cdcd00">a</span>:name
+  <span style="color: #cdcd00">endif</span>
+<span style="color: #cdcd00">endfunction</span>
+</pre></div>
+
+<p>Invoking <code class="highlighter-rouge">:Function foo</code> will look for functions in the tag file that start
+with “foo” and load them all in the
+<a href="http://vimdoc.sourceforge.net/htmldoc/quickfix.html#quickfix">quickfix</a>
+window. This could be even more useful with some tab-completion and it’s also
+not very portable across filetypes. It shouldn’t be too difficult to generalize
+it a bit, so I might devote a separate blog post for that when I get around to
+doing it.</p>
+
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
+		<caption style="margin:0.5em; font-weight:bold">选项列表</caption>
+		<tr><th style="white-space: nowrap">选项</th><th>描述</th><th>帮助信息</th></tr>
+		<tr><td><code class="inset">!</code></td><td>如果包含，表示。例如，。</td><td style="white-space: nowrap"><code class="inset">:help viminfo-!</code></td></tr>
+	</table>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
+		<tr><td><code class="inset">:</code></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+	</table>
+&ldquo;&rdquo;
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
+
+</body>
+</html>
