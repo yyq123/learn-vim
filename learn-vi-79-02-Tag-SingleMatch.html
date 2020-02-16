@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 匹配单个标签(Matching Single Tag)</title>
+</head>
+<body>
+	<h1>VIM学习笔记 匹配单个标签(Matching Single Tag)</h1>
+
+	<p><a href="http://yyq123.github.io/learn-vim/learn-vi-79-01-Tag-File.html" title="Generates Tags File">上节</a>介绍了如何使用Ctag工具来生成标签文件（Tags File）。本节将介绍基于标签文件，快速在标签之间进行跳转的操作。</p>
+	<p>标签是出现在标签文件（Tags File）中的一个标识符。它是一种能够跳转的标记。例如，在 C 程序里，每个函数名都可以是一个标签。</p>
+
+	<h2 class="article"><a id="ex-cmd-tag">标签跳转</a></h2>
+	<p>使用以下命令，可以直接跳转至定义标签的位置：</p>
+	<p style="text-indent:2em"><code class="inset">:tag {<var>name</var>}</code></p>
+	<p>在常规模式下，使用<kbd>Ctrl-]</kbd>快捷键，也可以查找光标下的标签（比如函数或宏等），并跳转到定义该标签的位置。</p>
+	<p>在常规模式和插入模式下，按住<kbd>Ctrl</kbd>键并点击鼠标左键（<kbd>&lt;C-LeftMouse&gt;</kbd>），也可以跳转至标签定义处。</p>
+	<p>使用以下命令，可以在新建窗口中跳转到定义标签的位置：</p>
+	<p style="text-indent:2em"><code class="inset">:stag {<var>name</var>}</code></p>
+	<p>在常规模式下，使用<kbd>Ctrl-W]</kbd>快捷键，也可以在新建窗口中跳转到定义标签的位置。</p>
+
+	<h2 class="article"><a id="tag-stack">标签栈（Tag Stack）</a></h2>
+	<p>根据'tagstack'选项的默认设置，Vim会在标签栈中记录你跳转过的标签，以及是从哪里跳转到这些标签。</p>
+	<p>使用以下命令，可以查看标签栈的内容：</p>
+	<p style="text-indent:2em"><code class="inset">:tags</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/tags.png" title=":tags"><img src="https://yyq123.github.io/learn-vim/images/tags.png" alt=":tags" width="550" height="141" /></a></p>
+	<p>使用以下不带任何参数的命令，可以跳转到较新的标签处：</p>
+	<p style="text-indent:2em"><code class="inset">:tag</code></p>
+	<p>使用以下命令，可以返回到之前的标签处：</p>
+	<p style="text-indent:2em"><code class="inset">:pop</code></p>
+	<p>在常规模式下，使用使用<kbd>Ctrl-T</kbd>键，可以依次返回之前所处的位置。</p>
+	<p>在常规模式和插入模式下，按住<kbd>Ctrl</kbd>键并点击鼠标右键（<kbd>&lt;C-RightMouse&gt;</kbd>），也可以返回之前所处的位置。</p>
+	<p>如下图所示，首先使用:tag命令跳转至指定的标签，然后使用:pop命令返回到之前的位置。请留意屏幕底部输入的命令，以及白色高亮行的跳转过程：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/tag-stack-550.gif" title="tag-stack-550"><img src="https://yyq123.github.io/learn-vim/images/tag-stack-550.gif" alt="tag-stack-550" /></a></p>
+	<p>使用<code class="inset">:h tag-stack</code>命令，可以查看标签栈的帮助信息。</p>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td>标签跳转</td><td><code class="inset">:tag</code></td><td><kbd>Ctrl-]</kbd></td><td><kbd>&lt;C-LeftMouse&gt;</kbd></td><td><code class="inset">:stag</code></td></tr>
+		<tr><td>标签跳转返回</td><td><code class="inset">:pop</code></td><td><kbd>Ctrl-T</kbd></td><td><kbd>&lt;C-RightMouse&gt;</kbd></td><td></td></tr>
+		<tr><td>查看标签栈内容</td><td><code class="inset">:tags</code></td><td></td></tr>
+	</table>
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="生成标签文件(Generates Tags File)" href="http://yyq123.github.io/learn-vim/learn-vi-79-01-Tag-File.html.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
+
+</body>
+</html>

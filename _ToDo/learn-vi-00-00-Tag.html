@@ -5,29 +5,25 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记 生成标签文件(Generates Tags File)</title>
+	<title>VIM学习笔记 匹配多个标签(Matching Multiple Tags)</title>
 </head>
 <body>
-	<h1>VIM学习笔记 生成标签文件(Generates Tags File)</h1>
+	<h1>VIM学习笔记 匹配多个标签(Matching Multiple Tags)</h1>
 
 	<p><a href="http://yyq123.github.io/learn-vim/learn-vi-79-01-Tag-File.html" title="Generates Tags File">上节</a>介绍了如何使用Ctag工具来生成标签文件（Tags File）。本节将介绍基于标签文件，快速在标签之间进行跳转的操作。</p>
 	<p>标签是出现在标签文件（Tags File）中的一个标识符。它是一种能够跳转的标记。例如，在 C 程序里，每个函数名都可以是一个标签。</p>
 
 	<h2 class="article"><a id=""></a></h2>
-	<p>：</p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
-
 
 	<h2 class="article"><a id="tag-commands">标签跳转（Tag Navigation）</a></h2>
 	<p>使用以下命令，可以直接跳转至定义标签的位置：</p>
-	<p style="text-indent:2em"><code class="inset">:tag <var>{tagname}</var></code></p>
+	<p style="text-indent:2em"><code class="inset">:tag {<var>name</var>}</code></p>
 	<p>在常规模式下，使用<kbd>Ctrl-]</kbd>快捷键，也可以查找光标下的标签（比如函数或宏等），并跳转到定义该标签的位置。</p>
 	<p>在常规模式和插入模式下，按住<kbd>Ctrl</kbd>键并点击鼠标左键（<kbd>&lt;C-LeftMouse&gt;</kbd>），也可以跳转至标签定义处。</p>
 	<p>使用以下命令，可以在新建窗口中跳转到定义标签的位置：</p>
-	<p style="text-indent:2em"><code class="inset">:stag <var>name</var></code></p>
-	<p>在常规模式下，使用<kbd>Ctrl-W]</kbd>快捷键，也将在当前窗口上方新建水平窗口，并跳转到定义函数的位置。</p>
-(see :h :tag
-and :h :tjump )
+	<p style="text-indent:2em"><code class="inset">:stag {<var>name</var>}</code></p>
+	<p>在常规模式下，使用<kbd>Ctrl-W]</kbd>快捷键，也可以在新建窗口中跳转到定义标签的位置。</p>
 
 	<h2 class="article"><a id="tag-regexp">标签搜索（Tag Search Pattern）</a></h2>
 	<p>我们可以在文件的任意位置上执行<code class="inset">:tag</code>和<code class="inset">:tjump</code>命令，以跳转至指定的匹配处。而省去了将光标移动至标签之上，然后再点击快捷键的操作。</p>
@@ -51,7 +47,7 @@ and :h :tjump )
 	<p style="text-indent:2em"><code class="msg">tag 1 of n or more</code></p>
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption></caption>
-		<tr><th></th><th></th><th></th></tr>
+		<tr><th>缩写</th><th>命令</th><th>功能</th></tr>
 		<tr><td><code class="inset">:ts</code></td><td><code class="inset">:tselect</code></td><td>显示标签匹配列表</td></tr>
 		<tr><td><code class="inset">:tn</code></td><td><code class="inset">:tnext</code></td><td>跳转至下一个匹配项</td></tr>
 		<tr><td><code class="inset">:tp</code></td><td><code class="inset">:tprevious</code></td><td>跳转至上一个匹配项</td></tr>
@@ -61,22 +57,23 @@ and :h :tjump )
 	</table>
 
 	<h2 class="article"><a id="tag-stack">标签栈（Tag Stack）</a></h2>
-	<p>默认情况下，'tagstack'选项是打开的。Vim会在标签栈中记录你跳转过的标签，以及是从哪里跳转到这些标签。</p>
+	<p>根据'tagstack'选项的默认设置，Vim会在标签栈中记录你跳转过的标签，以及是从哪里跳转到这些标签。</p>
 	<p>使用以下命令，可以查看标签栈的内容：</p>
 	<p style="text-indent:2em"><code class="inset">:tags</code></p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/tags.png" title=":tags"><img src="https://yyq123.github.io/learn-vim/images/tags.png" alt=":tags" width="550" height="141" /></a></p>
-	<p>使用以下不带任何参数命令，可以跳转到较新的标签处：</p>
+	<p>使用以下不带任何参数的命令，可以跳转到较新的标签处：</p>
 	<p style="text-indent:2em"><code class="inset">:tag</code></p>
 	<p>使用以下命令，可以返回到之前的标签处：</p>
 	<p style="text-indent:2em"><code class="inset">:pop</code></p>
-	<p>在常规模式下，使用使用<kbd>Ctrl-T</kbd>键，依次返回之前所处的位置。</p>
+	<p>在常规模式下，使用使用<kbd>Ctrl-T</kbd>键，可以依次返回之前所处的位置。</p>
 	<p>在常规模式和插入模式下，按住<kbd>Ctrl</kbd>键并点击鼠标右键（<kbd>&lt;C-RightMouse&gt;</kbd>），也可以返回之前所处的位置。</p>
+	<p>如下图所示，首先使用:tag命令跳转至指定的标签，然后使用:pop命令返回到之前的位置。请留意屏幕底部输入的命令，以及白色高亮行的跳转过程：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/tag-stack-550.gif" title="tag-stack-550"><img src="https://yyq123.github.io/learn-vim/images/tag-stack-550.gif" alt="tag-stack-550" /></a></p>
 	<p>使用<code class="inset">:h tag-stack</code>命令，可以查看标签栈的帮助信息。</p>
  
 
 <p>通过安装<a href="http://www.vim.org/scripts/script.php?script_id=1590" title="unimpaired.vim">unimpaired.vim</a>插件，可以映射快捷键 <code class="highlighter-rouge">]t</code> for <code class="highlighter-rouge">:tnext</code> and <code class="highlighter-rouge">[t</code> for <code class="highlighter-rouge">:tprev.</code></p>
 
-https://vim.fandom.com/wiki/Browsing_programs_with_tags
 
 	<h2 class="article"><a id="tag-preview">预览窗口（Preview Window）</a></h2>
 	<p>当我们使用<kbd>Ctrl-]</kbd>键跳转至函数定义处时，当前屏幕将会显示函数定义的代码，稍后我们仍需退回到之前的位置继续程序编辑。如果我们希望在编辑当前代码段的同时参考具体的函数定义，那么可以使用预览窗口（Preview Window）。</p>
@@ -92,14 +89,14 @@ https://vim.fandom.com/wiki/Browsing_programs_with_tags
 	<p>在preview窗口中我们执行下面的命令来完成我们的工作:</p>
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption></caption>
-		<tr><th></th><th></th><th></th></tr>
-		<tr><td><code class="inset">:pts</code></td><td><code class="inset">:ptselect</code></td><td>preview窗口并执行:tselect命令</td></tr>
-		<tr><td><code class="inset">:ptj</code></td><td><code class="inset">:ptjump</code></td><td><kbd>Ctrl-Wg}</kbd></td><td>preview窗口并执行:ptjump 命令</td></tr>
-		<tr><td><code class="inset">:ptn</code></td><td><code class="inset">:ptnext</code></td><td> tnext命令</td></tr>
-		<tr><td><code class="inset">:ptp</code></td><td><code class="inset">:ptprevious</code></td><td>tprevious命令</td></tr>
-		<tr><td><code class="inset">:ptf</code></td><td><code class="inset">:ptfirst</code></td><td></td></tr>
-		<tr><td><code class="inset">:ptl</code></td><td><code class="inset">:ptlast</code></td><td></td></tr>
-		<tr><td><code class="inset">:pp</code></td><td><code class="inset">:ppop</code></td><td>窗口中执行一个:pop命令</td></tr>
+		<tr><th>缩写</th><th>命令</th><th>功能</th></tr>
+		<tr><td><code class="inset">:pts</code></td><td><code class="inset">:ptselect</code></td><td>执行:tselect命令并在预览窗口中显示标签</td></tr>
+		<tr><td><code class="inset">:ptj</code></td><td><code class="inset">:ptjump</code></td><td><kbd>Ctrl-Wg}</kbd></td><td>执行:tjump命令并在预览窗口中显示标签</td></tr>
+		<tr><td><code class="inset">:ptn</code></td><td><code class="inset">:ptnext</code></td><td>在预览窗口中执行:tnext命令</td></tr>
+		<tr><td><code class="inset">:ptp</code></td><td><code class="inset">:ptprevious</code></td><td>在预览窗口中执行:tprevious命令</td></tr>
+		<tr><td><code class="inset">:ptf</code></td><td><code class="inset">:ptfirst</code></td><td>在预览窗口中执行:tfirst命令</td></tr>
+		<tr><td><code class="inset">:ptl</code></td><td><code class="inset">:ptlast</code></td><td>在预览窗口中执行:tlast命令</td></tr>
+		<tr><td><code class="inset">:pp</code></td><td><code class="inset">:ppop</code></td><td>在预览窗口中执行个:pop命令</td></tr>
 		<tr><td><code class="inset">:pc</code></td><td><code class="inset">:pclose</code></td><td><kbd>Ctrl-Wz</kbd></td><td>关闭Preview窗口</td></tr>
 		<tr><td><code class="inset">:</code></td><td><code class="inset">:</code></td><td></td></tr>
 	</table>	
@@ -122,7 +119,6 @@ https://vim.fandom.com/wiki/Browsing_programs_with_tags
 	<p></p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
 
-	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
 
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
