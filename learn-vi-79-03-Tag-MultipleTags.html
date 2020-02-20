@@ -12,18 +12,17 @@
 
 	<p>如果您明确知道某个标签的名称，那么可以使用<a href="http://yyq123.github.io/learn-vim/learn-vi-79-02-Tag-SingleMatch.html" title="Matching Single Tag">匹配单个标签</a>章节中介绍的命令直接跳转。本节将继续介绍搜索和匹配多个标签的操作。</p>
 
-	<h2 class="article"><a id=""></a></h2>
-	<p style="text-indent:2em"><code class="inset"></code></p>
-
 	<h2 class="article"><a id="tag-regexp">标签搜索（Tag Search Pattern）</a></h2>
 	<p>我们可以在文件的任意位置上执行<code class="inset">:tag</code>或<code class="inset">:tjump</code>命令，以跳转至指定的标签定义处。这样就省去了将光标移动至标签之上，然后再点击跳转快捷键的繁琐。</p>
 	<p>如果启用了<a href="http://yyq123.github.io/learn-vim/learn-vi-46-02-wildmenu.html" title="wildmenu">wildmenu</a>选项，那么在输入命令时，我们只需要输入标签的开头几个字母，然后点击<kbd>Tab</kbd>键即可以自动补全标签名。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/tag_tab_wildmenu.png" title="tag_tab_wildmenu"><img src="https://yyq123.github.io/learn-vim/images/tag_tab_wildmenu.png" alt="tag_tab_wildmenu" /></a></p>
-	<p>通过在命令中使用<a href="http://yyq123.github.io/learn-vi-81-RegularExpressionBasic.html" title="Regular Expression Basic">正则表达式</a>，可以查找符合条件的标签。例如<code class="inset">:tag /^HTML*</code>命令，将查找所有以&ldquo;HTML&rdquo;开头的标签，并跳转至第一个匹配项。</p>
-	<p>而<code class="inset">:tjump /^Color*</code>命令，将会显示所有以&ldquo;Color&rdquo;开头的标签，你可以选择跳转至某一匹配项。</p>
+	<p>通过在命令中使用<a href="http://yyq123.github.io/learn-vi-81-RegularExpressionBasic.html" title="Regular Expression Basic">正则表达式</a>，可以查找符合条件的标签。例如以下命令，将查找所有以&ldquo;HTML&rdquo;开头的标签，并跳转至第一个匹配标签：</p>
+	<p style="text-indent:2em"><code class="inset">:tag /^HTML*</code></p>
+	<p>而以下命令，将会显示所有以&ldquo;Color&rdquo;开头的标签，你可以选择跳转至某一匹配标签：</p>
+	<p style="text-indent:2em"><code class="inset">:tjump /^Color*</code></p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/tjump_regex.png" title="tjump_regex"><img src="https://yyq123.github.io/learn-vim/images/tjump_regex.png" alt="tjump_regex" /></a></p>
 	<p>如果有多个匹配项存在，比如在几个文件中都定义了同名的函数，那么默认情况下，将优先跳转至当前文件中的匹配项。</p>
-	<p>您可以使用<code class="inset">:h tag-priority</code>命令，查看关于优先级的帮助信息。</p>
+	<p>使用<code class="inset">:h tag-priority</code>命令，可以查看关于优先级的帮助信息。</p>
 
 	<h2 class="article"><a id="tag-matchlist">标签匹配列表（Tag Match List）</a></h2>
 	<p>使用以下命令，将在屏幕底部显示标签匹配列表，然后根据您的选择在当前窗口中跳转至标签定义处：</p>
@@ -34,80 +33,83 @@
 	<p style="text-indent:2em"><code class="inset">:stselect [name]</code></p>
 	<p>在常规模式下，使用<kbd>Ctrl-Wg]</kbd>快捷键，将在新建窗口中，针对光标下的标签执行:tselect命令。</p>
 	<p>使用以下命令，可以根据匹配列表中的顺序进行标签跳转：</p>
-	<p style="text-indent:2em"><code class="msg">tag 1 of n or more</code></p>
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
-		<caption></caption>
 		<tr><th>缩写</th><th>命令</th><th>功能</th></tr>
-		<tr><td><code class="inset">:ts</code></td><td><code class="inset">:tselect</code></td><td>显示标签匹配列表</td></tr>
 		<tr><td><code class="inset">:tn</code></td><td><code class="inset">:tnext</code></td><td>跳转至下一个匹配项</td></tr>
 		<tr><td><code class="inset">:tp</code></td><td><code class="inset">:tprevious</code></td><td>跳转至上一个匹配项</td></tr>
 		<tr><td><code class="inset">:tf</code></td><td><code class="inset">:tfirst</code></td><td>跳转至第一个匹配项</td></tr>
 		<tr><td><code class="inset">:tl</code></td><td><code class="inset">:tlast</code></td><td>跳转至最后一个匹配项</td></tr>
 	</table>
-	<p>在进行标签跳转的过程中，将在屏幕底部显示相对位置：</p>
+	<p>在进行标签跳转的过程中，将在屏幕底部显示其相对位置：</p>
 	<p style="text-indent:2em"><code class="msg">tag 1 of n or more</code></p>
 
-	<h2 class="article"><a id="tag-preview">预览窗口（Preview Window）</a></h2>
-	<p>当我们在代码中遇到某个函数，但不太清楚其具体含义，那么可以使用<kbd>Ctrl-]</kbd>键跳转至函数定义处，而此时的当前屏幕将会显示该函数的具体实现代码；稍后我们仍需退回到之前的位置继续编写程序。如果我们希望在编辑当前代码段的同时参考具体的函数定义，那么可以使用预览窗口（Preview Window）。</p>
+	<h2 class="article"><a id="tag-preview-window">预览窗口（Preview Window）</a></h2>
+	<p>当我们在代码中遇到某个函数，但不太清楚其具体含义，那么可以使用<kbd>Ctrl-]</kbd>键跳转至函数定义处，而此时当前屏幕将会显示该函数的具体实现代码；稍后我们仍需退回到之前的位置继续编写程序。</p>
+	<p>如果我们希望在编辑当前代码段的同时参考具体的函数定义，那么可以使用预览窗口（Preview Window）。</p>
 	<p>请注意，为了使用预览窗口，Vim必须包含<a href="https://yyq123.github.io/learn-vim/learn-vi-70-01-QuickFix.html" title="QuickFix">QuickFix</a>特性。</p>
-	<p>使用以下命令，将在屏幕上方的预览窗口中显示指定标签的定义，并且保持当前光标的位置不变。也即是说，你可以同时在屏幕上查看引用函数和定义函数的代码。</p>
-	<p style="text-indent:2em"><code class="inset">:ptag [tagname]</code></p>
-	<p>如果当前已经存在一个Preview窗口，那么将重用此窗口。</p>
+	<p>使用以下命令，将在屏幕上方的预览窗口中显示指定标签的定义，并且保持当前光标的位置不变。也即是说，你可以同时在屏幕上查看引用函数的代码和定义函数的代码。</p>
+	<p style="text-indent:2em"><code class="inset">:ptag [name]</code></p>
+	<p>如果当前已经存在一个预览窗口，那么将重用此窗口。</p>
 	<p>使用<kbd>Ctrl-W}</kbd>快捷键，也可以针对当前光标下的标签执行:ptag命令。</p>
 	<p>使用以下命令，将执行:tjump命令，并在预览窗口中显示标签：</p>
 	<p style="text-indent:2em"><code class="inset">:ptjump [name]</code></p>
 	<p>使用<kbd>Ctrl-Wg}</kbd>快捷键，也可以针对当前光标下的标签执行:ptjump命令。</p>
 	<p>使用以下命令，将执行:tselect命令，并在预览窗口中显示标签：</p>
 	<p style="text-indent:2em"><code class="inset">:ptselect [name]</code></p>
-
-	<p>在窗口中我们执行下面的命令来完成我们的工作:</p>
-	<p>使用以下命令，可以根据匹配列表中的顺序进行标签跳转：</p>
+	<p>使用以下命令，可以在预览窗口中进行标签跳转：</p>
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
-		<caption></caption>
 		<tr><th>缩写</th><th>命令</th><th>功能</th></tr>
-		<tr><td><code class="inset">:pts</code></td><td><code class="inset">:ptselect</code></td><td>执行:tselect命令并在预览窗口中显示标签</td></tr>
 		<tr><td><code class="inset">:ptn</code></td><td><code class="inset">:ptnext</code></td><td>在预览窗口中执行:tnext命令</td></tr>
 		<tr><td><code class="inset">:ptp</code></td><td><code class="inset">:ptprevious</code></td><td>在预览窗口中执行:tprevious命令</td></tr>
 		<tr><td><code class="inset">:ptf</code></td><td><code class="inset">:ptfirst</code></td><td>在预览窗口中执行:tfirst命令</td></tr>
 		<tr><td><code class="inset">:ptl</code></td><td><code class="inset">:ptlast</code></td><td>在预览窗口中执行:tlast命令</td></tr>
-		<tr><td><code class="inset">:pp</code></td><td><code class="inset">:ppop</code></td><td>在预览窗口中执行个:pop命令</td></tr>
-		<tr><td><code class="inset">:pc</code></td><td><code class="inset">:pclose</code></td><td><kbd>Ctrl-Wz</kbd></td><td>关闭Preview窗口</td></tr>
-		<tr><td><code class="inset">:</code></td><td><code class="inset">:</code></td><td></td></tr>
-	</table>	
+		<tr><td><code class="inset">:pp</code></td><td><code class="inset">:ppop</code></td><td>在预览窗口中执行:pop命令</td></tr>
+		<tr><td><code class="inset">:pc</code></td><td><code class="inset">:pclose</code></td><td>关闭预览窗口</td></tr>
+	</table>
+	<p>使用<kbd>Ctrl-Wz</kbd>快捷键，也可以关闭预览窗口。</p>
 
-	<h2 class="article"><a id="tag-preview">位置列表（Location List）</a></h2>
+	<h2 class="article"><a id="tag-location-list">位置列表（Location List）</a></h2>
 	<p>使用以下命令，可以跳转到指定标签，并在当前窗口的新位置列表中加入匹配的标签：</p>
 	<p style="text-indent:2em"><code class="inset">:ltag [name]</code></p>
-	<p>使用以下命令，可以利用Quickfix来显示位置列表：</p>
+	<p>使用以下命令，可以显示位置列表：</p>
 	<p style="text-indent:2em"><code class="inset">:lopen</code></p>
-	<p>例如，首先使用<code class="inset">:ltag /^HTML*</code>命令，查找所有以&ldquo;HTML&rdquo;开头的标签并将它们放入到位置列表当中；然后使用<code class="inset">:lopen</code>命令，在Quickfix中显示位置列表。</p>
+	<p>例如，首先使用<code class="inset">:ltag /^HTML*</code>命令，查找所有以&ldquo;HTML&rdquo;开头的标签并将它们放入到位置列表当中；然后使用<code class="inset">:lopen</code>命令，查看位置列表。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/ltag.png" title="ltag"><img src="https://yyq123.github.io/learn-vim/images/ltag.png" alt="ltag" width="550" height="183" /></a></p>
-	<p>关于快速修复的使用，请参阅<a href="https://yyq123.github.io/learn-vim/learn-vi-70-01-QuickFix.html" title="QuickFix">QuickFix</a>章节。</p>
+	<p>使用以下命令，可以在位置列表中进行标签跳转：</p>
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<tr><th>缩写</th><th>命令</th><th>功能</th></tr>
+		<tr><td><code class="inset">:lop</code></td><td><code class="inset">:lopen</code></td><td>显示位置列表</td></tr>
+		<tr><td><code class="inset">:lne</code></td><td><code class="inset">:lnext</code></td><td>移动到下一个标签</td></tr>
+		<tr><td><code class="inset">:lp</code></td><td><code class="inset">:lprevious</code></td><td>移动到下一个标签</td></tr>
+		<tr><td><code class="inset">:lfir</code></td><td><code class="inset">:lfirst</code></td><td>移动到第一个标签</td></tr>
+		<tr><td><code class="inset">:lla</code></td><td><code class="inset">:llast</code></td><td>移动到最后一个标签</td></tr>
+		<tr><td><code class="inset">:lcl</code></td><td><code class="inset">:lclose</code></td><td>关闭位置列表</td></tr>
+	</table>
 
 	<h2 class="article"><a id="tjump">智能跳转（tjump）</a></h2>
 	<p>看了这么多命令，是不是已经心烦意乱了？我们期待的理想状况应该是：如果只有一个匹配标签，那么直接跳转；如果发现多个匹配标签，则显示匹配列表。</p>
-	<p>使用<code class="inset">:tjump name</code>命令，如果只发现一个匹配标签，将直接跳转至标签定义处；如果发现多个匹配标签，那么将显示标签匹配列表。</p>
+	<p>使用<code class="inset">:tjump {name}</code>命令，如果只发现一个匹配标签，将直接跳转至标签定义处；如果发现多个匹配标签，那么将显示标签匹配列表。</p>
 	<p>在常规模式下，使用<kbd>gCtrl-]</kbd>快捷键，将针对光标下的标签执行:tjupm命令。</p>
 	<p>使用<code class="inset">:stjump</code>命令，则可以在新建窗口中执行:tjupm命令。</p>
 	<p>在常规模式下，使用<kbd>Ctrl-W g Ctrl-]</kbd>快捷键，将针对光标下的标签在新建窗口中执行:tjupm命令。</p>
-	<p></p>
 
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
-		<tr><th></th><th></th><th>命令</th><th>快捷键</th><th>鼠标</th></tr>
-		<tr><td>标签跳转</td><td></td><td><code class="inset">:tag</code></td><td><kbd>Ctrl-]</kbd></td><td><kbd>&lt;C-LeftMouse&gt;</kbd></td></tr>
-		<tr><td>标签跳转</td><td>新建窗口</td><td><code class="inset">:stag</code></td><td><kbd>Ctrl-W]</kbd></td><td></td></tr>
-		<tr><td>标签跳转返回</td><td></td><td><code class="inset">:pop</code></td><td><kbd>Ctrl-T</kbd></td><td><kbd>&lt;C-RightMouse&gt;</kbd></td></tr>
-		<tr><td>查看标签栈内容</td><td></td><td><code class="inset">:tags</code></td><td></td></tr>
-		<tr><td>标签跳转</td><td></td><td><code class="inset">:tjump</code></td><td><kbd>gCtrl-]</kbd></td><td></td></tr>
-		<tr><td>标签跳转</td><td>新建窗口</td><td><code class="inset">:stjump</code></td><td><kbd>Ctrl-W g Ctrl-]</kbd></td><td></td></tr>
-		<tr><td>显示标签匹配列表</td><td></td><td><code class="inset">:tselect</code></td><td><kbd>g]</kbd></td></tr>
-		<tr><td>显示标签匹配列表</td><td>新建窗口</td><td><code class="inset">:stselect</code></td><td><kbd>Ctrl-Wg]</kbd></td></tr>
-		<tr><td>显示标签定义</td><td>预览窗口</td><td><code class="inset">:ptag</code></td><td><kbd>Ctrl-W}</kbd></td><td></td></tr>
-		<tr><td>标签跳转</td><td>预览窗口</td><td><code class="inset">:ptjump</code></td><td><kbd>Ctrl-Wg}</kbd></td><td></td></tr>
-		<tr><td>显示标签匹配列表</td><td>预览窗口</td><td><code class="inset">:ptselect</code></td><td></td></tr>
-		<tr><td>标签跳转</td><td>位置列表</td><td><code class="inset">:ltag</code></td><td></td></tr>
-		<tr><td>显示位置列表</td><td>位置列表</td><td><code class="inset">:lopen</code></td><td></td></tr>
+		<tr><th></th><th></th><th>命令</th><th>快捷键</th></tr>
+		<tr><td rowspan="6">标签跳转</td><td></td><td><code class="inset">:tag</code></td><td><kbd>Ctrl-]</kbd></td></tr>
+		<tr><td>新建窗口</td><td><code class="inset">:stag</code></td><td><kbd>Ctrl-W]</kbd></td></tr>
+		<tr><td>预览窗口</td><td><code class="inset">:ptag</code></td><td><kbd>Ctrl-W}</kbd></td></tr>
+		<tr><td></td><td><code class="inset">:tjump</code></td><td><kbd>gCtrl-]</kbd></td></tr>
+		<tr><td>新建窗口</td><td><code class="inset">:stjump</code></td><td><kbd>Ctrl-W g Ctrl-]</kbd></td></tr>
+		<tr><td>预览窗口</td><td><code class="inset">:ptjump</code></td><td><kbd>Ctrl-Wg}</kbd></td></tr>
+		<tr><td rowspan="2">标签跳转返回</td><td></td><td><code class="inset">:pop</code></td><td><kbd>Ctrl-T</kbd></td></tr>
+		<tr><td>预览窗口</td><td><code class="inset">:ppop</code></td><td></td></tr>
+		<tr><td>查看标签栈</td><td></td><td><code class="inset">:tags</code></td><td></td></tr>
+		<tr><td rowspan="3">显示匹配列表</td><td></td><td><code class="inset">:tselect</code></td><td><kbd>g]</kbd></td></tr>
+		<tr><td>新建窗口</td><td><code class="inset">:stselect</code></td><td><kbd>Ctrl-Wg]</kbd></td></tr>
+		<tr><td>预览窗口</td><td><code class="inset">:ptselect</code></td><td></td></tr>
+		<tr><td>添加位置列表</td><td></td><td><code class="inset">:ltag</code></td><td></td></tr>
+		<tr><td>显示位置列表</td><td></td><td><code class="inset">:lopen</code></td><td></td></tr>
 	</table>
 
 	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="生成标签文件(Generates Tags File)" href="http://yyq123.github.io/learn-vim/learn-vi-79-01-Tag-File.html.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>

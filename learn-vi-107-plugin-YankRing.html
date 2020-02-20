@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 搜索结果计数器(YankRing)</title>
+</head>
+<body>
+	<h1>VIM学习笔记 搜索结果计数器(YankRing)</h1>
+	<h2 class="article"><a id=""></a></h2>
+	<p>在<a href="https://yyq123.github.io/learn-vim/learn-vi-12-Register.html" title="寄存器(Regists)">寄存器(Regists)</a>章节中，</p>
+	<p>在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>配置文件中增加以下设置，可以在屏幕底部，显示匹配搜索结果的总数，以及当前所处第几个匹配结果。</p>
+	<p style="text-indent:2em"><code class="inset">set shortmess-=S</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/set_shortmess_S.png" title="set_shortmess_S"><img src="https://yyq123.github.io/learn-vim/images/set_shortmess_S.png" alt="" width="500" height="42" /></a></p>
+	<p><a href="https://github.com/google/vim-searchindex" title="vim-searchindex">vim-searchindex</a>插件，可以在屏幕底部的命令行中，显示匹配搜索结果的总数，以及当前所处第几个匹配结果。</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/plugin_vim_searchindex.gif" title="vim_searchindex"><img src="https://yyq123.github.io/learn-vim/images/plugin_vim_searchindex_500.gif" alt="plugin_vim_searchindex" width="500" height="131" /></a></p>
+
+	<h2 class="article"><a id="">安装配置</a></h2>
+	<p>推荐您使用<a href="http://yyq123.github.io/learn-vim/learn-vi-102-plugin-plug.html" title="插件管理器(vim-plug)">vim-plug</a>或<a href="http://yyq123.github.io/learn-vim/learn-vi-101-plugin-vundle.html" title="插件管理器(Vundle)">Vundle</a>等插件管理器，来安装Vim.org上的<a href="https://www.vim.org/scripts/script.php?script_id=1234" title="YankRing.vim">YankRing.vim</a>插件。</p>
+	<p>使用<code class="inset">:h yankring</code>命令，可以查看vim-searchindex插件的帮助文件。使用<code class="inset">:h yankring-tutorial</code>命令，则可以参照实例以快速了解插件功能。</p>
+	<p>以下表格列示了主要选项的默认设置：</p>
+	<table cellspacing="0" cellpadding="2">
+	<tbody>
+		<tr><th>选项</th><th>默认值</th><th>描述</th></tr>
+		<tr><td>yankring_max_history</td><td>100</td><td>保存历史纪录的最大数目</td></tr>
+		<tr><td>yankring_min_element_length</td><td>1</td><td>如果复制的文本长度小于此值，则不会被记录。可以避免删除单个字符，也被记录到YankRing</td></tr>
+		<tr><td>yankring_max_element_length</td><td>1MB</td><td>如果复制的文本长度大于此值，则会被截断</td></tr>
+		<tr><td>yankring_enabled</td><td>1</td><td>自动启用YankRing</td></tr>
+		<tr><td>yankring_ignore_duplicate</td><td>1</td><td>忽略重复的纪录</td></tr>
+		<tr><td>yankring_window_auto_close</td><td>1</td><td>当选择某条纪录后自动关闭YankRing窗口</td></tr>
+	</tbody>
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a href="http://yyq123.github.io/learn-vim/learn-vi-101-plugin-vundle.html" title="插件管理器(Vundle)">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a href="http://yyq123.github.io/learn-vim/learn-vi-102-plugin-plug.html" title="插件管理器(vim-plug)">下一篇</a>&gt;</span></p>
+</body>
+</html>
