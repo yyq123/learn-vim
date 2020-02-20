@@ -10,18 +10,49 @@
 <body>
 	<h1>VIM学习笔记 搜索结果计数器(YankRing)</h1>
 	<h2 class="article"><a id=""></a></h2>
-	<p>在<a href="https://yyq123.github.io/learn-vim/learn-vi-12-Register.html" title="寄存器(Regists)">寄存器(Regists)</a>章节中，</p>
-	<p>在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>配置文件中增加以下设置，可以在屏幕底部，显示匹配搜索结果的总数，以及当前所处第几个匹配结果。</p>
-	<p style="text-indent:2em"><code class="inset">set shortmess-=S</code></p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/set_shortmess_S.png" title="set_shortmess_S"><img src="https://yyq123.github.io/learn-vim/images/set_shortmess_S.png" alt="" width="500" height="42" /></a></p>
-	<p><a href="https://github.com/google/vim-searchindex" title="vim-searchindex">vim-searchindex</a>插件，可以在屏幕底部的命令行中，显示匹配搜索结果的总数，以及当前所处第几个匹配结果。</p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/plugin_vim_searchindex.gif" title="vim_searchindex"><img src="https://yyq123.github.io/learn-vim/images/plugin_vim_searchindex_500.gif" alt="plugin_vim_searchindex" width="500" height="131" /></a></p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
 
-	<h2 class="article"><a id="">安装配置</a></h2>
+	<p>Vim使用术语"yank"和"pull"，来指代我们所熟悉的<a href="http://yyq123.github.io/learn-vim/learn-vi-03-yank.html" title="Yank">复制和粘贴 (Copy &amp; Paste)</a>。</p>
+or :register. If one register is not enough, you can have up to 26, each identified by a single lowercase letter.
+	<p>任何被复制和删除的文本，都会被保存在<a href="https://yyq123.github.io/learn-vim/learn-vi-12-Register.html" title="寄存器(Regists)">寄存器(Regists)</a>中。例如，使用<code class="inset">yy</code>命令复制当前行，或使用<code class="inset">dd</code>命令删除当前行时，都会同时将当前行放入默认寄存器。</p>
+	<p><a href="https://github.com/google/vim-searchindex" title="vim-searchindex">vim-searchindex</a>插件，可以在屏幕底部的命令行中，显示匹配搜索结果的总数，以及当前所处第几个匹配结果。</p>
+
+	<h2 class="article"><a id="YankRing-Install">安装配置</a></h2>
 	<p>推荐您使用<a href="http://yyq123.github.io/learn-vim/learn-vi-102-plugin-plug.html" title="插件管理器(vim-plug)">vim-plug</a>或<a href="http://yyq123.github.io/learn-vim/learn-vi-101-plugin-vundle.html" title="插件管理器(Vundle)">Vundle</a>等插件管理器，来安装Vim.org上的<a href="https://www.vim.org/scripts/script.php?script_id=1234" title="YankRing.vim">YankRing.vim</a>插件。</p>
+
+	<p>在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>。</p>
+
+	<h2 class="article"><a id="YankRing-Window"></a>YankRing窗口</h2>
+	<p>使用以下命令，可以显示YankRing窗口：</p>
+	<p style="text-indent:2em"><code class="inset">:YRShow</code></p>
+	<p style="text-indent:2em"><code class="msg"></code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/plugin_YankRing_YRShow_win.png" title="plugin_YankRing_YRShow_win"><img src="https://yyq123.github.io/learn-vim/images/plugin_YankRing_YRShow_win.png" alt="plugin_YankRing_YRShow_win" width="550" height="182" /></a></p>
+AutoClose=1;ClipboardMonitor=1;Inserts=0;Cmds:<enter>,[g]p,[g]P,1-9,d,r,s,a,c,i,u,R,q,<space>;Help=?
+<p>当你选择一条纪录之后，或者点击<kbd>q</kbd></p>
+<p>点击<kbd>?</kbd>键，显示快捷键：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/plugin__YankRing_YRShow_help.png" title="plugin__YankRing_YRShow_help.png"><img src="https://yyq123.github.io/learn-vim/images/plugin__YankRing_YRShow_help.png" alt="plugin__YankRing_YRShow_help.png" width="550" height="143" /></a></p>
+
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
+	<tbody>
+		<caption style="margin:0.5em; font-weight:bold">列表</caption>
+		<tr><th style="white-space: nowrap">选项</th><th>描述</th><th>帮助信息</th></tr>
+		<tr><td><code class="inset">p</code></td><td>粘贴到光标之后</td></tr>
+		<tr><td><code class="inset">P</code></td><td>粘贴到光标之前</td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset">d</code></td><td>删除当前条目</td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset">s</code></td><td>查找/过滤条目（支持正则表达式）</td></tr>
+		<tr><td><code class="inset">u</code></td><td>刷新窗口</td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+	</tbody>
+	</table>
+
+
 	<p>使用<code class="inset">:h yankring</code>命令，可以查看vim-searchindex插件的帮助文件。使用<code class="inset">:h yankring-tutorial</code>命令，则可以参照实例以快速了解插件功能。</p>
 	<p>以下表格列示了主要选项的默认设置：</p>
-	<table cellspacing="0" cellpadding="2">
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
 	<tbody>
 		<tr><th>选项</th><th>默认值</th><th>描述</th></tr>
 		<tr><td>yankring_max_history</td><td>100</td><td>保存历史纪录的最大数目</td></tr>
@@ -31,6 +62,7 @@
 		<tr><td>yankring_ignore_duplicate</td><td>1</td><td>忽略重复的纪录</td></tr>
 		<tr><td>yankring_window_auto_close</td><td>1</td><td>当选择某条纪录后自动关闭YankRing窗口</td></tr>
 	</tbody>
+	</table>
 
 	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a href="http://yyq123.github.io/learn-vim/learn-vi-101-plugin-vundle.html" title="插件管理器(Vundle)">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a href="http://yyq123.github.io/learn-vim/learn-vi-102-plugin-plug.html" title="插件管理器(vim-plug)">下一篇</a>&gt;</span></p>
 </body>

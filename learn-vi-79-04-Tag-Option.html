@@ -5,42 +5,31 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记  ()</title>
+	<title>VIM学习笔记 标签选项(Tag Option)</title>
 </head>
 <body>
-	<h1>VIM学习笔记  ()</h1>
-
-	<h2 class="article"><a id="">启用/禁用</a></h2>
-	<p></p>
-	<a href="#" title=""></a>
-
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">识别文件</p>
-	<p></p>
-	<p style="text-indent:2em"><code class="inset"></code></p>
-
-	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
-	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
+	<h1>VIM学习笔记 标签选项(Tag Option)</h1>
 
 	<h2 class="article"><a id="tag-option">标签选项</a></h2>
-	<p>通过'tags'选项，可以指定查找tags文件的位置。根据以下默认设置，Vim将在当前目录查找tags文件：</p>
+	<p>通过'tags'选项，可以指定查找标签文件的位置。根据以下默认设置，Vim将在当前目录查找标签文件：</p>
 	<p style="text-indent:2em"><code class="inset">set tags=tags=./tags,tags</code></p>
+	<p>对于大量的代码文件，也可以设置更精细的查找路径：<sup><a href="https://www.zhihu.com/question/47691414/answer/373700711" title="引用来源">[S]</a></sup></p>
+	<p style="text-indent:2em"><code class="inset">set tags=./.tags;,.tags</code></p>
+	<p>其中，以逗号分隔的参数为：</p>
+	<ul>
+		<li><var>./.tags;</var>，代表在文件的所在目录下，查找名字为&ldquo;.tags&rdquo;的标签文件。使用以点开头的文件名，以便与常规的项目文件相区别。结尾的分号代表查找不到时继续向上递归到父目录。这样对于分布在不同子目录中的源代码文件，只需要在项目顶层目录放置一个.tags文件即可。</li>
+		<li><var>.tags</var>，是指同时在 Vim 的当前目录（即:pwd命令返回的目录）下查找 .tags 文件。</li>
+	</ul>
 	<p>假设我们针对rails源码库（<em>~/src/rails</em>）生成tags文件，并在'tags'选项中包含此文件，那么就可以在编写代码时，方便地跳转至标签的定义处，获得相关地使用说明。</p>
 	<p style="text-indent:2em"><code class="inset">set tags+=~/tags/rails.tags</code></p>
 	<p>默认设置下，Vim使用二分法（binary search）来查找指定的标签名。如果您生成的<a href="http://yyq123.github.io/learn-vim/learn-vi-79-01-Tag-File.html" title="Generates Tags File">标签文件(Tags File)</a>没有经过排序，那么可以切换至线性查找（linear search）方式：</p>
 	<p style="text-indent:2em"><code class="inset">:set notagbsearch</code></p>
 
-	<h2>Accessing tag data in vimscript</h2>
-
-<p>If you’d like to use the tags for your own custom needs, vim provides a
-straightforward way to do that through the
-<a href="http://vimdoc.sourceforge.net/htmldoc/eval.html#taglist\(\)">taglist</a>
-function. It’s called with a regular expression and it will return all the data
-from the matching tags in the form of a list of dictionaries. An example of
-what you could do with it is the following command, which finds function
-definitions:</p>
-
-	<div><pre style="margin: 0; line-height: 125%">command<span style="color: #cccccc">!</span> <span style="color: #cccccc">-</span>nargs<span style="color: #cccccc">=</span><span style="color: #cd00cd">1</span> Function <span style="color: #cdcd00">call</span> <span style="color: #cdcd00">s</span>:Function<span style="color: #cccccc">(&lt;</span><span style="color: #cdcd00">f</span><span style="color: #cccccc">-</span>args<span style="color: #cccccc">&gt;)</span>
-<span style="color: #cdcd00">function</span><span style="color: #cccccc">!</span> <span style="color: #cdcd00">s</span>:Function<span style="color: #cccccc">(</span>name<span style="color: #cccccc">)</span>
+	<h2 class="article"><a id="taglist">标签函数</a></h2>
+	<p>通过调用Vim内置的taglist函数，可以实现自定义的标签匹配功能。taglist函数将根据输入的正则表达式，将所有匹配的标签以列表形式返回。使用<code class="inset">:help taglist</code>命令，可以查看该函数的帮助信息。</p>
+	<p>例如以下代码，利用taglist函数实现了查找指定函数的功能：</p>
+	<div><pre style="margin: 0; line-height: 125%">command<span style="color: #cccccc">!</span> <span style="color: #cccccc">-</span>nargs<span style="color: #cccccc">=</span><span style="color: #cd00cd">1</span> TagFunction <span style="color: #cdcd00">call</span> <span style="color: #cdcd00">s</span>:TagFunction<span style="color: #cccccc">(&lt;</span><span style="color: #cdcd00">f</span><span style="color: #cccccc">-</span>args<span style="color: #cccccc">&gt;)</span>
+<span style="color: #cdcd00">function</span><span style="color: #cccccc">!</span> <span style="color: #cdcd00">s</span>:TagFunction<span style="color: #cccccc">(</span>name<span style="color: #cccccc">)</span>
 <span style="color: #000080">  &quot; Retrieve tags of the &#39;f&#39; kind</span>
   <span style="color: #cdcd00">let</span> <span style="color: #cdcd00">tags</span> <span style="color: #cccccc">=</span> taglist<span style="color: #cccccc">(</span><span style="color: #cd0000">&#39;^&#39;</span>.<span style="color: #cdcd00">a</span>:name<span style="color: #cccccc">)</span>
   <span style="color: #cdcd00">let</span> <span style="color: #cdcd00">tags</span> <span style="color: #cccccc">=</span> filter<span style="color: #cccccc">(</span><span style="color: #cdcd00">tags</span><span style="color: #cccccc">,</span> <span style="color: #cd0000">&#39;v:val[&quot;kind&quot;] == &quot;f&quot;&#39;</span><span style="color: #cccccc">)</span>
@@ -63,33 +52,14 @@ definitions:</p>
   <span style="color: #cdcd00">endif</span>
 <span style="color: #cdcd00">endfunction</span>
 </pre></div>
+	<p>使用<code class="insert">:TagFunction HTML</code>命令调用自定义函数，将查找所有以&ldquo;HTML&rdquo;开头的函数，并显示在<a href="https://yyq123.github.io/learn-vim/learn-vi-70-01-QuickFix.html" title="QuickFix">Quickfix</a>中。</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/taglist_Quickfix.png" title="taglist_Quickfix"><img src="https://yyq123.github.io/learn-vim/images/taglist_Quickfix.png" alt="taglist_Quickfix" /></a></p>
 
-<p>Invoking <code class="highlighter-rouge">:Function foo</code> will look for functions in the tag file that start
-with “foo” and load them all in the
-<a href="http://vimdoc.sourceforge.net/htmldoc/quickfix.html#quickfix">quickfix</a>
-window. This could be even more useful with some tab-completion and it’s also
-not very portable across filetypes. It shouldn’t be too difficult to generalize
-it a bit, so I might devote a separate blog post for that when I get around to
-doing it.</p>
-<p>通过安装<a href="http://www.vim.org/scripts/script.php?script_id=1590" title="unimpaired.vim">unimpaired.vim</a>插件，可以映射快捷键 <code class="highlighter-rouge">]t</code> for <code class="highlighter-rouge">:tnext</code> and <code class="highlighter-rouge">[t</code> for <code class="highlighter-rouge">:tprev.</code></p>
+	<h2 class="article"><a id="tag-plugins">标签相关插件</a></h2>
+	<p><a href="http://www.vim.org/scripts/script.php?script_id=1590" title="unimpaired.vim">unimpaired.vim</a>插件，映射了一系列方括号开头的快捷键，以方便在标签之间进行跳转。比如<kbd>]t</kbd>代表<code class="insert">:tnext</code>；<kbd>[t</kbd>代表<code class="insert">:tprev</code>等等。</p>
+	<p><a href="https://github.com/ludovicchabant/vim-gutentags" title="vim-gutentags">vim-gutentags</a>插件，可以检测文件变动并自动增量更新<a href="http://yyq123.github.io/learn-vim/learn-vi-79-01-Tag-File.html" title="Generates Tags File">标签文件</a>（Tags File）。它可以异步更新标签，并且对于标签文件进行排序，以便于Vim使用二分法快速搜索关键字。</p>
 
-	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
-		<caption style="margin:0.5em; font-weight:bold">选项列表</caption>
-		<tr><th style="white-space: nowrap">选项</th><th>描述</th><th>帮助信息</th></tr>
-		<tr><td><code class="inset">!</code></td><td>如果包含，表示。例如，。</td><td style="white-space: nowrap"><code class="inset">:help viminfo-!</code></td></tr>
-	</table>
-
-	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
-		<caption>命令小结</caption>
-		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
-		<tr><td><code class="inset">:</code></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-	</table>
-&ldquo;&rdquo;
-
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="匹配单个标签(Matching Single Tag)" href="http://yyq123.github.io/learn-vim/learn-vi-79-02-Tag-SingleMatch.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="匹配多个标签(Matching Multiple Tags)" href="http://yyq123.github.io/learn-vim/learn-vi-79-03-Tag-MultipleTags.html">下一篇</a>&gt;</span></p>
 
 </body>
 </html>
