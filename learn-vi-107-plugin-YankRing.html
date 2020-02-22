@@ -5,24 +5,22 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记 YankRing</title>
+	<title>VIM学习笔记 文本复制记录仪(YankRing)</title>
 </head>
 <body>
-	<h1>VIM学习笔记 YankRing</h1>
+	<h1>VIM学习笔记 文本复制记录仪(YankRing)</h1>
 
-	<p>Vim使用术语"yank"和"pull"，来指代我们所熟悉的复制和粘贴<a href="http://yyq123.github.io/learn-vim/learn-vi-03-yank.html" title="Yank"> (Copy &amp; Paste)</a>。</p>
-
-	<p>在Vim中，任何被复制和删除的文本，都会被保存在<a href="https://yyq123.github.io/learn-vim/learn-vi-12-Register.html" title="寄存器(Regists)">寄存器(Regists)</a>中。例如，使用<code class="inset">yy</code>命令复制当前行，或使用<code class="inset">dd</code>命令删除当前行时，都会同时将当前行放入默认寄存器中。当然，你也可以在命令中指定寄存器。比如使用<code class="inset">"ayy</code>命令，将复制的文本放到寄存器a中；然后使用<code class="inset">:pu a</code>命令，可以粘贴寄存器a中的内容。</p>
-	<p>使用<kbd>:register</kbd>命令，可以看到非常多的条目。</p>
+	<p>Vim使用术语"yank"和"pull"，来指代我们所熟悉的复制和粘贴 (<a href="http://yyq123.github.io/learn-vim/learn-vi-03-yank.html" title="Yank">Copy &amp; Paste</a>）。在Vim中，任何被复制和删除的文本，都会被保存在<a href="https://yyq123.github.io/learn-vim/learn-vi-12-Register.html" title="寄存器(Regists)">寄存器(Regists)</a>中。例如，使用<code class="inset">yy</code>命令复制当前行或使用<code class="inset">dd</code>命令删除当前行，都会同时将当前行放入默认寄存器中。当然，你也可以在命令中指定寄存器。比如使用<code class="inset">"ayy</code>命令，将复制的文本放到寄存器a中；然后使用<code class="inset">:pu a</code>命令，就可以粘贴寄存器a中的内容。</p>
+	<p>使用<code class="inset">:register</code>命令，可以查看完整的寄存器列表：</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/Registers.png" title="Registers"><img src="https://yyq123.github.io/learn-vim/images/Registers.png" alt="Registers" width="550" height="352" /></a></p>
-	<p>面对大量的历史纪录，我们很难仅凭记忆来回溯并粘贴之前的复制的文本。而<a href="https://www.vim.org/scripts/script.php?script_id=1234" title="YankRing.vim">YankRing.vim</a>插件，则可以保存更多的历史纪录，并且能够更加方便地查找和粘贴文本。</p>
+	<p>面对大量的历史纪录，我们很难仅凭记忆来找到并粘贴之前复制的文本。而<a href="https://www.vim.org/scripts/script.php?script_id=1234" title="YankRing.vim" style="font-weight:bold">YankRing</a>插件，则可以更加方便地查找和粘贴文本。</p>
 
 	<h2 class="article"><a id="YankRing-Install">安装配置</a></h2>
-	<p>推荐使用<a href="http://yyq123.github.io/learn-vim/learn-vi-102-plugin-plug.html" title="插件管理器(vim-plug)">vim-plug</a>或<a href="http://yyq123.github.io/learn-vim/learn-vi-101-plugin-vundle.html" title="插件管理器(Vundle)">Vundle</a>等插件管理器，来安装Vim.org上的<a href="https://www.vim.org/scripts/script.php?script_id=1234" title="YankRing.vim">YankRing.vim</a>插件。</p>
-	<p>可以在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>文件中，自定义插件的选项。例如以下命令，指定条目的最小长度为2个字符，以避免删除的单个字符，也被记录到YankRing中：</p>
+	<p>推荐使用<a href="http://yyq123.github.io/learn-vim/learn-vi-102-plugin-plug.html" title="插件管理器(vim-plug)">vim-plug</a>或<a href="http://yyq123.github.io/learn-vim/learn-vi-101-plugin-vundle.html" title="插件管理器(Vundle)">Vundle</a>等插件管理器，来安装Vim.org上的<a href="https://www.vim.org/scripts/script.php?script_id=1234" title="YankRing.vim">YankRing</a>插件。</p>
+	<p>可以在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>文件中，自定义插件的选项。例如以下命令指定条目的最小长度为2个字符，以避免删除的单个字符也被记录到YankRing中：</p>
 	<p style="text-indent:2em"><code class="inset">let yankring_min_element_length = 2</code></p>
 	<p>以下表格列示了主要选项的默认设置：</p>
-	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="1" cellpadding="3">
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="5">
 	<tbody>
 		<tr><th>选项</th><th>默认值</th><th>描述</th></tr>
 		<tr><td>yankring_max_history</td><td>100</td><td>保存历史纪录的最大数目</td></tr>
@@ -31,39 +29,36 @@
 		<tr><td>yankring_max_element_length</td><td>1MB</td><td>如果复制的文本长度大于此值，则会被截断</td></tr>
 		<tr><td>yankring_enabled</td><td>1</td><td>自动启用YankRing</td></tr>
 		<tr><td>yankring_ignore_duplicate</td><td>1</td><td>忽略重复的纪录</td></tr>
-		<tr><td>yankring_window_auto_close</td><td>1</td><td>当选择某条纪录后自动关闭YankRing窗口</td></tr>
+		<tr><td>yankring_window_auto_close</td><td>1</td><td>当选择某条纪录之后自动关闭YankRing窗口</td></tr>
 	</tbody>
 	</table>
 
 	<h2 class="article"><a id="YankRing-Window"></a>YankRing窗口</h2>
-	<p>使用以下命令，可以显示YankRing窗口：</p>
+	<p>使用以下命令打开YankRing窗口，以显示复制和删除文本的历史记录：</p>
 	<p style="text-indent:2em"><code class="inset">:YRShow</code></p>
-	<p style="text-indent:2em"><code class="msg"></code></p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/plugin_YankRing_YRShow_win.png" title="plugin_YankRing_YRShow_win"><img src="https://yyq123.github.io/learn-vim/images/plugin_YankRing_YRShow_win.png" alt="plugin_YankRing_YRShow_win" width="550" height="182" /></a></p>
-	<p>YankRing窗口的订单是状态行，主要显示以下信息：</p>
+	<p>YankRing窗口顶端的状态行，显示以下向导信息，以帮助你操作列表中的历史记录：</p>
 	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
 	<tbody>
-		<caption style="margin:0.5em; font-weight:bold">列表</caption>
-		<tr><th style="white-space: nowrap">选项</th><th>描述</th><th>帮助信息</th></tr>
-		<tr><td><code class="inset">AutoClose=1</code></td><td>自动关闭窗口</td></tr>
+		<tr><td rowspan="3" style="font-weight:bold">选项</td><td><code class="inset">AutoClose=1</code></td><td>自动关闭窗口</td></tr>
 		<tr><td><code class="inset">ClipboardMonitor=1</code></td><td>监控剪贴板</td></tr>
-		<tr><td><code class="inset">Inserts=0</code></td><td>最近输入的文本</td></tr>
-		<tr><td><code class="inset">&lt;enter&gt;</code></td><td rowspan="2">粘贴到光标之后</td></tr>
+		<tr><td><code class="inset">Inserts=0</code></td><td>不记录最近输入的文本</td></tr>
+		<tr><td rowspan="10" style="font-weight:bold">命令</td><td><code class="inset">&lt;enter&gt;</code></td><td rowspan="2">粘贴文本到光标之后</td></tr>
 		<tr><td><code class="inset">p</code></td></tr>
-		<tr><td><code class="inset">P</code></td><td>粘贴到光标之前</td></tr>
-		<tr><td><code class="inset">1-9</code></td><td>第n个条目</td></tr>
+		<tr><td><code class="inset">P</code></td><td>粘贴文本到光标之前</td></tr>
+		<tr><td><code class="inset">1-9</code></td><td>粘贴第n个条目</td></tr>
 		<tr><td><code class="inset">d</code></td><td>删除当前条目</td></tr>
-		<tr><td><code class="inset">r</code></td><td>粘贴到光标之后<br />在可视化模式下按倒叙粘贴</td></tr>
+		<tr><td><code class="inset">r</code></td><td>在YankRing窗口中的可视化模式下<br />选中的多行按倒叙粘贴到光标之后</tr>
 		<tr><td><code class="inset">s</code></td><td>查找/过滤条目（支持正则表达式）</td></tr>
-		<tr><td><code class="inset">a</code></td><td>开关AutoClose选项</td></tr>
+		<tr><td><code class="inset">a</code></td><td>开/关AutoClose选项</td></tr>
 		<tr><td><code class="inset">u</code></td><td>刷新YankRing窗口</td></tr>
 		<tr><td><code class="inset">q</code></td><td>关闭YankRing窗口</td></tr>
-		<tr><td><code class="inset">Help=?</code></td><td>显示快捷键</td></tr>
+		<tr><td style="font-weight:bold">帮助</td><td><code class="inset">?</code></td><td>显示命令的帮助信息</td></tr>
 	</tbody>
 	</table>
 	<p>点击<kbd>?</kbd>键，将显示各个命令的说明：</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/plugin__YankRing_YRShow_help.png" title="plugin__YankRing_YRShow_help.png"><img src="https://yyq123.github.io/learn-vim/images/plugin__YankRing_YRShow_help.png" alt="plugin__YankRing_YRShow_help.png" width="550" height="143" /></a></p>
-	<p>当使用回车键、鼠标双击或命令选择某天条纪录之后，将完成粘贴操作并关闭YankRing窗口。</p>
+	<p>您可以使用上下键、鼠标滚轮或移动命令，来浏览所有条目；当使用回车键、鼠标双击或命令，选择某条纪录之后，将完成粘贴操作并关闭YankRing窗口。</p>
 
 	<h2 class="article"><a id="YankRing-Command">YankRing命令</a></h2>
 	<p>使用以下命令，可以将指定范围内的文本加入YankRing：</p>
@@ -76,7 +71,7 @@
 	<p>使用<code class="inset">:h yankring</code>命令，可以查看YankRing插件的帮助文件。</p>
 	<p>使用<code class="inset">:h yankring-tutorial</code>命令，则可以参照实例以快速了解插件功能。</p>
 	<p>YankRing无疑大大增强了Vim复制粘贴的功能，但同时也引入了更多的快捷键和命令；通过新建YankRing窗口，来完成查找和粘贴历史条目的操作，对我个人来说也看不到效率的提升。</p>
-	<p>更重要的是，例如<a href="https://alternativeto.net/software/ditto/" title="Ditto">Ditto</a>等操作系统层面的剪贴板管理工具，覆盖了更多的应用，而且操作也很方便。那么YankRing是不是一个多余的存在了呢？这个还是留给用户自己来选择吧 :)</p>
+	<p>更重要的是，例如<a href="https://alternativeto.net/software/ditto/" title="Ditto">Ditto</a>等操作系统层面的剪贴板工具，覆盖了更多的应用，而且操作也更直观。那么YankRing是不是一个多余的存在了呢？</p>
 
 	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a href="http://yyq123.github.io/learn-vim/learn-vi-101-plugin-vundle.html" title="插件管理器(Vundle)">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a href="http://yyq123.github.io/learn-vim/learn-vi-102-plugin-plug.html" title="插件管理器(vim-plug)">下一篇</a>&gt;</span></p>
 </body>
