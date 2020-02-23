@@ -8,22 +8,24 @@
 	<title>VIM学习笔记  (Matching Parentheses)</title>
 </head>
 <body>
-	<h1>VIM学习笔记  ()</h1>
-	A more exotic example, to jump between the '=' and ';' in an
-	assignment, useful for languages like C and Java: 
-		:au FileType c,cpp,java set mps+==:;
+	<h1>VIM学习笔记  (Matching Brackets)</h1>
+
+	<h2 class="article"><a id="matchpairs">'matchpairs'选项</a></h2>
 	<p>matchpairs选项，用来控制哪些字符可以通过<code class="inset">%</code>命令进行匹配。此选项的默认值如下：</p>
 	<p style="text-indent:2em"><code class="inset">:set matchpairs=(:),{:},[:]</code></p>
-	<p>也就是说，在开括号&ldquo;(,{,[&rdquo;上点击<code class="inset">%</code>命令，那么将自动跳转到对应的闭括号上&ldquo;),},]&rdquo;；同理，在闭括号上点击<code class="inset">%</code>命令，则将跳转回到对应的开括号上；同时，匹配跳转也会正确处理括号嵌套的情况。</p>
+	<p>也就是说，在开括号&ldquo;(,{,[&rdquo;上点击<code class="inset">%</code>键，将会自动跳转到对应的闭括号&ldquo;),},]&rdquo;上；同理，在闭括号上点击<code class="inset">%</code>键，也会跳转回到对应的开括号上；同时，匹配跳转也能够正确处理括号嵌套的情况。</p>
+	<p>如果当前光标下并非括号，那么点击<code class="inset">%</code>键，将自动在本行内向前查找并定位到括号之上。</p>
 	<p>如果需要新增匹配类型，例如增加对于HTML文件中的尖括号的匹配，那么可以使用以下命令：</p>
 	<p style="text-indent:2em"><code class="inset">:set mps+=&lt;:&gt;</code></p>
-这个命令仅仅是匹配<>.如果我们要同时匹配其他的字符,我们可以用下面的命令:
-:set matchpairs=(:),{:},[:],<:>
+	<p>利用<a href="http://yyq123.github.io/learn-vim/learn-vi-49-01-autocmd.html" title="自动命令(autocmd)">自动命令</a>（autocmd），可以针对特定文件类型设置匹配字符：A more exotic example, to jump between the '=' and ';' in an</p>
+	<p style="text-indent:2em"><code class="inset">:au FileType c,cpp,java set mps+==:;</code></p>
 	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/matchit-vim-example.gif" title="matchit-vim-example"><img src="http://yyq123.github.io/learn-vim/images/matchit-vim-example.gif" alt="" /></a></br>Source: https://catonmat.net/vim-plugins-matchit-vim</p>
-<p></p>
-如果我们希望我们在输入括号时,光标会跳转到与其匹配的地方进行显示,我们可以执行下面的命令来做到:
-	<p style="text-indent:2em"><code class="inset">:set showmatch</code></p>
 
+
+	<h2 class="article"><a id="showmatch">'showmatch'选项</a></h2>
+	<p>如果我们希望在输入括号时，光标自动跳转到与其匹配的位置，那么可以设置以下选项：</p>
+	<p style="text-indent:2em"><code class="inset">:set showmatch</code></p>
+test()
 通常情况下这个跳转持续的时间为0.5秒(半秒),我们可以用matchtime选项来控制这个时间.例如如果我们希望这个时间持续1.5秒,我们可以用下面的命令:
 :set matchtime=15
 在这里是以0.1秒为单位的.
