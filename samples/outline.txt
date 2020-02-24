@@ -1,0 +1,14 @@
+# Behind Atom
+	* advanced dev tools
+		- keybinding resolver
+		- timecop
+	* Maintaining Packages
+		* how to publish
+			* Atom.io pack
+		* changelog
+		* issue tracker
+	* Best practices
+		* aggregating sub
+		* view best practices
+		* don't make a slow package
+			* CI for packages

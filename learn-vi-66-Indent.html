@@ -34,13 +34,16 @@
 	<p>其中，<em>expandtab</em>选项，用来控制是否将Tab转换为空格。但是这个选项并不会改变已经存在的文本，如果需要应用此设置将所有Tab转换为空格，需要执行以下命令：</p>
 	<p style="text-indent:2em"><code class="inset">:retab!</code></p>
 
-	<h2 class="article"><a id="autoindent">自动缩进</a></h2>
-	<p>在Vim中还可以进行自动缩进，主要有cindent、smartindent和autoindent三种模式。</p>
-	<p><strong>autoindent</strong> 在这种缩进形式中，新增加的行和前一行使用相同的缩进形式。可以使用以下命令，启用autoindent缩进形式。也可以点击<kbd>==</kbd>键进行缩进。</p>
+	<h2 class="article"><a id="auto_indent">自动缩进</a></h2>
+	<p>Vim提供三种自动缩进的模式：autoindent、smartindent和cindent（其智能化程度依次递进）。</p>
+	<p><strong>autoindent</strong> 在这种缩进形式中，新增加的行和前一行使用相同的缩进形式。</p>
+	<p>可以使用以下命令，启用autoindent缩进形式。也可以点击<kbd>==</kbd>键进行缩进。</p>
 	<p style="text-indent:2em"><code class="inset">:set autoindent</code></p>
-	<p><strong>smartindent</strong> 在这种缩进模式中，每一行都和前一行有相同的缩进量，同时这种缩进形式能正确的识别出花括号，当遇到右花括号（}），则取消缩进形式。此外还增加了识别C语言关键字的功能。如果一行是以#开头的，那么这种格式将会被特殊对待而不采用缩进格式。可以使用以下命令，启用smartindent缩进结构：</p>
+	<p><strong>smartindent</strong> 在这种缩进模式中，每一行都和前一行有相同的缩进量，同时这种缩进模式能正确地识别出花括号：当前一行为开花括号&ldquo;{&rdquo;时，下一新行将自动增加缩进；当前一行为闭花括号&ldquo;}&rdquo;时，则下一新行将取消缩进。此外还将根据'cinwords'选项，来自动识别C语言关键字。如果一行是以&ldquo;#&rdquo;开头的注释，那么此行将不采用缩进格式。</p>
+	<p>可以使用以下命令，启用smartindent缩进结构：</p>
 	<p style="text-indent:2em"><code class="inset">:set smartindent</code></p>
-	<p><strong>cindent</strong> Vim可以很好的识别出C和Java等结构化程序设计语言，并且能用C语言的缩进格式来处理程序的缩进结构。可以使用以下命令，启用cindent缩进结构：</p>
+	<p><strong>cindent</strong> Vim可以很好的识别出C和Java等结构化程序设计语言，并且能用C语言的缩进格式来处理程序的缩进结构。</p>
+	<p>可以使用以下命令，启用cindent缩进结构：</p>
 	<p style="text-indent:2em"><code class="inset">:set cindent</code></p>
 
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
