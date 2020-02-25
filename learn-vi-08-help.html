@@ -8,46 +8,53 @@
 	<title>VIM学习笔记  帮助信息(Help)</title>
 </head>
 <body>
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">查看帮助</p>
+	<h1>VIM学习笔记 帮助信息(Help)</h1>
+
+	<h2 class="article"><a id="help">查看帮助</a></h2>
 	<p>使用以下命令或直接按下<kbd>F1</kbd>键，可以查看帮助文件：</p>
 	<p style="text-indent:2em"><code class="inset">:help</code></p>
-	<p><a href="http://www.flickr.com/photos/yyq123/6988994811/" title="help by yyq123, on Flickr"><img src="http://farm8.staticflickr.com/7188/6988994811_f721302d66.jpg" width="500" height="273" alt="help" /></a></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/help.png" title="help"><img src="https://yyq123.github.io/learn-vim/images/help.png" alt="help" width="500" height="273" /></a></p>
 	<p>使用查询命令，可以在帮助文件中查找特定主题的帮助信息。例如使用<code class="inset">/mode</code>命令，即可找到关于模式的帮助信息。</p>
 	<p>在帮助信息中的命令、选项或章节等链接上双击鼠标或点击<kbd>ctrl-]</kbd>键，就可以跳转到相关的帮助信息。点击<kbd>ctrl-o</kbd>或<kbd>ctrl-t</kbd>则可以在查阅过的帮助信息之间进行跳转。</p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">帮助目录</p>
+	<h2 class="article"><a id="help_usr_toc">帮助目录</a></h2>
 	<p>使用以下命令，可以显示用户手册的目录：</p>
 	<p style="text-indent:2em"><code class="inset">:help usr_toc</code></p>
-	<p><a href="http://www.flickr.com/photos/yyq123/6989009345/" title="help_usr_toc by yyq123, on Flickr"><img src="http://farm8.staticflickr.com/7178/6989009345_262037ea09.jpg" width="500" height="258" alt="help_usr_toc" /></a></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/help_usr_toc.png" title="help_usr_toc"><img src="https://yyq123.github.io/learn-vim/images/help_usr_toc.png" alt="help_usr_toc" width="500" height="258" /></a></p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">精确查找</p>
-	<p>如果你想要查看特定命令的帮助信息，那么可以直接在帮助命令中指定命令做为参数：</p>
+	<h2 class="article"><a id="help_keyword">精确查找</a></h2>
+	<p>如果想要查看特定命令的帮助信息，那么可以在帮助命令中指定命令做为参数：</p>
 	<p style="text-indent:2em"><code class="inset">:help :undo</code></p>
 	<p>通过<code class="inset">set wildmenu</code>设置命令，可以在窗口底部显示菜单选项。当我们并不知道确切的命令名称时，可以只输入开头的几个字母，然后按下<kbd>Tab</kbd>键，就将在wildmenu中显示可能匹配的命令。继续按<kbd>Tab</kbd>键，可以在这些命令列表间移动，按下回车键就会显示选中命令的帮助信息。</p>
-	<p><a href="http://www.flickr.com/photos/yyq123/7035083765/" title="help_wildmenu by yyq123, on Flickr"><img src="http://farm8.staticflickr.com/7076/7035083765_c441b5cdb9.jpg" width="500" height="34" alt="help_wildmenu" /></a></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/help_wildmenu.png" title="help_wildmenu"><img src="https://yyq123.github.io/learn-vim/images/help_wildmenu.png" alt="help_wildmenu" width="500" height="34" /></a></p>
 	<p>使用<code class="inset">:help ctrl&lt;Tab&gt;</code>命令，可以列出所有和CTRL键相关的帮助主题。使用<code class="inset">:help i_CTRL-R</code>命令，则只显示在插入模式下CTRL-R的帮助信息；而<code class="inset">:help c_CTRL-R</code>命令，则显示在常规模式下CTRL-R的帮助信息。</p>
+	<p>如果想要查看特定选项的帮助信息，那么可以在帮助命令中指定以单引号包围的选项名称做为参数：</p>
+	<p style="text-indent:2em"><code class="inset">:help 'guioptions'</code></p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">模糊查询</p>
-	<p>如果不知道具体的命令名称，那么可以使用以下命令在所有帮助文件中查询相关信息。例如，使用此命令，将逐一显示所有与插入模式相关的帮助信息。</p>
+	<h2 class="article"><a id="helpgrep">模糊查询</a></h2>
+	<p>如果不知道具体的命令名称，那么可以在所有帮助文件中查询相关信息。例如以下命令，将逐一显示所有与插入模式相关的帮助信息。</p>
 	<p style="text-indent:2em"><code class="inset">:helpgrep insert mode</code></p>
-	<p><a href="http://www.flickr.com/photos/yyq123/6888753860/" title="helpgrep by yyq123, on Flickr"><img src="http://farm8.staticflickr.com/7277/6888753860_39a68aa3f7.jpg" width="500" height="17" alt="helpgrep" /></a></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/helpgrep.png" title="helpgrep"><img src="https://yyq123.github.io/learn-vim/images/helpgrep.png" alt="helpgrep" width="500" height="17" /></a></p>
 	<p>可以使用<code class="inset">:cnext</code>命令，查看下一条帮助信息；使用<code class="inset">:cprev</code>命令，查看上一条帮助信息。</p> 
 	<p>如果有很多相关的帮助信息，可以使用<code class="inset">:clist</code>命令，列示所有包含指定主题的帮助信息。</p>
-	<p><a href="http://www.flickr.com/photos/yyq123/6888806262/" title="helpgrep_clist by yyq123, on Flickr"><img src="http://farm8.staticflickr.com/7220/6888806262_ca33a0b344.jpg" width="500" height="182" alt="helpgrep_clist" /></a></p>
-	<p>使用<code class="inset">:cwin</code>命令，则可以在QuickFix窗口中列示所有相关帮助信息的条目。利用鼠标滚轴、方向键或j,k移动命令可以在条目间移动，按下回车键则可以打开当前条目的帮助信息。使用<code class="inset">:cclose</code>命令，可以关闭QuickFix窗口。</p>
-	<p><a href="http://www.flickr.com/photos/yyq123/6888888428/" title="helpgrep_cwin by yyq123, on Flickr"><img src="http://farm8.staticflickr.com/7279/6888888428_08ed04696b.jpg" width="500" height="188" alt="helpgrep_cwin" /></a></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/helpgrep_clist.png" title="helpgrep_clist"><img src="https://yyq123.github.io/learn-vim/images/helpgrep_clist.png" alt="helpgrep_clist" width="500" height="182" /></a></p>
+	<p>使用<code class="inset">:cwin</code>命令，则可以在<a href="http://tiny.cc/vim-quickfix" title="Quickfix">Quickfix</a>窗口中列示所有相关帮助信息的条目。利用鼠标滚轴、方向键或j,k移动命令可以在条目间移动，按下回车键则可以打开当前条目的帮助信息。使用<code class="inset">:cclose</code>命令，可以关闭QuickFix窗口。</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/helpgrep_cwin.png" title="helpgrep_cwin"><img src="https://yyq123.github.io/learn-vim/images/helpgrep_cwin.png" alt="helpgrep_cwin" width="500" height="188" /></a></p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">更多帮助资源</p>
+	<h2 class="article"><a id="help-more">更多帮助资源</a></h2>
 	<p><code class="inset">:help quickref</code>命令，可以查看快速索引：</p>
-	<p><a data-flickr-embed="true"  href="https://www.flickr.com/photos/yyq123/30339565443/in/dateposted/" title="Help_quickref"><img src="https://c4.staticflickr.com/6/5542/30339565443_985766d035.jpg" width="500" height="262" alt="Help_quickref"></a></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Help_quickref.png" title="Help_quickref"><img src="https://yyq123.github.io/learn-vim/images/Help_quickref.png" alt="Help_quickref" width="500" height="262" /></a></p>
 	<p><code class="inset">:help tips</code>命令，可以查看使用技巧：</p>
-	<p><a data-flickr-embed="true"  href="https://www.flickr.com/photos/yyq123/31147092665/in/dateposted/" title="Help_tips"><img src="https://c2.staticflickr.com/6/5650/31147092665_a93870decd.jpg" width="500" height="225" alt="Help_tips"></a></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Help_tips.png" title="Help_tips"><img src="https://yyq123.github.io/learn-vim/images/Help_tips.png" alt="Help_tips" width="500" height="225" /></a></p>
+	<p><code class="inset">:help howto</code>命令，可以查看操作指引：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/help_howto.png" title=""><img src="https://yyq123.github.io/learn-vim/images/help_howto.png" alt="help_howto" width="500" height="242" /></a></p>
 	<p>我们还可以访问网页版的Vim帮助文件：<a href="http://vimdoc.sourceforge.net/htmldoc/help.html" title="help-files">English Version</a>|<a href="http://vimcdoc.sourceforge.net/doc/help.html" title="help-files">中文版</a>。</p>
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
 		<tr><td><code class="inset">:help</code></td><td>查看帮助</td></tr>
 		<tr><td><code class="inset">:helpgrep</code></td><td>使用正则表达式模糊查询帮助信息</td></tr>
 	</table>
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="打印(Print)" href="http://yyq123.blogspot.com/2010/08/vim-print.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html ">&nbsp;目录&nbsp;</a>|&nbsp;<a title="在单词间移动(Move between world)" href="http://yyq123.blogspot.com/2009/02/vim_4321.html">下一篇</a>&gt;</span></p>
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="打印(Print)" href="http://tiny.cc/vim-print">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="在单词间移动(Move between world)" href="https://tiny.cc/vim-move-word">下一篇</a>&gt;</span></p>
 </body>
 </html>

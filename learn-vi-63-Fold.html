@@ -25,6 +25,8 @@
 	<p>通过组合使用移动命令，可以折叠指定的行。例如：使用<code class="inset">zf70j</code>命令，将折叠光标之后的70行；使用<code class="inset">5zF</code>命令，将当前行及随后4行折叠起来；使用<code class="inset">zf7G</code>命令，将当前行至全文第7行折叠起来。</p>
 	<p>我们也可以使用以下命令，折叠括号（比如()、[]、{}、&gt;&lt;等）包围的区域：</p>
 	<p style="text-indent:2em"><code class="inset">zfa(</code></p>
+	<p>使用以下命令，则可以自动匹配括号并进行折叠：</p>
+	<p style="text-indent:2em"><code class="inset">zf%</code></p>
 	<p>Vim并不会自动记忆手工折叠。但你可以使用以下命令，来保存当前的折叠状态：</p>
 	<p style="text-indent:2em"><code class="inset">:mkview</code></p>
 	<p>在下次打开文档时，使用以下命令，来载入记忆的折叠信息：</p>
@@ -32,16 +34,16 @@
 	<p>可以使用以下命令，查看关于手工折叠的帮助信息：</p>
 	<p style="text-indent:2em"><code class="inset">:help fold-manual</code></p>
 
-	<h2 class="article"><a id="foldmethod-indent">Manual Fold</a>Indent Fold</h2>
+	<h2 class="article"><a id="foldmethod-indent">Indent Fold</a></h2>
 	<p>缩进折叠（fold-indent），将文本按照'shiftwidth'选项定义的缩进层次进行折叠。</p>
-	<p>例如在以下文档中，使用Tab制表符来依次列示了文档目录：</p>
+	<p>例如在以下文档中，使用Tab制表符按层级列示了文档目录：</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/fold_indent_outline.png" title="fold_indent_outline"><img src="https://yyq123.github.io/learn-vim/images/fold_indent_outline.png" alt="fold_indent_outline" /></a></p>
-	<p>使用以下命令，启用缩进折叠。因为'shiftwidth'选项默认为8个空格，与默认Tab制表符一致，因此所有文本将自动折叠。</p>
+	<p>使用以下命令，启用缩进折叠。由于'shiftwidth'选项默认为8个空格，与默认Tab制表符一致，因此文本将按照制表符自动折叠。</p>
 	<p style="text-indent:2em"><code class="inset">:set foldmethod=indent</code></p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/fold_indent_close.png" title="fold_indent_close"><img src="https://yyq123.github.io/learn-vim/images/fold_indent_close.png" alt="fold_indent_close" /></a></p>
-	<p>使用以下命令，将可以根据指定的级别折叠缩进：</p>
+	<p>使用以下命令，可以根据指定的级别折叠缩进：</p>
 	<p style="text-indent:2em"><code class="inset">:set foldlevel=1</code></p>
-	<p>如下图所示，展开了一级目录，而更下层级依然是关闭状态。由此可见，利用折叠功能，非常适合编辑文档目录和代表事项等层级（outline）结构。</p>
+	<p>如下图所示，展开了一级目录，而更下层级依然是折叠状态。可以看到，折叠功能非常适合编辑文档目录和待办事项等层级（outline）结构。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/fold_indent_level.png" title="fold_indent_level"><img src="https://yyq123.github.io/learn-vim/images/fold_indent_level.png" alt="fold_indent_level" /></a></p>
 	<p>使用<code class="inset">zm</code>命令，可以手动折叠缩进；而利用<code class="inset">zr</code>命令，则可以打开折叠的缩进。</p>
 	<p>可以使用以下命令，查看关于缩进折叠的帮助信息：</p>
