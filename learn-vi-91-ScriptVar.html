@@ -20,7 +20,7 @@
 	<p>命令执行以后，Vim将会在屏幕底部显示如下内容：</p>
 	<p><code class="msg">line_size is 30</code></p>
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">变量类型</p>
-	<p>Vim使用特殊的前缀来指明不同的变量类型：</p>
+	<p>Vim使用特殊的前缀来指明不同的变量类型和范围：</p>
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<tr><th>变量名</th><th>用途</th></tr>
 		<tr><td>大写字母,数字,下划线&nbsp;</td><td>可以存放在viminfo文件中的变量（如果viminfo选项中含有!标记）</td></tr>
@@ -33,9 +33,9 @@
 		<tr><td>w:name</td><td>当前窗口的变量</td></tr>
 		<tr><td>g:name</td><td>全局变量（用于函数内部表明全局变量）</td></tr>
 		<tr><td>a:name</td><td>函数参数</td></tr>
-		<tr><td>v:name</td><td>Vim预定义内部变量</td></tr>
+		<tr><td>v:name</td><td>Vim预定义内部全局变量</td></tr>
 		<tr><td>l:name</td><td>当前函数的变量</td></tr>
-		<tr><td>s:name</td><td>使用:source载入的脚本</td></tr>
+		<tr><td>s:name</td><td>使用:source载入的脚本中有效的变量</td></tr>
 		<tr><td>t:name</td><td>当前标签页的变量</td></tr>
 	</table>
 	<p>使用以下命令，可以定义环境变量$PAGER，用于指明查看的命令：</p>

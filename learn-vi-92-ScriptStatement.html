@@ -64,13 +64,18 @@
 	<p><script src="https://gist.github.com/yyq123/54235dab1797017f16ae38a654c0fe4a.js"></script></p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">:execute命令</p>
-	<p>:execute将执行参数中指定的命令：</p>
-	<p><code class="inset">:let  command = " echo 'Hello world!'"<br />
-	:execute command
-	</code></p>
+	<p>:execute可以执行变量中指定的命令，例如定义以下变量，来指定需要执行的命令：</p>
+	<p><code class="inset">:let command = " echo 'Hello world!'"</code></p>
+	<p>然后使用:execute来执行具体的命令：</p>
+	<p><code class="inset">:execute command</code></p>
+	<p>也可以将变量作为参数传递给命令。例如定义以下变量，来指定命令需要的参数：</p>	
+	<p><code class="inset">:let parameter = "'Hello world!'"</code></p>
+	<p>然后使用:execute来执行命令并指定参数：</p>
+	<p><code class="inset">:execute "echo " . parameter</code></p>
+	<p>以上两种方式，都将显示以下相同的结果：</p>
 	<p><code class="msg">Hello world</code></p>
+	<p>从以上命令可以看到，<code class="inset">:execute</code>命令将双引号包围的字符串视为字面意义的文本；而将不带双引号的字符串视为变量或表达式，会将其转义为实际文本再执行。</p>
 
 	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="脚本-变量和表达式(Script-Variables and Expressions)" href="http://bit.ly/vim-ScriptVar">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="正则表达式-基础(Regular Expression Basic)" href="http://bit.ly/vim-regex-basic">下一篇</a>&gt;</span></p>
 </body>
 </html>
-

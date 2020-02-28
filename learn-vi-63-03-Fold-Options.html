@@ -5,18 +5,51 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记  ()</title>
+	<title>VIM学习笔记 VIM学习笔记 折叠选项(Fold Options)</title>
 </head>
 <body>
-	<h1>VIM学习笔记  ()</h1>
+	<h1>VIM学习笔记 折叠选项(Fold Options)</h1>
 
 	<h2 class="article"><a id="">启用/禁用</a></h2>
 	<p></p>
 	<a href="#" title=""></a>
 " These commands open folds
-set foldopen=block,insert,jump,mark,percent,quickfix,search,tag,undo
 
+
+	<h2 class="article"><a id="foldopen">foldopen</a></h2>
+	<p>使用以下命令，可以设置哪类命令将自动打开折叠：</p>
+	<p style="text-indent:2em"><code class="inset">set foldopen=block,insert,jump,mark,percent,quickfix,search,tag,undo</code></p>
+	<p></p>
+		item		commands ~
+		all		any
+		block		"(", "{", "[[", "[{", etc.
+		hor		horizontal movements: "l", "w", "fx", etc.
+		insert		any command in Insert mode
+		jump		far jumps: "G", "gg", etc.
+		mark		jumping to a mark: "'m", CTRL-O, etc.
+		percent		"%"
+		quickfix	":cn", ":crew", ":make", etc.
+		search		search for a pattern: "/", "n", "*", "gd", etc.
+				(not for a search pattern in a ":" command)
+				Also for |[s| and |]s|.
+		tag		jumping to a tag: ":ta", CTRL-T, etc.
+		undo		undo or redo: "u" and CTRL-R
+	When a movement command is used for an operator (e.g., "dl" or "y%")
+	this option is not used.  This means the operator will include the
+	whole closed fold.
+	In insert mode the folds containing the cursor will always be open
+	when text is inserted.
+	To close folds you can re-apply 'foldlevel' with the |zx| command or
+	set the 'foldclose' option to "all".
+	
+	<h2 class="article"><a id="foldcolumn">foldcolumn</a></h2>
+	<p>使用以下命令，将在屏幕左侧显示一个折叠标识列，分别用&ldquo;-&rdquo;和&ldquo;+&rdquo;来表示打开和关闭的折叠。由于此选项默认是关闭的，因此建议您在<a href="http://tiny.cc/vim-vimrc" title="vimrc">vimrc</a>文件中增加以下命令。</p>
+	<p style="text-indent:2em"><code class="inset">:set foldcolumn=n</code></p>
+	<p>其中，<em>n</em>是一个0-12的整数，用于指定显示的宽度。</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/foldcolumn.png" title="foldcolumn"><img src="https://yyq123.github.io/learn-vim/images/foldcolumn.png" alt="foldcolumn" /></a></p>
 	<p>使用以下命令，可以设置打开文件时显示折叠的层级：</p>
+
+	<h2 class="article"><a id="foldlevelstart">foldlevelstart</a></h2>
 	<p style="text-indent:2em"><code class="inset">:set foldlevelstart=n</code></p>
 	<p>其中，<i>n</i>可以设置为以下值：</p>
 	<ul>
