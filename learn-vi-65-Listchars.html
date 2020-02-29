@@ -5,33 +5,44 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记  非可见字符(Listchars)</title>
+	<title>VIM学习笔记 非可见字符(Listchars)</title>
 </head>
 <body>
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">显示/隐藏</p>
+	<h1>VIM学习笔记 非可见字符(Listchars)</h1>
+
+	<h2 class="article"><a id="set_list">显示/隐藏</a></h2>
 	<p>默认情况下，Vim是不会显示space,tabs,newlines,trailing space,wrapped lines等不可见字符的。我们可以使用以下命令打开<em>list</em>选项，来显示非可见字符：</p>
 	<p style="text-indent:2em"><code class="inset">:set list</code></p>
 	<p>如下图所示，制表符被显示为&ldquo;^I&rdquo;，而行尾则标识为&ldquo;$&rdquo;。</p>
-	<p><a href="https://www.flickr.com/photos/yyq123/6302038254/" title="set_list_default by yyq123, on Flickr"><img src="https://farm7.static.flickr.com/6105/6302038254_3ae1010e96.jpg" width="500" height="124" alt="set_list_default" /></a></p>
-	<p>我们也可以使用以下命令，重新隐藏不可见字符：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/set_list_default.png" title="set_list_default"><img src="https://yyq123.github.io/learn-vim/images/set_list_default.png" alt="set_list_default" width="500" height="124" /></a></p>
+	<p>使用以下命令，可以重新隐藏不可见字符：</p>
 	<p style="text-indent:2em"><code class="inset">:set nolist</code></p>
 	<p>通常我们会利用以下命令，切换显示或隐藏不可见字符：</p>
 	<p style="text-indent:2em"><code class="inset">:set list!</code></p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">显示符号</p>
+	<h2 class="article"><a id="set_listchars">显示符号</a></h2>
 	<p>使用<code class="inset">:set listchars</code>命令，可以配置使用何种符号来显示不可见字符。例如以下命令，将制表符（tab）显示为&hellip;；将尾部空格（trail）显示为&middot;；将左则超出屏幕范围部分（precedes）标识为&laquo;；将右侧超出屏幕范围部分（extends）标识为&raquo;。</p>
-	<p><a href="https://www.flickr.com/photos/yyq123/6336582531/" title="set listchars by yyq123, on Flickr"><img src="https://farm7.static.flickr.com/6227/6336582531_2e8588a60b.jpg" width="451" height="19" alt="set listchars" /></a></p>
-	<p>其中，特殊符号是在插入状态下，点击快捷键<kbd>Ctrl-k</kbd>，然后键入编码来输入的。比如，中点是由<kbd>.M</kbd>输入；左书名号是由<kbd>&lt;&lt;</kbd>输入，右书名号是由<kbd>&gt;&gt;</kbd>输入。</p>
-	<p>可以使用以下命令，查看可以输入的特殊字符：</p>
-	<p style="text-indent:2em"><code class="inset">:digraphs</code></p>
-	<p><a href="https://www.flickr.com/photos/yyq123/6337374430/" title="digraph by yyq123, on Flickr"><img src="https://farm7.static.flickr.com/6097/6337374430_352df5b958.jpg" width="388" height="238" alt="digraph" /></a></p>
-	<p>如下图所示，通过选择合适的符号和色彩，非可见符号被低调地显示出来&ndash;&ndash;即没有影响实际的文本内容，又能展示容易被忽视的重要信息：</p>
-	<p><a href="https://www.flickr.com/photos/yyq123/6337350304/" title="set listchars_result by yyq123, on Flickr"><img src="https://farm7.static.flickr.com/6229/6337350304_0e3437c1dd.jpg" width="448" height="136" alt="set listchars_result" /></a></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/set_listchars.png" title="set_listchars"><img src="https://yyq123.github.io/learn-vim/images/set_listchars.png" alt="set_listchars" /></a></p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">显示颜色</p>
+	<h2 class="article"><a id="set_digraph">输入符号</a></h2>
+	<p>特殊符号是在插入状态下，点击<kbd>Ctrl-k</kbd>快捷键，然后键入编码来输入的。比如，中点是由<kbd>.M</kbd>输入；左书名号是由<kbd>&lt;&lt;</kbd>输入，右书名号是由<kbd>&gt;&gt;</kbd>输入。</p>
+	<p>使用以下命令，将启用'digraph'选项：</p>
+	<p style="text-indent:2em"><code class="inset">:set digraph</code></p>
+	<p>启用'digraph'选项之后，在插入状态下将允许使用<code class="inset">&nbsp;{char1}&nbsp;&lt;BackSpace&gt;&nbsp;{char2}&nbsp;</code>的模式来输入特殊字符。例如首先输入字符&ldquo;.&rdquo;，然后点击&lt;BackSpace&gt;回退键，紧接着输入字符&ldquo;M&rdquo;，Vim会将以上输入自动转换为中点&ldquo;·&rdquo;字符。</p>
+	<p>使用以下命令，可以查看特殊字符列表：</p>
+	<p style="text-indent:2em"><code class="inset">:digraphs</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/digraph.png" title="digraph"><img src="https://yyq123.github.io/learn-vim/images/digraph.png" alt="digraph" /></a></p>
+	<p>使用以下命令，可以查看特殊字符列表的帮助信息：</p>
+	<p style="text-indent:2em"><code class="inset">:help digraph-table</code></p>
+	<p>显然帮助信息中包含了更多的信息，比如显示效果、输入字符和描述。你也可以在其中搜索需要的特殊字符。</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/help_digraph-table.png" title="help_digraph-table"><img src="https://yyq123.github.io/learn-vim/images/help_digraph-table.png" alt="help_digraph-table" width="500" height="161" /></a></p>
+
+	<h2 class="article"><a id="hi_NonText_SpecialKey">显示颜色</a></h2>
+	<p>如下图所示，通过选择合适的符号和色彩，非可见符号被低调地显示出来&ndash;&ndash;即没有影响实际的文本内容，又能展示容易被忽视的重要信息：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/set_listchars_result.png" title="set_listchars_result"><img src="https://yyq123.github.io/learn-vim/images/set_listchars_result.png" alt="set_listchars_result" /></a></p>
 	<p>非可见字符&quot;eol&quot;、&quot;extends&quot;、&quot;precedes&quot;是由<em>NonText</em>高亮组来控制显示颜色的，而&quot;nbsp&quot;、&quot;tab&quot;、&quot;trail&quot;则是由"SpecialKey"高亮组来定义的。</p>	
 	<p>我们可以使用以下<a href="https://yyq123.blogspot.com/2017/02/vim-syntax-highlight.html">语法高亮 (Syntax Highlight)</a>命令，来设置非可见字符的显示颜色和格式：</p>
-	<p><a href="https://www.flickr.com/photos/yyq123/6336634973/" title="hi NonText SpecialKey by yyq123, on Flickr"><img src="https://farm7.static.flickr.com/6116/6336634973_8a816416c0.jpg" width="489" height="38" alt="hi NonText SpecialKey" /></a></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/hi_NonText_SpecialKey.png" title="hi_NonText_SpecialKey"><img src="https://yyq123.github.io/learn-vim/images/hi_NonText_SpecialKey.png" alt="hi_NonText_SpecialKey" /></a></p>
 
 	<p>请使用以下命令，查看关于非可见字符的帮助信息：</p>
 	<p style="text-indent:2em"><code class="inset">:help listchars</code></p>
@@ -43,7 +54,6 @@
 		<tr><td><code class="inset">:set listchars</code></td><td>设置非可见字符的显示模式</td></tr>
 	</table>
 
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="语法高亮度 (Syntax)" href="http://yyq123.blogspot.com/2011/02/vim-syntax.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.io/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="折叠 (Fold)" href="http://yyq123.blogspot.com/2011/09/vim-fold.html">下一篇</a>&gt;</span></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="语法高亮度(Syntax)" href="http://yyq123.github.io/learn-vim/learn-vi-64-Syntax.html.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="语法高亮度(Syntax Highlight)" href="http://yyq123.github.io/learn-vim/learn-vi-64-02-SyntaxHighlight.html">下一篇</a>&gt;</span></p>
 </body>
 </html>
-
