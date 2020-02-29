@@ -14,16 +14,7 @@
 	<p>与d命令相类似是的<code class="inset">c</code>更改命令，他在删除一个字符的同时进入插入状态。<code class="inset">cw</code>命令删除一个单词并进入插入状态。<code class="inset">cc</code>命令删除本行上的所有内容并进入插入状态，而且还会保持当前的行缩进。命令<code class="inset">c$</code>将删除从光标处到行尾的所有内容并进入插入状态。</p>
 	<p>命令<code class="inset">s</code>相当于命令<code class="inset">cl</code>的简写，它将删除光标右侧的一个字符并进入插入状态。而命令<code class="inset">S</code>相当于命令<code class="inset">cc</code>的简写，它将删除一行并进入插入状态。</p>
 
-	<p style="font-weight:bold">文本对齐</p>
-	<p>如果要将文本居中对齐，可以用:range ceter width命令。在这个命令中，如果没有指定width的值，将使用textwidth的值，如果也没有设置这个值，那么将使用系统定义的80。例如我们要将1到5行的内容居中对齐，可以使用以下命令：</p>
-	<p style="text-indent:2em"><code class="inset">:1,5 center 30</code></p>
-	<p>同理，右对齐的命令也可以类似的写成：</p>
-	<p style="text-indent:2em"><code class="inset">:1,5 right 30</code></p>
-	<p>但是左对齐的命令就与这两个命令有一些不同了：</p>
-	<p style="text-indent:2em"><code class="inset">:range left margin</code></p>
-	<p>左对齐的参数并不是文本的宽度，而是文本左边的空白字符的宽度。如果为0，那么将紧靠屏幕的左边。</p>
-	<p>例如我们有如下数据，最长8位，现在需要都向右边对齐，不够8位的补0。</p>
-	<p style="text-indent:2em"><code class="inset">%s/.*/\=printf('%08s',submatch(0))/g</code></p>
+
 
 	<p style="font-weight:bold"></p>
 	在从左到右和从右到左两种模式间切换

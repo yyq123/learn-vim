@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 文本对齐()</title>
+</head>
+<body>
+	<h1>VIM学习笔记 文本对齐()</h1>
+
+	<h2 class="article"><a id=""></a></h2>
+	<p></p>
+	<a href="#" title=""></a>
+	<h2 class="article"><a id=""></a></h2>
+	<p>如果要将文本居中对齐，可以用:range ceter width命令。在这个命令中，如果没有指定width的值，将使用textwidth的值，如果也没有设置这个值，那么将使用系统定义的80。例如我们要将1到5行的内容居中对齐，可以使用以下命令：</p>
+	<p style="text-indent:2em"><code class="inset">:1,5 center 30</code></p>
+	<p>同理，右对齐的命令也可以类似的写成：</p>
+	<p style="text-indent:2em"><code class="inset">:1,5 right 30</code></p>
+	<p>但是左对齐的命令就与这两个命令有一些不同了：</p>
+	<p style="text-indent:2em"><code class="inset">:range left margin</code></p>
+	<p>左对齐的参数并不是文本的宽度，而是文本左边的空白字符的宽度。如果为0，那么将紧靠屏幕的左边。</p>
+
+	<h2 class="article"><a id="">补零</a></h2>
+	<p>例如以下数据，最长8位，现在需要都向右边对齐，不够8位的补0。</p>
+	<p style="text-indent:2em"><code class="inset">%s/.*/\=printf('%08s',submatch(0))/g</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/align_right_zero_fill.png" title="align_right_zero_fill"><img src="https://yyq123.github.io/learn-vim/images/align_right_zero_fill.png" alt="align_right_zero_fill" /></a></p>
+
+	<p></p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+
+	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
+	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
+
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
+		<caption style="margin:0.5em; font-weight:bold">选项列表</caption>
+		<tr><th style="white-space: nowrap">选项</th><th>描述</th><th>帮助信息</th></tr>
+		<tr><td><code class="inset">!</code></td><td>如果包含，表示。例如，。</td><td style="white-space: nowrap"><code class="inset">:help viminfo-!</code></td></tr>
+	</table>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
+		<tr><td><code class="inset">:</code></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+	</table>
+&ldquo;&rdquo;
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
+
+</body>
+</html>

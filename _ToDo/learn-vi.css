@@ -15,6 +15,25 @@ pre {
   overflow: auto;
   padding: 0 0 0 2em;
 }
+
+pre.block
+{
+    background: #f4f4f4;
+    border: 1px solid #ddd;
+    border-left: 3px solid lightgray; /*#f36d33;*/
+    color: #666;
+    page-break-inside: avoid;
+    font-family:  "Courier New", Courier, monospace;
+    font-size: 0.8em;
+    line-height: 1.2;
+    margin-bottom: 1.2em;
+    max-width: 100%;
+    overflow: auto;
+    padding: 1em 1.5em;
+    display: block;
+    word-wrap: break-word;
+}
+
 pre > code {
   margin:0;
   display: block;

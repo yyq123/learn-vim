@@ -1,0 +1,18 @@
+.KS
+.IP "TTY_ARGV" 2n
+The command, specified as an argument vector,
+that the TTY subwindow executes.
+.KE
+.KS
+.IP "ICON_IMAGE" 2n
+Sets or gets the remote image for icon's image.
+.KE
+.KS
+.IP "XV_LABEL" 2n
+Specifies a frame's header or an icon's label.
+.KE
+.KS
+.IP "SERVER_SYNC" 2n
+Synchronizes with the server once.
+Does not set synchronous mode.
+.KE
