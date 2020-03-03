@@ -5,17 +5,17 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记 折叠 (Fold)</title>
+	<title>VIM学习笔记 折叠(Fold)</title>
 </head>
 <body>
-	<h1>VIM学习笔记 折叠 (Fold)</h1>
+	<h1>VIM学习笔记 折叠(Fold)</h1>
 
 	<p>当我们查看很长的文本时（比如程序代码），可以使用<code class="inset">:set foldenable</code>命令来启动折叠。首先将内容按照其结构折叠起来，查看文件的大纲，然后再针对特定的部分展开折叠，显示文本的详细内容。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/fold_close.png" title="fold_close"><img src="https://yyq123.github.io/learn-vim/images/fold_close.png" alt="fold_close" /></a></p>
 	<p>Vim将折叠等同于行来对待&mdash;&mdash;你可以使用j或k命令，移动跳过包含多行的整个折叠；也可以使用y或d命令，复制或删除某个折叠。</p>
 	<p>通常在折叠处向左或向右移动光标，或者进入插入模式，都将会自动打开折叠。我们也可以使用以下命令定义快捷键，使用空格键关闭当前打开的折叠，或者打开当前关闭的折叠。</p>
 	<p style="text-indent:2em"><code class="inset">:nnoremap &lt;space&gt; za</code></p>
-	<p>按照折叠所依据的规则，可以分为Manual（手工折叠）、Indent（缩进折叠）、Marker（标记折叠）和Syntax（语法折叠）等几种。</p>
+	<p>按照折叠所依据的规则，可以分为Manual（手工折叠）、Indent（缩进折叠）、Expr（自定义折叠）、Marker（标记折叠）、Diif（差异匹配折叠）和Syntax（语法折叠）等几种。</p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">Manual Fold</p>
 	<p>使用以下命令，启用手工折叠。</p>
@@ -69,13 +69,18 @@
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
 		<tr><td><code class="inset">za</code></td><td>打开/关闭当前的折叠</td></tr>
+		<tr><td><code class="inset">zA</code></td><td>打开/关闭当前的折叠及其嵌套的折叠</td></tr>
 		<tr><td><code class="inset">zc</code></td><td>关闭当前打开的折叠</td></tr>
+		<tr><td><code class="inset">zC</code></td><td>关闭当前打开的折叠及其嵌套的折叠</td></tr>
 		<tr><td><code class="inset">zo</code></td><td>打开当前的折叠</td></tr>
+		<tr><td><code class="inset">zO</code></td><td>打开当前的折叠及其嵌套的折叠</td></tr>
 		<tr><td><code class="inset">zm</code></td><td>关闭所有折叠</td></tr>
-		<tr><td><code class="inset">zM</code></td><td>关闭所有折叠及其嵌套的折叠</td></tr>
+		<tr><td><code class="inset">zM</code></td><td>关闭所有折叠及其嵌套的折叠<br />set foldlevel=0</td></tr>
 		<tr><td><code class="inset">zr</code></td><td>打开所有折叠</td></tr>
 		<tr><td><code class="inset">zR</code></td><td>打开所有折叠及其嵌套的折叠</td></tr>
+		<tr><td><code class="inset">zf</code></td><td>创建折叠</td></tr>
 		<tr><td><code class="inset">zd</code></td><td>删除当前折叠</td></tr>
+		<tr><td><code class="inset">zD</code></td><td>删除当前折叠及其嵌套的折叠</td></tr>
 		<tr><td><code class="inset">zE</code></td><td>删除所有折叠</td></tr>
 		<tr><td><code class="inset">zj</code></td><td>移动至下一个折叠</td></tr>
 		<tr><td><code class="inset">zk</code></td><td>移动至上一个折叠</td></tr>
