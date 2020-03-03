@@ -21,6 +21,24 @@ pre > code {
   word-wrap: normal;
 }
 
+pre.block
+{
+    background: #f4f4f4;
+    border: 1px solid #ddd;
+    border-left: 3px solid lightgray;
+    color: #666;
+    page-break-inside: avoid;
+    font-family:  "Courier New", Courier, monospace;
+    font-size: 0.8em;
+    line-height: 1.2;
+    margin-bottom: 1.2em;
+    max-width: 100%;
+    overflow: auto;
+    padding: 1em 1.5em;
+    display: block;
+    word-wrap: break-word;
+}
+
 code.inset {
   margin: 0 0.2em;
   padding: 0;
