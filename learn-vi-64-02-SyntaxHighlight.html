@@ -5,15 +5,17 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记 语法高亮 (Syntax Highlight)</title>
+	<title>VIM学习笔记 语法高亮(Syntax Highlight)</title>
 </head>
 <body>
+	<h1>VIM学习笔记 语法高亮(Syntax Highlight)</h1>
 	<p>语法高亮，将使用不同的颜色来显示不同的语法元素，可以体现文档的结构，帮助发现排布错误，以提高文本编辑和代码开发的效率。</p>
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">查看语法高亮设定</p>
-	<p>我们可以使用<code class="inset">:highlight</code>命令，查看当前的语法高亮设定。</p>
-	<p><a href="http://www.flickr.com/photos/yyq123/5115940639/" title="highlight by yyq123, on Flickr"><img src="http://farm2.static.flickr.com/1331/5115940639_660c71ffe3.jpg" width="500" height="328" alt="highlight" /></a></p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">修改语法高亮设定</p>
+	<h2 class="article"><a id="highlight_list">查看语法高亮设定</a></h2>
+	<p>我们可以使用<code class="inset">:highlight</code>命令，查看当前的语法高亮设定。</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/highlight.png" title="highlight"><img src="https://yyq123.github.io/learn-vim/images/highlight.png" alt="highlight" width="500" height="328" /></a></p>
+
+	<h2 class="article"><a id="highlight_define">修改语法高亮设定</a></h2>
 	<p>可以使用以下命令修改语法高亮显示：</p>
 	<p style="text-indent:2em"><code class="inset">:highlight group definition</code></p>
 	<p>其中<em>group</em>是指语法元素，例如：</p>
@@ -32,24 +34,23 @@
 	<p style="text-indent:2em"><code class="inset">:highlight Normal ctermfg=black ctermbg=yellow</code></p>
 	<p>在命令中没有指定的参数，将保持其原有的定义。例如以下命令，将背景定义为白色，而前景颜色不变：</p>
 	<p style="text-indent:2em"><code class="inset">:highlight Normal\ ctermbg=white</code></p>
-
 	<p>Vim识别三种不同的终端：<strong>term</strong>，黑白终端；<strong>cterm</strong>，彩色终端；<strong>gui</strong>，Gvim窗口。</p>
 	<p><strong>term</strong>，可以定义其字体显示为：bold、underline、reverse、italic或standout。例如以下命令，用逗号来组合使用这些属性：</p>
 	<p style="text-indent:2em"><code class="inset">:highlight Keyword term=reverse,bold</code></p>
 	<p><strong>cterm</strong>，可以用<em>ctermfg</em>设置前景色；用<em>ctermbg</em>设置背景色。例如以下命令，定义蓝底红字并使用下划线来显示注释：</p>
 	<p style="text-indent:2em"><code class="inset">:highlight Comment cterm=underline ctermfg=red ctermbg=blue</code></p>
 	<p><strong>gui</strong>，可以使用选项gui=attribute，来定义图形窗口下语法元素的显示属性。选项<em>guifg</em>和<em>guibg</em>，用来定义了前景色和背景色。推荐使用的颜色包括：black, brown, grey, blue, green, cyan, magenta, yellow, white。</p>
-
 	<p>为了保持各平台下的一致性，我们应该使用<a href="http://zh.wikipedia.org/zh/%E7%BD%91%E9%A1%B5%E9%A2%9C%E8%89%B2%E6%A8%A1%E5%BC%8F#.E5.8D.81.E5.85.AD.E8.BF.9B.E5.88.B6.E6.95.B0.E5.AD.97.E8.A1.A8.E7.A4.BA.E6.96.B9.E6.B3.95" title="HEX">十六进制颜色代码</a>来指定颜色。例如使用以下命令，一次定义几种终端下的配色：</p>
 	<p style="text-indent:2em"><code class="inset">:highlight Error term=reverse cterm=blod ctermfg=#00afff ctermbg=#a8a8a8</code></p>
+	<p>由于语法元素是区分大小写的，因此建议您在语法文件的开头，使用以下命令设置忽略大小写：</p>
+	<p style="text-indent:2em"><code class="inset">:syntax case ignore</code></p>
 	<p>使用以下命令，可以查看关于highlight的帮助信息：</p>
 	<p style="text-indent:2em"><code class="inset">:help highlight</code></p>
 	
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">查看配色</p>
+	<h2 class="article"><a id="highlight_colorizer">查看配色</a></h2>
 	<p>利用<a style="text-weight:bold" href="https://github.com/lilydjwg/colorizer" title="Colorizer">Colorizer</a>插件可以直观的显示#rgb, #rgba, #rrggbb, #rrgbbaa, rgb(...), rgba(...)等等形式的配色。</p>
-	<p><a href="https://www.flickr.com/photos/yyq123/32718372712/in/dateposted/" title="plugin_Colorizer"><img src="https://c1.staticflickr.com/1/506/32718372712_87060d29fe.jpg" width="500" height="246" alt="plugin_Colorizer" /></a></p>
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="语法(Syntax)" href="
-语法高亮度(Syntax)">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="非可见字符(Listchars)" href="http://yyq123.blogspot.com/2011/11/vim-listchars.html">下一篇</a>&gt;</span></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/plugin_Colorizer.png" title="plugin_Colorizer"><img src="https://yyq123.github.io/learn-vim/images/plugin_Colorizer.png" alt="plugin_Colorizer" width="500" height="246" /></a></p>
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="语法(Syntax)" href="http://yyq123.github.io/learn-vim/learn-vi-64-Syntax.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="语法高亮度-日志文件(Syntax Logfile)" href="http://yyq123.github.io/learn-vim/learn-vi-64-05-SyntaxLogfile.html">下一篇</a>&gt;</span></p>
 </body>
 </html>
-

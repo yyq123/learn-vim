@@ -12,7 +12,6 @@
 	<p></p>
 	<h2 class="article"><a id="">启用/禁用</a></h2>
 	<p></p>
-	<a href=""></a>
 	<a href="#" title=""></a>
 
 	<h2 class="article"><a id="html_close_tag">关闭标签</a></h2>
@@ -36,7 +35,8 @@
 	<p><a href="https://yyq123.github.io/learn-vim/images/dit_html.png" title="dit_html"><img src="https://yyq123.github.io/learn-vim/images/dit_html.png" alt="dit_html" /></a></p>
 	<p>如果需要删除成对的标签以及其包围的文本，那么可以在标签之内执行<code class="inset">dat</code>命令：</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/dat_html.gif" title="dat_html"><img src="https://yyq123.github.io/learn-vim/images/dat_html.gif" alt="dat_html" /></a></p>
-
+	<p>如果需要删除所有标签，而仅仅保留代码中的文本，那么可以使用以下替换命令：</p>
+	<p style="text-indent:2em"><code class="inset">:%s/&lt;\_.\{-1,\}&gt;//g</code></p>
 	<p>从以上实例中可以发现，将在命令中灵活引用单引号、双引号和括号等分隔符，可以大大提高编辑代码的效率。请参阅<a href="https://yyq123.github.io/learn-vim/learn-vi-10-TextObjects.html" title="文本对象(Text Objects)">文本对象(Text Objects)</a>章节，以获得更详细的介绍。</p>
 
 	<h2 class="article"><a id="html_close_tag">编辑引用文件</a></h2>
@@ -60,6 +60,12 @@
 	<p>关于快速关闭标签的其它选项，可以关注<a href="https://stackoverflow.com/questions/130734/how-can-one-close-html-tags-in-vim-quickly" title="How can one close HTML tags in Vim quickly?">How can one close HTML tags in Vim quickly?</a></p>
 
 
+	<h2 class="article"><a id="">拆分行</a></h2>
+	<p>使用以下命令，可以按照标签拆分为多行：</p>
+	<p><code class="inset">:%s/\/[^&gt;]\+&gt;/&amp;\r/g</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/HTML_Code_Line_Break.png" title="HTML_Code_Line_Break"><img src="https://yyq123.github.io/learn-vim/images/HTML_Code_Line_Break.png" alt="HTML_Code_Line_Break" width="550" height="174" /></a></p>
+
+	<p><code class="inset"></code></p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
 	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
 	

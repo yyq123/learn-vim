@@ -5,34 +5,21 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记 信息(messages)</title>
+	<title>VIM学习笔记  ()</title>
 </head>
 <body>
 	<h1>VIM学习笔记  ()</h1>
 
-	<h2 class="article"><a id="">启用/禁用</a></h2>
-	<p style="text-indent:2em"><code class="inset"></code></p>
-	<p>Vim编辑器可以记录上几次的错误以及在屏幕最后一行显示的信息.</p>
+	<h2 class="article"><a id=""></a></h2>
+	<p></p>
 	<a href="#" title=""></a>
-	<p>使用以下命令，可以查看信息：</p>
-	<p style="text-indent:2em"><code class="inset">:messages</code></p>
+	<p><a href="https://htmlcolorcodes.com/" title="HTML Color Codes">HTML Color Codes</a></p>
+	<p></p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
 
-	<p>使用以下命令，在显示信息的同时，也会将其存储在信息历史（message-history）之中。</p>
-	<p style="text-indent:2em"><code class="inset">:echom "Hello World"</code></p>
-
-	<h2 class="article"><a id="message-redir">重定向</a></h2>
-	<p>使用以下命令，在将信息输出到屏幕的同时，也会保存到指定的文件中：</p>
-	<p style="text-indent:2em"><code class="inset">:redir &gt; {file}</code></p>
-	<p>如果希望信息被追加到文件末尾，那么可以使用以下命令：</p>
-	<p style="text-indent:2em"><code class="inset">:redir &gt;&gt; file</code></p>
-	<p>假设需要查询大量的信息输出（例如:version命令），或者保存调试信息，那么信息重定向就会非常有价值。</p>
-	<p>使用以下命令，可以停止信息的重定向：</p>
-	<p style="text-indent:2em"><code class="inset">:redir END</code></p>
-	<p>使用以下命令，可以将信息输出重定向至剪贴板<a href="https://yyq123.github.io/learn-vim/learn-vi-12-Register.html" title="Register">寄存器（Register）</a>：</p>
-	<p style="text-indent:2em"><code class="inset">:redir @+</code></p>
-	<p>这样您就可以使用<code class="inset">"+p</code>命令， 将信息输出粘贴到当前文本甚至其它应用中。</p>
-
-
+	<p>使用<code class="inset">:ColorSelect</code>命令或者<kbd>;#</kbd>快捷键，可以在新建窗口中选择颜色：</p>
+	<p style="text-indent:2em"></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/HTML-Editor-cmd-ColorSelect.png" title="HTML-Editor-cmd-ColorSelect"><img src="https://yyq123.github.io/learn-vim/images/HTML-Editor-cmd-ColorSelect.png" alt="HTML-Editor-cmd-ColorSelect" width="550" height="345" /></a></p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
 	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
 

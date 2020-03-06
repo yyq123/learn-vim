@@ -40,11 +40,14 @@ This will work on Windows and will find all “MyMethod” phrases in all files 
 
 To search recursively in all files and directory under the PWD: grep -R Xanadu *
 
-:set grepprg
-This is a variable that controls the usage of external grep tool in VIM. Depending on your operating system you will have different results:
-
-grepprg=findstr /n    # <--- on Windows
-grepprg=grep -n $* /dev/null # <---- on Linux
+	<h2 class="article"><a id="grepprg">'grepprg'选项</a></h2>
+	<p>使用以下命令，可以查看'grepprg'选项的当前设置：</p>
+	<p style="text-indent:2em"><code class="inset">:set grepprg?</code></p>
+	<p>在不同的操作系统下，Vim将使用不同的外部grep工具：</p>
+	<ul>
+		<li>在Windows下，grepprg=findstr /n</li>
+		<li>在下，grepprg=grep -n $* /dev/null</li>
+	</ul>
 So in order to use recursive search you have to modify grepprg and add a proper parameter:
 
 grepprg=findstr /S /n                  # <--- on Windows
@@ -65,6 +68,18 @@ https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/
 	<li><code class="inset">[[:digit:]][[:upper:]]\{3][[:digit:]]\{3}</code></li>
 </ul>
 	<p>表达式<code class="inset"><.\{-}></code>，可以匹配以&lt;开头以&gt;结尾的所有HTML代码标签。</p>
+	<p>使用以下命令，可以查找以"abc"开头并以"xyz"结尾的字符串：</p>
+	<p style="text-indent:2em"><code class="inset">:g/abc.*xyz</code></p>
+	* . means "any character except an EOL".
+	* * means "any number (including 0) of the previous atom".
+	* 1,$ could be shortened to %.
+	* :global works on the whole buffer by default so you don't even need the %.
+	* The closing / is not needed if you don't follow :g/pattern by a command as in :g/foo/d.
+abc123xyz
+abcyz
+abc xyz
+
+
 	<p>使用一下命令，可以将每个单词的首字母转换为大写：</p>
 	<p style="text-indent:2em"><code class="inset">:s/\&lt;\(.\)\([^[:space:][:punct:]]*\)\&gt;/\u\1\2/g</code></p>
 

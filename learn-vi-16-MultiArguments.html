@@ -8,8 +8,9 @@
 	<title>VIM学习笔记 参数(Arguments)</title>
 </head>
 <body>
+	<h1>VIM学习笔记 参数(Arguments)</h1>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">启动参数</p>
+	<h2 class="article"><a id="Arguments">启动参数</a></h2>
 	<p>在启动vim时，可以指定多个文件做为参数，例如以下操作系统命令将打开多个文件，并显示第一个文件：</p>
 	<p style="text-indent:2em"><code class="inset">vim file1.txt file2.txt file3.txt</code></p>
 	<p>参数（Arguments）和<a href="http://yyq123.github.io/learn-vim/learn-vi-13-MultiBuffers.html" title="Buffer">缓冲区（Buffer）</a>是不同的概念。早在Vi之中，就存在参数概念；而缓冲区则是在Vim之中新引进的。参数列表中的所有文件名，都会同时存在于缓冲区列表之中；但并不是所有缓冲区列表中的文件名，也都会出现在参数列表之中。</p>
@@ -20,19 +21,23 @@
 	<p>而缓冲区则为4个：</p>
 	<p><a href="https://www.flickr.com/photos/yyq123/41656148030/in/dateposted/" title="args_4"><img src="https://farm2.staticflickr.com/1789/41656148030_ededba7c03_o.jpg" width="552" height="146" alt="args_4" /></a></p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">参数列表</p>
+	<h2 class="article"><a id="args">参数列表</a></h2>
 	<p>命令<code class="inset">:args</code>可以列示打开的多个文件，并用中括号&ldquo;[]&rdquo;标识出正在编辑的文件名。</p>
 	<p><a href="https://www.flickr.com/photos/yyq123/3737701803/" title="args by yyq123, on Flickr"><img src="https://farm3.static.flickr.com/2513/3737701803_11f4eb9625_o.png" width="491" height="144" alt="args" /></a></p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">切换多个文件</p>
+	<h2 class="article"><a id="*alternate-file">切换多个文件</a></h2>
 	<p>可以使用:argument命令，直接切换到指定的文件。例如以下命令，将切换至列表中的第三个文件：</p>
 	<p style="text-indent:2em"><code class="inset">:argument 3</code></p>
 	<p>需要切换到下一个文件时，可以输入<code class="inset">:next</code>命令，如果你没有保存当前文件的修改，vim将给出提示信息，不允许切换到下一文件。输入<code class="inset">:write</code>和<code class="inset">:next</code>命令，则可以保存并切换到第二个文件（此命令也可简写为<code class="inset">:wnext</code>）。</p>
 	<p>使用<code class="inset">:next!</code>命令，可以强制切换到第二个文件，但所做改动也将会丢失。使用<code class="inset">:set autowrite</code>命令打开自动保存功能，可以避免数据丢失的意外情况；而命令<code class="inset">:set noautowrite</code>则可以关闭自动保存功能。</p>
 	<p>如果想要回到上一个文件，可以使用<code class="inset">:previous</code>或是<code class="inset">:Next</code>命令。如果要保存当前文件并切换到前一文件，可以使用<code class="inset">:wprevious</code>或是<code class="inset">:wNext</code>命令。</p>
-	<p>使用快捷键<kbd>ctrl+^</kbd>可以快速切换到上一个文件，以实现在#（current filename）和 %（alternate filename）文件之间快速切换的目的。</p>
+	<p>Vim将当前文件（current filename）标记为&ldquo;%&rdquo;；而将之前的交换文件（alternate filename）标记为&ldquo;#&rdquo;。</p>
+	<p>使用<code class="inset">:e #</code>命令，也可以切换到上一个文件中；如果当前文件没有保存，则会提示进行保存或者放弃。</p>
+	<p>如果希望放弃当前的文件编辑，并直接返回上一个文件中，那么可以使用<code class="inset">:e! #</code>命令。</p>
+	<p>使用<code class="inset">:r #</code>命令， 可以将上一文件的内容读入（粘贴）到当前文件中。</p>
+	<p>由于在编辑多文件的过程中，经常需要切换到之前的文件，因此提供快捷键<kbd>ctrl+^</kbd>进行快速切换。</p>
 	<p>使用<code class="inset">:first</code>或<code class="inset">:rewind</code>命令，可以快速切换到第一个文件；而<code class="inset">:last</code>命令，则可以快速切换到最后一个文件。</p>
-	
+ 
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
 		<tr><td><code class="inset">:next</code></td><td>切换到下一文件</td></tr>
@@ -48,6 +53,6 @@
 		<tr><td><code class="inset">:args</code></td><td>显示正在编辑的文件名</td></tr>
 		<tr><td><code class="inset">:argument [N]</code></td><td>切换至第N号文件</td></tr>
 	</table>
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="缓冲区(Buffer)" href="http://yyq123.github.io/learn-vim/learn-vi-13-MultiBuffers.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="窗口(Window)" href="http://yyq123.github.io/learn-vim/learn-vi-14-MultiWindows.html">下一篇</a>&gt;</span></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="缓冲区(Buffer)" href="http://yyq123.github.io/learn-vim/learn-vi-13-MultiBuffers.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="窗口(Window)" href="http://yyq123.github.io/learn-vim/learn-vi-14-MultiWindows.html">下一篇</a>&gt;</span></p>
 </body>
 </html>
