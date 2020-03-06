@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记  ()</title>
+</head>
+<body>
+	<h1>VIM学习笔记  ()</h1>
+
+	<h2 class="article"><a id="">启用/禁用</a></h2>
+	<p></p>
+	<a href="#" title=""></a>
+Using git to clone the source code and change directory to vim/src, build the source code using make and then install it into /usr/local/bin.
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">识别文件</p>
+	<p></p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+	<p style="text-indent:2em"><code class="inset">git clone https://github.com/vim/vim.git
+	<p style="text-indent:2em"><code class="inset">cd vim</code></p>
+</code></p>
+Download and install python from https://www.python.org/downloads/ 
+If you want to add python and python3 support, then the ./configure must be properly applied. 
+
+<pre>
+./configure --with-features=huge \
+--enable-multibyte \
+--enable-rubyinterp=dynamic \
+--with-ruby-command=/usr/bin/ruby \
+--enable-pythoninterp=dynamic \
+--with-python-config-dir=/usr/lib/python2.7/config \
+--enable-python3interp=dynamic \
+--with-python3-config-dir=/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.7/lib/python3.7/config-3.7m-darwin \
+--enable-cscope \
+--enable-gui=auto \
+--enable-gtk2-check \
+--enable-fontset \
+--enable-largefile \
+--disable-netbeans \
+--with-compiledby="yyq123@email.com" \
+--enable-fail-if-missing \
+--prefix=/usr/local
+</pre>
+Option –enable-fail-if-missing is to see the errors for configuration and stop the configuration immediately.
+
+<pre>
+checking --enable-pythoninterp argument... dynamic
+checking --with-python-command argument... no
+checking for python2... /usr/bin/python2
+checking Python version... 2.7
+checking Python is 2.3 or better... yep
+checking Python's install prefix... /System/Library/Frameworks/Python.framework/Versions/2.7
+checking Python's execution prefix... /System/Library/Frameworks/Python.framework/Versions/2.7
+checking Python's configuration directory... (cached) /usr/lib/python2.7/config
+checking Python's dll name... Python.framework/Versions/2.7/Python
+checking if -pthread should be used... no
+checking if compile and link flags for Python are sane... yes
+checking --enable-python3interp argument... dynamic
+checking --with-python3-command argument... no
+checking for python3... /usr/bin/python3
+checking Python version... 3.7
+checking Python is 3.0 or better... yep
+checking Python's abiflags... m
+checking Python's install prefix... /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.7
+checking Python's execution prefix... /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.7
+checking Python's configuration directory... (cached) /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.7/lib/python3.7/config-3.7m-darwin
+checking Python3's dll name... Python3.framework/Versions/3.7/Python3
+checking if -pthread should be used... no
+checking if compile and link flags for Python 3 are sane... yes
+checking whether we can do without RTLD_GLOBAL for Python... no
+checking whether we can do without RTLD_GLOBAL for Python3... yes
+checking --enable-tclinterp argument... no
+checking --enable-rubyinterp argument... dynamic
+checking --with-ruby-command argument... /usr/bin/ruby
+checking for /usr/bin/ruby... /usr/bin/ruby
+checking Ruby version... OK
+checking Ruby rbconfig... RbConfig
+checking Ruby header files... /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/Ruby.framework/Versions/2.6/usr/include/ruby-2.6.0
+</pre>
+	<p style="text-indent:2em"><code class="inset">$ sudo make</code></p>
+	<pre>
+Starting make in the src directory.
+If there are problems, cd to the src directory and run make there
+cd src && /Library/Developer/CommandLineTools/usr/bin/make first
+/bin/sh install-sh -c -d objects
+touch objects/.dirstamp
+CC="gcc -Iproto -DHAVE_CONFIG_H   -DMACOS_X -DMACOS_X_DARWIN    " srcdir=. sh ./osdef.sh
+	</pre>
+	<p style="text-indent:2em"><code class="inset">$ sudo make install</code></p>
+	<pre>
+	Starting make in the src directory.
+If there are problems, cd to the src directory and run make there
+cd src && /Library/Developer/CommandLineTools/usr/bin/make install
+if test -f /usr/local/bin/vim; then \
+	  mv -f /usr/local/bin/vim /usr/local/bin/vim.rm; \
+	  rm -f /usr/local/bin/vim.rm; \
+	fi
+cp vim /usr/local/bin
+strip /usr/local/bin/vim
+chmod 755 /usr/local/bin/vim
+	</pre>
+The above code will copy the compiled vim binary into /usr/local/bin so which vim will show /usr/local/bin/vim
+	<p style="text-indent:2em"><code class="inset">which vim</code></p>
+	<pre>
+/usr/local/bin/vim
+	</pre>
+	<p style="text-indent:2em"><code class="inset">vim --version</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
+	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
+
+
+To start over the whole build configuration
+cd src && make distclean
+To uninstall an existing vim
+cd src && make uninstall
+
+:!python3 %
+When you do :!python3 & you are actually running a shell that executes the command python3 myFile.py. That will run your program non-interactively
+You can force the interactive mode with :!python3 -i %.
+Alternatively you can do :!python3 without arguments: it will launch an interactive python shell. 
+
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
+		<caption style="margin:0.5em; font-weight:bold">选项列表</caption>
+		<tr><th style="white-space: nowrap">选项</th><th>描述</th><th>帮助信息</th></tr>
+		<tr><td><code class="inset">!</code></td><td>如果包含，表示。例如，。</td><td style="white-space: nowrap"><code class="inset">:help viminfo-!</code></td></tr>
+	</table>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
+		<tr><td><code class="inset">:</code></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+	</table>
+&ldquo;&rdquo;
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
+
+</body>
+</html>
