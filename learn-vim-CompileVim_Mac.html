@@ -5,26 +5,28 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记  ()</title>
+	<title>VIM学习笔记 编译Vim支持Python3 (Compile Vim with Python3 support)</title>
 </head>
 <body>
-	<h1>VIM学习笔记  ()</h1>
+	<h1>VIM学习笔记 编译Vim支持Python3 (Compile Vim with Python3 support)</h1>
 
-	<h2 class="article"><a id="">启用/禁用</a></h2>
-	<p></p>
-	<a href="#" title=""></a>
-Using git to clone the source code and change directory to vim/src, build the source code using make and then install it into /usr/local/bin.
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">识别文件</p>
-	<p></p>
-	<p style="text-indent:2em"><code class="inset"></code></p>
-	<p style="text-indent:2em"><code class="inset">git clone https://github.com/vim/vim.git
-	<p style="text-indent:2em"><code class="inset">cd vim</code></p>
-</code></p>
-Download and install python from https://www.python.org/downloads/ 
-If you want to add python and python3 support, then the ./configure must be properly applied. 
+	<p>请注意，本文在Mac OS X 10.15.3下测试完成。以下命令中的参数，需要根据您的系统环境进行相应调整。</p>
+	<h2 class="article"><a id="which_python">前置条件</a></h2>
+	<p>首先确请认已安装Python3或Python2。关于安装和配置信息，请访问<a href="https://www.python.org/downloads/" title="Python">Python</a>网站。</p>
+	<p>使用以下命令，查看当前Python2安装情况：</p>
+	<p><code class="inset">$ which python</code></p>
+	<pre class="block">/usr/bin/python</pre>
+	<p>使用以下命令，查看当前Python3安装情况：</p>
+	<p><code class="inset">$ which python3</code></p>
+	<pre class="block">/usr/bin/python3</pre>
 
-<pre>
-./configure --with-features=huge \
+	<h2 class="article"><a id="compile_vim">编译Vim</a></h2>
+	<p>使用Git命令，将Vim源码复制到本地：</p>
+	<p><code class="inset">$ git clone https://github.com/vim/vim.git</code></p>
+	<p>切换到下载的Vim源码目录：</p>
+	<p><code class="inset">$ cd vim</code></p>
+	<p>通过配置命令，启用需要的特性：</p>
+<pre style="padding:0"><code>$ ./configure --with-features=huge \
 --enable-multibyte \
 --enable-rubyinterp=dynamic \
 --with-ruby-command=/usr/bin/ruby \
@@ -40,11 +42,10 @@ If you want to add python and python3 support, then the ./configure must be prop
 --disable-netbeans \
 --with-compiledby="yyq123@email.com" \
 --enable-fail-if-missing \
---prefix=/usr/local
-</pre>
-Option –enable-fail-if-missing is to see the errors for configuration and stop the configuration immediately.
-
-<pre>
+--prefix=/usr/local</code></pre>
+<p>其中，&ldquo;–-enable-fail-if-missing&rdquo;，用于显示错误信息；&ldquo;--prefix=/usr/local&rdquo;，用于指定生成可执行文件的位置。</p>
+<p>命令将检查配置项，并输出以下类似信息：</p>
+<pre class="block">
 checking --enable-pythoninterp argument... dynamic
 checking --with-python-command argument... no
 checking for python2... /usr/bin/python2
@@ -77,19 +78,21 @@ checking for /usr/bin/ruby... /usr/bin/ruby
 checking Ruby version... OK
 checking Ruby rbconfig... RbConfig
 checking Ruby header files... /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/Ruby.framework/Versions/2.6/usr/include/ruby-2.6.0
-</pre>
-	<p style="text-indent:2em"><code class="inset">$ sudo make</code></p>
-	<pre>
+......</pre>
+	<p>执行以下编译命令：</p>
+	<p><code class="inset">$ sudo make</code></p>
+	<pre class="block">
 Starting make in the src directory.
 If there are problems, cd to the src directory and run make there
 cd src && /Library/Developer/CommandLineTools/usr/bin/make first
 /bin/sh install-sh -c -d objects
 touch objects/.dirstamp
 CC="gcc -Iproto -DHAVE_CONFIG_H   -DMACOS_X -DMACOS_X_DARWIN    " srcdir=. sh ./osdef.sh
-	</pre>
-	<p style="text-indent:2em"><code class="inset">$ sudo make install</code></p>
-	<pre>
-	Starting make in the src directory.
+......</pre>
+	<p>执行以下安装命令，将编译后的二进制文件复制到 /usr/local/bin ：</p>
+	<p><code class="inset">$ sudo make install</code></p>
+	<pre class="block">
+Starting make in the src directory.
 If there are problems, cd to the src directory and run make there
 cd src && /Library/Developer/CommandLineTools/usr/bin/make install
 if test -f /usr/local/bin/vim; then \
@@ -99,44 +102,29 @@ if test -f /usr/local/bin/vim; then \
 cp vim /usr/local/bin
 strip /usr/local/bin/vim
 chmod 755 /usr/local/bin/vim
-	</pre>
-The above code will copy the compiled vim binary into /usr/local/bin so which vim will show /usr/local/bin/vim
-	<p style="text-indent:2em"><code class="inset">which vim</code></p>
-	<pre>
-/usr/local/bin/vim
-	</pre>
-	<p style="text-indent:2em"><code class="inset">vim --version</code></p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
-	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
+......</pre>
+	<p>关闭并重新打开Terminal终端，执行以下命令将显示已使用新编译的Vim：</p>
+	<p><code class="inset">$ which vim</code></p>
+	<pre class="block">/usr/local/bin/vim</pre>
+	<p>执行以下命令，将显示新编译的Vim已包含Python3特性：</p>
+	<p><code class="inset">$ vim --version</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/compile_vim_version.png" title="compile_vim_version"><img src="https://yyq123.github.io/learn-vim/images/compile_vim_version.png" alt="compile_vim_version" width="550" height="394" /></a></p>
+	<p>其中，与Python相关的特性主要包括：</p>
+	<ul>
+		<li><var>+python</var>，内置支持Python 2；</li>
+		<li><var>+python3</var>，内置支持Python 3；</li>
+		<li><var>+python/dyn</var>，动态支持Python 2；</li>
+		<li><var>+python3/dyn</var>，动态支持Python 3；</li>
+	</ul>
+	<p>根据以上步骤，我们保持/usr/bin目录下预装的Vim不变，另外在/usr/local/bin目录下安装了自已编译的Vim。</p>
 
+	<h2 class="article"><a id="compile_vim_uninstall">卸载Vim</a></h2>
+	<p>使用以下命令，可以重置编译操作：</p>
+	<p><code class="inset">$ sudo make distclean</code></p>
+	<p>使用以下命令，可以卸载Vim：</p>
+	<p><code class="inset">$ sudo make uninstall</code></p>
 
-To start over the whole build configuration
-cd src && make distclean
-To uninstall an existing vim
-cd src && make uninstall
-
-:!python3 %
-When you do :!python3 & you are actually running a shell that executes the command python3 myFile.py. That will run your program non-interactively
-You can force the interactive mode with :!python3 -i %.
-Alternatively you can do :!python3 without arguments: it will launch an interactive python shell. 
-
-	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
-		<caption style="margin:0.5em; font-weight:bold">选项列表</caption>
-		<tr><th style="white-space: nowrap">选项</th><th>描述</th><th>帮助信息</th></tr>
-		<tr><td><code class="inset">!</code></td><td>如果包含，表示。例如，。</td><td style="white-space: nowrap"><code class="inset">:help viminfo-!</code></td></tr>
-	</table>
-
-	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
-		<caption>命令小结</caption>
-		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
-		<tr><td><code class="inset">:</code></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-	</table>
-&ldquo;&rdquo;
-
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="在Mac下安装Vim" href="http://yyq123.github.io/learn-vim/learn-vi-202-Install-Vim-Mac.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="启动(Starting)" href="http://yyq123.github.io/learn-vim/learn-vi-209-Start.html">下一篇</a>&gt;</span></p>
 
 </body>
 </html>
