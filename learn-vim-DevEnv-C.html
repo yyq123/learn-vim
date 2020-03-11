@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记  ()</title>
+</head>
+<body>
+	<h1>VIM学习笔记  ()</h1>
+
+	<h2 class="article"><a id="">启用/禁用</a></h2>
+	<p></p>
+	<a href="#" title=""></a>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">识别文件</p>
+	<p></p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+	<p>使用以下命令，查看当前gcc的版本：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/gcc_version_Linux.png" title="gcc_version_Linux"><img src="https://yyq123.github.io/learn-vim/images/gcc_version_Linux.png" alt="gcc_version_Linux" /></a></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
+	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
+If you use
+
+set makeprg=gcc\ -o\ %<\ %
+
+in your vimrc, and your actual file is file.c, then :make will compile file.c with the output file. (gcc file.c -o file).
+
+If you use GNU make the above change is not required. Instead, simply use the following command to compile the current file (you need to save it first):
+
+:make %:r
+
+:!./%:r
+
+																					 在使用":make"时，vim会自动调用'makeprg'选项定义的命令进行编译，并把编译输出重定向到一个临时文件中，当编译出现错误时，vim会从上述临时文件中读出错误信息，根据这些信息形成quickfix列表，并跳转到第一个错误出现的地方。 
+
+对于我们上面的程序来说，光标会停在第三行，也就是第一个出错的位置，vim同时会提示出错信息。如果你没看清出错信息，可以输入":cc"命令，vim会更次显示此信息，或者干脆使用":cw"命令，打开一个quickfix窗口，把所有的出错信息显示出来，见下图： 
+																					  在quickfix模式里经常用到的命令有：
+
+:cc                显示详细错误信息 ( :help :cc )
+:cp                跳到上一个错误 ( :help :cp )
+:cn                跳到下一个错误 ( :help :cn )
+:cl                列出所有错误 ( :help :cl )
+:cw                如果有错误列表，则打开quickfix窗口 ( :help :cw )
+:col               到前一个旧的错误列表 ( :help :col )
+:cnew              到后一个较新的错误列表 ( :help :cnew ) 
+
+autocmd FileType c,cpp  map <buffer> <leader><space> :w<cr>:make<cr>
+map <F8> :w <CR> :!gcc % -o %< && ./%< <CR>
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
+		<caption style="margin:0.5em; font-weight:bold">选项列表</caption>
+		<tr><th style="white-space: nowrap">选项</th><th>描述</th><th>帮助信息</th></tr>
+		<tr><td><code class="inset">!</code></td><td>如果包含，表示。例如，。</td><td style="white-space: nowrap"><code class="inset">:help viminfo-!</code></td></tr>
+	</table>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
+		<tr><td><code class="inset">:</code></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+	</table>
+&ldquo;&rdquo;
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
+
+</body>
+</html>

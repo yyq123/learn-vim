@@ -5,9 +5,11 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记 正则表达式-基础（Regular Expression Basic）</title>
+	<title>VIM学习笔记 正则表达式-基础(Regular Expression Basic)</title>
 </head>
 <body>
+	<h1>VIM学习笔记 正则表达式-基础(Regular Expression Basic)</h1>
+
 	<p>Vim使用正则表达式(regular expressions)来进行逻辑查找。正则达式是神秘和简洁的，然而这种强大的功能也必须要以大量的学习才能够习惯和掌握。</p>
 	<p>一个正则表达式是由一些元素组成的，一个元素可以是一个字符或者是一个特殊字符。</p>
 	<p>以下表格列示了常用的简单元素：</p>
@@ -19,35 +21,36 @@
 	<tr><td><code class="inset">&lt;</code></td><td>开始标记</td></tr>
 	<tr><td><code class="inset">&gt;</code></td><td>结尾标记</td></tr>
 	</table>
-	
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">行首与行尾</p>
+
+	<h2 class="article"><a id="reg-start-end-of-line">行首与行尾</a></h2>
 	<p><code class="inset">^acme</code>，将匹配以acme开始的行。注意：除非出现在模式的开头，否则音调符号^就不是一个代表行开头的通配符，而会代表其他的含义。<code class="inset">2^4</code>，将匹配包含"2^4"的所有行。如果要查找以“^”开头的行，则需要使用<code class="inset">^^</code>模式。其中第一个^是通配符用于指示一行的开头，而第二个^则是实际的音调符号。如果要指明前导^是一个实际的音调符号而不是表示一行开头的通配符，那么就需要在其前面加一个转义的反斜杠“\”来组成<code class="inset">\^acme</code>模式。</p>
-	<p><a href="https://www.flickr.com/photos/yyq123/34073046406/in/dateposted/" title="RegularExpression_BeginOfLine"><img src="https://c1.staticflickr.com/4/3947/34073046406_5672a535a3.jpg" width="500" height="214" alt="RegularExpression_BeginOfLine" /></a></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/RegularExpression_BeginOfLine.png" title="RegularExpression_BeginOfLine"><img src="https://yyq123.github.io/learn-vim/images/RegularExpression_BeginOfLine.png" alt="RegularExpression_BeginOfLine" width="500" height="214" /></a></p>
 	<p><code class="inset">acme$</code>，将匹配以acme结尾的行。<code class="inset">^acme$</code>，将匹配只包含acme一个单词的行。而<code class="inset">^$</code>，则会匹配所有空行。</p>
-	<p><a href="https://www.flickr.com/photos/yyq123/33302425653/in/photostream/" title="RegularExpression_EndOfLine"><img src="https://c1.staticflickr.com/3/2911/33302425653_df51ed6c68.jpg" width="500" height="214" alt="RegularExpression_EndOfLine" /></a></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/RegularExpression_EndOfLine.png" title="RegularExpression_EndOfLine"><img src="https://yyq123.github.io/learn-vim/images/RegularExpression_EndOfLine.png" alt="RegularExpression_EndOfLine" width="500" height="214" /></a></p>
 	<p><code class="inset">dog.bone</code>，将匹配dog-bone，dog bone，dog/bone，但不会匹配dogbone，因为dog和bone之间并没有分隔符。</p>
-	<p><a href="https://www.flickr.com/photos/yyq123/34073046546/in/photostream/" title="RegularExpression_AnySingleChr"><img src="https://c1.staticflickr.com/3/2918/34073046546_af4ffe4bc9.jpg" width="500" height="214" alt="RegularExpression_AnySingleChr" /></a></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/RegularExpression_AnySingleChr.png" title="RegularExpression_AnySingleChr"><img src="https://yyq123.github.io/learn-vim/images/RegularExpression_AnySingleChr.png" alt="RegularExpression_AnySingleChr" width="500" height="214" /></a></p>
 	<p>要指示任何字符出现的次数，可以同时使用句点和星号（.*），例如<code class="inset">dog.*bone</code>将匹配以下字符串（但不会匹配dog在一行而bone在另一行的情况）：</p>
 	<p style="width:30em; padding: 0.2em; color:#fff; background-color:#000;">dogbone<br />
 	dog-bone<br />
 	doggy bone<br />
 	My dog has a bone</p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">词首与词尾</p>
-	<p><code class="inset">&lt;</code>用于匹配一个单词的开始。<code class="inset">&gt;</code>用于匹配一个单词的结束。也就是说，只要将想要查找的字符串包围其中，就可以实现精确查找。例如在文件中有单词Californian和Unfortunately。如果使用命令<code class="inset">/for</code>来查找，那么也会找到这两个单词。</p>
-	<p><a href="https://www.flickr.com/photos/yyq123/34074075036/in/dateposted/" title="RegularExpression_Partial"><img src="https://c1.staticflickr.com/3/2931/34074075036_e516993fed.jpg" width="500" height="177" alt="RegularExpression_Partial" /></a></p>
+	<h2 class="article"><a id="reg-start-end-of-word">词首与词尾</a></h2>
+	<p><code class="inset">\&lt;</code>用于匹配一个单词的开始。比如<code class="inset">/\&lt;f</code>命令，可以查找所有以&ldquo;f&rdquo;开头的单词。</p>
+	<p><code class="inset">\&gt;</code>用于匹配一个单词的结束。比如<code class="inset">/f\&gt;</code>命令，可以查找所有以&ldquo;f&rdquo;结尾的单词。</p>
+	<p>也就是说，只要将想要查找的字符串包围其中，就可以实现精确查找。例如在文件中有单词Californian和Unfortunately。如果使用命令<code class="inset">/for</code>来查找，那么也会找到这两个单词。</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/RegularExpression_Partial.png" title="RegularExpression_Partial"><img src="https://yyq123.github.io/learn-vim/images/RegularExpression_Partial.png" alt="RegularExpression_Partial" width="500" height="177" /></a></p>
 	<p>如果使用表达式<code class="inset">/\&lt;for\&gt;</code>来进行查找，则只会精确的查找到for，而不会出现其他的匹配。</p>
-	<p><a href="https://www.flickr.com/photos/yyq123/33272364724/in/photostream/" title="RegularExpression_Exact"><img src="https://c1.staticflickr.com/3/2924/33272364724_8b99fa6758.jpg" width="500" height="177" alt="RegularExpression_Exact" /></a></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/RegularExpression_Exact.png" title="RegularExpression_Exact"><img src="https://yyq123.github.io/learn-vim/images/RegularExpression_Exact.png" alt="RegularExpression_Exact" width="500" height="177" /></a></p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">匹配次数</p>
+	<h2 class="article"><a id="reg-match-times">匹配次数</a></h2>
 	<p>星号（<code class="inset">*</code>）通配符，作用于其之前的一个元素，表示可以匹配0次或是多次。表达式的贪婪（greedy）特性，将尝试查找尽可能多的匹配项。<code class="inset">te*</code>将会匹配te，tee，teee等等。甚至还会匹配t，因为在这里e可以出现0次。</p>
-	<p><a href="https://www.flickr.com/photos/yyq123/33288076884/in/dateposted/" title="RegularExpression_Asterisk"><img src="https://c1.staticflickr.com/3/2883/33288076884_622dee1240.jpg" width="500" height="108" alt="RegularExpression_Asterisk" /></a></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/RegularExpression_Asterisk.png" title="RegularExpression_Asterisk"><img src="https://yyq123.github.io/learn-vim/images/RegularExpression_Asterisk.png" alt="RegularExpression_Asterisk" width="500" height="108" /></a></p>
 	<p>加号（<code class="inset">+</code>）通配符，表示一个字符可以匹配一次或是多次。所以表达式<code class="inset">te\+</code>可以匹配te，tee，teee等等。但是不会再匹配t，因为这里e最少要出现一次。</p>
-	<p><a href="https://www.flickr.com/photos/yyq123/33288077014/in/photostream/" title="RegularExpression_Plus"><img src="https://c1.staticflickr.com/3/2880/33288077014_0a3aa86283.jpg" width="500" height="108" alt="RegularExpression_Plus" /></a></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/RegularExpression_Plus.png" title="RegularExpression_Plus"><img src="https://yyq123.github.io/learn-vim/images/RegularExpression_Plus.png" alt="RegularExpression_Plus" width="500" height="108" /></a></p>
 	<p>等号（<code class="inset">=</code>）通配符，表示一个字符匹配0次或是一次。所以表达<code class="inset">te\=</code>可以匹配t和te，但是不会匹配tee，因为这个表达式只能匹配不多于两个字符。</p>
-	<p><a href="https://www.flickr.com/photos/yyq123/33288077124/in/photostream/" title="RegularExpression_Equal"><img src="https://c1.staticflickr.com/3/2928/33288077124_d64568e6a7.jpg" width="500" height="108" alt="RegularExpression_Equal" /></a></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/RegularExpression_Equal.png" title="RegularExpression_Equal"><img src="https://yyq123.github.io/learn-vim/images/RegularExpression_Equal.png" alt="RegularExpression_Equal" width="500" height="108" /></a></p>
 
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="重复命令" href="http://bit.ly/vim-dot">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="vimrc配置文件" href="http://bit.ly/vim-vimrc">下一篇</a>&gt;</span></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="重复命令" href="http://yyq123.github.io/learn-vim/learn-vi-20-DotCommand.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="vimrc配置文件" href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html">下一篇</a>&gt;</span></p>
 </body>
 </html>
-

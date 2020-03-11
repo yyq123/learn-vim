@@ -86,6 +86,8 @@ Created by yyq123@gmail.com using [vim](http://www.vim.org/)
   - [命令相关选项(Options-CMD)](http://yyq123.github.io/learn-vim/learn-vi-46-03-CMD-Options.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/10/vim-options-cmd.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/87786860)
   - [自动命令(autocmd)](http://yyq123.github.io/learn-vim/learn-vi-49-01-autocmd.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/12/vim-autocmd.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/98360630)
   - [自动命令-实例(autocmd-examples)](http://yyq123.github.io/learn-vim/learn-vi-49-02-autocmd-example.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/12/vim-autocmd-examples.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/98966660)
+- **开发环境**
+  - [编译Vim支持Python3(Compile Vim with Python3 support)](http://yyq123.github.io/learn-vim/learn-vim-CompileVim_Mac.html)[<sup>B</sup>](https://yyq123.blogspot.com/2020/03/vim-with-python3.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/111592292)
 - **代码开发**
   - [模板(Template)](http://yyq123.blogspot.com/2010/08/vim-template.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/03/vim-starting.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/60260968)
   - [配色方案(Color Scheme)](http://yyq123.blogspot.com/2011/02/vim-color-scheme.html)[<sup>B</sup>](http://yyq123.blogspot.com/2011/02/vim-color-scheme.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/60260968)
