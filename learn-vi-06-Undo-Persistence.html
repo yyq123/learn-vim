@@ -17,7 +17,7 @@
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">生成撤销文件</p>
 	<p>撤销文件通常保存在文件本身所在的目录里。使用以下命令，可以将撤销文件集中保存到指定的目录：</p>
-	<p style="text-indent:2em"><code class="inset">set undodir="$HOME/.vim/undodir"</code></p>
+	<p style="text-indent:2em"><code class="inset">set undodir=$HOME/.vim/undodir</code></p>
 	<p>请注意，需要确保您指定的目录已经存在。</p>
 	<p>生成的撤销文件，将以所编辑文件的完整名称命名。其中包括了完整的路径名，其中“/”将以“%”代替：</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/undofile.png" title="undofile"><img src="https://yyq123.github.io/learn-vim/images/undofile.png" width="525" height="51" alt="Undofile"></a></p>

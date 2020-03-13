@@ -5,51 +5,34 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记  ()</title>
+	<title>VIM学习笔记 VIM学习笔记 网页开发-选择颜色(Select Color)</title>
 </head>
 <body>
-	<h1>VIM学习笔记  ()</h1>
+	<h1>VIM学习笔记 VIM学习笔记 网页开发-选择颜色(Select Color)</h1>
 
-	<h2 class="article"><a id=""></a></h2>
-	<p></p>
-	<a href="#" title=""></a>
-	<p><a href="https://htmlcolorcodes.com/" title="HTML Color Codes">HTML Color Codes</a></p>
-	<p></p>
-	<p style="text-indent:2em"><code class="inset"></code></p>
-
-	<p>使用<code class="inset">:ColorSelect</code>命令或者<kbd>;#</kbd>快捷键，可以在新建窗口中选择颜色：</p>
-	<p style="text-indent:2em"></p>
+	<h2 class="article"><a id="HTML-Editor-plugin">HTML-Editor插件</a></h2>
+	<p>我在Christian J Robinson开发的<a href="http://christianrobinson.name/vim/HTML/" title="HTML">HTML</a>插件的基础之上，制作了<a href="https://github.com/yyq123/HTML-Editor" title="HTML-Editor">HTML-Editor</a>插件。使用<code class="inset">:ColorSelect</code>命令或者<kbd>;#</kbd>快捷键，可以在新建窗口中选取颜色。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/HTML-Editor-cmd-ColorSelect.png" title="HTML-Editor-cmd-ColorSelect"><img src="https://yyq123.github.io/learn-vim/images/HTML-Editor-cmd-ColorSelect.png" alt="HTML-Editor-cmd-ColorSelect" width="550" height="345" /></a></p>
+	<p>使用<kbd>Tab</kbd>键，可以移动到下一个颜色；而使用<kbd>Enter</kbd>键，会将选中颜色的代码插入到当前光标处。</p>
+
+	<h2 class="article"><a id="HTML-colorizer-plugin">Colorizer插件</a></h2>
+	<p>利用<a style="text-weight:bold" href="https://github.com/lilydjwg/colorizer" title="Colorizer">Colorizer</a>插件可以直观的显示#rgb, #rgba, #rrggbb, #rrgbbaa, rgb(...), rgba(...)等等形式的颜色。如下图所示，颜色代码的背景显示一目了然：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/plugin_Colorizer_html.png" title="plugin_Colorizer_html"><img src="https://yyq123.github.io/learn-vim/images/plugin_Colorizer_html.png" alt="plugin_Colorizer_html" /></a></p>
+
+	<h2 class="article"><a id="html-color"></a>HTML</h2>
 	<p>关于HTML和CSS中颜色的命名和代码，您可以参考<a href="https://htmlcolorcodes.com/color-names/" title="https://htmlcolorcodes.com/">HTML Color Codes</a>和<a href="https://www.colorschemer.com/color-names/" title="ColorSchemer.com">ColorSchemer</a>网站。</p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/HTML__Color_Names_Values.png" title="HTML__Color_Names_Values"><img src="https://yyq123.github.io/learn-vim/images/HTML__Color_Names_Values.png" alt="HTML__Color_Names_Values" width="550" height="331" /></a></p>
-	<p>从符合标准和可访问性（<a href="https://www.w3.org/WAI/standards-guidelines/wcag/" title="Web Content Accessibility Guidelines">WCAG</a>）角度考虑，应在CSS中设定色彩，而不是直接在HTML代码中设置颜色。</p>
-	<p>色彩的平衡感和可读性，对于网页设计是至关重要的。关于配色方案（Color Schemes），有单色（Monochromatic）、近似色（Analogous）、互补色（Complementary）、补色分割（Split-Complementary）、三等分（Triadic）和矩形配色（Tetratic / Double Complementary）等等风格。您可以在<a href="https://calcolor.co/" title="calcolor">calcolor</a></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/HTML_Color_Names_Values.png" title="HTML_Color_Names_Values"><img src="https://yyq123.github.io/learn-vim/images/HTML_Color_Names_Values.png" alt="HTML_Color_Names_Values" width="550" height="331" /></a></p>
+	<p>从符合<a href="https://www.webstandards.org/" title="Web Standards">标准</a>和可访问性（<a href="https://www.w3.org/WAI/standards-guidelines/wcag/" title="Web Content Accessibility Guidelines">WCAG</a>）角度考虑，应在CSS中设定色彩，而不是直接设置HTML代码中的color属性。</p>
+	<p>色彩的平衡感和可读性，对于网页设计至关重要。对于配色方案（Color Schemes），有单色（Monochromatic）、近似色（Analogous）、互补色（Complementary）、补色分割（Split-Complementary）、三等分（Triadic）和矩形配色（Tetratic / Double Complementary）等多种风格。您可以在<a href="https://calcolor.co/" title="calcolor">calcolor</a>网站中寻找灵感。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/HTML_Color_Contrast.png" title="HTML_Color_Palettes"><img src="https://yyq123.github.io/learn-vim/images/HTML_Color_Palettes.png" alt="HTML_Color_Palettes" width="550" height="187" /></a></p>
-	<p>即使我们不是专业的设计师，可能无法传造出令人怦然心动的配色，但考虑基础的对比度还是没有难度的，而且还有<a href="https://contrast-finder.tanaguru.com/" title="tanaguru contrast finder">tanaguru</a>这样的工具来帮助我们。</p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/HTML_Color_Contrast.png" title="HTML_Color_Contrast"><img src="https://yyq123.github.io/learn-vim/images/HTML_Color_Contrast.png" alt="HTML__Color_Names_Values" width="550" height="158" /></a></p>
+	<p>即使并非专业的设计师，无法创造出令人惊艳的配色，但还是需要以恰当的对比度，来保证网页的可读性。利用<a href="https://contrast-finder.tanaguru.com/" title="tanaguru contrast finder">tanaguru</a>，可以检查前景和背景色搭配是否合理，并给出相应的优化建议。</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/HTML_Color_Contrast.png" title="HTML_Color_Contrast"><img src="https://yyq123.github.io/learn-vim/images/HTML_Color_Contrast.png" alt="HTML_Color_Contrasts" width="550" height="405" /></a></p>
 
+	<h2 class="article"><a id="HTML-color-appendix">题外话</a></h2>
+	<p>以下《艺术世界》里关于颜色的文字，读来颇为有趣，也与您分享：</p>
+	<blockquote style="background: #f4f4f4; border: 1px solid #ddd; border-left: 3px solid lightgray; color: #666; line-height:1.5em  max-width: 100%; overflow: auto; padding: 0 1em; margin:0; display: block;"><p>被法国十九世纪著名画家乔治·修拉（Georges Seurat）所大量使用的印度黄（Indian yellow）在今日已不复存在。因为这种源自印度的颜料是由仅喂食芒果树叶和水的母牛的尿液所制成。牛难以消化芒果树叶，它们的尿液在蒸发提炼之后就生成了印度黄这种颜料。但是这种制作方式无疑对动物非常残酷，因而被英国殖民政府所取缔。珍贵的群青色(Ultra Marine)颜料来源于阿富汗采石场的青金石，调制师在研磨过程中需要非常小心地控制，既要把石块磨成细小颗粒，又要保证足够大才能含有颜色。群青色被用于中世纪的画作中，因为其昂贵的价格，常常需要在制作成本里另外加以注明。1826年，人工合成的群青色颜料在一次化学竞赛中被发明出来，被认为是炼金术一样的发明，这个说法毫不夸张，因为天然的群青色真的比黄金还贵。另外一种珍稀的泰尔紫色（Tyrian Purple，或称骨螺紫)则提取自海洋里的某类食肉性海螺分泌出的黏液。因为制作成本高昂，拜占庭帝国把它作为一种社会地位的象征，禁止皇室之外的普通人使用这些颜色，使之成为一种突显高贵身份的“皇家紫色”。--《福布斯颜料收藏库》</p></blockquote>
 
-	<h2 class="article"><a id="">题外话</a></h2>
-	<p>以下关于颜色的文字，摘自《艺术世界》杂志的，读来颇为有趣，也与您分享：</p>
-	<blockquote style="background: #f4f4f4; border: 1px solid #ddd; border-left: 3px solid lightgray; color: #666; font-size: 0.8em; line-height: 1.2; margin: 0em; max-width: 100%; overflow: auto; padding: 1em 1.5em; display: block;">被法国十九世纪著名画家乔治·修拉（Georges Seurat）所大量使用的印度黄（Indian yellow）在今日已不复存在。因为这种源自印度的颜料是由仅喂食芒果树叶和水的母牛的尿液所制成。牛难以消化芒果树叶，它们的尿液在蒸发提炼之后就生成了印度黄这种颜料。但是这种制作方式无疑对动物非常残酷，因而被英国殖民政府所取缔。珍贵的群青色(Ultra Marine)颜料来源于阿富汗采石场的青金石，调制师在研磨过程中需要非常小心地控制，既要把石块磨成细小颗粒，又要保证足够大才能含有颜色。群青色被用于中世纪的画作中，因为其昂贵的价格，常常需要在制作成本里另外加以注明。1826年，人工合成的群青色颜料在一次化学竞赛中被发明出来，被认为是炼金术一样的发明，这个说法毫不夸张，因为天然的群青色真的比黄金还贵。另外一种珍稀的泰尔紫色（Tyrian Purple，或称骨螺紫)则提取自海洋里的某类食肉性海螺分泌出的黏液。因为制作成本高昂，拜占庭帝国把它作为一种社会地位的象征，禁止皇室之外的普通人使用这些颜色，使之成为一种突显高贵身份的“皇家紫色”。--《福布斯颜料收藏库》</blockquote>
-
-	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
-		<caption style="margin:0.5em; font-weight:bold">选项列表</caption>
-		<tr><th style="white-space: nowrap">选项</th><th>描述</th><th>帮助信息</th></tr>
-		<tr><td><code class="inset">!</code></td><td>如果包含，表示。例如，。</td><td style="white-space: nowrap"><code class="inset">:help viminfo-!</code></td></tr>
-	</table>
-
-	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
-		<caption>命令小结</caption>
-		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
-		<tr><td><code class="inset">:</code></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-	</table>
-&ldquo;&rdquo;
-
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="输入字符实体(Input Character Entity)" href="http://yyq123.github.io/learn-vim/learn-vi-602-WebDesign-CharacterEntity.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="转义字符实体(Escape Character Entity)" href="http://yyq123.github.io/learn-vim/learn-vi-603-WebDesign-CharacterEntity-Escape.html">下一篇</a>&gt;</span></p>
 
 </body>
 </html>

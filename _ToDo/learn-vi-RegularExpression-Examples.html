@@ -8,58 +8,11 @@
 	<title>VIM学习笔记 正则表达式-（Regular Expression ）</title>
 </head>
 <body>
-	<p>Vim提供以下两种grep(globally search a regular expression and print”)搜索工具：</p>
-	<ul>
-		<li><code class="inset">:vimgrep</code> 使用Vim内置的grep实现；</li>
-		<li><code class="inset">:grep</code> 调用外部的grep工具。</li>
-	</ul>
-	<p>:grep命令会运行由选项grepprg所指定的程序在这里我们要注意的就是在UNIX系统上,grepprg默认是指grep -n.在Windows系统上,默认是指findstr /n
-:grep命令使用grepformat选项来告诉Vim如何来组织Grep的输出文件.</p>
-	:grep will use the default “find” tool for your operating system (“grep” for linux family, “findstr” for Windows). :vimgrep will use built-in vim search (same as for “/” searching) which is slower than system search (but works if you have problems with grep/findstr/other). On the other hand vimgrep has the same syntax everywhere (:grep depends on external tool used). Search result is presented using Quickfix window (opened with :copen). :lgrep/:lvimgrep will do the same, but using location list (opened with :lopen). In practise the difference is that if you use Quickfix window (:copen) it will stick to the current editor. Location window will show in the same way, but if you select anything then the window will disappear and you will have to run :lopen again.
 
-	* To search for Xanadu in all the files in the PWD: :vim Xanadu * search results in a Quickfix window at the bottom and Vim jumps to the first match right away. You can navigate through this window and press Enter on search results to jump to them.
-
-	* To recurse the directories or files in Vim, you have this strange syntax called star-star. For example, to search recursively in all files and directories in PWD: :vim Xanadu **
-
-	* Once you are comfortable with the star-star syntax, you will find it very convenient to use: :vim Xanadu ../include/**/*.h
-	* One trick I like to use a lot is to search for the current word under the cursor in the files. I first press * so that the word is selected. Then I use this empty pattern to search for it: :vim // *.cpp
-
-
-I guess you have to choose yourself which command you like most.  The syntax is as follows:
-
-:grep searchpattern locationpattern
-i.e.:
-
-:grep MyMethod *.*
-Will look for phrase “MyMethod” in all files in current workind directory (you can check currect directory using :pwd). By default it does not perform recursive search (it will not search in subdirectories). And here the fun part starts.
-
-In order to search in subdirectories you would have to use **/*.* pattern. However this works for :vimgrep and :grep in linux, but does not work for Windows. In order to make it work on Windows you would need to use /S parameter (linux grep also accepts -R parameter which does the same thing). You can pass it like that:
-
-:grep /S MyMethod *.*
-This will work on Windows and will find all “MyMethod” phrases in all files in all subdirectories of current working directory. However you can still make it the default behaviour in VIM. But first you neeed to know one thing:
-
-To search recursively in all files and directory under the PWD: grep -R Xanadu *
-
-	<h2 class="article"><a id="grepprg">'grepprg'选项</a></h2>
-	<p>使用以下命令，可以查看'grepprg'选项的当前设置：</p>
-	<p style="text-indent:2em"><code class="inset">:set grepprg?</code></p>
-	<p>在不同的操作系统下，Vim将使用不同的外部grep工具：</p>
-	<ul>
-		<li>在Windows下，grepprg=findstr /n</li>
-		<li>在下，grepprg=grep -n $* /dev/null</li>
-	</ul>
-So in order to use recursive search you have to modify grepprg and add a proper parameter:
-
-grepprg=findstr /S /n                  # <--- on Windows
-grepprg=grep -nR $* /dev/null          # <---- on Linux
-
-https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/findstr
+	<h2 class="article"><a id=""></a></h2>
 	<p style="text-indent:2em"><code class="inset"></code></p>
 	<p></p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
-	<p>搜索结果都将通过<a href="http://yyq123.github.io/learn-vim/learn-vi-70-01-QuickFix.html" title="QuickFix">QuickFix</a>列表显示。</p>
-
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">综合应用</p>
 	<p>例如想要查找类似&ldquo;1MGU103&rdquo;的字符串，其由1个数字，3个大写字符和3个数字组成。那么可以使用以下几种方法来匹配：</p>
 <ul>
 	<li><code class="inset">[0-9][A-Z]\{3}[0-9]\{3}</code><br />先用[0-9]表示前面的一个数字，然后加入[A-Z]大写字符，并精确匹配{3}个数字，最后再加入末尾的三个数字。</li>
@@ -97,4 +50,3 @@ abc xyz
 
 </body>
 </html>
-

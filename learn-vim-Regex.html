@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 正则表达式-（Regular Expression ）</title>
+</head>
+<body>
+	<p>Vim提供以下两种grep(globally search a regular expression and print)搜索工具：</p>
+	<ul>
+		<li><code class="inset">:vimgrep</code> 使用Vim内置的grep实现；</li>
+		<li><code class="inset">:grep</code> 调用外部的grep工具。</li>
+	</ul>
+	<p>:grep命令会运行由选项grepprg所指定的程序。需要注意的是，在linux系统上，grepprg默认是grep -n；而在Windows系统上，默认是findstr /n</p>
+	<p>:vimgrep命令使用vim内置的搜索功能 (same as for “/” searching) which is slower than system search.</p>
+	<p>由此可见，使用:vimgrep命令在不同平台上将获得一致的体验。而:grep命令则是与操作系统相关的，在不同平台会有不同的行为。</p>
+	<p>Vim使用Quickfix来显示搜索结果。w (opened with :copen). :lgrep/:lvimgrep will do the same, but using location list (opened with :lopen). In practise the difference is that if you use Quickfix window (:copen) it will stick to the current editor. Location window will show in the same way, but if you select anything then the window will disappear and you will have to run :lopen again.</p>
+
+	* To search for Xanadu in all the files in the PWD: :vim Xanadu * search results in a Quickfix window at the bottom and Vim jumps to the first match right away. You can navigate through this window and press Enter on search results to jump to them.
+
+	* To recurse the directories or files in Vim, you have this strange syntax called star-star. For example, to search recursively in all files and directories in PWD: :vim Xanadu **
+
+	* Once you are comfortable with the star-star syntax, you will find it very convenient to use: :vim Xanadu ../include/**/*.h
+	* One trick I like to use a lot is to search for the current word under the cursor in the files. I first press * so that the word is selected. Then I use this empty pattern to search for it: :vim // *.cpp
+
+
+I guess you have to choose yourself which command you like most.  The syntax is as follows:
+
+:grep searchpattern locationpattern
+
+	<p>例如在Windows下使用以下命令，将在当前目录下查找所有包含&ldquo;block&rdquo;文件：</p>
+	<p style="text-indent:2em"><code class="inset">:grep block *.*</code></p>
+current workind directory (you can check currect directory using :pwd). By default it does not perform recursive search (it will not search in subdirectories). 
+	<p><a href="https://yyq123.github.io/learn-vim/images/findstr.png" title="findstr"><img src="https://yyq123.github.io/learn-vim/images/findstr.png" alt="findstr" width="550" height="52" /></a></p>
+
+In order to search in subdirectories you would have to use **/*.* pattern. However this works for :vimgrep and :grep in linux, but does not work for Windows. In order to make it work on Windows you would need to use /S parameter (linux grep also accepts -R parameter which does the same thing). You can pass it like that:
+
+:grep /S MyMethod *.*
+This will work on Windows and will find all “MyMethod” phrases in all files in all subdirectories of current working directory. However you can still make it the default behaviour in VIM. But first you neeed to know one thing:
+
+To search recursively in all files and directory under the PWD: grep -R Xanadu *
+If you don't want Vim to jump to the first match, use the j flag:
+
+:vimgrep /foo/j **/*.md
+
+as explained in :help :vimgrep
+	<h2 class="article"><a id="grepprg">'grepprg'选项</a></h2>
+	<p>使用以下命令，可以查看'grepprg'选项的当前设置：</p>
+	<p style="text-indent:2em"><code class="inset">:set grepprg?</code></p>
+	<p>在不同的操作系统下，Vim将使用不同的外部grep工具：</p>
+	<ul>
+		<li>在Windows下，grepprg=findstr /n</li>
+		<li>在Linux下，grepprg=grep -n $* /dev/null</li>
+	</ul>
+	<p>如果希望默认查询当前目录以及其下的子目录，那么可以使用以下设置</p>
+	<p style="text-indent:2em"><code class="inset">set grepprg=findstr /S /n</code></p>
+	<p style="text-indent:2em"><code class="inset">set grepprg=grep -nR $* /dev/null</code></p>
+	<p>如果您在Windows中已经安装了<a href="http://yyq123.github.io/learn-vim/learn-vi-803-Toolkit-Git.html" title="版本控制(Toolkit-Git)">Git</a>或<a href="http://yyq123.github.io/learn-vim/learn-vi-804-Toolkit-CLI-Win.html#Cygwin" title="Windows命令行环境(Toolkit-CLI-Win)">Cygwin</a>，那么只需要在环境变量<var>PATH</var>中增加相应目录，即可调用其自带的grep命令：</p>
+	<ul>
+		<li>C:\Program Files\Git\usr\bin</li>
+		<li>D:\cygwin64\bin</li>
+	</ul>
+	<p>在Windows命令行中使用以下命令，验证</p>
+	<p style="text-indent:2em"><code class="inset">$ grep --version</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/grep_version_win.png" title="grep_version_win"><img src="https://yyq123.github.io/learn-vim/images/grep_version_win.png" alt="grep_version_win" width="550" height="124" /></a></p>
+	<p>使用以下命令，设置调用grep：</p>
+	<p style="text-indent:2em"><code class="inset">set grepprg=grep\ -rnIH\ --exclude-dir=.git</code></p>
+	<p>:grep命令使用grepformat选项来告诉Vim如何来组织Grep的输出文件.</p>
+
+	<ul>
+		<li><a href="http://www.gnu.org/software/grep/manual/grep.html" title="grep">grep</a></li>
+		<li><a href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/findstr" title="findstr">findstr</a></li>
+	</ul>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+	<p></p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+	<p>搜索结果都将通过<a href="http://yyq123.github.io/learn-vim/learn-vi-70-01-QuickFix.html" title="QuickFix">QuickFix</a>列表显示。</p>
+
+
+</body>
+</html>
+
