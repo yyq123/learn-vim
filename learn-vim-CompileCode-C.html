@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 编译源码(Compile Code)-C</title>
+</head>
+<body>
+	<h1>VIM学习笔记 编译源码(Compile Code)-C</h1>
+
+	<h2 class="article"><a id="">启用/禁用</a></h2>
+	<a href="#" title=""></a>
+
+	<p style="text-indent:2em"><code class="inset"></code></p>
+	<p>使用以下命令，查看当前gcc的版本：</p>
+	<p style="text-indent:2em"><code class="inset">$ gcc --version</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/gcc_version_Linux.png" title="gcc_version_Linux"><img src="https://yyq123.github.io/learn-vim/images/gcc_version_Linux.png" alt="gcc_version_Linux" /></a></p>
+	<p>使用以下命令，将gcc设置为编译器：</p>
+	<p style="text-indent:2em"><code class="inset">set makeprg=gcc\ -o\ %&lt;\ %</code></p>
+	<p>使用以下命令，将调用'makeprg'选项定义的命令进行编译，并生成文件：</p>
+	<p style="text-indent:2em"><code class="inset">:make</code></p>
+	<p>如果编译发现错误，将在<a href="https://yyq123.github.io/learn-vim/learn-vi-70-01-QuickFix.html" title="QuickFix">QuickFix</a>中显示错误列表，并跳转到第一个错误处；</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/gcc_error_quicklist.png" title="gcc_error_quicklist"><img src="https://yyq123.github.io/learn-vim/images/gcc_error_quicklist.png" alt="gcc_error_quicklist" width="500" height="130" /></a></p>
+	<p>使用<code class="inset">:cw</code>命令，将打开quickfix窗口。使用<code class="inset">:cp</code>命令，跳转到上一个错误；使用<code class="inset">:cn</code>命令，跳转到下一个错误。</p>
+	<p>使用<code class="inset">:cl</code>命令，则可以简略列出所有错误：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/gcc_error_quicklist_cl.png" title="gcc_error_quicklist_cl"><img src="https://yyq123.github.io/learn-vim/images/gcc_error_quicklist_cl.png" alt="gcc_error_quicklist_cl" width="500" height="72" /></a></p>
+	<p>在修复错误并成功编译之后，将显示以下输出：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/gcc_success_output.png" title="gcc_success_output"><img src="https://yyq123.github.io/learn-vim/images/gcc_success_output.png" alt="gcc_success_output" width="550" height="18" /></a></p>
+	<p>使用以下命令，可以执行编译后的程序：</p>
+	<p style="text-indent:2em"><code class="inset">:!./%:r</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
+	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
+set makeprg=gcc\ -o\ %<\ %
+
+:make %:r
+	<p>通过在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>配置文件中增加以下<a href="http://yyq123.github.io/learn-vim/learn-vi-49-01-autocmd.html" title="自动命令(autocmd)">自动命令</a>，可以为C语言文件设置编译快捷键：</p>
+<pre><code>augroup make_c
+	au!
+	au FileType c,cpp  set makeprg=gcc\ -o\ %&lt;\ %
+	au FileType c,cpp  map &lt;buffer&gt; &lt;leader&gt;&lt;space&gt; :w&lt;cr&gt;:make&lt;cr&gt;
+augroup end</code></pre>
+	<p>如果不希望修改'makeprg'选项，那么可以直接定义定义快捷键来完成编译和执行程序的操作：</p>
+	<p style="text-indent:2em"><code class="inset">map &lt;F8&gt; :w &lt;CR&gt; :!gcc % -o %&lt; &amp;&amp; ./%&lt; &lt;CR&gt;</code></p>
+
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
+		<caption style="margin:0.5em; font-weight:bold">选项列表</caption>
+		<tr><th style="white-space: nowrap">选项</th><th>描述</th><th>帮助信息</th></tr>
+		<tr><td><code class="inset">!</code></td><td>如果包含，表示。例如，。</td><td style="white-space: nowrap"><code class="inset">:help viminfo-!</code></td></tr>
+	</table>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
+		<tr><td><code class="inset">:</code></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+	</table>
+&ldquo;&rdquo;
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
+
+</body>
+</html>
