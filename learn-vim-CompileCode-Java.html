@@ -14,15 +14,37 @@
 	<p></p>
 	<a href="#" title=""></a>
 
+	<p>如果您只是需要JVM (Java Virtual Machine)来运行Java程序，那么只需要安装JRE (Java Runtime Environment)；如果需要开发Java程序，那么则需要安装JDK (Java Development Kit)。</p>
 	<p>以下操作在<a href="https://getfedora.org/" title="Fedora">Fedora</a>31下验证成功。在不同的操作系统中，以下命令和参数也可能略有不同，请根据实际情况进行调整。</p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/Java-jvm-compile.png" title="Java-jvm-compile"><img src="https://yyq123.github.io/learn-vim/images/Java-jvm-compile.png" alt="Java-jvm-compile" width="500" height="563" /></a></p>
 
-	<h2 class="article"><a id="java-install-linux"></a>安装Java</h2>
-	<p>https://docs.fedoraproject.org/en-US/quick-docs/installing-java/</p>
-	If you want to create Java programs, you need to install a JDK (Java Development Kit). If you want to run a Java program, you can do that on a JVM (Java Virtual Machine), which is provided with the JRE (Java Runtime Environment). If in doubt, install the JDK because this is sometimes required even if the intention is not to write Java programs.
-	<p>Fedora已经预装了<a href="http://openjdk.java.net/" title="OpenJDK">OpenJDK</a></p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
+	<h2 class="article"><a id="java-linux-install">安装Java</a></h2>
+	<p>使用以下命令安装JDK（具体步骤可以参考<a href="https://docs.fedoraproject.org/en-US/quick-docs/installing-java/" title="Installing Java">Installing Java</a>）；</p>
+	<p style="text-indent:2em"><code class="inset">$ sudo dnf install java-11-openjdk-devel</code></p>
+	<p>如果需要使用Java Web Start以运行JNPL文件，那么还需要安装<a href="http://icedtea.classpath.org/wiki/IcedTea-Web" title="IcedTea-Web"></a>IcedTea-Web：</p>
+	<p style="text-indent:2em"><code class="inset">$ sudo dnf install icedtea-web</code></p>
+
+	<h2 class="article"><a id="java-linux-config">配置Java</a></h2>
+	<p></p>
+	<p style="text-indent:2em"><code class="inset">$ alternatives --config java</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/alternatives--config-java.png" title="alternatives--config-java"><img src="https://yyq123.github.io/learn-vim/images/alternatives--config-java.png" alt="alternatives--config-java" width="550" height="212" /></a></p>
+	<p style="text-indent:2em"><code class="inset">$ alternatives --config javaws</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="550" height="" /></a></p>
+	<p style="text-indent:2em"><code class="inset">$ alternatives --config javac</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="550" height="" /></a></p>
+
+	<h2 class="article"><a id="java-linux-test">测试Java</a></h2>
+	<p>使用以下命令，查看当前Java版本：</p>
+	<p style="text-indent:2em"><code class="inset">$ java -version</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/java-version.png" title="java-version"><img src="https://yyq123.github.io/learn-vim/images/java-version.png" alt="java-version" /></a></p>
+	<p>使用以下命令，查看当前Javac版本：</p>
+	<p style="text-indent:2em"><code class="inset">$ javac -version</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/javac-version.png" title="javac-version"><img src="https://yyq123.github.io/learn-vim/images/javac-version.png" alt="javac-version" /></a></p>
+	<p>使用以下命令，查看当前Javaws版本：</p>
+	<p style="text-indent:2em"><code class="inset">$ javaws http://nextmidas.techma.com/nxm343/htdocs/localshell.jnlp</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/javaws-test.png" title="javaws-test"><img src="https://yyq123.github.io/learn-vim/images/javaws-test.png" alt="javaws-test" width="550" height="317" /></a></p>
+
 	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
 
 	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
