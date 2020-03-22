@@ -15,12 +15,12 @@
 	<p>在屏幕底部，将显示查找到的第一个匹配结果：</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/quickfix_vimgrep_search.png" title=""><img src="https://yyq123.github.io/learn-vim/images/quickfix_vimgrep_search.png" alt="quickfix_vimgrep_search" width="500" height="27" /></a></p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">打开QuickFix窗口</p>
+	<h2 class="article"><a id="quickfix-open">打开QuickFix窗口</a></h2>
 	<p>输入<code class="inset">:copen</code>或<code class="inset">:cwindow</code>命令，将在水平分隔窗口中，打开QuickFix列表以显示所有匹配结果：</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/quickfix_list.png" title="quickfix_list"><img src="https://yyq123.github.io/learn-vim/images/quickfix_list.png" alt="quickfix_list" width="500" height="148" /></a></p>
 	<p>你可以使用<kbd>ctrl+Wj</kbd>快捷键，移动到QuickFix窗口。关于在多个窗口之间的跳转操作，请参阅<a href="http://yyq123.github.io/learn-vim/learn-vi-14-MultiWindows.html" title="Window">窗口(Window)</a>章节。</p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">在QuickFix列表中导航</p>
+	<h2 class="article"><a id="quickfix-nav">在QuickFix列表中导航</a></h2>
 	<p>使用以下快捷键，可以在QuickFix列表中进行移动或搜索；当到达想要查看的列表项时，点击<kbd>Enter</kbd>键，将会打开匹配文件并精确定位到查找结果所处的位置。</p>
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<tr><td><kbd>k</kbd></td><td>向上移动</td><td><kbd>&uarr;</kbd></td></tr>
@@ -37,10 +37,13 @@
 		<tr><td><code class="inset">:cprevious</code></td><td>移动到上一个匹配处</td></tr>
 		<tr><td><code class="inset">:cfirst</code></td><td>移动到第一个匹配处</td></tr>
 		<tr><td><code class="inset">:clast</code></td><td>移动到最后一个匹配处</td></tr>
+		<tr><td><code class="inset">:cc [nr]</code></td><td>移动到第[nr]个匹配处</td></tr>
+		<tr><td><code class="inset">:cnfile</code></td><td>移动到下一个文件的第一个匹配处</td></tr>
+		<tr><td><code class="inset">:cpfile</code></td><td>移动到上一个文件的最后一个匹配处</td></tr>
 	</table>
 	<p><a href="https://yyq123.github.io/learn-vim/images/quickfix_list_enter.png" title=""><img src="https://yyq123.github.io/learn-vim/images/quickfix_list_enter.png" alt="quickfix_list_enter" width="500" height="162" /></a></p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">关闭QuickFix窗口</p>
+	<h2 class="article"><a id="quickfix-close">关闭QuickFix窗口</a></h2>
 	<p>使用以下命令，可以关闭QuickFix窗口：</p>
 	<p style="text-indent:2em"><code class="inset">:cclose</code></p>
 

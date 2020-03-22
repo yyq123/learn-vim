@@ -5,7 +5,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记 正则表达式-（Regular Expression ）</title>
+	<title>VIM学习笔记 正则表达式-(Regex-Examples)</title>
 </head>
 <body>
 
@@ -31,6 +31,14 @@
 abc123xyz
 abcyz
 abc xyz
+	<p style="text-indent:2em"><code class="inset"></code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
+
+	<p>假设以下代码，rotine的名称以&ldquo;test&rdquo;为前缀，以&ldquo;box&rdquo;为后缀，而黄色高亮的中间部分字母是可变的：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Regex_example_suffix_0.png" title="Regex_example_suffix_0"><img src="https://yyq123.github.io/learn-vim/images/Regex_example_suffix_0.png" alt="Regex_example_suffix_0" /></a></p>
+	<p>如果希望将后缀替换为&ldquo;block&rdquo;，那么可以将可变的字母作为捕获组：</p>
+	<p style="text-indent:2em"><code class="inset">:g/test\([abc]\)box/s//test\1block/g</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Regex_example_suffix_1.png" title="Regex_example_suffix_1"><img src="https://yyq123.github.io/learn-vim/images/Regex_example_suffix_1.png" alt="Regex_example_suffix_1" /></a></p>
 
 
 	<p>使用一下命令，可以将每个单词的首字母转换为大写：</p>
@@ -47,6 +55,29 @@ abc xyz
 	<p>如果想要查找引号包围的字符串（包含换行），那么可以使用以下命令：</p>
 	<p style="text-indent:2em"><code class="inset">/"\_[^"]*"</code></p>
 
+
+	<h2 class="article"><a id="grep-ipaddress">查找IP地址</a></h2>
+	<p>使用以下命令，可以匹配IPv4网络地址。也就是说，匹配从 <code>0.0.0.0</code> 到 <code>999.999.999.999</code>范围内的，以点分割的四段数字。</p>
+	<p style="text-indent:2em"><code class="inset">:grep -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}"</code></p>
+	<p>但是以上命令，并不会判断数字串是否是一个有效的IP地址。比如<var>256.60.124.136</var>也将会被匹配。但有效的IP地址中的每段数字应该为0-255。</p>
+	<p>使用以下命令，则仅仅匹配有效的IP地址：</p>
+	<pre>:grep -E -o "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)" file.txt</pre>
+	<p style="text-indent:2em"><code class="inset">\(\(25\_[0-5]\|2\_[0-4]\_[0-9]\|\_[01]\?\_[0-9]\_[0-9]\?\)\.\)\{3\}\(25\_[0-5]\|2\_[0-4]\_[0-9]\|\_[01]\?\_[0-9]\_[0-9]\?\)/</code></p>
+<table class="ptable">
+<tbody>
+<tr>
+</tr>
+<tr>
+<td>-E, –extended-regexp</td>
+<td>Use extended regular expression</td>
+</tr>
+<tr>
+<td>-o, –only-matching</td>
+<td>Print IP addresses only</td>
+</tr>
+</tbody>
+</table>
+<p>Omit <code>-o</code> option to print lines that contains IP addresses.</p>
 
 </body>
 </html>

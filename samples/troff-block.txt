@@ -1,0 +1,21 @@
+.Rh 0 "Get status of named file" "STAT"
+.Rh "SYNTAX"
+.nf
+integer*4 stat, retval
+integer*4 status(11)
+character*123 filename
+...
+retval = stat (filename, status)
+.fi
+.Rh "DESCRIPTION"
+Writes the fields of a system data structure into the
+status array.
+These fields contain (among other
+things) information about the file's location, access
+privileges, owner, and time of last modification.
+.Rh "PARAMETERS"
+.IP "\fBfilename\fR" 15n
+A character string variable or constant containing
+the Unix pathname for the file whose status you want
+to retrieve.
+You can give the ...
