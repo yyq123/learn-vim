@@ -26,12 +26,24 @@
 	<p style="text-indent:2em"><code class="inset">:g!/pattern/d</code></p>
 	<p>删除所有空行：</p>
 	<p style="text-indent:2em"><code class="inset">:g/^$/d</code></p>
+	<p>删除所有空行以及仅包含空格和Tab制表符的行：</p>
+	<p style="text-indent:2em"><code class="inset">:g/^[&#x25a1;tab]*$/d</code></p>
 	<p>寻找并显示第20到40行之间所有包含模式pattern的行</p>
 	<p style="text-indent:2em"><code class="inset">:20,40g/pattern/p</code></p>
 
 
 	<p>将所有的行按相反的顺序排列。其中，查找模式<var>.*</var>将匹配所有行，<var>mo0</var>命令将每一行移动到0行之后：</p>
 	<p style="text-indent:2em"><code class="inset">:g/.*/mo0</code></p>
+
+	<p>将所有未标志为&ldquo;DONE&rdquo;的行，都在行尾标注&ldquo;TODO&rdquo;：</p>
+	<p style="text-indent:2em"><code class="inset">:g!/DONE/s/$/ TODO/</code></p>
+	<p style="text-indent:2em"><code class="inset">:v/DONE/s/$/ TODO/</code></p>
+
+	<p>将所有不是以数字开头的行，移动到文件末尾：</p>
+	<p style="text-indent:2em"><code class="inset">:g!/^[[:digit:]]/m$</code></p>
+	<p style="text-indent:2em"><code class="inset">:g/^[^[:digit:]]/m$</code></p>
+
+	<p></p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
 

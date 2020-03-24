@@ -9,7 +9,7 @@
 </head>
 <body>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">&amp;命令</p>
+	<h2 class="article"><a id="grepprg">&amp;命令</a></h2>
 	<p>&amp;命令可以重复执行替换。此命令可以保存之前的from和to的字符串，但是允许使用不同的范围(range)和标记(flags)，命令形式如下:</p>
 	<p style="text-indent:2em"><code class="inset">:range &amp; flags count</code></p>
 	<p>例如执行以下替换命令:</p>
@@ -27,8 +27,15 @@
 	<p>命令<code class="inset">:~</code>与<code class="inset">&amp;g</code>相类似，所不同的是它会匹配上一次<code class="inset">/</code>或是<code class="inset">?</code>查找时使用的字符串，而不是上一次:substitute命令中的字符串。命令一般格式如下:</p>
 	<p style="text-indent:2em"><code class="inset">:range~ flags count</code></p>
 
+	<h2 class="article"><a id="grepprg">&amp;命令</a></h2>
 	<p>:</p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
+
+	<h2 class="article"><a id=""></a></h2>
+	<p>在行首增加前缀&ldquo;&rdquo;：</p>
+	<p style="text-indent:2em"><code class="inset">:%s/^/&gt;&gt;/</code></p>
+	<p>在当前行及之后五行的末尾增加点符号：</p>
+	<p style="text-indent:2em"><code class="inset">:.,+5s/$/./</code></p>
 
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>

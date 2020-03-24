@@ -13,6 +13,18 @@
 	<p style="text-indent:2em"><code class="inset"></code></p>
 	<p></p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
+	<p>删除所有行首的空格：</p>
+	<p style="text-indent:2em"><code class="inset">:%s/^&#x25a1;&#x25a1;*\(.*\)/\1/</code></p>
+	<p>其中，使用^&#x25a1;&#x25a1;*查找行首的一个或多个空格；而\(.*\)将行中的其它内容捕获为组；在替换部分使用\1来恢复捕获组。</p>
+
+	<p>删除所有行尾的空格：</p>
+	<p style="text-indent:2em"><code class="inset">:%s/\(.*\)&#x25a1;&#x25a1;*$/\1/</code></p>
+	<p>其中，使用^&#x25a1;&#x25a1;*查找行首的一个或多个空格；而\(.*\)将行中的其它内容捕获为组；在替换部分使用\1来恢复捕获组。</p>
+
+	<p>交换等式两端的内容：</p>
+	<p style="text-indent:2em"><code class="inset">:%s/\(.*\)&#x25a1;=&#x25a1;\(.*\)/\2&#x25a1;=&#x25a1;\1/</code></p>
+	<p>将等号左端的内容捕获为组1，将等号右端的内容捕获为组2，然后按照颠倒的位置进行恢复。</p>
+
 	<p>例如想要查找类似&ldquo;1MGU103&rdquo;的字符串，其由1个数字，3个大写字符和3个数字组成。那么可以使用以下几种方法来匹配：</p>
 <ul>
 	<li><code class="inset">[0-9][A-Z]\{3}[0-9]\{3}</code><br />先用[0-9]表示前面的一个数字，然后加入[A-Z]大写字符，并精确匹配{3}个数字，最后再加入末尾的三个数字。</li>

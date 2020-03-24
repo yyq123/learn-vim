@@ -1,7 +1,7 @@
 00 开篇 " {{{
-00-00	learn-vi-00-00-TOC.html	https://yyq123.github.io/learn-vim/learn-vi-00-00-TOC.html
-00-01	learn-vi-00-01-Intro.html
-00-02	learn-vi-00-02-Conventions.html
+00-00	https://tinyurl.com/vim-toc	learn-vi-00-00-TOC.html		https://yyq123.github.io/learn-vim/learn-vi-00-00-TOC.html
+00-01	https://tinyurl.com/vim-preface	learn-vi-00-01-Intro.html	https://yyq123.github.io/learn-vim/learn-vi-00-01-Intro.html
+00-02	https://tinyurl.com/vim-conv	learn-vi-00-02-Conventions.html	https://yyq123.github.io/learn-vim/learn-vi-00-02-Conventions.html
 "  }}}
 01 安装配置 " {{{
 
@@ -10,7 +10,7 @@
 
 " }}}
 03 高级 " {{{
-
+03-12	https://tinyurl.com/vim-register	learn-vi-12-Register	https://yyq123.github.io/learn-vim/learn-vi-12-Register.html
 " }}}
 04 模式 " {{{
 
