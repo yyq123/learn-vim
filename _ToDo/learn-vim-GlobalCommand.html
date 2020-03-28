@@ -9,6 +9,17 @@
 </head>
 <body>
 	<p>使用<code class="inset">:g</code>全局命令，可以搜索并显示所有包含模式的行。命令<code class="inset">:g!</code>及其同义词<code class="inset">:v</code>，则可以搜索并显示不包行该模式的行。</p>
+	<h2 class="article"><a id=""></a></h2>
+
+	<h2 class="article"><a id=""></a></h2>
+	<p>:g命令的格式为：</p>
+	<p style="text-indent:2em"><code class="inset">:[range]g/{pattern}/[command]</code></p>
+	<p>针对在<var>[range]</var>范围内，所有匹配<var>{pattern}</var>条件的行，执行<var>[command]</var>命令。</p>
+	<p>:g!命令的格式为：</p>
+	<p style="text-indent:2em"><code class="inset">:[range]g!/{pattern}/[command]</code></p>
+	<p>针对在<var>[range]</var>范围内，所有不匹配<var>{pattern}</var>条件的行，执行<var>[command]</var>命令。</p>
+	<p>如果没有指定<var>[range]</var>，那么默认范围为文件中每一行。</p>
+
 	<p>可以对文件中的所有行使用全局命令，也可以使用行地址把全局搜索限定在指定的行或行范围内。</p>
 
 
@@ -35,6 +46,21 @@
 	<p>将所有的行按相反的顺序排列。其中，查找模式<var>.*</var>将匹配所有行，<var>mo0</var>命令将每一行移动到0行之后：</p>
 	<p style="text-indent:2em"><code class="inset">:g/.*/mo0</code></p>
 
+	<p>利用全局命令，可以仅针对符合查询条件的行，进行替换操作。例如使用以下命令，将包含&ldquo;microsoft antitrust&rdquo;的行中的&ldquo;judgment&rdquo;替换为&ldquo;ripoff&rdquo;</p>
+	<p style="text-indent:2em"><code class="inset">:g/microsoft antitrust/s/judgment/ripoff/</code></p>
+	<p>你还可以在命令中指定查找的范围，比如以下命令，将在包含&ldquo;microsoft antitrust&rdquo;的前两行及后两行中进行替换：</p>
+	<p style="text-indent:2em"><code class="inset">:g/microsoft antitrust/-2,/microsoft antitrust/+2s/judgment/ripoff/c</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/g_cmd_range.png" title="g_cmd_range"><img src="https://yyq123.github.io/learn-vim/images/g_cmd_range.png" alt="g_cmd_range" width="550" height="53" /></a></p>
+	<p>以上命令末尾的<var>c</var>参数，用于提示用户对每一个替换操作进行确认。</p>
+
+	<p>将以下文本中的&ldquo;DESCRIPTION&rdquo;部分，上移到&ldquo;SYNTAX&rdquo;之前</p>
+	<p style="text-indent:2em"><code class="inset">:g /SYNTAX/.,/DESCRIPTION/-1 move /PARAMETERS/-1</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/g_cmd_range_move.png" title="g_cmd_range_move"><img src="https://yyq123.github.io/learn-vim/images/g_cmd_range_move.png" alt="g_cmd_range_move" width="550" height="256" /></a></p>
+	<p>首先匹配从包含&ldquo;SYNTAX&rdquo;的行到包含&ldquo;DESCRIPTION&rdquo;的上一行；然后将这些行移动到包含&ldquo;PARAMETERS&rdquo;的上一行。</p>
+	<p>可以删除指定范围内的文本：</p>
+	<p style="text-indent:2em"><code class="inset">g/DESCRIPTION/,/PARAMETERS/-1d</code></p>
+
+
 	<p>将所有未标志为&ldquo;DONE&rdquo;的行，都在行尾标注&ldquo;TODO&rdquo;：</p>
 	<p style="text-indent:2em"><code class="inset">:g!/DONE/s/$/ TODO/</code></p>
 	<p style="text-indent:2em"><code class="inset">:v/DONE/s/$/ TODO/</code></p>
@@ -43,8 +69,9 @@
 	<p style="text-indent:2em"><code class="inset">:g!/^[[:digit:]]/m$</code></p>
 	<p style="text-indent:2em"><code class="inset">:g/^[^[:digit:]]/m$</code></p>
 
-	<p></p>
-	<p style="text-indent:2em"><code class="inset"></code></p>
+
+	<p>使用以下命令，将所有不是以2个Tab制表符开头的行，增加到top2levels.otl文件的末尾：</p>
+	<p style="text-indent:2em"><code class="inset">:g!/^\t\t/.w&gt;&gt;top2levels.otl</code></p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
 
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">

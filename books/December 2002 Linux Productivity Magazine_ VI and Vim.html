@@ -17,27 +17,8 @@
 .en-markup-crop-options div div:first-of-type {
     margin-left: 0px !important;
 }
-</style><script type="text/javascript" src="./December 2002 Linux Productivity Magazine_ VI and Vim_files/scoop.js.download"></script><link type="text/css" rel="stylesheet" href="./December 2002 Linux Productivity Magazine_ VI and Vim_files/bklet_external_scpWindow.css" media="screen"></head><body text="#000000" bgcolor="#ffffff" link="#0000ee" vlink="#551a8b" alink="#ff0000" data-gr-c-s-loaded="true" data-pinterest-extension-installed="cr2.0.5"><iframe id="iframeUnderDivToShowOverFlash" frameborder="0" allowtransparency="true" class=" scoopit-hulk" style="display: none; height: 24303px;" src="./December 2002 Linux Productivity Magazine_ VI and Vim_files/saved_resource.html"></iframe><div id="sc_bookmarklet" class="scoopit-hulk v4" style="height: 24303px; display: none;"><div id="sc_main" style="top: 17274.8px;" class=" scoopitWindowSuccessBookmarklet">    <iframe id="sc_iframe" frameborder="0" name="sc_bookmarklet_iframe" src="./December 2002 Linux Productivity Magazine_ VI and Vim_files/bookmarklet.html"></iframe>        &nbsp;    </div></div>
-
-
-<center><table border="4" cellpadding="8" bgcolor="#000066" nosave="">
-<tbody><tr nosave="">
-<td nosave="">
-<center><font size="+4"><b><font color="#ffffee">Linux Productivity Magazine</font></b>
-</font><p><font size="+4"><font size="+1"><b><font color="#eeffff">Volume 1 Issue 5, December 2002</font></b></font>
-<br><b><font color="#eeffff"><font size="+2">VI and Vim</font></font></b></font></p></center>
-</td>
-</tr>
-</tbody></table></center>
-
-
-
-<center><table border="5" cellspacing="0" cellpadding="5" width="96%" bgcolor="#fffff0" nosave="">
-<tbody><tr nosave="">
-</tr>
-</tbody></table></center>
-
-
+</style></head>
+<body text="#000000" bgcolor="#ffffff" link="#0000ee" vlink="#551a8b" alink="#ff0000" data-gr-c-s-loaded="true" data-pinterest-extension-installed="cr2.0.5">
 
 <h1>
 <a name="_Elementary_Search_and_Replace_and_Global_Commands"></a>Search and Replace: Substitute and Global Commands</h1>
@@ -242,157 +223,6 @@ the next "My_Opinion", which presumably was fixed by the preceding command.<br>
     </tr>
   </tbody>
 </table>
-
-
-<h2>Global Commands</h2>
-
-
-Real men and quiche-eating Pascal programmers alike love VI's Global commands.
-The real man can destroy an entire file with this 8 character command:<br>
-
-
-<pre>:g/the/d<br></pre>
-
-
-Or he can hide his tracks from quiche-eating Pascal Programmers by combining
-it with an obfuscatory substitute command like this:<br>
-
-
-<pre>:1+/friend/;/lover/g/Madonna/+2s/singer/singer,actress/<br></pre>
-
-
-If you're a Pascal Programmer (or the modern equivalent, a Java Jockey) interested in knowing what the preceding command does, <a href="http://www.troubleshooters.com/lpm/200212/quiche_answer.htm">click here</a>. To real men the preceding is intuitively obvious to the most casual observer.<br>
-
-
-<br>
-
-
-Quiche eaters also love Global commands. When the boss expects the huge production
-produced by quiche-eating rapid development techniques, your editing needs
-to be lightning quick. Consider how often you need to pick out only lines
-containing "whatever" from a huge file. Edit a duplicate copy of the file
-with VI, and run the following command:<br>
-
-
-<pre>:g!/whatever/d<br></pre>
-
-
-The preceding command deletes every line not containing "whatever". But what
-if you need only lines containing "whatever" and "whichever"? Watch this:<br>
-
-
-<pre>:g/whatever/.w&gt;&gt;w.txt<br>:g/whichever/.w&gt;&gt;w.txt<br></pre>
-
-
-Try it. Create a data file with lines consisting of either "whatever", "whichever"
-or "whyever". Then, so you can be assured that all lines are copied in the
-order they're found, prepend line numbers to every line with the following
-command:<br>
-
-
-<pre>:%!cat -n<br></pre>
-
-
-Global commands are also an excellent way to perform a substitution on only
-a certain class of lines. The following changes the word "judgment" to "ripoff"
-on any line containing "microsoft antitrust":<br>
-
-
-<pre>:g/microsoft antitrust/s/judgment/ripoff/<br></pre>
-
-
-The cool thing about the preceding is the word "judgment" can appear anywhere
-in relation to the word "microsoft antitrust", and yet the deed will be done.
-Perhaps you want to make the change anywhere near the word "microsoft antitrust",
-where "anywhere near" is defined as the line, or anything within 2 lines
-before it or 2 lines after it. Watch this:<br>
-
-
-<pre>:g/microsoft antitrust/-2,+2s/judgment/ripoff/c<br></pre>
-
-
-You notice the c (for confirm) at the end? Any time you do anything as adventurous
-as the preceding, you want to check your work. It would be terrible to write
-an article and inadvertently change "I used my best judgment" to "I used
-my best ripoff".<br>
-
-
-<h3>The Anatomy of a Global Command</h3>
-
-
-The following are how a global command is built. The first runs the command
-on every line within the range that matches the pattern. The second runs
-the command on every line within the range that DOESN'T match the pattern:<br>
-
-
-<pre>:[range]g/{pattern}/[command]</pre>
-
-
-<pre>:[range]g!/{pattern}/[command]</pre>
-
-
-If the range is not given (and it usually is not), the default range is every
-line in the file. The concept is simple enough. The command is run on every
-matching (or non-matching with the exclamation point form) line. Where it
-gets more complex is when the command gets complex.<br>
-
-
-<h3>Real Life Global Commands</h3>
-
-
-Certainly the simplest command is the delete command:<br>
-
-
-<pre>:g/#/d</pre>
-
-
-The preceding deletes every line with a pound sign. The following deletes every line that DOES NOT contain the pound sign:<br>
-
-
-<pre>:g!/#/d</pre>
-
-
-The global command is often used to move certain classes of lines to a second file:<br>
-
-
-<pre>:g!/^\t\t/.w&gt;&gt;top2levels.otl</pre>
-
-
-The preceding command appends all lines that don't start with 2 tabs. In
-a tab-indented outline, that would be the top 2 levels. The carat at the
-start of the pattern is a wildcard representing start of line, as will be
-explained in the <a href="http://www.troubleshooters.com/lpm/200212/200212.htm#_Regular_Expressions">article on regular expressions</a>.<br>
-
-
-<br>
-
-
-Another common command used with the Global command is the substitute command.
-In this case the substitute command substitutes based on a criteria totally
-different from the criteria by which the line is chosen. Typically the pattern
-by which the line is chosen can occur anywhere on the line in relation to
-the substitute command, so you cannot include the selection criteria in a
-single substitute command. Even when the selection criteria is predictable,
-the global command often simplifies it. Which would you rather do:<br>
-
-
-<pre>:g/^master_/s/slave/SLAVE/g<br></pre>
-
-
-or<br>
-
-
-<pre>:%s/^\(master_.*\)slave/\1SLAVE/g<br></pre>
-
-
-The latter command uses groups to "remember" the match, and places that remembered text in the replace text in the form of <tt>\1</tt>.
-Even the somewhat convoluted second form is not completely accurate, because
-if there are multiple instances of the word "slave", VI's native long matching
-will cause it to only change the last instance of "slave" on each line. Long
-and short matching are explained in the <a href="http://www.troubleshooters.com/lpm/200212/200212.htm#_Regular_Expressions">article on regular expressions</a>.<br>
-
-
-
 
 
 <h1>
@@ -620,101 +450,10 @@ the end of the line, it exactly overlays <tt>$</tt>. This example finds every wo
 </table>
 
 
-<br>
-
-
-<br>
-
-
-Because many characters are used as character representers, character set
-shortcuts, and other constructs, they are not available in regular expressions
-unless they're escaped. Here's a partial list of characters that must be
-escaped:<br>
-
-
-<br>
-
-
-<table cellpadding="2" cellspacing="2" border="1" width="100%">
-
-
-  <tbody>
-    <tr>
-      <td valign="top">\.<br>
-      </td>
-      <td valign="top">A literal period<br>
-      </td>
-    </tr>
-    <tr>
-      <td valign="top">\\<br>
-      </td>
-      <td valign="top">A literal backslash<br>
-      </td>
-    </tr>
-    <tr>
-      <td valign="top">\/<br>
-      </td>
-      <td valign="top">A literal forward slash. Note that because of the
-forward slash's role in regular expressions, this escape pattern must be
-used even in the replace section of search and replace regular expressions.<br>
-      </td>
-    </tr>
-    <tr>
-      <td valign="top">\^<br>
-      </td>
-      <td valign="top">A literal carat. Normally a carat represents "beginning of line".<br>
-      </td>
-    </tr>
-    <tr>
-      <td valign="top">\$<br>
-      </td>
-      <td valign="top">A literal dollar sign. Normally a dollar sign represents "end of line".<br>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-
-<br>
-
-
-The VI character set shortcuts discussed so far are handy, but in addition
-to those, many VI implementations recognize Posix character set shortcuts,
-as shown in the following table:<br>
-
-
-<br>
-
-
-<table cellspacing="0" cellpadding="0" nosave="">
-
-
-
 
 <h2>Enumerators</h2>
 
-
-Enumerators apply to a single character -- the character or character set
-that precedes them in the regular expression. An enumerator declares how
-many of the preceding character will match. <br>
-
-
-<br>
-
-
-The most general form of an iterator is:
-<pre>\{n,m}</pre>
-
-
-
-The first number (n), is the minimum number of the preceding character needed to create a match. For instance, <br><tt>
-
-
 A\{2, 4}</tt> matches AA, AAA, or even AAAAAAAAA, but it does not match a single A not followed or preceded by an additional A.<br>
-
-
-<br>
-
 
 So you might wonder what the second number is. The second number is how far
 you skip before trying to find another match. For instance, take a string
@@ -823,16 +562,6 @@ The preceding is read as follows:<br>
 An opening paren, followed by exactly three digits, followed by a closing paren, followed by zero or one
 instance of either a whitespace character or a dash, followed by exactly
 three digits, followed by a dash, followed by exactly four digits.<br>
-
-
-<br>
-
-
-Armed with character sets and enumerators, you can search and successfully
-find simple to moderately complex patterns. But some things, like locating
-phone numbers whether or not they have area codes, and parsing of delimited
-lines, require more. Read on...<br>
-
 
 <h2><a name="Using_Matched_Text_as_Replacement_Text"></a>Using Matched Text as Replacement Text</h2>
 
@@ -1412,37 +1141,12 @@ The preceding produces the desired:<br>
 
 
 If you want full short matching ("wellwall" replaced by XXXXXX), you need to use advanced techniques involving groups.<br>
-<h5>
-Steve Litt is the author of <a href="http://www.troubleshooters.com/bookstore/rl.htm">Rapid Learning:
-Secret Weapon of the Successful Technologist</a> . He can be reached at
-<a href="http://www.troubleshooters.com/email_steve_litt.htm">Steve Litt's email address</a>.</h5>
-
-
-
-
-
-
-
 
 
 
 <h1><a name="_Advanced_Searches_with_Groups"></a>Advanced Searches with Groups</h1>
 
-
-<h5>By Steve Litt</h5>
-
-
-I wouldn't blame you for skipping this article. It's brutal, and for 90%
-of your editing activities you won't need its power. Indeed, what you can
-do with groups in a regular expression would be difficult for a good programmer
-using C (unless he was using regular expressions).<br>
-
-
-<br>
-
-
 Let's say you want to find a phone number. Look at all the ways phone numbers can be written:<br>
-
 
 <ul>
 
@@ -1455,37 +1159,14 @@ Let's say you want to find a phone number. Look at all the ways phone numbers ca
 </ul>
 
 
-These don't include putting 1- in front -- it can be done but I want to keep this
-example understandable. How can you write a single search
-expression to find all of these different methods?<br>
-
-
-<br>
-
-
 The first thing to notice is that everything except the area code is simple:<br>
 
 
 <pre>/\d\{3}-\d\{4}<br></pre>
 
-
-As things get hairy, it's important to note that the last 8 characters are a "gimme".<br>
-
-
-<br>
-
-
 If you notice, either you have an area code plus optional dash or space between
 it and the exchange, or you don't. So you make a group to hold the area code,
-its parens or lack thereof, and option dash or space. We already discussed
-groups in the <a href="http://www.troubleshooters.com/lpm/200212/200212.htm#Using_Matched_Text_as_Replacement_Text">Using Matched Text as Replacement Text</a>
-section of this article, where we used it to capture text for later use in
-the replace expression. The more powerful use is to create incredibly versatile
-searches, such as detecting all these different phone number formats.<br>
-
-
-<br>
-
+its parens or lack thereof, and option dash or spac
 
 So anyway, we can start by dreaming of a group containing area code, optional
 parens, and an optional trailing separator, and prepending it onto the search
@@ -1668,28 +1349,6 @@ of the phone number with slash parens. It's made more difficult because those
 slash parens are nested in a major group and are alternatives. <br>
 
 
-<a name="_Macros_and_Scripts"></a>Macros and Scripts</h1>
-
-
-
-<pre>:source myscriptfile</pre>
-
-
-to do it. For instance, if you wanted to append the word "Done" to 10 lines,
-you could create the following macro in register b:<br>
-
-
-<pre>A Done^[j0</pre>
-
-
-The preceding appends the word <tt>Done</tt> to the end of the line, types an Esc
-character to &nbsp;get back into command mode, goes to the next line and
-then goes to the beginning of the line. So you've appended "Done" and then
-gone to the beginning of the next line. If you then the type <tt>10@b</tt> keystroke sequence, the current line and the next 9 have the word "Done" appended to them. Better yet, if you type <tt>1000@b</tt>
-and there are only 20 lines in the file, the current line and every succeeding
-line is appended, but at end of file the other 980 iterations are ignored.<br>
-
-
 <h2>Scripts</h2>
 
 <table cellpadding="2" cellspacing="2" border="1">
@@ -1713,14 +1372,14 @@ line is appended, but at end of file the other 980 iterations are ignored.<br>
       <td valign="top">
       <pre><b>:g/search/cmd</b></pre>
       </td>
-      <td valign="top">The global command. Can be used with ranges as discussed <a href="http://www.troubleshooters.com/lpm/200212/.htm#Ranges">Ranges</a> section of the <a href="http://www.troubleshooters.com/lpm/200212/200212.htm#_Elementary_Search_and_Replace_and_Global_Commands">Search and Replace: Substitute and Global Commands</a> article.</td>
+      <td valign="top">The global command.</td>
     </tr>
     <tr>
 <tr>
       <td valign="top">
       <pre><b>:!sysCmd</b></pre>
       </td>
-      <td valign="top">Filters lines through an operating system command. Can be used with ranges as discussed <a href="http://www.troubleshooters.com/lpm/200212/200212.htm#Ranges">Ranges</a> section of the <a href="http://www.troubleshooters.com/lpm/200212/200212.htm#_Elementary_Search_and_Replace_and_Global_Commands">Search and Replace: Substitute and Global Commands</a> article. The lines in the range are sent to the command, and are replaced by the output of the command. Common examples:<br>
+      <td valign="top">Filters lines through an operating system command. The lines in the range are sent to the command, and are replaced by the output of the command. Common examples:<br>
       <table cellpadding="2" cellspacing="2" border="1">
         <tbody>
           <tr>

@@ -32,7 +32,7 @@
 	<p><code class="inset">{minimum,maximum}</code>表达式指出一个字符重复的次数。例如表达式<code class="inset">a\{3,5}</code>可以匹配3到5个a（aaa，aaaa，aaaaa）。Vim默认是会尽可能多地进行匹配（Matching as much as possible）。在表达式中，最小次数是可以省略的，即默认最小次数为0，所以表达式<code class="inset">a\{,5}</code>可以匹配0到5个a。最大次数也是可以省略的，即默认匹配无穷大，所以表达式<code class="inset">a\{3,}</code>最少可以匹配3个a，最多个数没有限制。</p>
 	<p><code class="inset">{number}</code>表达式只指定一个数字，Vim就会精确的匹配相应的次数。例如<code class="inset">a\{5}</code>只会精确的匹配5次。</p>
 	<p><code class="inset">{-minimum,maximum}</code>在数字前增加一个负号(-)，那么Vim在查找时就会尽可能少地进行匹配（Matching as little as possible）。例如<code class="inset">ab\{-1,3}</code>将只匹配 "abbb"中的"ab"。表达式<code class="inset">a\{-3,}</code>可以匹配三个或是更多个a，但尽可能少地进行匹配。而表达式<code class="inset">a\{-,5}</code>可以匹配0到5个字符。</p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/RegularExpression_Matching as little as possible.png" title="RegularExpression_Matching as little as possible"><img src="https://yyq123.github.io/learn-vim/images/RegularExpression_Matching as little as possible.png" alt="RegularExpression_Matching as little as possible" /></a></p>
+	<p><img src="https://yyq123.github.io/learn-vim/images/RegularExpression_Matching%20as%20little%20as%20possible.png" alt="RegularExpression_Matching as little as possible" /></p>
 	<p>表达式<code class="inset">a\{-5}</code>将会精确的匹配5个字符。</p>
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 	<caption>重复通配符：</caption>
@@ -60,7 +60,7 @@
 	<p><code class="inset">|</code>用于查找两个或是多个可能的匹配。例如表达式<code class="inset">foo\|bar</code>可以找到foo或是bar。我们可以连接使用多个或操作符。例如表达式<code class="inset">Larry\|Moe\|Curly</code>将找到Larry、Moe和Curly。而表达式<code class="inset">end\(if\|while\|for\)</code>则可以匹配"endif", "endwhile" 和 "endfor"几个不同的元素组合。</p>
 	<p>如果希望匹配多次，那么可以组合使用加号和括号运算符。例如表达式<code class="inset">/\(foo\|bar\)\+</code>可以匹配 "foo", "foobar", "foofoo", "barfoobar"等等。</p>
 
-	<h2 class="article"><a id="regex-character-classes">特殊字符元素（Special Character Atoms）</a></h2>
+	<h2 class="article"><a id="regex-character-atom">特殊字符元素（Special Character Atoms）</a></h2>
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<tr><td><code class="inset">\a</code></td><td>大小写字母字符 [a-zA-Z]</td></tr>
 		<tr><td><code class="inset">\A</code></td><td>除了a-zA-Z以外的字母字符</td></tr>
@@ -111,7 +111,7 @@
 
 	<p>请注意，以上预定义字符是不能内嵌在[]中使用的。例如，表达式[\d\l]是错误的，应使用<code class="inset">\(\d\|\l\)</code>表达式匹配数字或小写字符。</p>
 
-	<h2 class="article"><a id="">预定义字符类（Character Classes）</a></h2>
+	<h2 class="article"><a id="regex-character-classes">预定义字符类（Character Classes）</a></h2>
 	<p>如果想要查找所有大写字符，可以使用表达式<code class="inset">[A-Z]</code>，或者使用预定义的字符类<code class="inset">[:upper:]</code>。使用<code class="inset">/[[:upper:]]</code>命令可以匹配所有大写字母；而使用<code class="inset">/[[:upper:][:lower:]]</code>命令则可以匹配包括大写和小写字母在内的所有字母。</p>
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 	<caption>预定义字符类：</caption>
@@ -135,9 +135,19 @@
 	</table>
 
 	<h2 class="article"><a id="regex-escap">转义符（Escaped Characters）</a></h2>
-	<p>如果需要查找某些特殊符号（比如美元符号），那么可以使用反斜杠backslash（\）进行转义。例如：表达式<code class="inset">\$</code>可以匹配美元符号（$），而表达式<code class="inset">\^</code>则可以匹配脱字符（^）。需要注意的是，反斜杠backslash（\）本身也是特殊符号，所以需要用两个反斜杠<code class="inset">\\</code>来匹配。</p>
+	<p>如果需要查找某些特殊符号（比如美元符号），那么可以使用反斜杠backslash（\）进行转义。</p>
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+	<caption>转义字符类：</caption>
+		<tr><td><code class="inset">\.</code></td><td>匹配点（A literal period）</td></tr>
+		<tr><td><code class="inset">\\</code></td><td>匹配反斜杠（A literal backslash）</td></tr>
+		<tr><td><code class="inset">\/</code></td><td>匹配斜杠（A literal forward slash）</td></tr>
+		<tr><td><code class="inset">\^</code></td><td>匹配脱字符（A literal carat）</td></tr>
+		<tr><td><code class="inset">\$</code></td><td>匹配美元符号（A literal dollar sign）</td></tr>
+	</table>
+	<p>例如以下命令，将点替换为分号时需要进行转义：</p>
+	<p style="text-indent:2em"><code class="inset">:%s/\./;/g</code></p>
 
-	<h2 class="article"><a id="regex-escap">帮助信息（Help）</a></h2>
+	<h2 class="article"><a id="regex-help">帮助信息（Help）</a></h2>
 	<p>可以使用以下命令，查看关于查找模式的更多帮助信息：</p>
 	<p style="text-indent:2em"><code class="inset">:help pattern</code></p>
 

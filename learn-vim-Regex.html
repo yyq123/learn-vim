@@ -8,6 +8,7 @@
 	<title>VIM学习笔记 正则表达式-（Regular Expression ）</title>
 </head>
 <body>
+	<p>在UNIX问世的前一年，1969年, Ken Thompson将正则表达式整合入QED文本编辑器。在Linux文本编辑器ed中，如果你希望显示包含字母&ldquo;re&rdquo;的行时，需要使用命令<code class="inset">g/re/p</code>，而grep也因此得名。可以看作以下操作的缩写：g (globally), / (search), re (regular expression), / (delimit search), p (print)。</p>
 	<p>Vim提供以下两种grep(globally search a regular expression and print)搜索工具：</p>
 	<ul>
 		<li><code class="inset">:vimgrep</code> 使用Vim内置的grep实现；</li>
@@ -16,13 +17,14 @@
 	<p>:grep命令会运行由选项grepprg所指定的程序。需要注意的是，在linux系统上，grepprg默认是grep -n；而在Windows系统上，默认是findstr /n</p>
 	<p>:vimgrep命令使用vim内置的搜索功能 (same as for “/” searching) which is slower than system search.</p>
 	<p>由此可见，使用:vimgrep命令在不同平台上将获得一致的体验。而:grep命令则是与操作系统相关的，在不同平台会有不同的行为。</p>
-	<p>Vim使用Quickfix来显示搜索结果。w (opened with :copen). :lgrep/:lvimgrep will do the same, but using location list (opened with :lopen). In practise the difference is that if you use Quickfix window (:copen) it will stick to the current editor. Location window will show in the same way, but if you select anything then the window will disappear and you will have to run :lopen again.</p>
+	<p>Vim使用Quickfix来显示搜索结果。</p>
+	<p><code class="inset">:lgrep</code>和<code class="inset">:lvimgrep</code>命令实现相同的功能，但将使用地址列表, but using location list (opened with :lopen). In practise the difference is that if you use Quickfix window (:copen) it will stick to the current editor. Location window will show in the same way, but if you select anything then the window will disappear and you will have to run :lopen again.</p>
 
 	* To search for Xanadu in all the files in the PWD: :vim Xanadu * search results in a Quickfix window at the bottom and Vim jumps to the first match right away. You can navigate through this window and press Enter on search results to jump to them.
 
 	* To recurse the directories or files in Vim, you have this strange syntax called star-star. For example, to search recursively in all files and directories in PWD: :vim Xanadu **
 
-	* Once you are comfortable with the star-star syntax, you will find it very convenient to use: :vim Xanadu ../include/**/*.h
+	* you will find it very convenient to use: :vim Xanadu ../include/**/*.h
 	* One trick I like to use a lot is to search for the current word under the cursor in the files. I first press * so that the word is selected. Then I use this empty pattern to search for it: :vim // *.cpp
 
 
@@ -34,16 +36,15 @@ I guess you have to choose yourself which command you like most.  The syntax is 
 	<p style="text-indent:2em"><code class="inset">:grep block *.*</code></p>
 current workind directory (you can check currect directory using :pwd). By default it does not perform recursive search (it will not search in subdirectories). 
 	<p><a href="https://yyq123.github.io/learn-vim/images/findstr.png" title="findstr"><img src="https://yyq123.github.io/learn-vim/images/findstr.png" alt="findstr" width="550" height="52" /></a></p>
-
-In order to search in subdirectories you would have to use **/*.* pattern. However this works for :vimgrep and :grep in linux, but does not work for Windows. In order to make it work on Windows you would need to use /S parameter (linux grep also accepts -R parameter which does the same thing). You can pass it like that:
+	<p></p>
+如果希望搜索所有子目录， **/*.* pattern. However this works for :vimgrep and :grep in linux, but does not work for Windows. In order to make it work on Windows you would need to use /S parameter (linux grep also accepts -R parameter which does the same thing). You can pass it like that:
 
 :grep /S MyMethod *.*
 This will work on Windows and will find all “MyMethod” phrases in all files in all subdirectories of current working directory. However you can still make it the default behaviour in VIM. But first you neeed to know one thing:
 
-To search recursively in all files and directory under the PWD: grep -R Xanadu *
-If you don't want Vim to jump to the first match, use the j flag:
+<p>如果希望停留在当前位置，而不是跳转至第一个匹配处，那么可以使用以下命令：</p>
+	<p style="text-indent:2em"><code class="inset">:vimgrep /foo/j **/*.md</code></p>
 
-:vimgrep /foo/j **/*.md
 
 as explained in :help :vimgrep
 	<h2 class="article"><a id="grepprg">'grepprg'选项</a></h2>
