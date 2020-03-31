@@ -353,20 +353,20 @@ maintains <em>gawk</em> (<em>GNU awk</em>) and its documentation.</p>
         <td>Mark current position as <em>x</em></td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">``x&nbsp;</font></td>
-        <td>Move cursor to mark <em>x</em></td>
+        <td><font size="2" face="Courier New">`x&nbsp;</font></td>
+        <td>(Backquote) Moves the cursor to the character marked by <em>x</em></td>
     </tr>
     <tr>
         <td><font size="2" face="Courier New">``&nbsp;</font></td>
-        <td>Return to previous mark or context</td>
+        <td>(Backquotes) Returns to the exact position of the previous mark or context after a move</td>
     </tr>
     <tr>
         <td><font size="2" face="Courier New">'x&nbsp;</font></td>
-        <td>Move to the beginning of line containing mark <em>x</em></td>
+        <td>(Apostrophe) Moves the cursor to the first character of the line marked by <em>x</em></td>
     </tr>
     <tr>
         <td><font size="2" face="Courier New">''&nbsp;</font></td>
-        <td>Return to beginning of line containing previous mark</td>
+        <td>(Apostrophes) Returns to the beginning of the line of the previous mark or context</td>
     </tr>
 </tbody></table>
 
@@ -709,6 +709,29 @@ maintains <em>gawk</em> (<em>GNU awk</em>) and its documentation.</p>
         context</td>
     </tr>
 </tbody></table>
+
+<table border="0">
+<tbody><tr>
+        <td><strong>Command</strong></td>
+        <td><strong>Action</strong></td>
+    </tr>
+    <tr><td><code class="inset">^W=</code></td><td>Resize all windows equally. The current window honors the settings of the winheight and winwidth options.</td></tr>
+    <tr><td><code class="inset">:resize -n</code></td><td></td></tr>
+    <tr><td><code class="inset">^W-</code></td><td>Decrease the current window size. The default amount is one line.</td></tr>
+    <tr><td><code class="inset">:resize +n</code></td><td>Increase the current window size. The default amount is one line.</td></tr>
+    <tr><td><code class="inset">^W+</code></td><td></td></tr>
+    <tr><td><code class="inset">:resize n</code></td><td>Set the current window height. The default is to maximize window height (unlessn is specified).</td></tr>
+    <tr><td><code class="inset">^W_</code></td><td></td></tr>
+    <tr><td><code class="inset">zn&lt;CR&gt;</code></td><td>Set the current window height to n.</td></tr>
+    <tr><td><code class="inset">^W&lt;</code></td><td>Increase the current window width. The default amount is one column.</td></tr>
+    <tr><td><code class="inset">^W&gt;</code></td><td>Decrease the current window width. The default amount is one column.</td></tr>
+    <tr><td><code class="inset">:vertical resize n</code></td><td>Set the current window width to n. The default is to make window as wide as possible.</td></tr>
+    <tr><td><code class="inset">^W|</code></td><td></td></tr>
+    <tr><td><code class="inset"></code></td><td></td></tr>
+</tbody>
+</table>
+
+
 
 <h1><a name="3. Input Mode Shortcuts"><em>3. Input Mode Shortcuts</em></a></h1>
 

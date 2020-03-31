@@ -8,12 +8,13 @@
 	<title>VIM学习笔记 窗口(Window)</title>
 </head>
 <body>
+	<h1>VIM学习笔记 窗口(Window)</h1>
 	<p>窗口（Window）用来查看<a href="http://yyq123.github.io/learn-vim/learn-vi-13-MultiBuffers.html" title="Buffer">缓冲区</a>（Buffer）的内容。你可以用多个窗口查看同一个缓冲区，也可以用多个窗口查看不同的缓冲区。利用多窗口，我们就能够很方便地对比多个文件，在不同文件之间复制粘贴或者查看同一文件的不同部分。</p>
 	<p>Vim主窗口可以容纳多个分割的窗口。也可以创建多个<a href="http://yyq123.github.io/learn-vim/learn-vi-15-Tabs.html" title="Tabs">标签页</a>（tab-page），每个标签页也能容纳多个窗口。</p>
 	<p>在默认情况下，与Vi类似，Vim启动后只打开一个窗口。参数 "-o" 和 "-O" 可以让Vim为参数列表里的每一个文件打开一个窗口。参数 "-o" 水平分割窗口；参数 "-O" 垂直分割窗口。如果 "-o" 和 "-O" 都用了，那么最后一个参数决定分割的方向。例如，下面的例子打开三个水平分割的窗口。</p>
 	<p><code class="inset">vim -o file1 file2 file3</code></p>
-	
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">分割窗口</p>
+
+	<h2 class="article"><a id="window-split">分割窗口</a></h2>
 	<p><code class="inset">:split</code>命令，会将当前窗口水平分为两个，并且在这两个窗口中同时显示当前文件。如果你在其中一个窗口进行编辑，那么另一个窗口也会同步显示出你所做的更改。</p>
 	<p>默认情况下，每一个窗口都是独立滚动的。所以在编辑很长文档的时候，我们可以在不同窗口显示同一文档的不同部分。例如：一个窗口显示目录，另一个窗口显示正文。我们也可以使用<code class="inset">:set scrollbind</code>命令，绑定不同的窗口同步滚动。</p>
 	<p>如果想要在两个窗口中编辑不同的两个文件。使用<code class="inset">:split file</code>命令，就可以在另一个窗口中打开文件file了。</p>
@@ -30,9 +31,9 @@
 		<tr><td><code class="inset">:vsplit</code></td><td>新建垂直窗口并显示当前文件</td><td><code class="inset">ctrl+Wv</code></td></tr>
 		<tr><td><code class="inset">:sview</code></td><td>新建窗口并只读打开文件</td><td></td></tr>
 	</table>
-	<p><a href="http://www.flickr.com/photos/yyq123/3748996872/" title="Windows_Split by yyq123, on Flickr"><img src="http://farm3.static.flickr.com/2543/3748996872_4dfeb7c615.jpg" width="500" height="372" alt="Windows_Split" /></a></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Windows_Split.png" title="Windows_Split"><img src="https://yyq123.github.io/learn-vim/images/Windows_Split.png" alt="" width="550" height="409" /></a></p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">切换窗口</p>
+	<h2 class="article"><a id="window-nav">切换窗口</a></h2>
 	<p>在gvim和vim中，使用命令<code class="inset">:set mouse=a</code>启用鼠标支持，就可以通过点击鼠标来进入不同的窗口。</p>
 	<p>你也可以使用以下<kbd>ctrl+W</kbd>快捷键在多个窗口中进行切换：</p>
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
@@ -47,9 +48,9 @@
 		<tr><td><code class="inset">ctrl+Wp</code></td><td>切换至刚才所在的窗口</td></tr>
 	</table>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">移动窗口</p>
+	<h2 class="article"><a id="window-exchange">移动窗口</a></h2>
 	<p>命令<kbd>ctrl+Wx</kbd>，可以将当前窗口与下一窗口进行位置对换。如果当前窗口在底部，则没有下一个窗口，这时命令将当前窗口与上一个窗口进行位置对换。</p>
-	<p><a href="https://www.flickr.com/photos/yyq123/42574781641/in/dateposted/" title="Wx"><img src="https://farm2.staticflickr.com/1740/42574781641_9974259819.jpg" width="500" height="198" alt="Wx" /></a></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Wx.png" title="Wx"><img src="https://yyq123.github.io/learn-vim/images/Wx.png" alt="Wx" width="550" height="218" /></a></p>
 	<p>命令<kbd>ctrl+Wr</kbd>命令可以使得窗口向右或向下进行循环移动。这个命令可以带一个数字作为参数，指明向下循环移动所执行的次数。与其相类似的<kbd>ctrl+WR</kbd>命令，可以使得窗口向左或向上循环移动。</p>
 	<p>以上命令在调换窗口位置时，会维持现有的窗口尺寸和布局；而以下命令，则会同时改变窗口的位置、尺寸和布局：</p>
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
@@ -66,10 +67,11 @@
 		<tr><td><code class="inset">ctrl+WT</code></td><td>将当前窗口放到新的<a href="http://yyq123.github.io/learn-vim/learn-vi-15-Tabs.html" title="Tabs">标签页</a></td></tr>
 	</table>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">控制窗口尺寸</p>
+	<h2 class="article"><a id="window-size">控制窗口尺寸</a></h2>
 	<p>在输入:split命令时，可以加入参数来指定打开窗口的大小。例如命令<code class="inset">:3 split file</code>，将在一个大小为三行的新窗口中打开文件file。我们也可以将这个命令中的空格去掉，写成<code class="inset">:3split file</code>。</p>
 	<p>使用<kbd>ctrl+W+</kbd>命令增大窗口高度，默认增量为1行；<kbd>ctrl+W-</kbd>命令减小窗口高度，默认值为1行。命令<kbd>countCtrl+W_</kbd>可以使得当前窗口变为count指定的高度；如果没有指定count，则将当前窗口变得尽可能最大。</p>
 	<p>使用<code class="inset">:resize</code>命令，可以精确控制窗口高度。例如：<code class="inset">:resize +3</code>将增大窗口高度3行；<code class="inset">:resize -3</code>将减少窗口高度3行；<code class="inset">:resize 3</code>则将精确指定窗口高度为3行。</p>
+	<p>使用<code class="inset">z{height}&lt;CR&gt;</code>命令，可以指定当前窗口高度为{height}行。请注意，命令中的{height}参数不可忽略，输入行数之后需要点击回车键执行该命令。</p>
 	<p>命令<kbd>ctrl+W=</kbd>可以将几个窗口的大小变为相等。</p>
 	<p>使用<kbd>ctrl+W&gt;</kbd>命令增大窗口宽带，默认增量为1列；<kbd>ctrl+W&lt;</kbd>命令减小窗口宽度，默认值为1列。命令<kbd>countCtrl+W|</kbd>可以使得当前窗口变为count指定的宽度；如果没有指定count，则将当前窗口变得尽可能最大。</p>
 	<p>使用<code class="inset">:vertical resize</code>命令，可以精确控制窗口宽度。例如：<code class="inset">:vertical resize +3</code>将增大窗口宽度3列；<code class="inset">:vertical resize -3</code>将减少窗口宽度3列；<code class="inset">:vertical resize 3</code>则将精确指定窗口宽度为3列。</p>
@@ -85,7 +87,7 @@
 		<tr><td><code class="inset">ctrl+W=</code></td><td>等分窗口</td></tr>
 	</table>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">关闭窗口</p>
+	<h2 class="article"><a id="window-close">关闭窗口</a></h2>
 	<p>可以使用以下命令来关闭窗口：</p>
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>关闭窗口命令</caption>
@@ -96,7 +98,6 @@
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">帮助信息</p>
 	<p>使用<code class="inset">:help CTRL-W</code>命令，可以查看关于窗口操作的帮助信息。</p>
 
-<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="缓冲区（Buffer）" href="http://yyq123.github.io/learn-vim/learn-vi-13-MultiBuffers.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="标签页（Tabs）" href="http://yyq123.github.io/learn-vim/learn-vi-15-Tabs.html">下一篇</a>&gt;</span></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="缓冲区（Buffer）" href="http://yyq123.github.io/learn-vim/learn-vi-13-MultiBuffers.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="标签页（Tabs）" href="http://yyq123.github.io/learn-vim/learn-vi-15-Tabs.html">下一篇</a>&gt;</span></p>
 </body>
 </html>
-

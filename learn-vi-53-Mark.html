@@ -8,15 +8,18 @@
 <title>VIM学习笔记 标记(Mark)</title>
 </head>
 <body>
+	<h1>VIM学习笔记 标记(Mark)</h1>
 	<p>我们可以对文本进行标记，以方便在文档的不同位置间跳转。</p>
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">创建标记</p>
+
+	<h2 class="article"><a id="mark">创建标记</a></h2>
 	<p>将光标移到某一行，使用<code class="inset">ma</code>命令进行标记。其中，<code class="inset">m</code>是标记命令，<i>a</i>是所做标记的名称。</p>
 	<p>可以使用小写字母a-z或大写字母A-Z中的任意一个做为标记名称。小写字母的标记，仅用于当前缓冲区；而大写字母的标记，则可以跨越不同的缓冲区。例如，你正在编辑File1，但仍然可以使用<code class="inset">'A</code>命令，移动到File2中创建的标记A。</p>
 	
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">跳转标记</p>
-	<p>创建标记后，可以使用<code class="inset">'a</code>命令，移动到指定标记行的首个非空字符。这里<code class="inset">'</code>是单引号。也可以使用<code class="inset">`a</code>命令，移到所做标记时的光标位置。这里<code class="inset">`</code>是反引号（也就是数字键1左边的那一个）。</p>
+	<h2 class="article"><a id="mark-jump">跳转标记</a></h2>
+	<p>创建标记后，可以使用<code class="inset">'a</code>命令，移动到指定标记行的首个非空字符。这里<code class="inset">'</code>是单引号（apostrophe）。使用<code class="inset">''</code>命令，可以用移动到上一个标记行的首个非空字符。</p>
+	<p>使用<code class="inset">`a</code>命令，可以移到所做标记时的光标位置。这里<code class="inset">`</code>是反引号（Backquote，也就是数字键1左边的那一个）。使用<code class="inset">``</code>命令，可以移到上一个标记的光标位置。</p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">列示标记</p>
+	<h2 class="article"><a id="marks">列示标记</a></h2>
 	<p>利用<code class="inset">:marks</code>命令，可以列出所有标记。这其中也包括一些系统内置的特殊标记（Special marks）：</p>
 	<p><a href="https://www.flickr.com/photos/yyq123/5821468116/" title="vim - marks by yyq123, on Flickr"><img src="http://farm6.static.flickr.com/5192/5821468116_704ac04565.jpg" width="500" height="355" alt="vim - marks" /></a></p>
 	<table summary="Special Marks" border="0">
@@ -32,14 +35,14 @@
 	</tbody>
 	</table>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">删除标记</p>
+	<h2 class="article"><a id="delmarks">删除标记</a></h2>
 	<p>如果删除了做过标记的文本行，那么所做的标记也就不存了。我们不仅可以利用标记来快速移动，而且还可以使用标记来删除文本，例如在某一行用<code class="inset">ma</code>做了标记，然后就可以使用<code class="inset">d'a</code>来删掉这一行。当然，我们也可以使用<code class="inset">y'a</code>命令就可以来复制这一行了。</p>
 	<p>使用<code class="inset">:delmarks a b c</code>命令，可以删除某个或多个标记；而<code class="inset">:delmarks!</code> 命令，则会删除所有标记。</p>
 	<p>利用<code class="inset">:help mark-motions</code>命令，可以查看关于标记的更多帮助信息。</p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">plugin: vim-signature</p>
+	<h2 class="article"><a id="plugin-vim-signature">plugin: vim-signature</a></h2>
 	<p><a title="vim-signature" href="https://github.com/kshenoy/vim-signature">vim-signature</a>插件用于在屏幕最左侧显示标记。使用以下命令，可以定义标记的显示风格：</p>
-	<p><a href="https://www.flickr.com/photos/yyq123/33121351432/in/dateposted/" title="plugin_vim-signature"><img src="https://c1.staticflickr.com/4/3916/33121351432_770ca3ceb9.jpg" width="500" height="58" alt="plugin_vim-signature" /></a></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/plugin_vim-signature.png" title="plugin_vim-signature"><img src="https://yyq123.github.io/learn-vim/images/plugin_vim-signature.png" alt="plugin_vim-signature" width="500" height="58" /></a></p>
 	<p>使用<code class="inset">:help Signature</code>命令，可以查看vim-signature插件定义的快捷键，用于在标记间快速移动。</p>
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
@@ -50,8 +53,7 @@
 		<tr><td><code class="inset">:delmarks</code></td><td>删除指定标记</td></tr>
 		<tr><td><code class="inset">:delmarks!</code></td><td>删除所有标记</td></tr>
 	</table>
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="缩写" href="http://tiny.cc/vim-abbr">上一篇</a>&nbsp;|<a title="笔记列表" href="http://tiny.cc/learn-vim">&nbsp;目录&nbsp;</a>|&nbsp;<a title="模板" href="http://tiny.cc/vim-template">下一篇</a>&gt;</span></p>
-
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="缩写" href="http://yyq123.github.io/learn-vim/learn-vi-52-Abbreviation.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="模板" href="http://yyq123.github.io/learn-vim/learn-vi-61-Template.html">下一篇</a>&gt;</span></p>
 </body>
 </html>
-
+plugin_vim-signaturplugin_vim-signaturee

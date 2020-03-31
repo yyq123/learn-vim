@@ -11,6 +11,21 @@
 	<h1>VIM学习笔记 设置选项(set-option)</h1>
 
 
+	<h2 class="article"><a id="">Window Sizing Options</a></h2>
+	<p>'winheight'和'winwidth'选项，用于分别控制窗口的最小高度和宽度。
+when a window becomes active. For example, if the screen accommodates two equalsized windows of 45 lines, the default Vim behavior is to split them equally. If you were
+to set winheight to a value larger than 45—say, 60—Vim will resize the window to
+which you move each time to 60 lines, and will resize the other window to 30. This is
+handy for editing two files simultaneously; you automatically increase the allocated
+window size for maximum context when you switch from window to window and from
+file to file.</p>
+	<p>默认打开的'equalalways'选项，用于在拆分和关闭窗口的过程中，始终保持窗口均分以维持整洁的窗口布局。</p>
+	<p>'eadirection'选项，默认值为&ldquo;both&rdquo;，说明'equalalways'窗口均分选项适用于垂直和水平分隔窗口。如果只希望针对垂直均分窗口，那么可以设置为<code class="inset">:set ead=hor</code>；如果只希望针对垂直均分窗口，那么可以设置为<code class="inset">:set ead=ver</code>。</p> 
+cmdheight sets the command line height. As described previously, decreasing a window’s height when there is only one window increases the command-line height. You
+can keep the command line the height you want using this option.
+Finally, winminwidth and winminheight tell Vim the minimum width and height to size
+windows. Vim considers these to be hard values, meaning that windows will never be
+allowed to get smaller than these values
 
 	<h2 class="article"><a id="">键盘选项</a></h2>
 	<p>使用'winaltkeys'选项，可以控制Alt键的使用。</p>
@@ -34,11 +49,6 @@
 换句话说,他会试着使得我们运行这个程序以后的屏幕看起来就像他运行以前的一样.
 set hidden " you can change buffers without saving
 set fileformats=unix,dos,mac " support all three, in this order
-
-" Set the search scan to wrap around the file
-set wrapscan
-
-
 
 " Allow backspacing over indent, eol, and the start of an insert
 set backspace=indent,eol,start
@@ -294,6 +304,5 @@ notimeout    ttimeout    只有代码键超时
         <td valign="top"><font size="2" face="Courier New">nowa</font></td>
     </tr>
 </tbody></table>
-cmdwinheight	learn-vi-46-CommandlineMode.html
 </body>
 </html>

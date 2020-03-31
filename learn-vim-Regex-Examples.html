@@ -53,7 +53,7 @@
 	<li><code class="inset">\d\u\u\u\d\d\d</code></li>
 	<li><code class="inset">[[:digit:]][[:upper:]]\{3][[:digit:]]\{3}</code></li>
 </ul>
-	<p>表达式<code class="inset"><.\{-}></code>，可以匹配以&lt;开头以&gt;结尾的所有HTML代码标签。</p>
+	<p>表达式<code class="inset">&lt;.\{-}&gt;</code>，可以匹配以&lt;开头以&gt;结尾的所有HTML代码标签。</p>
 	<p>使用以下命令，可以查找以"abc"开头并以"xyz"结尾的字符串：</p>
 	<p style="text-indent:2em"><code class="inset">:g/abc.*xyz</code></p>
 	* . means "any character except an EOL".
@@ -64,6 +64,8 @@
 abc123xyz
 abcyz
 abc xyz
+	<p>匹配最少3个字符，最多16个字符，由字母和数字组成的用户名：</p>
+	<p style="text-indent:2em"><code class="inset">^[a-zA-Z0-9_-]{3,16}$</code></p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
 

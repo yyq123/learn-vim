@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 编译源码(Compile Code)-Python</title>
+</head>
+<body>
+	<h1>VIM学习笔记 编译源码(Compile Code)-Python</h1>
+
+	<p>Python作为一种解释型编程语言，需要解释器来编译并执行Python代码。</p>
+	<p>新版本的Vim已经默认支持Python特性。可以使用<code class="inset">:version</code>命令，确认是否包含&ldquo;+python/dyn&rdquo;或&ldquo;+python3/dyn&rdquo;特性。</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/version_python3.png" title="version_python3"><img src="https://yyq123.github.io/learn-vim/images/version_python3.png" alt="version_python3" width="500" height="108" /></a></p>
+Just look at the output of :version. If it contains +python/dyn and +python3/dyn, it is compiled for dynamic python. Then you are able to change the python dll to use by changing the option pythondll or pythonthreedll:
+
+set pythonthreedll=python37.dll
+
+If Vim is not compiled with dynamic python support, this will result in an error message, as the option doesn't exist then.
+
+Note: If python is not installed, but only unpacked from a zip, Vim is not able to find it that way. Then you need:
+
+set pythonthreehome=C:\path\to\python
+set pythonthreedll=C:\path\to\python\python37.dll
+
+Also useful if you have multiple python installations.
+
+As already mentioned in a comment, a up-to-date version of Vim for Windows with dynamic python support, can be downloaded from this github page.
+
+See :help python-dynamic and help for the named options. 
+	<p>以下操作在<a href="https://getfedora.org/" title="Fedora">Fedora</a>31下验证成功。在不同的操作系统中，以下命令和参数也可能略有不同，请根据实际情况进行调整。</p>
+
+	<h2 class="article"><a id="java-linux-install">安装Java</a></h2>
+	<p>使用以下命令安装JDK（具体步骤可以参考<a href="https://docs.fedoraproject.org/en-US/quick-docs/installing-java/" title="Installing Java">Installing Java</a>）；</p>
+	<p style="text-indent:2em"><code class="inset">$ sudo dnf install java-1.8.0-openjdk-devel.x86_64</code></p>
+	<p>如果需要使用JWS（Java Web Start）以运行JNPL文件，那么还需要安装<a href="http://icedtea.classpath.org/wiki/IcedTea-Web" title="IcedTea-Web">IcedTea-Web</a>：</p>
+	<p style="text-indent:2em"><code class="inset">$ sudo dnf install icedtea-web</code></p>
+
+	<h2 class="article"><a id="java-linux-config">配置Java</a></h2>
+	<p>如果安装了多个版本的JDK、JRE、和JWS，那么可以使用以下命令进行切换：</p>
+	<p style="text-indent:2em"><code class="inset">$ alternatives --config java</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/alternatives--config-java.png" title="alternatives--config-java"><img src="https://yyq123.github.io/learn-vim/images/alternatives--config-java.png" alt="alternatives--config-java" width="550" height="212" /></a></p>
+	<p style="text-indent:2em"><code class="inset">$ alternatives --config javac</code></p>
+	<p style="text-indent:2em"><code class="inset">$ alternatives --config javaws</code></p>
+
+	<h2 class="article"><a id="java-linux-test">测试Java</a></h2>
+	<p>使用以下命令，查看当前Java版本：</p>
+	<p style="text-indent:2em"><code class="inset">$ java -version</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/java-version.png" title="java-version"><img src="https://yyq123.github.io/learn-vim/images/java-version.png" alt="java-version" /></a></p>
+	<p>使用以下命令，查看当前Javac版本：</p>
+	<p style="text-indent:2em"><code class="inset">$ javac -version</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/javac-version.png" title="javac-version"><img src="https://yyq123.github.io/learn-vim/images/javac-version.png" alt="javac-version" /></a></p>
+	<p>使用以下命令，查看当前Javaws版本：</p>
+	<p style="text-indent:2em"><code class="inset">$ javaws http://nextmidas.techma.com/nxm343/htdocs/localshell.jnlp</code></p>
+	<p>您可以尝试打开本地的JNPL文件，或者使用<a href="https://icedtea.classpath.org/wiki/IcedTea-Web-Tests" title="IcedTea-Web-Tests">IcedTea-Web-Tests</a>提供的测试网址。</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/javaws-test.png" title="javaws-test"><img src="https://yyq123.github.io/learn-vim/images/javaws-test.png" alt="javaws-test" width="550" height="317" /></a></p>
+
+	<h2 class="article"><a id="makeprg-python">设置编译器</a></h2>
+	<p>使用以下命令，设置'makeprg'选项为javac命令：</p>
+	<p style="text-indent:2em"><code class="inset">set makeprg=python3\ %</code></p>
+	<p>通过在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>文件中增加以下<a href="http://yyq123.github.io/learn-vim/learn-vi-49-01-autocmd.html" title="自动命令(autocmd)">自动命令</a>，可以为Java语言文件设置编译快捷键：</p>
+<pre><code>augroup make_java
+	au!
+	au FileType java  set makeprg=set makeprg=javac\ %
+	au FileType java  map &lt;buffer&gt; &lt;leader&gt;&lt;space&gt; :w&lt;cr&gt;:make&lt;cr&gt;
+augroup end</code></pre>
+
+	<h2 class="article"><a id="java-linux-compile">编译Java</a></h2>
+	<p>使用以下命令，将根据'makeprg'选项进行编译，并生成与.java文件同名的.class字节码文件：</p>
+	<p style="text-indent:2em"><code class="inset">:make</code></p>
+	<p>如果编译出现错误，将在<a href="https://yyq123.github.io/learn-vim/learn-vi-70-01-QuickFix.html" title="QuickFix">QuickFix</a>中显示错误列表，并自动跳转到第一个错误处：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/javac_error_quicklist.png" title="javac_error_quicklist"><img src="https://yyq123.github.io/learn-vim/images/javac_error_quicklist.png" alt="javac_error_quicklist" /></a></p>
+	<p>如果希望在编译时保持当前光标位置不变，那么可以使用以下命令：</p>
+	<p style="text-indent:2em"><code class="inset">:make!</code></p>
+	<p>使用<code class="inset">:cw</code>命令，将打开quickfix窗口。使用<code class="inset">:cp</code>命令，跳转到上一个错误；使用<code class="inset">:cn</code>命令，跳转到下一个错误。关于QuickFix操作的更多信息，请参阅<a href="https://yyq123.github.io/learn-vim/learn-vi-70-01-QuickFix.html" title="QuickFix">QuickFix</a>章节。</p>
+	<p>在修复错误并成功编译之后，将显示命令输出：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/javac_success_output.png" title="javac_success_output"><img src="https://yyq123.github.io/learn-vim/images/javac_success_output.png" alt="javac_success_output" /></a></p>
+	<p>使用以下命令，首先Java虚拟机将编译好的.class文件加载到内存，然后针对其中的Java类进行解释执行：</p>
+	<p style="text-indent:2em"><code class="inset">:!java %:r</code></p>
+
+
+	<h2 class="article"><a id="">启用/禁用</a></h2>
+	<p></p>
+	<a href="#" title=""></a>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">识别文件</p>
+	<p></p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+:!python3 %
+When you do :!python3 & you are actually running a shell that executes the command python3 myFile.py. That will run your program non-interactively
+You can force the interactive mode with :!python3 -i %.
+Alternatively you can do :!python3 without arguments: it will launch an interactive python shell.
+
+vimrc
+<pre>
+" for python 3.X
+set pythonthreehome=/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.7
+set pythonthreedll=/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.7/lib/libpython3.7m.dylib
+" for python 2.X
+set pythonhome=/System/Library/Frameworks/Python.framework/Versions/2.7
+set pythondll=/System/Library/Frameworks/Python.framework/Versions/2.7/Python
+</pre>
+
+:py3 print('hello world')
+
+:help python-dynamic
+You can find the exact path of ':help pythonhome' and :help 'pythonthreehome' on your machine by executing this one-liner in the python and  REPL:
+
+在python3中，执行以下命令可以查看系统路径：
+
+import sys; print(sys.path)
+
+	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
+	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
+
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
+		<caption style="margin:0.5em; font-weight:bold">选项列表</caption>
+		<tr><th style="white-space: nowrap">选项</th><th>描述</th><th>帮助信息</th></tr>
+		<tr><td><code class="inset">!</code></td><td>如果包含，表示。例如，。</td><td style="white-space: nowrap"><code class="inset">:help viminfo-!</code></td></tr>
+	</table>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
+		<tr><td><code class="inset">:</code></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+	</table>
+&ldquo;&rdquo;
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="QuickFix" href="http://yyq123.github.io/learn-vim/learn-vi-70-01-QuickFix.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="QuickFix选项" href="http://yyq123.github.io/learn-vim/learn-vim--QuickFix-opt.html">下一篇</a>&gt;</span></p>
+</body>
+</html>
