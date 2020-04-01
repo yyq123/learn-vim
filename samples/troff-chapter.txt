@@ -1,0 +1,21 @@
+Part 2
+Capability Reference
+.LP
+Chapter 7
+Introduction to the Capabilities
+This and the next three chapters ...
+... and a complete index at the end.
+.LP
+Chapter 8
+Screen Dimensions
+Before you can do anything useful
+on the screen, you need to know ...
+.LP
+Chapter 9
+Editing the Screen
+This chapter discusses ...
+.LP
+Part 3:
+Advanced Features
+.LP
+Chapter 10

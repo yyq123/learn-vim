@@ -10,6 +10,7 @@
 <body>
 	<p>使用<code class="inset">:g</code>全局命令，可以搜索并显示所有包含模式的行。命令<code class="inset">:g!</code>及其同义词<code class="inset">:v</code>，则可以搜索并显示不包行该模式的行。</p>
 	<h2 class="article"><a id=""></a></h2>
+	<p style="text-indent:2em"><code class="inset"></code></p>
 
 	<h2 class="article"><a id=""></a></h2>
 	<p>:g命令的格式为：</p>
@@ -72,7 +73,20 @@
 
 	<p>使用以下命令，将所有不是以2个Tab制表符开头的行，增加到top2levels.otl文件的末尾：</p>
 	<p style="text-indent:2em"><code class="inset">:g!/^\t\t/.w&gt;&gt;top2levels.otl</code></p>
-	<p style="text-indent:2em"><code class="inset"></code></p>
+
+	<p>首先移动到文件头，然后执行以下命令，可以搜集相对于指定字符偏移位置的行：</p>
+	<p style="text-indent:2em"><code class="inset">:g /^Chapter/ .+2w &gt;&gt; begin</code></p>
+	<p>包含&ldquo;Chapter&rdquo;字符的章节号、名称和描述，分处在连续的行中。<var>^Chapter</var>将查找以&ldquo;Chapter&rdquo;字符开头的行；<var>.+2</var>将定位到匹配处之后的第2行；然后使用将其追加到名为begin的文件中。</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/g_cmd_range_lines.png" title="g_cmd_range_lines"><img src="https://yyq123.github.io/learn-vim/images/g_cmd_range_lines.png" alt="g_cmd_range_lines" width="550" height="301" /></a></p>
+
+	<p>假设希望在以&ldquo;end&rdquo;结尾的行中，将第1部分文字替换为&ldquo;The greatest of times;&rdquo;。</p>
+	<p><code class="msg">the best of times; the worst of times: end&nbsp;&nbsp;&nbsp;&nbsp;</code></p>
+	<p>由于会尽可能多（as much text as possible）的匹配，以下命令将替换至第2个&ldquo;of&rdquo;：</p>
+	<p style="text-indent:2em"><code class="inset">:g/end$/s/.*of/The greatest of/</code></p>
+	<p><code class="msg">The greatest of times: end&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code></p>
+	<p>为了只替换第1部分，则需要更精确的匹配条件：</p>
+	<p style="text-indent:2em"><code class="inset">:g/end$/s/.*of times;/The greatest of times;/</code></p>
+	<p><code class="msg">The greatest of times; the worst of times: end</code></p>
 
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
