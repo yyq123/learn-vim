@@ -231,18 +231,6 @@ the next "My_Opinion", which presumably was fixed by the preceding command.<br>
 <h2>Character Sets</h2>
 
 
-A character set is a wildcard. When compared to a character, there is a match
-if the character is one of those in the character set. There are several
-types of character sets, but the most basic is a list of matching characters
-inside of brackets. For example, <tt>[aeiou]</tt> matches any lower case vowel. The list could be a range like <tt>[0-9]</tt>, which matches any decimal digit. The brackets can contain a combination. For instance, <tt>[0-9.]</tt> matches any decimal digit or a decimal point (within brackets a dot is NOT a wildcard).<br>
-
-
-<br>
-
-
-If the characters inside of the brackets start with a carat (<tt>^</tt>), the character set matches anything except the characters inside the brackets. So <tt>[^a-zA-Z]</tt>
-matches any character except a letter in the alphabet. If you actually want
-to match a carat, simply make it not the first character, as in <tt>[@^#]</tt>, which matches either an at sign, a carat, or a pound sign.<br>
 
 
 <br>

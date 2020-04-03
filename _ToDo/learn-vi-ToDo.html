@@ -8,15 +8,37 @@
 <title>高级编辑命令</title>
 </head>
 <body>
+Change Delete Copy From cursor to...
+
+   
+   
+   
+   
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><th>修改</th><th>删除</th><th>复制</th><th>从当前光标到......</th></tr>
+		<tr><td><code class="inset">cH</code></td><td><code class="inset">dH</code></td><td><code class="inset">yH</code></td><td>屏幕顶部（Top of screen）</td></tr>
+		<tr><td><code class="inset">cL</code></td><td><code class="inset">dL</code></td><td><code class="inset">yL</code></td><td>屏幕底部（Bottom of screen）</td></tr>
+		<tr><td><code class="inset">c+</code></td><td><code class="inset">d+</code></td><td><code class="inset">y+</code></td><td>下一行（Next line）</td></tr>
+		<tr><td><code class="inset">c)</code></td><td><code class="inset">d)</code></td><td><code class="inset">y)</code></td><td>下一个句子（Next sentence）</td></tr>
+		<tr><td><code class="inset">c{</code></td><td><code class="inset">d{</code></td><td><code class="inset">y{</code></td><td>前一个段落（Previous paragraph）</td></tr>
+		<tr><td><code class="inset">cG</code></td><td><code class="inset">dG</code></td><td><code class="inset">yG</code></td><td>文件末尾（End of file）</td></tr>
+		<tr><td><code class="inset">c3G</code></td><td><code class="inset">d3G</code></td><td><code class="inset">y3G</code></td><td>第3行（Line number 3）</td></tr>
+		<tr><td><code class="inset">c/pattern</code></td><td><code class="inset">d/pattern</code></td><td><code class="inset">y/pattern</code></td><td>匹配模式pattern</td></tr>
+		<tr><td><code class="inset">cn</code></td><td><code class="inset">dn</code></td><td><code class="inset">yn</code></td><td>匹配下一个模式（）</td></tr>
+	</table>
+
+	<p>使用以下查找和删除的组合命令，将删除从当前光标到字符&ldquo;x&rdquo;之间的所有字符，包括字符&ldquo;x&rdquo;：</p>
+	<p style="text-indent:2em"><code class="inset">dfx</code></p>
+
 	<p>使用<code class="inset">d^</code>命令，可以删除从当前位置到行首的所有内容。而<code class="inset">dw</code>命令，则可以删除一个词。通过与数字组合，可以快速删除多个文字。例如<code class="inset">d3w</code>一次删除3个词，而<code class="inset">3dw</code>则是指一次删除一个词，而这样的操作进行3次，即总的是也是删掉3个字符。命令<code class="inset">d$</code>或<code class="inset">D</code>可以删除从当前位置到行尾的所有内容。命令<code class="inset">dt)</code>可以删除从当前位置到&ldquo;)&rdquo;之前的所有字符。</p>
-	<p><a href="http://www.flickr.com/photos/yyq123/6207162246/" title="dt by yyq123, on Flickr"><img src="http://farm7.static.flickr.com/6179/6207162246_20ed82f530_m.jpg" width="150" height="102" alt="dt"></a></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/dt.png" title="dt"><img src="https://yyq123.github.io/learn-vim/images/dt.png" alt="dt" /></a></p>
 
 	<p>与d命令相类似是的<code class="inset">c</code>更改命令，他在删除一个字符的同时进入插入状态。<code class="inset">cw</code>命令删除一个单词并进入插入状态。<code class="inset">cc</code>命令删除本行上的所有内容并进入插入状态，而且还会保持当前的行缩进。命令<code class="inset">c$</code>将删除从光标处到行尾的所有内容并进入插入状态。</p>
 	<p>命令<code class="inset">s</code>相当于命令<code class="inset">cl</code>的简写，它将删除光标右侧的一个字符并进入插入状态。而命令<code class="inset">S</code>相当于命令<code class="inset">cc</code>的简写，它将删除一行并进入插入状态。</p>
 
 
 
-	<p style="font-weight:bold"></p>
 	在从左到右和从右到左两种模式间切换
 :set rl
 :set rightleft

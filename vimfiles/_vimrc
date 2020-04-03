@@ -71,6 +71,10 @@ set modeline      " Respect modeline in files
 set modelines=4
 set report=0      " Always display message
 set shortmess-=S  "display number of search matches & index of a current match
+
+set dictionary=D:\cygwin64\usr\share\dict\linux.words
+set thesaurus=$HOME\vimfiles\thesaurus\english.txt
+
 " }}}
 
 " Shell {{{
@@ -90,7 +94,19 @@ set shellxquote=\"
 "let $PATH .= ';D:\cygwin64\bin'
 " }}}
 
-" Handle long lines
+" Lines {{{
+"set whichwrap=b,s,h,l,<,>,~,[,] " everything wraps
+"             | | | | | | | | |
+"             | | | | | | | | +-- "]" Insert and Replace
+"             | | | | | | | +-- "[" Insert and Replace
+"             | | | | | | +-- "~" Normal
+"             | | | | | +-- <Right> Normal and Visual
+"             | | | | +-- <Left> Normal and Visual
+"             | | | +-- "l" Normal and Visual (not recommended)
+"             | | +-- "h" Normal and Visual (not recommended)
+"             | +-- <Space> Normal and Visual
+"             +-- <BS> Normal and Visual
+
 set wrap " don't wrap lines
 map <F2> <Esc>:set nowrap<CR>
 map <S-F2> <Esc>:set wrap<CR>
@@ -108,22 +124,16 @@ fun! JoinSpaceless()
         execute 'normal dw'
     endif
 endfun
-
-" Map it to a key
 nnoremap <F10> :call JoinSpaceless()<CR>
+" }}}
 
-
+" Paste {{{
 set pastetoggle=<F5>	" Vim will switch to paste mode, disabling all kinds of smartness and just pasting a whole buffer of text. When in paste-mode auto indent will be turned off.
 
 set paste
 " Use the OS clipboard by default (on versions compiled with `+clipboard`)
 set clipboard=unnamed  " share windows clipboard
-
-"print the current clock time
-"set printheader=%<%f%h%m%40{strftime(\"%I:%M:%S\ \%p,\ %a\ %b\ %d,\ %Y\")}%=Page\ %N
-
-"Print the last modification time
-"set printheader=%<%f%h%m\ %40{strftime(\"%c\",getftime(expand(\"%%\")))}%=Page\ %N
+" }}}
 
 " UI {{{
 set cursorline cursorcolumn	" highlight the current column&line 
@@ -137,10 +147,17 @@ source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
 
 set mouse=a	" enable full mouse support in the console
+
+set number
+" set relativenumber
+hi CursorLineNr guifg=silver
+
+autocmd GUIEnter * simalt ~x		" 启动时最大化
+set ruler                               " Always show current positions along the bottom
+
 "}}}
 
-
-" Menu s {{{
+" Menus {{{
 amenu <silent>Tabs.New :tabnew<CR>
 amenu Tabs.-SEPT1- :
 amenu <silent>Tabs.&Next :tabnext<CR>
@@ -149,7 +166,7 @@ amenu Tabs.-SEPT2- :
 amenu Tabs.&Close :confirm tabclose<CR>
 "}}}
 
-"" ToolBar {{{
+" ToolBar {{{
 " Do not install the ToolBar if it is already done.
 "if !exists("did_install_custom_toolbar")
 "    let did_install_custom_toolbar = 1
@@ -222,7 +239,7 @@ amenu Tabs.&Close :confirm tabclose<CR>
     "}}}
 "}}}
 
-    "" ToolTips {{{
+" ToolTips {{{
     tmenu 1.10 ToolBar.New New
     tmenu 1.20 ToolBar.Open Open
     tmenu 1.30 ToolBar.Save Save
@@ -258,10 +275,9 @@ amenu Tabs.&Close :confirm tabclose<CR>
         tmenu 1.910 ToolBar.FindNext Find Nex
         tmenu 1.920 ToolBar.FindPrev Find Previous
     endif
-    "}}}
-"endif
 "}}}
 
+" File {{{
 set fileencoding=utf-8
 set encoding=utf-8
 set tenc=utf-8
@@ -270,14 +286,13 @@ language message en_US.UTF-8
 
 set autoread		"error alert for destructive write
 
-set number
-" set relativenumber
-hi CursorLineNr guifg=silver
+"print the current clock time
+"set printheader=%<%f%h%m%40{strftime(\"%I:%M:%S\ \%p,\ %a\ %b\ %d,\ %Y\")}%=Page\ %N
 
-autocmd GUIEnter * simalt ~x		" 启动时最大化
-set ruler                               " Always show current positions along the bottom
+"Print the last modification time
+"set printheader=%<%f%h%m\ %40{strftime(\"%c\",getftime(expand(\"%%\")))}%=Page\ %N
 
-
+"Turning on options for filetypes; detection, plugins, and indentation
 filetype plugin on
 
 if has("autocmd") && exists("+omnifunc")
@@ -293,6 +308,7 @@ if &diff
 else
     colorscheme Tomorrow-Night "xoria256
 endif
+" }}}
 
 " statusline {{{
 set laststatus=2 "enable status line always
@@ -339,7 +355,6 @@ if has('gui_running')
 	endif
 endif
 " }}}
-
 
 " Maps {{{
 
@@ -398,6 +413,8 @@ function! ToggleHLSearch()
 	endif
 endfunction
 
+set grepprg=grep\ -rnIH\ --exclude-dir=.git
+
 let mapleader="," "Default \
 
 nmap <silent> <leader><space> <Esc>:call ToggleHLSearch()<CR>
@@ -449,6 +466,8 @@ iabbrev icode <code class="inset"></code><Esc>F<i
 "cabbrev h tab h
 " }}}
 
+" Others {{{
+
 " Template
 autocmd! BufNewFile * silent! 0r $VIM/vimfiles/skel/Template.%:e
 
@@ -467,7 +486,6 @@ set listchars=tab:\|.,trail:,nbsp:.,extends:¬
 
 "au FocusLost * :wa	"save on losing focus
 
-
 " visually select text then press ~ to convert the text to  UPPER CASE,
 " then to lower case, then to Title Case.
 function! TwiddleCase(str)
@@ -481,6 +499,8 @@ function! TwiddleCase(str)
   return result
 endfunction
 vnoremap ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgvl
+
+" }}}
 
 " HTML {{{
 " Escape/unescape & < > HTML entities in range (default current line).
@@ -534,6 +554,12 @@ augroup vimrc-auto-mkdir
   endfunction
 augroup END
 
+augroup vgrep
+    autocmd!
+    autocmd QuickFixCmdPost [^l]* cwindow
+    autocmd QuickFixCmdPost l*    lwindow
+augroup END
+
 "function! UpdateTimestamp ()
 "  '[,']s/Last Updated: 12/23/2019 4:04:19 PM
 "endfunction
@@ -582,7 +608,6 @@ Plugin 'mattn/webapi-vim'
 Plugin 'mattn/gist-vim'
 Plugin 'mbbill/fencview'
 Plugin 'liuchengxu/vim-which-key'
-Plugin 'YankRing.vim'
 "Plugin 'LargeFile'
 "Plugin 'landonb/dubs_html_entities'
 "plugin from http://vim-scripts.org/vim/scripts.html
@@ -635,6 +660,9 @@ let github_user = 'yyq123'
 " }}}
 
 " Plugin Netrw {{{
+if ($OS =~ "Windows")
+	let g:netrw_scp_cmd="pscp.exe -q"
+endif
 let g:netrw_liststyle = 3
 let g:netrw_banner = 0
 let g:netrw_winsize = 25
@@ -719,9 +747,13 @@ let g:which_key_map.F = {
 
 " AfterPlugin {{{
 " 取消用Ctrl-F调用查找窗口
-unmap <C-F>
+"unmap <C-F>
+
+nnoremap x "_x
 
 "set colorcolumn=70	" show a colored column (so I can see when I write a too-long line of code)
+"highlight CursorLine guibg=white
 "highlight ColorColumn ctermbg=darkred guibg=darkred
+
 
 " }}}

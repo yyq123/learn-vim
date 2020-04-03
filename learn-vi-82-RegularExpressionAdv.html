@@ -13,7 +13,9 @@
 	<h2 class="article"><a id="regex-matching-list">范围（Character Ranges / Matching List）</a></h2>
 	<p><code class="inset">[]</code>通配符，表示只可以匹配左右方括号内列表的字符。例如<code class="inset">t[aeiou]n</code>将匹配一个小写元音字符，可以找到tan,ten,tin,ton,tun。</p>
 	<p>在方括号内，可以通过短横线来指明包括字符或数字的序列（collating sequence）。例如<code class="inset">[0-9]</code>可以匹配0到9中的任一数字。也可以将数字与字符相组合，例如<code class="inset">[0-9aeiou]</code>可以匹配任意一个数字或是小写的元音字符。</p>
-	<p>如果需要匹配"-"本身，那么需要使用反斜杠进行转义。例如表达式<code class="inset">one[\-]way</code>可以匹配one-way，但不会匹配one way。</p>
+	<p>如果希望匹配&ldquo;-&rdquo;本身，那么需要使用反斜杠进行转义。例如表达式<code class="inset">one[\-]way</code>可以匹配one-way，但不会匹配one way。</p>
+	<p>如果方括号内的列表以<code class="inset">^</code>开头，那么则表示匹配该列表以外的所有字符。例如<code class="inset">[^a-zA-Z]</code>将匹配所有非字母字符。</p>
+	<p>如果希望匹配&ldquo;^&rdquo;本身，那么只需要将其放置在非开头位置即可。例如<code class="inset">[@^#]</code>将匹配@^#中的任一符号。<br>
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 	<caption>范围通配符：</caption>
 	<tr><td><code class="inset">[abc]</code></td><td>匹配a,b或是c</td></tr>

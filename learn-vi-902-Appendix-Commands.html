@@ -38,69 +38,69 @@ maintains <em>gawk</em> (<em>GNU awk</em>) and its documentation.</p>
         <td><strong>Action</strong></td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">vi file&nbsp;</font></td>
+        <td><code>vi file&nbsp;</code></td>
         <td>Invoke <em>vi</em> on <em>file</em></td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">vi file1
-        file2&nbsp;</font></td>
+        <td><code>vi file1
+        file2&nbsp;</code></td>
         <td>Invoke <em>vi</em> on files sequentially</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">view file&nbsp;</font></td>
+        <td><code>view file&nbsp;</code></td>
         <td>Invoke <em>vi</em> on <em>file</em> in read-only mode</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">vi -R file&nbsp;</font></td>
+        <td><code>vi -R file&nbsp;</code></td>
         <td>Invoke <em>vi</em> on <em>file</em> in read-only mode</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">vi -r file&nbsp;</font></td>
+        <td><code>vi -r file&nbsp;</code></td>
         <td>Recover <em>file</em> and recent edits after a crash</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">vi -t tag&nbsp;</font></td>
+        <td><code>vi -t tag&nbsp;</code></td>
         <td>Look up a <em>tag</em> and start editing at its
         definition</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">vi -w n&nbsp;</font></td>
+        <td><code>vi -w n&nbsp;</code></td>
         <td>Set the windows size to <em>n</em>; useful over a
         slow connection</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">vi + file&nbsp;</font></td>
+        <td><code>vi + file&nbsp;</code></td>
         <td>Open <em>file</em> at last line</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">vi +n file&nbsp;</font></td>
+        <td><code>vi +n file&nbsp;</code></td>
         <td>Open <em>file</em> directly at line number <em>n</em></td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">vi -c command
-        file&nbsp;</font></td>
+        <td><code>vi -c command
+        file&nbsp;</code></td>
         <td>Open <em>file</em>, execute <em>command</em>, which
         is usually a search command or line number (POSIX)</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">vi +/pattern
-        file&nbsp;</font></td>
+        <td><code>vi +/pattern
+        file&nbsp;</code></td>
         <td>Open <em>file</em> directly at <em>pattern</em></td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">ex file&nbsp;</font></td>
+        <td><code>ex file&nbsp;</code></td>
         <td>Invoke <em>ex</em> on <em>file</em></td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">ex - file
-        &lt;script&nbsp;</font></td>
+        <td><code>ex - file
+        &lt;script&nbsp;</code></td>
         <td>Invoke <em>ex</em> on <em>file</em>, taking commands
         from <em>script</em>; surpress informative messages and
         prompts</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">ex -s file
-        &lt;script&nbsp;</font></td>
+        <td><code>ex -s file
+        &lt;script&nbsp;</code></td>
         <td>Invoke <em>ex</em> on <em>file</em>, taking commands
         from <em>script</em>; surpress informative messages and
         prompts (POSIX)</td>
@@ -112,18 +112,19 @@ maintains <em>gawk</em> (<em>GNU awk</em>) and its documentation.</p>
 <p>Most vi command follow a general pattern:</p>
 
 <blockquote>
-    <p><font size="2" face="Courier New">[command][number]text
-    object</font></p>
+    <p><code>[command][number]text
+    object</code></p>
 </blockquote>
 
 <p>or the equivalent form:</p>
 
 <blockquote>
-    <p><font size="2" face="Courier New">[number][command]text
-    object</font></p>
+    <p><code>[number][command]text
+    object</code></p>
 </blockquote>
 
-<h2><em>Movement Commands</em></h2>
+<h2>Movement Commands</h2>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Movement.png" title="Movement"><img src="https://yyq123.github.io/learn-vim/images/.png" alt="Movement" /></a></p>
 
 <table border="0">
     <tbody><tr>
@@ -138,10 +139,10 @@ maintains <em>gawk</em> (<em>GNU awk</em>) and its documentation.</p>
         <td><em>Character</em></td>
         <td>&nbsp;</td>
     </tr>
-    <tr>
-        <td><font size="2" face="Courier New">h, j,&nbsp;<br>
-        k, l&nbsp;</font></td>
-        <td valign="bottom">Left, down, up, right</td>
+    <tr><td><code>h</code></td><td>Left, one space</td></tr>
+    <tr><td><code>j</code></td><td>down, one line</td></tr>
+    <tr><td><code>k</code></td><td>up, one line</td></tr>
+    <tr><td><code>l</code></td><td>right, one space</td></tr>
     </tr>
     <tr>
         <td>&nbsp;</td>
@@ -152,24 +153,20 @@ maintains <em>gawk</em> (<em>GNU awk</em>) and its documentation.</p>
         <td>&nbsp;</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">w, W,&nbsp;<br>
-        b, B&nbsp;</font></td>
+        <td><code>w, W,&nbsp;<br>
+        b, B&nbsp;</code></td>
         <td valign="bottom">Forward, backward by word</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">e, E&nbsp;</font></td>
+        <td><code>e, E&nbsp;</code></td>
         <td>End of word</td>
     </tr>
+    <tr><td><code>(</code></td><td>Beginning of current sentence</td></tr>
+    <tr><td><code>)</code></td><td>End of current sentence</td></tr>
+    <tr><td><code>{</code></td><td>Beginning of current paragraph</td></tr>
+    <tr><td><code>}</code></td><td>End of current paragraph</td></tr>
     <tr>
-        <td><font size="2" face="Courier New">), (&nbsp;</font></td>
-        <td>Beginning of next, previous sentence</td>
-    </tr>
-    <tr>
-        <td><font size="2" face="Courier New">}, {&nbsp;</font></td>
-        <td>Beginning of next, previous paragraph</td>
-    </tr>
-    <tr>
-        <td><font size="2" face="Courier New">]], [[&nbsp;</font></td>
+        <td><code>]], [[&nbsp;</code></td>
         <td>Beginning of next, previous section</td>
     </tr>
     <tr>
@@ -181,45 +178,47 @@ maintains <em>gawk</em> (<em>GNU awk</em>) and its documentation.</p>
         <td>&nbsp;</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New"><strong>RETURN</strong></font></td>
+        <td><code>RETURN</code></td>
         <td>First nonblank character of next line</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">0, $&nbsp;</font></td>
-        <td>First, last position of current line</td>
+        <td><code>0</code></td><td>First position of current line</td>
+        <td><code>$</code></td><td>Last position of current line</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">^&nbsp;</font></td>
+        <td><code>^&nbsp;</code></td>
         <td>First nonblank character of current line</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">+, -&nbsp;</font></td>
+        <td><code>+, -&nbsp;</code></td>
         <td>First nonblank character of next, previous line</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">n|&nbsp;</font></td>
+        <td><code>n|&nbsp;</code></td>
         <td>Column <em>n</em> of current line</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">H&nbsp;</font></td>
+        <td><code>H&nbsp;</code></td>
         <td>Top line of screen</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">M&nbsp;</font></td>
+        <td><code>M&nbsp;</code></td>
         <td>Middle line of screen</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">L&nbsp;</font></td>
+        <td><code>L&nbsp;</code></td>
         <td>Last line of screen</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">nH&nbsp;</font></td>
+        <td><code>nH&nbsp;</code></td>
         <td><em>n</em> (number) of lines after top line</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">nL&nbsp;</font></td>
+        <td><code>nL&nbsp;</code></td>
         <td><em>n</em> (number) of lines before last line</td>
     </tr>
+    <tr><td><code>gg</code></td><td>Top of file</td></tr>
+    <tr><td><code>G</code></td><td>Bottom of file</td></tr>
     <tr><td><code>Ctrl-Home</code></td><td>Go to the first nonwhitespace character of the first line of the file</td></tr>
     <tr><td><code>Ctrl-End</code></td><td>Go to the end of file</td></tr>
     <tr><td><code>{count}%</code></td><td>Go to the line <var>count</var> percent into the file, putting the cursor on the first nonblank line</td></tr>
@@ -233,34 +232,34 @@ maintains <em>gawk</em> (<em>GNU awk</em>) and its documentation.</p>
         <td>&nbsp;</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New"><strong>CTRL-F,
-        CTRL-B</strong>&nbsp;</font></td>
+        <td><code><strong>CTRL-F,
+        CTRL-B</strong>&nbsp;</code></td>
         <td>Scroll forward, backward one screen</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New"><strong>CTRL-D,
-        CTRL-U</strong>&nbsp;</font></td>
+        <td><code><strong>CTRL-D,
+        CTRL-U</strong>&nbsp;</code></td>
         <td>Scroll down, up one-half screen</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New"><strong>CTRL-E,
-        CTRL-Y</strong>&nbsp;</font></td>
+        <td><code><strong>CTRL-E,
+        CTRL-Y</strong>&nbsp;</code></td>
         <td>Show one more line at bottom, top of window</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">z<strong>RETURN</strong>&nbsp;</font></td>
+        <td><code>z<strong>RETURN</strong>&nbsp;</code></td>
         <td>Reposition line with cursor to top of screen</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">z.&nbsp;</font></td>
+        <td><code>z.&nbsp;</code></td>
         <td>Reposition line with cursor to middle of screen</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">z-&nbsp;</font></td>
+        <td><code>z-&nbsp;</code></td>
         <td>Reposition line with cursor to bottom of screen</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New"><strong>CTRL-L</strong>&nbsp;</font></td>
+        <td><code><strong>CTRL-L</strong>&nbsp;</code></td>
         <td>Redraw screen (without scrolling)</td>
     </tr>
     <tr>
@@ -272,47 +271,47 @@ maintains <em>gawk</em> (<em>GNU awk</em>) and its documentation.</p>
         <td>&nbsp;</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">/pattern&nbsp;</font></td>
+        <td><code>/pattern&nbsp;</code></td>
         <td>Search forward for <em>pattern</em></td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">?pattern&nbsp;</font></td>
+        <td><code>?pattern&nbsp;</code></td>
         <td>Search backward for <em>pattern</em></td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">n, N&nbsp;</font></td>
+        <td><code>n, N&nbsp;</code></td>
         <td>Repeat last search in the same, opposite direction</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">/, ?&nbsp;</font></td>
+        <td><code>/, ?&nbsp;</code></td>
         <td>Repeat previous search forward, backward</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">fx&nbsp;</font></td>
+        <td><code>fx&nbsp;</code></td>
         <td>Search forward for character <em>x</em> in current
         line</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">Fx&nbsp;</font></td>
+        <td><code>Fx&nbsp;</code></td>
         <td>Search backward for character <em>x</em> in current
         line</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">tx&nbsp;</font></td>
+        <td><code>tx&nbsp;</code></td>
         <td>Search forward to character before <em>x</em> in
         current line</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">Tx&nbsp;</font></td>
+        <td><code>Tx&nbsp;</code></td>
         <td>Search backward to character after <em>x</em> in
         current line</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">;&nbsp;</font></td>
+        <td><code>;&nbsp;</code></td>
         <td>Repeat previous current line search</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">,&nbsp;</font></td>
+        <td><code>,&nbsp;</code></td>
         <td>Repeat previous current line search in opposite
         direction</td>
     </tr>
@@ -325,19 +324,19 @@ maintains <em>gawk</em> (<em>GNU awk</em>) and its documentation.</p>
         <td>&nbsp;</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New"><strong>CTRL-G</strong></font></td>
+        <td><code><strong>CTRL-G</strong></code></td>
         <td>Display current line number</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">nG&nbsp;</font></td>
+        <td><code>nG&nbsp;</code></td>
         <td>Move to line number <em>n</em></td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">G&nbsp;</font></td>
+        <td><code>G&nbsp;</code></td>
         <td>Move to last line in file</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">:n&nbsp;</font></td>
+        <td><code>:n&nbsp;</code></td>
         <td>Move to line <em>n</em> in file</td>
     </tr>
     <tr>
@@ -349,23 +348,23 @@ maintains <em>gawk</em> (<em>GNU awk</em>) and its documentation.</p>
         <td>&nbsp;</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">mx&nbsp;</font></td>
+        <td><code>mx&nbsp;</code></td>
         <td>Mark current position as <em>x</em></td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">`x&nbsp;</font></td>
+        <td><code>`x&nbsp;</code></td>
         <td>(Backquote) Moves the cursor to the character marked by <em>x</em></td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">``&nbsp;</font></td>
+        <td><code>``&nbsp;</code></td>
         <td>(Backquotes) Returns to the exact position of the previous mark or context after a move</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">'x&nbsp;</font></td>
+        <td><code>'x&nbsp;</code></td>
         <td>(Apostrophe) Moves the cursor to the first character of the line marked by <em>x</em></td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">''&nbsp;</font></td>
+        <td><code>''&nbsp;</code></td>
         <td>(Apostrophes) Returns to the beginning of the line of the previous mark or context</td>
     </tr>
 </tbody></table>
@@ -386,15 +385,15 @@ maintains <em>gawk</em> (<em>GNU awk</em>) and its documentation.</p>
         <td>&nbsp;</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">i, a&nbsp;</font></td>
+        <td><code>i, a&nbsp;</code></td>
         <td>Insert text before, after cursor</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">I, A&nbsp;</font></td>
+        <td><code>I, A&nbsp;</code></td>
         <td>Insert text before beginning, after end of line</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">o, O&nbsp;</font></td>
+        <td><code>o, O&nbsp;</code></td>
         <td>Open new line for text below, above cursor</td>
     </tr>
     <tr>
@@ -406,35 +405,35 @@ maintains <em>gawk</em> (<em>GNU awk</em>) and its documentation.</p>
         <td>&nbsp;</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">r&nbsp;</font></td>
+        <td><code>r&nbsp;</code></td>
         <td>Replace character</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">cw&nbsp;</font></td>
+        <td><code>cw&nbsp;</code></td>
         <td>Change word</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">cc&nbsp;</font></td>
+        <td><code>cc&nbsp;</code></td>
         <td>Change current line</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">cmotion&nbsp;</font></td>
+        <td><code>cmotion&nbsp;</code></td>
         <td>Change text between the cursor and the target of <em>motion</em></td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">C&nbsp;</font></td>
+        <td><code>C&nbsp;</code></td>
         <td>Change to end of line</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">R&nbsp;</font></td>
+        <td><code>R&nbsp;</code></td>
         <td>Type over (overwrite) characters</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">s&nbsp;</font></td>
+        <td><code>s&nbsp;</code></td>
         <td>Substitute: delete character and insert new text</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">S&nbsp;</font></td>
+        <td><code>S&nbsp;</code></td>
         <td>Substitute: delete current line and insert new text</td>
     </tr>
     <tr>
@@ -446,35 +445,35 @@ maintains <em>gawk</em> (<em>GNU awk</em>) and its documentation.</p>
         <td>&nbsp;</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">x&nbsp;</font></td>
+        <td><code>x&nbsp;</code></td>
         <td>Delete character under cursor</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">X&nbsp;</font></td>
+        <td><code>X&nbsp;</code></td>
         <td>Delete character before cursor</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">dw&nbsp;</font></td>
+        <td><code>dw&nbsp;</code></td>
         <td>Delete word</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">dd&nbsp;</font></td>
+        <td><code>dd&nbsp;</code></td>
         <td>Delete current line</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">dmotion&nbsp;</font></td>
+        <td><code>dmotion&nbsp;</code></td>
         <td>Delete text between the cursor and the target of <em>motion</em></td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">D&nbsp;</font></td>
+        <td><code>D&nbsp;</code></td>
         <td>Delete to end of line</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">p, P&nbsp;</font></td>
+        <td><code>p, P&nbsp;</code></td>
         <td>Put deleted text after, before cursor</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">"np&nbsp;</font></td>
+        <td><codenp&nbsp;</code></td>
         <td>Put text from delete buffer number <em>n</em> after
         cursor (for last nine deletions)</td>
     </tr>
@@ -487,28 +486,28 @@ maintains <em>gawk</em> (<em>GNU awk</em>) and its documentation.</p>
         <td>&nbsp;</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">yw&nbsp;</font></td>
+        <td><code>yw&nbsp;</code></td>
         <td>Yank (copy) word</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">yy&nbsp;</font></td>
+        <td><code>yy&nbsp;</code></td>
         <td>Yank cureent line</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">"ayy&nbsp;</font></td>
+        <td><codeayy&nbsp;</code></td>
         <td>Yank current line into named buffer <em>a</em> (a-z).
         Uppercase names append text</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">ymotion&nbsp;</font></td>
+        <td><code>ymotion&nbsp;</code></td>
         <td>Yank text between the cursor and the target of <em>motion</em></td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">p, P&nbsp;</font></td>
+        <td><code>p, P&nbsp;</code></td>
         <td>Put yanked text after, before cursor</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">"aPv</font></td>
+        <td><codeaPv</code></td>
         <td>Put text from buffer <em>a</em> before cursor (a-z)</td>
     </tr>
     <tr>
@@ -520,15 +519,15 @@ maintains <em>gawk</em> (<em>GNU awk</em>) and its documentation.</p>
         <td>&nbsp;</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">.&nbsp;</font></td>
+        <td><code>.&nbsp;</code></td>
         <td>Repeat last edit command</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">u, U&nbsp;</font></td>
+        <td><code>u, U&nbsp;</code></td>
         <td>Undo last edit, restore current line</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">J&nbsp;</font></td>
+        <td><code>J&nbsp;</code></td>
         <td>Join two lines</td>
     </tr>
     <tr>
@@ -540,28 +539,28 @@ maintains <em>gawk</em> (<em>GNU awk</em>) and its documentation.</p>
         <td>&nbsp;</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">:d&nbsp;</font></td>
+        <td><code>:d&nbsp;</code></td>
         <td>Delete lines</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">:m&nbsp;</font></td>
+        <td><code>:m&nbsp;</code></td>
         <td>Move lines</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">:co </font><font size="3">or</font><font size="2" face="Courier New">
-        :t&nbsp;</font></td>
+        <td><code>
+        :t&nbsp;</code></td>
         <td>Copy lines</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">:.,$d&nbsp;</font></td>
+        <td><code>:.,$d&nbsp;</code></td>
         <td>Delete from current line to end of file</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">:30,60m0&nbsp;</font></td>
+        <td><code>:30,60m0&nbsp;</code></td>
         <td>Move lines 30 through 60 to top of file</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">:.,/pattern/co$&nbsp;</font></td>
+        <td><code>:.,/pattern/co$&nbsp;</code></td>
         <td>Copy from current line through line containing <em>pattern</em>
         to end of file</td>
     </tr>
@@ -575,84 +574,84 @@ maintains <em>gawk</em> (<em>GNU awk</em>) and its documentation.</p>
         <td><strong>Meaning</strong></td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">ZZ&nbsp;</font></td>
+        <td><code>ZZ&nbsp;</code></td>
         <td>Write (save) and quit file</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">:x&nbsp;</font></td>
+        <td><code>:x&nbsp;</code></td>
         <td>Write (save) and quit file</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">:wq&nbsp;</font></td>
+        <td><code>:wq&nbsp;</code></td>
         <td>Write (save) and quit file</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">:w&nbsp;</font></td>
+        <td><code>:w&nbsp;</code></td>
         <td>Write (save) file</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">:w!&nbsp;</font></td>
+        <td><code>:w!&nbsp;</code></td>
         <td>Write (save) file, overriding protection</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">:30,60w
-        newfile&nbsp;</font></td>
+        <td><code>:30,60w
+        newfile&nbsp;</code></td>
         <td>Write from line 30 through line 60 as <em>newfile</em></td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">:30,60w&gt;&gt;
-        file&nbsp;</font></td>
+        <td><code>:30,60w&gt;&gt;
+        file&nbsp;</code></td>
         <td>Write from line 30 through line 60 and append to <em>file</em></td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">:w %.new&nbsp;</font></td>
+        <td><code>:w %.new&nbsp;</code></td>
         <td>Write current buffer named <em>file</em> as <em>file.new</em></td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">:q&nbsp;</font></td>
+        <td><code>:q&nbsp;</code></td>
         <td>Quit file</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">:q!&nbsp;</font></td>
+        <td><code>:q!&nbsp;</code></td>
         <td>Quit file, overriding protection</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">Q&nbsp;</font></td>
+        <td><code>Q&nbsp;</code></td>
         <td>Quit <em>vi</em> and invoke <em>ex</em></td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">:e file2&nbsp;</font></td>
+        <td><code>:e file2&nbsp;</code></td>
         <td>Edit <em>file2</em> without leaving <em>vi</em></td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">:n&nbsp;</font></td>
+        <td><code>:n&nbsp;</code></td>
         <td>Edit next file</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">:e!&nbsp;</font></td>
+        <td><code>:e!&nbsp;</code></td>
         <td>Return to version of current file at time of last
         write (save)</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">:e #&nbsp;</font></td>
+        <td><code>:e #&nbsp;</code></td>
         <td>Edit alternate file</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">:vi&nbsp;</font></td>
+        <td><code>:vi&nbsp;</code></td>
         <td>Invoke <em>vi</em> from <em>ex</em></td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">:&nbsp;</font></td>
+        <td><code>:&nbsp;</code></td>
         <td>Invoke one <em>ex</em> command from <em>vi</em>
         editor</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">%&nbsp;</font></td>
+        <td><code>%&nbsp;</code></td>
         <td>Current filename (substitutes into <em>ex</em>
         command line)</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">#&nbsp;</font></td>
+        <td><code>#&nbsp;</code></td>
         <td>Alternate filename (substitutes into <em>ex</em>
         command line)</td>
     </tr>
@@ -666,17 +665,51 @@ maintains <em>gawk</em> (<em>GNU awk</em>) and its documentation.</p>
         <td><strong>Buffer Use</strong></td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">1-9&nbsp;</font></td>
+        <td><code>1-9&nbsp;</code></td>
         <td>The last nine deletions, from most to least recent</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">a-z&nbsp;</font></td>
+        <td><code>a-z&nbsp;</code></td>
         <td>Named buffers to use as needed; uppercase letters
         append to buffer</td>
     </tr>
 </tbody></table>
 
 <h2><em>Buffer and Marking Commands</em></h2>
+<table border="0">
+<tbody>
+	<tr><td><strong>Command</strong></td><td><strong>Action</strong></td></tr>
+	<tr><td><code>:buffers</code></td><td></td></tr>
+	<tr><td><code>:ls</code></td><td></td></tr>
+	<tr><td><code>:files</code></td><td></td></tr>
+	<tr><td><code>:buffer N</code></td><td></td></tr>
+	<tr><td><code>:bn[ext]</code></td><td></td></tr>
+	<tr><td><code>:bp[revious]</code></td><td></td></tr>
+	<tr><td><code>:bf[irst]</code></td><td></td></tr>
+	<tr><td><code>:bl[ast]</code></td><td></td></tr>
+	<tr><td><code>:ba[ll]</code></td><td></td></tr>
+	<tr><td><code></code></td><td></td></tr>
+	<tr><td><code></code></td><td></td></tr>
+</tbody>
+</table>
+
+<table border="0">
+<tbody>
+	<tr><td><strong>Command</strong></td><td><strong>Action</strong></td></tr>
+	<tr><td><code>:tabedit [file]</code></td><td></td></tr>
+	<tr><td><code>:tabclose</code></td><td></td></tr>
+	<tr><td><code>:tabnext n</code></td><td></td></tr>
+	<tr><td><code>ngt</code></td><td></td></tr>
+	<tr><td><code>:tabs</code></td><td></td></tr>
+	<tr><td><code>:tabprevious n</code></td><td></td></tr>
+	<tr><td><code>ngT</code></td><td></td></tr>
+	<tr><td><code>:tabdo cmd</code></td><td></td></tr>
+	<tr><td><code></code></td><td></td></tr>
+	<tr><td><code></code></td><td></td></tr>
+	<tr><td><code></code></td><td></td></tr>
+</tbody>
+</table>
+
 
 <table border="0">
     <tbody><tr>
@@ -684,27 +717,27 @@ maintains <em>gawk</em> (<em>GNU awk</em>) and its documentation.</p>
         <td><strong>Meaning</strong></td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">"bcommand&nbsp;</font></td>
+	<td><code>bcommand&nbsp;</code></td>
         <td>Do <em>command</em> with buffer <em>b</em></td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">mx&nbsp;</font></td>
+        <td><code>mx&nbsp;</code></td>
         <td>Mark current position with <em>x</em></td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">'x&nbsp;</font></td>
+        <td><code>'x&nbsp;</code></td>
         <td>Move cursor to first character of line marked by <em>x</em></td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">`x&nbsp;</font></td>
+        <td><code>`x&nbsp;</code></td>
         <td>Move cursor to character marked by <em>x</em></td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">``&nbsp;</font></td>
+        <td><code>``&nbsp;</code></td>
         <td>Return to exact position of previous mark or context</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">''&nbsp;</font></td>
+        <td><code>''&nbsp;</code></td>
         <td>Return to beginning of the line of previous mark or
         context</td>
     </tr>
@@ -738,26 +771,26 @@ maintains <em>gawk</em> (<em>GNU awk</em>) and its documentation.</p>
 
 <h2><em>Command and Input Mode Maps</em></h2>
 
-<p><font size="2" face="Courier New">:map x sequence</font></p>
+<p><code>:map x sequence</code></p>
 
 <blockquote>
     <p>Define character(s) <em>x</em> as a <em>sequence</em> of
     editing commands.</p>
 </blockquote>
 
-<p><font size="2" face="Courier New">:unmap x</font></p>
+<p><code>:unmap x</code></p>
 
 <blockquote>
     <p>Disable <em>sequence</em> defined for <em>x</em></p>
 </blockquote>
 
-<p><font size="2" face="Courier New">:map</font></p>
+<p><code>:map</code></p>
 
 <blockquote>
     <p>List the characters that are currently mapped .</p>
 </blockquote>
 
-<p><font size="2" face="Courier New">:map! x sequence</font></p>
+<p><code>:map! x sequence</code></p>
 
 <blockquote>
     <p>Define character(s) <em>x</em> as a <em>sequence</em> of
@@ -765,7 +798,7 @@ maintains <em>gawk</em> (<em>GNU awk</em>) and its documentation.</p>
     mode.</p>
 </blockquote>
 
-<p><font size="2" face="Courier New">:unmap! x</font></p>
+<p><code>:unmap! x</code></p>
 
 <blockquote>
     <p>Disable the <em>sequence</em> defined for the input mode
@@ -786,20 +819,20 @@ can take several forms:</p>
 
 <blockquote>
     <p>All the characters must be txped within one second. The
-    value of <font size="2" face="Courier New">notimeout</font>
+    value of <code>notimeout</code>
     changes the behaviour.</p>
 </blockquote>
 
 <table border="0">
     <tbody><tr>
-        <td><font size="2" face="Courier New">#n </font></td>
+        <td><code>#n </code></td>
         <td>Function key notation: a # followed by a digit <em>n</em>
         represents the sequence of characters sent by the
         terminal's function number <em>n</em></td>
     </tr>
 </tbody></table>
 
-<p>To enter characters such as Escape (<font size="2" face="Courier New">^]</font>) or carriage return (<font size="2" face="Courier New">^M</font>) first type a <font size="2" face="Courier New"><strong>CTRL-V</strong></font> (<font size="2" face="Courier New">^V</font>).</p>
+<p>To enter characters such as Escape (<code>^V</code>).</p>
 
 <h2><em>Executable Buffers</em></h2>
 
@@ -812,18 +845,18 @@ with a few keystrokes. Here's how it's done:</p>
         command <em>preceded by a colon</em>; return to command
         mode.</li>
     <li>Delete the text into a named buffer.</li>
-    <li>Execute the buffer with the <font size="2" face="Courier New">@</font> command followed by the
+    <li>Execute the buffer with the <code>@</code> command followed by the
         buffer letter.</li>
 </ol>
 
-<p>The ex command: <font size="2" face="Courier New">@buf-name</font>
+<p>The ex command: <code>@buf-name</code>
 works similarly.</p>
 
-<p>Some versions treat <font size="2" face="Courier New">*</font>
-identically to <font size="2" face="Courier New">@</font> when
+<p>Some versions treat <code>*</code>
+identically to <code>@</code> when
 used from the <em>ex</em> command line. In addition, if the
-buffer character supplied after the <font size="2" face="Courier New">@</font> or <font size="2" face="Courier New">*</font>
-commands is <font size="2" face="Courier New">*</font>, the
+buffer character supplied after the <code>*</code>
+commands is <code>*</code>, the
 command is taken from the default (unnamed) buffer.</p>
 
 <h2><em>Automatic Indentation</em></h2>
@@ -831,52 +864,52 @@ command is taken from the default (unnamed) buffer.</p>
 <p>You enable automatic indentation with the command:</p>
 
 <blockquote>
-    <p><font size="2" face="Courier New">:set autoindent</font></p>
+    <p><code>:set autoindent</code></p>
 </blockquote>
 
 <p>Four special input sequences affect automatic indentation:</p>
 
 <table border="0">
     <tbody><tr>
-        <td><font size="2" face="Courier New">^T </font></td>
+        <td><code>^T </code></td>
         <td>Add one level of indentation; typed in insert mode</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">^D </font></td>
+        <td><code>^D </code></td>
         <td>Remove one level of indentation; type in insert mode</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">^ ^D&nbsp;</font></td>
+        <td><code>^ ^D&nbsp;</code></td>
         <td>Shift the cursor back to the beginning of the line,
         but only for the current line*</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">0 ^D&nbsp;</font></td>
+        <td><code>0 ^D&nbsp;</code></td>
         <td>Shift the cursor back to the beginning of the line
         and reset the current auto-indent level to zero+</td>
     </tr>
 </tbody></table>
 
 <blockquote>
-    <p>* <font size="2" face="Courier New">^ ^D</font><font size="3"> and </font><font size="2" face="Courier New">0 ^D</font><font size="3"> are not in <em>elvis</em> 2.0<br>
+    <p>* <code> are not in <em>elvis</em> 2.0<br>
     + The nvi 1.79 documentation has these two commands switched,
-    but the program actually behaves as described here.</font></p>
+    but the program actually behaves as described here.</code></p>
 </blockquote>
 
 <p>Two commands can be used for shifting source:</p>
 
 <table border="0">
     <tbody><tr>
-        <td>&lt;&lt;<font size="2" face="Courier New">&nbsp;</font></td>
+        <td>&lt;&lt;<code>&nbsp;</code></td>
         <td>Shift a line left eight spaces</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">&gt;&gt;&nbsp;</font></td>
+        <td><code>&gt;&gt;&nbsp;</code></td>
         <td>Shift a line right eight spaces</td>
     </tr>
 </tbody></table>
 
-<p>The default shift is the value of <font size="2" face="Courier New">shiftwidth</font>, usually eight spaces.</p>
+<p>The default shift is the value of <code>shiftwidth</code>, usually eight spaces.</p>
 
 <h1><a name="4. Substitution and Regular Expressions"><em>4.
 Substitution and Regular Expressions</em></a></h1>
@@ -886,43 +919,43 @@ Substitution and Regular Expressions</em></a></h1>
 
 <table border="0">
     <tbody><tr>
-        <td valign="top"><font size="2" face="Courier New">. </font></td>
+        <td valign="top"><code>. </code></td>
         <td valign="top">Matches any <em>single</em> character
         except newline. Remember that spaces are treated as
         characters.</td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">* </font></td>
+        <td valign="top"><code>* </code></td>
         <td valign="top">Matches zero of more (as many as there
         are) of the single character that immediately precedes
-        it. The <font size="2" face="Courier New">*</font> can
-        follow a metacharacter, such as <font size="2" face="Courier New">.</font> or a range in brackets.</td>
+        it. The <code>*</code> can
+        follow a metacharacter, such as <code>.</code> or a range in brackets.</td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">^ </font></td>
+        <td valign="top"><code>^ </code></td>
         <td valign="top">When used at the start of a regular
-        expression, <font size="2" face="Courier New">^</font>
+        expression, <code>^</code>
         requires that the following regular expression be found
         at the beginning of the line. When not at the beginning
-        of a regular expression, <font size="2" face="Courier New">^</font> stands for itself.</td>
+        of a regular expression, <code>^</code> stands for itself.</td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">$ </font></td>
+        <td valign="top"><code>$ </code></td>
         <td valign="top">When used at the end of a regular
-        expression, <font size="2" face="Courier New">$</font>
+        expression, <code>$</code>
         requires that the following regular expression be found
         at the end of the line. When not at the end of a regular
-        expression, <font size="2" face="Courier New">^</font>
+        expression, <code>^</code>
         stands for itself.</td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">\ </font></td>
+        <td valign="top"><code>\ </code></td>
         <td valign="top">Treats the following character as an
-        ordinary character. (Use <font size="2" face="Courier New">\\</font> to get a literal backslash.)</td>
+        ordinary character. (Use <code>\\</code> to get a literal backslash.)</td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">[&nbsp;]
-        </font></td>
+        <td valign="top"><code>[&nbsp;]
+        </code></td>
         <td valign="top">Matches any <em>one</em> of the
         characters enclosed between the “left bracket” and “right bracket”. A range of
         consecutive characters can be specified by separating the
@@ -932,47 +965,47 @@ Substitution and Regular Expressions</em></a></h1>
         <p>Most metacharacters lose their special meaning inside
         brackets, so you don't need to escape them if you want to
         use them as ordinary characters. Within brackets, the
-        three metacharacters you still need to escape are <font size="2" face="Courier New">\ - ]</font>. (The hypen (<font size="2" face="Courier New">-</font>) acquires meaning as
+        three metacharacters you still need to escape are <code>-</code>) acquires meaning as
         a range specifier; to use an actual hypen, you can also
         place it as the first character inside brackets.)</p>
-        <p>A caret (<font size="2" face="Courier New">^</font>)
+        <p>A caret (<code>^</code>)
         has special meaning only when it's the first character
         inside brackets, but in this case, the meaning differs
-        from that of the normal <font size="2" face="Courier New">^</font>
-        metacharacter. As the first character within brackets, a <font size="2" face="Courier New">^</font> reverses their
+        from that of the normal <code>^</code>
+        metacharacter. As the first character within brackets, a <code>^</code> reverses their
         sense: the brackets match any one character not in the
-        list. For example, <font size="2" face="Courier New">[^a-z]</font>
+        list. For example, <code>[^a-z]</code>
         matches any character that is not a lowercase letter.</p>
         </td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">\(&nbsp;\)
-        </font></td>
+        <td valign="top"><code>\(&nbsp;\)
+        </code></td>
         <td valign="top">Saves the pattern enclosed between \(
         and \) into a special holding space or "hold
         buffer". up to nine patterns can be saved in this
         way on a single line.<p>You can also use the \n notation
         within a search or substitute string:</p>
         <blockquote>
-            <p><font size="2" face="Courier New">:s/\(abcd\)\1/alphabet-soup/</font></p>
+            <p><code>:s/\(abcd\)\1/alphabet-soup/</code></p>
         </blockquote>
-        <p>changes <font size="2" face="Courier New">abcdabcd</font>
-        into <font size="2" face="Courier New">alphabet-soup</font>.*</p>
+        <p>changes <code>abcdabcd</code>
+        into <code>alphabet-soup</code>.*</p>
         <p>* This works with <em>vi</em>, <em>nvi</em>, and <em>vim</em>,
         but not with <em>elvis</em> 2.0 , <em>vile</em> 7.4, or <em>vile</em>
         8.0.</p>
         </td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">\&lt;&nbsp;\&gt;
-        </font></td>
-        <td valign="top">Matches characters at the beginning (<font size="2" face="Courier New">\&lt;</font>) or end (<font size="2" face="Courier New">\&gt;</font>) of a word. The
+        <td valign="top"><code>\&lt;&nbsp;\&gt;
+        </code></td>
+        <td valign="top">Matches characters at the beginning (<code>\&gt;</code>) of a word. The
         end or beginning of a word determined either by a
-        punctuation mark or by a space. Unlike <font size="2" face="Courier New">\(...\)</font>, these don't have to be
+        punctuation mark or by a space. Unlike <code>\(...\)</code>, these don't have to be
         used in matched pairs.</td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">~</font></td>
+        <td valign="top"><code>~</code></td>
         <td valign="top">Matches whatever regular expression was
         used in the <em>last</em> search.</td>
     </tr>
@@ -985,7 +1018,7 @@ Substitution and Regular Expressions</em></a></h1>
 <p><em>Character classes</em></p>
 
 <blockquote>
-    <p>A POSIX character class consists of keywords bracketed by <font size="2" face="Courier New">[:</font> and <font size="2" face="Courier New">:]</font>. The keywords describe different
+    <p>A POSIX character class consists of keywords bracketed by <code>:]</code>. The keywords describe different
     classes of characters such as alphabetic characters, control
     characters, and so on (see the following table).</p>
 </blockquote>
@@ -995,15 +1028,15 @@ Substitution and Regular Expressions</em></a></h1>
 <blockquote>
     <p>A collating symbol is a multicharacter sequence that
     should be treated as a unit. It consists of the characters
-    bracketed by <font size="2" face="Courier New">[,</font> and <font size="2" face="Courier New">,]</font>.</p>
+    bracketed by <code>,]</code>.</p>
 </blockquote>
 
 <p><em>Equivalence classes</em></p>
 
 <blockquote>
     <p>An equivalence class lists a set of characters that should
-    be considered equivalent, such as <font size="2" face="Courier New">e</font> and <font size="2" face="Courier New">è</font>. It consists of a named element
-    from the locale, bracketed by <font size="2" face="Courier New">[=</font> and <font size="2" face="Courier New">=]</font>.</p>
+    be considered equivalent, such as <code>è</code>. It consists of a named element
+    from the locale, bracketed by <code>=]</code>.</p>
 </blockquote>
 
 <p>All three contructs must appear inside square brackets of a
@@ -1017,51 +1050,51 @@ bracket expression.</p>
         <td><strong>Matching Characters</strong></td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">[:alnum:] </font></td>
+        <td><code>[:alnum:] </code></td>
         <td>Alphanumeric characters</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">[:alpha:] </font></td>
+        <td><code>[:alpha:] </code></td>
         <td>Alphabetic characters</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">[:blank:] </font></td>
+        <td><code>[:blank:] </code></td>
         <td>Space and tab characters</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">[:cntrl:] </font></td>
+        <td><code>[:cntrl:] </code></td>
         <td>Control characters</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">[:digit:] </font></td>
+        <td><code>[:digit:] </code></td>
         <td>Numeric characters</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">[:graph:] </font></td>
+        <td><code>[:graph:] </code></td>
         <td>Printable and visible (nonspace) characters</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">[:lower:] </font></td>
+        <td><code>[:lower:] </code></td>
         <td>lowercase characters</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">[:print:] </font></td>
+        <td><code>[:print:] </code></td>
         <td>Printable characters (includes whitespace)</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">[:punct:] </font></td>
+        <td><code>[:punct:] </code></td>
         <td>Punctuation characters</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">[:space:] </font></td>
+        <td><code>[:space:] </code></td>
         <td>Whitespace characters</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">[:upper:] </font></td>
+        <td><code>[:upper:] </code></td>
         <td>Uppercase characters</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">[:xdigit:] </font></td>
+        <td><code>[:xdigit:] </code></td>
         <td>Hexdecimal digits</td>
     </tr>
 </tbody></table>
@@ -1070,76 +1103,76 @@ bracket expression.</p>
 
 <table border="0">
     <tbody><tr>
-        <td valign="top"><font size="2" face="Courier New">\n&nbsp;</font></td>
+        <td valign="top"><code>\n&nbsp;</code></td>
         <td valign="top">Is replaced with the text matched by the
-        <em>n</em>th pattern previously saved by <font size="2" face="Courier New">\(</font> and <font size="2" face="Courier New">\)</font>, where <em>n</em> is a
+        <em>n</em>th pattern previously saved by <code>\)</code>, where <em>n</em> is a
         number from 1 to 9, and previously saved patterns (kept
         in hold buffers) are counted from the left on the line.</td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">\&nbsp;</font></td>
+        <td valign="top"><code>\&nbsp;</code></td>
         <td valign="top">Treats the following special characters
         as an ordinary character. To specify a real backslash,
-        type two in a row (<font size="2" face="Courier New">\\</font>).</td>
+        type two in a row (<code>\\</code>).</td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">&amp;&nbsp;</font></td>
+        <td valign="top"><code>&amp;&nbsp;</code></td>
         <td valign="top">Is replaced with the entire text matched
         by the search pattern when used in a replacement string.
         This is useful when you want to avoid retyping text.</td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">~ </font></td>
+        <td valign="top"><code>~ </code></td>
         <td valign="top">The string found is replaced with the
         replacement text specified in the last substitute
         command. This is useful for repeating an edit.</td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">\u or
-        \l&nbsp;</font></td>
+        <td valign="top"><code>\u or
+        \l&nbsp;</code></td>
         <td valign="top">Changes the next character in the
         replacement string to upper- or lowercase, respectively.</td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">\U&nbsp;or&nbsp;\L,&nbsp;<br>
-        \e&nbsp;or&nbsp;\E&nbsp;</font></td>
-        <td valign="top"><font size="2" face="Courier New">\U</font>
-        and <font size="2" face="Courier New">\L</font> are
-        similar to <font size="2" face="Courier New">\u</font> or
-        <font size="2" face="Courier New">\l</font>, but all
+        <td valign="top"><code>\U&nbsp;or&nbsp;\L,&nbsp;<br>
+        \e&nbsp;or&nbsp;\E&nbsp;</code></td>
+        <td valign="top"><code>\U</code>
+        and <code>\L</code> are
+        similar to <code>\u</code> or
+        <code>\l</code>, but all
         following characters are converted to upper- or lowercase
-        until the end of the replacement string or until <font size="2" face="Courier New">\e</font> or <font size="2" face="Courier New">\E</font> is reached. If there is no <font size="2" face="Courier New">\e</font> or <font size="2" face="Courier New">\E</font>, all characters of the
-        replacement text affected by the <font size="2" face="Courier New">\U</font> or <font size="2" face="Courier New">\L</font>.</td>
+        until the end of the replacement string or until <code>\E</code>, all characters of the
+        replacement text affected by the <code>\L</code>.</td>
     </tr>
 </tbody></table>
 
 <h2><em>More Substitution Tricks</em></h2>
 
 <ul type="disc">
-    <li>You can instruct <em>vi</em> to ignore case by typing: <font size="2" face="Courier New">set ic</font>.</li>
-    <li>A simple <font size="2" face="Courier New">:s</font> is
-        the same as <font size="2" face="Courier New">:s//~/</font>.</li>
-    <li><font size="2" face="Courier New">:&amp;</font> is the
-        same as <font size="2" face="Courier New">:s</font>. You
-        can follow the <font size="2" face="Courier New">&amp;</font>
-        with a <font size="2" face="Courier New">g</font> to make
+    <li>You can instruct <em>vi</em> to ignore case by typing: <code>set ic</code>.</li>
+    <li>A simple <code>:s</code> is
+        the same as <code>:s//~/</code>.</li>
+    <li><code>:&amp;</code> is the
+        same as <code>:s</code>. You
+        can follow the <code>&amp;</code>
+        with a <code>g</code> to make
         the subsitution globally on the line, and even use it
         with a line range.</li>
     <li>The <strong>&amp;</strong> key can be used as a <em>vi</em>
-        command to perform the <font size="2" face="Courier New">:&amp;</font>
+        command to perform the <code>:&amp;</code>
         command, i.e., to repeat the last substitution.</li>
-    <li>The <font size="2" face="Courier New">:~</font> command
-        is similar to the <font size="2" face="Courier New">:&amp;</font>
+    <li>The <code>:~</code> command
+        is similar to the <code>:&amp;</code>
         command, but with a subtle difference. The search pattern
         used is the last regular expression used in any command,
         not necessarily the one used in the last substitute
         command.</li>
-    <li>Besides the <font size="2" face="Courier New">/</font>
+    <li>Besides the <code>/</code>
         character, you may use any nonalphanumerical,
         nonwhitespace character as your delimiter, except
-        backslash, double-quote, and the vertical bar (<font size="2" face="Courier New">\</font>, <font size="2" face="Courier New">"</font>, and <font size="2" face="Courier">|</font>).</li>
-    <li>When the <font size="2" face="Courier New">edcompatible</font>
-        option is enabled, <em>vi</em> remembers the flags (<font size="2" face="Courier New">g</font> for global and <font size="2" face="Courier New">c</font> for confirmation)
+        backslash, double-quote, and the vertical bar (<code>|</code>).</li>
+    <li>When the <code>edcompatible</code>
+        option is enabled, <em>vi</em> remembers the flags (<code>c</code> for confirmation)
         used on the last substitute and applies then to the next
         one.</li>
 </ul>
@@ -1149,7 +1182,7 @@ bracket expression.</p>
 <h2><em>Command Syntax</em></h2>
 
 <blockquote>
-    <p><font size="2" face="Courier New">:[address]command[options]</font></p>
+    <p><code>:[address]command[options]</code></p>
 </blockquote>
 
 <h2><em>Address Symbols</em></h2>
@@ -1161,79 +1194,79 @@ bracket expression.</p>
         <td valign="top"><strong>Inlcudes</strong></td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">1,$</font></td>
+        <td valign="top"><code>1,$</code></td>
         <td>&nbsp;</td>
         <td valign="top">All lines in the file</td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">x,y</font></td>
+        <td valign="top"><code>x,y</code></td>
         <td>&nbsp;</td>
         <td valign="top">Lines <em>x</em> through <em>y</em></td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">x;y</font></td>
+        <td valign="top"><code>x;y</code></td>
         <td>&nbsp;</td>
         <td valign="top">Lines <em>x</em> through <em>y</em>,
         with current line reset to <em>x</em></td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">0</font></td>
+        <td valign="top"><code>0</code></td>
         <td>&nbsp;</td>
         <td valign="top">Top of the file</td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">.</font></td>
+        <td valign="top"><code>.</code></td>
         <td>&nbsp;</td>
         <td valign="top">Current line</td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">n</font></td>
+        <td valign="top"><code>n</code></td>
         <td>&nbsp;</td>
         <td valign="top">Absolute line number <em>n</em></td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">$</font></td>
+        <td valign="top"><code>$</code></td>
         <td>&nbsp;</td>
         <td valign="top">Last line</td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">%</font></td>
+        <td valign="top"><code>%</code></td>
         <td>&nbsp;</td>
-        <td valign="top">All lines; same as <font size="2" face="Courier New">1,$</font></td>
+        <td valign="top">All lines; same as <code>1,$</code></td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">x-n</font></td>
+        <td valign="top"><code>x-n</code></td>
         <td>&nbsp;</td>
         <td valign="top"><em>n</em> lines before <em>x</em></td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">x+n</font></td>
+        <td valign="top"><code>x+n</code></td>
         <td>&nbsp;</td>
         <td valign="top"><em>n</em> lines after <em>x</em></td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">-[n]</font></td>
+        <td valign="top"><code>-[n]</code></td>
         <td>&nbsp;</td>
         <td valign="top">One or <em>n</em> lines previous</td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">+[n]</font></td>
+        <td valign="top"><code>+[n]</code></td>
         <td>&nbsp;</td>
         <td valign="top">One or <em>n</em> lines ahead</td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">'x</font></td>
+        <td valign="top"><code>'x</code></td>
         <td>&nbsp;</td>
         <td valign="top">Line marked with <em>x</em></td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">''</font></td>
+        <td valign="top"><code>''</code></td>
         <td>&nbsp;</td>
         <td valign="top">Previous mark</td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">/pat/</font><font size="3">&nbsp;or</font><font size="2" face="Courier New"><br>
-        ?pat?</font></td>
+        <td valign="top"><code><br>
+        ?pat?</code></td>
         <td>&nbsp;</td>
         <td valign="top">Ahead or back to line where <em>pat</em>
         matches</td>
@@ -1249,20 +1282,20 @@ bracket expression.</p>
         <td><strong>Meaning</strong></td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">!</font></td>
+        <td><code>!</code></td>
         <td>&nbsp;</td>
         <td>A variant form of the command</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">count</font></td>
+        <td><code>count</code></td>
         <td>&nbsp;</td>
         <td>Repeat the command <em>count</em> times</td>
     </tr>
     <tr>
-        <td><font size="2" face="Courier New">file</font></td>
+        <td><code>file</code></td>
         <td>&nbsp;</td>
-        <td>Filename: <font size="2" face="Courier">%</font> is
-        current file, <font size="2" face="Courier New">#</font>
+        <td>Filename: <code>%</code> is
+        current file, <code>#</code>
         is previous file</td>
     </tr>
 </tbody></table>
@@ -1308,291 +1341,291 @@ bracket expression.</p>
     <tr>
         <td valign="top">Abbrev</td>
         <td>&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">ab
-        [string text]</font></td>
+        <td valign="top"><code>ab
+        [string text]</code></td>
     </tr>
     <tr>
         <td valign="top">Append</td>
         <td>&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">[address]a[!]<br>
+        <td valign="top"><code>[address]a[!]<br>
         text<br>
-        .</font></td>
+        .</code></td>
     </tr>
     <tr>
         <td valign="top">Args</td>
         <td>&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">ar</font></td>
+        <td valign="top"><code>ar</code></td>
     </tr>
     <tr>
         <td valign="top">Change</td>
         <td>&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">[address]c[!]<br>
+        <td valign="top"><code>[address]c[!]<br>
         text<br>
-        .</font></td>
+        .</code></td>
     </tr>
     <tr>
         <td valign="top">Copy</td>
         <td>&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">[address]co
-        destination</font></td>
+        <td valign="top"><code>[address]co
+        destination</code></td>
     </tr>
     <tr>
         <td valign="top">Delete</td>
         <td>&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">[address]d
-        [buffer]</font></td>
+        <td valign="top"><code>[address]d
+        [buffer]</code></td>
     </tr>
     <tr>
         <td valign="top">Edit</td>
         <td>&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">e[!][+n]
-        [filename]</font></td>
+        <td valign="top"><code>e[!][+n]
+        [filename]</code></td>
     </tr>
     <tr>
         <td valign="top">File</td>
         <td>&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">f
-        [filename]</font></td>
+        <td valign="top"><code>f
+        [filename]</code></td>
     </tr>
     <tr>
         <td valign="top">Global</td>
         <td>&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">[address]g[!]/pattern/[commands]</font></td>
+        <td valign="top"><code>[address]g[!]/pattern/[commands]</code></td>
     </tr>
     <tr>
         <td valign="top">Insert</td>
         <td>&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">[address]i[!]<br>
+        <td valign="top"><code>[address]i[!]<br>
         text<br>
-        .</font></td>
+        .</code></td>
     </tr>
     <tr>
         <td valign="top">Join</td>
         <td>&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">[address]j[!][count]</font></td>
+        <td valign="top"><code>[address]j[!][count]</code></td>
     </tr>
     <tr>
         <td valign="top">K (mark)</td>
         <td>&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">[address]k
-        char</font></td>
+        <td valign="top"><code>[address]k
+        char</code></td>
     </tr>
     <tr>
         <td valign="top">List</td>
         <td>&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">[address]l
-        [count]</font></td>
+        <td valign="top"><code>[address]l
+        [count]</code></td>
     </tr>
     <tr>
         <td valign="top">Map</td>
         <td>&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">map
-        char commands</font></td>
+        <td valign="top"><code>map
+        char commands</code></td>
     </tr>
     <tr>
         <td valign="top">Mark</td>
         <td>&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">[address]ma
-        char</font></td>
+        <td valign="top"><code>[address]ma
+        char</code></td>
     </tr>
     <tr>
         <td valign="top">Move</td>
         <td>&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">[address]m
-        destination</font></td>
+        <td valign="top"><code>[address]m
+        destination</code></td>
     </tr>
     <tr>
         <td valign="top">Next</td>
         <td>&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">n[!][[+command]
-        filelist]</font></td>
+        <td valign="top"><code>n[!][[+command]
+        filelist]</code></td>
     </tr>
     <tr>
         <td valign="top">Number</td>
         <td>&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">[address]nu
-        [count]</font></td>
+        <td valign="top"><code>[address]nu
+        [count]</code></td>
     </tr>
     <tr>
         <td valign="top">Open</td>
         <td>&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">[address]o
-        [/pattern]</font></td>
+        <td valign="top"><code>[address]o
+        [/pattern]</code></td>
     </tr>
     <tr>
         <td valign="top">Preserve</td>
         <td>&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">pre</font></td>
+        <td valign="top"><code>pre</code></td>
     </tr>
     <tr>
         <td valign="top">Print</td>
         <td>&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">[address]P
+        <td valign="top"><code>[address]P
         [count]<br>
-        [address]p [count]</font></td>
+        [address]p [count]</code></td>
     </tr>
     <tr>
         <td valign="top">Put</td>
         <td>&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">[address]pu
-        [char]</font></td>
+        <td valign="top"><code>[address]pu
+        [char]</code></td>
     </tr>
     <tr>
         <td valign="top">Quit</td>
         <td>&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">q[!]</font></td>
+        <td valign="top"><code>q[!]</code></td>
     </tr>
     <tr>
         <td valign="top">Read</td>
         <td>&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">[address]r
-        filename</font></td>
+        <td valign="top"><code>[address]r
+        filename</code></td>
     </tr>
     <tr>
         <td valign="top">Read</td>
         <td>&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">[address]r
-        ! command</font></td>
+        <td valign="top"><code>[address]r
+        ! command</code></td>
     </tr>
     <tr>
         <td valign="top">Recover</td>
         <td>&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">rec</font></td>
+        <td valign="top"><code>rec</code></td>
     </tr>
     <tr>
         <td valign="top">Rewind</td>
         <td>&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">rew[!]</font></td>
+        <td valign="top"><code>rew[!]</code></td>
     </tr>
     <tr>
         <td valign="top">Set</td>
         <td>&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">set<br>
+        <td valign="top"><code>set<br>
         set option<br>
         set nooption<br>
         set option=value<br>
-        set option?</font></td>
+        set option?</code></td>
     </tr>
     <tr>
         <td valign="top">Shell</td>
         <td>&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">sh</font></td>
+        <td valign="top"><code>sh</code></td>
     </tr>
     <tr>
         <td valign="top">Source</td>
         <td>&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">so
-        filename</font></td>
+        <td valign="top"><code>so
+        filename</code></td>
     </tr>
     <tr>
         <td valign="top">Substitute</td>
         <td>&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">[addr]s
-        [/pat/repl/][opts]</font></td>
+        <td valign="top"><code>[addr]s
+        [/pat/repl/][opts]</code></td>
     </tr>
     <tr>
         <td valign="top">T (to)</td>
         <td>&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">[address]t
-        destination</font></td>
+        <td valign="top"><code>[address]t
+        destination</code></td>
     </tr>
     <tr>
         <td valign="top">Tag</td>
         <td>&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">[address]ta
-        tag</font></td>
+        <td valign="top"><code>[address]ta
+        tag</code></td>
     </tr>
     <tr>
         <td valign="top">Unabbreviate</td>
         <td>&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">una
-        word</font></td>
+        <td valign="top"><code>una
+        word</code></td>
     </tr>
     <tr>
         <td valign="top">Undo</td>
         <td>&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">u</font></td>
+        <td valign="top"><code>u</code></td>
     </tr>
     <tr>
         <td valign="top">Unmap</td>
         <td>&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">unm
-        char</font></td>
+        <td valign="top"><code>unm
+        char</code></td>
     </tr>
     <tr>
         <td valign="top">V (global exclude)</td>
         <td>&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">[address]v/pattern/[commands]</font></td>
+        <td valign="top"><code>[address]v/pattern/[commands]</code></td>
     </tr>
     <tr>
         <td valign="top">Version</td>
         <td>&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">ve</font></td>
+        <td valign="top"><code>ve</code></td>
     </tr>
     <tr>
         <td valign="top">Visual</td>
         <td>&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">[address]vi[type][count]</font></td>
+        <td valign="top"><code>[address]vi[type][count]</code></td>
     </tr>
     <tr>
         <td valign="top">Visual</td>
         <td>&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">vi
-        [+n] [filename]</font></td>
+        <td valign="top"><code>vi
+        [+n] [filename]</code></td>
     </tr>
     <tr>
         <td valign="top">Write</td>
         <td>&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">[address]w[!]
-        [[&gt;&gt;]filename]</font></td>
+        <td valign="top"><code>[address]w[!]
+        [[&gt;&gt;]filename]</code></td>
     </tr>
     <tr>
         <td valign="top">Write</td>
         <td>&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">[address]w
-        !command</font></td>
+        <td valign="top"><code>[address]w
+        !command</code></td>
     </tr>
     <tr>
         <td valign="top">Wq</td>
         <td>&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">wq[!]</font></td>
+        <td valign="top"><code>wq[!]</code></td>
     </tr>
     <tr>
         <td valign="top">Xit</td>
         <td>&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">x</font></td>
+        <td valign="top"><code>x</code></td>
     </tr>
     <tr>
         <td valign="top">Yank</td>
         <td>&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">[address]y[char][count]</font></td>
+        <td valign="top"><code>[address]y[char][count]</code></td>
     </tr>
     <tr>
         <td valign="top">Z (position line)</td>
         <td>&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">[address]z[type][count]<br>
-        </font><font size="3"><em>type</em> can be one of:</font><table border="0">
+        <td valign="top"><code>[address]z[type][count]<br>
+        </code><code>
             <tbody><tr>
-                <td valign="top"><font size="2" face="Courier New">+&nbsp;</font></td>
+                <td valign="top"><code>+&nbsp;</code></td>
                 <td valign="top">Place line at the top of the
                 window (default)</td>
             </tr>
             <tr>
-                <td valign="top"><font size="2" face="Courier New">-&nbsp;</font></td>
+                <td valign="top"><code>-&nbsp;</code></td>
                 <td valign="top">Place line at bottom of the
                 window</td>
             </tr>
             <tr>
-                <td valign="top"><font size="2" face="Courier New">.&nbsp;</font></td>
+                <td valign="top"><code>.&nbsp;</code></td>
                 <td valign="top">Place line in the center of the
                 window</td>
             </tr>
             <tr>
-                <td valign="top"><font size="2" face="Courier New">^&nbsp;</font></td>
+                <td valign="top"><code>^&nbsp;</code></td>
                 <td valign="top">Print the previous window</td>
             </tr>
             <tr>
-                <td valign="top"><font size="2" face="Courier New">=&nbsp;</font></td>
+                <td valign="top"><code>=&nbsp;</code></td>
                 <td valign="top">Place line in the center of the
                 window and leave the current line at this line</td>
             </tr>
@@ -1602,43 +1635,43 @@ bracket expression.</p>
     <tr>
         <td valign="top">!</td>
         <td>&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">[address]!command</font></td>
+        <td valign="top"><code>[address]!command</code></td>
     </tr>
     <tr>
         <td valign="top">= (line number)</td>
         <td>&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">[address]=</font></td>
+        <td valign="top"><code>[address]=</code></td>
     </tr>
     <tr>
         <td valign="top">&lt;&gt; (shift)</td>
         <td>&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">[address]&lt;[count]<br>
-        [address]&gt;[count]</font></td>
+        <td valign="top"><code>[address]&lt;[count]<br>
+        [address]&gt;[count]</code></td>
     </tr>
     <tr>
         <td valign="top">Address</td>
         <td>&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">address</font></td>
+        <td valign="top"><code>address</code></td>
     </tr>
     <tr>
         <td valign="top">Return (next line)</td>
         <td>&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New"><strong>RETURN</strong></font></td>
+        <td valign="top"><code><strong>RETURN</strong></code></td>
     </tr>
     <tr>
         <td valign="top">&amp;</td>
         <td>&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">[address]&amp;
+        <td valign="top"><code>[address]&amp;
         [options][count]<br>
-        </font><font size="3">repeat substitute</font></td>
+        </code><code>repeat substitute</code></td>
     </tr>
     <tr>
         <td valign="top">~</td>
         <td>&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">[address]~[count]<br>
-        </font><font size="3">Like </font><font size="2" face="Courier New">&amp;</font><font size="3">, but with
+        <td valign="top"><code>[address]~[count]<br>
+        </code><code>, but with
         last used regular expression; for details, see Chapter 6
-        of <em>Learning the vi Editor</em></font></td>
+        of <em>Learning the vi Editor</em></code></td>
     </tr>
 </tbody></table>
 
@@ -1650,21 +1683,21 @@ Initialization and Recovery</em></a></h1>
 <p><em>vi</em> performs the following initialization steps:</p>
 
 <ol type="1" start="1">
-    <li>If the <font size="2" face="Courier New">EXINIT</font>
+    <li>If the <code>EXINIT</code>
         environment variable exist, execute the commands it
-        contains. Separate multiple commands by a pipe symboll (<font size="2" face="Courier New">|</font>).</li>
-    <li>If <font size="2" face="Courier New">EXINIT</font>
+        contains. Separate multiple commands by a pipe symboll (<code>|</code>).</li>
+    <li>If <code>EXINIT</code>
         doesn't exist, look for file <em>$HOME/.exrc</em>. If it
         exists, read and execute it.</li>
-    <li>If either <font size="2" face="Courier New">EXINIT</font><font size="3"> or <em>$HOME/.exrc</em> turns on the exrc
-        option, read and execute the file ./.exrc, if it exists</font></li>
-    <li><font size="3">Execute search or goto command given with </font><font size="2" face="Courier New">+/pattern</font><font size="3"> or </font><font size="2" face="Courier New">+n</font><font size="3"> command-line options (POSIX: </font><font size="2" face="Courier New">-c</font><font size="3">
-        option).</font></li>
+    <li>If either <code> or <em>$HOME/.exrc</em> turns on the exrc
+        option, read and execute the file ./.exrc, if it exists</code></li>
+    <li><code>
+        option).</code></li>
 </ol>
 
 <p>The <em>.exrc</em> files are simple scripts of <em>ex</em>
 commands; they don't need a leading colon. You can put comments
-in your scripts by starting a line with a double quote (<font size="2" face="Courier New">"</font>). This is recommended.</p>
+in your scripts by starting a line with a double quote (<code</code>). This is recommended.</p>
 
 <table border="0">
 <tbody><tr>
