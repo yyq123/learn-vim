@@ -27,6 +27,10 @@
 	<p>如果希望将可视化模式下选中的文件名，替换为完整的绝对路径名，那么可以使用以下命令： \%V</p>
 	<p style="text-indent:2em"><code class="inset">:s/\%V.*\%V/\=fnamemodify(submatch(0), ':p')/</code></p>
 
+	<p>将每行数据中不满8位的字符串，向右对齐并在前部以0补足8位：</p>
+	<p style="text-indent:2em"><code class="inset">:%s/.*/\=printf('%08s',submatch(0))/g</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/submatch_08s.png" title="submatch_08s"><img src="https://yyq123.github.io/learn-vim/images/submatch_08s.png" alt="submatch_08s" /></a></p>
+
 	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
 	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
 

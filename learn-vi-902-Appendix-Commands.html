@@ -124,7 +124,7 @@ maintains <em>gawk</em> (<em>GNU awk</em>) and its documentation.</p>
 </blockquote>
 
 <h2>Movement Commands</h2>
-	<p><a href="https://yyq123.github.io/learn-vim/images/Movement.png" title="Movement"><img src="https://yyq123.github.io/learn-vim/images/.png" alt="Movement" /></a></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Movement.png" title="Movement"><img src="https://yyq123.github.io/learn-vim/images/Movement.png" alt="Movement" /></a></p>
 
 <table border="0">
     <tbody><tr>
@@ -679,16 +679,28 @@ maintains <em>gawk</em> (<em>GNU awk</em>) and its documentation.</p>
 <table border="0">
 <tbody>
 	<tr><td><strong>Command</strong></td><td><strong>Action</strong></td></tr>
-	<tr><td><code>:buffers</code></td><td></td></tr>
-	<tr><td><code>:ls</code></td><td></td></tr>
-	<tr><td><code>:files</code></td><td></td></tr>
-	<tr><td><code>:buffer N</code></td><td></td></tr>
-	<tr><td><code>:bn[ext]</code></td><td></td></tr>
-	<tr><td><code>:bp[revious]</code></td><td></td></tr>
-	<tr><td><code>:bf[irst]</code></td><td></td></tr>
+	<tr><td><code>:ls[!]</code></td><td rowspan="3">List buffers and file names. Include unlisted buffers if ! modifier is included.</td></tr>
+	<tr><td><code>:files[!]</code></td></tr>
+	<tr><td><code>:ba[ll]</code></td><td>Edit all args or buffers</td></tr>
+	<tr><td><code>:sba[ll]</code></td><td>Edit all args or buffers (opens them in new windows)</td></tr>
+	<tr><td><code>:badd file</code></td><td>Add file to list.</td></tr>
+	<tr><td><code>:buffers[!]</code></td></tr>
+	<tr><td><code>:buffer [n]</code></td><td>Move to buffer n</td></tr>
+	<tr><td><code>:sbuffer [n]</code></td><td>Move to buffer n (opens a new window.)</td></tr>
+	<tr><td><code>:bn[ext] [n]</code></td><td>Move to next nth buffer</td></tr>
+	<tr><td><code>:sbnext [n]</code></td><td>Move to next nth buffer. (opens a new window)</td></tr>
+	<tr><td><code>:bp[revious] [n]</code></td><td>Move to nth previous buffer</td></tr>
+	<tr><td><code>:sbprevious [n]</code></td><td>Move to nth previous buffer. (open a new window.)</td></tr>
+	<tr><td><code>:bf[irst]</code></td><td>Move to first buffer</td></tr>
+	<tr><td><code>:sbfirst</code></td><td>Move to first buffer (opens a new window)</td></tr>
 	<tr><td><code>:bl[ast]</code></td><td></td></tr>
-	<tr><td><code>:ba[ll]</code></td><td></td></tr>
-	<tr><td><code></code></td><td></td></tr>
+	<tr><td><code>:sblast</code></td><td>Move to last buffer (opens a new window)</td></tr>
+	<tr><td><code>:unhide</code></td><td>Edit all loaded buffers</td></tr>
+	<tr><td><code>:sunhide</code></td><td>Edit all loaded buffers (opens them in new windows.)</td></tr>
+	<tr><td><code>:bunload[!]</code></td><td>Unload buffer from memory. The ! modifier forces a modified buffer to be unloaded
+without being saved.</td></tr>
+	<tr><td><code>:bdelete[!]</code></td><td>Unload buffer and delete it from the buffer list. The ! modifier forces a modified buffer
+to be unloaded without being saved.</td></tr>
 	<tr><td><code></code></td><td></td></tr>
 </tbody>
 </table>

@@ -8,12 +8,6 @@
 <title>高级编辑命令</title>
 </head>
 <body>
-Change Delete Copy From cursor to...
-
-   
-   
-   
-   
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
 		<tr><th>修改</th><th>删除</th><th>复制</th><th>从当前光标到......</th></tr>
@@ -26,6 +20,21 @@ Change Delete Copy From cursor to...
 		<tr><td><code class="inset">c3G</code></td><td><code class="inset">d3G</code></td><td><code class="inset">y3G</code></td><td>第3行（Line number 3）</td></tr>
 		<tr><td><code class="inset">c/pattern</code></td><td><code class="inset">d/pattern</code></td><td><code class="inset">y/pattern</code></td><td>匹配模式pattern</td></tr>
 		<tr><td><code class="inset">cn</code></td><td><code class="inset">dn</code></td><td><code class="inset">yn</code></td><td>匹配下一个模式（）</td></tr>
+
+	</table>
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><th>对象</th><th>修改</th><th>删除</th><th>复制</th></tr>
+		<tr><td>One word</td><td><code class="inset">cw</code></td><td><code class="inset">dw</code></td><td><code class="inset">yw</code></td></tr>
+		<tr><td>Two words, not counting punctuation</td><td><code class="inset">2cW or c2W</code></td><td><code class="inset">2dW or d2W</code></td><td><code class="inset">2yW or y2W</code></td></tr>
+		<tr><td>Three words back</td><td><code class="inset">3cb or c3b</code></td><td><code class="inset">3db or d3b</code></td><td><code class="inset">3yb or y3b</code></td></tr>
+		<tr><td>One line</td><td><code class="inset">cc</code></td><td><code class="inset">dd</code></td><td><code class="inset">yy or Y</code></td></tr>
+		<tr><td>To end of line</td><td><code class="inset">c$ or C</code></td><td><code class="inset">d$ or D</code></td><td><code class="inset">y$</code></td></tr>
+		<tr><td>To beginning of line</td><td><code class="inset">c0</code></td><td><code class="inset">d0</code></td><td><code class="inset">y0</code></td></tr>
+		<tr><td>Single character</td><td><code class="inset">r</code></td><td><code class="inset">x or X</code></td><td><code class="inset">yl or yh</code></td></tr>
+		<tr><td>Five characters</td><td><code class="inset">5s</code></td><td><code class="inset">5x</code></td><td><code class="inset">5yl</code></td></tr>
+		<tr><td></td><td><code class="inset"></code></td><td><code class="inset"></code></td><td><code class="inset"></code></td></tr>
+		<tr><td></td><td><code class="inset"></code></td><td><code class="inset"></code></td><td><code class="inset"></code></td></tr>
 	</table>
 
 	<p>使用以下查找和删除的组合命令，将删除从当前光标到字符&ldquo;x&rdquo;之间的所有字符，包括字符&ldquo;x&rdquo;：</p>

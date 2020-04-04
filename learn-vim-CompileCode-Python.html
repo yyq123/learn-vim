@@ -11,9 +11,9 @@
 	<h1>VIM学习笔记 编译源码(Compile Code)-Python</h1>
 
 	<p>Python作为一种解释型编程语言，需要解释器来编译并执行Python代码。</p>
-	<p>新版本的Vim已经默认支持Python特性。可以使用<code class="inset">:version</code>命令，确认是否包含&ldquo;+python/dyn&rdquo;或&ldquo;+python3/dyn&rdquo;特性。</p>
+	<p>新版本的Vim已经默认支持Python特性。可以使用<code class="inset">:version</code>命令，确认是否包含&ldquo;+python/dyn&rdquo;和&ldquo;+python3/dyn&rdquo;特性。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/version_python3.png" title="version_python3"><img src="https://yyq123.github.io/learn-vim/images/version_python3.png" alt="version_python3" width="500" height="108" /></a></p>
-Just look at the output of :version. If it contains +python/dyn and +python3/dyn, it is compiled for dynamic python. Then you are able to change the python dll to use by changing the option pythondll or pythonthreedll:
+	其中<var>dyn</var>，即dynamic，表示可以通过'pythondll'和'pythonthreedll'选项动态调用Python库。
 
 set pythonthreedll=python37.dll
 
@@ -57,13 +57,13 @@ See :help python-dynamic and help for the named options.
 	<p><a href="https://yyq123.github.io/learn-vim/images/javaws-test.png" title="javaws-test"><img src="https://yyq123.github.io/learn-vim/images/javaws-test.png" alt="javaws-test" width="550" height="317" /></a></p>
 
 	<h2 class="article"><a id="makeprg-python">设置编译器</a></h2>
-	<p>使用以下命令，设置'makeprg'选项为javac命令：</p>
+	<p>使用以下命令，设置'makeprg'选项为python3命令：</p>
 	<p style="text-indent:2em"><code class="inset">set makeprg=python3\ %</code></p>
 	<p>通过在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>文件中增加以下<a href="http://yyq123.github.io/learn-vim/learn-vi-49-01-autocmd.html" title="自动命令(autocmd)">自动命令</a>，可以为Java语言文件设置编译快捷键：</p>
-<pre><code>augroup make_java
+<pre><code>augroup make_python
 	au!
-	au FileType java  set makeprg=set makeprg=javac\ %
-	au FileType java  map &lt;buffer&gt; &lt;leader&gt;&lt;space&gt; :w&lt;cr&gt;:make&lt;cr&gt;
+	au FileType python set makeprg=set makeprg=python3\ %
+	au FileType python map &lt;buffer&gt; &lt;leader&gt;&lt;space&gt; :w&lt;cr&gt;:make&lt;cr&gt;
 augroup end</code></pre>
 
 	<h2 class="article"><a id="java-linux-compile">编译Java</a></h2>
@@ -76,8 +76,8 @@ augroup end</code></pre>
 	<p>使用<code class="inset">:cw</code>命令，将打开quickfix窗口。使用<code class="inset">:cp</code>命令，跳转到上一个错误；使用<code class="inset">:cn</code>命令，跳转到下一个错误。关于QuickFix操作的更多信息，请参阅<a href="https://yyq123.github.io/learn-vim/learn-vi-70-01-QuickFix.html" title="QuickFix">QuickFix</a>章节。</p>
 	<p>在修复错误并成功编译之后，将显示命令输出：</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/javac_success_output.png" title="javac_success_output"><img src="https://yyq123.github.io/learn-vim/images/javac_success_output.png" alt="javac_success_output" /></a></p>
-	<p>使用以下命令，首先Java虚拟机将编译好的.class文件加载到内存，然后针对其中的Java类进行解释执行：</p>
-	<p style="text-indent:2em"><code class="inset">:!java %:r</code></p>
+	<p>使用以下命令，将解释执行当前文件：</p>
+	<p style="text-indent:2em"><code class="inset">:!python3 %</code></p>
 
 
 	<h2 class="article"><a id="">启用/禁用</a></h2>
@@ -87,7 +87,7 @@ augroup end</code></pre>
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">识别文件</p>
 	<p></p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
-:!python3 %
+
 When you do :!python3 & you are actually running a shell that executes the command python3 myFile.py. That will run your program non-interactively
 You can force the interactive mode with :!python3 -i %.
 Alternatively you can do :!python3 without arguments: it will launch an interactive python shell.
