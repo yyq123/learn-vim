@@ -31,7 +31,7 @@
 	<p><code class="inset">^[^a-zA-Z]</code>匹配以非字母开头的行，但不会匹配空行，因为行中必须有一个非字母字符存在。</p>
 	<p>如果需要匹配"^"本身，那么需要使用反斜杠进行转义。例如表达式<code class="inset">2[\^*]4</code>可以匹配2^4和2*4。</p>
 
-	<h2 class="article"><a id="regex-repeat-modifiers">重复次数（Repeat Modifiers）</a></h2>
+	<h2 class="article"><a id="regex-repeat-modifiers">重复次数（Repeat Modifiers / Enumerators）</a></h2>
 	<p><code class="inset">{minimum,maximum}</code>表达式指出一个字符重复的次数。例如表达式<code class="inset">a\{3,5}</code>可以匹配3到5个a（aaa，aaaa，aaaaa）。Vim默认是会尽可能多地进行匹配（Matching as much as possible）。在表达式中，最小次数是可以省略的，即默认最小次数为0，所以表达式<code class="inset">a\{,5}</code>可以匹配0到5个a。最大次数也是可以省略的，即默认匹配无穷大，所以表达式<code class="inset">a\{3,}</code>最少可以匹配3个a，最多个数没有限制。</p>
 	<p><code class="inset">{number}</code>表达式只指定一个数字，Vim就会精确的匹配相应的次数。例如<code class="inset">a\{5}</code>只会精确的匹配5次。</p>
 	<p><code class="inset">{-minimum,maximum}</code>在数字前增加一个负号(-)，那么Vim在查找时就会尽可能少地进行匹配（Matching as little as possible）。例如<code class="inset">ab\{-1,3}</code>将只匹配 "abbb"中的"ab"。表达式<code class="inset">a\{-3,}</code>可以匹配三个或是更多个a，但尽可能少地进行匹配。而表达式<code class="inset">a\{-,5}</code>可以匹配0到5个字符。</p>
@@ -52,6 +52,14 @@
 	<tr><td><code class="inset">\{-n,}</code></td><td>至少匹配n次,尽可能少的进行匹配</td></tr>
 	<tr><td><code class="inset">\{-,m}</code></td><td>匹配0到m次,尽可能少的进行匹配</td></tr>
 	<tr><td><code class="inset">{-}</code></td><td>匹配0次到多次,尽可能少的进行匹配</td></tr>
+	</table>
+	<p>以下表达式，将匹配10位数的电话号码：</p>
+	<p style="text-indent:2em"><code class="inset">(\d\{3})[-[:space:]]\?\d\{3}-\d\{4}</code></p>
+	<table summary="Commands" border="0" frame="hsides" rules="all" cellspacing="0" cellpadding="5">
+		<tr><th colspan="7">格式</th><th>示例</th></tr>
+		<tr><td>(</td><td>3位数字</td><td>)</td><td></td><td>3位数字</td><td>-</td></td><td>4位数字</td><td>(800)555-1212</td></tr>
+		<tr><td>(</td><td>3位数字</td><td>)</td><td>&#x25a1;</td><td>3位数字</td><td>-</td></td><td>4位数字</td><td>(800) 555-1212</td></tr>
+		<tr><td>(</td><td>3位数字</td><td>)</td><td>-</td><td>3位数字</td><td>-</td></td><td>4位数字</td><td>(800)-555-1212</td></tr>
 	</table>
 
 	<h2 class="article"><a id="regex-group">捕获组（Groups）</a></h2>
@@ -136,6 +144,14 @@
 		<tr><td><code class="inset">[:upper:]</code></td><td>匹配所有的大写字母</td></tr>
 		<tr><td><code class="inset">[:xdigit:]</code></td><td>匹配十六进制数字</td></tr>
 	</table>
+	<p>假设希望将以下句子中以&ldquo;w&rdquo;开头并以&ldquo;ll&rdquo;结尾的字符串，替换为&ldquo;XXX&rdquo;。</p>
+	<p><code class="msg">I will roll the wheel from the whalebelly to the well.</code></p>
+	<p>如果使用<code class="inset">:s/w.*ll/XXX/g</code>命令进行替换，由于Vim默认是会尽可能多地进行匹配（Matching as much as possible），即会替换从第一个&ldquo;w&rdquo;开始至末尾&ldquo;ll&rdquo;之间的所有字符，结果为：</p>
+	<p><code class="msg">I XXX.</code></p>
+	<p>使用以下命令排除空格和标点符号，从而达到更精确的匹配：</p>
+	<p style="text-indent:2em"><code class="inset">:s/w[^[:space:][:punct:]]*ll/XXX/g</code></p>
+	<p><code class="msg">I XXX roll the wheel from the XXXy to the XXX.</code></p>
+
 
 	<h2 class="article"><a id="regex-escap">转义符（Escaped Characters）</a></h2>
 	<p>如果需要查找某些特殊符号（比如美元符号），那么可以使用反斜杠backslash（\）进行转义。</p>

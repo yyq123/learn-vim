@@ -927,7 +927,7 @@ command is taken from the default (unnamed) buffer.</p>
 Substitution and Regular Expressions</em></a></h1>
 
 
-<h2><em>vi Regular Expressions</em></h2>
+<h2>Regular Expressions</h2>
 
 <table border="0">
     <tbody><tr>
@@ -1157,6 +1157,112 @@ bracket expression.</p>
         replacement text affected by the <code>\L</code>.</td>
     </tr>
 </tbody></table>
+
+<table border="1" cellpadding="3" nosave="">
+<tbody><tr>
+<td nosave="" bgcolor="#cccccc"><b><tt>Shortcut</tt></b></td>
+
+<td bgcolor="#cccccc"><b><tt>Equivalent
+      <br>
+Character
+      <br>
+Set</tt></b></td>
+
+<td bgcolor="#cccccc">What it matches</td>
+</tr>
+
+<tr>
+<td><b><tt>\d</tt></b></td>
+
+<td><b><tt>[0-9]</tt></b></td>
+
+<td>digit</td>
+</tr>
+
+<tr>
+<td><b><tt>\D</tt></b></td>
+
+<td><b><tt>[^0-9]</tt></b></td>
+
+<td>Any character except a digit</td>
+</tr>
+
+<tr>
+<td><b><tt>\s</tt></b></td>
+
+<td><b><tt>[ \t\n\r]</tt></b></td>
+
+<td>whitespace</td>
+</tr>
+
+<tr>
+<td><b><tt>\S</tt></b></td>
+
+<td><b><tt>[^ \t\n\r]</tt></b></td>
+
+<td>Any character that is not whitespace</td>
+</tr>
+
+<tr>
+<td><b><tt>\w</tt></b></td>
+
+<td><b><tt>[a-zA-Z0-9]</tt></b></td>
+
+<td>"word char" : i.e. alphanumeric, not space or punctuation</td>
+</tr>
+
+<tr>
+<td><b><tt>\W</tt></b></td>
+
+<td><b><tt>[^a-zA-Z0-9]</tt></b></td>
+
+<td>"word separator" : i.e. space or punctuation, also
+not EOL or BOL</td>
+</tr><tr>
+      <td valign="top">\l<br>
+      </td>
+      <td valign="top">[a-z]<br>
+      </td>
+      <td valign="top">Lowercase
+letter. In the search expression it matches any lower case letter. In the
+replace expression it lowercases the character or character representer following
+it.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">\L<br>
+      </td>
+      <td valign="top">[^a-z]<br>
+      </td>
+      <td valign="top">In the search expression \L matches any character except except a lowercase letter.
+In the replace expression it makes everything that follows it, to the end
+of the replace expression, lower case. However, a later \U in the replace
+expression ends its effect.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">\u<br>
+      </td>
+      <td valign="top">[A-Z]<br>
+      </td>
+      <td valign="top">Uppercase
+letter.  In the search expression it matches any lower case letter. In the
+replace expression it capitalizes the character following it.       </td>
+    </tr>
+    <tr>
+      <td valign="top">\U<br>
+      </td>
+      <td valign="top">[^A-Z]<br>
+      </td>
+      <td valign="top">In the search expression \U matches any character except except an uppercase letter.
+In the replace expression it makes everything that follows it, to the end
+of the replace expression, upper case. However, a later \L in the replace
+expression ends its effect.
+      </td>
+    </tr>
+
+</tbody>
+</table>
 
 <h2><em>More Substitution Tricks</em></h2>
 

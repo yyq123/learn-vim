@@ -1,0 +1,342 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记  (Replacement)</title>
+</head>
+<body>
+	<h1>VIM学习笔记  ()</h1>
+
+	<h2 class="article"><a id="">启用/禁用</a></h2>
+	<p></p>
+	<a href="#" title=""></a>
+Something that comes up with surprising regularity is the need to switch
+2 parts of every line. For instance, consider a comma delimited data file.
+What if you need to switch the first and second fields? Here's how you do
+it:<br>
+
+
+<pre>:%s/\([^,]*\),\([^,]*\),\(.*\)/\2,\1,\3/<br></pre>
+
+
+Here's a character by character explanation of the preceding command:<br>
+<table cellpadding="3">
+  <tbody>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>:%s</b></pre>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">Substitute&nbsp;on every line<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right"><b>/<br>
+      </b></td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">Begin search expression<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>\(</b></pre>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">Begin a group. The group is ended by \). Everything
+inside a search expression group is remembered such that it can be used within
+the replace text.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>[^,]</b></pre>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">A character set that matches everything EXCEPT a comma.
+In a comma delimited file, this is how you implement short matching so the
+match ends on the first comma.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right"><b><tt>*</tt><br>
+      </b></td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">An enumerator indicating zero or more of the character
+or character set that preceded it. In this case, it means zero or more non-commas.
+Those zero or more non-commas correspond to the first field in the line.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>\)</b></pre>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">Ends the first group.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right"><b><tt>,</tt><br>
+      </b></td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">Matches a comma, which is the field delimiter in a comma delimited file.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>\(</b></pre>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">Begins the second group<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>[^,]*</b></pre>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">Zero or more non-commas corresponding to the second field<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>\)</b></pre>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">Ends the second group<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right"><b><tt>,</tt><br>
+      </b></td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">Matches the comma that separates the second field from the third field<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>\(</b></pre>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">Begins the third group</td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>.*</b></pre>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">Zero or more characters of any type. This represents
+the rest of the line. Because the only fields you're modifying are the first
+and second, you can group the third, fourth, ... fields together into one
+group -- the third group.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>\)</b></pre>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">Ends the third group<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right"><b>/<br>
+      </b></td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">Ends the search expression and begins the replace expression<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>\2</b></pre>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">The text that was matched by the second group of the
+search expression, which, in fact, was the second field, which we are now
+putting first<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right"><b><tt>,</tt><br>
+      </b></td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">Literal comma to separate the first and second fields in the replaced text.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>\1</b></pre>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">Text matched by the first group in the search expression, which we are now putting second.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>,</b></pre>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">Literal comma to separate the new second field from the third<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>\3</b></pre>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">Text matched by the third group in the search expression, which in fact represented all fields after the first two<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>/</b></pre>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">Ends the replace expression<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+	<p>使用以下命令，将单词首字母转换为大写（titlecase）：</p>
+	<p style="text-indent:2em"><code class="inset">:%s/\&lt;\(.\)\([^[:space:][:punct:]]*\)\&gt;/\u\1\2/g</code></p>
+	<p>查找部分包括：</p>
+	<ul>
+		<li><var>\&lt;</var>，匹配单词开头；</li>
+		<li><var>\(.\)</var>，捕获组1匹配单词首字母；</li>
+		<li><var>\([^[:space:][:punct:]]*\)</var>，捕获组2匹配除空格和标点符号之外的字符串，即单词首字母之外的其余部分；</li>
+		<li><var>\&gt;</var>，匹配单词末尾；</li>
+	</ul>
+	<p>替换部分包括：</p>
+	<ul>
+		<li><var>\u</var>，Means the next character or metacharacter will be capitalized</li>
+		<li><var>\1</var>，恢复捕获组1In this case that means the first character of the word, which due to the \u before it in the replace expression, means it's capitalized.</li>
+		<li><var>\2</var>，恢复捕获组2In this case that means the remainder of the word.</li>
+		<li><var></var>，</li>
+		<li><var></var>，</li>
+		<li><var></var>，</li>
+	</ul>
+You might use this in a VI based book outline in order to titlecase all headings
+for later use as parts, sections, subsections, etc. Let's quickly analyze:<br>
+
+
+The following table lists several pieces of syntax used when you use matched text in the replacement:<br>
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<tr><td><code class="inset"></code></td><td></td></tr>
+	</table>
+
+
+<table cellpadding="2" cellspacing="2" border="1">
+
+
+  <tbody>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>\(.....\)</b></pre>
+      </td>
+      <td valign="top">Delineates
+a group. Whatever matches the expression inside the \( and \) is remembered
+and available in the replace expression. In this example, any series of 5
+characters matches the expression inside the \( and \).</td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>\1</b></pre>
+      </td>
+      <td valign="top">Used inside the replace expression, this is replaced by the text matched by the first group in the search expression.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>\2<br></b></pre>
+      </td>
+      <td valign="top">Used inside the replace expression, this is replaced
+by the text matched by the second group in the search expression. Likewise
+\3 is replaced by the text matched by the third group, \4 by the text matched
+by the 4th group, all the way up to \9.</td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>\u</b></pre>
+      </td>
+      <td valign="top">Used in the search expression, this matches any upper
+case letter. Used in the replace expression, this uppercases the next single
+item in the replacement expression.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>\l</b></pre>
+      </td>
+      <td valign="top">Used in the search expression, this matches any lower case letter. Used in
+the replace expression, this lowercases the next single item in the replacement
+expression.</td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>\U</b></pre>
+      </td>
+      <td valign="top">Used in the search expression, this matches any character that IS NOT an upper case letter. Used in
+the replace expression, this uppercases the remainder of the replacement
+expression. However, a later \L in the replace expression will "turn off" the \U at the point of appearance of the \L.</td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">
+      <pre><b>\L</b></pre>
+      </td>
+      <td valign="top">Used in the search expression, this matches any character that IS NOT a lower case letter. Used in
+the replace expression, this lowercases the remainder of the replacement
+expression. However, a later \U in the replace expression will "turn off" the \L at the point of appearance of the \U.</td>
+    </tr>
+  </tbody>
+</table>
+	<p></p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+
+	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
+	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
+
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
+		<caption style="margin:0.5em; font-weight:bold">选项列表</caption>
+		<tr><th style="white-space: nowrap">选项</th><th>描述</th><th>帮助信息</th></tr>
+		<tr><td><code class="inset">!</code></td><td>如果包含，表示。例如，。</td><td style="white-space: nowrap"><code class="inset">:help viminfo-!</code></td></tr>
+	</table>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
+		<tr><td><code class="inset">:</code></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+	</table>
+&ldquo;&rdquo;
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
+
+</body>
+</html>

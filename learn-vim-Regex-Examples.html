@@ -37,6 +37,14 @@
 	<p style="text-indent:2em"><code class="inset">:%s/\(.*\)&#x25a1;=&#x25a1;\(.*\)/\2&#x25a1;=&#x25a1;\1/</code></p>
 	<p>将等号左端的内容捕获为组1，将等号右端的内容捕获为组2，然后按照颠倒的位置进行恢复。</p>
 
+	<p>希望将以下纪录中的Name字段，转换为Firstname Lastname的形式：</p>
+	<p><code class="msg">Name: <em>McFly, Susan S.;</em> Areas: Graphics; Phone: 999-3333</code></p>
+	<p>使用以下命令，将逗号之前的Lastnmae 捕获至组1，将分号之前的Firtname捕获至组2，然后再按照组2和组1的顺序来恢复组：</p>
+	<p style="text-indent:2em"><code class="inset">:%s/: \([^,]*\), \([^;]*\);/: \2 \1;/</code></p>
+	<p><code class="msg">Name: <em>Susan S. McFly;</em> Areas: Graphics; Phone: 999-3333</code></p>
+	<p>使用以下全局命令，将替换操作限制在以&ldquo;Name:&rdquo;开头的行：</p>
+	<p style="text-indent:2em"><code class="inset">:g/^Name/s/: *\([^,]*\), \([^;]*\);/: \2 \1;/</code></p>
+
 	<p>：</p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
 

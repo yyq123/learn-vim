@@ -9,7 +9,28 @@
 </head>
 <body>
 	<h1>VIM学习笔记  ()</h1>
-:%!cat -n
+	Filters lines through an operating system command. The lines in the range are sent to the command, and are replaced by the output of the command.
+            <td valign="top">:%sort<br>
+            </td>
+            <td valign="top">Sort the file<br>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top">:%sort -n<br>
+            </td>
+            <td valign="top">Sort file numerically<br>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top">:%sort -u<br>
+            </td>
+            <td valign="top">Sort unique -- delete dups<br>
+            </td>
+          </tr>
+          <tr>
+        Prepend line numbers to each line<br>
+	:%!cat -n
+	在行首增加行号
 	<h2 class="article"><a id="">启用/禁用</a></h2>
 	<p></p>
 	<a href="#" title=""></a>
