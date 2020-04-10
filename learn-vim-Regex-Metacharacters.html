@@ -5,20 +5,20 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记 在替换字符串中的元字符(Metacharacters in Replacement Strings)</title>
+	<title>VIM学习笔记 替换字符串中的元字符(Metacharacters in Replacement Strings)</title>
 </head>
 <body>
-	<h1>VIM学习笔记 在替换字符串中的元字符(Metacharacters in Replacement Strings)</h1>
+	<h1>VIM学习笔记 替换字符串中的元字符(Metacharacters in Replacement Strings)</h1>
 	<p>在替换和全局命令中， 某些元字符（metacharacters）在查找表达式和替换表达式中的含义是不同的。</p>
 	<p>例如以下命令，查找部分中的&ldquo;.&rdquo;因为有特殊意义，所有需要进行转义；而替换部分中的&ldquo;.&rdquo;和&ldquo;$&rdquo;则会被视为普通文本。</p>
-	<p style="text-indent:2em"><code class="inset">:%s/1\. Start/2. Next, start with $100/</code></p>
+	<p><code class="inset">:%s/1\. Start/2. Next, start with $100/</code></p>
 	<p><code class="msg">1. Start&nbsp;&nbsp;&nbsp;--------&gt;&nbsp;&nbsp;&nbsp;2. Next, start with $100</code></p>
 	<p>例如以下命令，会将&ldquo;A&rdquo;或&ldquo;B&rdquo;或&ldquo;C&rdquo;，分别替换为&ldquo;[abc]&rdquo;。也就是说，&ldquo;[]&rdquo;在替换部分也会被视为普通文本。</p>
-	<p style="text-indent:2em"><code class="inset">:%s/[ABC]/[abc]/g</code></p>
+	<p><code class="inset">:%s/[ABC]/[abc]/g</code></p>
 	<p><code class="msg">ABC&nbsp;&nbsp;&nbsp;--------&gt;&nbsp;&nbsp;&nbsp;[abc][abc][abc]</code></p>
 
 	<h2 class="article"><a id="Regex-metacharacter-replace">替换表达式中的元字符（Metacharacters）</a></h2>
-	<table summary="Metacharacters" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="5">
+	<table summary="Metacharacters" border="1" frame="border" rules="all" cellspacing="0" cellpadding="5">
 		<tr><th>元字符</th><th>替换内容</th><th>命令实例</th><th>替换前</th><th>替换后</th></tr>
 		<tr><td><code class="inset">\n</code></td><td>\1-\9<br />查找表达式中由\(\)定义的第n个组</td><td><code class="inset">:%s/\(.*\)&nbsp;=&nbsp;\(.*\)/\2&nbsp;=&nbsp;\1/</code><td>x = y</td><td>y = x</td></tr>
 		<tr><td><code class="inset">\l</code></td><td>将下一个字符转换为小写</td><td><code class="inset">:%s/Yes, Sir/\lYes, \lSir/</code><td>Yes, Sir</td><td>yes, sir</td></tr>
@@ -35,8 +35,8 @@
 	</table>
 
 	<h2 class="article"><a id="Regex-metacharacter-switch">使用元字符交换文本位置</a></h2>
-	<p>使用以下命令，交换以逗号分隔的列：</p>
-	<p style="text-indent:2em"><code class="inset">:%s/\([^,]*\),\([^,]*\),\(.*\)/\2,\1,\3/</code></p>
+	<p>使用以下命令，可以交换以逗号分隔的列：</p>
+	<p><code class="inset">:%s/\([^,]*\),\([^,]*\),\(.*\)/\2,\1,\3/</code></p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/Regex_Replacement_SwitchFields.png" title="Regex_Replacement_SwitchFields"><img src="https://yyq123.github.io/learn-vim/images/Regex_Replacement_SwitchFields.png" alt="Regex_Replacement_SwitchFields" /></a></p>
 	<p>查找表达式包括：</p>
 	<ul>
@@ -52,15 +52,15 @@
 	<p>假设需要将以下记录中的Name字段，转换为Firstname Lastname的形式：</p>
 	<p><code class="msg">Name: <em>McFly, Susan S.;</em> Areas: Graphics; Phone: 999-3333</code></p>
 	<p>可以使用以下命令，将逗号之前的Lastnmae捕获至组1，将分号之前的Firtname捕获至组2，然后再按照从组2到组1的顺序进行替换：</p>
-	<p style="text-indent:2em"><code class="inset">:%s/: \([^,]*\), \([^;]*\);/: \2 \1;/</code></p>
+	<p><code class="inset">:%s/: \([^,]*\), \([^;]*\);/: \2 \1;/</code></p>
 	<p><code class="msg">Name: <em>Susan S. McFly;</em> Areas: Graphics; Phone: 999-3333</code></p>
 	<p>使用以下全局命令，则可以将替换操作限制在以&ldquo;Name:&rdquo;开头的行：</p>
-	<p style="text-indent:2em"><code class="inset">:g/^Name/s/: *\([^,]*\), \([^;]*\);/: \2 \1;/</code></p>
+	<p><code class="inset">:g/^Name/s/: *\([^,]*\), \([^;]*\);/: \2 \1;/</code></p>
 
-	<h2 class="article"><a id="Regex-metacharacter-titlecase">使用元字符转换大小写</a></h2>
+	<h2 class="article"><a id="Regex-metacharacter-case">使用元字符转换大小写</a></h2>
 	<p>使用以下命令，将单词首字母转换为大写：</p>
-	<p style="text-indent:2em"><code class="inset">:%s/\&lt;\(.\)\([^[:space:][:punct:]]*\)\&gt;/\u\1\2/g</code></p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/Regex_Replacement_TitleCase.png" title="Regex_Replacement_TitleCase"><img src="https://yyq123.github.io/learn-vim/images/Regex_Replacement_TitleCase.png" alt="Regex_Replacement_TitleCase" /></a></p>
+	<p><code class="inset">:%s/\&lt;\(.\)\([^[:space:][:punct:]]*\)\&gt;/\u\1\2/g</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Regex_Replacement_TitleCase.png" title="Regex_Replacement_TitleCase"><img src="https://yyq123.github.io/learn-vim/images/Regex_Replacement_TitleCase.png" alt="Regex_Replacement_TitleCase" width="550" height="72" /></a></p>
 	<p>查找表达式包括：</p>
 	<ul>
 		<li><var>\&lt;</var>，匹配单词开头；</li>
@@ -74,23 +74,21 @@
 		<li><var>\1</var>，恢复捕获组1（即单词首字母）</li>
 		<li><var>\2</var>，恢复捕获组2（即单词剩余部分）</li>
 	</ul>
-	<p>使用以下命令，可以将匹配文本，整体转换为大写：</p>
-	<p style="text-indent:2em"><code class="inset">:%s/Fortran/\U&amp;/</code></p>
+	<p>使用以下命令，可以将匹配文本全部转换为大写：</p>
+	<p><code class="inset">:%s/Fortran/\U&amp;/</code></p>
 	<p><code class="msg">fortran&nbsp;&nbsp;&nbsp;--------&gt;&nbsp;&nbsp;&nbsp;FORTRAN</code></p>
 
 	<h2 class="article"><a id="Regex-metacharacter-sub">使用元字符进行精确替换</a></h2>
 	<p>假设以下代码中rotine的名称以&ldquo;test&rdquo;为前缀，以&ldquo;box&rdquo;为后缀，而黄色高亮的中间部分则是可变的：</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/Regex_example_suffix_0.png" title="Regex_example_suffix_0"><img src="https://yyq123.github.io/learn-vim/images/Regex_example_suffix_0.png" alt="Regex_example_suffix_0" /></a></p>
-	<p>如果希望将后缀替换为&ldquo;block&rdquo;，那么可以将可变的字母作为捕获组：</p>
-	<p style="text-indent:2em"><code class="inset">:g/test\([abc]\)box/s//test\1block/g</code></p>
+	<p>如果希望将后缀替换为&ldquo;block&rdquo;，那么可以将可变的字母作为捕获组进行替换：</p>
+	<p><code class="inset">:g/test\([abc]\)box/s//test\1block/g</code></p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/Regex_example_suffix_1.png" title="Regex_example_suffix_1"><img src="https://yyq123.github.io/learn-vim/images/Regex_example_suffix_1.png" alt="Regex_example_suffix_1" /></a></p>
 
 	<p>假设需要将代码中&ldquo;?dep=01&rdquo;替换为：</p>
 	<p><code class="msg">{{path('index',{dep:01})}}</code></p>
 	<p>也就是说，只替换表达式的字符部分，但保留数字部分不变。可以使用<var>(\d\d)</var>捕获两位数字部分，然后在替换时使用\1来恢复数字：</p>
-	<p style="text-indent:2em"><code class="inset">:%s/?dep=\(\d\d\)/{{path('index',{dep:\1})}}/g</code></p>
-
-	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
+	<p><code class="inset">:%s/?dep=\(\d\d\)/{{path('index',{dep:\1})}}/g</code></p>
 
 	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="替换 (Substitute)" href="http://yyq123.github.io/learn-vim/learn-vi-05-Substitute.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="magic选项" href="http://yyq123.github.io/learn-vim/learn-vi-86-Magic.html">下一篇</a>&gt;</span></p>
 

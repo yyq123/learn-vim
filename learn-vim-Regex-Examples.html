@@ -64,16 +64,6 @@ abc xyz
 	<p style="text-indent:2em"><code class="inset">^[a-zA-Z0-9_-]{3,16}$</code></p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
 
-	<p>假设以下代码，rotine的名称以&ldquo;test&rdquo;为前缀，以&ldquo;box&rdquo;为后缀，而黄色高亮的中间部分字母是可变的：</p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/Regex_example_suffix_0.png" title="Regex_example_suffix_0"><img src="https://yyq123.github.io/learn-vim/images/Regex_example_suffix_0.png" alt="Regex_example_suffix_0" /></a></p>
-	<p>如果希望将后缀替换为&ldquo;block&rdquo;，那么可以将可变的字母作为捕获组：</p>
-	<p style="text-indent:2em"><code class="inset">:g/test\([abc]\)box/s//test\1block/g</code></p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/Regex_example_suffix_1.png" title="Regex_example_suffix_1"><img src="https://yyq123.github.io/learn-vim/images/Regex_example_suffix_1.png" alt="Regex_example_suffix_1" /></a></p>
-
-	<p>假设需要将代码中&ldquo;?dep=01&rdquo;替换为：</p>
-	<p><code class="msg">{{ path('index', {departement: 01}) }}</code></p>
-	<p>也就是说，只替换表达式的字符部分，但保留数字部分不变。使用(\d\d)捕获两位数字部分，然后在替换时使用\1恢复数字：</p>
-	<p style="text-indent:2em"><code class="inset">:%s/?dep=\(\d\d\)/{{ path('index', {departement: \1}) }}/g</code></p>
 	
 :help /\(
 
