@@ -5,12 +5,49 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记  ()</title>
+	<title>VIM学习笔记 过滤器(filter)</title>
 </head>
 <body>
-	<h1>VIM学习笔记  ()</h1>
-	Filters lines through an operating system command. The lines in the range are sent to the command, and are replaced by the output of the command.
-            <td valign="top">:%sort<br>
+	<h1>VIM学习笔记 过滤器(filter)</h1>
+	<p>过滤程序是一个接受文本作为标准输入，然后进行某些处理，并把结果放到标准输出的程序。可以理解为，Vim将当前缓冲区同时作为输入和输出。例如使用"sort"命令，按字母顺序对行排序，然后用过滤的输出结果替换当前文本内容。</p>
+
+。你可以用 "." 重复过滤
+命令。Vim 不会识别  :!  命令之后的注释 (用 '"' 开始)。
+	<p>以下为过滤器命令的通常格式，即用外部程序 {filter} 过滤 {motion} 跨越的多行。</p>
+	<p style="text-indent:2em"><code class="inset">!{motion}{filter}</code></p>
+
+:{range}![!]{filter} [!][arg]                            :range! 
+                        用外部程序 {filter} 过滤 {range} 指定的多行。Vim 把可
+                        选的感叹号替换成最后一次使用的命令，并附加上可选的参数
+                        [arg]。Vim 把过滤命令的输出保存到临时文件，并把文件内
+                        容读到一个缓冲区里  tempfile 。Vim 使用 'shellredir'
+                        选项把过滤程序的结果重定向到临时文件。
+                                
+	<p></p>
+Vim 使用临时文件来处理过滤、执行比较和用于 tempname()。Unix 上，该文件会放在一
+个私人的目录里 (只能被当前用户访问)，以防堵安全上的漏洞 (例如，符号链接攻击或
+文件被其他用户读取等)。Vim 退出时，自动删除该目录及之下的所有文件。如果 Vim 本
+身设置了 setuid 位，这样或许会有问题。临时文件由 setuid 用户拥有，但过滤程序以
+原来用户的权限执行。
+MS-Windows 上，使用以下目录中首个可用者: $TMP、$TEMP、c:\TMP、c:\TEMP。
+Unix 上，使用的目录依次为: $TMPDIR、/tmp、当前目录、$HOME。
+
+	<p>将所有行的字母转换为大写：</p>
+	<p style="text-indent:2em"><code class="inset">:%!tr [:lower:] [:upper:]</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/filter_all_lines_tr.png" title="filter_all_lines_tr"><img src="images/filter_all_lines_tr.png" alt="filter_all_lines_tr" /></a></p>
+
+	<p>连续点击<kbd>!!</kbd>键，将转到屏幕底部继续输入针对当前行的<code class="inset">:.!</code>命令。继续输入以下命令，将本行的字母转换为大写：</p>
+	<p style="text-indent:2em"><code class="inset">:.!tr [:lower:] [:upper:]</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/filter_curr_lines_tr.png" title="filter_curr_lines_tr"><img src="images/filter_curr_lines_tr.png" alt="filter_curr_lines_tr" /></a></p>
+
+	<p>输入以下命令，将指定行的字母转换为大写：</p>
+	<p style="text-indent:2em"><code class="inset">:4,6!tr [:lower:] [:upper:]</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/filter_range_lines_tr.png" title="filter_range_lines_tr"><img src="images/filter_range_lines_tr.png" alt="filter_range_lines_tr" /></a></p>
+	<p>通过在命令之前增加数字前缀，也可以实现相同的功能。首先将光标移动到第4行，然后连续点击<kbd>3!!</kbd>键，将转到屏幕底部继续输入针对行范围的<code class="inset">:.,.+2!</code>命令。继续输入以下命令，将本行及后续2行共计3行的字母转换为大写：</p>
+	<p style="text-indent:2em"><code class="inset">:.,.+2!tr [:lower:] [:upper:]</code></p>
+	<p>在可视化模式下，也可以使用外部程序 {filter} 过滤高亮选中的行。例如使用以下命令，可以注释选中的行：</p>
+	<p style="text-indent:2em"><code class="inset">'&lt;,'&gt;! perl -nle 'print &quot;\#&quot;.$_'</code></p>
+<td valign="top">:%!sort<br>
             </td>
             <td valign="top">Sort the file<br>
             </td>
@@ -28,14 +65,15 @@
             </td>
           </tr>
           <tr>
-        Prepend line numbers to each line<br>
-	:%!cat -n
-	在行首增加行号
+	
+	
 	<h2 class="article"><a id="">启用/禁用</a></h2>
 	<p></p>
 	<a href="#" title=""></a>
+	<p>在行首增加行号</p>
+	<p style="text-indent:2em"><code class="inset">:%!cat -n</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/filter_cat_n.png" title="filter_cat_n"><img src="https://yyq123.github.io/learn-vim/images/filter_cat_n.png" alt="filter_cat_n" /></a></p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">识别文件</p>
 	<p></p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
 
