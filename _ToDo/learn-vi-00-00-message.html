@@ -23,16 +23,24 @@
 	<h2 class="article"><a id="message-redir">重定向</a></h2>
 	<p>使用以下命令，在将信息输出到屏幕的同时，也会保存到指定的文件中：</p>
 	<p style="text-indent:2em"><code class="inset">:redir &gt; {file}</code></p>
+	<p>如果指定的文件以及存在，那么需要使用!参数进行强制覆盖：</p>
+	<p style="text-indent:2em"><code class="inset">:redir! &gt; {file}</code></p>
 	<p>如果希望信息被追加到文件末尾，那么可以使用以下命令：</p>
-	<p style="text-indent:2em"><code class="inset">:redir &gt;&gt; file</code></p>
+	<p style="text-indent:2em"><code class="inset">:redir &gt;&gt; {file}</code></p>
 	<p>假设需要查询大量的信息输出（例如:version命令），或者保存调试信息，那么信息重定向就会非常有价值。</p>
 	<p>使用以下命令，可以停止信息的重定向：</p>
 	<p style="text-indent:2em"><code class="inset">:redir END</code></p>
 	<p>使用以下命令，可以将信息输出重定向至剪贴板<a href="https://yyq123.github.io/learn-vim/learn-vi-12-Register.html" title="Register">寄存器（Register）</a>：</p>
 	<p style="text-indent:2em"><code class="inset">:redir @+</code></p>
 	<p>这样您就可以使用<code class="inset">"+p</code>命令， 将信息输出粘贴到当前文本甚至其它应用中。</p>
-
-
+	<p>使用以下命令，可以将命令历史记录粘贴到当前文件中：</p>
+	<pre class="block"><code>:redir @+
+:set nomore
+:history
+:put +
+:set more
+:redir END</code></pre>
+	<p>其中<code class="inset">:set nomore</code>用于暂定显示&ldquo;--More--&rdquo;信息，否则在分页显示命令历史记录时，需要点击按键以继续下一页的显示。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
 	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
 

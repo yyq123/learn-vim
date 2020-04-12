@@ -9,7 +9,7 @@
 </head>
 <body>
 	<h1>VIM学习笔记 过滤器(filter)</h1>
-	<p>过滤程序是一个接受文本作为标准输入，然后进行某些处理，并把结果放到标准输出的程序。可以理解为，Vim将当前缓冲区同时作为输入和输出。例如使用"sort"命令，按字母顺序对行排序，然后用过滤的输出结果替换当前文本内容。</p>
+	<p>过滤程序是一个接受文本作为标准输入（stdin），然后进行某些处理，并把结果放到标准输出（stdout）的程序。可以理解为，Vim将当前缓冲区同时作为输入和输出。例如使用"sort"命令，按字母顺序对行排序，然后用过滤的输出结果替换当前文本内容。</p>
 
 。你可以用 "." 重复过滤
 命令。Vim 不会识别  :!  命令之后的注释 (用 '"' 开始)。
@@ -24,13 +24,7 @@
                         选项把过滤程序的结果重定向到临时文件。
                                 
 	<p></p>
-Vim 使用临时文件来处理过滤、执行比较和用于 tempname()。Unix 上，该文件会放在一
-个私人的目录里 (只能被当前用户访问)，以防堵安全上的漏洞 (例如，符号链接攻击或
-文件被其他用户读取等)。Vim 退出时，自动删除该目录及之下的所有文件。如果 Vim 本
-身设置了 setuid 位，这样或许会有问题。临时文件由 setuid 用户拥有，但过滤程序以
-原来用户的权限执行。
-MS-Windows 上，使用以下目录中首个可用者: $TMP、$TEMP、c:\TMP、c:\TEMP。
-Unix 上，使用的目录依次为: $TMPDIR、/tmp、当前目录、$HOME。
+
 
 	<p>将所有行的字母转换为大写：</p>
 	<p style="text-indent:2em"><code class="inset">:%!tr [:lower:] [:upper:]</code></p>
@@ -45,7 +39,7 @@ Unix 上，使用的目录依次为: $TMPDIR、/tmp、当前目录、$HOME。
 	<p><a href="https://yyq123.github.io/learn-vim/images/filter_range_lines_tr.png" title="filter_range_lines_tr"><img src="images/filter_range_lines_tr.png" alt="filter_range_lines_tr" /></a></p>
 	<p>通过在命令之前增加数字前缀，也可以实现相同的功能。首先将光标移动到第4行，然后连续点击<kbd>3!!</kbd>键，将转到屏幕底部继续输入针对行范围的<code class="inset">:.,.+2!</code>命令。继续输入以下命令，将本行及后续2行共计3行的字母转换为大写：</p>
 	<p style="text-indent:2em"><code class="inset">:.,.+2!tr [:lower:] [:upper:]</code></p>
-	<p>在可视化模式下，也可以使用外部程序 {filter} 过滤高亮选中的行。例如使用以下命令，可以注释选中的行：</p>
+	<p>在可视化模式下，也可以使用外部程序 {filter} 过滤高亮选中的行。例如选中文本之后，点击<kbd>!!</kbd>键，然后输入以下命令，可以注释选中的行：</p>
 	<p style="text-indent:2em"><code class="inset">'&lt;,'&gt;! perl -nle 'print &quot;\#&quot;.$_'</code></p>
 <td valign="top">:%!sort<br>
             </td>
@@ -65,7 +59,7 @@ Unix 上，使用的目录依次为: $TMPDIR、/tmp、当前目录、$HOME。
             </td>
           </tr>
           <tr>
-	
+:'a,'b!sort -u " same, for lines from mark a to mark b inclusive	
 	
 	<h2 class="article"><a id="">启用/禁用</a></h2>
 	<p></p>
@@ -74,6 +68,43 @@ Unix 上，使用的目录依次为: $TMPDIR、/tmp、当前目录、$HOME。
 	<p style="text-indent:2em"><code class="inset">:%!cat -n</code></p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/filter_cat_n.png" title="filter_cat_n"><img src="https://yyq123.github.io/learn-vim/images/filter_cat_n.png" alt="filter_cat_n" /></a></p>
 
+	<p>例如在当前文件中，包含以逗号分隔的多列文本：</p>
+<pre class="block">One,Two,Three,Four,Five
+arborist,apple,artichoke,ant,author
+branch,banana,broccoli,bee,book</pre>
+	<p>使用以下Linux命令，仅保留第二和第三列文本</p>
+	<p style="text-indent:2em"><code class="inset">:%!cut -f2-3 -d,</code></p>
+<pre>Two,Three
+apple,artichoke
+banana,broccoli</pre>
+	<p>假设当前文件中包含以下Windows命令：</p>
+	<pre class="block">ping -n 1 1.1.1.1
+ping -n 1 1.1.1.2
+ping -n 1 1.1.1.3</pre>
+	<p>使用以下命令，将用文件中ping命令的输出，来替换当前文本：</p>
+	<p style="text-indent:2em"><code class="inset">%!cmd</code></p>
+	<pre class="block">Microsoft Windows [Version 10.0.18362.720]
+(c) 2019 Microsoft Corporation. All rights reserved.
+
+D:\Temp>ping -n 1 1.1.1.1
+
+Pinging 1.1.1.1 with 32 bytes of data:
+Reply from 1.1.1.1: bytes=32 time=148ms TTL=54
+
+Ping statistics for 1.1.1.1:
+    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 148ms, Maximum = 148ms, Average = 148ms
+	...</pre>
+	The same method can be used on Unix with appropriate changes (for bash you would issue the command %!bash, and in this example the ping command would be ping -c 1). 
+	<p>从以下截图可以看到，Vim会将文本行保存为临时文件，然后调用外部程序进行过滤处理，然后再用输出结果替换当前文本。</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/filter_windows_tempdir.png" title="filter_windows_tempdir"><img src="https://yyq123.github.io/learn-vim/images/filter_windows_tempdir.png" alt="filter_windows_tempdir" width="550" height="45" /></a></p>
+	在Linux上，该文件会放在一
+个私人的目录里 (只能被当前用户访问)，。Vim 退出时，自动删除该目录及之下的所有文件。如果 Vim 本
+身设置了 setuid 位，这样或许会有问题。临时文件由 setuid 用户拥有，但过滤程序以
+原来用户的权限执行。
+MS-Windows 上，使用以下目录中首个可用者: $TMP、$TEMP、c:\TMP、c:\TEMP。
+Unix 上，使用的目录依次为: $TMPDIR、/tmp、当前目录、$HOME。
 	<p></p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
 
