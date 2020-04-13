@@ -19,34 +19,38 @@
 	<p>由此可见，使用:vimgrep命令在不同平台上将获得一致的体验。而:grep命令则是与操作系统相关的，在不同平台会有不同的行为。</p>
 	<p>Vim使用Quickfix来显示搜索结果。</p>
 	<p><code class="inset">:lgrep</code>和<code class="inset">:lvimgrep</code>命令实现相同的功能，但将使用地址列表, but using location list (opened with :lopen). In practise the difference is that if you use Quickfix window (:copen) it will stick to the current editor. Location window will show in the same way, but if you select anything then the window will disappear and you will have to run :lopen again.</p>
-
-	* To search for Xanadu in all the files in the PWD: :vim Xanadu * search results in a Quickfix window at the bottom and Vim jumps to the first match right away. You can navigate through this window and press Enter on search results to jump to them.
-
-	* To recurse the directories or files in Vim, you have this strange syntax called star-star. For example, to search recursively in all files and directories in PWD: :vim Xanadu **
-
+	<p>在当前目录下，查找指定字符串：</p>
+	<p style="text-indent:2em"><code class="inset">:vim grep *</code></p>
+ search results in a Quickfix window at the bottom and Vim jumps to the first match right away.
+	<p>在当前目录及其子目录下，查找指定字符串：</p>
+	<p style="text-indent:2em"><code class="inset">::vim Xanadu **</code></p>
 	* you will find it very convenient to use: :vim Xanadu ../include/**/*.h
-	* One trick I like to use a lot is to search for the current word under the cursor in the files. I first press * so that the word is selected. Then I use this empty pattern to search for it: :vim // *.cpp
-
-
-I guess you have to choose yourself which command you like most.  The syntax is as follows:
-
-:grep searchpattern locationpattern
-
-	<p>例如在Windows下使用以下命令，将在当前目录下查找所有包含&ldquo;block&rdquo;文件：</p>
-	<p style="text-indent:2em"><code class="inset">:grep block *.*</code></p>
-current workind directory (you can check currect directory using :pwd). By default it does not perform recursive search (it will not search in subdirectories). 
-	<p><a href="https://yyq123.github.io/learn-vim/images/findstr.png" title="findstr"><img src="https://yyq123.github.io/learn-vim/images/findstr.png" alt="findstr" width="550" height="52" /></a></p>
-	<p></p>
+	* search for the current word under the cursor in the files. I first press * so that the word is selected. Then I use this empty pattern to search for it: :vim // *.cpp
 如果希望搜索所有子目录， **/*.* pattern. However this works for :vimgrep and :grep in linux, but does not work for Windows. In order to make it work on Windows you would need to use /S parameter (linux grep also accepts -R parameter which does the same thing). You can pass it like that:
 
 :grep /S MyMethod *.*
 This will work on Windows and will find all “MyMethod” phrases in all files in all subdirectories of current working directory. However you can still make it the default behaviour in VIM. But first you neeed to know one thing:
 
+
+	<p style="text-indent:2em"><code class="inset">:grep searchpattern locationpattern</code></p>
+	<p>默认情况下，grep是区分大小写的，你可以使用-i选项来忽略大小写：</p>
+	<p style="text-indent:2em"><code class="inset">:grep -i word filename</code></p>
+
+	<p>例如在Windows下使用以下命令，将在当前目录下查找所有包含&ldquo;block&rdquo;文件：</p>
+	<p style="text-indent:2em"><code class="inset">:grep block *.*</code></p>
+	<p>您可以使用<code class="inset">:pwd</code>命令，来确定当前目录。</p>
+
+	<p><a href="https://yyq123.github.io/learn-vim/images/findstr.png" title="findstr"><img src="https://yyq123.github.io/learn-vim/images/findstr.png" alt="findstr" width="550" height="52" /></a></p>
+	<p></p>
+
+
+	<h2 class="article"><a id="vimgrep">:vimgrep</a></h2>
 <p>如果希望停留在当前位置，而不是跳转至第一个匹配处，那么可以使用以下命令：</p>
 	<p style="text-indent:2em"><code class="inset">:vimgrep /foo/j **/*.md</code></p>
 
 
-as explained in :help :vimgrep
+	<p style="text-indent:2em"><code class="inset">:help :vimgrep</code></p>
+
 	<h2 class="article"><a id="grepprg">'grepprg'选项</a></h2>
 	<p>使用以下命令，可以查看'grepprg'选项的当前设置：</p>
 	<p style="text-indent:2em"><code class="inset">:set grepprg?</code></p>

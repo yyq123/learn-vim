@@ -43,12 +43,12 @@
 	<p>如果使用表达式<code class="inset">/\&lt;for\&gt;</code>来进行查找，则只会精确的查找到for，而不会出现其他的匹配。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/RegularExpression_Exact.png" title="RegularExpression_Exact"><img src="https://yyq123.github.io/learn-vim/images/RegularExpression_Exact.png" alt="RegularExpression_Exact" width="500" height="177" /></a></p>
 
-	<h2 class="article"><a id="reg-match-times">匹配次数</a></h2>
+	<h2 class="article"><a id="reg-match-enumerators">匹配次数</a></h2>
 	<p>星号（<code class="inset">*</code>）通配符，作用于其之前的一个元素，表示可以匹配0次或是多次。表达式的贪婪（greedy）特性，将尝试查找尽可能多的匹配项。<code class="inset">te*</code>将会匹配te，tee，teee等等。甚至还会匹配t，因为在这里e可以出现0次。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/RegularExpression_Asterisk.png" title="RegularExpression_Asterisk"><img src="https://yyq123.github.io/learn-vim/images/RegularExpression_Asterisk.png" alt="RegularExpression_Asterisk" width="500" height="108" /></a></p>
 	<p>加号（<code class="inset">+</code>）通配符，表示一个字符可以匹配一次或是多次。所以表达式<code class="inset">te\+</code>可以匹配te，tee，teee等等。但是不会再匹配t，因为这里e最少要出现一次。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/RegularExpression_Plus.png" title="RegularExpression_Plus"><img src="https://yyq123.github.io/learn-vim/images/RegularExpression_Plus.png" alt="RegularExpression_Plus" width="500" height="108" /></a></p>
-	<p>等号（<code class="inset">=</code>）通配符，表示一个字符匹配0次或是一次。所以表达<code class="inset">te\=</code>可以匹配t和te，但是不会匹配tee，因为这个表达式只能匹配不多于两个字符。</p>
+	<p>等号（<code class="inset">=</code>）和问号（<code class="inset">?</code>）通配符，表示一个字符匹配0次或是一次。所以表达<code class="inset">te\=</code>可以匹配t和te，但是不会匹配tee，因为这个表达式只能匹配不多于两个字符。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/RegularExpression_Equal.png" title="RegularExpression_Equal"><img src="https://yyq123.github.io/learn-vim/images/RegularExpression_Equal.png" alt="RegularExpression_Equal" width="500" height="108" /></a></p>
 
 	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="重复命令" href="http://yyq123.github.io/learn-vim/learn-vi-20-DotCommand.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="vimrc配置文件" href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html">下一篇</a>&gt;</span></p>

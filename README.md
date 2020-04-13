@@ -49,6 +49,7 @@ Created by yyq123@gmail.com using [vim](http://www.vim.org/)
   - [打印到PDF (Print to PDF)](http://yyq123.github.io/learn-vim/learn-vi-28-Print-PDF.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/10/vim-print-to-pdf.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/88343229)
 - **数据处理**
   - [文本排序(sort)](http://yyq123.github.io/learn-vim/learn-vi-09-03-sort.html)[<sup>B</sup>](https://yyq123.blogspot.com/2020/03/vim-sort.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/88343229)
+  - [过滤器(Filter)](http://yyq123.github.io/learn-vim/learn-vim-Shell-Filter.html)[<sup>B</sup>](https://yyq123.blogspot.com/2020/04/vim-filter.html)<sup>/</sup>[<sup>Z</sup>]()
 - **图形界面**
   - [启动图形界面(gui-start)](http://yyq123.github.io/learn-vim/learn-vi-30-01-GUI-Start.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/06/vim-gui-start.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/69699141)
   - [图形界面选项(guioptions)](http://yyq123.github.io/learn-vim/learn-vi-30-01-GUI-Start.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/06/vim-guioptions.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/70365639)

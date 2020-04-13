@@ -5,85 +5,66 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记 过滤器(filter)</title>
+	<title>VIM学习笔记 过滤器(Filter)</title>
 </head>
 <body>
-	<h1>VIM学习笔记 过滤器(filter)</h1>
-	<p>过滤程序是一个接受文本作为标准输入（stdin），然后进行某些处理，并把结果放到标准输出（stdout）的程序。可以理解为，Vim将当前缓冲区同时作为输入和输出。例如使用"sort"命令，按字母顺序对行排序，然后用过滤的输出结果替换当前文本内容。</p>
+	<h1>VIM学习笔记 过滤器(Filter)</h1>
+	<p>过滤程序是一个接受文本作为标准输入（stdin），然后进行某些处理，并把结果放置到标准输出（stdout）的程序。可以理解为，Vim将当前缓冲区同时作为输入和输出，并借助外部程序进行文字处理。例如使用外部sort命令进行排序，然后用输出结果替换当前文本内容。</p>
 
-。你可以用 "." 重复过滤
-命令。Vim 不会识别  :!  命令之后的注释 (用 '"' 开始)。
-	<p>以下为过滤器命令的通常格式，即用外部程序 {filter} 过滤 {motion} 跨越的多行。</p>
-	<p style="text-indent:2em"><code class="inset">!{motion}{filter}</code></p>
-
-:{range}![!]{filter} [!][arg]                            :range! 
-                        用外部程序 {filter} 过滤 {range} 指定的多行。Vim 把可
-                        选的感叹号替换成最后一次使用的命令，并附加上可选的参数
-                        [arg]。Vim 把过滤命令的输出保存到临时文件，并把文件内
-                        容读到一个缓冲区里  tempfile 。Vim 使用 'shellredir'
-                        选项把过滤程序的结果重定向到临时文件。
-                                
-	<p></p>
-
-
-	<p>将所有行的字母转换为大写：</p>
+	<h2 class="article"><a id="filter-shell-cmd">过滤器命令</a></h2>
+	<p>使用以下格式的过滤器命令，可以利用外部程序 {filter} 过滤 {motion} 跨越的多行：</p>
+	<p style="text-indent:2em"><code class="inset">:{range}!{motion}{filter}</code></p>
+	<p>使用%指代整个文件，可以将所有行的字母转换为大写：</p>
 	<p style="text-indent:2em"><code class="inset">:%!tr [:lower:] [:upper:]</code></p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/filter_all_lines_tr.png" title="filter_all_lines_tr"><img src="images/filter_all_lines_tr.png" alt="filter_all_lines_tr" /></a></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/filter_all_lines_tr.png" title="filter_all_lines_tr"><img src="https://yyq123.github.io/learn-vim/images/filter_all_lines_tr.png" alt="filter_all_lines_tr" /></a></p>
 
-	<p>连续点击<kbd>!!</kbd>键，将转到屏幕底部继续输入针对当前行的<code class="inset">:.!</code>命令。继续输入以下命令，将本行的字母转换为大写：</p>
+	<p>连续点击<kbd>!!</kbd>键，将转到屏幕底部继续输入针对当前行的<code class="inset">:.!</code>命令。以下命令将本行的字母转换为大写：</p>
 	<p style="text-indent:2em"><code class="inset">:.!tr [:lower:] [:upper:]</code></p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/filter_curr_lines_tr.png" title="filter_curr_lines_tr"><img src="images/filter_curr_lines_tr.png" alt="filter_curr_lines_tr" /></a></p>
-
-	<p>输入以下命令，将指定行的字母转换为大写：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/filter_curr_lines_tr.png" title="filter_curr_lines_tr"><img src="https://yyq123.github.io/learn-vim/images/filter_curr_lines_tr.png" alt="filter_curr_lines_tr" /></a></p>
+	<p>使用以下命令，将指定行的字母转换为大写：</p>
 	<p style="text-indent:2em"><code class="inset">:4,6!tr [:lower:] [:upper:]</code></p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/filter_range_lines_tr.png" title="filter_range_lines_tr"><img src="images/filter_range_lines_tr.png" alt="filter_range_lines_tr" /></a></p>
-	<p>通过在命令之前增加数字前缀，也可以实现相同的功能。首先将光标移动到第4行，然后连续点击<kbd>3!!</kbd>键，将转到屏幕底部继续输入针对行范围的<code class="inset">:.,.+2!</code>命令。继续输入以下命令，将本行及后续2行共计3行的字母转换为大写：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/filter_range_lines_tr.png" title="filter_range_lines_tr"><img src="https://yyq123.github.io/learn-vim/images/filter_range_lines_tr.png" alt="filter_range_lines_tr" /></a></p>
+	<p>通过在命令之前增加数字前缀，也可以实现相同的功能。首先将光标移动到第4行，然后连续点击<kbd>3!!</kbd>键，将转到屏幕底部继续输入针对行范围<code class="inset">:.,.+2!</code>的命令。以下命令，将本行及后续2行（共计3行）的字母转换为大写：</p>
 	<p style="text-indent:2em"><code class="inset">:.,.+2!tr [:lower:] [:upper:]</code></p>
-	<p>在可视化模式下，也可以使用外部程序 {filter} 过滤高亮选中的行。例如选中文本之后，点击<kbd>!!</kbd>键，然后输入以下命令，可以注释选中的行：</p>
+	<p>使用以下命令，可以将指定<a href="http://yyq123.github.io/learn-vim/learn-vi-53-Mark.html" title="">标记</a>（Mark）之间的行的字母转换为大写：</p>
+	<p style="text-indent:2em"><code class="inset">:'a,'b!tr [:lower:] [:upper:]</code></p>
+	<p>在可视化模式下，也可以使用外部程序 {filter} 过滤高亮选中的行。例如选中文本之后，点击<kbd>!</kbd>键，将转到屏幕底部继续输入针对选中范围<code class="inset">'&lt;,'&gt;!</code>的命令。以下命令，将注释选中的行：</p>
 	<p style="text-indent:2em"><code class="inset">'&lt;,'&gt;! perl -nle 'print &quot;\#&quot;.$_'</code></p>
-<td valign="top">:%!sort<br>
-            </td>
-            <td valign="top">Sort the file<br>
-            </td>
-          </tr>
-          <tr>
-            <td valign="top">:%sort -n<br>
-            </td>
-            <td valign="top">Sort file numerically<br>
-            </td>
-          </tr>
-          <tr>
-            <td valign="top">:%sort -u<br>
-            </td>
-            <td valign="top">Sort unique -- delete dups<br>
-            </td>
-          </tr>
-          <tr>
-:'a,'b!sort -u " same, for lines from mark a to mark b inclusive	
-	
-	<h2 class="article"><a id="">启用/禁用</a></h2>
-	<p></p>
-	<a href="#" title=""></a>
-	<p>在行首增加行号</p>
+	<p>请注意，过滤程序将对整行进行处理，所以请使用<code class="inset">V</code>命令进入的行可视化模式（Linewise visual mode)。</p>
+
+	<h2 class="article"><a id="filter-text-process">文本处理</a></h2>
+	<p>使用以下命令，将按照数字顺序对当前文本进行排序。请注意，此处的外部sort命令，与Vim内部的<a href="http://yyq123.github.io/learn-vim/learn-vi-09-03-sort.html" title="文本排序(sort)">:sort</a>命令是不同的。</p>
+	<p style="text-indent:2em"><code class="inset">:%!sort -n</code></p>
+	<p>使用以下命令，将在行首增加行号：</p>
 	<p style="text-indent:2em"><code class="inset">:%!cat -n</code></p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/filter_cat_n.png" title="filter_cat_n"><img src="https://yyq123.github.io/learn-vim/images/filter_cat_n.png" alt="filter_cat_n" /></a></p>
 
 	<p>例如在当前文件中，包含以逗号分隔的多列文本：</p>
-<pre class="block">One,Two,Three,Four,Five
+<pre class="block" style="width:30em">One,Two,Three,Four,Five
 arborist,apple,artichoke,ant,author
 branch,banana,broccoli,bee,book</pre>
-	<p>使用以下Linux命令，仅保留第二和第三列文本</p>
+	<p>使用以下Linux命令cut，可以仅保留其中的2-3列文本：</p>
 	<p style="text-indent:2em"><code class="inset">:%!cut -f2-3 -d,</code></p>
-<pre>Two,Three
+<pre class="block" style="width:30em">Two,Three
 apple,artichoke
 banana,broccoli</pre>
+
+	<h2 class="article"><a id="filter-generate-cmd">生成并执行Shell命令</a></h2>
+	<p>shell环境（比如sh和cmd），也可以作为过滤器来执行外部命令。</p>
+	<p>使用以下命令，可以将当前目录下的文件列表读取到当前文件中：</p>
+	<p style="text-indent:2em"><code class="inset">:r! ls *.html</code></p>
+	<p>利用替代命令，可以针对文件列表组合出需要的Shell命令。例如生成mv命令，将所有HTML文件重命名为XHTML文件：</p>
+	<p style="text-indent:2em"><code class="inset">:%s/\(.*\).html/mv &amp; \1.xhtml</code></p>
+	<p>使用以下命令，则可以调用Shell来执行当前文件中的命令：</p>
+	<p style="text-indent:2em"><code class="inset">:!sh</code></p>
+	<p>可以看到，利用过滤器可以灵活生成并执行操作系统命令，以完成例如文件复制备份等批处理操作。</p>
 	<p>假设当前文件中包含以下Windows命令：</p>
-	<pre class="block">ping -n 1 1.1.1.1
+	<pre class="block" style="width:30em">ping -n 1 1.1.1.1
 ping -n 1 1.1.1.2
 ping -n 1 1.1.1.3</pre>
-	<p>使用以下命令，将用文件中ping命令的输出，来替换当前文本：</p>
+	<p>使用以下命令，将用文件中ping命令的输出来替换当前文本：</p>
 	<p style="text-indent:2em"><code class="inset">%!cmd</code></p>
-	<pre class="block">Microsoft Windows [Version 10.0.18362.720]
+	<pre class="block" style="width:30em">Microsoft Windows [Version 10.0.18362.720]
 (c) 2019 Microsoft Corporation. All rights reserved.
 
 D:\Temp>ping -n 1 1.1.1.1
@@ -92,42 +73,22 @@ Pinging 1.1.1.1 with 32 bytes of data:
 Reply from 1.1.1.1: bytes=32 time=148ms TTL=54
 
 Ping statistics for 1.1.1.1:
-    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),
+Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),
 Approximate round trip times in milli-seconds:
-    Minimum = 148ms, Maximum = 148ms, Average = 148ms
-	...</pre>
-	The same method can be used on Unix with appropriate changes (for bash you would issue the command %!bash, and in this example the ping command would be ping -c 1). 
-	<p>从以下截图可以看到，Vim会将文本行保存为临时文件，然后调用外部程序进行过滤处理，然后再用输出结果替换当前文本。</p>
+Minimum = 148ms, Maximum = 148ms, Average = 148ms
+...</pre>
+	<p>在以上命令的执行过程中可以看到，Vim会将文本行保存为临时文件，然后调用外部程序进行过滤处理，然后再用输出结果替换当前文本。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/filter_windows_tempdir.png" title="filter_windows_tempdir"><img src="https://yyq123.github.io/learn-vim/images/filter_windows_tempdir.png" alt="filter_windows_tempdir" width="550" height="45" /></a></p>
-	在Linux上，该文件会放在一
-个私人的目录里 (只能被当前用户访问)，。Vim 退出时，自动删除该目录及之下的所有文件。如果 Vim 本
-身设置了 setuid 位，这样或许会有问题。临时文件由 setuid 用户拥有，但过滤程序以
-原来用户的权限执行。
-MS-Windows 上，使用以下目录中首个可用者: $TMP、$TEMP、c:\TMP、c:\TEMP。
-Unix 上，使用的目录依次为: $TMPDIR、/tmp、当前目录、$HOME。
-	<p></p>
-	<p style="text-indent:2em"><code class="inset"></code></p>
+	<p>过滤器使用的临时文件，通常保存在以下位置：</p>
+	<ul>
+		<li>Windows：$TMP、$TEMP、c:\TMP、c:\TEMP；</li>
+		<li>Linux：$TMPDIR、/tmp、当前目录、$HOME。</li>
+	</ul>
+	<p>请注意，Vim将依次检查以上目录，请确保有足够的权限读写这些目录。</p>
+	<p>使用以下命令，可以查看关于过滤程序的帮助信息：</p>
+	<p style="text-indent:2em"><code class="inset">:help filter</code></p>
 
-	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
-	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
-
-	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
-		<caption style="margin:0.5em; font-weight:bold">选项列表</caption>
-		<tr><th style="white-space: nowrap">选项</th><th>描述</th><th>帮助信息</th></tr>
-		<tr><td><code class="inset">!</code></td><td>如果包含，表示。例如，。</td><td style="white-space: nowrap"><code class="inset">:help viminfo-!</code></td></tr>
-	</table>
-
-	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
-		<caption>命令小结</caption>
-		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
-		<tr><td><code class="inset">:</code></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-	</table>
-&ldquo;&rdquo;
-
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="运行外部命令(Shell Command)" href="http://yyq123.github.io/learn-vim/learn-vi-71-Shell.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="文本排序(sort)" href="http://yyq123.github.io/learn-vim/learn-vi-09-03-sort.html">下一篇</a>&gt;</span></p>
 
 </body>
 </html>

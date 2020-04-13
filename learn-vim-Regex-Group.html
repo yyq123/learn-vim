@@ -5,265 +5,57 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记  ()</title>
+	<title>VIM学习笔记 VIM学习笔记 正则表达式-捕获组(Regular Expression-Group)</title>
 </head>
 <body>
-	<h1>VIM学习笔记  ()</h1>
+	<h1>VIM学习笔记 VIM学习笔记 正则表达式-捕获组(Regular Expression-Group)</h1>
 
-	<h2 class="article"><a id="">启用/禁用</a></h2>
+	<h2 class="article"><a id=""></a></h2>
 	<p></p>
 	<a href="#" title=""></a>
-<h2>Enumerators</h2>
 
-<pre>/A\{2,4} the first time<br>AAAAAAAAAAAAA<br>^<br><br><br>/A\{2,4} the second time<br>AAAAAAAAAAAAA<br>    ^<br><br><br>/A\{2,4} the third time<br>AAAAAAAAAAAAA<br>        ^<br><br><br>/A\{2,4} the fourth time (no match, because only 1 A remains)<br>AAAAAAAAAAAAA<br>            <br></pre>
-
-
-The first time it matches the first 4 letters. The second time it matches
-the second four. The third time it matches the third four. Now it gets interesting.
-It doesn't match the last A because there's only one left. If there had been
-14 A's instead of 13, it would have matched the last 2. So the last number
-is the maximum match, and the number it skips ahead to begin trying for the
-next match.<br>
-
-
-
-There are shortcuts for the most common enumerators, namely, 0 or more, 1 or more, and 0 or 1:<br>
-
-
-<table cellpadding="2" cellspacing="2" border="1">
-  <tbody>
-    <tr>
-      <td valign="top" bgcolor="#cccccc">Shortcut<br>
-      </td>
-      <td valign="top" bgcolor="#cccccc">Equivalent enumerator<br>
-      </td>
-      <td valign="top" bgcolor="#cccccc">Meaning<br>
-      </td>
-    </tr>
-    <tr>
-      <td valign="top">*<br>
-      </td>
-      <td valign="top">\{0,}<br>
-      </td>
-      <td valign="top">0 or more<br>
-      </td>
-    </tr>
-    <tr>
-      <td valign="top">\+<br>
-      </td>
-      <td valign="top">\{1,}<br>
-      </td>
-      <td valign="top">1 or more<br>
-      </td>
-    </tr>
-    <tr>
-      <td valign="top">\?<br>
-      </td>
-      <td valign="top">\{0,1}<br>
-      </td>
-      <td valign="top">0 or 1<br>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-
-
-<h1><a name="_Advanced_Searches_with_Groups"></a>Advanced Searches with Groups</h1>
-
-Let's say you want to find a phone number. Look at all the ways phone numbers can be written:<br>
-
+	<h2 class="article"><a id="reg-group">捕获组</a></h2>
 <ul>
-
-
-  <li>(800)555-1212</li>
-  <li>(800) 555-1212</li>
-  <li>(800)-555-1212</li>
-  <li>800-555-1212</li>
-  <li>555-1212</li>
+<li>(800)555-1212</li>
+<li>(800) 555-1212</li>
+<li>(800)-555-1212</li>
+<li>800-555-1212</li>
+<li>555-1212</li>
 </ul>
 
+	<table summary="Commands" border="0" frame="hsides" rules="all" cellspacing="0" cellpadding="5">
+		<tr><th colspan="7">格式</th><th>示例</th></tr>
+		<tr><td>(</td><td>3位数字</td><td>)</td><td></td><td>3位数字</td><td>-</td></td><td>4位数字</td><td>(800)555-1212</td></tr>
+		<tr><td>(</td><td>3位数字</td><td>)</td><td>&#x25a1;</td><td>3位数字</td><td>-</td></td><td>4位数字</td><td>(800) 555-1212</td></tr>
+		<tr><td>(</td><td>3位数字</td><td>)</td><td>-</td><td>3位数字</td><td>-</td></td><td>4位数字</td><td>(800)-555-1212</td></tr>
+		<tr><td></td><td>3位数字</td><td></td><td>-</td><td>3位数字</td><td>-</td></td><td>4位数字</td><td>800-555-1212</td></tr>
+		<tr><td></td><td></td><td></td><td></td><td>3位数字</td><td>-</td></td><td>4位数字</td><td>555-1212</td></tr>
+		<tr><td colspan="4"><code class="inset">\((\d\{3})[- ]\?\|\d\{3}-\)\?</code></td><td><code class="inset">\d\{3}</code></td><td><code class="inset">-</code></td><td><code class="inset">\d\{4}</code></td><td></td></tr>
+	</table>
+	<p>从以上</p>
+	<ul>
+		<li>可能有区号，也可能没有区号；</li>
+		<li>区号可能被括号包围，也可能没有括号；</li>
+		<li>区号和号码之间，可能有横线或者空格相连，也可能没有任何连接符；</li>
+		<li>号码由3位数字，横线连接符，和4位数字组成</li>
+		<li></li>
+		<li></li>
+	</ul>
+	<p style="text-indent:2em"><code class="inset"></code></p>
 
-The first thing to notice is that everything except the area code is simple:<br>
-
-
-<pre>/\d\{3}-\d\{4}<br></pre>
-
-If you notice, either you have an area code plus optional dash or space between
-it and the exchange, or you don't. So you make a group to hold the area code,
-its parens or lack thereof, and option dash or spac
-
-So anyway, we can start by dreaming of a group containing area code, optional
-parens, and an optional trailing separator, and prepending it onto the search
-for the exchange and 4 digit number:<br>
-
-
-<pre>/\(area_code_group\)\?\d\{3}-\d\{4}<br></pre>
-
-
-Following in the footsteps of programmers since the dawn of time, let's simply
-forget about the last 7 digits and concentrate on the area code group.<br>
-
-
-<br>
-
-
-One thing you know is the area code has it has parentheses or it doesn't.
-The other punctuation depends on whether it has parentheses. If it has parentheses
-you look for this:<br>
-
-
-<pre>/(\d\{3})[- ]\?</pre>
-
-
-That's an opening paren, exactly three digits, a closing paren, and one or
-zero iterations of either a space or a dash. Obviously if there are zero
-iterations it matches a string where the paren buts up against the telephone
-exchange.<br>
-
-
-<br>
-
-
-If there are no parens, it's even simpler because you must have a dash after the area code. <br>
-
-
-<pre>\d\{3}-</pre>
-
-
-We'll use the \| operator to represent alternatives. In truth I don't know
-whether many VI implementations offer the \| operator, but I know that Vim
-does. By the way, in case you haven't noticed, Vim is my favorite VI implementation,
-though I like all VI's. Anyway, here's the first step in representing the
-area code:<br>
-
-
-<pre>/(\d\{3})[- ]\?\|\d\{3}-&nbsp; </pre>
-
-
-This matches area codes with or without parens. Remembering phone numbers
-can have one or zero area codes, together with the area code's parens and
-optional trailing dash or space, we put that in a group that can happen zero
-or one time, and append the regex for the last 7 digits of the phone number:<br>
-
-
-<pre><b><font size="+1"><font color="#330033">/</font><font color="#330033">\(</font><font color="#330033">(\d\{3})[- ]\?</font><font color="#330033">\|</font><font color="#330033">\d\{3}-</font><font color="#330033">\)</font><font color="#330033">\?</font><font color="#993399"><font color="#330033">\d\{3}-\d\{4}</font></font></font></b></pre>
-
-
-To make this clearer, let's color code it:<br>
-
-
-<pre><font size="+1"><b>/<font color="#cc0000">\(</font><font color="#006600">(\d\{3})[- ]\?</font><font color="#ff6600">\|</font><font color="#000099">\d\{3}-</font><font color="#cc0000">\)</font><font color="#339999">\?</font><font color="#993399">\d\{3}-\d\{4}</font></b></font><br></pre>
-
-
-<br>
-
+<p style="font-family: Courier New, Courier, monospace;font-weight: bold;">/<span style="color:#cc0000">\(</span><span style="color:#006600">(\d\{3})[- ]\?</span><span style="color:#ff6600">\|</span><span style="color:#000099">\d\{3}-</span><span style="color:#cc0000">\)</span><span style="color:#339999">\?</span><span style="color:#993399">\d\{3}-\d\{4}</span></p>
 
 <table cellpadding="2" cellspacing="2" border="1">
-
-
-  <tbody>
-    <tr>
-      <td valign="middle" align="right" bgcolor="#cccccc"><b>Color<br>
-      </b></td>
-      <td valign="middle" align="center" bgcolor="#cccccc">
-      <pre><b>Regex<br></b></pre>
-      </td>
-      <td valign="middle" bgcolor="#cccccc"><b>Explanation<br>
-      </b></td>
-    </tr>
-    <tr>
-      <td valign="middle" align="right"><b><font color="#cc0000">red<br>
-      </font></b></td>
-      <td valign="middle" align="center">
-      <pre><b><font color="#cc0000">\( to \)<br></font></b></pre>
-      </td>
-      <td valign="middle"><b><font color="#cc0000">Group &nbsp;consisting of all area code and trailing punctuation alternatives</font><br>
-      </b></td>
-    </tr>
-    <tr>
-      <td valign="middle" align="right"><b><font color="#00cccc">turquoise<br>
-      </font></b></td>
-      <td valign="middle" align="center">
-      <pre><b><font color="#00cccc">\?<br></font></b></pre>
-      </td>
-      <td valign="middle"><b><font color="#00cccc">Signifies 0 or 1 instances of the area code group.<br>
-      </font></b></td>
-    </tr>
-    <tr>
-      <td valign="middle" align="right"><b><font color="#993399">magenta</font></b></td>
-      <td valign="middle" align="center">
-      <pre><b><font size="+1"><font color="#993399">\d\{3}-\d\{4}</font></font></b></pre>
-      </td>
-      <td valign="middle"><b><font color="#993399">Phone number without area code</font></b></td>
-    </tr>
-    <tr>
-      <td valign="middle" align="right"><b><font color="#ff6600">orange</font></b></td>
-      <td valign="middle" align="center">
-      <pre><b><font size="+1"><font color="#ff6600">\|</font></font></b></pre>
-      </td>
-      <td valign="middle"><b><font color="#ff6600">Signifies that the element on its left and on its right are either/or alternatives</font></b></td>
-    </tr>
-    <tr>
-      <td valign="middle" align="right"><b><font color="#006600">green</font></b></td>
-      <td valign="middle" align="center">
-      <pre><b><font size="+1"><font color="#006600">(\d\{3})[- ]\?</font></font></b></pre>
-      </td>
-      <td valign="middle"><b><font color="#006600">Structure (with options) of area code with parens</font></b></td>
-    </tr>
-    <tr>
-      <td valign="middle" align="right"><b><font color="#000099">blue</font></b></td>
-      <td valign="middle" align="center">
-      <pre><b><font size="+1"><font color="#000099">\d\{3}-</font></font></b></pre>
-      </td>
-      <td valign="middle"><b><font color="#000099">Structure of the area code without parens</font><br>
-      </b></td>
-    </tr>
-  </tbody>
+<tbody>
+<tr><th>颜色</th><th>表达式</th><th>解释</th></tr>
+<tr style="color:#cc0000"><td>红</td><td>\( to \)</td><td>捕获组，匹配区号及其后的连接符</td></tr>
+<tr style="color:#00cccc"><td>青</td><td>\?</td><td>匹配0个或1个区号捕获组</td></tr>
+<tr style="color:#993399"><td>紫</td><td>\d\{3}-\d\{4}</td><td>匹配不包括区号的电话号码</td></tr>
+<tr style="color:#ff6600"><td>橙</td><td>\|</td><td>或操作，匹配区号的多种形式</td></tr>
+<tr style="color:#006600"><td>绿</td><td>(\d\{3})[- ]\?</td><td>匹配由括号包围区号及之后的分隔符</td></tr>
+<tr style="color:#000099"><td>蓝</td><td>\d\{3}-</td><td>匹配没有括号包围的区号</td></tr>
+</tbody>
 </table>
-
-
-<br>
-
-
-Groups can be nested, and nested, and nested some more. In VI implementations
-that allow it, alternative groups can be specified with the \| operator (or
-possibly a different operator in a different VI implementation).<br>
-
-
-<br>
-
-
-If your head doesn't hurt too badly, for extra credit try to make a substitute
-expression that converts all these phone number formats to a single format.
-I can't do it in a single step, but I can do it in a 2 step process. The
-first substitute finds all valid phone numbers and surrounds them with <tt>pho_</tt> on one side and <tt>_ohp</tt>
-on the other. The second finds such surrounded strings and picks off the
-digits. This 2 stage approach frees the second replace from worrying about
-punctuation, or mixing detection and validation with substitution.<br>
-
-
-<br>
-
-
-To do this, step 1 must surround the ENTIRE search expression with \( and
-\) to make it a single group, and place it in a substitute:<br>
-
-
-<br>
-
-
-<pre><b>:%s/\(\((\d\{3})[- ]\?\|\d\{3}-\)\?\d\{3}-\d\{4}\)/pho_\1_ohp/</b></pre>
-
-
-Step 2 formats all resulting strings that include area codes in a standard format:<br>
-
-
-<pre><b>:%s/pho_\D*\(\d\d\d\)\D*\(\d\d\d-\d\d\d\d\)_ohp/(\1)-\2/</b><br></pre>
-You'll notice that all phone numbers that didn't include an area code were
-not converted. To convert them you need to run a second, much simpler substitute
-command.<br>
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">识别文件</p>
 	<p></p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
 
