@@ -10,9 +10,15 @@
 <body>
 	<h1>VIM学习笔记 网页开发-编辑网页标签(Edit HTML Tags)</h1>
 	<p></p>
-	<h2 class="article"><a id="">启用/禁用</a></h2>
+	<h2 class="article"><a id=""></a></h2>
 	<p></p>
 	<a href="#" title=""></a>
+
+	<h2 class="article"><a id="html-tag-search"></a></h2>
+	<p>使用以下命令，可以查找所有标题标签：</p>
+	<p style="text-indent:2em"><code class="inset">/\&lt;h.\&gt;.*\&lt;/h.\&gt;</code></p>
+	<p>使用以下命令，可以查找所有以&lt;开头以&gt;结尾的HTML代码标签：</p>
+	<p style="text-indent:2em"><code class="inset">/&lt;.\{-}&gt;</code></p>
 
 	<h2 class="article"><a id="html_close_tag">关闭标签</a></h2>
 	<p><code class="inset">inoremap &lt;lt&gt;/ &lt;/&lt;C-x&gt;&lt;C-o&gt;</code></p>

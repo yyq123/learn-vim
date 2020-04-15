@@ -755,6 +755,20 @@ to be unloaded without being saved.</td></tr>
     </tr>
 </tbody></table>
 
+
+<table border="0">
+<caption style="margin:0.5em; font-weight:bold">Summary of window commands</caption>
+<tbody><tr><th>Command</th><th>Action</th></tr>
+    <tr><td><code class="inset">:split</code></td><td><code class="inset">^Ws</code></td><td>Split the current window into two from side to side, placing the cursor in the new window. The optional file argument places that file in the newly created window. The windows are created as equal in size as possible, determined by free window space.</td></tr>
+    <tr><td><code class="inset">:new</code></td><td><code class="inset">^Wn</code></td><td>Same as :split, but start the new window editing an empty file. Note that the buffer will have no name until one is assigned.</td></tr>
+    <tr><td><code class="inset">:sview</code></td><td><code class="inset"></code></td><td>Read-only version of :split.</td></tr>
+    <tr><td><code class="inset">:sfind</code></td><td><code class="inset"></code></td><td>Split window and open file (if specified) in the new window.Look for file in the path.</td></tr>
+    <tr><td><code class="inset">:vsplit</code></td><td><code class="inset">^Wv</code></td><td>Split current window into two from top to bottom and open file (if specified) in the new window.</td></tr>
+    <tr><td><code class="inset">:vnew</code></td><td><code class="inset"></code></td><td>Vertical version of :new.</td></tr>
+    <tr><td><code class="inset"></code></td><td></td></tr>
+</tbody>
+</table>
+
 <table border="0">
 <caption style="margin:0.5em; font-weight:bold">Commands to rotate window positions</caption>
 <tbody><tr><th>Command</th><th>Action</th></tr>
@@ -770,12 +784,47 @@ to be unloaded without being saved.</td></tr>
 <table border="0">
 <caption style="margin:0.5em; font-weight:bold">Commands to change position and layout</caption>
 <tbody><tr><th>Command</th><th>Action</th></tr>
+    <tr><td><code class="inset">Ctrl-Wk</code></td><td rowspan="2">Move to the next window up.</td></tr>
+    <tr><td><code class="inset">Ctrl-W&nbsp;&lt;Up&gt;</code></td></tr>
+    <tr><td><code class="inset">Ctrl-W&nbsp;Ctrl-K</code></td></tr>
+    <tr><td><code class="inset">Ctrl-Wj</code></td><td rowspan="3">Move to the next window down. Note that this command does not cycle through the windows; it simply moves down to the next window below the current window. If the cursor is in a window at the bottom of the screen, this command has no effect. Also, this command bypasses adjacent windows on its “way down”; for example, if there is a window to the right of the current window, the command does not jump across to the adjacent window.</td></tr>
+    <tr><td><code class="inset">Ctrl-W&nbsp;&lt;Down&gt;</code></td></tr>
+    <tr><td><code class="inset">Ctrl-W&nbsp;Ctrl-J</code></td></tr>
+    <tr><td><code class="inset">^Wh</code></td><td rowspan="3">Move to the window to the left of the current window</td></tr>
+    <tr><td><code class="inset">Ctrl-W&nbsp;&lt;Left&gt;</code></td></tr>
+    <tr><td><code class="inset">Ctrl-W&lt;BS&gt;</code></td></tr>
+    <tr><td><code class="inset">Ctrl-W&nbsp;Ctrl-H</code></td></tr>
+    <tr><td><code class="inset">Ctrl-Wl</code></td><td rowspan="3">Move to the window to the right of the current window.</td></tr>
+    <tr><td><code class="inset">Ctrl-W&nbsp;&lt;Right&gt;</code></td></tr>
+    <tr><td><code class="inset">Ctrl-W&nbsp;Ctrl-L</code></td></tr>
+    <tr><td><code class="inset">Ctrl-Ww</code></td><td rowspan="2">Move to the next window below or to the right. Note that this command, unlike CTRL-W j , will cycle through all of the Vim windows. When the lowermost window is reached, Vim restarts the cycle and moves to the top leftmost window.</td></tr>
+    <tr><td><code class="inset">Ctrl-W&nbsp;Ctrl-W</code></td></tr>
+    <tr><td><code class="inset">Ctrl-Wt</code></td><td rowspan="2">Move cursor to the top leftmost window.</td></tr>
+    <tr><td><code class="inset">Ctrl-W&nbsp;Ctrl-T</code></td></tr>
+    <tr><td><code class="inset">Ctrl-Wb</code></td><td rowspan="2">Move cursor to the bottom rightmost window.</td></tr>
+    <tr><td><code class="inset">Ctrl-W&nbsp;Ctrl-B</code></td></tr>
+    <tr><td><code class="inset">Ctrl-Wp</code></td><td rowspan="2">Move to the previous (last accessed) window.</td></tr>
+    <tr><td><code class="inset">Ctrl-W&nbsp;Ctrl-P</code></td></tr>
+</tbody>
+</table>
+
+<table border="0">
+<caption style="margin:0.5em; font-weight:bold">Commands to change position (Rotate or Exchange)</caption>
+<tbody><tr><th>Command</th><th>Action</th></tr>
+    <tr><td><code class="inset">CTRL-Wr</code></td><td>rotates windows to the right or down.</td></tr>
+    <tr><td><code class="inset">CTRL-WR</code></td><td>rotates windows to the left or up.</td></tr>
+    <tr><td><code class="inset">CTRL-WR</code></td><td>exchange two windows in a row or column of windows.</td></tr>
+</tbody>
+</table>
+
+<table border="0">
+<caption style="margin:0.5em; font-weight:bold">Commands to change position and layout</caption>
+<tbody><tr><th>Command</th><th>Action</th></tr>
     <tr><td><code class="inset">^WK</code></td><td>Move window to top of screen and use full width. The cursor stays with the moved window.</td></tr>
     <tr><td><code class="inset">^WJ</code></td><td>Move window to bottom of screen and use full width. The cursor stays with the moved window.</td></tr>
     <tr><td><code class="inset">^WH</code></td><td>Move window to left of screen and use full height. The cursor stays with the moved window.</td></tr>
     <tr><td><code class="inset">^WL</code></td><td>Move window to right of screen and use full height. The cursor stays with the moved window.</td></tr>
     <tr><td><code class="inset">^WT</code></td><td>Move window to new tab. The cursor stays with the moved window. If the current window is the only window in the current tab, no action is taken.</td></tr>
-    <tr><td><code class="inset"></code></td><td></td></tr>
 </tbody>
 </table>
 

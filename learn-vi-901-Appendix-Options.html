@@ -6,204 +6,232 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
 	<title>VIM学习笔记 附录-选项(Appendix-Options)</title>
+	<style type="text/css" media="all">
+	table{
+	}
+	table > tbody > tr > td{
+	border: 4px solid #fff;
+	background: #f8f8f8;
+	}
+	ul {
+	padding:0;
+	margin:0;
+	}
+	li {
+	list-style-type: none;
+	position: relative;
+	padding-left: 10px;
+	margin: 10px 0;
+	background: #f8f8f8;
+	}
+	li > p {
+	line-height: 1.8em;
+	padding:5px 10px;
+	margin:0;
+	border-left:1px dotted;
+	}
+	li > p > a {
+	font-weight: bold;
+	}
+	</style>
 </head>
 <body>
 	<h1>VIM学习笔记 附录-选项(Appendix-Options)</h1>
 	<ul>
- 
- 
-		<li><p class="item"><a href="#" title=""></a> () (Default: )<br />；</p></li>
-		<li><p class="item"><a href="#" title=""></a> () (Default: )<br />；</p></li>
-		<li><p class="item"><a href="#" title=""></a> () (Default: )<br />；</p></li>
-		<li><p class="item"><a href="#" title=""></a> () (Default: )<br />；</p></li>
-		<li><p class="item"><a href="#" title="">guicursor</a> () (Default: )<br />Settings for cursor shape and blinking；</p></li>
-		<li><p class="item"><a href="#" title="">guifont</a> () (Default: )<br />Names of single-byte fonts to be used；</p></li>
-		<li><p class="item"><a href="#" title="">guifontset</a> () (Default: )<br />Option Names of multi-byte fonts to be used；</p></li>
-		<li><p class="item"><a href="#" title="">guifontwide</a> () (Default: )<br />Option List of font names for double-wide characters；</p></li>
-		<li><p class="item"><a href="#" title="">guiheadroom</a> () (Default: )<br />guiheadroom Option Number of pixels to leave for window decorations；</p></li>
-		<li><p class="item"><a href="#" title="">guioptions</a> () (Default: )<br />Option Which components and options are used；</p></li>
-		<li><p class="item"><a href="#" title="">guipty</a> () (Default: )<br />Option Use a pseudo-tty for “:!” commands；</p></li>
-		<li><p class="item"><a href="#" title="">guitablabel</a> () (Default: )<br />Option Custom label for a tab page；</p></li>
-		<li><p class="item"><a href="#" title="">guitabtooltip</a> () (Default: )<br />Option Custom tooltip for a tab page；</p></li>
-		<li><p class="item"><a href="#" title=""></a> () (Default: )<br />；</p></li>
-		<li><p class="item"><a href="#" title=""></a> () (Default: )<br />；</p></li>
-		<li><p class="item"><a href="#" title="">shell</a> (sh) (Default: /bin/sh)<br />；</p></li>
-		<li><p class="item"><a href="http://yyq123.github.io/learn-vim/learn-vi-46-03-CMD-Options.html#opt-shellslash" title="opt-shellslash">shellslash</a> (ssl) (Default: off)<br />使用正斜杠（Forward slash）作为路径分隔符；</p></li>
-		<li><p class="item"><a href="#opt-errorbells" title="opt-errorbells">errorbells</a> (eb) (Default: off)<br />是否发出报错响铃；</p></li>
-		<li><p style="padding:5px; margin:0; border-left:1px solid;"><a href="#opt-visualbell" title="opt-visualbell">visualbell</a> (vb) (Default: off)<br />设置响铃的行为：鸣叫、屏幕闪烁或什么都不做；</p></li>
-		<li><p class="item"><a href="#opt-showmode" title="opt-showmode">showmode</a> (smd) (Default: on)<br />是否显示当前所处的模式；</p></li>
-		<li><p class="item"><a href="#opt-showcmd" title="opt-showcmd">showcmd</a>(sc) (Default: on, off for Unix)<br />是否显示命令信息；</p></li>
-		<li><p class="item"><a href="#opt-cmdheight" title="opt-cmdheight">cmdheight</a> (ch) (Default: 1)<br />设置命令行高度；</p></li>
-		<li><p class="item"><a href="#opt-more" title="opt-more">more</a> (Default: on)<br />是否显示&ldquo;-- More --&rdquo;提示信息；</p></li>
-		<li><p class="item"><a href="#opt-report" title="opt-report">report</a> (Default: 2)<br />设置报告改变行数的阈值；</p></li>
+ 		<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
+		<li><p><a href="#" title="">winheight</a> (wh) (default 1)<br /><span>option When entering or creating a window, set its height to at least the specified value.；</span></li>
+		<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
+		<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
+		<li><p><a href="#" title="">guicursor</a> () (Default: )<br />Settings for cursor shape and blinking；</p></li>
+		<li><p><a href="#" title="">guifont</a> () (Default: )<br />Names of single-byte fonts to be used；</p></li>
+		<li><p><a href="#" title="">guifontset</a> () (Default: )<br />Option Names of multi-byte fonts to be used；</p></li>
+		<li><p><a href="#" title="">guifontwide</a> () (Default: )<br />Option List of font names for double-wide characters；</p></li>
+		<li><p><a href="#" title="">guiheadroom</a> () (Default: )<br />guiheadroom Option Number of pixels to leave for window decorations；</p></li>
+		<li><p><a href="#" title="">guioptions</a> () (Default: )<br />Option Which components and options are used；</p></li>
+		<li><p><a href="#" title="">guipty</a> () (Default: )<br />Option Use a pseudo-tty for “:!” commands；</p></li>
+		<li><p><a href="#" title="">guitablabel</a> () (Default: )<br />Option Custom label for a tab page；</p></li>
+		<li><p><a href="#" title="">guitabtooltip</a> () (Default: )<br />Option Custom tooltip for a tab page；</p></li>
+		<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
+		<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
+		<li><p><a href="#" title="">shell</a> (sh) (Default: /bin/sh)<br />；</p></li>
+		<li><p><a href="http://yyq123.github.io/learn-vim/learn-vi-46-03-CMD-Options.html#opt-shellslash" title="opt-shellslash">shellslash</a> (ssl) (Default: off)<br />使用正斜杠（Forward slash）作为路径分隔符；</p></li>
+		<li><p><a href="#opt-errorbells" title="opt-errorbells">errorbells</a> (eb) (Default: off)<br />是否发出报错响铃；</p></li>
+		<li><p><a href="#opt-visualbell" title="opt-visualbell">visualbell</a> (vb) (Default: off)<br />设置响铃的行为：鸣叫、屏幕闪烁或什么都不做；</p></li>
+		<li><p><a href="#opt-showmode" title="opt-showmode">showmode</a> (smd) (Default: on)<br />是否显示当前所处的模式；</p></li>
+		<li><p><a href="#opt-showcmd" title="opt-showcmd">showcmd</a>(sc) (Default: on, off for Unix)<br />是否显示命令信息；</p></li>
+		<li><p><a href="#opt-cmdheight" title="opt-cmdheight">cmdheight</a> (ch) (Default: 1)<br />设置命令行高度；</p></li>
+		<li><p><a href="#opt-more" title="opt-more">more</a> (Default: on)<br />是否显示&ldquo;-- More --&rdquo;提示信息；</p></li>
+		<li><p><a href="#opt-report" title="opt-report">report</a> (Default: 2)<br />设置报告改变行数的阈值；</p></li>
 	</ul>
 <table border="0">
-    <tbody><tr>
-        <td valign="top">autoindent</td>
-        <td valign="top">&nbsp;(ai)&nbsp;</td>
-        <td valign="top">noai</td>
+<tbody>
+	<tr><th></th><th></th><th></th></tr>
+
+	    <tr>
+        <td>autoindent</td>
+        <td>&nbsp;(ai)&nbsp;</td>
+        <td>noai</td>
     </tr>
     <tr>
-        <td valign="top">autowrite</td>
-        <td valign="top">&nbsp;(aw)&nbsp;</td>
-        <td valign="top">noaw</td>
+        <td>autowrite</td>
+        <td>&nbsp;(aw)&nbsp;</td>
+        <td>noaw</td>
     </tr>
     <tr>
-        <td valign="top">directory</td>
-        <td valign="top">&nbsp;(dir)&nbsp;</td>
-        <td valign="top">/tmp</td>
+        <td>directory</td>
+        <td>&nbsp;(dir)&nbsp;</td>
+        <td>/tmp</td>
     </tr>
     <tr>
-        <td valign="top">edcompatible</td>
-        <td valign="top">&nbsp;</td>
-        <td valign="top">noedcompatible</td>
+        <td>edcompatible</td>
+        <td>&nbsp;</td>
+        <td>noedcompatible</td>
     </tr>
     <tr>
-        <td valign="top">exrc (ex)</td>
-        <td valign="top">&nbsp;(ex)&nbsp;</td>
-        <td valign="top">noexrc</td>
+        <td>exrc (ex)</td>
+        <td>&nbsp;(ex)&nbsp;</td>
+        <td>noexrc</td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">ignorecase</font></td>
-        <td valign="top"><font size="2" face="Courier New">&nbsp;(ic)&nbsp;</font></td>
-        <td valign="top"><font size="2" face="Courier New">noic</font></td>
+        <td><font size="2" face="Courier New">ignorecase</font></td>
+        <td><font size="2" face="Courier New">&nbsp;(ic)&nbsp;</font></td>
+        <td><font size="2" face="Courier New">noic</font></td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">lisp</font></td>
-        <td valign="top">&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">nolisp</font></td>
+        <td><font size="2" face="Courier New">lisp</font></td>
+        <td>&nbsp;</td>
+        <td><font size="2" face="Courier New">nolisp</font></td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">list</font></td>
-        <td valign="top">&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">nolist</font></td>
+        <td><font size="2" face="Courier New">list</font></td>
+        <td>&nbsp;</td>
+        <td><font size="2" face="Courier New">nolist</font></td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">magic</font></td>
-        <td valign="top">&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">magic</font></td>
+        <td><font size="2" face="Courier New">magic</font></td>
+        <td>&nbsp;</td>
+        <td><font size="2" face="Courier New">magic</font></td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">number</font></td>
-        <td valign="top"><font size="2" face="Courier New">&nbsp;(nu)&nbsp;</font></td>
-        <td valign="top"><font size="2" face="Courier New">nonu</font></td>
+        <td><font size="2" face="Courier New">number</font></td>
+        <td><font size="2" face="Courier New">&nbsp;(nu)&nbsp;</font></td>
+        <td><font size="2" face="Courier New">nonu</font></td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">paragraphs</font></td>
-        <td valign="top"><font size="2" face="Courier New">&nbsp;(para)&nbsp;</font></td>
-        <td valign="top"><font size="2" face="Courier New">IPLPPPQP
+        <td><font size="2" face="Courier New">paragraphs</font></td>
+        <td><font size="2" face="Courier New">&nbsp;(para)&nbsp;</font></td>
+        <td><font size="2" face="Courier New">IPLPPPQP
         LIpplpipbp</font></td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">prompt</font></td>
-        <td valign="top">&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">prompt</font></td>
+        <td><font size="2" face="Courier New">prompt</font></td>
+        <td>&nbsp;</td>
+        <td><font size="2" face="Courier New">prompt</font></td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">readonly</font></td>
-        <td valign="top"><font size="2" face="Courier New">&nbsp;(ro)&nbsp;</font></td>
-        <td valign="top"><font size="2" face="Courier New">noro</font></td>
+        <td><font size="2" face="Courier New">readonly</font></td>
+        <td><font size="2" face="Courier New">&nbsp;(ro)&nbsp;</font></td>
+        <td><font size="2" face="Courier New">noro</font></td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">read</font></td>
-        <td valign="top"><font size="2" face="Courier New">&nbsp;(re)&nbsp;</font></td>
-        <td valign="top">&nbsp;</td>
+        <td><font size="2" face="Courier New">read</font></td>
+        <td><font size="2" face="Courier New">&nbsp;(re)&nbsp;</font></td>
+        <td>&nbsp;</td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">remap</font></td>
-        <td valign="top">&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">remap</font></td>
+        <td><font size="2" face="Courier New">remap</font></td>
+        <td>&nbsp;</td>
+        <td><font size="2" face="Courier New">remap</font></td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">scroll</font></td>
-        <td valign="top">&nbsp;</td>
-        <td valign="top"><font size="3">half window</font></td>
+        <td><font size="2" face="Courier New">scroll</font></td>
+        <td>&nbsp;</td>
+        <td><font size="3">half window</font></td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">sections</font></td>
-        <td valign="top"><font size="2" face="Courier New">&nbsp;(sect)&nbsp;</font></td>
-        <td valign="top"><font size="2" face="Courier New">SHNHH
+        <td><font size="2" face="Courier New">sections</font></td>
+        <td><font size="2" face="Courier New">&nbsp;(sect)&nbsp;</font></td>
+        <td><font size="2" face="Courier New">SHNHH
         HU</font></td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">shiftwidth</font></td>
-        <td valign="top"><font size="2" face="Courier New">&nbsp;(sw)&nbsp;</font></td>
-        <td valign="top"><font size="2" face="Courier New">8</font></td>
+        <td><font size="2" face="Courier New">shiftwidth</font></td>
+        <td><font size="2" face="Courier New">&nbsp;(sw)&nbsp;</font></td>
+        <td><font size="2" face="Courier New">8</font></td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">showmatch</font></td>
-        <td valign="top"><font size="2" face="Courier New">&nbsp;(sm)&nbsp;</font></td>
-        <td valign="top"><font size="2" face="Courier New">nosm</font></td>
+        <td><font size="2" face="Courier New">showmatch</font></td>
+        <td><font size="2" face="Courier New">&nbsp;(sm)&nbsp;</font></td>
+        <td><font size="2" face="Courier New">nosm</font></td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">tabstop</font></td>
-        <td valign="top"><font size="2" face="Courier New">&nbsp;(ts)&nbsp;</font></td>
-        <td valign="top"><font size="2" face="Courier New">8</font></td>
+        <td><font size="2" face="Courier New">tabstop</font></td>
+        <td><font size="2" face="Courier New">&nbsp;(ts)&nbsp;</font></td>
+        <td><font size="2" face="Courier New">8</font></td>
+    </tr>
+    <tr><td>taglength</td><td>&nbsp;(tl)&nbsp;</td><td>0</td></tr>
+    <tr><td>tagrelative</td><td>&nbsp;(tr)&nbsp;</td><td>tr</td></tr>
+    <tr>
+        <td><font size="2" face="Courier New">tags</font></td>
+        <td>&nbsp;</td>
+        <td><font size="3"><em>tags /usr/lib/tags</em></font></td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">taglength</font></td>
-        <td valign="top"><font size="2" face="Courier New">&nbsp;(tl)&nbsp;</font></td>
-        <td valign="top"><font size="2" face="Courier New">0</font></td>
+        <td><font size="2" face="Courier New">tagstack</font></td>
+        <td>&nbsp;</td>
+        <td><font size="2" face="Courier New">tagstack</font></td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">tags</font></td>
-        <td valign="top">&nbsp;</td>
-        <td valign="top"><font size="3"><em>tags /usr/lib/tags</em></font></td>
+        <td><font size="2" face="Courier New">term</font></td>
+        <td>&nbsp;</td>
+        <td><font size="3">(from </font><font size="2" face="Courier New">$TERM</font><font size="3">)</font></td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">tagstack</font></td>
-        <td valign="top">&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">tagstack</font></td>
+        <td><font size="2" face="Courier New">terse</font></td>
+        <td>&nbsp;</td>
+        <td><font size="2" face="Courier New">noterse</font></td>
+    </tr>
+    <tr><td>tildeop</td><td>&nbsp;(top)&nbsp;</td><td>notildeop</td></tr>
+    <tr>
+        <td><font size="2" face="Courier New">timeout</font></td>
+        <td><font size="2" face="Courier New">&nbsp;(to)&nbsp;</font></td>
+        <td><font size="2" face="Courier New">timeout</font></td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">term</font></td>
-        <td valign="top">&nbsp;</td>
-        <td valign="top"><font size="3">(from </font><font size="2" face="Courier New">$TERM</font><font size="3">)</font></td>
+        <td><font size="2" face="Courier New">ttytype</font></td>
+        <td>&nbsp;</td>
+        <td><font size="3">(from </font><font size="2" face="Courier New">$TERM</font><font size="3">)</font></td>
+    </tr>
+    <tr><td>viminfo</td><td>&nbsp;(vi)&nbsp;</td><td></td></tr>
+    <tr>
+        <td><font size="2" face="Courier New">warn</font></td>
+        <td>&nbsp;</td>
+        <td><font size="2" face="Courier New">warn</font></td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">terse</font></td>
-        <td valign="top">&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">noterse</font></td>
+        <td><font size="2" face="Courier New">window</font></td>
+        <td><font size="2" face="Courier New">&nbsp;(w)&nbsp;</font></td>
+        <td>&nbsp;</td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">timeout</font></td>
-        <td valign="top"><font size="2" face="Courier New">&nbsp;(to)&nbsp;</font></td>
-        <td valign="top"><font size="2" face="Courier New">timeout</font></td>
+        <td><font size="2" face="Courier New">wrapscan</font></td>
+        <td><font size="2" face="Courier New">&nbsp;(ws)&nbsp;</font></td>
+        <td><font size="2" face="Courier New">ws</font></td>
     </tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">ttytype</font></td>
-        <td valign="top">&nbsp;</td>
-        <td valign="top"><font size="3">(from </font><font size="2" face="Courier New">$TERM</font><font size="3">)</font></td>
+        <td><font size="2" face="Courier New">wrapmargin</font></td>
+        <td><font size="2" face="Courier New">&nbsp;(wm)&nbsp;</font></td>
+        <td><font size="3">0</font></td>
     </tr>
+    <tr><td>writebackup</td><td>&nbsp;(wb)&nbsp;</td><td></td></tr>
     <tr>
-        <td valign="top"><font size="2" face="Courier New">warn</font></td>
-        <td valign="top">&nbsp;</td>
-        <td valign="top"><font size="2" face="Courier New">warn</font></td>
-    </tr>
-    <tr>
-        <td valign="top"><font size="2" face="Courier New">window</font></td>
-        <td valign="top"><font size="2" face="Courier New">&nbsp;(w)&nbsp;</font></td>
-        <td valign="top">&nbsp;</td>
-    </tr>
-    <tr>
-        <td valign="top"><font size="2" face="Courier New">wrapscan</font></td>
-        <td valign="top"><font size="2" face="Courier New">&nbsp;(ws)&nbsp;</font></td>
-        <td valign="top"><font size="2" face="Courier New">ws</font></td>
-    </tr>
-    <tr>
-        <td valign="top"><font size="2" face="Courier New">wrapmargin</font></td>
-        <td valign="top"><font size="2" face="Courier New">&nbsp;(wm)&nbsp;</font></td>
-        <td valign="top"><font size="3">0</font></td>
-    </tr>
-    <tr>
-        <td valign="top"><font size="2" face="Courier New">writeany</font></td>
-        <td valign="top"><font size="2" face="Courier New">&nbsp;(wa)&nbsp;</font></td>
-        <td valign="top"><font size="2" face="Courier New">nowa</font></td>
+        <td><font size="2" face="Courier New">writeany</font></td>
+        <td><font size="2" face="Courier New">&nbsp;(wa)&nbsp;</font></td>
+        <td><font size="2" face="Courier New">nowa</font></td>
     </tr>
 </tbody></table>
 
 
-winheight option When entering or creating a window, set its height to at least the specified value.
 winwidth option When entering or creating a window, set its width to at least the specified value.
 equalalways option When the number of windows changes, either by splitting or closing windows,
 resize them to be the same size.

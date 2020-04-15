@@ -62,11 +62,6 @@
 		<tr><td>(</td><td>3位数字</td><td>)</td><td>-</td><td>3位数字</td><td>-</td></td><td>4位数字</td><td>(800)-555-1212</td></tr>
 	</table>
 
-	<h2 class="article"><a id="regex-group">捕获组（Groups）</a></h2>
-	<p><code class="inset">()</code>用于保证需要组合出现的字符。表达式<code class="inset">a\(XY\)*b</code>将会匹配ab, aXYb, aXYXYb, aXYXYXYb。</p>
-	<p>逆向引用（Back Reference）表达式<code class="inset">\n</code>，用于引用之前定义的第n个捕获组。其中<var>n</var>为数字1–9。</p>
-	<p>例如对于文本&ldquo;he fly fly flies&rdquo;，表达式<code class="inset">\(fly\) \1</code>将匹配&ldquo;fly fly&rdquo;。因为<code class="inset">\1</code>再次引用了第一个捕获组&ldquo;fly&rdquo;，所以将匹配2个&ldquo;fly&rdquo;。</p>
-
 	<h2 class="article"><a id="regex-alternation-operator">或操作（Alternation Operator）</a></h2>
 	<p><code class="inset">|</code>用于查找两个或是多个可能的匹配。例如表达式<code class="inset">foo\|bar</code>可以找到foo或是bar。我们可以连接使用多个或操作符。例如表达式<code class="inset">Larry\|Moe\|Curly</code>将找到Larry、Moe和Curly。而表达式<code class="inset">end\(if\|while\|for\)</code>则可以匹配"endif", "endwhile" 和 "endfor"几个不同的元素组合。</p>
 	<p>如果希望匹配多次，那么可以组合使用加号和括号运算符。例如表达式<code class="inset">/\(foo\|bar\)\+</code>可以匹配 "foo", "foobar", "foofoo", "barfoobar"等等。</p>
@@ -144,6 +139,7 @@
 		<tr><td><code class="inset">[:upper:]</code></td><td>匹配所有的大写字母</td></tr>
 		<tr><td><code class="inset">[:xdigit:]</code></td><td>匹配十六进制数字</td></tr>
 	</table>
+	<p>使用<code class="inset">/^[[:digit:]]</code>命令，可以查找所有以数字开头的行。</p>
 	<p>假设希望将以下句子中以&ldquo;w&rdquo;开头并以&ldquo;ll&rdquo;结尾的字符串，替换为&ldquo;XXX&rdquo;。</p>
 	<p><code class="msg">I will roll the wheel from the whalebelly to the well.</code></p>
 	<p>如果使用<code class="inset">:s/w.*ll/XXX/g</code>命令进行替换，由于Vim默认是会尽可能多地进行匹配（Matching as much as possible），即会替换从第一个&ldquo;w&rdquo;开始至末尾&ldquo;ll&rdquo;之间的所有字符，结果为：</p>
@@ -151,7 +147,6 @@
 	<p>使用以下命令排除空格和标点符号，从而达到更精确的匹配：</p>
 	<p style="text-indent:2em"><code class="inset">:s/w[^[:space:][:punct:]]*ll/XXX/g</code></p>
 	<p><code class="msg">I XXX roll the wheel from the XXXy to the XXX.</code></p>
-
 
 	<h2 class="article"><a id="regex-escap">转义符（Escaped Characters）</a></h2>
 	<p>如果需要查找某些特殊符号（比如美元符号），那么可以使用反斜杠backslash（\）进行转义。</p>

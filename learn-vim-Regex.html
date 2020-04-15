@@ -23,7 +23,7 @@
 	<p style="text-indent:2em"><code class="inset">:vim grep *</code></p>
  search results in a Quickfix window at the bottom and Vim jumps to the first match right away.
 	<p>在当前目录及其子目录下，查找指定字符串：</p>
-	<p style="text-indent:2em"><code class="inset">::vim Xanadu **</code></p>
+	<p style="text-indent:2em"><code class="inset">:vim Xanadu **</code></p>
 	* you will find it very convenient to use: :vim Xanadu ../include/**/*.h
 	* search for the current word under the cursor in the files. I first press * so that the word is selected. Then I use this empty pattern to search for it: :vim // *.cpp
 如果希望搜索所有子目录， **/*.* pattern. However this works for :vimgrep and :grep in linux, but does not work for Windows. In order to make it work on Windows you would need to use /S parameter (linux grep also accepts -R parameter which does the same thing). You can pass it like that:
@@ -32,13 +32,6 @@
 This will work on Windows and will find all “MyMethod” phrases in all files in all subdirectories of current working directory. However you can still make it the default behaviour in VIM. But first you neeed to know one thing:
 
 
-	<p style="text-indent:2em"><code class="inset">:grep searchpattern locationpattern</code></p>
-	<p>默认情况下，grep是区分大小写的，你可以使用-i选项来忽略大小写：</p>
-	<p style="text-indent:2em"><code class="inset">:grep -i word filename</code></p>
-
-	<p>例如在Windows下使用以下命令，将在当前目录下查找所有包含&ldquo;block&rdquo;文件：</p>
-	<p style="text-indent:2em"><code class="inset">:grep block *.*</code></p>
-	<p>您可以使用<code class="inset">:pwd</code>命令，来确定当前目录。</p>
 
 	<p><a href="https://yyq123.github.io/learn-vim/images/findstr.png" title="findstr"><img src="https://yyq123.github.io/learn-vim/images/findstr.png" alt="findstr" width="550" height="52" /></a></p>
 	<p></p>
@@ -50,6 +43,17 @@ This will work on Windows and will find all “MyMethod” phrases in all files 
 
 
 	<p style="text-indent:2em"><code class="inset">:help :vimgrep</code></p>
+
+	<h2 class="article"><a id="vimgrep">:grep</a></h2>
+	<p style="text-indent:2em"><code class="inset">:grep searchpattern locationpattern</code></p>
+	<p>例如在Windows下使用以下命令，将在当前目录下查找所有包含&ldquo;block&rdquo;文件：</p>
+	<p style="text-indent:2em"><code class="inset">:grep block *.*</code></p>
+	<p>默认情况下，grep是区分大小写的，你可以使用-i选项来忽略大小写：</p>
+	<p style="text-indent:2em"><code class="inset">:grep -i word filename</code></p>
+	<p>使用-o选项，将只显示匹配的字符，而不是整行内容：</p>
+	<p style="text-indent:2em"><code class="inset">:grep -o [[:punct:]] filename</code></p>
+
+	<p>您可以使用<code class="inset">:pwd</code>命令，来确定当前目录。</p>
 
 	<h2 class="article"><a id="grepprg">'grepprg'选项</a></h2>
 	<p>使用以下命令，可以查看'grepprg'选项的当前设置：</p>

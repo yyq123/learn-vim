@@ -38,33 +38,45 @@
 	<p>你也可以使用以下<kbd>ctrl+W</kbd>快捷键在多个窗口中进行切换：</p>
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>切换窗口命令</caption>
-		<tr><td><code class="inset">ctrl+Ww</code></td><td>切换窗口</td></tr>
-		<tr><td><code class="inset">ctrl+Wj</code></td><td>切换至下一窗口</td></tr>
-		<tr><td><code class="inset">ctrl+Wk</code></td><td>切换至上一窗口</td></tr>
-		<tr><td><code class="inset">ctrl+Wh</code></td><td>切换至左侧窗口</td></tr>
-		<tr><td><code class="inset">ctrl+Wl</code></td><td>切换至右侧窗口</td></tr>
-		<tr><td><code class="inset">ctrl+Wt</code></td><td>切换至顶部的窗口</td></tr>
-		<tr><td><code class="inset">ctrl+Wb</code></td><td>切换至底部的窗口</td></tr>
-		<tr><td><code class="inset">ctrl+Wp</code></td><td>切换至刚才所在的窗口</td></tr>
+		<tr><td><code class="inset">ctrl-Ww</code></td><td rowspan="2">循环切换窗口</td></tr>
+		<tr><td><code class="inset">ctrl-W&nbsp;Ctrl-W</code></td></tr>
+		<tr><td><code class="inset">ctrl-W&nbsp;&lt;Down&gt;</code></td><td rowspan="3">切换至下一窗口</td></tr>
+		<tr><td><code class="inset">ctrl-W&nbsp;Ctrl-J</code></td></tr>
+		<tr><td><code class="inset">ctrl-Wj</code></td></tr>
+		<tr><td><code class="inset">ctrl-W&nbsp;&lt;Up&gt;</code></td><td rowspan="3">切换至上一窗口</td></tr>
+		<tr><td><code class="inset">ctrl-W&nbsp;Ctrl-K</code></td></tr>
+		<tr><td><code class="inset">ctrl-Wk</code></td></tr>
+		<tr><td><code class="inset">ctrl-W&nbsp;&lt;Left&gt;</code></td><td rowspan="3">切换至左侧窗口</td></tr>
+		<tr><td><code class="inset">ctrl-W&nbsp;Ctrl-H</code></td></tr>
+		<tr><td><code class="inset">ctrl-Wh</code></td></tr>
+		<tr><td><code class="inset">ctrl-W&nbsp;&lt;Right&gt;</code></td><td rowspan="3">切换至右侧窗口</td></tr>
+		<tr><td><code class="inset">ctrl-W&nbsp;Ctrl-L</code></td></tr>
+		<tr><td><code class="inset">ctrl-Wl</code></td></tr>
+		<tr><td><code class="inset">ctrl-Wt</code></td><td rowspan="2">切换至顶部的窗口</td></tr>
+		<tr><td><code class="inset">ctrl-W&nbsp;Ctrl-T</code></td></tr>
+		<tr><td><code class="inset">ctrl-Wb</code></td><td rowspan="2">切换至底部的窗口</td></tr>
+		<tr><td><code class="inset">ctrl-W&nbsp;Ctrl-B</code></td></tr>
+		<tr><td><code class="inset">ctrl-Wp</code></td><td rowspan="2">切换至刚才所在的窗口</td></tr>
+		<tr><td><code class="inset">ctrl-W&nbsp;Ctrl-P</code></td></tr>
 	</table>
 
 	<h2 class="article"><a id="window-exchange">移动窗口</a></h2>
-	<p>命令<kbd>ctrl+Wx</kbd>，可以将当前窗口与下一窗口进行位置对换。如果当前窗口在底部，则没有下一个窗口，这时命令将当前窗口与上一个窗口进行位置对换。</p>
+	<p>命令<kbd>Ctrl-Wx</kbd>和<kbd>Ctrl-W&nbsp;Ctrl-X</kbd>，可以将当前窗口与下一窗口进行位置对换。如果当前窗口在底部，则没有下一个窗口，这时命令将当前窗口与上一个窗口进行位置对换。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/Wx.png" title="Wx"><img src="https://yyq123.github.io/learn-vim/images/Wx.png" alt="Wx" width="550" height="218" /></a></p>
 	<p>命令<kbd>ctrl+Wr</kbd>命令可以使得窗口向右或向下进行循环移动。这个命令可以带一个数字作为参数，指明向下循环移动所执行的次数。与其相类似的<kbd>ctrl+WR</kbd>命令，可以使得窗口向左或向上循环移动。</p>
 	<p>以上命令在调换窗口位置时，会维持现有的窗口尺寸和布局；而以下命令，则会同时改变窗口的位置、尺寸和布局：</p>
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>移动窗口命令</caption>
 		<tr><td rowspan="4">维持<br />布局</td></tr>
-		<tr><td><code class="inset">ctrl+Wr</code></td><td>向右或向下循环移动窗口</td></tr>
-		<tr><td><code class="inset">ctrl+WR</code></td><td>向左或向上循环移动窗口</td></tr>
-		<tr><td><code class="inset">ctrl+Wx</code></td><td>将当前窗口与下一窗口位置对换</td></tr>
+		<tr><td><code class="inset">ctrl-Wr</code></td><td>向右或向下循环移动窗口</td></tr>
+		<tr><td><code class="inset">ctrl-WR</code></td><td>向左或向上循环移动窗口</td></tr>
+		<tr><td><code class="inset">ctrl-Wx</code></td><td>将当前窗口与下一窗口位置对换</td></tr>
 		<tr><td rowspan="6">改变<br />布局</td></tr>
-		<tr><td><code class="inset">ctrl+WK</code></td><td>将当前窗口放到最顶端，并使用最大屏幕宽度</td></tr>
-		<tr><td><code class="inset">ctrl+WJ</code></td><td>将当前窗口放到最底部，并使用最大屏幕宽度</td></tr>
-		<tr><td><code class="inset">ctrl+WH</code></td><td>将当前窗口放到最左侧，并使用最大屏幕高度</td></tr>
-		<tr><td><code class="inset">ctrl+WL</code></td><td>将当前窗口放到最右侧，并使用最大屏幕高度</td></tr>
-		<tr><td><code class="inset">ctrl+WT</code></td><td>将当前窗口放到新的<a href="http://yyq123.github.io/learn-vim/learn-vi-15-Tabs.html" title="Tabs">标签页</a></td></tr>
+		<tr><td><code class="inset">ctrl-WK</code></td><td>将当前窗口放到最顶端，并使用最大屏幕宽度</td></tr>
+		<tr><td><code class="inset">ctrl-WJ</code></td><td>将当前窗口放到最底部，并使用最大屏幕宽度</td></tr>
+		<tr><td><code class="inset">ctrl-WH</code></td><td>将当前窗口放到最左侧，并使用最大屏幕高度</td></tr>
+		<tr><td><code class="inset">ctrl-WL</code></td><td>将当前窗口放到最右侧，并使用最大屏幕高度</td></tr>
+		<tr><td><code class="inset">ctrl-WT</code></td><td>将当前窗口放到新的<a href="http://yyq123.github.io/learn-vim/learn-vi-15-Tabs.html" title="Tabs">标签页</a></td></tr>
 	</table>
 
 	<h2 class="article"><a id="window-size">控制窗口尺寸</a></h2>
