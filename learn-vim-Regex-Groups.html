@@ -11,12 +11,11 @@
 	<h1>VIM学习笔记 VIM学习笔记 正则表达式-捕获组(Regex-Groups)</h1>
 
 	<h2 class="article"><a id=""></a></h2>
-	<h2 class="article"><a id="regex-group">捕获组（Groups）</a></h2>
-	<p><code class="inset">()</code>用于保证需要组合出现的字符。例如表达式<code class="inset">a\(XY\)*b</code>将会匹配ab, aXYb, aXYXYb, aXYXYXYb。</p>
+	<p><code class="inset">()</code>用于保证需要作为整体而组合出现的字符。例如表达式<code class="inset">a\(XY\)*b</code>将会匹配ab, aXYb, aXYXYb, aXYXYXYb。</p>
 	<p>逆向引用（Back Reference）表达式<code class="inset">\n</code>，用于引用之前定义的第n个捕获组。其中<var>n</var>为数字1–9。</p>
 	<p>例如对于文本&ldquo;he fly fly flies&rdquo;，表达式<code class="inset">\(fly\) \1</code>将匹配&ldquo;fly fly&rdquo;。因为<code class="inset">\1</code>再次引用了第一个捕获组&ldquo;fly&rdquo;，所以将匹配2个&ldquo;fly&rdquo;。</p>
 
-	<h2 class="article"><a id="reg-group-match">捕获组</a></h2>
+	<h2 class="article"><a id="reg-group-match">捕获组匹配</a></h2>
 	<p>假设需要查找以下格式可变的电话号码：</p>
 	<table summary="Commands" border="0" frame="hsides" rules="all" cellspacing="0" cellpadding="5">
 		<tr><th>示例</th><th colspan="7">格式</th></tr>
@@ -48,7 +47,8 @@
 	</tbody>
 	</table>
 	<p>从以上实例可以看到，我们将区号及其后的连接符作为一个整体捕获为组，这样就可以通过后续的<var>\?</var>表达式来匹配0个或1个捕获组，以实现匹配包含区号和不包含区号的多种情况。</p>
-	<h2 class="article"><a id="regex-group-switch">捕获组（Groups）</a></h2>
+
+	<h2 class="article"><a id="regex-group-nested">捕获组嵌套</a></h2>
 	<p>假设以下文本中包括FIRSTNAME LASTNAME格式的姓名信息：</p>
 	<pre class="block" style="width:30em">Prepared by Tommas Young
 Prepared by Tommy Young</pre>
@@ -62,26 +62,7 @@ Prepared by Young, Tommy</pre>
 		<li><var>\%(\)</var>&nbsp;指定的组将不会被计数，这可以允许我们使用更多的组，并且查找速度也更快。</li>
 	</ul>
 
-
-
-
 	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
-	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
-
-		<caption style="margin:0.5em; font-weight:bold">选项列表</caption>
-		<tr><th style="white-space: nowrap">选项</th><th>描述</th><th>帮助信息</th></tr>
-		<tr><td><code class="inset">!</code></td><td>如果包含，表示。例如，。</td><td style="white-space: nowrap"><code class="inset">:help viminfo-!</code></td></tr>
-	</table>
-
-	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
-		<caption>命令小结</caption>
-		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
-		<tr><td><code class="inset">:</code></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-	</table>
-&ldquo;&rdquo;
 
 	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
 

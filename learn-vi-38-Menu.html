@@ -20,6 +20,7 @@
 	<p style="text-indent:2em"><code class="inset">:menu</code></p>
 	<p>如果只需要显示特定的菜单（注意区分大小写），那么可以使用以下命令：</p>
 	<p style="text-indent:2em"><code class="inset">:menu File</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Menu_File.png" title="Menu_File"><img src="https://yyq123.github.io/learn-vim/images/Menu_File.png" alt="Menu_File" width="500" height="320" /></a></p>
 	<p><a href="https://www.flickr.com/photos/yyq123/43014447591/in/dateposted/" title="Menu_File"><img src="https://farm2.staticflickr.com/1808/43014447591_c9c46d8f4c.jpg" width="500" height="320" alt="Menu_File" /></a></p>
 	<p>命令执行结果的每一行首个字母指明了这个命令的模式。</p>
 	<p>而以下命令，则可以列出指定菜单项的内容：</p>
@@ -30,8 +31,8 @@
 	<p>可以使用以下:menu命令，定义新的菜单内容：</p>
 	<p style="text-indent:2em"><code class="inset">:menu [priority] menu-item command-string</code></p>
 	<p><strong>menu-item</strong>，描述了放置菜单项的路径，比如<em>File.Save</em>表明Save菜单在File菜单下；还可以依次创建子菜单，例如<em>Tabs.Navigation.Next</em>。菜单定义命令示例如下：</p>
-	<p style="text-indent:2em"><code class="inset">:menu 10.340 &amp;File.&amp;Save:w        :confirm w</code></p>
-	<p><strong>priority</strong>，为数字优先级，用于确定放置菜单项的位置。第一个数字<em>10</em>表明在菜单栏上的位置。数字越小越靠近左侧，而数字越大则越靠近右侧；第二个数字<em>340</em>则决定了下拉菜单的位置。数字越小越靠近上部，而数字越大则越靠近下部。如果你在新建菜单命令中没有指定优先级数字，那么默认值为<em>500</em>。你可以使用<code class="inset">:help menu-priority</code>帮助命令，查看Vim内置菜单的位置排列。</p>
+	<p style="text-indent:2em"><code class="inset">:menu 10.340 &amp;File.&amp;Save:w :confirm w</code></p>
+	<p><strong>priority</strong>，为数字优先级，用于确定放置菜单项的位置。第一个数字<em>10</em>表明在菜单栏上的位置。数字越小越靠近左侧，而数字越大则越靠近右侧；第二个数字<em>340</em>则决定了下拉菜单的位置。数字越小越靠近上部，而数字越大则越靠近下部。如果你在新建菜单命令中没有指定优先级数字，那么默认值为<em>500</em>也就是在&ldquo;Window&rdquo;和&ldquo;Help&rdquo;菜单之间。你可以使用<code class="inset">:help menu-priority</code>帮助命令，查看Vim内置菜单的位置排列。</p>
 	<p><strong>&amp;</strong>，用于指定快捷键，例如<em>&amp;File.&amp;Save</em>可以表明用<kbd>Alt-F</kbd>键来选择File菜单，而用<kbd>S</kbd>键来选择保存菜单。</p>
 	<p>使用以下命令，将新建<em>Tabs.Next</em>菜单：</p>
 	<p style="text-indent:2em"><code class="inset">:menu &lt;silent&gt;Tabs.Next &lt;Esc&gt;:tabnext&lt;cr&gt;</code></p>
@@ -51,16 +52,16 @@
 	</ul>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">菜单实例</p>
-	<p>如果希望始终显示自己新建的菜单，那么可以在<a title="vimrc" href="http://yyq123.blogspot.com/2012/01/vim-vimrc.html">vimrc</a>文件中增加以下代码。请注意：代码不需要包括冒号（:）。</p>
-	<p><code class="inset"><br />
-15amenu &lt;silent&gt;Tabs.New :tabnew&lt;cr&gt;
-amenu Tabs.-SEPT1- :<br />
-amenu &lt;silent&gt;Tabs.&amp;Next :tabnext&lt;cr&gt;<br />
-amenu &lt;silent&gt;Tabs.&amp;Previous :tabprevious&lt;cr&gt;<br />
-amenu Tabs.-SEPT2- :<br />
-amenu Tabs.&amp;Close :confirm tabclose&lt;cr&gt;<br />
-	</code></p>
+	<p>如果希望始终显示自己新建的菜单，那么可以在<a title="vimrc" href="https://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html">vimrc</a>文件中增加以下代码：</p>
+	<pre class="block"><code class="inset">15amenu &lt;silent&gt;Tabs.New&lt;TAB&gt;Open\ a\ new\ tab :tabnew&lt;cr&gt;
+amenu Tabs.-SEPT1- :
+amenu &lt;silent&gt;Tabs.&amp;Next :tabnext&lt;cr&gt;
+amenu &lt;silent&gt;Tabs.&amp;Previous :tabprevious&lt;cr&gt;
+amenu Tabs.-SEPT2- :
+amenu Tabs.&amp;Close :confirm tabclose&lt;cr&gt;</code></pre>
+	<p>在第一条命令<code class="inset">&lt;TAB&gt;Open\ a\ new\ tab</code>中，以&ldquo;&lt;TAB&gt;&rdquo;引导的描述信息将显示在菜单项的右侧；如果描述信息中包括空格，那么需要使用&ldquo;\&rdquo;进行转义。</p>
 	<p>新建的菜单显示如下：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Menu_Tabs.png" title="Menu_Tabs"><img src="https://yyq123.github.io/learn-vim/images/Menu_Tabs.png" alt="Menu_Tabs" /></a></p>
 	<p><a href="https://www.flickr.com/photos/yyq123/32112022443/in/dateposted/" title="Menu_Tabs"><img src="https://c1.staticflickr.com/3/2231/32112022443_2752463084_o.png" width="149" height="114" alt="Menu_Tabs" /></a></p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">移除菜单</p>
@@ -68,8 +69,6 @@ amenu Tabs.&amp;Close :confirm tabclose&lt;cr&gt;<br />
 	<p style="text-indent:2em"><code class="inset">:[mode]unmenu menu-item</code></p>
 	<p>使用以下命令，则会移除所有菜单：</p>
 	<p style="text-indent:2em"><code class="inset">:aunmenu *</code></p>
-
-
 
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
