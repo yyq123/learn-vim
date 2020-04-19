@@ -13,26 +13,60 @@
 
  
 
-	<h2 class="article"><a id="">启用/禁用</a></h2>
+	<h2 class="article"><a id=""></a></h2>
 	<p></p>
 	<a href="#" title=""></a>
 	<p></p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
 
-	<p>将当前光标下的相对路径文件名，替换为完整的绝对路径名。hich is done with the \%# pattern. get the path by calling expand('<cfile>')</p>
-	<p style="text-indent:2em"><code class="inset">:s/\f*\%#\f*/\=fnamemodify(submatch(0), ':p')/</code></p>
-	<p><var>\f*\%#\f*</var> 将匹配文件名 (:help /\f) </p>
-	<p>replacement is a function call operating on the 0th submatch, which is the entire match. (:help sub-replace-expression, :help submatch()</p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
 
+	<h2 class="article"><a id="submatch-TitleCase">转换单词大小写</a></h2>
+	<p>如果希望在第1条之后插入一个新的条目，那么就意味着需要调整后续各个条目的序号：</p>
+<pre class="block">Article 1: 3 Steps To Enable Thesaurus Option
+Article 2: Steps to Add Custom Header
+Article 3: Automatic Word Completion
+Article 4: How To Record and Play Macro
+Article 5: Make Vim as Your C IDE</pre>
+	<p>使用以下命令，将第2行及之后各行中的序号分别加1：</p>
+	<p style="text-indent:2em"><code class="inset">:2,$s/\d\+/\=submatch(0) + 1/</code></p>
+<pre class="block">Article 1: 3 Steps To Enable Thesaurus Option
+Article 3: Steps to Add Custom Header
+Article 4: Automatic Word Completion
+Article 5: How To Record and Play Macro
+Article 6: Make Vim as Your C ID</pre>
+	<p>请注意，替换命令中并没有使用/g标志，因此将仅仅替换第一个匹配字符，以避免条目文本中的数字也被更改（类似第1行中的3 Steps）。</p>
+
+	<h2 class="article"><a id="submatch-SequenceNumber">更新列表序号</a></h2>
+	<p>假设需要在以下条目中，将首个单词的首个字母转换为大写：</p>
+<pre class="block">The following activities can be done using vim:
+a. <em>source</em> code walk through,
+b. <em>record</em> and play command executions,
+c. <em>making</em> the vim editor as ide</pre>
+	<p>使用以下命令，将匹配&ldquo;.&rdquo;及空格之后的单词字符（0-9A-Za-z），并替换为大写：</p>
+	<p style="text-indent:2em"><code class="inset">:%s/\.\s*\w/\=toupper(submatch(0))/g</code></p>
+<pre class="block">The following activities can be done using vim:
+a. <em>Source</em> code walk through,
+b. <em>Record</em> and play command executions,
+c. <em>Making</em> the vim editor as ide</pre>
+
+	<h2 class="article"><a id="submatch-fnamemodify">替换文件路径</a></h2>
+	<p>将当前光标下的相对路径文件名，替换为完整的绝对路径名：</p>
+	<p style="text-indent:2em"><code class="inset">:s/\f*\%#\f*/\=fnamemodify(submatch(0), ':p')/</code></p>
+	<p><var>\f*\%#\f*</var> 将匹配文件名（请参考帮助文件<code class="inset">:help /\f</code>） </p>
+	<p>replacement is a function call operating on the 0th submatch, which is the entire match. (:help sub-replace-expression, )</p>
 	<p>如果希望将可视化模式下选中的文件名，替换为完整的绝对路径名，那么可以使用以下命令： \%V</p>
 	<p style="text-indent:2em"><code class="inset">:s/\%V.*\%V/\=fnamemodify(submatch(0), ':p')/</code></p>
 
+	<h2 class="article"><a id="submatch-ZeroPadding"></a>数据补零</h2>
 	<p>将每行数据中不满8位的字符串，向右对齐并在前部以0补足8位：</p>
 	<p style="text-indent:2em"><code class="inset">:%s/.*/\=printf('%08s',submatch(0))/g</code></p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/submatch_08s.png" title="submatch_08s"><img src="https://yyq123.github.io/learn-vim/images/submatch_08s.png" alt="submatch_08s" /></a></p>
 
 	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
 	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
+	<p></p>
+	<p style="text-indent:2em"><code class="inset">:help submatch(</code></p>
 
 	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
 		<caption style="margin:0.5em; font-weight:bold">选项列表</caption>

@@ -10,7 +10,6 @@
 <body>
 	<h1>VIM学习笔记 VIM学习笔记 正则表达式-捕获组(Regex-Groups)</h1>
 
-	<h2 class="article"><a id=""></a></h2>
 	<p><code class="inset">()</code>用于保证需要作为整体而组合出现的字符。例如表达式<code class="inset">a\(XY\)*b</code>将会匹配ab, aXYb, aXYXYb, aXYXYXYb。</p>
 	<p>逆向引用（Back Reference）表达式<code class="inset">\n</code>，用于引用之前定义的第n个捕获组。其中<var>n</var>为数字1–9。</p>
 	<p>例如对于文本&ldquo;he fly fly flies&rdquo;，表达式<code class="inset">\(fly\) \1</code>将匹配&ldquo;fly fly&rdquo;。因为<code class="inset">\1</code>再次引用了第一个捕获组&ldquo;fly&rdquo;，所以将匹配2个&ldquo;fly&rdquo;。</p>
@@ -56,15 +55,22 @@ Prepared by Tommy Young</pre>
 	<p><code class="inset">:%s/\(Tom\%(mas\|my\)\) \(Young\)/\2, \1/g</code></p>
 	<pre class="block" style="width:30em">Prepared by Young, Tommas
 Prepared by Young, Tommy</pre>
-	<p>从以上命令可以看到：</p>
-	<ul>
-		<li>捕获组是可以嵌套的；</li>
-		<li><var>\%(\)</var>&nbsp;指定的组将不会被计数，这可以允许我们使用更多的组，并且查找速度也更快。</li>
-	</ul>
+	<p>从以上命令可以看到，捕获组是可以嵌套的；<var>\%(\)</var>&nbsp;指定的组将不会被计数，这可以允许我们使用更多的组，并且查找速度也更快。</p>
 
-	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
+	<h2 class="article"><a id="reg-group-replace">捕获组替换</a></h2>
+	<p>假设需要将以下文本中的单引号替换为双引号：</p>
+	<pre class="block" style="width:30em">The string contains a 'quoted' word.
+The string contains 'two' quoted 'words'.
+The 'string doesn't make things easy'.
+The string doesn't contain any quotes, isn't it.</pre>
+	<p>通过以下命令中的嵌套捕获组，来处理非开头的单词中的引号：</p>
+	<p><code class="inset">:%s/\s'\(\('\w\|[^']\)\+\)'/ "\1"/g</code></p>
+	<pre class="block" style="width:30em">The string contains a "quoted" word.
+The string contains "two" quoted "words".
+The "string doesn't make things easy".
+The string doesn't contain any quotes, isn't it.</pre>
 
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="Regular Expression Basic" href="http://yyq123.github.io/learn-vim/learn-vi-81-RegularExpressionBasic.html.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="替换字符串中的元字符(Metacharacters)" href="http://yyq123.github.io/learn-vim/learn-vim-Regex-Metacharacters.html">下一篇</a>&gt;</span></p>
 
 </body>
 </html>

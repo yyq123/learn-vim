@@ -36,93 +36,72 @@
 	</style>
 </head>
 <body>
+
 	<h1>VIM学习笔记 附录-选项(Appendix-Options)</h1>
 	<ul>
- 		<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
-		<li><p><a href="#" title="">winheight</a> (wh) (default 1)<br /><span>option When entering or creating a window, set its height to at least the specified value.；</span></li>
-		<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
-		<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
-		<li><p><a href="#" title="">guicursor</a> () (Default: )<br />Settings for cursor shape and blinking；</p></li>
-		<li><p><a href="#" title="">guifont</a> () (Default: )<br />Names of single-byte fonts to be used；</p></li>
-		<li><p><a href="#" title="">guifontset</a> () (Default: )<br />Option Names of multi-byte fonts to be used；</p></li>
-		<li><p><a href="#" title="">guifontwide</a> () (Default: )<br />Option List of font names for double-wide characters；</p></li>
-		<li><p><a href="#" title="">guiheadroom</a> () (Default: )<br />guiheadroom Option Number of pixels to leave for window decorations；</p></li>
-		<li><p><a href="#" title="">guioptions</a> () (Default: )<br />Option Which components and options are used；</p></li>
-		<li><p><a href="#" title="">guipty</a> () (Default: )<br />Option Use a pseudo-tty for “:!” commands；</p></li>
-		<li><p><a href="#" title="">guitablabel</a> () (Default: )<br />Option Custom label for a tab page；</p></li>
-		<li><p><a href="#" title="">guitabtooltip</a> () (Default: )<br />Option Custom tooltip for a tab page；</p></li>
-		<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
-		<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
-		<li><p><a href="#" title="">shell</a> (sh) (Default: /bin/sh)<br />；</p></li>
-		<li><p><a href="http://yyq123.github.io/learn-vim/learn-vi-46-03-CMD-Options.html#opt-shellslash" title="opt-shellslash">shellslash</a> (ssl) (Default: off)<br />使用正斜杠（Forward slash）作为路径分隔符；</p></li>
-		<li><p><a href="#opt-errorbells" title="opt-errorbells">errorbells</a> (eb) (Default: off)<br />是否发出报错响铃；</p></li>
-		<li><p><a href="#opt-visualbell" title="opt-visualbell">visualbell</a> (vb) (Default: off)<br />设置响铃的行为：鸣叫、屏幕闪烁或什么都不做；</p></li>
-		<li><p><a href="#opt-showmode" title="opt-showmode">showmode</a> (smd) (Default: on)<br />是否显示当前所处的模式；</p></li>
-		<li><p><a href="#opt-showcmd" title="opt-showcmd">showcmd</a>(sc) (Default: on, off for Unix)<br />是否显示命令信息；</p></li>
-		<li><p><a href="#opt-cmdheight" title="opt-cmdheight">cmdheight</a> (ch) (Default: 1)<br />设置命令行高度；</p></li>
-		<li><p><a href="#opt-more" title="opt-more">more</a> (Default: on)<br />是否显示&ldquo;-- More --&rdquo;提示信息；</p></li>
-		<li><p><a href="#opt-report" title="opt-report">report</a> (Default: 2)<br />设置报告改变行数的阈值；</p></li>
+	<li><p><a href="#" title="">autoindent</a> (ai) (Default: noai)<br />；</p></li>
+	<li><p><a href="#" title="">autowrite</a> (aw) (Default: noaw)<br />；</p></li>
+	<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
+	<li><p><a href="#opt-cmdheight" title="opt-cmdheight">cmdheight</a> (ch) (Default: 1)<br />设置命令行高度；</p></li>
+	<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
+
+	<li><p><a href="#" title="">directory</a> (dir) (Default: /tmp)<br />；</p></li>
+
+	<li><p><a href="#" title="">eadirection</a> () (Default: )<br />；Define whether Vim resizes windows equally vertically, horizontally, or both.</p></li>
+	<li><p><a href="#" title="">edcompatible</a> () (Default: noedcompatible)<br />；</p></li>
+	<li><p><a href="#" title="">equalalways</a> () (Default: )<br />；When the number of windows changes, either by splitting or closing windows,resize them to be the same size.</p></li>
+	<li><p><a href="#opt-errorbells" title="opt-errorbells">errorbells</a> (eb) (Default: off)<br />是否发出报错响铃；</p></li>
+	<li><p><a href="#" title="">exrc</a> (ex) (Default: noexrc)<br />；</p></li>
+
+	<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
+
+	<li><p><a href="#" title="">guicursor</a> () (Default: )<br />Settings for cursor shape and blinking；</p></li>
+	<li><p><a href="#" title="">guifont</a> () (Default: )<br />Names of single-byte fonts to be used；</p></li>
+	<li><p><a href="#" title="">guifontset</a> () (Default: )<br />Option Names of multi-byte fonts to be used；</p></li>
+	<li><p><a href="#" title="">guifontwide</a> () (Default: )<br />Option List of font names for double-wide characters；</p></li>
+	<li><p><a href="#" title="">guiheadroom</a> () (Default: )<br />guiheadroom Option Number of pixels to leave for window decorations；</p></li>
+	<li><p><a href="#" title="">guioptions</a> () (Default: )<br />Option Which components and options are used；</p></li>
+	<li><p><a href="#" title="">guipty</a> () (Default: )<br />Option Use a pseudo-tty for “:!” commands；</p></li>
+	<li><p><a href="#" title="">guitablabel</a> () (Default: )<br />Option Custom label for a tab page；</p></li>
+	<li><p><a href="#" title="">guitabtooltip</a> () (Default: )<br />Option Custom tooltip for a tab page；</p></li>
+	<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
+	<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
+
+	<li><p><a href="#" title="">ignorecase</a> (ic) (Default: noic)<br />；</p></li>
+
+	<li><p><a href="#" title="">lisp</a> () (Default: nolisp)<br />；</p></li>
+	<li><p><a href="#" title="">list</a> () (Default: nolist)<br />；</p></li>
+
+	<li><p><a href="#" title="">magic</a> () (Default: magic)<br />；</p></li>
+	<li><p><a href="#opt-more" title="opt-more">more</a> (Default: on)<br />是否显示&ldquo;-- More --&rdquo;提示信息；</p></li>
+
+	<li><p><a href="#" title="">number</a> (nu) (Default: nonu)<br />；</p></li>
+
+	<li><p><a href="#" title="">paragraphs</a> (para) (Default: "IPLPPPQPP TPHPLIPpLpItpplpipbp")<br />；</p></li>
+
+	<li><p><a href="#opt-report" title="opt-report">report</a> (Default: 2)<br />设置报告改变行数的阈值；</p></li>
+
+	<li><p><a href="#" title="">shell</a> (sh) (Default: /bin/sh)<br />；</p></li>
+	<li><p><a href="http://yyq123.github.io/learn-vim/learn-vi-46-03-CMD-Options.html#opt-shellslash" title="opt-shellslash">shellslash</a> (ssl) (Default: off)<br />使用正斜杠（Forward slash）作为路径分隔符；</p></li>
+	<li><p><a href="#opt-showcmd" title="opt-showcmd">showcmd</a>(sc) (Default: on, off for Unix)<br />是否显示命令信息；</p></li>
+	<li><p><a href="#opt-showmode" title="opt-showmode">showmode</a> (smd) (Default: on)<br />是否显示当前所处的模式；</p></li>
+
+	<li><p><a href="#opt-visualbell" title="opt-visualbell">visualbell</a> (vb) (Default: off)<br />设置响铃的行为：鸣叫、屏幕闪烁或什么都不做；</p></li>
+ 
+	<li><p><a href="#" title="">winheight</a> (wh) (default 1)<br /><span>option When entering or creating a window, set its height to at least the specified value.；</span></li>
+	<li><p><a href="#" title="">winwidth</a> () (Default: )<br />；When entering or creating a window, set its width to at least the specified value.</p></li>
+	<li><p><a href="#" title="">winminheight</a> () (Default: )<br />；Define the minimum window height, which applies to all windows created.</p></li>
+	<li><p><a href="#" title="">winminwidth</a> () (Default: )<br />；Define the minimum window width, which applies to all windows created.</p></li>
+	<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
+	<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
 	</ul>
 <table border="0">
 <tbody>
-	<tr><th></th><th></th><th></th></tr>
-
-	    <tr>
-        <td>autoindent</td>
-        <td>&nbsp;(ai)&nbsp;</td>
-        <td>noai</td>
-    </tr>
-    <tr>
-        <td>autowrite</td>
-        <td>&nbsp;(aw)&nbsp;</td>
-        <td>noaw</td>
-    </tr>
-    <tr>
-        <td>directory</td>
-        <td>&nbsp;(dir)&nbsp;</td>
-        <td>/tmp</td>
-    </tr>
-    <tr>
-        <td>edcompatible</td>
-        <td>&nbsp;</td>
-        <td>noedcompatible</td>
-    </tr>
-    <tr>
-        <td>exrc (ex)</td>
-        <td>&nbsp;(ex)&nbsp;</td>
-        <td>noexrc</td>
-    </tr>
-    <tr>
-        <td><font size="2" face="Courier New">ignorecase</font></td>
-        <td><font size="2" face="Courier New">&nbsp;(ic)&nbsp;</font></td>
-        <td><font size="2" face="Courier New">noic</font></td>
-    </tr>
-    <tr>
-        <td><font size="2" face="Courier New">lisp</font></td>
-        <td>&nbsp;</td>
-        <td><font size="2" face="Courier New">nolisp</font></td>
-    </tr>
-    <tr>
-        <td><font size="2" face="Courier New">list</font></td>
-        <td>&nbsp;</td>
-        <td><font size="2" face="Courier New">nolist</font></td>
-    </tr>
-    <tr>
-        <td><font size="2" face="Courier New">magic</font></td>
-        <td>&nbsp;</td>
-        <td><font size="2" face="Courier New">magic</font></td>
-    </tr>
-    <tr>
-        <td><font size="2" face="Courier New">number</font></td>
-        <td><font size="2" face="Courier New">&nbsp;(nu)&nbsp;</font></td>
-        <td><font size="2" face="Courier New">nonu</font></td>
-    </tr>
-    <tr>
-        <td><font size="2" face="Courier New">paragraphs</font></td>
-        <td><font size="2" face="Courier New">&nbsp;(para)&nbsp;</font></td>
-        <td><font size="2" face="Courier New">IPLPPPQP
-        LIpplpipbp</font></td>
-    </tr>
+	<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
+	<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
+	<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
+	<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
+	<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
     <tr>
         <td><font size="2" face="Courier New">prompt</font></td>
         <td>&nbsp;</td>
@@ -232,13 +211,6 @@
 </tbody></table>
 
 
-winwidth option When entering or creating a window, set its width to at least the specified value.
-equalalways option When the number of windows changes, either by splitting or closing windows,
-resize them to be the same size.
-eadirection option Define whether Vim resizes windows equally vertically, horizontally, or both.
-cmdheight option Set the command line height.
-winminheight option Define the minimum window height, which applies to all windows created.
-winminwidth option Define the minimum window width, which applies to all windows created.
 
 </body>
 </html>
