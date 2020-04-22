@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 ()</title>
+</head>
+<body>
+	<h1>VIM学习笔记 ()</h1>
+
+	<h2 class="article"><a id=""></a></h2>
+	<p></p>
+	<a href="#" title=""></a>
+
+	<p></p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+	<p>众所周知，在操作系统中通过设置PATH变量，来指定查找可执行文件的路径；而在Vim中则使用'path'选项，来指定查找文件的范围。</p>
+
+	<h2 class="article"><a id="opt-path">'path'选项</a></h2>
+	<p style="text-indent:2em"><code class="inset">:help 'path'</code></p>
+
+
+<p>Usually when you are working on a project and you want to load a particular file that is somewhere deep in the directory hierarchy, you have to either find the file on the command line and then load it into vim, or use vim tab completion to navigate and load the file. You can use vim's "find" feature instead.
+</p><p>Make the following entry in you vimrc:
+</p>
+<pre>set path=$PWD/**
+</pre>
+<p>This will set your path variable to current directory (from which you launched vim) and to all directories under current directory recursively.
+</p><p>Now all you have to do is to open vim/gvim from the base directory of your project. Then if there is a file that you want to open but dont remember the path for it, do a
+</p>
+<pre>:find &lt;full-file-name-including-extension&gt;
+</pre>
+<p>and it will open the file that you want.
+	<p>在命令行中输入<code class="inset">:find</code>命令之后，可以使用<kbd>Tab</kbd>键进行自动补全，并在wildmenu中显示匹配列表。</p>
+	<p>如果并不确切知道文件位于哪个具体的子目录中，那么可以使用以下命令</p>
+	<p style="text-indent:2em"><code class="inset">:find **/file.txt</code></p>
+	<p>在新建分隔窗口中查找并打开文件：</p>
+	<p style="text-indent:2em"><code class="inset">:sfind</code></p>
+	<p>在新建标签页中查找并打开文件：</p>
+	<p style="text-indent:2em"><code class="inset">:tabf</code></p>
+:set path=~/path/**
+On Windows use, set path=.\**
+	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
+
+ 
+:help :find
+	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
+
+	<pre class="block">
+	</pre>
+
+	<ul>
+		<li><p class="item"><br /></p></li>
+		<li><p class="item"><a href="#" title=""></a><br /></p></li>
+	</ul>
+
+	<p>假设正在编辑README.md</p>
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
+		<caption style="margin:0.5em; font-weight:bold">选项列表</caption>
+		<tr><th style="white-space: nowrap">选项</th><th>描述</th><th>帮助信息</th></tr>
+		<tr><td><code class="inset">echom expand('%:t:r')</code></td><td>README</td><td>my name of filename (without extension)</td></tr>
+		<tr><td><code class="inset">:echom @%</code></td><td>README.md</td><td></td></tr>
+		<tr><td><code class="inset">:echom expand('%')</code></td><td>README.md</td><td>relative file path</td></tr>
+		<tr><td><code class="inset">:echom expand('%:t') </code></td><td>README.md</td><td>my.txt name of file ('tail')</td></tr>
+		<tr><td><code class="inset">:echom expand('%:h')</code></td><td>.</td><td>relative file directory</td></tr>
+		<tr><td><code class="inset"></code></td><td></td><td></td></tr>
+		<tr><td><code class="inset">:echom expand('%:p:h')</code></td><td>E:\Anthony_GitHub\learn-vim</td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td><td></td></tr>
+		<tr><td><code class="inset">:echom expand('%:p')</code></td><td>E:\Anthony_GitHub\learn-vim\README.md</td><td></td></tr>
+		<tr><td><code class="inset">:echom expand('%:p:h:t')</code></td><td>learn-vim</td><td>First get the full path with :p (/abc/def/my.txt), then get the head of that with :h (/abc/def), then get the tail of that with :t (def)</td></tr>
+		<tr><td><code class="inset">:echom expand('~/_vimrc')</code></td><td>C:\Users\yiqyuan\_vimrc</td><td></td></tr>
+	</table>
+:h filename-modifiers:
+:help expand()
+:. reduce file name to current directory
+:r root of the file name(without extension)
+:e extension of file name
+:p file full path
+:% file relative path
+	<p>在下一行插入当前文件名（不包含扩展名）：</p>
+	<p style="text-indent:2em"><code class="inset">:r!echo %:t:r</code></p>
+echom fnamemodify(expand('%'), ':p') "Absolute path
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
+		<tr><td><code class="inset">:</code></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+	</table>
+&ldquo;&rdquo;
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
+
+</body>
+</html>

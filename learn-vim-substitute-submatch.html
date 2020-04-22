@@ -5,23 +5,14 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记  ()</title>
+	<title>VIM学习笔记 利用submatch()进行替换</title>
 </head>
 <body>
-	<h1>VIM学习笔记  ()</h1>
+	<h1>VIM学习笔记 利用submatch()进行替换</h1>
+	<p><code class="inset">submatch({nr})</code>函数，只用于 :substitute 命令或 substitute() 函数中。它将返回匹配文本的第{nr}个子匹配。如果{nr}为0，则返回整个匹配文本。</p>
+	<p>将submatch()和其它函数相结合，可以对替换文本进行更丰富的操作。可以使用<code class="inset">:help submatch()</code>命令，查看更多帮助信息。</p>
 
-
- 
-
-	<h2 class="article"><a id=""></a></h2>
-	<p></p>
-	<a href="#" title=""></a>
-	<p></p>
-	<p style="text-indent:2em"><code class="inset"></code></p>
-
-	<p style="text-indent:2em"><code class="inset"></code></p>
-
-	<h2 class="article"><a id="submatch-TitleCase">转换单词大小写</a></h2>
+	<h2 class="article"><a id="submatch-TitleCase">更新列表序号</a></h2>
 	<p>如果希望在第1条之后插入一个新的条目，那么就意味着需要调整后续各个条目的序号：</p>
 <pre class="block">Article 1: 3 Steps To Enable Thesaurus Option
 Article 2: Steps to Add Custom Header
@@ -37,7 +28,7 @@ Article 5: How To Record and Play Macro
 Article 6: Make Vim as Your C ID</pre>
 	<p>请注意，替换命令中并没有使用/g标志，因此将仅仅替换第一个匹配字符，以避免条目文本中的数字也被更改（类似第1行中的3 Steps）。</p>
 
-	<h2 class="article"><a id="submatch-SequenceNumber">更新列表序号</a></h2>
+	<h2 class="article"><a id="submatch-SequenceNumber">转换单词大小写</a></h2>
 	<p>假设需要在以下条目中，将首个单词的首个字母转换为大写：</p>
 <pre class="block">The following activities can be done using vim:
 a. <em>source</em> code walk through,
@@ -63,28 +54,6 @@ c. <em>Making</em> the vim editor as ide</pre>
 	<p style="text-indent:2em"><code class="inset">:%s/.*/\=printf('%08s',submatch(0))/g</code></p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/submatch_08s.png" title="submatch_08s"><img src="https://yyq123.github.io/learn-vim/images/submatch_08s.png" alt="submatch_08s" /></a></p>
 
-	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
-	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
-	<p></p>
-	<p style="text-indent:2em"><code class="inset">:help submatch(</code></p>
-
-	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
-		<caption style="margin:0.5em; font-weight:bold">选项列表</caption>
-		<tr><th style="white-space: nowrap">选项</th><th>描述</th><th>帮助信息</th></tr>
-		<tr><td><code class="inset">!</code></td><td>如果包含，表示。例如，。</td><td style="white-space: nowrap"><code class="inset">:help viminfo-!</code></td></tr>
-	</table>
-
-	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
-		<caption>命令小结</caption>
-		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
-		<tr><td><code class="inset">:</code></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-	</table>
-&ldquo;&rdquo;
-
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
-
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="替换 (Substitute)" href="http://yyq123.github.io/learn-vim/learn-vi-05-Substitute.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="替换字符串中的元字符(Metacharacters)" href="http://yyq123.github.io/learn-vim/learn-vim-Regex-Metacharacters.html.html">下一篇</a>&gt;</span></p>
 </body>
 </html>

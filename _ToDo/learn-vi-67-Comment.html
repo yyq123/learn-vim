@@ -66,11 +66,22 @@ o    我们用o或是O命令来开始一个注释行时自动的添加注释行�
 * This is a test
 */
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">格式化注释</p>
+	<p>定义快捷键，为当前行增加注释&ldquo;/* ... */&rdquo;：</p>
+	<p style="text-indent:2em"><code class="inset">:map = I/* &lt;ESC&gt;A */&lt;ESC&gt;</code></p>
+	<p>使用以下替换命令，为指定行增加注释&ldquo;/* ... */&rdquo;：</p>
+	<p style="text-indent:2em"><code class="inset">:1,10s!.*!/* &amp; */!</code></p>
+	<p>使用以下替换命令，将删除所有&ldquo;/* ... */&rdquo;注释：</p>
+	<p style="text-indent:2em"><code class="inset">%s!\s*/\*\_.\{-}\*/\s*! !g</code></p>
+	<p>其中，<var>\_.</var>将匹配包含换行在内的所有字符；<var>\{-}</var>表示前一个字符可出现零次或多次。请注意，被有&ldquo;/* ... */&rdquo;包围的所有字符也将被删除。</p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">识别文件</p>
-	<p></p>
-	<p style="text-indent:2em"><code class="inset"></code></p>
+	<p>使用以下替换命令，将删除所有&ldquo;//&rdquo;注释：</p>
+	<p style="text-indent:2em"><code class="inset">:%s!\s*//.*!!</code></p>
+	<p>请注意，被有&ldquo;//&rdquo;开头的所有字符也将被删除。</p>
+
+	<p>使用以下替换命令，为指定行增加注释&ldquo;#...&rdquo;</p>
+	<p style="text-indent:2em"><code class="inset">:1,10s/^/#</code></p>
+	<p>使用以下替换命令，为指定行取消注释&ldquo;#...&rdquo;</p>
+	<p style="text-indent:2em"><code class="inset">:1,10s/^#/</code></p>
 
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>

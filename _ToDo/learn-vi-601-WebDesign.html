@@ -14,7 +14,7 @@
 	<p></p>
 	<a href="#" title=""></a>
 
-	<h2 class="article"><a id="html-tag-search"></a></h2>
+	<h2 class="article"><a id="html-tag-search"></a>查找标签</h2>
 	<p>使用以下命令，可以查找所有标题标签：</p>
 	<p style="text-indent:2em"><code class="inset">/\&lt;h.\&gt;.*\&lt;/h.\&gt;</code></p>
 	<p>使用以下命令，可以查找所有以&lt;开头以&gt;结尾的HTML代码标签：</p>
@@ -23,6 +23,14 @@
 	<h2 class="article"><a id="html_close_tag">关闭标签</a></h2>
 	<p><code class="inset">inoremap &lt;lt&gt;/ &lt;/&lt;C-x&gt;&lt;C-o&gt;</code></p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/HTML_CloseTag.png" title="HTML_CloseTag"><img src="https://yyq123.github.io/learn-vim/images/HTML_CloseTag.png" alt="HTML_CloseTag" /></a></p>
+
+	<h2 class="article"><a id="html-tag-insert">新建标签</a></h2>
+	<p>假设需要将单词&ldquo;Importan&rdquo;包围在&lt;strong&gt;&lt;/strong&gt;标签之内。可以首先点击<kbd>ESC</kbd>键返回到常规模式；然后使用<code class="inset">bi</code>命令在单词之前进入插入状态，并输入标签&ldquo;&lt;strong&gt;&rdquo;；再次点击<kbd>ESC</kbd>键返回到常规模式；使用<code class="inset">ea</code>命令在单词之后进入插入状态；使用刚刚定义的快捷键来关闭标签。</p>
+	<p>使用以下替换命令，为指定字符添加标签：</p>
+	<p style="text-indent:2em"><code class="inset">:%s/important/\&lt;strong\&gt;&amp;\&lt;\/strong\&gt;/g</code></p>
+	<p>其中，&amp;用于指代匹配的字符。</p>
+	<p>也可以将:作为分隔符，以简化命令的输入：</p>
+	<p style="text-indent:2em"><code class="inset">:%s:important:&lt;strong&gt;&amp;&lt;/strong&gt;:g</code></p>
 
 	<h2 class="article"><a id="html_close_tag">编辑标签</a></h2>
 	<p>在任意标签内，点击<code class="inset">vat</code>命令，将进入<a href="http://yyq123.github.io/learn-vim/learn-vi-45-VisualMode.html" title="可视化模式(Visual Mode)">可视化模式</a>并选中该标签包含的所有内容。之后则可以将选中的标签作为一个整体，来进行编辑或删除等操作。</p>
@@ -34,14 +42,16 @@
 	<p>如果需要修改标签本身，那么可以在标签之内执行<code class="inset">ci&gt;</code>命令：</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/cigt_html.png" title="cigt_html"><img src="https://yyq123.github.io/learn-vim/images/cigt_html.png" alt="cigt_html" /></a></p>
 
-	<p>使用以下替换命令，为指定字符添加标签：</p>
-	<p style="text-indent:2em"><code class="inset">:%s/important/\&lt;strong\&gt;&amp;\&lt;\/strong\&gt;/g</code></p>
-	<p>其中，&amp;用于指代匹配的字符。</p>
-	<p>也可以将:作为分隔符，以简化命令的输入：</p>
-	<p style="text-indent:2em"><code class="inset">:%s:important:&lt;strong&gt;&amp;&lt;/strong&gt;:g</code></p>
+	<h2 class="article"><a id="html_substitute_tag">替换标签</a></h2>
+	<p>假设我们需要将所有标题增加一个层级，即将之前的&lt;h1&gt;更改为&lt;h2&gt;，依次类推。</p>
+	<p>使用以下命令，可以查找&lt;h和&lt;/h之后的数字：</p>
+	<p style="text-indent:2em"><code class="inset">/&lt;\/\?h\zs\d</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/HTML_Tag_h_Search.png" title="HTML_Tag_h_Search"><img src="https://yyq123.github.io/learn-vim/images/HTML_Tag_h_Search.png" alt="HTML_Tag_h_Search" /></a></p>
+	<p>使用以下命令，针对上次搜索到的标签中的数字进行加1：</p>
+	<p style="text-indent:2em"><code class="inset">%s//\=submatch(0)+1/g</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/HTML_Tag_h_Substitute.png" title="HTML_Tag_h_Substitute"><img src="https://yyq123.github.io/learn-vim/images/HTML_Tag_h_Substitute.png" alt="HTML_Tag_h_Substitute" /></a></p>
 
-
-	<h2 class="article"><a id="html_close_tag">删除标签</a></h2>
+	<h2 class="article"><a id="html_delete_tag">删除标签</a></h2>
 	<p>如果需要删除整个标签，那么可以在标签之内执行<code class="inset">ca&gt;</code>命令：</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/cagt_html.png" title="cagt_html"><img src="https://yyq123.github.io/learn-vim/images/cagt_html.png" alt="cagt_html" /></a></p>
 	<p>如果需要删除标签包围的文本，那么可以在标签之内执行<code class="inset">dit</code>命令：</p>

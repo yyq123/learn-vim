@@ -15,7 +15,9 @@
 		<li><code class="inset">:vimgrep</code> 使用Vim内置的grep实现；</li>
 		<li><code class="inset">:grep</code> 调用外部的grep工具。</li>
 	</ul>
-	<p>:grep命令会运行由选项grepprg所指定的程序。需要注意的是，在linux系统上，grepprg默认是grep -n；而在Windows系统上，默认是findstr /n</p>
+	<p>:grep命令会运行由选项grepprg所指定的程序。在Linux系统上，grepprg默认是grep -n：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/grep_linux.png" title="grep_linux"><img src="https://yyq123.github.io/learn-vim/images/grep_linux.png" alt="grep_linux" width="550" height="67" /></a></p>
+	<p>在Windows系统上，grepprg默认是findstr /n</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/findstr.png" title="findstr"><img src="https://yyq123.github.io/learn-vim/images/findstr.png" alt="findstr" width="550" height="52" /></a></p>
 	<p>:vimgrep命令使用vim内置的搜索引擎，与<code class="inset">/</code>命令功能一致，但速度相对较慢。</p>
 	<p>由此可见，使用:vimgrep命令在不同平台上将获得一致的体验。而:grep命令则是与操作系统相关的，在不同平台会有不同的行为。</p>

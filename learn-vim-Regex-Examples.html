@@ -53,7 +53,8 @@
 	<p style="text-indent:2em"><code class="inset"></code></p>
 	<p>匹配最少3个字符，最多16个字符，由字母和数字组成的用户名：</p>
 	<p style="text-indent:2em"><code class="inset">^[a-zA-Z0-9_-]{3,16}$</code></p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
+
+	<p><a href="https://yyq123.github.io/learn-vim/images/Regex_example_1967.png" title="Regex_example_1967"><img src="https://yyq123.github.io/learn-vim/images/Regex_example_1967.png" alt="" width="550" height="184" /></a></p>
 
 	<p></p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
@@ -71,26 +72,11 @@
 
 	<h2 class="article"><a id="grep-ipaddress">匹配IP地址</a></h2>
 	<p>使用以下命令，可以匹配IPv4网络地址。也就是说，匹配从 <code>0.0.0.0</code> 到 <code>999.999.999.999</code>范围内的，以点分割的四段数字。</p>
-	<p style="text-indent:2em"><code class="inset">:grep -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}"</code></p>
+	<p style="text-indent:2em"><code class="inset">([0-9]{1,3}[\.]){3}[0-9]{1,3}</code></p>
 	<p>但是以上命令，并不会判断数字串是否是一个有效的IP地址。比如<var>256.60.124.136</var>也将会被匹配。但有效的IP地址中的每段数字应该为0-255。</p>
 	<p>使用以下命令，则仅仅匹配有效的IP地址：</p>
-	<pre>:grep -E -o "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)" file.txt</pre>
+	<pre>(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)</pre>
 	<p style="text-indent:2em"><code class="inset">\(\(25\_[0-5]\|2\_[0-4]\_[0-9]\|\_[01]\?\_[0-9]\_[0-9]\?\)\.\)\{3\}\(25\_[0-5]\|2\_[0-4]\_[0-9]\|\_[01]\?\_[0-9]\_[0-9]\?\)/</code></p>
-<table class="ptable">
-<tbody>
-<tr>
-</tr>
-<tr>
-<td>-E, –extended-regexp</td>
-<td>Use extended regular expression</td>
-</tr>
-<tr>
-<td>-o, –only-matching</td>
-<td>Print IP addresses only</td>
-</tr>
-</tbody>
-</table>
-<p>Omit <code>-o</code> option to print lines that contains IP addresses.</p>
 
 </body>
 </html>

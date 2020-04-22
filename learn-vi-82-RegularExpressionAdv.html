@@ -28,6 +28,8 @@
 	<h2 class="article"><a id="regex-non-matching-list">排除（Excluding / Non-matching List）</a></h2>
 	<p><code class="inset">^</code>通配符，可以排除指定的字符。</p>
 	<p><code class="inset">acme[^0-9]</code>匹配所有包含acme，后跟一个非数字字符的行。但不会匹配以acme结尾的行，因为模式中的acme之后必须有一个字符。</p>
+	<p><code class="inset">[^\x00-\x7F]</code>匹配所有非<a href="http://www.defindit.com/ascii.html" title="ASCII">ASCII</a>字符（比如中文字符）。</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Regex_example_nonASCII.png" title="Regex_example_nonASCII"><img src="https://yyq123.github.io/learn-vim/images/Regex_example_nonASCII.png" alt="Regex_example_nonASCII" /></a></p>
 	<p><code class="inset">^[^a-zA-Z]</code>匹配以非字母开头的行，但不会匹配空行，因为行中必须有一个非字母字符存在。</p>
 	<p>如果需要匹配"^"本身，那么需要使用反斜杠进行转义。例如表达式<code class="inset">2[\^*]4</code>可以匹配2^4和2*4。</p>
 

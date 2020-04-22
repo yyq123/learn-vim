@@ -11,8 +11,10 @@
 	<h2 class="article"><a id="indent-cmd">手动缩进</a></h2>
 	<p>在Normal Mode下，命令<code class="inset">&gt;&gt;</code>将对当前行增加缩进，而命令<code class="inset">&lt;&lt;</code>则将对当前行减少缩进。我们可以在命令前使用数字，来指定命令作用的范围。例如以下命令，将减少5行的缩进：</p>
 	<p style="text-indent:2em"><code class="inset">5&lt;&lt;</code></p>
+	<p>在命令行中，使用<code class="inset">:&gt;</code>命令将对当前行增加缩进，而命令<code class="inset">:&lt;</code>则将对当前行减少缩进。使用以下命令，可以对第五行到第十行增加缩进：</p>
+	<p style="text-indent:2em"><code class="inset">:5,10&gt;</code></p>
 	<p>如果代码没有正确排版，那么我们可以使用<code class="inset">==</code>命令来缩进当前行；也可以进入可视化模式并选择多行，然后使用<code class="inset">=</code>命令缩进选中的行。</p>
-	<p><a data-flickr-embed="true"  href="https://www.flickr.com/photos/yyq123/30958396734/in/dateposted/" title="Indent_SampleCode"><img src="https://c7.staticflickr.com/1/402/30958396734_8656f007fe.jpg" width="500" height="112" alt="Indent_SampleCode"></a></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Indent_SampleCode.png" title="Indent_SampleCode"><img src="https://yyq123.github.io/learn-vim/images/Indent_SampleCode.png" alt="Indent_SampleCode" width="550" height="123" /></a></p>
 	<p>通过与<a href="http://yyq123.blogspot.com/2016/12/vim-text-objects.html" title="Text Objects">文本对象</a>组合，使用以下命令可以缩进{}括号内的代码。</p>
 	<p style="text-indent:2em"><code class="inset">=a{</code></p>
 	<p>如果需要缩进整个文件内的代码，则可以使用以下命令：</p>
