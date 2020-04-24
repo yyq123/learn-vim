@@ -5,28 +5,28 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记 VIM学习笔记 正则表达式-捕获组(Regex-Groups)</title>
+	<title>VIM学习笔记 正则表达式-捕获组(Regex-Groups)</title>
 </head>
 <body>
-	<h1>VIM学习笔记 VIM学习笔记 正则表达式-捕获组(Regex-Groups)</h1>
+	<h1>VIM学习笔记 正则表达式-捕获组(Regex-Groups)</h1>
 
 	<p><code class="inset">()</code>用于保证需要作为整体而组合出现的字符。例如表达式<code class="inset">a\(XY\)*b</code>将会匹配ab, aXYb, aXYXYb, aXYXYXYb。</p>
 	<p>逆向引用（Back Reference）表达式<code class="inset">\n</code>，用于引用之前定义的第n个捕获组。其中<var>n</var>为数字1–9。</p>
 	<p>例如对于文本&ldquo;he fly fly flies&rdquo;，表达式<code class="inset">\(fly\) \1</code>将匹配&ldquo;fly fly&rdquo;。因为<code class="inset">\1</code>再次引用了第一个捕获组&ldquo;fly&rdquo;，所以将匹配2个&ldquo;fly&rdquo;。</p>
 
 	<h2 class="article"><a id="reg-group-match">捕获组匹配</a></h2>
-	<p>假设需要查找以下格式可变的电话号码：</p>
 	<table summary="Commands" border="0" frame="hsides" rules="all" cellspacing="0" cellpadding="5">
-		<tr><th>示例</th><th colspan="7">格式</th></tr>
-		<tr><td>(800)555-1212</td><td>(</td><td>3位数字</td><td>)</td><td></td><td>3位数字</td><td>-</td></td><td>4位数字</td></tr>
-		<tr><td>(800) 555-1212</td><td>(</td><td>3位数字</td><td>)</td><td>&#x25a1;</td><td>3位数字</td><td>-</td></td><td>4位数字</td></tr>
-		<tr><td>(800)-555-1212</td><td>(</td><td>3位数字</td><td>)</td><td>-</td><td>3位数字</td><td>-</td></td><td>4位数字</td></tr>
-		<tr><td>800-555-1212</td><td></td><td>3位数字</td><td></td><td>-</td><td>3位数字</td><td>-</td></td><td>4位数字</td></tr>
-		<tr><td>555-1212</td><td></td><td></td><td></td><td></td><td>3位数字</td><td>-</td></td><td>4位数字</td></tr>
+		<tr><th style="background:#DDD;">示例</th><th colspan="7">格式</th></tr>
+		<tr><td style="background:#DDD;">(800)555-1212</td><td>(</td><td>3位数字</td><td>)</td><td></td><td>3位数字</td><td>-</td></td><td>4位数字</td></tr>
+		<tr><td style="background:#DDD;">(800) 555-1212</td><td>(</td><td>3位数字</td><td>)</td><td>&#x25a1;</td><td>3位数字</td><td>-</td></td><td>4位数字</td></tr>
+		<tr><td style="background:#DDD;">(800)-555-1212</td><td>(</td><td>3位数字</td><td>)</td><td>-</td><td>3位数字</td><td>-</td></td><td>4位数字</td></tr>
+		<tr><td style="background:#DDD;">800-555-1212</td><td></td><td>3位数字</td><td></td><td>-</td><td>3位数字</td><td>-</td></td><td>4位数字</td></tr>
+		<tr><td style="background:#DDD;">555-1212</td><td></td><td></td><td></td><td></td><td>3位数字</td><td>-</td></td><td>4位数字</td></tr>
 	</table>
-	<p>以上实例可以看到：</p>
+	<p>假设需要查找以上多种格式的电话号码，其中：</p>
 	<ul>
 		<li>可能包含区号，也可能没有区号；</li>
+		<li>区号由3位数字组成；</li>
 		<li>区号可能被括号包围，也可能没有括号；</li>
 		<li>区号和号码之间，可能有横线或者空格相连，也可能没有任何连接符；</li>
 		<li>号码由3位数字，横线连接符，和4位数字组成。</li>
@@ -36,22 +36,22 @@
 	<p>我们将在下表中按照命令中的色彩标识，来分步理解命令中的表达式：</p>
 	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="5">
 	<tbody>
-	<tr><th>颜色</th><th>表达式</th><th>解释</th></tr>
+	<tr><th>颜色</th><th>表达式</th><th>作用</th></tr>
 	<tr style="color:#cc0000"><td>红</td><td>\( to \)</td><td>匹配区号及其后的连接符的捕获组</td></tr>
-	<tr style="color:#00cccc"><td>青</td><td>\?</td><td>匹配0个或1个区号捕获组</td></tr>
+	<tr style="color:#00cccc"><td>青</td><td>\?</td><td>匹配0个或1个捕获组（即区号部分）</td></tr>
 	<tr style="color:#993399"><td>紫</td><td>\d\{3}-\d\{4}</td><td>匹配不包括区号的电话号码</td></tr>
 	<tr style="color:#ff6600"><td>橙</td><td>\|</td><td>或操作，匹配区号的多种形式</td></tr>
 	<tr style="color:#006600"><td>绿</td><td>(\d\{3})[- ]\?</td><td>匹配由括号包围的区号及之后的分隔符</td></tr>
 	<tr style="color:#000099"><td>蓝</td><td>\d\{3}-</td><td>匹配没有括号包围的区号</td></tr>
 	</tbody>
 	</table>
-	<p>从以上实例可以看到，我们将区号及其后的连接符作为一个整体捕获为组，这样就可以通过后续的<var>\?</var>表达式来匹配0个或1个捕获组，以实现匹配包含区号和不包含区号的多种情况。</p>
+	<p>由此可见，将区号及其后的连接符作为一个整体捕获为组，这样就可以通过后续的&nbsp;<var>\?</var>&nbsp;表达式来匹配0个或1个捕获组，以实现匹配包含区号和不包含区号的多种情况。</p>
 
 	<h2 class="article"><a id="regex-group-nested">捕获组嵌套</a></h2>
-	<p>假设以下文本中包括FIRSTNAME LASTNAME格式的姓名信息：</p>
+	<p>以下文本中包含FIRSTNAME LASTNAME格式的姓名信息：</p>
 	<pre class="block" style="width:30em">Prepared by Tommas Young
 Prepared by Tommy Young</pre>
-	<p>使用以下命令可以将其转换为LASTNAME, FIRSTNAME格式：</p>
+	<p>使用以下命令，可以将其转换为LASTNAME, FIRSTNAME格式：</p>
 	<p><code class="inset">:%s/\(Tom\%(mas\|my\)\) \(Young\)/\2, \1/g</code></p>
 	<pre class="block" style="width:30em">Prepared by Young, Tommas
 Prepared by Young, Tommy</pre>
@@ -63,14 +63,15 @@ Prepared by Young, Tommy</pre>
 The string contains 'two' quoted 'words'.
 The 'string doesn't make things easy'.
 The string doesn't contain any quotes, isn't it.</pre>
-	<p>通过以下命令中的嵌套捕获组，来处理非开头的单词中的引号：</p>
+	<p>通过以下命令中的嵌套捕获组来完成替换操作：</p>
 	<p><code class="inset">:%s/\s'\(\('\w\|[^']\)\+\)'/ "\1"/g</code></p>
 	<pre class="block" style="width:30em">The string contains a "quoted" word.
 The string contains "two" quoted "words".
 The "string doesn't make things easy".
 The string doesn't contain any quotes, isn't it.</pre>
+	<p>其中，<var>\s'</var>&nbsp;用于匹配紧跟在空格之后即单词开头的单引号；<var>\('\w\|[^']\)</var>&nbsp;则将非开头的单引号视为单词的一部分，以防止其被替换位双引号。</p>
 
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="Regular Expression Basic" href="http://yyq123.github.io/learn-vim/learn-vi-81-RegularExpressionBasic.html.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="替换字符串中的元字符(Metacharacters)" href="http://yyq123.github.io/learn-vim/learn-vim-Regex-Metacharacters.html">下一篇</a>&gt;</span></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="Regular Expression Basic" href="http://yyq123.github.io/learn-vim/learn-vi-81-RegularExpressionBasic.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="替换字符串中的元字符(Metacharacters)" href="http://yyq123.github.io/learn-vim/learn-vim-Regex-Metacharacters.html">下一篇</a>&gt;</span></p>
 
 </body>
 </html>

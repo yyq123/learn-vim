@@ -14,7 +14,7 @@
 
 	<h2 class="article"><a id="python-test">测试Python</a></h2>
 	<p>对于Linux和Mac操作系统，均已预装Python。在Windows下，可以使用安装包或者解压版zip文件。</p>
-	<p>使用以下命令，查看当前Python版本：</p>
+	<p>使用以下命令，可以查看当前Python版本：</p>
 	<p style="text-indent:2em"><code class="inset">$ python --version</code></p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/java-version.png" title="java-version"><img src="https://yyq123.github.io/learn-vim/images/java-version.png" alt="java-version" /></a></p>
 	<p>使用以下命令，查看当前Javac版本：</p>
@@ -22,7 +22,6 @@
 	<p><a href="https://yyq123.github.io/learn-vim/images/javac-version.png" title="javac-version"><img src="https://yyq123.github.io/learn-vim/images/javac-version.png" alt="javac-version" /></a></p>
 	<p>使用以下命令，查看当前Javaws版本：</p>
 	<p style="text-indent:2em"><code class="inset">$ javaws http://nextmidas.techma.com/nxm343/htdocs/localshell.jnlp</code></p>
-	<p>您可以尝试打开本地的JNPL文件，或者使用<a href="https://icedtea.classpath.org/wiki/IcedTea-Web-Tests" title="IcedTea-Web-Tests">IcedTea-Web-Tests</a>提供的测试网址。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/javaws-test.png" title="javaws-test"><img src="https://yyq123.github.io/learn-vim/images/javaws-test.png" alt="javaws-test" width="550" height="317" /></a></p>
 
 	<h2 class="article"><a id="opt-pythonthreedll">设置动态调用库</a></h2>
@@ -57,7 +56,6 @@ set pythondll=/System/Library/Frameworks/Python.framework/Versions/2.7/Python</p
 	<h2 class="article"><a id="java-linux-config">配置Java</a></h2>
 	<p>如果安装了多个版本的JDK、JRE、和JWS，那么可以使用以下命令进行切换：</p>
 	<p style="text-indent:2em"><code class="inset">$ alternatives --config java</code></p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/alternatives--config-java.png" title="alternatives--config-java"><img src="https://yyq123.github.io/learn-vim/images/alternatives--config-java.png" alt="alternatives--config-java" width="550" height="212" /></a></p>
 	<p style="text-indent:2em"><code class="inset">$ alternatives --config javac</code></p>
 	<p style="text-indent:2em"><code class="inset">$ alternatives --config javaws</code></p>
 
@@ -68,20 +66,23 @@ set pythondll=/System/Library/Frameworks/Python.framework/Versions/2.7/Python</p
 	<p>通过在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>文件中增加以下<a href="http://yyq123.github.io/learn-vim/learn-vi-49-01-autocmd.html" title="自动命令(autocmd)">自动命令</a>，可以为Java语言文件设置编译快捷键：</p>
 <pre><code>augroup make_python
 	au!
-	au FileType python set makeprg=set makeprg=python3\ %
+	au FileType python set makeprg=python3\ %
 	au FileType python map &lt;buffer&gt; &lt;leader&gt;&lt;space&gt; :w&lt;cr&gt;:make&lt;cr&gt;
 augroup end</code></pre>
 
-	<h2 class="article"><a id="java-linux-compile">编译Java</a></h2>
-	<p>使用以下命令，将根据'makeprg'选项进行编译，并生成与.java文件同名的.class字节码文件：</p>
+	<h2 class="article"><a id="python-linux-compile">编译Python</a></h2>
+	<p>使用以下命令，将根据'makeprg'选项进行编译并执行Python文件：</p>
 	<p style="text-indent:2em"><code class="inset">:make</code></p>
 	<p>如果编译出现错误，将在<a href="https://yyq123.github.io/learn-vim/learn-vi-70-01-QuickFix.html" title="QuickFix">QuickFix</a>中显示错误列表，并自动跳转到第一个错误处：</p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/javac_error_quicklist.png" title="javac_error_quicklist"><img src="https://yyq123.github.io/learn-vim/images/javac_error_quicklist.png" alt="javac_error_quicklist" /></a></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/python_error_quicklist_multiple.png" title="python_error_quicklist_multiple"><img src="https://yyq123.github.io/learn-vim/images/python_error_quicklist_multiple.png" alt="python_error_quicklist_multiple" /></a></p>
+	<p>启用以下内置的编译器，再执行:make编译命令，报错信息将被整合为一行：</p>
+	<p style="text-indent:2em"><code class="inset">:compiler pyunit</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/python_error_quicklist_single.png" title="python_error_quicklist_single"><img src="https://yyq123.github.io/learn-vim/images/python_error_quicklist_single.png" alt="python_error_quicklist_single" /></a></p>
 	<p>如果希望在编译时保持当前光标位置不变，那么可以使用以下命令：</p>
 	<p style="text-indent:2em"><code class="inset">:make!</code></p>
 	<p>使用<code class="inset">:cw</code>命令，将打开quickfix窗口。使用<code class="inset">:cp</code>命令，跳转到上一个错误；使用<code class="inset">:cn</code>命令，跳转到下一个错误。关于QuickFix操作的更多信息，请参阅<a href="https://yyq123.github.io/learn-vim/learn-vi-70-01-QuickFix.html" title="QuickFix">QuickFix</a>章节。</p>
 	<p>在修复错误并成功编译之后，将显示命令输出：</p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/javac_success_output.png" title="javac_success_output"><img src="https://yyq123.github.io/learn-vim/images/javac_success_output.png" alt="javac_success_output" /></a></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/python_success_output.png" title="python_success_output"><img src="https://yyq123.github.io/learn-vim/images/python_success_output.png" alt="python_success_output" /></a></p>
 	<p>使用以下命令，将解释执行当前文件：</p>
 	<p style="text-indent:2em"><code class="inset">:!python3 %</code></p>
 	<p>如果执行不带任何参数的python3命令，那么将将进入交换模式的python shell，您可以在其中直接执行python命令：</p>
@@ -100,6 +101,7 @@ augroup end</code></pre>
 	<p style="text-indent:2em"><code class="inset"></code></p>
 	<p>可以使用下命令可以查看系统路径：</p>
 	<p style="text-indent:2em"><code class="inset">:py3 import sys; print(sys.path)</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Python3_print_sys_path.png" title="Python3_print_sys_path"><img src="https://yyq123.github.io/learn-vim/images/Python3_print_sys_path.png" alt="Python3_print_sys_path" width="550" height="116" /></a></p>
 
 
 
