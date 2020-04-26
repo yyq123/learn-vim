@@ -31,9 +31,14 @@ Vim:option-command:option-command:....
 例如也许我们都会在Vim的帮助文件的末尾看到下面的几行:
 vim:tw=79:ts=8:sw=8:
 在这个设置中是将tw(textwidth)选项设为78,ts(tabstop)选项设为8,sw(shiftwidth)选项设为8.这样的设置使得我们的帮助文件看起来更好看一些.通过使用模式行,帮助文件的制造者就会确保这些文本可以被正确的格式化而不论我们在其他的文件中使用怎么样的本地设置.
-进行不同的设置,一个办法就是在每一个目录中放入.vimrc或是.gvimrc文件.然而这样做还是不够的,因为默认的Vim会忽略这些文件.
-要使得Vim读入这些文件,我们必须执行下面的命令:
-:set exrc
+
+	<p>将个性化设置存储在.exrc文件中，Vim在启动时会首先读取当前目录下的.exrc文件，并应用其中的选项设置。</p>
+	<p>也就是说，我们可以在不同的场景中使用不同的设置。比如对于编写HTML代码和写作文档，可以分别设置不同的<a href="http://yyq123.github.io/learn-vim/learn-vi-51-KeyMapping.html" title="Map">键盘映射(Map)</a>和<a href="http://yyq123.github.io/learn-vim/learn-vi-52-Abbreviation.html" title="缩写">缩写(Abbr)</a>，并保存在相应目录的.exrc文件中。这样在打开不同的文件时，就自动设置了相对应的系统选项了。</p>
+	<p>要使得Vim读入这些文件,我们必须首先执行以下命令：</p>
+	<p style="text-indent:2em"><code class="inset">:set exrc</code></p>
+设置此选项是个潜在的安全漏洞。例如，考虑解压文件包或从 github 获取文件
+        时，那里如果有 .vimrc，可以放置有特洛伊木马。 最好不要用本选项 ！
+        一个替代方案是，在 .vimrc 里定义自动命令，为匹配的目录设置选项。
 进行这样的设置却存在着安全问题.毕竟一些不成功的命令是很容易加入到这些文件中的,即使我们是在其他的目录中进行我们的编辑工作,这样的设置也会影响我们的.
 为了避免安全问题,我们可以用下面的命令来设置安全选项:
 :set secure

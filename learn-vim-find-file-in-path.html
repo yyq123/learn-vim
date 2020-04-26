@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 在目录中查找文件(find file in path)</title>
+</head>
+<body>
+	<h1>VIM学习笔记 在目录中查找文件(find file in path)</h1>
+	<p>众所周知，在操作系统中通过设置PATH变量，可以指定查找可执行文件的路径；而在Vim中则使用'path'选项，来指定:find、:sfind和:tabfind等命令查找文件的范围。</p>
+	<p>我们通常需要同时编辑多个文件，比如项目目录下的各种源码和配置文件等等；使用:find命令，可以在'path'选项指定的目录列表中，快速查找并打开指定的文件。</p>
+	<p>例如我将'path'选项设置为当前文件所在的目录及其子目录，那么在编辑当前HTML文档时，就可以使用:find命令来查找并打开CSS子目录下的层叠样式表脚本。</p>
+	<p>'path'选项的默认值如下：</p>
+	<ul>
+	<li><p class="item">Linux：<code>.,/usr/include,,</code><br />搜索当前文件所在的目录、/usr/include目录、和当前目录</p></li>
+	<li><p class="item">Windows：<code>.,,</code><br />搜索当前文件所在的目录、和当前目录。</p></li>
+	</ul>
+
+	<h2 class="article"><a id="cmd-find"></a>:find命令</h2>
+	<p>使用以下命令，可以查找并打开名为file的文件：</p>
+	<p style="text-indent:2em"><code class="inset">:find {file}</code></p>
+	<p>如果无法找到文件，将显示以下报错信息：</p>
+	<p style="text-indent:2em"><code class="error">E345: Can't find file "file" in path</code></p>
+	<p>由此可见，Vim将在'path'选项指定的目录列表中查找文件。</p>
+	<p>如果并不确切知道文件所处位置，那么可以使用&nbsp;<var>**</var>&nbsp;通配符查找当前目录及其子目录：</p>
+	<p style="text-indent:2em"><code class="inset">:find **/file.txt</code></p>
+	<p>在命令行中输入<code class="inset">:find</code>命令之后，可以使用<kbd>Tab</kbd>键进行自动补全，并在wildmenu中显示匹配列表。</p>
+	<p>如果存在多个同名的文件，那么在输入文件名后点击<kbd>Tab</kbd>键，将显示匹配文件及其所处位置：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/find_cmd_filename_tab.png" title="find_cmd_filename_tab"><img src="https://yyq123.github.io/learn-vim/images/find_cmd_filename_tab.png" alt="find_cmd_filename_tab" /></a></p>
+	<p>使用以下命令，将在新建窗口中查找并打开文件：</p>
+	<p style="text-indent:2em"><code class="inset">:sfind {file}</code></p>
+	<p>使用以下命令，将在新建标签页中查找并打开文件：</p>
+	<p style="text-indent:2em"><code class="inset">:tabfind {file}</code></p>
+	<p>使用以下命令，可以查看:find命令的更多帮助信息：</p>
+	<p style="text-indent:2em"><code class="inset">:help :find</code></p>
+
+	<h2 class="article"><a id="opt-path">'path'选项</a></h2>
+	<p>'path'选项是一个由逗号分隔的目录列表。其中的目录，可以是相对路径也可以是绝对路径。</p>
+	<p>建议使用 :set+= 和 :set-= 命令从列表中增减目录，而不是直接修改整个目录列表。这样可以避免未来版本使用其它缺省值而出现问题。</p>
+	<p>如果目录名中包含空格，那么需要在空格之前，使用反斜杠进行转义：</p>
+	<p style="text-indent:2em"><code class="inset">:set path+=C:\\Program\\\ Files</code></p>
+	<p>请注意，由于反斜杠（\）为转义符，所有为了输入字面意义的反斜杠，需要连续输入两个&ldquo;\\&rdquo;。</p>
+	<p>建议在目录名中使用斜杠（/）来代替反斜杠：</p>
+	<p style="text-indent:2em"><code class="inset">:set path+=E:/learn-vim</code></p>
+	<p>可以在目录名中使用环境变量，例如以下命令中的$PWD变量将扩展为实际的当前目录：</p>
+	<p style="text-indent:2em"><code class="inset">:set path+=$PWD/**</code></p>
+	<p>建议在vimrc文件中增加以下命令，将当前文件所在的目录以及其子目录添加到'path'选项中：</p>
+	<p style="text-indent:2em"><code class="inset">set path+=./**</code></p>
+	<p>在路径名中使用的通配符，主要包括：</p>
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
+		<tr><th style="">通配符</th><th>描述</th></tr>
+		<tr><td><code class="inset">.</code></td><td>表示当前文件所在的目录</td></tr>
+
+
+		<tr><td><code class="inset">,,</code></td><td>表示当前目录<br />请使用<code class="inset">:pwd</code>命令查看</td></tr>
+		<tr><td><code class="inset">*</code></td><td>表示任意字符<br />帮助信息<code class="inset">:help wildcard</code></td></tr>
+		<tr><td><code class="inset">**</code></td><td>表示搜索扩展到子目录<br />帮助信息<code class="inset">:help starstar-wildcard</code></td></tr>
+	</table>
+	<p>使用以下命令，可以查看'path'选项的更多帮助信息：</p>
+	<p style="text-indent:2em"><code class="inset">:help 'path'</code></p>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
+		<tr><td><code class="inset">:</code></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+	</table>
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
+
+</body>
+</html>
