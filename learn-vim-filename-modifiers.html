@@ -14,28 +14,27 @@
 	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
 		<caption style="margin:0.5em; font-weight:bold">选项列表</caption>
 		<tr><th style="white-space: nowrap">选项</th><th>描述</th><th>帮助信息</th></tr>
-		<tr><td><code class="inset">echom expand('%:t:r')</code></td><td>README</td><td>my name of filename (without extension)</td></tr>
+		<tr><td><code class="inset">:echom expand('%:t:r')</code></td><td>README</td><td>文件名（不包括扩展名）</td></tr>
 		<tr><td><code class="inset">:echom @%</code></td><td>README.md</td><td></td></tr>
 		<tr><td><code class="inset">:echom expand('%')</code></td><td>README.md</td><td>relative file path</td></tr>
-		<tr><td><code class="inset">:echom expand('%:t') </code></td><td>README.md</td><td>my.txt name of file ('tail')</td></tr>
+		<tr><td><code class="inset">:echom expand('%:t')</code></td><td>README.md</td><td>my.txt name of file ('tail')</td></tr>
+		<tr><td><code class="inset">:echom expand('%:e')</code></td><td>md</td><td>文件扩展名</td></tr>
 		<tr><td><code class="inset">:echom expand('%:h')</code></td><td>.</td><td>relative file directory</td></tr>
 		<tr><td><code class="inset"></code></td><td></td><td></td></tr>
 		<tr><td><code class="inset">:echom expand('%:p:h')</code></td><td>E:\Anthony_GitHub\learn-vim</td><td></td></tr>
 		<tr><td><code class="inset"></code></td><td></td><td></td></tr>
-		<tr><td><code class="inset">:echom expand('%:p')</code></td><td>E:\Anthony_GitHub\learn-vim\README.md</td><td></td></tr>
+		<tr><td><code class="inset">:echom expand('%:p')</code></td><td>E:\Anthony_GitHub\learn-vim\README.md</td><td>完整全路径名</td></tr>
 		<tr><td><code class="inset">:echom expand('%:p:h:t')</code></td><td>learn-vim</td><td>First get the full path with :p (/abc/def/my.txt), then get the head of that with :h (/abc/def), then get the tail of that with :t (def)</td></tr>
 		<tr><td><code class="inset">:echom expand('~/_vimrc')</code></td><td>C:\Users\yiqyuan\_vimrc</td><td></td></tr>
 	</table>
-:h filename-modifiers:
-:help expand()
-:. reduce file name to current directory
-:r root of the file name(without extension)
-:e extension of file name
-:p file full path
-:% file relative path
+
 	<p>在下一行插入当前文件名（不包含扩展名）：</p>
 	<p style="text-indent:2em"><code class="inset">:r!echo %:t:r</code></p>
+	<p>使用以下命令，可以查看相关的帮助信息：</p>
+<pre><code>:help filename-modifiers
+:help expand()</code></pre>
 echom fnamemodify(expand('%'), ':p') "Absolute path
+	<p style="text-indent:2em"><code class="inset"></code></p>
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
 		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>

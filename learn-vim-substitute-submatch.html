@@ -5,12 +5,12 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记 利用submatch()进行替换</title>
+	<title>VIM学习笔记 替换字符串中的submatch()</title>
 </head>
 <body>
-	<h1>VIM学习笔记 利用submatch()进行替换</h1>
+	<h1>VIM学习笔记 替换字符串中的submatch()</h1>
 	<p><code class="inset">submatch({nr})</code>函数，只用于 :substitute 命令或 substitute() 函数中。它将返回匹配文本的第{nr}个子匹配。如果{nr}为0，则返回整个匹配文本。</p>
-	<p>将submatch()和其它函数相结合，可以对替换文本进行更丰富的操作。可以使用<code class="inset">:help submatch()</code>命令，查看更多帮助信息。</p>
+	<p>将submatch()和其它函数相结合，可以对替换文本进行更丰富的操作。使用<code class="inset">:help submatch()</code>命令，可以查看更多帮助信息。</p>
 
 	<h2 class="article"><a id="submatch-TitleCase">更新列表序号</a></h2>
 	<p>如果希望在第1条之后插入一个新的条目，那么就意味着需要调整后续各个条目的序号：</p>
@@ -26,7 +26,7 @@ Article 3: Steps to Add Custom Header
 Article 4: Automatic Word Completion
 Article 5: How To Record and Play Macro
 Article 6: Make Vim as Your C ID</pre>
-	<p>请注意，替换命令中并没有使用/g标志，因此将仅仅替换第一个匹配字符，以避免条目文本中的数字也被更改（类似第1行中的3 Steps）。</p>
+	<p>请注意，替换命令中并没有使用/g标志，因此将仅仅替换第一个匹配字符，以避免条目文本中的数字也被更改。</p>
 
 	<h2 class="article"><a id="submatch-SequenceNumber">转换单词大小写</a></h2>
 	<p>假设需要在以下条目中，将首个单词的首个字母转换为大写：</p>
@@ -42,11 +42,10 @@ b. <em>Record</em> and play command executions,
 c. <em>Making</em> the vim editor as ide</pre>
 
 	<h2 class="article"><a id="submatch-fnamemodify">替换文件路径</a></h2>
-	<p>将当前光标下的相对路径文件名，替换为完整的绝对路径名：</p>
+	<p>将当前光标下的相对路径名，替换为完整的绝对路径名：</p>
 	<p style="text-indent:2em"><code class="inset">:s/\f*\%#\f*/\=fnamemodify(submatch(0), ':p')/</code></p>
-	<p><var>\f*\%#\f*</var> 将匹配文件名（请参考帮助文件<code class="inset">:help /\f</code>） </p>
-	<p>replacement is a function call operating on the 0th submatch, which is the entire match. (:help sub-replace-expression, )</p>
-	<p>如果希望将可视化模式下选中的文件名，替换为完整的绝对路径名，那么可以使用以下命令： \%V</p>
+	<p>其中，\=&nbsp;表示使用表达式作为替换字符串（请参考帮助信息<code class="inset">:help sub-replace-expression</code>）；\f*\%#\f*&nbsp;将匹配文件名（请参考帮助信息<code class="inset">:help /\f</code>） 。</p>
+	<p>如果希望将可视化模式下选中的文件名，替换为完整的绝对路径名，那么在命令中使用\%V参数： </p>
 	<p style="text-indent:2em"><code class="inset">:s/\%V.*\%V/\=fnamemodify(submatch(0), ':p')/</code></p>
 
 	<h2 class="article"><a id="submatch-ZeroPadding"></a>数据补零</h2>

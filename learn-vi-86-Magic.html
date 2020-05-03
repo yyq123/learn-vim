@@ -10,7 +10,9 @@
 <body>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">magic选项</p>
-	<p>默认情况下，magic选项是打开的。如果关闭了此选项，那么正则表达式中的许多的特殊字符就失去了他们神奇的魔力，而变成了普通的字符。</p>
+	<p>默认情况下，magic选项是打开的。你也可以在命令中，使用<var>\m</var>标记来指定使用magic模式。在启用magic选项的情况下，<code>.</code>、<code>*</code>和<code>[]</code>等字符是含有特殊意义的；而<code>+</code>、<code>?</code>、<code>()</code>、和<code>{}</code>则仍被视为普通字符。</p>
+	<p>如果关闭了magic选项，那么正则表达式中的许多的特殊字符就失去了神奇的魔力，而变成普通的字符。</p>
+
 	<p>我们使用以下只有一行的文件来测试magic选项。先用<code class="inset">:%print</code>命令将整个文件打印出来:</p>
 	<p><code class="msg">Test aaa* aa* a*</code></p>
 	<p>然后设置magic选项并且执行替换命令。其中，<em>p</em>标记打印出所改变的行:</p>
@@ -18,7 +20,7 @@
 	<p style="text-indent:2em"><code class="inset">:1 substitute /a*/b/p</code></p>
 	<p>命令的执行结果如下:</p>
 	<p><code class="msg">bTest aaa* aa* a*</code></p>
-	<p>命令只是改变了一行开始的部分。为什么会将Test变为b*Test呢？这是因为*可以匹配0次或是多次，而Test正是以0个a开始的。为什么只是替换了一次呢？这是因为:substitute命令中是改变第一个出现的地方，如果我们使用<em>g</em>标记就可以替换全部的匹配项了。如果希望g标记成为默认设置，那么可以使用<code class="inset">:set gdefault</code>命令。</p>
+	<p>命令只是改变了一行开始的部分。因为*可以匹配0次或多次，而Test正是以0个a开始的，所有将Test替换为bTest。因为:substitute命令默认只替换第一个匹配项，所有只在行首进行了替换。如果希望替换全部匹配项，那么需要在命令末尾使用<var>g</var>标记。如果希望将g标记设置为默认值，那么可以使用<code class="inset">:set gdefault</code>命令。</p>
 	<p>我们撤销刚才的命令并再次执行替换命令:</p>
 	<p style="text-indent:2em"><code class="inset">:undo</code></p>
 	<p style="text-indent:2em"><code class="inset">:1 substitute /a*/b/pg</code></p>
@@ -30,6 +32,8 @@
 	<p style="text-indent:2em"><code class="inset">:1 substitute /a*/b/pg</code></p>
 	<p>命令的执行结果如下:</p>
 	<p><code class="msg">Test aab ab b</code></p>
+	<p>你可以使用以下命令，查看相关帮助文件。</p>
+	<p style="text-indent:2em"><code class="inset">:help 'magic'</code></p>
 	
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">smgic命令</p>
 	<p>:smagic命令，可以在执行替换命令时强制转换*等特殊字符的意义。例如我们执行以下命令:</p>

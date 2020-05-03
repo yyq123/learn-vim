@@ -15,83 +15,73 @@
 		<li><code class="inset">:vimgrep</code> 使用Vim内置的grep实现；</li>
 		<li><code class="inset">:grep</code> 调用外部的grep工具。</li>
 	</ul>
-	<p>:grep命令会运行由选项grepprg所指定的程序。在Linux系统上，grepprg默认是grep -n：</p>
+	<p>:grep命令会运行由选项grepprg所指定的程序。在Linux系统上，grepprg默认是<a href="http://www.gnu.org/software/grep/manual/grep.html" title="grep">grep</a> -n：</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/grep_linux.png" title="grep_linux"><img src="https://yyq123.github.io/learn-vim/images/grep_linux.png" alt="grep_linux" width="550" height="67" /></a></p>
-	<p>在Windows系统上，grepprg默认是findstr /n</p>
+	<p>在Windows系统上，grepprg默认是<a href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/findstr" title="findstr">findstr</a> /n</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/findstr.png" title="findstr"><img src="https://yyq123.github.io/learn-vim/images/findstr.png" alt="findstr" width="550" height="52" /></a></p>
 	<p>:vimgrep命令使用vim内置的搜索引擎，与<code class="inset">/</code>命令功能一致，但速度相对较慢。</p>
 	<p>由此可见，使用:vimgrep命令在不同平台上将获得一致的体验。而:grep命令则是与操作系统相关的，在不同平台会有不同的行为。</p>
-	<p><code class="inset">:grep</code>和<code class="inset">:vimgrep</code>命令，将在Quickfix中显示搜索结果。</p>
+	<p><code class="inset">:grep</code>和<code class="inset">:vimgrep</code>命令，将在<a href="http://yyq123.github.io/learn-vim/learn-vi-70-01-QuickFix.html" title="QuickFix">QuickFix</a>中显示搜索结果。</p>
 	<p><code class="inset">:lgrep</code>和<code class="inset">:lvimgrep</code>命令实现相同的功能，但使用地址列表（Location List）来显示匹配结果。</p>
 	<p>使用<code class="inset">:copen</code>命令打开的Quickfix，是全局性的。而使用<code class="inset">:lopen</code>打开的Location List，则是独立存在于各个窗口中的。</p>
-	<p>在当前目录下，查找指定字符串：</p>
-	<p style="text-indent:2em"><code class="inset">:vim grep *</code></p>
- search results in a Quickfix window at the bottom and Vim jumps to the first match right away.
-	<p>在当前目录及其子目录下，查找指定字符串：</p>
-	<p style="text-indent:2em"><code class="inset">:vim Xanadu **</code></p>
-	<p>在当前目录及其子目录下，在所有HTML文件中查找指定字符串：</p>
-	<p style="text-indent:2em"><code class="inset">:vim Xanadu **/*.html</code></p>
-	<p>我们可以先在常规模式下，使用<code class="inset">*</code>命令查找光标下的单词；然后使用以下命令来查找该单词：</p>
-	<p style="text-indent:2em"><code class="inset">:vim // *.html</code></p>
-	<p>请注意，递归搜索子目录的 <var>**/*.*</var> 形式，对于Linux下的:vimgrep和:grep有效；但在Windows下不起作用。</p>
-
-
-
-
-	<p></p>
-
+	<p>对于Quickfix，使用<code class="inset">:cp</code>命令，跳转到上一个匹配处；使用<code class="inset">:cn</code>命令，跳转到下一个匹配处。</p>
+	<p>对于Location List，使用<code class="inset">:lpre</code>命令，跳转到上一个匹配处；使用<code class="inset">:lnext</code>命令，跳转到下一个匹配处。</p>
 
 	<h2 class="article"><a id="vimgrep">:vimgrep</a></h2>
-<p>如果希望停留在当前位置，而不是跳转至第一个匹配处，那么可以使用以下命令：</p>
+	<p>使用以下命令，可以在当前目录下查找指定字符串：</p>
+	<p style="text-indent:2em"><code class="inset">:vimgrep grep *</code></p>
+	<p>如果希望在当前目录及其子目录中进行查找，那么可以使用**通配符：</p>
+	<p style="text-indent:2em"><code class="inset">:vimgrep blue **</code></p>
+	<p>以下命令将在当前目录及其子目录中的所有HTML文件中，查找指定字符串：</p>
+	<p style="text-indent:2em"><code class="inset">:vim blue **/*.html</code></p>
+	<p>请注意，:vimgrep命令可以缩写为<code class="inset">:vim</code>。</p>
+	<p>首先在常规模式下，使用<code class="inset">*</code>命令查找光标下的单词；然后使用以下命令，可以重用之前的查找：</p>
+	<p style="text-indent:2em"><code class="inset">:vim // *.html</code></p>
+	<p>默认情况下，将自动跳转至第一个匹配处；如果希望停留在当前位置，那么可以在命令中使用j参选：</p>
 	<p style="text-indent:2em"><code class="inset">:vimgrep /foo/j **/*.md</code></p>
-
-
+	<p>使用以下命令，可以查看更多帮助信息：</p>
 	<p style="text-indent:2em"><code class="inset">:help :vimgrep</code></p>
 
-	<h2 class="article"><a id="vimgrep">:grep</a></h2>
-	<p style="text-indent:2em"><code class="inset">:grep searchpattern locationpattern</code></p>
-	<p>例如在Windows下使用以下命令，将在当前目录下查找所有包含&ldquo;block&rdquo;文件：</p>
+	<h2 class="article"><a id="grep">:grep</a></h2>
+	<p>使用以下命令，将在当前目录下查找所有文件：</p>
 	<p style="text-indent:2em"><code class="inset">:grep block *.*</code></p>
-	<p>默认情况下，grep是区分大小写的，你可以使用-i选项来忽略大小写：</p>
+	<p>默认情况下，grep是区分大小写的，可以使用-i选项来忽略大小写：</p>
 	<p style="text-indent:2em"><code class="inset">:grep -i word filename</code></p>
 	<p>使用-o选项，将只显示匹配的字符，而不是整行内容：</p>
 	<p style="text-indent:2em"><code class="inset">:grep -o [[:punct:]] filename</code></p>
-
-	<p>您可以使用<code class="inset">:pwd</code>命令，来确定当前目录。</p>
+	<p>使用以下命令，可以查看更多帮助信息：</p>
+	<p style="text-indent:2em"><code class="inset">:help :grep</code></p>
+	<p>请注意，递归搜索子目录的 <var>**/*.*</var> 通配符，对于Linux下的:vimgrep和:grep命令有效；但对于Windows下的:grep命令不起作用。</p>
 
 	<h2 class="article"><a id="grepprg">'grepprg'选项</a></h2>
 	<p>使用以下命令，可以查看'grepprg'选项的当前设置：</p>
 	<p style="text-indent:2em"><code class="inset">:set grepprg?</code></p>
-	<p>在不同的操作系统下，Vim将使用不同的外部grep工具：</p>
+	<p>在不同的操作系统下，Vim将默认使用不同的外部grep工具：</p>
 	<ul>
-		<li>在Windows下，grepprg=findstr /n</li>
-		<li>在Linux下，grepprg=grep -n $* /dev/null</li>
+		<li>在Windows下<br /><code>grepprg=findstr /n</code></li>
+		<li>在Linux下<br /><code>grepprg=grep -n $* /dev/null</code></li>
 	</ul>
-	<p>如果希望默认查询当前目录以及其下的子目录，那么可以使用以下设置</p>
-	<p style="text-indent:2em"><code class="inset">set grepprg=findstr /S /n</code></p>
-	<p style="text-indent:2em"><code class="inset">set grepprg=grep -nR $* /dev/null</code></p>
+	<p>如果希望默认查询当前目录以及其子目录，那么可以使用以下设置：</p>
+	<ul>
+		<li>在Windows下<br /><code>set grepprg=findstr /S /n</code></li>
+		<li>在Linux下<br /><code>set grepprg=grep -nR $* /dev/null</code></li>
+	</ul>
+	<p>请注意，您可以使用<code class="inset">:pwd</code>命令来查看当前目录。</p>
 	<p>如果您在Windows中已经安装了<a href="http://yyq123.github.io/learn-vim/learn-vi-803-Toolkit-Git.html" title="版本控制(Toolkit-Git)">Git</a>或<a href="http://yyq123.github.io/learn-vim/learn-vi-804-Toolkit-CLI-Win.html#Cygwin" title="Windows命令行环境(Toolkit-CLI-Win)">Cygwin</a>，那么只需要在环境变量<var>PATH</var>中增加相应目录，即可调用其自带的grep命令：</p>
 	<ul>
 		<li>C:\Program Files\Git\usr\bin</li>
 		<li>D:\cygwin64\bin</li>
 	</ul>
-	<p>在Windows命令行中使用以下命令，验证</p>
+	<p>在Windows命令行中，可以使用以下命令进行验证：</p>
 	<p style="text-indent:2em"><code class="inset">$ grep --version</code></p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/grep_version_win.png" title="grep_version_win"><img src="https://yyq123.github.io/learn-vim/images/grep_version_win.png" alt="grep_version_win" width="550" height="124" /></a></p>
-	<p>使用以下命令，设置调用grep：</p>
+	<p>然后在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>配置文件中，使用以下设置：</p>
 	<p style="text-indent:2em"><code class="inset">set grepprg=grep\ -rnIH\ --exclude-dir=.git</code></p>
-	<p>:grep命令使用grepformat选项来告诉Vim如何来组织Grep的输出文件.</p>
+	<p>通过以上设置，可以在Windows环境中使用Linux风格的grep程序。</p>
+	<p>使用以下命令，可以查看更多帮助信息：</p>
+	<p style="text-indent:2em"><code class="inset">:help 'grepprg'</code></p>
 
-	<ul>
-		<li><a href="http://www.gnu.org/software/grep/manual/grep.html" title="grep">grep</a></li>
-		<li><a href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/findstr" title="findstr">findstr</a></li>
-	</ul>
-	<p style="text-indent:2em"><code class="inset"></code></p>
-	<p></p>
-	<p style="text-indent:2em"><code class="inset"></code></p>
-	<p>搜索结果都将通过<a href="http://yyq123.github.io/learn-vim/learn-vi-70-01-QuickFix.html" title="QuickFix">QuickFix</a>列表显示。</p>
-
-
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
 </body>
 </html>
 

@@ -122,6 +122,7 @@ Created by yyq123@gmail.com using [vim](http://www.vim.org/)
   - [进阶(Advanced)](http://yyq123.blogspot.com/2017/05/vim-regular-expression-advanced.html)[<sup>B</sup>](http://yyq123.blogspot.com/2017/05/vim-regular-expression-advanced.html)<sup>/</sup>[<sup>Z</sup>](http://zhuanlan.zhihu.com/p/26708976)
   - [捕获组(Groups)](http://yyq123.github.io/learn-vim/learn-vim-Regex-Groups.html)[<sup>B</sup>](https://yyq123.blogspot.com/2020/04/vim-regex-groups.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/136058417)
   - [替换字符串中的元字符(Metacharacters)](http://yyq123.github.io/learn-vim/learn-vim-Regex-Metacharacters.html)[<sup>B</sup>](https://yyq123.blogspot.com/2020/04/vim-regex-metacharacters.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/128111260)
+  - [替换字符串中的submatch()](http://yyq123.github.io/learn-vim/learn-vim-substitute-submatch.html)[<sup>B</sup>](https://yyq123.blogspot.com/2020/05/vim-substitute-submatch.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/137925649)
   - [magic选项](http://yyq123.blogspot.com/2017/04/vim-magic.html)[<sup>B</sup>](http://yyq123.blogspot.com/2017/04/vim-magic.html)<sup>/</sup>[<sup>Z</sup>](http://zhuanlan.zhihu.com/p/26535132)
 - **脚本**
   - [变量和表达式(Var. &amp; Exp.)](http://yyq123.blogspot.com/2017/05/vim-script-variables-and-expressions.html)[<sup>B</sup>](http://yyq123.blogspot.com/2017/05/vim-script-variables-and-expressions.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/60260968)
