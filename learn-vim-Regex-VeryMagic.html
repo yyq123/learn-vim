@@ -14,8 +14,21 @@
 	<p></p>
 	<a href="#" title=""></a>
 
+	<h2 class="article"><a id=""></a>Very magic</h2>
+	<p>Very magic mode is activated using \v. since it makes the regex mostly perl-compatible. Unfortunately, you can’t make it the default.</p>
 	<p></p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
+
+	<p>定义以下键盘映射，始终使用very magic模式：</p>
+	<p style="text-indent:2em"><code class="inset">noremap / /\v</code></p>
+
+	<h2 class="article"><a id=""></a>Very nomagic</h2>
+	<p>Very nomagic modes are set with \V. Their effect is turning almost all special regex symbols into ordinary ones unless they start with a backslash.</p>
+	<p>例如以下命令，将查找字符串&ldquo;Fun.test(*args)&rdquo; 。也就是说，其中的&ldquo;*&rdquo;和&ldquo;.&rdquo;都被视为普通字符。</p>
+n a while when you know precisely what you’re looking for, but don’t want to risk accidentally using a special character somewhere. As for the difference between the two, I believe it’s only in the end-of-line character – It’s $ in nomagic and \$ in very nomagic mode.
+	<p style="text-indent:2em"><code class="inset">/\VFun.test(*args)</code></p>
+	<pre class="block">Fun.test(*args)</pre>
+
 
 	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
 
@@ -36,7 +49,136 @@
 		<tr><th style="white-space: nowrap">选项</th><th>描述</th><th>帮助信息</th></tr>
 		<tr><td><code class="inset">!</code></td><td>如果包含，表示。例如，。</td><td style="white-space: nowrap"><code class="inset">:help viminfo-!</code></td></tr>
 	</table>
+	https://tkuro.hatenadiary.org/entry/20110324/1300951571
+<span class="synStatement">/</span><span class="synConstant">'\('\w\|\[^']\)\+'</span>
+</pre>
+        <p>you have mocking some <span style="background-color:yellow">'bird of the year'</span>.<br>
+you have mocking some <span style="background-color:yellow">'the year's bird'</span>.</p>
 
+<div class="section">
+    <h4>set magicはしてたんだけど・・・</h4>
+    <p>ある程度quoらなくてもおっけーにする set magic というのがあって、これをつかうと\.(ANY)とか\[とか\*とか(\+はダメ)のバックスラッシュが不要になります</p>
+<pre class="code lang-vim" data-lang="vim" data-unlink=""><span class="synStatement">/</span><span class="synConstant">'\('\w\|\[^']\)\+'（使用前）</span>
+<span class="synStatement">/</span><span class="synConstant">'\('\w\|[^']\)\+'（使用後）</span>
+</pre>
+
+<pre class="code lang-vim" data-lang="vim" data-unlink=""><span class="synStatement">/</span><span class="synConstant">'\('\w\|\[^']\)\+'（使用前）</span>
+<span class="synStatement">/</span><span class="synConstant">\v'('\w|[^'])+' (使用後)</span>
+</pre><p>おお、ダイブいい感じ（既に病気）。目標は＜名前＞,&lt;数値&gt;,&lt;数値&gt;,&lt;数値&gt;,&lt;数値&gt;というファイルだったので</p>
+<pre class="code lang-vim" data-lang="vim" data-unlink=""><span class="synStatement">/</span><span class="synConstant">\v((\d|\a)+,?\s*){5}</span>
+</pre><p>と横着をしてみたら。。。ダメでした(置換変数には最後の 2個しか残らない)。考えるのめんどだったので CmdWinで C-vしてコピりました。</p>
+<pre class="code lang-vim" data-lang="vim" data-unlink=""><span class="synStatement">/</span><span class="synConstant">\v(\a+),?\s*(\d+),?\s*(\d+),?\s*(\d+),?\s*(\d+),?\s*</span>
+</pre><p>としてから</p>
+<pre class="code lang-vim" data-lang="vim" data-unlink="">:<span class="synConstant">%</span><span class="synStatement">s</span><span class="synSpecial">//</span>"<span class="synSpecial">\1</span>", <span class="synSpecial">\5</span> - <span class="synSpecial">\3</span>, <span class="synSpecial">\2</span> - <span class="synSpecial">\4/</span>
+<h2 id="regex-and-searching">Regex and Searching</h2>
+<ul>
+  <li>Searching in vim is very unintuitive. There are 4 modes of searching, ranging from “very magic” to “very no magic”. They determine what needs to be escaped with a <code class="highlighter-rouge">\</code> in your search term. If you just want “regex on” or “regex off” then always search in Very Magic or Very No Magic mode.</li>
+  <li>Check out the details by running <code class="highlighter-rouge">:h \\v</code>.</li>
+</ul>
+
+<h3 id="pearl-style-regexes-very-magic-mode">Pearl style regexes (Very Magic Mode)</h3>
+
+<p>Start a search with <code class="highlighter-rouge">\v</code>. Everything else can act like a normal regex search, except you have to escape <code class="highlighter-rouge">/</code> and <code class="highlighter-rouge">\</code>. If you are searching backwards, you’ll also have to escape <code class="highlighter-rouge">?</code>.</p>
+
+<ul>
+  <li>E.g. search for a url starting with <code class="highlighter-rouge">www</code> and ending with <code class="highlighter-rouge">.com</code>: <code class="highlighter-rouge">\vwww\..*\.com</code></li>
+</ul>
+
+<h4 id="differences-from-pearl-regex">Differences from Pearl Regex</h4>
+<p>The <code class="highlighter-rouge">&lt;</code> and <code class="highlighter-rouge">&gt;</code> characters are special for start and end of word. Escape them to search for them literally.</p>
+
+<h3 id="literal-search-very-no-magic-mode">Literal Search (Very No Magic Mode)</h3>
+<p>Start a search with <code class="highlighter-rouge">\V</code>. Now you <em>only have to escape</em> <code class="highlighter-rouge">/</code> and <code class="highlighter-rouge">\</code>. It would be nice if you didn’t have to escape <em>anything</em>, but alas vim is not like this.</p>
+
+<h3 id="advanced-match-a-subsection-of-your-search">Advanced: Match a subsection of your search</h3>
+<p>Let’s say you have this file</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>www.yahoo.com
+blah some other stuff
+www.google.com
+www.ebay.org
+</code></pre></div></div>
+<p>And you want to change it to</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>www.chase.com
+blah some other stuff
+www.chase.com
+www.chase.org
+</code></pre></div></div>
+<p>What you’re doing is saying <em>find all domain names and change the inner part to <code class="highlighter-rouge">chase</code></em>. You can do this by specifying the part of the search to <em>match</em>.
+Put <code class="highlighter-rouge">\zs</code> before where you want to match and <code class="highlighter-rouge">\ze</code> after where you want to match.</p>
+
+<p>So in this case: <code class="highlighter-rouge">\v</code> <code class="highlighter-rouge">www\.</code> <strong>\zs</strong> <code class="highlighter-rouge">.*</code> <strong>\ze</strong> <code class="highlighter-rouge">\.com</code></p>
+
+<ul>
+  <li>An extension to this is looking for the start of a word without matching it. For example looking for the variable <code class="highlighter-rouge">i</code>. We could then use this search: <code class="highlighter-rouge">\v\W\zsi\ze\W</code>. Note: Use <code class="highlighter-rouge">\W</code> matches everything except <code class="highlighter-rouge">[a-zA-Z0-9_]</code>
+    <ul>
+      <li>There’s a shortcut called word boundaries, with <code class="highlighter-rouge">&lt;</code> and <code class="highlighter-rouge">&gt;</code>:
+        <ul>
+          <li><code class="highlighter-rouge">\v&lt;i&gt;</code> (<a href="http://vim.wikia.com/wiki/Search_patterns">More info</a>)</li>
+          <li>You can get this same behavior by pressing <code class="highlighter-rouge">*</code> in normal mode, while having your cursor over the word you want to search.</li>
+          <p>Vim has a so called “very magic” mode for regexes which allows you to use parenthesis, brackets, the alternative separator (i.e. ‘|’), pluses, etc. with their special meaning but without the need to escape those characters.</p>
+<p>(see :help /\v)</p>
+<p>Example:</p>
+<p>Let’s say you have the following in your buffer:</p>
+<p>12345aaa678<br>
+12345bbb678<br>
+12345aac678</p>
+<p>If you execute</p>
+<p>:%s/\d\{5\}\(\D\+\)\d\{3\}/\1/</p>
+<p>you will get</p>
+<p>aaa<br>
+bbb<br>
+aac</p>
+<p>but it required a lot of backslash escaping in the regex. You can avoid the need to escape parenthesis, curly braces, pluses, etc. using vim’s “very magic” mode for regexes. The following would do exactly the same as the previous substitution command but with fewer escaping required:</p>
+<p>:%s/\v\d{5}(\D+)\d{3}/\1/</p>
+假设需要在一个CSS样式文件中查找所有的<strong>颜色代码</strong>，部分查找目标如下所示。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a { color: #0000EE; }</span><br><span class="line">body { color: #3c3c3c; }</span><br><span class="line">strong { color: #000; }</span><br></pre></td></tr></tbody></table></figure>
+<p>为此，需要构造一个正则表达式，用于匹配 1个 # 字符以及紧随其后的 3 个或 6 个十六进制字符的目标串 (包括所有数字以及大写或小写的字母 A 到 F)。</p>
+<h4 id="1-使用-magic-搜索模式查找"><a href="#1-使用-magic-搜索模式查找" class="headerlink" title="1. 使用 magic 搜索模式查找"></a>1. 使用 magic 搜索模式查找</h4><p>Vim默认设置下，<code>/#\([0-9a-fA-F]\{6}\|[0-9a-fA-F]\{3}\)</code> 可以查找到所有的目标颜色代码。</p>
+<p>在上面的Vim正则表达式搜索命令中，一共用到了 3 类括号：[]、() 和 {}，而这 3 类括号都是正则表达式中的<strong>特殊字符</strong> (有<strong>特殊含义</strong>的字符)，若要匹配这些特殊字符，必须首先使 <code>\</code> 进行转义。</p>
+<p>正则表达式中，方括号 [] 用于定义待匹配的字符范围，原括号 () 用于标记一个子表达式的开始和结束位置，而花括号 {} 用于指定匹配的长度。</p>
+<blockquote>
+<p>对于Vim的正则表达式引擎来说，方括号 [] 缺省具有特殊含义，不需要转义；圆括号 () 默认会按原义匹配字符，因此需要使用 \ 转义，使其具有特殊含义；花括号 {} 也一样需要使用 \ 转义，但与之对应的闭括号则不用，因为 Vim 会自动推测我们的意图。这就是Vim的 magic 搜索模式。</p>
+</blockquote>
+<p>magic 搜索模式会<strong>自动</strong>为某些额外的符号赋予特殊含义，例如 <code>.</code> 、<code>*</code>、<code>[</code> 等。magic 模式的初衷是想能在Vim中更容易地构造简单的正则表达式，但它却没能为诸如 <code>+</code>、<code>?</code>、<code>(</code>、<code>)</code>、<code>{</code> 等符号赋予特殊含义，这些符号还必须经过转义才具有特殊含义。</p>
+<p>这种”半成品”性质的实现，使得在Vim下构建正则表达式搜索模式，仍然十分麻烦，从上面查找颜色代码的命令就可感受一二。</p>
+<h4 id="2-使用-very-magic-搜索模式查找"><a href="#2-使用-very-magic-搜索模式查找" class="headerlink" title="2. 使用 very magic 搜索模式查找"></a>2. 使用 very magic 搜索模式查找</h4><p>如上所述，magic 搜索模式下，字符转义的规则制定得比较混乱，容易混淆。</p>
+<p>可以使用 <code>\v</code> 开关激活 very magic 搜索模式，统一所有<strong>特殊符号</strong>的规则：</p>
+<blockquote>
+<p>very magic 搜索模式下，除下划线 <code>_</code>、大小写字母以及数字 0 到 9 之<strong>外</strong>的所有字符<strong>都具有</strong>特殊含义。</p>
+</blockquote>
+<p>例如，使用 <code>\v</code> 模式开关查找上述匹配十六进制颜色代码的正则表达式可简化为：<code>/\v#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})</code>。</p>
+<p>由于出现在起始位置的 \v 开关，位于它后面的所有字符都<strong>具有特殊含义</strong>，用于转义的反斜杠字符就可以去掉，正则表达式的可读性更强了。</p>
+<h4 id="3-使用-very-nomagic-搜索模式查找"><a href="#3-使用-very-nomagic-搜索模式查找" class="headerlink" title="3. 使用 very nomagic 搜索模式查找"></a>3. 使用 very nomagic 搜索模式查找</h4><p>上面介绍的正则表达式中保留使用的特殊字符，在按模式查找时用起来很方便，但如果想按原义查找对应字符时，又该如何操作呢？</p>
+<p>例如，如果想在下面的一段文字中查找 a.k.a，使用Vim命令 <code>/a.k.a.</code> 并不能立马精确地找到目标字符串，因为符号 <code>.</code> 在正则表达式中具有特殊含义，它会匹配任意字符，因此单词 b<strong>a</strong>c<strong>k</strong>w<strong>a</strong>rd 也会被搜索到。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">The N key searches backward...</span><br><span class="line">...the \v pattern switch (a.k.a. very magic search)...</span><br></pre></td></tr></tbody></table></figure>
+<p>当然，可以使用转义的方法消除 <code>.</code> 字符的特殊含义，即 <code>/a\.k\.a\.</code>。</p>
+<p>一种更简单的使用方法是使用原义开关 <code>\V</code> 激活Vim的very nomagic 搜索模式。</p>
+<blockquote>
+<p><code>\V</code> 选项会使得其后的模式中<strong>有且只有反斜杠</strong> <code>\</code> 具有特殊意义，即消除了附加在 <code>.</code>、<code>*</code> 以及 <code>?</code> 等大多数字符上的特殊含义。</p>
+</blockquote>
+<p>使用 <code>\V</code> 原义开关精确搜索 a.k.a 的命令可以简化为：<code>/\Va.k.a.</code>。</p>
+<hr>
+<p>介绍完上面提到的 Vim magic 搜索模式、very magic 搜索模式和 very nomagic 搜索模式后，是不是反而会觉得规则太多，没法快速地选择所需要的模式。</p>
+<p>其实，very magic 和 very nomagic 搜索模式分别是Vim对正则表达式特殊字符的两种极端处理方式。</p>
+<p>对于Vim的正则表达式搜索，一个通用的原则是：如果想按正则表达式查找，就用模式开关 <code>\v</code>，如果想按原义查找文本，就用原义开关 <code>\V</code>。</p>
+<h4 id="4-界定单词的边界"><a href="#4-界定单词的边界" class="headerlink" title="4. 界定单词的边界"></a>4. 界定单词的边界</h4><p>有些单词，尤其是短词，常常会出现在其他单词内部，比如，the 就会在 these、they、their 等单词中出现。如果想精确匹配 the 这个完整的单词而不是其他词的组成部分，可以使用单词定界符。</p>
+<blockquote>
+<p>在 very magic 搜索模式下，用 <code>&lt;</code> 与 <code>&gt;</code> 符号表示<strong>单词定界符</strong>。</p>
+</blockquote>
+<p>因此，如果将查找命令改为 <code>/\v&lt;the&gt;</code>，就会精确查找到 the 这个单词。</p>
+<p>其实，用单词定界符构造精确查找模式的方式早就已经介绍并使用过了。在<a href="https://vimjc.com/vim-search.html">Vim搜索命令使用方法和技巧</a>一文中已经介绍过，Vim普通模式下使用 <code>*</code> 和 <code>#</code> 可以用于正向或反向精确查找当前光标所在单词。</p>
+<p>当然，在 magic、以及 very nomagic 搜索模式下，<code>&lt;</code> 与 <code>&gt;</code> 都必须使用 <code>\</code> 进行转义才能将其作为单词定界符，而如果想在 very magic 搜索模式下匹配尖括号本身的话，也必须将其转义才有单词定界符的含义。如果你还没理解这两句话，建议再细读下上面关于magic、以及 very nomagic 搜索模式的规则介绍。</p>
+<h4 id="5-界定匹配的边界"><a href="#5-界定匹配的边界" class="headerlink" title="5. 界定匹配的边界"></a>5. 界定匹配的边界</h4><p>在使用Vim的某些场景下，可能想指定一个范围较广的模式，但只对匹配结果的一部分内容感兴趣。</p>
+<p>应该明确，当我们谈论一个<strong>模式</strong>的时候，指的是在查找域输入的正则表达式 (或按原义匹配的文本)；而<strong>匹配</strong>，是指在文档中被高亮显示的文本内容。</p>
+<blockquote>
+<p>一个<strong>匹配</strong>的边界通常对应一个<strong>模式</strong>的起始与结尾。但可以使用元字符 <code>\zs</code> 与 <code>\ze</code> 对<strong>匹配</strong>进行裁剪，使其成为这个完整<strong>模式</strong>的一个子集。</p>
+</blockquote>
+<p>元字符 <code>\zs</code> 标志着一个匹配的起始，而元字符 <code>\ze</code> 则用来界定匹配的结束。将二者相结合，可以让我们先定义一个模式来匹配一个较大的文本范围，然后再收窄匹配范围。例如：</p>
+<p>如果使用Vim查找命令 <code>/Practical Vim</code>，则文档中所有出现 Practical Vim 的地方都会被搜索出来。一旦将查找模式改为 <code>/Practical \zsVim</code>，则只有单词 Vim 会被高亮选中，而单词 Practical 会被排除于<strong>匹配</strong>之外，但它仍是<strong>模式</strong>的一部分。</p>
+<p>如此一来，只有紧跟着单词 Practical 的 Vim 才会被查找到，而其他前面不是 Practical 的 Vim 则不会被匹配。这与通过 <code>/Vim</code> 命令进行简单查找的结果有很大不同。</p>
+</div>
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
 		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
