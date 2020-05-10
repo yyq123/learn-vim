@@ -38,21 +38,33 @@ Escaping special characters with backslashes \ is no trouble if you're only occa
 <p>根据特殊修饰符的不同处理方法，Vim正则表达式可以分为四种模式：magic，no magic，very magic和very nomagic。</p>
 <p>不同模式之间的区别在于，有哪些特殊字符需要使用反斜线（\）进行转义。例如星号（*），在magic和very magic模式下视为特殊修饰符；而在no magic和very nomagic模式下则被不同字符，必须使用&ldquo;\*&rdquo;转义为。</p>
 <pre class="block">
-after:	  \v	   \m	    \M	     \V		matches ~
----------------------------------------------------------------------------------
-		|'magic' |'nomagic'
----------------------------------------------------------------------------------
-	  $	   $	    $	     \$		matches end-of-line
-	  .	   .	    \.	     \.		matches any character
-	  *	   *	    \*	     \*		any number of the previous atom
-	  ~	   ~	    \~	     \~		latest substitute string
-	  ()	   \(\)     \(\)     \(\)	grouping into an atom
-	  |	   \|	    \|	     \|		separating alternatives
-	  \a	   \a	    \a	     \a		alphabetic character
-	  \\	   \\	    \\	     \\		literal backslash
-	  \.	   \.	    .	     .		literal dot
-	  \{	   {	    {	     {		literal '{'
-	  a	   a	    a	     a		literal 'a'
+一个字符是否按本义出现取决于 <a href="options.html#'magic'">'magic'</a> 选项以及下面将解释的条目。
+使用 "\m" 会使得其后的模式的解释方式就如同设定了 <a href="options.html#'magic'">'magic'</a> 选项一样。而且将忽略
+<a href="options.html#'magic'">'magic'</a> 选项的实际值。
+使用 "\M" 会使得其后的模式的解释方式就如同设定了 <a href="options.html#'nomagic'">'nomagic'</a> 选项一样。
+                                                        <b class="vimtag"> <a name="/\v">/\v</a> </b> <b class="vimtag"> <a name="/\V">/\V</a> </b>
+使用 "\v" 会使得在它之后，所有 '0'-'9'，'a'-'z'，'A'-'Z' 和 '_' 之外的字符都当
+作特殊字符解释: "very magic"
+
+使用 "\V" 会使得在它之后，只有反斜杠和终止字符 (通常是 / 或 ?) 有特殊的意
+义: "very nomagic"
+
+示例:
+在这之后: \v       \m       \M       \V         匹配
+                  'magic''nomagic'
+          $        $        $        \$         匹配行尾
+          .        .        \.       \.         匹配任何字符
+          *        *        \*       \*         前面匹配原的任意次重复
+          ~        ~        \~       \~         最近替代字符串
+          ()       \(\)     \(\)     \(\)       组成为单个匹配原
+          |        \|       \|       \|         分隔可选分支
+          \a       \a       \a       \a         字母字符
+          \\       \\       \\       \\         反斜杠 (按本义)
+          \.       \.       .        .          英文句号 (按本义)
+          \{       {        {        {          '{'  (按本义)
+          a        a        a        a          'a'  (按本义)
+
+请注意，建议始终将 <a href="options.html#'magic'">'magic'</a> 选项保持在缺省值。要使模式不受该选项值的影响，可以在模式前面加上 "\m" 或 "\M"。
 </pre>
 Magic
 

@@ -13,65 +13,48 @@
 	<p><a href="https://www.python.org/" title="Python">Python</a>作为一种解释型编程语言，需要解释器来编译并执行Python代码。</p>
 
 	<h2 class="article"><a id="python-test">测试Python</a></h2>
-	<p>对于Linux和Mac操作系统，均已预装Python。在Windows下，可以使用安装包或者解压版zip文件。</p>
+	<p>对于Linux和Mac操作系统，均已预装Python。而在Windows下，可以使用安装包或者直接解压版zip文件。</p>
 	<p>使用以下命令，可以查看当前Python版本：</p>
 	<p style="text-indent:2em"><code class="inset">$ python --version</code></p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/java-version.png" title="java-version"><img src="https://yyq123.github.io/learn-vim/images/java-version.png" alt="java-version" /></a></p>
-	<p>使用以下命令，查看当前Javac版本：</p>
-	<p style="text-indent:2em"><code class="inset">$ javac -version</code></p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/javac-version.png" title="javac-version"><img src="https://yyq123.github.io/learn-vim/images/javac-version.png" alt="javac-version" /></a></p>
-	<p>使用以下命令，查看当前Javaws版本：</p>
-	<p style="text-indent:2em"><code class="inset">$ javaws http://nextmidas.techma.com/nxm343/htdocs/localshell.jnlp</code></p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/javaws-test.png" title="javaws-test"><img src="https://yyq123.github.io/learn-vim/images/javaws-test.png" alt="javaws-test" width="550" height="317" /></a></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/python-version.png" title="python-version"><img src="https://yyq123.github.io/learn-vim/images/python-version.png" alt="python-version" /></a></p>
 
 	<h2 class="article"><a id="opt-pythonthreedll">设置动态调用库</a></h2>
-	<p>新版本的Vim已经默认支持Python特性。可以使用<code class="inset">:version</code>命令，确认是否包含&ldquo;+python/dyn&rdquo;和&ldquo;+python3/dyn&rdquo;特性。</p>
+	<p>新版本的Vim已经默认支持Python。可以使用<code class="inset">:version</code>命令，确认是否包含&ldquo;+python/dyn&rdquo;和&ldquo;+python3/dyn&rdquo;特性。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/version_python3.png" title="version_python3"><img src="https://yyq123.github.io/learn-vim/images/version_python3.png" alt="version_python3" width="500" height="108" /></a></p>
 	<p>其中<var>dyn</var>，即dynamic，表示可以通过'pythondll'和'pythonthreedll'选项动态调用Python库。</p>
-	<p>使用set pythonthreedll?命令，可以查看当前动态调用的Python库。以下为<a href="https://getfedora.org/" title="Fedora">Fedora</a>31中默认设置：</p>
+	<p>使用set pythonthreedll?命令，可以查看当前动态调用的Python库。以下为<a href="https://getfedora.org/" title="Fedora">Fedora</a>31下的默认设置：</p>
 	<p style="text-indent:2em"><code class="inset">set pythonthreedll=libpython3.7m.so.1.0</code></p>
 	<p>如果您的Vim不支持动态调用Python库，那么以上命令将会报错。</p>
-	<p>如果您仅是下载并解压可执行文件，而不是安装Python，那么同时需要设置<a id="opt-pythonthreehome">pythonthreehome</a>选项。例如以下命令，在Windows下设置Python3环境：</p>
+	<p>如果您仅是<a href="https://www.python.org/downloads/windows/" title="download">下载</a>并解压程序包（而不是进行安装），那么同时需要设置<a id="opt-pythonthreehome">pythonthreehome</a>选项。例如以下命令，在Windows下设置Python3环境：</p>
 <pre><code>set pythonthreehome=C:\tools\Python3
 set pythonthreedll=C:\tools\Python3\python38.dll</code></pre>
-	<p>以下命令，则是在Mac下设置Python环境：</p>
+	<p>以下命令，可以在Mac下设置Python环境：</p>
 <pre><code>" for python 3.X
 set pythonthreehome=/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.7
 set pythonthreedll=/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.7/lib/libpython3.7m.dylib
 " for python 2.X
 set pythonhome=/System/Library/Frameworks/Python.framework/Versions/2.7
-set pythondll=/System/Library/Frameworks/Python.framework/Versions/2.7/Python</pre></>
-	<p>请使用以下命令，查看帮助信息：</p>
+set pythondll=/System/Library/Frameworks/Python.framework/Versions/2.7/Python</code></pre>
+	<p>请注意，在您的环境中Python所处的路径可能会不同。请在操作系统中使用以下命令，查看Python系统路径：</p>
+	<p style="text-indent:2em"><code class="inset">python -c "import sys; print(sys.path)"</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/python_sys_path.png" title="python_sys_path"><img src="https://yyq123.github.io/learn-vim/images/python_sys_path.png" alt="python_sys_path" width="550" height="39" /></a></p>
+	<p>请使用以下命令，查看更多帮助信息：</p>
 <pre><code>:help python-dynamic
 :help 'pythonhome'
-:help 'pythonthreehome'</code></p>
-
-
-	<h2 class="article"><a id="java-linux-install">安装Java</a></h2>
-	<p>使用以下命令安装JDK（具体步骤可以参考<a href="https://docs.fedoraproject.org/en-US/quick-docs/installing-java/" title="Installing Java">Installing Java</a>）；</p>
-	<p style="text-indent:2em"><code class="inset">$ sudo dnf install java-1.8.0-openjdk-devel.x86_64</code></p>
-	<p>如果需要使用JWS（Java Web Start）以运行JNPL文件，那么还需要安装<a href="http://icedtea.classpath.org/wiki/IcedTea-Web" title="IcedTea-Web">IcedTea-Web</a>：</p>
-	<p style="text-indent:2em"><code class="inset">$ sudo dnf install icedtea-web</code></p>
-
-	<h2 class="article"><a id="java-linux-config">配置Java</a></h2>
-	<p>如果安装了多个版本的JDK、JRE、和JWS，那么可以使用以下命令进行切换：</p>
-	<p style="text-indent:2em"><code class="inset">$ alternatives --config java</code></p>
-	<p style="text-indent:2em"><code class="inset">$ alternatives --config javac</code></p>
-	<p style="text-indent:2em"><code class="inset">$ alternatives --config javaws</code></p>
-
+:help 'pythonthreehome'</code></pre>
 
 	<h2 class="article"><a id="makeprg-python">设置编译器</a></h2>
 	<p>使用以下命令，设置'makeprg'选项为python3命令：</p>
 	<p style="text-indent:2em"><code class="inset">set makeprg=python3\ %</code></p>
-	<p>通过在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>文件中增加以下<a href="http://yyq123.github.io/learn-vim/learn-vi-49-01-autocmd.html" title="自动命令(autocmd)">自动命令</a>，可以为Java语言文件设置编译快捷键：</p>
+	<p>通过在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>文件中增加以下<a href="http://yyq123.github.io/learn-vim/learn-vi-49-01-autocmd.html" title="自动命令(autocmd)">自动命令</a>，可以为Python源码文件设置编译快捷键：</p>
 <pre><code>augroup make_python
 	au!
 	au FileType python set makeprg=python3\ %
 	au FileType python map &lt;buffer&gt; &lt;leader&gt;&lt;space&gt; :w&lt;cr&gt;:make&lt;cr&gt;
 augroup end</code></pre>
 
-	<h2 class="article"><a id="python-linux-compile">编译Python</a></h2>
-	<p>使用以下命令，将根据'makeprg'选项进行编译并执行Python文件：</p>
+	<h2 class="article"><a id="python-linux-compile">编译Python代码</a></h2>
+	<p>使用以下命令，将根据'makeprg'选项编译并执行Python文件：</p>
 	<p style="text-indent:2em"><code class="inset">:make</code></p>
 	<p>如果编译出现错误，将在<a href="https://yyq123.github.io/learn-vim/learn-vi-70-01-QuickFix.html" title="QuickFix">QuickFix</a>中显示错误列表，并自动跳转到第一个错误处：</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/python_error_quicklist_multiple.png" title="python_error_quicklist_multiple"><img src="https://yyq123.github.io/learn-vim/images/python_error_quicklist_multiple.png" alt="python_error_quicklist_multiple" /></a></p>
@@ -85,50 +68,14 @@ augroup end</code></pre>
 	<p><a href="https://yyq123.github.io/learn-vim/images/python_success_output.png" title="python_success_output"><img src="https://yyq123.github.io/learn-vim/images/python_success_output.png" alt="python_success_output" /></a></p>
 	<p>使用以下命令，将解释执行当前文件：</p>
 	<p style="text-indent:2em"><code class="inset">:!python3 %</code></p>
-	<p>如果执行不带任何参数的python3命令，那么将将进入交换模式的python shell，您可以在其中直接执行python命令：</p>
+	<p>如果执行不带任何参数的python3命令，那么将进入交换模式的python shell，您可以在其中直接执行python命令：</p>
 	<p style="text-indent:2em"><code class="inset">:!python3</code></p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/Python3_i.png" title="Python3_i"><img src="https://yyq123.github.io/learn-vim/images/Python3_i.png" alt="Python3_i" width="550" height="105" /></a></p>
-	<p>请注意，需要使用以下命令退出交换模式的python shell：</p>
+	<p>使用以下命令，可以退出交换模式的python shell：</p>
 	<p style="text-indent:2em"><code class="inset">import sys; sys.exit()</code></p>
 	<p>您也可以直接使用Vim内置的<code class="inset">:python3</code>命令来执行代码：</p>
 	<p style="text-indent:2em"><code class="inset">:py3 print('hello world')</code></p>
 
-
-	<h2 class="article"><a id=""></a></h2>
-	<p></p>
-
-	<p></p>
-	<p style="text-indent:2em"><code class="inset"></code></p>
-	<p>可以使用下命令可以查看系统路径：</p>
-	<p style="text-indent:2em"><code class="inset">:py3 import sys; print(sys.path)</code></p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/Python3_print_sys_path.png" title="Python3_print_sys_path"><img src="https://yyq123.github.io/learn-vim/images/Python3_print_sys_path.png" alt="Python3_print_sys_path" width="550" height="116" /></a></p>
-
-
-
-
-
-
-
-
-	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
-	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
-
-	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
-		<caption style="margin:0.5em; font-weight:bold">选项列表</caption>
-		<tr><th style="white-space: nowrap">选项</th><th>描述</th><th>帮助信息</th></tr>
-		<tr><td><code class="inset">!</code></td><td>如果包含，表示。例如，。</td><td style="white-space: nowrap"><code class="inset">:help viminfo-!</code></td></tr>
-	</table>
-
-	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
-		<caption>命令小结</caption>
-		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
-		<tr><td><code class="inset">:</code></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-	</table>
-&ldquo;&rdquo;
-
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="QuickFix" href="http://yyq123.github.io/learn-vim/learn-vi-70-01-QuickFix.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="QuickFix选项" href="http://yyq123.github.io/learn-vim/learn-vim--QuickFix-opt.html">下一篇</a>&gt;</span></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="QuickFix" href="http://yyq123.github.io/learn-vim/learn-vi-70-01-QuickFix.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="QuickFix选项" href="http://yyq123.github.io/learn-vim/learn-vim-QuickFix-opt.html">下一篇</a>&gt;</span></p>
 </body>
 </html>

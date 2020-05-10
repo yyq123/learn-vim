@@ -24,11 +24,10 @@
 
 	<h2 class="article"><a id=""></a>Very nomagic</h2>
 	<p>Very nomagic modes are set with \V. Their effect is turning almost all special regex symbols into ordinary ones unless they start with a backslash.</p>
-	<p>例如以下命令，将查找字符串&ldquo;Fun.test(*args)&rdquo; 。也就是说，其中的&ldquo;*&rdquo;和&ldquo;.&rdquo;都被视为普通字符。</p>
-n a while when you know precisely what you’re looking for, but don’t want to risk accidentally using a special character somewhere. As for the difference between the two, I believe it’s only in the end-of-line character – It’s $ in nomagic and \$ in very nomagic mode.
+	<p>例如以下命令，将查找字符串&ldquo;Fun.test(*args)&rdquo; 。也就是说，其中的&ldquo;*&rdquo;和&ldquo;.&rdquo;都被视为普通字符。如果您需要精确的完整匹配，并且查找字符串中包含特殊字符时，那么Very nomagic模式将会很有用。</p>
 	<p style="text-indent:2em"><code class="inset">/\VFun.test(*args)</code></p>
-	<pre class="block">Fun.test(*args)</pre>
 
+	<pre class="block"></pre>
 
 	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
 
