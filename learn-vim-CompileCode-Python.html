@@ -36,7 +36,7 @@ set pythonthreedll=/Library/Developer/CommandLineTools/Library/Frameworks/Python
 set pythonhome=/System/Library/Frameworks/Python.framework/Versions/2.7
 set pythondll=/System/Library/Frameworks/Python.framework/Versions/2.7/Python</code></pre>
 	<p>请注意，在您的环境中Python所处的路径可能会不同。请在操作系统中使用以下命令，查看Python系统路径：</p>
-	<p style="text-indent:2em"><code class="inset">python -c "import sys; print(sys.path)"</code></p>
+	<p style="text-indent:2em"><code class="inset">$ python -c "import sys; print(sys.path)"</code></p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/python_sys_path.png" title="python_sys_path"><img src="https://yyq123.github.io/learn-vim/images/python_sys_path.png" alt="python_sys_path" width="550" height="39" /></a></p>
 	<p>请使用以下命令，查看更多帮助信息：</p>
 <pre><code>:help python-dynamic
@@ -45,7 +45,7 @@ set pythondll=/System/Library/Frameworks/Python.framework/Versions/2.7/Python</c
 
 	<h2 class="article"><a id="makeprg-python">设置编译器</a></h2>
 	<p>使用以下命令，设置'makeprg'选项为python3命令：</p>
-	<p style="text-indent:2em"><code class="inset">set makeprg=python3\ %</code></p>
+	<p style="text-indent:2em"><code class="inset">:set makeprg=python3\ %</code></p>
 	<p>通过在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>文件中增加以下<a href="http://yyq123.github.io/learn-vim/learn-vi-49-01-autocmd.html" title="自动命令(autocmd)">自动命令</a>，可以为Python源码文件设置编译快捷键：</p>
 <pre><code>augroup make_python
 	au!
