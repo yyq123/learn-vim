@@ -40,23 +40,58 @@
 	<h1>VIM学习笔记 附录-选项(Appendix-Options)</h1>
 	<ul>
 	<li><p><a href="#" title="">autoindent</a> (ai) (Default: noai)<br />；</p></li>
+	<li><p><a href="#" title="">autoread</a> (ar) (Default: noautoread)<br />Detect whether a file inside Vim has been modified externally, not by Vim, and automatically refresh the Vim buffer with the changed version of the file；</p></li>
 	<li><p><a href="#" title="">autowrite</a> (aw) (Default: noaw)<br />；</p></li>
-	<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
 	<li><p><a href="#opt-cmdheight" title="opt-cmdheight">cmdheight</a> (ch) (Default: 1)<br />设置命令行高度；</p></li>
 	<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
 
-	<li><p><a href="#" title="">directory</a> (dir) (Default: /tmp)<br />；</p></li>
+	<li><p><a href="#" title="">background</a> (bg) (Default:dark or light )<br />Vim tries to use background and foreground colors that are appropriate to the particular terminal. The default depends on the current terminal or win- dowing system.；</p></li>
+	<li><p><a href="#" title="">backspace</a> (bs) (Default: "")<br />；</p></li>
+	<li><p><a href="#" title="">backup</a> (bk) (Default: nobackup)<br />Make a backup before overwriting a file, then leave it around after the file has been successfully written.  To have a backup file just while the file is being written, use the writebackup option.；</p></li>
+	<li><p><a href="#" title="">backupdir</a> (bdir) (Default: ., ~/tmp/, ~/)<br />A list of directories for the backup file, separated with commas. The backup file is created in the first directory in the list where this is possible. If empty, you cannot create a backup file. The name . (dot) means the same directory as where the edited file is.；</p></li>
+	<li><p><a href="#" title="">backupext</a> (bex) (Default: ~)<br />The string that is appended to a filename to make the name of the backup file.；</p></li>
+	<li><p><a href="#" title="">binary</a> (bin) (Default: nobinary)<br />Change a number of other options to make it easier to edit binary files. The previous values of these options are remembered and restored when bin is switched back off. Each buffer has its own set of saved option values. This option should be set be- fore editing a binary file. You can also use the -b command-line option.；</p></li>
+	<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
+	<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
+
+	<li><p><a href="#" title="">cindent</a> (cin) (Default: nocindent)<br />Enable automatic smart C program indenting.；</p></li>
+	<li><p><a href="#" title="">cinkeys</a> (cink) (Default: 0{,0},:,0#,!^F, o,O,e)<br />A list of keys that, when typed in insert mode, cause reindenting of the current line. Only happens if cindent is on.；</p></li>
+	<li><p><a href="#" title="">cinoptions</a> (cino) (Default: )<br />Affects the way cindent reindents lines in a C pro- gram. See the online help for details.；</p></li>
+	<li><p><a href="#" title="">cinwords</a> (cinw) (Default: if , else , while , do , for , switch)<br />These keywords start an extra indent in the next line when smartindent or cindent is set. For cindent this is done only at an appropriate place (inside {...} ).；</p></li>
+	<li><p><a href="#" title="">comments</a> (com) (Default: )<br />A comma-separated list of strings that can start a comment line. See the online help for details.；</p></li>
+	<li><p><a href="#" title="">compatible</a> (cp) (Default: cp ; nocp when a .vimrc file is found)<br />Makes Vim behave more like vi in too many ways to describe here. It is on by default, to avoid sur- prises. Having a .vimrc turns off the vi compatibil- ity; usually this is a desirable side effect.；</p></li>
+	<li><p><a href="#" title="">completeopt</a> (cot) (Default: menu,preview)<br />A comma-separated list of options for insert mode completion.；</p></li>
+	<li><p><a href="#" title="">cpoptions</a> (cpo) (Default: aABceFs)<br />A sequence of single character flags, each one indi- cating a different way in which Vim will or will not exactly mimic vi . When empty, the Vim defaults are used；</p></li>
+	<li><p><a href="#" title="">cursorcolumn</a> (cuc) (Default: nocursorcolumn)<br />高亮显示光标所在的列；</p></li>
+	<li><p><a href="#" title="">cursorline</a> (cul) (Default: nocursorline)<br />高亮显示光标所在的行；</p></li>
+	<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
+
+	<li><p><a href="#" title="">define</a> (def) (Default: ^#\s*define)<br />A search pattern that describes macro definitions.  The default value is for C programs. For C++, use ^\(#\s*define\ |[a-z]*\s*const\s*[a-z]*\) .  When using the :set command, you need to double the backslashes.；</p></li>
+	<li><p><a href="#" title="">directory</a> (dir) (Default: ., ~/tmp, /tmp)<br />指定产生swap交换文件的目录；</p></li>
+	<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
 
 	<li><p><a href="#" title="">eadirection</a> () (Default: )<br />；Define whether Vim resizes windows equally vertically, horizontally, or both.</p></li>
 	<li><p><a href="#" title="">edcompatible</a> () (Default: noedcompatible)<br />；</p></li>
+	<li><p><a href="#" title="">equalprg</a> (ep) (Default: )<br />External program to use for = command. When this option is empty, the internal formatting functions are used.；</p></li>
 	<li><p><a href="#" title="">equalalways</a> () (Default: )<br />；When the number of windows changes, either by splitting or closing windows,resize them to be the same size.</p></li>
-	<li><p><a href="#opt-errorbells" title="opt-errorbells">errorbells</a> (eb) (Default: off)<br />是否发出报错响铃；</p></li>
+	<li><p><a href="#opt-errorbells" title="opt-errorbells"></a> (eb) (Default: off)<br />是否发出报错响铃；</p></li>
+	<li><p><a href="#" title="">errorfile</a> (ef) (Default: errors.err)<br />Name of the error file for the quickfix mode. When the -q command-line argument is used, errorfile is set to the following argument.；</p></li>
+	<li><p><a href="#" title="">errorformat</a> (efm) (Default: )<br />控制如何解析错误文件；</p></li>
+	<li><p><a href="#" title="">expandtab</a> (et) (Default: noexpandtab)<br />控制是否将Tab转换为空格；</p></li>
+	<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
+	<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
 	<li><p><a href="#" title="">exrc</a> (ex) (Default: noexrc)<br />；</p></li>
 
+	<li><p><a href="#" title="">fileformat</a> (ff) (Default: )<br />；</p></li>
+	<li><p><a href="#" title="">fileformats</a> (ffs) (Default: dos,unix)<br />；</p></li>
+	<li><p><a href="#" title="">formatoptions</a> (fo) (Default: tcq)<br />；</p></li>
+	<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
 	<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
 
+	<li><p><a href="#" title="">gdefault</a> (gd) (Default: nogdefault)<br />；</p></li>
+	<li><p><a href="#" title="">guifont</a> (gfn) (Default: )<br />Names of single-byte fonts to be used；</p></li>
+	<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
 	<li><p><a href="#" title="">guicursor</a> () (Default: )<br />Settings for cursor shape and blinking；</p></li>
-	<li><p><a href="#" title="">guifont</a> () (Default: )<br />Names of single-byte fonts to be used；</p></li>
 	<li><p><a href="#" title="">guifontset</a> () (Default: )<br />Option Names of multi-byte fonts to be used；</p></li>
 	<li><p><a href="#" title="">guifontwide</a> () (Default: )<br />Option List of font names for double-wide characters；</p></li>
 	<li><p><a href="#" title="">guiheadroom</a> () (Default: )<br />guiheadroom Option Number of pixels to leave for window decorations；</p></li>
@@ -67,150 +102,107 @@
 	<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
 	<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
 
+	<li><p><a href="#" title="">hidden</a> (hid) (Default: nohidden)<br />；</p></li>
+	<li><p><a href="#" title="">history</a> (hi) (Default: 20)<br />；</p></li>
+	<li><p><a href="#" title="">hlsearch</a> (hls) (Default: nohlsearch)<br />；</p></li>
+	<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
+
+	<li><p><a href="#" title="">icon</a> () (Default: noicon)<br />；</p></li>
 	<li><p><a href="#" title="">ignorecase</a> (ic) (Default: noic)<br />；</p></li>
+	<li><p><a href="#" title="">iconstring</a> () (Default: )<br />；</p></li>
+	<li><p><a href="#" title="">include</a> (inc) (Default: )<br />；</p></li>
+	<li><p><a href="#" title="">incsearch</a> (is) (Default: noincsearch)<br />；</p></li>
+	<li><p><a href="#" title="">isfname</a> (isf) (Default: )<br />；</p></li>
+	<li><p><a href="#" title="">isident</a> (isi) (Default: )<br />；</p></li>
+	<li><p><a href="#" title="">iskeyword</a> (isk) (Default: )<br />；</p></li>
+	<li><p><a href="#" title="">isprint</a> (isp) (Default: )<br />；</p></li>
+	<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
+	<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
+	<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
 
 	<li><p><a href="#" title="">lisp</a> () (Default: nolisp)<br />；</p></li>
 	<li><p><a href="#" title="">list</a> () (Default: nolist)<br />；</p></li>
 
 	<li><p><a href="#" title="">magic</a> () (Default: magic)<br />；</p></li>
+	<li><p><a href="#" title="">makeef</a> (mef) (Default: )<br />；</p></li>
+	<li><p><a href="#" title="">makeprg</a> (mp) (Default: )<br />；</p></li>
+	<li><p><a href="#" title="">modifiable</a> (ma) (Default: )<br />；</p></li>
+	<li><p><a href="#" title="">mouse</a> () (Default: )<br />；</p></li>
 	<li><p><a href="#opt-more" title="opt-more">more</a> (Default: on)<br />是否显示&ldquo;-- More --&rdquo;提示信息；</p></li>
+	<li><p><a href="#" title="">mousehide</a> (mh) (Default: )<br />；</p></li>
+	<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
+	<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
+	<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
 
 	<li><p><a href="#" title="">number</a> (nu) (Default: nonu)<br />；</p></li>
 
 	<li><p><a href="#" title="">paragraphs</a> (para) (Default: "IPLPPPQPP TPHPLIPpLpItpplpipbp")<br />；</p></li>
+	<li><p><a href="#" title="">paste</a> () (Default: nopaste)<br />；</p></li>
+	<li><p><a href="#" title="">prompt</a> () (Default: )<br />；</p></li>
 
+	<li><p><a href="#" title="">read</a> (re) (Default: )<br />；</p></li>
+	<li><p><a href="#" title="">readonly</a> (ro) (Default: noro)<br />；</p></li>
+	<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
+	<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
+	<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
 	<li><p><a href="#opt-report" title="opt-report">report</a> (Default: 2)<br />设置报告改变行数的阈值；</p></li>
+	<li><p><a href="#" title="">ruler</a> (ru) (Default: )<br />；</p></li>
+	<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
 
+	<li><p><a href="#" title="">scroll</a> () (Default: )<br />；</p></li>
+	<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
+	<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
+	<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
+	<li><p><a href="#" title="">sections</a> (sect) (Default: )<br />；</p></li>
+	<li><p><a href="#" title="">secure</a> () (Default: )<br />；</p></li>
 	<li><p><a href="#" title="">shell</a> (sh) (Default: /bin/sh)<br />；</p></li>
+	<li><p><a href="#" title="">shellpipe</a> (sp) (Default: )<br />；</p></li>
+	<li><p><a href="#" title="">shellredir</a> (srr) (Default: )<br />；</p></li>
 	<li><p><a href="http://yyq123.github.io/learn-vim/learn-vi-46-03-CMD-Options.html#opt-shellslash" title="opt-shellslash">shellslash</a> (ssl) (Default: off)<br />使用正斜杠（Forward slash）作为路径分隔符；</p></li>
+	<li><p><a href="#" title="">shiftwidth</a> (sw) (Default: 8)<br />；</p></li>
 	<li><p><a href="#opt-showcmd" title="opt-showcmd">showcmd</a>(sc) (Default: on, off for Unix)<br />是否显示命令信息；</p></li>
+	<li><p><a href="#" title="">showmatch</a> (sm) (Default: nosm)<br />；</p></li>
 	<li><p><a href="#opt-showmode" title="opt-showmode">showmode</a> (smd) (Default: on)<br />是否显示当前所处的模式；</p></li>
+	<li><p><a href="#" title="">sidescroll</a> (ss) (Default: )<br />；</p></li>
+	<li><p><a href="#" title="">smartcase</a> (scs) (Default: )<br />；</p></li>
+	<li><p><a href="#" title="">spell</a> () (Default: )<br />；</p></li>
+	<li><p><a href="#" title="">suffixes</a> () (Default: )<br />；</p></li>
+	<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
 
+	<li><p><a href="#" title="">tabstop</a> (ts) (Default: 8)<br />；</p></li>
+	<li><p><a href="#" title="">taglength</a> (tl) (Default: 0)<br />；</p></li>
+	<li><p><a href="#" title="">tagrelative</a> (tr) (Default: tr)<br />；</p></li>
+	<li><p><a href="#" title="">tags</a> (tag) (Default: )<br />；</p></li>
+	<li><p><a href="#" title="">tagstack</a> () (Default: )<br />；</p></li>
+	<li><p><a href="#" title="">term</a> () (Default: )<br />；</p></li>
+	<li><p><a href="#" title="">terse</a> () (Default: noterse)<br />；</p></li>
+	<li><p><a href="#" title="">tildeop</a> (top) (Default: notildeop)<br />；</p></li>
+	<li><p><a href="#" title="">timeout</a> (to) (Default: timeout)<br />；</p></li>
+	<li><p><a href="#" title="">ttytype</a> () (Default: )<br />；</p></li>
+	<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
+
+	<li><p><a href="#" title="">undolevels</a> (ul) (Default: )<br />；</p></li>
+	<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
+	<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
+
+	<li><p><a href="#" title="">viminfo</a> (vi) (Default: )<br />；</p></li>
+	<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
 	<li><p><a href="#opt-visualbell" title="opt-visualbell">visualbell</a> (vb) (Default: off)<br />设置响铃的行为：鸣叫、屏幕闪烁或什么都不做；</p></li>
- 
+
+	<li><p><a href="#" title="">warn</a> () (Default: warn)<br />；</p></li>
+	<li><p><a href="#" title="">window</a> (w) (Default: )<br />；</p></li>
 	<li><p><a href="#" title="">winheight</a> (wh) (default 1)<br /><span>option When entering or creating a window, set its height to at least the specified value.；</span></li>
 	<li><p><a href="#" title="">winwidth</a> () (Default: )<br />；When entering or creating a window, set its width to at least the specified value.</p></li>
 	<li><p><a href="#" title="">winminheight</a> () (Default: )<br />；Define the minimum window height, which applies to all windows created.</p></li>
 	<li><p><a href="#" title="">winminwidth</a> () (Default: )<br />；Define the minimum window width, which applies to all windows created.</p></li>
-	<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
-	<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
+	<li><p><a href="#" title="">wrapscan</a> (ws) (Default: ws)<br />；</p></li>
+	<li><p><a href="#" title="">wrapmargin</a> (wm) (Default: )<br />；</p></li>
+	<li><p><a href="#" title="">writebackup</a> (wb) (Default: )<br />；</p></li>
+	<li><p><a href="#" title="">writeany</a> (wa) (Default: nowa)<br />；</p></li>
+	<li><p><a href="learn-vi-00-00-TOC.html" title=""></a> () (Default: )<br />；</p></li>
 	</ul>
-<table border="0">
-<tbody>
-	<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
-	<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
-	<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
-	<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
-	<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
-    <tr>
-        <td><font size="2" face="Courier New">prompt</font></td>
-        <td>&nbsp;</td>
-        <td><font size="2" face="Courier New">prompt</font></td>
-    </tr>
-    <tr>
-        <td><font size="2" face="Courier New">readonly</font></td>
-        <td><font size="2" face="Courier New">&nbsp;(ro)&nbsp;</font></td>
-        <td><font size="2" face="Courier New">noro</font></td>
-    </tr>
-    <tr>
-        <td><font size="2" face="Courier New">read</font></td>
-        <td><font size="2" face="Courier New">&nbsp;(re)&nbsp;</font></td>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <td><font size="2" face="Courier New">remap</font></td>
-        <td>&nbsp;</td>
-        <td><font size="2" face="Courier New">remap</font></td>
-    </tr>
-    <tr>
-        <td><font size="2" face="Courier New">scroll</font></td>
-        <td>&nbsp;</td>
-        <td><font size="3">half window</font></td>
-    </tr>
-    <tr>
-        <td><font size="2" face="Courier New">sections</font></td>
-        <td><font size="2" face="Courier New">&nbsp;(sect)&nbsp;</font></td>
-        <td><font size="2" face="Courier New">SHNHH
-        HU</font></td>
-    </tr>
-    <tr>
-        <td><font size="2" face="Courier New">shiftwidth</font></td>
-        <td><font size="2" face="Courier New">&nbsp;(sw)&nbsp;</font></td>
-        <td><font size="2" face="Courier New">8</font></td>
-    </tr>
-    <tr>
-        <td><font size="2" face="Courier New">showmatch</font></td>
-        <td><font size="2" face="Courier New">&nbsp;(sm)&nbsp;</font></td>
-        <td><font size="2" face="Courier New">nosm</font></td>
-    </tr>
-    <tr>
-        <td><font size="2" face="Courier New">tabstop</font></td>
-        <td><font size="2" face="Courier New">&nbsp;(ts)&nbsp;</font></td>
-        <td><font size="2" face="Courier New">8</font></td>
-    </tr>
-    <tr><td>taglength</td><td>&nbsp;(tl)&nbsp;</td><td>0</td></tr>
-    <tr><td>tagrelative</td><td>&nbsp;(tr)&nbsp;</td><td>tr</td></tr>
-    <tr>
-        <td><font size="2" face="Courier New">tags</font></td>
-        <td>&nbsp;</td>
-        <td><font size="3"><em>tags /usr/lib/tags</em></font></td>
-    </tr>
-    <tr>
-        <td><font size="2" face="Courier New">tagstack</font></td>
-        <td>&nbsp;</td>
-        <td><font size="2" face="Courier New">tagstack</font></td>
-    </tr>
-    <tr>
-        <td><font size="2" face="Courier New">term</font></td>
-        <td>&nbsp;</td>
-        <td><font size="3">(from </font><font size="2" face="Courier New">$TERM</font><font size="3">)</font></td>
-    </tr>
-    <tr>
-        <td><font size="2" face="Courier New">terse</font></td>
-        <td>&nbsp;</td>
-        <td><font size="2" face="Courier New">noterse</font></td>
-    </tr>
-    <tr><td>tildeop</td><td>&nbsp;(top)&nbsp;</td><td>notildeop</td></tr>
-    <tr>
-        <td><font size="2" face="Courier New">timeout</font></td>
-        <td><font size="2" face="Courier New">&nbsp;(to)&nbsp;</font></td>
-        <td><font size="2" face="Courier New">timeout</font></td>
-    </tr>
-    <tr>
-        <td><font size="2" face="Courier New">ttytype</font></td>
-        <td>&nbsp;</td>
-        <td><font size="3">(from </font><font size="2" face="Courier New">$TERM</font><font size="3">)</font></td>
-    </tr>
-    <tr><td>viminfo</td><td>&nbsp;(vi)&nbsp;</td><td></td></tr>
-    <tr>
-        <td><font size="2" face="Courier New">warn</font></td>
-        <td>&nbsp;</td>
-        <td><font size="2" face="Courier New">warn</font></td>
-    </tr>
-    <tr>
-        <td><font size="2" face="Courier New">window</font></td>
-        <td><font size="2" face="Courier New">&nbsp;(w)&nbsp;</font></td>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <td><font size="2" face="Courier New">wrapscan</font></td>
-        <td><font size="2" face="Courier New">&nbsp;(ws)&nbsp;</font></td>
-        <td><font size="2" face="Courier New">ws</font></td>
-    </tr>
-    <tr>
-        <td><font size="2" face="Courier New">wrapmargin</font></td>
-        <td><font size="2" face="Courier New">&nbsp;(wm)&nbsp;</font></td>
-        <td><font size="3">0</font></td>
-    </tr>
-    <tr><td>writebackup</td><td>&nbsp;(wb)&nbsp;</td><td></td></tr>
-    <tr>
-        <td><font size="2" face="Courier New">writeany</font></td>
-        <td><font size="2" face="Courier New">&nbsp;(wa)&nbsp;</font></td>
-        <td><font size="2" face="Courier New">nowa</font></td>
-    </tr>
-</tbody></table>
 
 
-
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
 </body>
 </html>

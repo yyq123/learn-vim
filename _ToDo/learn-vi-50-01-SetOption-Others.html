@@ -39,11 +39,11 @@
 set hidden " you can change buffers without saving
 set fileformats=unix,dos,mac " support all three, in this order
 
-" Allow backspacing over indent, eol, and the start of an insert
-set backspace=indent,eol,start
-这条命令告诉Vim在Insert模式下退格键何时可以删除光标之前的字
-符。选项中以逗号分隔的三项内容分别指定了Vim可以删除位于行首的空
-格，断行，以及开始进入Insert模式之前的位置。
+	<p>'backspace'选项，用于控制在插入模式下退格键何时可以删除光标之前的字符。建议在vimrc文件中，设置如下：</p>
+	<p style="text-indent:2em"><code class="inset">set backspace=indent,eol,start</code></p>
+	<p>其中，以逗号分隔的三项内容分别指定了可以可以删除自动缩进的空格或制表符，断行，以及进入插入模式时的位置。</p>
+
+
 
 我们也可以用下面的命令来设置预览窗口的大小:
 :set previewheight={height}

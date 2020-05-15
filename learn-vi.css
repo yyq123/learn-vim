@@ -76,3 +76,8 @@ p.item {
   margin:0;
   border-left:1px solid;
 }
+
+.highlight {
+  color:#1D1F21;
+  background-color:#FDAD00;
+}

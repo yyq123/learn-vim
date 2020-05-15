@@ -10,8 +10,14 @@
 <body>
 	<h1>VIM学习笔记 命令行模式 (Command-line Mode)</h1>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">命令行模式 (Command-line Mode)</p>
-	<p>输入<code class="inset">:</code>命令，使用<code class="inset">/</code>或<code class="inset">?</code>搜索命令，都将进入命令行模式。用户可以在屏幕底部的命令行中输入命令，或者使用以下快捷键遍历之前的命令历史，然后点击<kbd>&lt;Enter&gt;</kbd>键来执行命令。</p>
+	<h2 class="article"><a id="command-line-mode">命令行模式 (Command-line Mode)</a></h2>
+	<p>在以下三种情况下，将进入命令行模式：</p>
+	<ul>
+		<li>输入<code class="inset">:</code>命令；</li>
+		<li>使用<code class="inset">/</code>或<code class="inset">?</code>搜索命令；</li>
+		<li>使用<kbd>CTRL-R=</kbd>快捷键输入表达式寄存器（expression register）。</li>
+	</ul>
+	<p>用户可以在屏幕底部的命令行中输入命令，或者使用以下快捷键遍历之前的命令历史，然后点击<kbd>&lt;Enter&gt;</kbd>键来执行命令。</p>
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<tr><td><kbd>&uarr;</kbd></td><td rowspan="2">显示上一条命令</td></tr>
 		<tr><td><kbd>Ctrl + p</kbd></td></tr>
@@ -36,7 +42,7 @@
 	<p><code class="inset">:help &lt;Ctrl+r&gt;&lt;Ctrl+w&gt;</code></p>
 	<p>使用<code class="inset">:help c_CTRL-R_CTRL-W</code>命令，可以查看关于Ctrl+r和Ctrl+w键的帮助信息。使用<code class="inset">:help cmdline-editing</code>命令，可以查看关于命令行编辑的帮助信息。使用<code class="inset">:help :</code>命令，可以查看关于命令行模式的帮助信息。</p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">命令行窗口 (Command-line Window)</p>
+	<h2 class="article"><a id="command-line-window">命令行窗口 (Command-line Window)</a></h2>
 	<p>可以使用以下四种方式，来打开命令行窗口：</p>
 	<ol>
 		<li>在命令行模式下，使用<kbd>CTRL-F</kbd>快捷键打开命令行窗口，并显示命令历史纪录；<br />请注意，您可以使用<code class="inset">:set cedit</code>命令，更改此快捷键。</li>

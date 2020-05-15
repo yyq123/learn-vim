@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 ()</title>
+</head>
+<body>
+	<h1>VIM学习笔记 ()</h1>
+
+	<h2 class="article"><a id=""></a></h2>
+	<p></p>
+	<a href="#" title=""></a>
+<h4>界定匹配的边界</h4>
+
+	<p>假设需要将以下文本中的域名替换为&ldquo;hostname&rdquo;：</p>
+	<p style="color:#fff; background-color:#1D1F21; width:21em; padding:10px">
+	Yandex<br />
+	www.yandex.com<br />
+	DuckDuckGo<br />
+	www.duckduckgo.com</p>
+	<p>也就是说，只需要匹配&ldquo;www&rdquo;和&ldquo;com&rdquo;之间的域名；使用元字符<code class="insert">\zs</code>来标志匹配的起始，<code class="insert">\ze</code>则用来界定匹配的结尾。 before where you want to match and <code class="insert">\ze</code> after where you want to match.</p>：</p>
+	<p style="text-indent:2em"><code class="inset">/\vwww\.\zs.*\ze\.com</code></p>
+	<p style="color:#fff; background-color:#1D1F21; width:21em; padding:10px">
+	Yandex<br />
+	www.<span style="background-color:#FDAD00">yandex</span>.com<br />
+	DuckDuckGo<br />
+	www.<span style="background-color:#FDAD00">duckduckgo</span>.com</p>
+	<p>使用以下替换命令，;</p>
+	<p style="text-indent:2em"><code class="inset">%s/\vwww\.\zs.*\ze\.com/hostname</code></p>
+	<p style="color:#fff; background-color:#1D1F21; width:21em; padding:10px">
+	Yandex<br />
+	www.<span style="background-color:#FDAD00">hostname</span>.com<br />
+	DuckDuckGo<br />
+	www.<span style="background-color:#FDAD00">hostname</span>.com</p>
+	<p>结合使用元字符<code class="insert">\zs</code>和<code class="insert">\ze</code>，来标志匹配的开始和结尾，可以首先匹配一个较大的文本范围，然后再收窄匹配范围。或者说，对匹配进行裁剪，聚焦于完整匹配中的一个子集。</p>
+	<p>例如，使用<code>/Learn Vim</code>命令，将匹配所有&ldquo;Learn Vim&rdquo;。而使用<code>/Learn \zsVim</code>命令，则只会匹配紧跟在&ldquo;Learn&rdquo;之后的&ldquo;Vim&rdquo;，而其他前缀的&ldquo;Vim&rdquo;则不会被匹配。显然，这不是简单的<code>/Vim</code>命令可以实现的效果。</p>
+	<p style="color:#fff; background-color:#1D1F21; width:21em; padding:10px">
+	Love Vim<br />
+	Learn <span style="background-color:#FDAD00">Vim</span></p>
+
+	<p>假设需要在一段代码中查找变量&nbsp;<var>i</var>&nbsp;，那么可以使用以下命令：</p>
+	<p style="text-indent:2em"><code class="inset">/\v\W\zsi\ze\W</code></p>
+	<p>结合使用<code>\W</code>，来匹配左右两侧为非单词字符（[a-zA-Z0-9_]）的&ldquo;i&rdquo;字母：</p>
+	<p style="color:#fff; background-color:#1D1F21; width:21em; padding:10px">for <span class="highlight">i</span> in list</p>
+
+	<h2 class="article"><a id="regex-match-whole-word">精确匹配完整单词</a></h2>
+	<p>如果需要完整匹配某个单词时，在默认的Magic模式下，需要对元字符&lt;&gt;进行转义：</p>
+	<p style="text-indent:2em"><code class="inset">/\&lt;the\&gt;</code></p>
+	<p>而在Very Magic模式下则不需要转义，查找命令也变得简单清晰：</p>
+	<p style="text-indent:2em"><code class="inset">/\v&lt;the&gt;</code></p>
+	<p style="color:#fff; background-color:#1D1F21; width:21em; padding:10px">They will roll their wheel from <span style="color:#1D1F21; background-color:#FDAD00">the</span> well</p>
+	<p>由此可见，对于某些较短的单词，常常会出现在其他单词内部。比如，the就会包含在they和their等单词中，仅仅精确匹配完整的单词就显得非常必要。</p>
+        <p>如果您在常规模式下，点击<kbd>*</kbd>键，那么也将对光标之下的单词执行精确查找。你可以在命令行中看到，其背后执行的就是<code class="inset">/\&lt;the\&gt;</code>命令。</p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+
+	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
+
+	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
+
+	<pre class="block">
+	</pre>
+
+	<ul>
+		<li><p class="item"><br /></p></li>
+		<li><p class="item"><a href="#" title=""></a><br /></p></li>
+	</ul>
+
+	<span style="font-weight:bold; color:#4169E1; margin-left:0.2em">&#65311;</span>
+
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
+		<caption style="margin:0.5em; font-weight:bold">选项列表</caption>
+		<tr><th style="white-space: nowrap">选项</th><th>描述</th><th>帮助信息</th></tr>
+		<tr><td><code class="inset">!</code></td><td>如果包含，表示。例如，。</td><td style="white-space: nowrap"><code class="inset">:help viminfo-!</code></td></tr>
+	</table>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
+		<tr><td><code class="inset">:</code></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+	</table>
+&ldquo;&rdquo;
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
+
+</body>
+</html>
