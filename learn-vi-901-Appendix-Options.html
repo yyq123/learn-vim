@@ -7,7 +7,10 @@
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
 	<title>VIM学习笔记 附录-选项(Appendix-Options)</title>
 	<style type="text/css" media="all">
-	table{
+	body {
+	padding: 0 0 1em 0;
+	}
+	table {
 	}
 	table > tbody > tr > td{
 	border: 4px solid #fff;
@@ -20,8 +23,10 @@
 	li {
 	list-style-type: none;
 	position: relative;
-	padding-left: 10px;
-	margin: 10px 0;
+	padding-left: 5px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: 8px;
 	background: #f8f8f8;
 	}
 	li > p {
@@ -33,13 +38,26 @@
 	li > p > a {
 	font-weight: bold;
 	}
+	.footer {
+	position:fixed;
+	bottom:0;
+	left:0;
+	background:#B0C4DE;
+	width:100%;
+	text-align:center;
+	padding: 3px 0;
+	}
+	.footer > a {
+	margin:0 2px;
+	text-decoration:none;
+	}
 	</style>
 </head>
 <body>
 
 	<h1>VIM学习笔记 附录-选项(Appendix-Options)</h1>
-	<ul>
-	<li><p><a href="#" title="">autoindent</a> (ai) (Default: noai)<br />；</p></li>
+	
+	<li id="A" style="list-style-type:'A'"><p><a href="#" title="">autoindent</a> (ai) (Default: noai)<br />；</p></li>
 	<li><p><a href="#" title="">autoread</a> (ar) (Default: noautoread)<br />Detect whether a file inside Vim has been modified externally, not by Vim, and automatically refresh the Vim buffer with the changed version of the file；</p></li>
 	<li><p><a href="#" title="">autowrite</a> (aw) (Default: noaw)<br />；</p></li>
 	<li><p><a href="#opt-cmdheight" title="opt-cmdheight">cmdheight</a> (ch) (Default: 1)<br />设置命令行高度；</p></li>
@@ -202,7 +220,18 @@
 	<li><p><a href="learn-vi-00-00-TOC.html" title=""></a> () (Default: )<br />；</p></li>
 	</ul>
 
+	<p style="border-top:1px solid lightgray;"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
 
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
+	<div class="footer">
+	<a href="#A" title="">A</a>&nbsp;|&nbsp;
+	<a href="" title="">A</a>
+	<a href="" title="">A</a>
+	<a href="" title="">A</a>
+	<a href="" title="">A</a>
+	<a href="" title="">A</a>
+	<a href="" title="">A</a>
+	<a href="" title="">A</a>
+	<a href="" title="">A</a>
+	</div>
 </body>
 </html>

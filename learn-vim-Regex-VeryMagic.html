@@ -10,30 +10,21 @@
 <body>
 	<h1>VIM学习笔记 正则表达式(Regex-VeryMagic)</h1>
 
-	<h2 class="article"><a id=""></a></h2>
-	<p></p>
-	<a href="#" title=""></a>
+	<p>假设希望在以下CSS代码中，查找所有颜色代码：</p>
+	<p style="color:#fff; background-color:#1D1F21; width:22em; padding:8px">
+	body { color: #3c3c3c; }<br />
+	strong { color: #000; }</p>
+	<p>在默认的Magic模式下，使用以下命令可以匹配以&ldquo;#&rdquo;开头的十六进制色彩值：</p>
+	<p style="text-indent:2em"><code class="inset">/#\([0-9a-fA-F]\{6}\|[0-9a-fA-F]\{3}\)</code></p>
+	<p>在以上正则表达式中，<code>[]</code>用于指定可选字符范围，但不需要转义；<code>()</code>用于构建<a href="http://yyq123.github.io/learn-vim-Regex-Groups.html" title="Groups">捕获组(Groups)</a>，需要使用<code>\</code>进行转义；<code>{}</code>用于指定重复次数，但只需要对开括号进行转义，与之对应的闭括号可以不用转义。由此可见，在Magic模式下，需要对很多特殊符号进行转义，而且转义的方式也欠缺一致性。在编写较复杂的正则表达式时，显得琐碎且难以阅读。</p>
+	<p>使用<code>\v</code>激活Very Magic模式，则可简化为更加友好的正则表达式：</p>
+	<p style="text-indent:2em"><code class="inset">/\v#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})</code></p>
+	<p style="color:#fff; background-color:#1D1F21; width:22em; padding:8px">
+	body { color: <span class="highlight">#3c3c3c;</span> }<br />
+	strong { color: <span class="highlight">#000;</span> }</p>
 
-
-	<h2 class="article"><a id="regex-very-magic"></a>Very magic</h2>
-	<p>如上所述，magic 搜索模式下，字符转义的规则制定得比较混乱，容易混淆。</p>
-	<p>在模式开头使用<code>\v</code>激活very magic模式，除下划线（_）、大小写字母以及数字之外的所有字符都具有特殊含义。</p>
-	<p style="text-indent:2em"><code class="inset"></code></p>
-	<p>Very magic模式的正则表达式倾向于perl风格。但很不幸，我们无法将Very magic模式设置为默认选项。</p>
-	<p>定义以下键盘映射，始终使用very magic模式：</p>
-	<p style="text-indent:2em"><code class="inset">noremap / /\v</code></p>
-
-	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
-
-	<pre class="block">
-	</pre>
-
-	<ul>
-		<li><p class="item"><br /></p></li>
-		<li><p class="item"><a href="#" title=""></a><br /></p></li>
-	</ul>
-
-	<span style="font-weight:bold; color:#4169E1; margin-left:0.2em">&#65311;</span>
+	<h2 class="article"><a id="regex-very-magic">Very magic</a></h2>
+	<p>在模式开头使用<code>\v</code>激活very magic模式，其后除下划线（_）、大小写字母以及数字之外的所有字符都具有特殊含义。这样可以避免重复输入大量的转义符（\），也使得正则表达式更加清晰易读。</p>
 
 	<p>假设在以下文本中，希望搜索单引号包围的内容：</p>
 	<p style="color:#fff; background-color:#1D1F21; width:22em; padding:8px">
@@ -47,12 +38,12 @@
 	<p>如果使用VeryMagic模式，命令则可以简化为：</p>
 	<p style="text-indent:2em"><code class="inset">/\v'('\w|[^'])+'</code></p>
 
-	<p>假设在以下文本中，希望仅保留字符内容：</p>
+	<p>假设在以下文本中，希望仅保留英文字母：</p>
 	<p style="color:#fff; background-color:#1D1F21; width:22em; padding:8px">
 	12345aaa678<br />
 	12345bbb678<br />
 	12345ccc678</p>
-	<p>使用以下替换命令，删除其中的数字内容：</p>
+	<p>使用以下替换命令，可以删除其中的数字部分：</p>
 	<p style="text-indent:2em"><code class="inset">:%s/\d\{5\}\(\D\+\)\d\{3\}/\1/</code></p>
 	<p style="color:#fff; background-color:#1D1F21; width:22em; padding:8px">
 	aaa<br />
@@ -61,24 +52,12 @@
 	<p>如果使用VeryMagic模式，命令则可以简化为：</p>
 	<p style="text-indent:2em"><code class="inset">:%s/\v\d{5}(\D+)\d{3}/\1/</code></p>
 
-	<p>假设在以下CSS代码中，希望查找所有颜色代码：</p>
-	<p style="color:#fff; background-color:#1D1F21; width:22em; padding:8px">
-	body { color: #3c3c3c; }<br />
-	strong { color: #000; }</p>
-	<p>在默认的Magic模式下，使用以下命令可以匹配以&ldquo;#&rdquo;开头的3个或6个十六进制色彩值：</p>
-	<p style="text-indent:2em"><code class="inset">/#\([0-9a-fA-F]\{6}\|[0-9a-fA-F]\{3}\)</code></p>
-	<p>在上面的正则表达式中，<code>[]</code>用于指定可选字符范围，但不需要要转义；<code>()</code>用于构建<a href="http://yyq123.github.io/learn-vim-Regex-Groups.html" title="Groups">捕获组(Groups)</a>，需要使用<code>\</code>进行转义；<code>{}</code>用于指定重复次数，但只需要对开括号进行转义，与之对应的闭括号可以不用转义。</p>
-<p>magic 搜索模式会<strong>自动</strong>为某些额外的符号赋予特殊含义，例如 <code>.</code> 、<code>*</code>、 等。magic 模式的初衷是想能在Vim中更容易地构造简单的正则表达式，但它却没能为诸如 <code>+</code>、<code>?</code>、、<code>)</code>、<code>{}</code> 等符号赋予特殊含义，这些符号还必须经过转义才具有特殊含义。</p>
-<p>从上面查找颜色代码的命令就可感受一二。</p>
-
-<p>例如，使用 <code>\v</code> 模式开关查找上述匹配十六进制颜色代码的正则表达式可简化为：<code>/\v#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})</code>。</p>
-<p>由于出现在起始位置的 \v 开关，位于它后面的所有字符都<strong>具有特殊含义</strong>，用于转义的反斜杠字符就可以去掉，正则表达式的可读性更强了。</p>
-
-	<p>避免重复输入大量的转义符（\），也使得正则表达式更加清晰易读。</p>
+	<p>由此可见，Very magic模式为使用正则表达式提供了极大的便利。但很不幸，我们并无法将Very magic模式设置为默认选项。潜在的替代方案是，定义以下键盘映射，在查找时自动激活very magic模式：</p>
+	<p style="text-indent:2em"><code class="inset">:noremap / /\v</code></p>
 	<p>使用以下命令，可以查看更多帮助信息：</p>
 	<p style="text-indent:2em"><code class="inset">:help /\v</code></p>
 
-	<h2 class="article"><a id="regex-very-no-magic-mode"></a>Very No Magic Mode</h2>
+	<h2 class="article"><a id="regex-very-no-magic">Very no magic</a></h2>
 	<p>在模式开头使用<code>\V</code>指定Very No Magic模式，将使得其后模式中只有反斜杠（\）具有特殊意义，而<code>()</code>、<code>[]</code>、<code>|</code>、<code>.</code>、<code>*</code>和<code>?</code>等等元字符都将被视为普通文本。</p>
 	<p>如果您需要精确的完整匹配，并且查找字符串中包含特殊字符时，那么可以使用Very nomagic模式。</p>
 	<p>例如以下命令，将查找字符串&ldquo;Fun.test(*args)&rdquo; 。也就是说，其中的&ldquo;*&rdquo;和&ldquo;.&rdquo;都被视为普通字符，而不需要进行转义：</p>
@@ -104,23 +83,10 @@
 	<p>使用以下命令，可以查看更多帮助信息：</p>
 	<p style="text-indent:2em"><code class="inset">:help /\V</code></p>
 
+	<h2 class="article"><a id="regex-very-magic-summary">小结</a></h2>
+	<p>我们可以将&nbsp;very magic&nbsp;和&nbsp;very nomagic&nbsp;模式，理解为对于正则表达式的两种极端处理方式。需要构建较复杂正则表达式时，推荐使用very magic模式；需要按字面意义查找文本时，则推荐使用very nomagic模式。</p>
 
-<p>其实，very magic 和 very nomagic 搜索模式分别是Vim对正则表达式特殊字符的两种极端处理方式。</p>
-<p>对于Vim的正则表达式搜索，一个通用的原则是：如果想按正则表达式查找，就用模式开关 <code>\v</code>，如果想按原义查找文本，就用原义开关 <code>\V</code>。</p>
-
-
-
-	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
-		<caption>命令小结</caption>
-		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
-		<tr><td><code class="inset">:</code></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-	</table>
-&ldquo;&rdquo;
-
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="magic模式" href="http://yyq123.github.io/learn-vim/learn-vi-86-Magic.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="捕获组(Groups)" href="http://yyq123.github.io/learn-vim/learn-vim-Regex-Groups.html">下一篇</a>&gt;</span></p>
 
 </body>
 </html>
