@@ -23,7 +23,7 @@
 	<p><code class="inset">:registers</code></p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/Registers.png" title="Registers"><img src="https://yyq123.github.io/learn-vim/images/Registers.png" alt="Registers" width="500" height="320" /></a></p>
 
-	<h2 class="article"><a id="register-type">寄存器类别</a></h2>
+	<h2 class="article"><a id="register-type">寄存器类型</a></h2>
 	<p>寄存器可以分为以下9类：</p>
 	<table summary="special registers" border="1" cellspacing="0" cellpadding="3">
 		<tr><th>类别</th><th>符号</th><th>描述</th></tr>
@@ -47,7 +47,7 @@
 	<p><strong>短删除寄存器（The Small Delete Register）</strong> 当删除少于一行的文本时，除非指定了某个寄存器，否则这些内容将会被放入<span style="font-weight:bold;background:lightblue">"-</span>短删除寄存器中。</p>
 	<p><strong>命名寄存器（The Named Registers）</strong> 当文本被放入以小写字母命名的寄存器（例如<span style="font-weight:bold;background:lightblue">"a</span>）时，该寄存器原有的内容将被覆盖；而使用以大写字母命名的寄存器（例如<span style="font-weight:bold;background:lightblue">"A</span>）时，将会把文本追加到原有内容之后。</p>
 	<p><strong>只读寄存器（The Read-Only Registers）</strong> 你只能从4个只读寄存器中粘贴内容，而不能放入文本。<span style="font-weight:bold;background:lightblue">"%</span>包含当前文件名；<span style="font-weight:bold;background:lightblue">"#</span>包含交替文件名；<span style="font-weight:bold;background:lightblue">".</span>包含最近插入的文本；<span style="font-weight:bold;background:lightblue">":</span>包含上次执行的命令行。</p>
-	<p><strong>表达式寄存器（The Expression Register）</strong> 当我们输入<span style="font-weight:bold;background:lightblue">"=</span>，就会在Vim底部显示一个以&ldquo;＝&rdquo;开始的提示行，可以在这里输入表达式并按回车键确认。随后使用命令<code class="inset">p</code>将表达式的结果粘贴到文本中。例如要在文本中插入38*56的值，首先进入命令模式，输入<code class="inset">"=</code>，在屏幕底部的提示行中输入&ldquo;38*56&rdquo;并按回车，然后输入命令p，这样就可以将计算结果插入文本中了。在表达式寄存器中，不仅可以使用通常的算术运算符，还可以使用Vim特定的函数和运算符。例如通过表达式寄存器来得到环境变量的值（例如"=$HOME）。如果没有输入任何表达式而直接按回车键，那么Vim将执行最近使用过的表达式。</p>
+	<p><strong>表达式寄存器（The Expression Register）</strong> 可以进行表达式计算并返回结果。在常规模式下，输入<span style="font-weight:bold;background:lightblue">"=</span>，就会在Vim底部显示以&ldquo;＝&rdquo;开始的提示行，可以在这里输入表达式并按回车键确认。随后使用命令<code class="inset">p</code>将表达式的结果粘贴到文本中。例如在<code class="inset">=</code>提示符后中输入&ldquo;5*5&rdquo;并按回车，然后输入命令p，就可以将计算结果&ldquo;25&rdquo;插入文本中了。在插入模式下，点击<kbd>Ctrl-R=</kbd>快捷键，也可以进入<code class="inset">=</code>提示行，输入表达式然后点击回车键，将计算结果插入到当前光标处。也就是说，不用离开插入模式，也无需额外执行粘贴命令，即可以完成表达式计算。在表达式寄存器中，不仅可以使用通常的算术运算符，还可以使用Vim特定的函数和运算符。例如通过表达式寄存器来得到环境变量的值（例如"=$HOME）。如果没有输入任何表达式而直接按回车键，那么Vim将执行最近使用过的表达式。</p>
 	<p><strong>选择和拖拽寄存器（The Selection and Drop Registers）</strong> 有3个寄存器用于保存选中的文本：在Mac和Windows下，<span style="font-weight:bold;background:lightblue">"*</span>和<span style="font-weight:bold;background:lightblue">"+</span>，都用于访问系统剪切板；在Linux下，<span style="font-weight:bold;background:lightblue">"+</span>用于访问系统剪切板，而<span style="font-weight:bold;background:lightblue">"*</span>包含选中的文本。使用<code class="inset">"+y</code>命令，可以将当前选中的文文本复制到系统剪切板中。而<code class="inset">"+p</code>命令，则可以粘贴系统剪切板中的内容。通过剪切板寄存器，能够在不同的Vim编辑器或者是其他应用程序之间，进行文本交换。<span style="font-weight:bold;background:lightblue">"~</span>包含上次从其它应用程序拖拽到Gvim中的文本。</p>
 
 	<p><strong>黑洞寄存器（The Black Hole Register）</strong> 任何放入<span style="font-weight:bold;background:lightblue">"_</span>中的文本都将不复存在。如果想要永久删除某些文本而不是将他放入1-9中的某个寄存中，就可以使用黑洞寄存器。例如：命令dd将删除一行文本并将其放入寄存器1中；而命令<code class="inset">"_dd</code>则将该行文本放入黑洞寄存器中，这些文本也就会永久消失了，而寄存器1中的文本会保持不变。</p>
