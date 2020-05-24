@@ -9,7 +9,7 @@
 </head>
 <body>
 	<h1>VIM学习笔记 正则表达式-(Regular Expression)</h1>
-	<p>在UNIX问世的前一年，1969年, Ken Thompson将正则表达式整合入QED文本编辑器。在Linux文本编辑器ed中，如果你希望显示包含字母&ldquo;re&rdquo;的行时，需要使用命令<code class="inset">g/re/p</code>，而grep也因此得名。可以看作以下操作的缩写：g (globally), / (search), re (regular expression), / (delimit search), p (print)。</p>
+	<p>在UNIX问世的前一年，1969年，Ken Thompson将正则表达式整合入QED文本编辑器。在Linux文本编辑器ed中，如果你希望显示包含字母&ldquo;re&rdquo;的行时，需要使用命令<code class="inset">g/re/p</code>，而grep也因此得名。可以看作此操作的缩写：g (globally), / (search), re (regular expression), / (delimit search), p (print)。</p>
 	<p>Vim提供以下两种grep（globally search a regular expression and print）搜索工具：</p>
 	<ul>
 		<li><code class="inset">:vimgrep</code> 使用Vim内置的grep实现；</li>
@@ -21,7 +21,7 @@
 	<p><a href="https://yyq123.github.io/learn-vim/images/findstr.png" title="findstr"><img src="https://yyq123.github.io/learn-vim/images/findstr.png" alt="findstr" width="550" height="52" /></a></p>
 	<p>:vimgrep命令使用vim内置的搜索引擎，与<code class="inset">/</code>命令功能一致，但速度相对较慢。</p>
 	<p>由此可见，使用:vimgrep命令在不同平台上将获得一致的体验。而:grep命令则是与操作系统相关的，在不同平台会有不同的行为。</p>
-	<p><code class="inset">:grep</code>和<code class="inset">:vimgrep</code>命令，将在<a href="http://yyq123.github.io/learn-vim/learn-vi-70-01-QuickFix.html" title="QuickFix">QuickFix</a>中显示搜索结果。</p>
+	<p><code class="inset">:grep</code>和<code class="inset">:vimgrep</code>命令，都将在<a href="http://yyq123.github.io/learn-vim/learn-vi-70-01-QuickFix.html" title="QuickFix">QuickFix</a>中显示搜索结果。</p>
 	<p><code class="inset">:lgrep</code>和<code class="inset">:lvimgrep</code>命令实现相同的功能，但使用地址列表（Location List）来显示匹配结果。</p>
 	<p>使用<code class="inset">:copen</code>命令打开的Quickfix，是全局性的。而使用<code class="inset">:lopen</code>打开的Location List，则是独立存在于各个窗口中的。</p>
 	<p>对于Quickfix，使用<code class="inset">:cp</code>命令，跳转到上一个匹配处；使用<code class="inset">:cn</code>命令，跳转到下一个匹配处。</p>
@@ -78,16 +78,23 @@
 	<p>然后在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>配置文件中，使用以下设置：</p>
 	<p style="text-indent:2em"><code class="inset">set grepprg=grep\ -rnIH\ --exclude-dir=.git</code></p>
 	<p>通过以上设置，可以在Windows环境中使用Linux风格的grep程序。</p>
+
+	<h2 class="article"><a id="grep-help">帮助信息</a></h2>
 	<p>使用以下命令，可以查看更多帮助信息：</p>
 	<p style="text-indent:2em"><code class="inset">:help 'grepprg'</code></p>
-
 	<p style="text-indent:2em"><code class="inset">:help pattern</code></p>
+	<p>关于正则表达式的更多信息，可以参考以下网站：</p>
+	<ul>
+		<li><a href="http://vimregex.com/" title="Vim Regular Expressions 101">Vim Regular Expressions 101</a></li>
+		<li><a href="https://www.regular-expressions.info/" title="Regular-Expressions.info">Regular-Expressions.info</a></li>
+	</ul>
+	<p>使用以下网站，可以视觉化正则表达式，以便分步理解复杂的表达式：</p>
+	<ul>
+		<li><a href="https://regexper.com" title="REGEXPER">REGEXPER</a><br /><a href="https://yyq123.github.io/learn-vim/images/Regex-WebService-Regexper.png" title="Regex-WebService-Regexper"><img src="https://yyq123.github.io/learn-vim/images/.png" alt="Regex-WebService-Regexper" width="550" height="376" /></a></li>
+		<li><a href="https://regex101.com/" title="Regular Expressions 101">Regular Expressions 101</a><br /><a href="https://yyq123.github.io/learn-vim/images/Regex-WebService-Regex101.png" title="Regex-WebService-Regex101"><img src="https://yyq123.github.io/learn-vim/images/Regex-WebService-Regex101.png" alt="Regex-WebService-Regex101" width="550" height="188" /></a></li>
+	</ul>
 
-	<p><a href="http://vimregex.com/" title="Vim Regular Expressions 101">Vim Regular Expressions 101</a></p>
-	<p><a href="https://regex101.com/" title="Regular Expressions 101">Regular Expressions 101</a></p>
-	<p><a href="https://regexper.com" title="REGEXPER">REGEXPER</a></p>
-	<p><a href="https://www.regexpal.com/" title="RegEx Pal">RegEx Pal</a></p>
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="Regular Expression Basic" href="http://yyq123.github.io/learn-vim/learn-vi-81-RegularExpressionBasic.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="Regular Expression Advanced" href="http://yyq123.github.io/learn-vim/learn-vi-82-RegularExpressionAdv.html">下一篇</a>&gt;</span></p>
 </body>
 </html>
 

@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 4种Magic模式</title>
+</head>
+<body>
+	<h1>VIM学习笔记 4种Magic模式</h1>
+
+	<p>根据对于特殊元字符的不同解释方式，Vim正则表达式可以分为四种模式：magic，no magic，very magic和very nomagic。</p>
+	<ul>
+		<li><a style="font-weight:bold" href="http://yyq123.github.io/learn-vim/learn-vi-86-Magic.html" title="magic">magic</a>模式，使用<code class="inset">\m</code>前缀，其后模式的解释方式为'magic'选项。<code>^</code>，<code>$</code>，<code>.</code>，<code>*</code>和<code>[]</code>等字符含有特殊意义；而<code>+</code>、<code>?</code>、<code>()</code>、和<code>{}</code>等其它字符则按字面意义解释。magic为默认设置，表达式中的\m前缀可以省略；</li>
+		<li><a style="font-weight:bold" href="http://yyq123.github.io/learn-vim/learn-vi-86-Magic.html" title="nomagic">no magic</a>模式，使用<code class="inset">\M</code>前缀，其后模式的解释方式为'nomagic'选项。除了<code>^</code>和<code>$</code>之外的特殊字符，都将被视为普通文本；</li>
+		<li><a style="font-weight:bold" href="http://yyq123.github.io/learn-vim/learn-vim-Regex-VeryMagic.html#regex-very-magic" title="very magic">very magic</a>模式，使用<code class="inset">\v</code>前缀，其后模式中除 '0'-'9'，'a'-'z'，'A'-'Z' 和 '_' 之外的字符都当作特殊字符解释；</li>
+		<li><a style="font-weight:bold" href="http://yyq123.github.io/learn-vim/learn-vim-Regex-VeryMagic.html#regex-very-no-magic" title="very nomagic">very nomagic</a>模式，使用<code class="inset">\V</code>前缀，其后模式中只有反斜杠（<code>\</code>）具有特殊意义。</li>
+	</ul>
+	<p>不同模式之间的区别，在于哪些特殊字符需要使用反斜杠（<code>\</code>）进行转义。例如星号（*），在magic和very magic模式下视为特殊修饰符；而在no magic和very nomagic模式下则被视为普通字符，必须使用&ldquo;\*&rdquo;恢复其特殊作用。</p>
+	<p>对于简单的正则表达式，使用&ldquo;\&rdquo;对特殊字符进行转义，可能并不会造成困扰；但在复杂的正则表达式中，对大量特殊字符的重复转义，将使得表达式过于繁琐且难以阅读。</p>
+	<p>例如在默认的magic模式下，使用以下命令查找十六进制色彩值。其中，使用<code>()</code>构建<a href="http://yyq123.github.io/learn-vim/learn-vim-Regex-Groups.html" title="Groups">捕获组</a>；使用<code>{}</code>匹配6位和3位十六进制值。因为有多种特殊字符需要进行转义，造成表达式过于冗长：</p>
+	<p style="text-indent:2em"><code class="inset">/\m#\(\x\{6\}\|\x\{3\}\)</code></p>
+	<p>而使用very magic模式，则可以简化表达式：</p>
+	<p style="text-indent:2em"><code class="inset">/\v#(\x{6}|\x{3})</code></p>
+
+	<p>4种Magic模式的差异和用法，可以简单总结如下：</p>
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3" style="text-align:center">
+		<tr><th style="width:6em">模式</th><th>前缀</th><th colspan="5">特殊字符</th><th colspan="2">示例</th><th>适用场景</th></tr>
+		<tr><td style="font-weight:bold">magic</td><td><code class="inset">\m</code></td><td>^</td><td>$</td><td>.</td><td>*</td><td>[]</td><td rowspan="2">匹配每行中的任意内容</td><td><code class="inset">/^.*$</code></td><td>默认模式</td></tr>
+		<tr><td style="font-weight:bold">nomagic</td><td><code class="inset">\M</code></td><td>^</td><td>$</td><td colspan="3"></td><td><code class="inset">/\M^\.\*$</code></td><td>查找字符串中包含特殊字符</td></tr>
+		<tr><td style="font-weight:bold">very magic</td><td><code class="inset">\v</code><td colspan="5">除'0-9'，'a-z'，'A-Z'，'_'之外</td><td>匹配十六进制色彩值</td></td><td><code class="inset">/\v#(\x{6}|\x{3})</code></td></td><td>使用较多特殊字符的复杂正则表达式</td></tr>
+		<tr><td style="font-weight:bold">very nomagic</td><td><code class="inset">\V</code></td><td colspan="5">\</td><td>匹配正则表达式本身</td><td><code class="inset">/\V^.*$</code></td><td>进行精确的完整匹配<br />查找字符串中包含特殊字符</td></tr>
+	</table>
+
+	<p>以下表格，列示了常用特殊字符在不同模式下的应用。其中，黄色高亮表示为特殊字符，而不需要转义：</p>
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3" style="text-align:center">
+		<tr><th>very magic</th><th>magic</th><th>nomagic</th><th>very nomagic</th><th>用途</th></tr>
+		<tr><td><code class="inset">\v</code></td><td><code class="inset">\m</code></td><td><code class="inset">\M</code></td><td><code class="inset">\V</code></td><td></td></tr>
+		<tr><td style="background:#ffa756">^</td><td style="background:#ffa756">^</td><td style="background:#ffa756">^</td><td>\^</td><td>匹配行首</td></tr>
+		<tr><td style="background:#ffa756">$</td><td style="background:#ffa756">$</td><td style="background:#ffa756">$</td><td>\$</td><td>匹配行尾</td></tr>
+		<tr><td style="background:#ffa756">.</td><td style="background:#ffa756">.</td><td>\.</td><td>\.</td><td>匹配任何字符</td></tr>
+		<tr><td style="background:#ffa756">*</td><td style="background:#ffa756">*</td><td>\*</td><td>\*</td><td>匹配任意次数</td></tr>
+		<tr><td style="background:#ffa756">~</td><td style="background:#ffa756">~</td><td>\~</td><td>\~</td><td>最近替代字符串</td></tr>
+		<tr><td style="background:#ffa756">[]</td><td style="background:#ffa756">[]</td><td>\[]</td><td>\[]</td><td>匹配列表范围内的字符</td></tr>
+		<tr><td style="background:#ffa756">{}</td><td>\{\}</td><td>\{\}</td><td>\{\}</td><td>匹配重复次数</td></tr>
+		<tr><td style="background:#ffa756">()</td><td>\(\)</td><td>\(\)</td><td>\(\)</td><td>匹配组</td></tr>
+		<tr><td style="background:#ffa756">&lt;&gt;</td><td>\&lt;\&gt;</td><td>\&lt;\&gt;</td><td>\&lt;\&gt;</td><td>匹配词首与词尾</td></tr>
+		<tr><td style="background:#ffa756">+</td><td>\+</td><td>\+</td><td>\+</td><td>匹配一次或多次</td></tr>
+		<tr><td style="background:#ffa756">?</td><td>\?</td><td>\?</td><td>\?</td><td>匹配零次或一次</td></tr>
+		<tr><td style="background:#ffa756">|</td><td>\|</td><td>\|</td><td>\|</td><td>可选分支</td></tr>
+		<tr><td>\a</td><td>\a</td><td>\a</td><td>\a</td><td>字母字符<br /><a href="http://yyq123.github.io/learn-vim/learn-vi-82-RegularExpressionAdv.html#regex-character-atom" title="特殊字符元素（Special Character Atoms）">其它特殊字符元素</a></td></tr>
+		<tr><td>\\</td><td>\\</td><td>\\</td><td>\\</td><td>反斜杠 (字面意义)</td></tr>
+	</table>
+
+	<h2 class="article"><a id="magic-mode-default">magic默认模式</a></h2>
+	<p>建议始终将<a href="options.html#'magic'">'magic'</a>选项保持在缺省值。</p>
+	<p>建议在模式之前，通过使用&ldquo;\v&ldquo;或&ldquo;\M&ldquo;等前缀，来明确激活特定模式。</p>
+	<p>如果希望始终使用Very magic模式，那么请在vimrc中定义以下键盘映射，将在查找和替换时自动激活very magic模式：</p>
+	<pre class="block"><code>nnoremap / /\v
+vnoremap / /\v
+cnoremap %s/ %s/\v
+nnoremap :g/ :g/\v</code></pre>
+
+	<h2 class="article"><a id="magic-mode-change">模式转换</a></h2>
+	<p>你甚至可以在表达式当中改变模式。例如以下命令，开头使用very magic模式，之后转换为magic模式，整体表达式将匹配&ldquo;foo(bar)&rdquo;：</p>
+	<p style="text-indent:2em"><code class="inset">/\vfoo\(\mbar)</code></p>
+	<p>当然，非常不建议采用此种易引起误解的表达式写法。我们可以将其改写为very nomagic模式：</p>
+	<p style="text-indent:2em"><code class="inset">/\Vfoo(bar)</code></p>
+
+	<p>请使用以下命令，查看更多帮助信息：</p>
+	<p style="text-indent:2em"><code class="inset">:help /magic</code></p>
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="magic" href="http://yyq123.github.io/learn-vim/learn-vi-86-Magic.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="VeryMagic" href="http://yyq123.github.io/learn-vim/learn-vim-Regex-VeryMagic.html">下一篇</a>&gt;</span></p>
+</body>
+</html>
