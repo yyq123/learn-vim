@@ -33,7 +33,7 @@
 		<tr><td style="font-weight:bold">very nomagic</td><td><code class="inset">\V</code></td><td colspan="5">\</td><td>匹配正则表达式本身</td><td><code class="inset">/\V^.*$</code></td><td>进行精确的完整匹配<br />查找字符串中包含特殊字符</td></tr>
 	</table>
 
-	<p>以下表格，列示了常用特殊字符在不同模式下的应用。其中，黄色高亮表示为特殊字符，而不需要转义：</p>
+	<p>以下表格，列示了常用特殊字符在不同模式下的应用。其中，黄色高亮表示为无需转义的特殊字符：</p>
 	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3" style="text-align:center">
 		<tr><th>very magic</th><th>magic</th><th>nomagic</th><th>very nomagic</th><th>用途</th></tr>
 		<tr><td><code class="inset">\v</code></td><td><code class="inset">\m</code></td><td><code class="inset">\M</code></td><td><code class="inset">\V</code></td><td></td></tr>
@@ -52,6 +52,7 @@
 		<tr><td>\a</td><td>\a</td><td>\a</td><td>\a</td><td>字母字符<br /><a href="http://yyq123.github.io/learn-vim/learn-vi-82-RegularExpressionAdv.html#regex-character-atom" title="特殊字符元素（Special Character Atoms）">其它特殊字符元素</a></td></tr>
 		<tr><td>\\</td><td>\\</td><td>\\</td><td>\\</td><td>反斜杠 (字面意义)</td></tr>
 	</table>
+	<p>请注意，&ldquo;\{\}&rdquo;也可简写为&ldquo;\{}&rdquo;；&ldquo;\[]&rdquo;必须仅保留开头的反斜杠；&ldquo;\(\)&rdquo;则需要完整的两个反斜杠。</p>
 
 	<h2 class="article"><a id="magic-mode-default">magic默认模式</a></h2>
 	<p>建议始终将<a href="options.html#'magic'">'magic'</a>选项保持在缺省值。</p>
