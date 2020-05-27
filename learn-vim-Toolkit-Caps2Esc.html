@@ -5,52 +5,31 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记 工具箱-将大写锁定键(Caps Lock)映射为Esc</title>
+	<title>VIM学习笔记 工具箱-大写锁定键(Caps)映射为Esc</title>
 </head>
 <body>
-	<h1>VIM学习笔记 工具箱-将大写锁定键(Caps Lock)映射为Esc</h1>
+	<h1>VIM学习笔记 工具箱-大写锁定键(Caps)映射为Esc</h1>
 
-	<p>今天要处理一起拆迁事件&nbsp;&mdash;&nbsp;把地处黄金地段的大写锁定键（<kbd>Caps Lock</kbd>）更换为<kbd>Esc</kbd>键。</p>
+	<p>今天要处理一起拆迁事件&nbsp;&mdash;&nbsp;把地处黄金地段的大写锁定键<kbd>Caps Lock</kbd>更换为<kbd>Esc</kbd>键。</p>
 	<p>至于，为什么地处偏僻的<kbd>Esc</kbd>被时常造访，而位置绝佳的<kbd>Caps Lock</kbd>却长期空置？根据考古发现，很可能是由于远古程序员使用了以下布局的祖传键盘：</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/keyboard_esc.jpg" title="keyboard_esc"><img src="https://yyq123.github.io/learn-vim/images/keyboard_esc.jpg" alt="keyboard_esc" width="550" height="188" /></a></p>
 
 	<h2 class="article"><a id="Caps-to-Esc-Win">Windows</a></h2>
-	<p>下载并安装<a style="font-weight:bold" href="https://github.com/microsoft/PowerToys" title="Microsoft PowerToys">Microsoft PowerToys</a>。在&ldquo;Keyboard Manager&rdquo;设置中，点击&ldquo;Remap a key&rdquo;，然后将<kbd>Caps Lock</kbd>映射为<kbd>Esc</kbd>。</p>
+	<p>下载并安装<a style="font-weight:bold" href="https://github.com/microsoft/PowerToys" title="Microsoft PowerToys">Microsoft PowerToys</a>；在&ldquo;Keyboard Manager&rdquo;设置中，点击&ldquo;Remap a key&rdquo;，然后将<kbd>Caps Lock</kbd>映射为<kbd>Esc</kbd>。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/Caps2Esc_Win_PowerToys.png" title="Caps2Esc_Win_PowerToys"><img src="https://yyq123.github.io/learn-vim/images/Caps2Esc_Win_PowerToys.png" alt="Caps2Esc_Win_PowerToys" width="550" height="324" /></a></p>
-	<p>如果您不需要PowerToys提供的窗口管理、批量重命名和快速应用启动等待功能，那么可以下载<a style="font-weight:bold" href="https://github.com/susam/uncap" title="Uncap">Uncap</a>。它没有任何图形界面，只需要运行单一的&ldquo;uncap.exe&rdquo;文件，即可将<kbd>Caps Lock</kbd>映射为<kbd>Esc</kbd>。</p>
+	<p>如果您不需要PowerToys提供的窗口管理、批量重命名和快速应用启动等众多功能，那么可以下载<a style="font-weight:bold" href="https://github.com/susam/uncap" title="Uncap">Uncap</a>；它没有任何图形界面，只需要后台运行单一的&ldquo;uncap.exe&rdquo;文件，即可将<kbd>Caps Lock</kbd>映射为<kbd>Esc</kbd>。</p>
 	<p>如果需要在系统启动时自动完成键盘映射，那么可以在Windows注册表的以下节点中增加启动项：</p>
 	<p><code class="msg">Computer\HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run</code></p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/Caps2Esc_Win_Uncap.png" title="Caps2Esc_Win_Uncap"><img src="https://yyq123.github.io/learn-vim/images/Caps2Esc_Win_Uncap.png" alt="Caps2Esc_Win_Uncap" width="550" height="247" /></a></p>
 
 	<h2 class="article"><a id="Caps-to-Esc-Linux">Linux</a></h2>
-	<p>下载并安装<a style="font-weight:bold" href="https://wiki.gnome.org/Apps/Tweaks" title="GNOME Tweak tool">GNOME Tweak tool</a>；在&ldquo;Keyboard &amp; Mouse&rdquo;设置中，点击&ldquo;Additional Layout Options&rdquo;；在&ldquo;Caps Lock behavior&rdquo;列表中选择&ldquo;Caps Lock an additionnal Esc&rdquo;</p>
+	<p>下载并安装<a style="font-weight:bold" href="https://wiki.gnome.org/Apps/Tweaks" title="GNOME Tweak tool">GNOME Tweak tool</a>；在&ldquo;Keyboard &amp; Mouse&rdquo;设置中，点击&ldquo;Additional Layout Options&rdquo;；在&ldquo;Caps Lock behavior&rdquo;列表中选择&ldquo;Caps Lock an additionnal Esc&rdquo;。</p>
 	<p><a href="http://yyq123.github.io/learn-vim/images/Caps2Esc_Linux_GnomeTweakTool.png" title="Caps2Esc_Linux_GnomeTweakTool"><img src="http://yyq123.github.io/learn-vim/images/Caps2Esc_Linux_GnomeTweakTool.png" alt="Caps2Esc_Linux_GnomeTweakTool" width="550" height="375" /></a></p>
 
 	<h2 class="article"><a id="Caps-to-Esc-Mac">Mac</a></h2>
 	<p>打开&ldquo;<a href="https://support.apple.com/zh-cn/guide/mac-help/kbdm162/mac" title="Mac Help">系统偏好设置</a>&rdquo;，进入&ldquo;键盘&rdquo;选项，点击&ldquo;修饰键...&rdquo;按钮，将大写锁定键的行为更改为<kbd>Escape</kbd>。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/Caps2Esc_Mac_Keyboard.png" title="Caps2Esc_Mac_Keyboard"><img src="https://yyq123.github.io/learn-vim/images/Caps2Esc_Mac_Keyboard.png" alt="Caps2Esc_Mac_Keyboard" width="550" height="475" /></a></p>
 
-	<ul>
-		<li><p class="item"><br /></p></li>
-		<li><p class="item"><a href="#" title=""></a><br /></p></li>
-	</ul>
-
-	<span style="font-weight:bold; color:#4169E1; margin-left:0.2em">&#65311;</span>
-
-	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
-		<caption style="margin:0.5em; font-weight:bold">选项列表</caption>
-		<tr><th style="white-space: nowrap">选项</th><th>描述</th><th>帮助信息</th></tr>
-		<tr><td><code class="inset">!</code></td><td>如果包含，表示。例如，。</td><td style="white-space: nowrap"><code class="inset">:help viminfo-!</code></td></tr>
-	</table>
-
-	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
-		<caption>命令小结</caption>
-		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
-		<tr><td><code class="inset">:</code></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-	</table>
 
 	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="在Windows下安装Vim" href="http://yyq123.github.io/learn-vim/learn-vi-203-Install-Vim-Win.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="在Mac下安装Vim" href="http://yyq123.github.io/learn-vim/learn-vi-202-Install-Vim-Mac.html">下一篇</a>&gt;</span></p>
 

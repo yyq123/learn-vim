@@ -16,14 +16,15 @@
 	</ul>
 	<p>试想，如果我只想替换文本前几行中的指定字符，那么又需要先鼠标选择某段文本，然后再在对话框中指定只针对选中的文本执行替换操作；而在Vim中，则只需要在替换命令中指定操作范围，<code class="inset">:0,10s/from/to/gc</code>。命令行简单直接的威力，从中可见一斑。</p>
 	<p>使用<code class="inset">:help vim-modes</code>命令，可以查看关于模式的更多信息。</p>
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">常规模式</p>
-	<p>如果希望高效地使用vim，那么应该尽量停留在常规模式，以便快速的使用各种命令；只有在需要键入文字时，才进入插入模式；而后立刻使用<kbd>Esc</kbd>键返回常规模式。当光标显示为闪烁的方块时，则标志你正在常规模式下。</p>
-	<p><a href="https://www.flickr.com/photos/yyq123/30142424791/in/dateposted/" title="Mode_ESC"><img src="https://c8.staticflickr.com/6/5311/30142424791_79e9e6cd27_m.jpg" width="240" height="131" alt="Mode_ESC"></a></p>
-	<p><a href="https://www.flickr.com/photos/yyq123/6380398899/in/album-72157625217393812/" title="NormalMode_Cursor"><img src="https://c1.staticflickr.com/7/6228/6380398899_b8b239802b_o.png" width="266" height="90" alt="NormalMode_Cursor"></a></p>
 
+	<h2 class="article"><a id="normal-mode">常规模式</a></h2>
+	<p>如果希望高效地使用vim，那么应该尽量停留在常规模式，以便快速的使用各种命令；只有在需要键入文字时，才进入插入模式；而后立刻使用<kbd>Esc</kbd>键返回常规模式。当光标显示为闪烁的方块时，则标志你正在常规模式下。</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Mode_ESC.png" title="Mode_ESC"><img src="https://yyq123.github.io/learn-vim/images/Mode_ESC.png" alt="Mode_ESC" /></a></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Mode_NormalMode_Cursor.png" title="NormalMode_Cursor"><img src="https://yyq123.github.io/learn-vim/images/Mode_NormalMode_Cursor.png" alt="NormalMode_Cursor" /></a></p>
 	<p>我们可以使用<code class="inset">r</code>的命令来替换文本。例如<code class="inset">rx</code>就可以当前光标下的字符替换为x。当然也可以用数字来组合以形成新的命令来进行工作，例如<code class="inset">5rd</code>就是将当前光标以后的5个字符替换为d。</p>
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">模式切换</p>
-	<p><a data-flickr-embed="true"  href="https://www.flickr.com/photos/yyq123/30144867491/in/dateposted/" title="Modes"><img src="https://c2.staticflickr.com/8/7559/30144867491_0c29ec97c2_o.png" width="443" height="350" alt="Modes"></a></p>
+
+	<h2 class="article"><a id="mode-switching">模式切换</a></h2>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Modes.png" title="Modes"><img src="https://yyq123.github.io/learn-vim/images/Modes.png" alt="Modes" /></a></p>
 	<ul>
 		<li><code class="inset">i</code>：进入插入模式，并定位到光标之前；</li>
 		<li><code class="inset">a</code>：进入插入模式，并定位到光标之后；</li>
@@ -40,21 +41,22 @@
 		<li><code class="inset">Ctrl-v</code>：进入块（block）可视化模式；</li>
 	</ul>
 	<table summary="Modes" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
-		<tr><th></th><th>类型</th><th>模式</th><th>描述</th></tr>
-		<tr><td>Normal mode</td><td>常规模式（命令模式）</td><td>n</td><td>默认状态。只能输入命令，不能输入文本。</td></tr>
-		<tr><td>Insert mode</td><td>插入模式（编辑模式）</td><td>i</td><td>i进入插入模式输入文本，ESC退出</td></tr>
-		<tr><td>Replace mode</td><td>替换模式（覆盖模式）</td><td>R</td><td></td></tr>
-		<tr><td>Command-line mode</td><td>命令行模式</td><td>c</td><td>:进入命令</td></tr>
-		<tr><td rowspan="3">Visual mode</td><td rowspan="3">可视化模式</td><td>v</td><td>字可视化模式</td></tr>
+		<tr><th>Mode</th><th>模式</th><th>标签</th><th>模式</th><th>描述</th></tr>
+		<tr><td>Normal mode</td><td>常规模式（命令模式）</td><td></td><td>n</td><td>默认状态。只能输入命令，不能输入文本。</td></tr>
+		<tr><td>Insert mode</td><td>插入模式（编辑模式）</td><td>-- INSERT --</td><td>i</td><td>i进入插入模式输入文本，ESC退出</td></tr>
+		<tr><td>Replace mode</td><td>替换模式（覆盖模式）</td><td>-- REPLACE --</td><td>R</td><td></td></tr>
+		<tr><td>Command-line mode</td><td>命令行模式</td><td></td><td>c</td><td>:进入命令</td></tr>
+		<tr><td rowspan="3">Visual mode</td><td rowspan="3">可视化模式</td><td>-- VISUAL --</td><td>v</td><td>字可视化模式</td></tr>
 		<tr><td>V</td><td>行可视化模式</td></tr>
 		<tr><td>CTRL-Q</td><td>块可视化模式</td></tr>
-		<tr><td rowspan="3">Select mode</td><td rowspan="3">选择模式</td><td>s</td><td>Select by character</td><td></td></tr>
+		<tr><td rowspan="3">Select mode</td><td>-- SELECT --</td><td rowspan="3">选择模式</td><td>s</td><td>Select by character</td><td></td></tr>
 		<tr><td>S</td><td>Select by line</td></tr>
 		<tr><td>CTRL-S</td><td>Select blockwise</td><td></td></tr>
 		<tr><td>Ex mode</td><td></td></tr>
 		<tr><td></td><td></td></tr>
 		<tr><td></td><td></td></tr>
 	</table>
+	<p><a href="http://darkpan.com/files/vim.svg" title="VIM Mode Transition Diagram">VIM Mode Transition Diagram</a></p>
 	<p>使用<code class="inset">:help mode-switching</code>命令，可以查看关于模式切换的帮助信息。</p>
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
@@ -73,7 +75,6 @@
 		<tr><td><code class="inset"></code></td><td></td></tr>
 		<tr><td><code class="inset"></code></td><td></td></tr>
 	</table>
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="()" href="">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="()" href="">下一篇</a>&gt;</span></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
 </body>
 </html>
-

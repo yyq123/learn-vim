@@ -1,0 +1,326 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 ()</title>
+	<style type="text/css" media="all">
+	table {
+	empty-cells: show;
+}
+td {
+	text-align: left;
+}
+table.wiki-content-table{
+	border: 1px solid #888;
+	border-collapse: collapse;
+	border-spacing: 0;
+	margin: 0.5em auto;
+}
+table.wiki-content-table td{
+	border: 1px solid #888;
+	padding: 0.3em 0.7em;
+}
+table.wiki-content-table th{
+	border: 0px solid #888;
+	padding: 0.3em 0.7em;
+	background-color: #EEE;
+}
+	</style>
+</head>
+<body>
+	<h1>VIM学习笔记 ()</h1>
+<table class="wiki-content-table">
+	<tbody><tr>
+<th></th>
+<th><a name="variables" id="variables"></a><a href="#vimscript">vimscript</a></th>
+<th colspan="2"><a href="#emacs-lisp">emacs lisp</a></th>
+</tr>
+<tr>
+<td>startup script</td>
+<td>~/.vimrc</td>
+<td>~/.emacs.d/init.el</td>
+</tr>
+<tr>
+<td>execute file</td>
+<td>:source foo.vim</td>
+<td>M-x load-file foo.el</td>
+</tr>
+<tr>
+<td>execute function</td>
+<td></td>
+<td>M-: (foo)<br>
+<span style="color: gray"><em>if interactively callable:</em></span><br>
+M-x foo</td>
+</tr>
+<tr>
+<td>execute command</td>
+<td>normal x</td>
+<td></td>
+</tr>
+<tr>
+<td>set variable</td>
+<td>let i = 1</td>
+<td>(setq i 1)</td>
+</tr>
+<tr>
+<td>display variable</td>
+<td>echo i</td>
+<td>i</td>
+</tr>
+<tr>
+<td>delete variable</td>
+<td>unlet i<br>
+<span style="color: gray"><em>no error msg if doesn't exist:</em></span><br>
+unlet! i</td>
+<td></td>
+</tr>
+<tr>
+<td>show variables</td>
+<td>let</td>
+<td></td>
+</tr>
+<tr>
+<td>global variable</td>
+<td>let g:foo = 42</td>
+<td></td>
+</tr>
+<tr>
+<td>script local variable</td>
+<td>let s:foo = 42</td>
+<td></td>
+</tr>
+<tr>
+<td>window local variable</td>
+<td>let w:foo = 42</td>
+<td></td>
+</tr>
+<tr>
+<td>file local variable</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>buffer local variable</td>
+<td>let b:foo = 42</td>
+<td></td>
+</tr>
+<tr>
+<td>end-of-line comment</td>
+<td>echo 1 + 1 " addition</td>
+<td>(+ 1&nbsp;1) ; addition</td>
+</tr>
+<tr>
+<th colspan="3"><a name="arith-logic" id="arith-logic"></a>arithmetic and logic</th>
+</tr>
+<tr>
+<th></th>
+<th>vimscript</th>
+<th colspan="2">emacs lisp</th>
+</tr>
+<tr>
+<td>falsehoods</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>logical operators</td>
+<td>&amp;&amp; <span style="white-space: pre-wrap;">||</span> !</td>
+<td></td>
+</tr>
+<tr>
+<td>relational operators</td>
+<td>== != &lt; &gt; &lt;= &gt;=</td>
+<td></td>
+</tr>
+<tr>
+<td>conditional expression</td>
+<td>x &gt; 0 ? x : -x</td>
+<td>(if (&gt; x 0) x (- x))</td>
+</tr>
+<tr>
+<td>arithmetic operators</td>
+<td>+ - * / %</td>
+<td></td>
+</tr>
+<tr>
+<td>float division of integers</td>
+<td>n * 1.0 / m</td>
+<td></td>
+</tr>
+<tr>
+<th colspan="3"><a name="str" id="str"></a>strings</th>
+</tr>
+<tr>
+<th></th>
+<th>vimscript</th>
+<th colspan="2">emacs lisp</th>
+</tr>
+<tr>
+<td>literal</td>
+<td>"don't say \"no\""<br>
+'don''t say "no"'</td>
+<td></td>
+</tr>
+<tr>
+<td>escapes</td>
+<td><span style="color: gray"><em>in double quote:</em></span><br>
+\n</td>
+<td></td>
+</tr>
+<tr>
+<td>concatenate</td>
+<td>"Hello, " . "World!"</td>
+<td></td>
+</tr>
+<tr>
+<td>length</td>
+<td>strlen("lorem")</td>
+<td></td>
+</tr>
+<tr>
+<th colspan="3"><a name="list" id="list"></a>lists</th>
+</tr>
+<tr>
+<th></th>
+<th>vimscript</th>
+<th colspan="2">emacs lisp</th>
+</tr>
+<tr>
+<th colspan="3"><a name="dict" id="dict"></a>dictionaries</th>
+</tr>
+<tr>
+<th></th>
+<th>vimscript</th>
+<th colspan="2">emacs lisp</th>
+</tr>
+<tr>
+<th colspan="3"><a name="func" id="func"></a>functions</th>
+</tr>
+<tr>
+<th></th>
+<th>vimscript</th>
+<th colspan="2">emacs lisp</th>
+</tr>
+<tr>
+<td>define function</td>
+<td>function Add(x, y)<br>
+<span style="white-space: pre-wrap;">&nbsp;&nbsp;</span>return a:x + a:y<br>
+endfunction</td>
+<td>(defun add (x y) (+ x y))</td>
+</tr>
+<tr>
+<td>invoke function</td>
+<td>echo Add(1, 2)<br>
+<span style="color: gray"><em>outside of expression:</em></span><br>
+call Add(1, 2)</td>
+<td>(add 1&nbsp;2)</td>
+</tr>
+<tr>
+<td>list udfs</td>
+<td>function</td>
+<td></td>
+</tr>
+<tr>
+<td>delete function</td>
+<td>delfunction Add</td>
+<td></td>
+</tr>
+<tr>
+<th colspan="3"><a name="exec-ctrl" id="exec-ctrl"></a>execution control</th>
+</tr>
+<tr>
+<th></th>
+<th>vimscript</th>
+<th colspan="2">emacs lisp</th>
+</tr>
+<tr>
+<td>if</td>
+<td>if i &gt; 0<br>
+<span style="white-space: pre-wrap;">&nbsp;&nbsp;</span>echo "i is positive"<br>
+endif</td>
+<td></td>
+</tr>
+<tr>
+<td>while loop</td>
+<td>while i &lt; 10<br>
+<span style="white-space: pre-wrap;">&nbsp;&nbsp;</span>echo "i is" i<br>
+<span style="white-space: pre-wrap;">&nbsp;&nbsp;</span>let i += 1<br>
+endwhile</td>
+<td></td>
+</tr>
+<tr>
+<td>for loop</td>
+<td>for i in range(0, 9)<br>
+<span style="white-space: pre-wrap;">&nbsp;&nbsp;</span>echo "i is" i<br>
+<span style="white-space: pre-wrap;">&nbsp;&nbsp;</span>let i += 1<br>
+endfor</td>
+<td></td>
+</tr>
+<tr>
+<th colspan="3"><a name="lib-mod" id="lib-mod"></a>libraries and namespaces</th>
+</tr>
+<tr>
+<th></th>
+<th>vimscript</th>
+<th colspan="2">emacs lisp</th>
+</tr>
+<tr>
+<td>show load path</td>
+<td>:set runtimepath?</td>
+<td></td>
+</tr>
+<tr>
+<td>append to load path</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>load library</td>
+<td>runtime foo.vim</td>
+<td></td>
+</tr>
+</tbody>
+	<h2 class="article"><a id=""></a></h2>
+	<p></p>
+	<a href="#" title=""></a>
+
+	<p></p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+
+	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
+
+	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
+
+	<pre class="block">
+	</pre>
+
+	<ul>
+		<li><p class="item"><br /></p></li>
+		<li><p class="item"><a href="#" title=""></a><br /></p></li>
+	</ul>
+
+	<span style="font-weight:bold; color:#4169E1; margin-left:0.2em">&#65311;</span>
+
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
+		<caption style="margin:0.5em; font-weight:bold">选项列表</caption>
+		<tr><th style="white-space: nowrap">选项</th><th>描述</th><th>帮助信息</th></tr>
+		<tr><td><code class="inset">!</code></td><td>如果包含，表示。例如，。</td><td style="white-space: nowrap"><code class="inset">:help viminfo-!</code></td></tr>
+	</table>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
+		<tr><td><code class="inset">:</code></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+	</table>
+&ldquo;&rdquo;
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
+
+</body>
+</html>
