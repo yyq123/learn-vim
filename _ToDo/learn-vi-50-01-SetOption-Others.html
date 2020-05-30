@@ -16,23 +16,20 @@
 	<p>默认打开的'equalalways'选项，用于在拆分和关闭窗口的过程中，始终保持窗口均分以维持整洁的窗口布局。</p>
 	<p>'eadirection'选项，默认值为&ldquo;both&rdquo;，说明'equalalways'窗口均分选项适用于垂直和水平分隔窗口。如果只希望针对垂直均分窗口，那么可以设置为<code class="inset">:set ead=hor</code>；如果只希望针对垂直均分窗口，那么可以设置为<code class="inset">:set ead=ver</code>。</p> 
 
-	<h2 class="article"><a id="">键盘选项</a></h2>
-	<p>使用'winaltkeys'选项，可以控制Alt键的使用。</p>
-
-例如,如果我们执行了下面的命令,所有的Alt键就可以通过:map命令来使用之成我们命令中的一部分:
-:set winaltkeys=no
-执行Alt-F并不会选择文件菜单而是执行映射的Alt-F命令.这个可以映射可以是下面的样子:
-:map <M-f> :write
+	<h2 class="article"><a id="opt-winaltkeys">键盘选项</a></h2>
+	<p>可以使用<kbd>Alt</kbd>键来选择菜单，例如<kbd>Alt-F<kbd>将选择文件菜单；<kbd>Alt</kbd>键也可以用于在:map命令中定义键盘映射，例如以下命令将使用<kbd>Alt-F<kbd>来保存文件：</p>
+	<p style="text-indent:2em"><code class="inset">:map &lt;M-f&gt; :write</code></p>
+	<p>'winaltkeys'选项，用于控制<kbd>Alt</kbd>键在以上两种情况中的应用。</p>
+	<p>其默认值为"menu"，即<kbd>Alt</kbd>键优先用于选择菜单；如果快捷键没有被菜单占用，那么就会执行其定义的映射命令：</p>
+	<p style="text-indent:2em"><code class="inset">:set winaltkeys=menu</code></p>
+	<p>如果使用以下命令将选项设置为"no"，那么Alt键将不会激活菜单，而只会执行其定义的映射命令：</p>
+	<p style="text-indent:2em"><code class="inset">:set winaltkeys=no</code></p>
+	<p>如果使用以下命令将选项设置为"yes"，那么Alt键将只用于选择菜单，而不会执行其定义的映射命令：</p>
+	<p style="text-indent:2em"><code class="inset">:set winaltkeys=yes</code></p>
 在这里我们要知道的就是在Vim中Alt会被叫作M-,Meta的意思.
-如果我们执行了下面的命令,所有的Alt键盘就会选择菜单内容而不会执行映射命令了:
-:set winaltkeys=yes
-第三个选项是yes和no的组合:
-:set winaltkeys=menu
-在这种模式下,Alt键可以用于选择菜单,也可以用来映射:map命令.所以Alt-F可以选择文件菜单,而我们还可以用Alt-X来映射命令.
+Get Alt key to work in terminal
+https://vim.fandom.com/wiki/Get_Alt_key_to_work_in_terminal
 
-下面的命令定义了可以由CTRL-A,CTRL-X识别的数字格式.
-:set nrformats=octal,hex
-(注:十进制总是可以识别)
 如果我们设置了下面的选项,Vim就会试着重新装入终端屏幕的内容.
 :set restorescreen
 换句话说,他会试着使得我们运行这个程序以后的屏幕看起来就像他运行以前的一样.

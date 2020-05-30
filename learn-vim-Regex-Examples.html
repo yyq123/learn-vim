@@ -5,16 +5,13 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记 正则表达式-(Regex-Examples)</title>
+	<title>VIM学习笔记 正则表达式-实例(Regex-Examples)</title>
 </head>
 <body>
 
-	<h2 class="article"><a id=""></a></h2>
-	<p style="text-indent:2em"><code class="inset"></code></p>
-	<p></p>
+	<h1>VIM学习笔记 正则表达式-实例(Regex-Examples)</h1>
 
 	<h2 class="article"><a id="regex-example-space">匹配空格</a></h2>
-	<p style="text-indent:2em"><code class="inset"></code></p>
 	<p>删除所有行首的空格：</p>
 	<p style="text-indent:2em"><code class="inset">:%s/^&#x25a1;&#x25a1;*\(.*\)/\1/</code></p>
 	<p>其中，使用^&#x25a1;&#x25a1;*查找行首的一个或多个空格；而\(.*\)将行中的其它内容捕获为组；在替换部分使用\1来恢复捕获组。</p>
@@ -30,24 +27,9 @@
 
 	<p>将单数单词，替换为复数：</p>
 	<p style="text-indent:2em"><code class="inset">:%s/^Note[&#x25a1;:s]*/Notes:&#x25a1;/g</code></p>
-	<p>其中，Note[&#x25a1;s:] 将匹配 Note&#x25a1;, Notes, 和 Note:；而星号则会匹配零个后缀，即 Note。</p>
+	<p>其中，Note[&#x25a1;:s] 将匹配 Note&#x25a1;, Notes, 和 Note:；而星号则会匹配零个后缀，即 Note。</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Regex-Examples-Singular.png" title="Regex-Examples-Singular"><img src="https://yyq123.github.io/learn-vim/images/Regex-Examples-Singular.png" alt="Regex-Examples-Singular" /></a></p>
 
-	<p>：</p>
-	<p style="text-indent:2em"><code class="inset"></code></p>
-
-	<p>删除下图中黄色高亮区域，即行头以点分隔的章节号：</p>
-	<p style="text-indent:2em"><code class="inset">:%s/^[1-9][0-9]*\.[1-9][0-9.]*&#x25a1;//</code></p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/Regex_example_remove_section_headings.png" title="Regex_example_remove_section_headings"><img src="https://yyq123.github.io/learn-vim/images/Regex_example_remove_section_headings.png" alt="Regex_example_remove_section_headings" /></a></p>
-	<p>其中，模式末尾的[0-9.]*可以继续匹配更多层级的章节号。</p>
-	
-
-	<p>例如想要查找类似&ldquo;1MGU103&rdquo;的字符串，其由1个数字，3个大写字符和3个数字组成。那么可以使用以下几种方法来匹配：</p>
-<ul>
-	<li><code class="inset">[0-9][A-Z]\{3}[0-9]\{3}</code><br />先用[0-9]表示前面的一个数字，然后加入[A-Z]大写字符，并精确匹配{3}个数字，最后再加入末尾的三个数字。</li>
-	<li><code class="inset">\d\u\{3}\d\{3}</code><br />利用\d指任何的数字，而\u指任何的大写字符，这种方式的查找效率要比第一种方法快得多。</li>
-	<li><code class="inset">\d\u\u\u\d\d\d</code></li>
-	<li><code class="inset">[[:digit:]][[:upper:]]\{3][[:digit:]]\{3}</code></li>
-</ul>
 	
 	<p>使用以下命令，可以查找字符串：</p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
@@ -69,14 +51,27 @@
 	<p>如果想要查找引号包围的字符串（包含换行），那么可以使用以下命令：</p>
 	<p style="text-indent:2em"><code class="inset">/"\_[^"]*"</code></p>
 
+	<h2 class="article"><a id="regex-example-"></a></h2>
+	<p>删除下图中黄色高亮区域，即行头以点分隔的章节号：</p>
+	<p style="text-indent:2em"><code class="inset">:%s/^[1-9][0-9]*\.[1-9][0-9.]*&#x25a1;//</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Regex_example_remove_section_headings.png" title="Regex_example_remove_section_headings"><img src="https://yyq123.github.io/learn-vim/images/Regex_example_remove_section_headings.png" alt="Regex_example_remove_section_headings" /></a></p>
+	<p>其中，模式末尾的[0-9.]*可以继续匹配更多层级的章节号。</p>
+
+		<p>例如想要查找类似&ldquo;1MGU103&rdquo;的字符串，其由1个数字，3个大写字符和3个数字组成。那么可以使用以下几种方法来匹配：</p>
+<ul>
+	<li><code class="inset">[0-9][A-Z]\{3}[0-9]\{3}</code><br />先用[0-9]表示前面的一个数字，然后加入[A-Z]大写字符，并精确匹配{3}个数字，最后再加入末尾的三个数字。</li>
+	<li><code class="inset">\d\u\{3}\d\{3}</code><br />利用\d指任何的数字，而\u指任何的大写字符，这种方式的查找效率要比第一种方法快得多。</li>
+	<li><code class="inset">\d\u\u\u\d\d\d</code></li>
+	<li><code class="inset">[[:digit:]][[:upper:]]\{3][[:digit:]]\{3}</code></li>
+</ul>
 
 	<h2 class="article"><a id="grep-ipaddress">匹配IP地址</a></h2>
 	<p>使用以下命令，可以匹配IPv4网络地址。也就是说，匹配从 <code>0.0.0.0</code> 到 <code>999.999.999.999</code>范围内的，以点分割的四段数字。</p>
 	<p style="text-indent:2em"><code class="inset">([0-9]{1,3}[\.]){3}[0-9]{1,3}</code></p>
 	<p>但是以上命令，并不会判断数字串是否是一个有效的IP地址。比如<var>256.60.124.136</var>也将会被匹配。但有效的IP地址中的每段数字应该为0-255。</p>
 	<p>使用以下命令，则仅仅匹配有效的IP地址：</p>
-	<pre>(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)</pre>
-	<p style="text-indent:2em"><code class="inset">\(\(25\_[0-5]\|2\_[0-4]\_[0-9]\|\_[01]\?\_[0-9]\_[0-9]\?\)\.\)\{3\}\(25\_[0-5]\|2\_[0-4]\_[0-9]\|\_[01]\?\_[0-9]\_[0-9]\?\)/</code></p>
+	<pre>\v(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)</pre>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="Regular Expression Basic" href="http://yyq123.github.io/learn-vim/learn-vi-81-RegularExpressionBasic.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="Regular Expression Advanced" href="http://yyq123.github.io/learn-vim/learn-vi-82-RegularExpressionAdv.html">下一篇</a>&gt;</span></p>
 
 </body>
 </html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 ()</title>
+</head>
+<body>
+	<h1>VIM学习笔记 ()</h1>
+Tip 10
+P20
+Use Counts to Do Simple Arithmetic
+	<h2 class="article"><a id=""></a></h2>
+	<p></p>
+	<a href="#" title=""></a>
+	<p style="font-weight:bold">算术运算</p>
+	<h2 class="article"><a id=""></a></h2>
+	<p>Vim可以对文本进行简单的算术运算。在常规模式下，使用<kbd>CTRL-A</kbd>快捷键，可以将当前光标下的数字加1；使用<kbd>CTRL-X</kbd>快捷键，可以将当前光标下的数字减1。</p>
+	<p>通过在命令之前指定次数，可以增加或减少指定的数字。例如当前光标下数字为1，依次输入<kbd>5Ctrl-A</kbd>，数字将变为6（1+5）。</p>
+	<p>如果这个数字是以0开头，那么Vim就会认为这是一个八进制的数。例如0177在我们执行这个命令后就会变为0200。如果是以0x或是0X开头，Vim就会这是一个十六进制的数，例如0x1E在我们执行这个命令后就会成为0x1F。
+
+
+	This has been added in version 8. Check out :help new-items-8
+
+Edit: Changed the help command above.
+
+Result of :help new-items-8
+
+Visual mode commands:
+v_CTRL-A        CTRL-A          add N to number in highlighted text
+v_CTRL-X        CTRL-X          subtract N from number in highlighted text
+v_g_CTRL-A      g CTRL-A        add N to number in highlighted text
+v_g_CTRL-X      g CTRL-X        subtract N from number in highlighted text
+
+	<h2 class="article"><a id="opt-nrformats">'nrformats'选项</a></h2>
+	<p>'nrformats'选项，用于控制CTRL-A和CTRL-X所识别的数字格式。</p>
+	<p>使用以下默认设置，Vim可以正确识别二进制和十六进制数；而十进制数，在所有设置下都可以被正确识别：</p>
+	<p style="text-indent:2em"><code class="inset">:set nrformats=bin,hex</code></p>
+	<p>使用以下命令清空选项，将所有数字识别为十进制：</p>
+	<p style="text-indent:2em">:set nrformats=</p>
+	<p style="text-indent:2em">set nrformats=octal,hex</p>
+	<p>如果要使得Vim识别出十进制和八进制的数字，我们可以使用下面的命令：</p>
+	<p>如果希望只识别八进制数，那么可以使用以下命令：</p>
+	<p style="text-indent:2em">:set nrformats=octal</p>
+	<p>如果在选项中增加"alpha"，那么也可以选择上一个和下一个字母：</p>
+	<p style="text-indent:2em"><code class="inset">:set nrformats+=alpha</code></p>
+	<p>例如当前光标在字母&ldquo;C&rdquo;之上，点击<kbd>CTRL-A</kbd>会将字母变为&ldquo;D&rdquo;；点击<kbd>CTRL-X</kbd>会将字母变为&ldquo;B&rdquo;。如果针对第一个字母&ldquo;A&rdquo;执行<kbd>CTRL-X</kbd>；或者针对最后一个字母&ldquo;Z&rdquo;执行<kbd>CTRL-A</kbd>，都不会有任何效果。</p>
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3" style="text-align:center">
+		<caption style="margin:0.5em; font-weight:bold">选项列表</caption>
+		<tr><th></th><th><code>CTRL-X</code></th><th></th><th><code>CTRL-A</code></th><th>描述</th></tr>
+		<tr><td rowspan="2">十进制<br />Decimal</td><td>0</td><td>1</td><td>2</td><td rowspan="2">以1-9开头的数值</td></tr>
+		<tr><td>-2</td><td>-1</td><td>0</td></tr>
+		<tr><td>二进制<br />Binary</td><td>0b0111</td><td>0b1000</td><td>0b1001</td><td>以"0b"或"0B"开头的数值</td></tr>
+		<tr><td>八进制<br />Octal</td><td>006</td><td>007</td><td>010</td><td>以0开头的数值</td></tr>
+		<tr><td>十六进制<br />Hex</td><td>0x0ff</td><td>0x100</td><td>0x101</td><td>以"0x"或"0X"开头的数值</td></tr>
+		<tr><td rowspan="3">字母<br />alpha</td>B<td></td><td>C</td><td>D</td><td></td></tr>
+		<tr><td>A</td><td>A</td><td></td><td>B</td><td></td></tr>
+		<tr><td></td><td>Z</td><td></td><td></td></tr>
+		<tr><td></td><td></td><td></td><td></td></tr>
+	</table>
+-2
+
+&ldquo;&rdquo;
+	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
+
+	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
+
+	<pre class="block">
+	</pre>
+
+	<ul>
+		<li><p class="item"><br /></p></li>
+		<li><p class="item"><a href="#" title=""></a><br /></p></li>
+	</ul>
+
+	<span style="font-weight:bold; color:#4169E1; margin-left:0.2em">&#65311;</span>
+
+
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
+		<tr><td><code class="inset">:</code></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+	</table>
+
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
+
+</body>
+</html>
