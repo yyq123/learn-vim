@@ -45,14 +45,12 @@
 
 	<p>与d命令相类似是的<code class="inset">c</code>更改命令，他在删除一个字符的同时进入插入状态。<code class="inset">cw</code>命令删除一个单词并进入插入状态。<code class="inset">cc</code>命令删除本行上的所有内容并进入插入状态，而且还会保持当前的行缩进。命令<code class="inset">c$</code>将删除从光标处到行尾的所有内容并进入插入状态。</p>
 	<p>命令<code class="inset">s</code>相当于命令<code class="inset">cl</code>的简写，它将删除光标右侧的一个字符并进入插入状态。而命令<code class="inset">S</code>相当于命令<code class="inset">cc</code>的简写，它将删除一行并进入插入状态。</p>
-
-
-
-	在从左到右和从右到左两种模式间切换
-:set rl
-:set rightleft
-:set norl
-:set norightleft
+	<p>'rightleft'选项，用于控制文字排列是从左到右，还是从右到左。默认值"norightleft"，即从左到右模式。</p>
+	<p>使用以下命令，可以切换为从右到左模式：</p>
+	<p style="text-indent:2em"><code class="inset">:set rl</code></p>
+	<p>使用以下命令，可以切换为从左到右模式：</p>
+	<p style="text-indent:2em"><code class="inset">:set norl</code></p>
+	<p></p>
 通过这些选项的设置我们可以选择是从左到右的模式还是从右到左的模式
 :set ari
 :set allowrevins
@@ -68,9 +66,9 @@
 :set langmap=ch1ch2,ch1ch2
 
 	<p style="font-weight:bold">交换字符</p>
-	How to swap two characters? Press xp.
-	x: delete one character at current cursor position
-	p: paste after current cursor position
+	<p style="text-indent:2em"><code class="inset">xp</code></p>
+	x:删除当前光标下的字符
+	p:粘贴到当前光标之后
 	How to swap two words? Press dwwP.
 	d delete
 	w one word
@@ -87,6 +85,9 @@
 i<c-r>:
 " Retrieving last Search Command for copy  pasting into text
 i<c-r>/
+	<p>在插入模式下，点击<kbd>CTRL-R</kbd>，可以插入寄存器中的内容：</p>
+	<p style="text-indent:2em"><code class="inset">:help i_CTRL-R</code></p>
+
 	<p>使用<code class="inset">:changes</code>命令，可以列出最近对文件进行编辑的位置：</p>
 	<p><a href="https://www.flickr.com/photos/yyq123/32762763980/in/dateposted/" title="Changes"><img src="https://c2.staticflickr.com/4/3712/32762763980_740e90d96b_o.png" width="224" height="94" alt="Changes" /></a></p>
 
@@ -125,20 +126,9 @@ i<c-r>/
 而命令:dsearch只是显示第一个匹配的宏定义.如果命令:ilist,ijump,:djump,:dlist,:dsearch带上!选项,那么在注释内的定义也可以进行查找.
 
 
-:normal命令可以使我们执行一个正常模式下的命令.例如下面的命令是将光标下的单词改为DONE:
-:normal cwDONE
-在行这些命令时要求命令必须是一个完整的命令.如果我们已经挂起Vim然后执行命令时,Vim显示全直到命令完全时也会发生变化.
 
-下面的命令会将当前的文本写入文件,然后退出:
-:exit
-如果我们使用!选项,即时这个文件被标记为只读,那么Vim也会强行保存.
-我们还可以在命令行指定一个文件名,那么当前的内容就会在退出以前写入我们所指定的文件,例如下面的命令:
-:exit save.txt
-如果我们只是想着将文件中的一部分保存到另一个文件,我们可以指定一个范围来保存.例如要保存100行,我们可以用下面的命令:
-:1,100 exit save.txt
-下面的命令与:exit命令相类似,不同的是这个命令总是会保存文件:
-:range wq! file
-而:exit命令只是在文件发生改变时才会保存.
+
+
 
 
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
