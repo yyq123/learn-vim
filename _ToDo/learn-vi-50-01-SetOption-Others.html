@@ -34,16 +34,15 @@ https://vim.fandom.com/wiki/Get_Alt_key_to_work_in_terminal
 :set restorescreen
 换句话说,他会试着使得我们运行这个程序以后的屏幕看起来就像他运行以前的一样.
 set hidden " you can change buffers without saving
-set fileformats=unix,dos,mac " support all three, in this order
-
+	<p>支持三种操作系统的换行方式end-of-line (&lt;EOL&gt;)</p>
+	<p style="text-indent:2em"><code class="inset">:set fileformats=unix,dos,mac</code></p>
+'fileformats' 'ffs'	string (default:
+				Vim+Vi	MS-Windows: "dos,unix",
+				Vim	Unix, macOS: "unix,dos",
 	<p>'backspace'选项，用于控制在插入模式下退格键何时可以删除光标之前的字符。建议在vimrc文件中，设置如下：</p>
 	<p style="text-indent:2em"><code class="inset">set backspace=indent,eol,start</code></p>
 	<p>其中，以逗号分隔的三项内容分别指定了可以可以删除自动缩进的空格或制表符，断行，以及进入插入模式时的位置。</p>
 
-
-
-我们也可以用下面的命令来设置预览窗口的大小:
-:set previewheight={height}
 
 但是如何来处理其他键的顺序呢?我们可以通过下面的两个选项来控制区:
 :set timeout
