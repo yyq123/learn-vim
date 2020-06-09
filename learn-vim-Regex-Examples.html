@@ -59,13 +59,14 @@
 
 	<h2 class="article"><a id="serial-number">匹配序列号</a></h2>
 	<p>假设需要查找特定格式的序列号，类似&ldquo;1MGU103&rdquo;的字符串，其由1个数字，3个大写字符和3个数字组成。那么可以使用以下几种表达式来匹配：</p>
-<ul>
-	<li><code class="inset">[0-9][A-Z]\{3}[0-9]\{3}</code><br />先用[0-9]表示前面的一个数字，然后加入[A-Z]大写字符，并精确匹配{3}次，最后再加入末尾的三个数字。</li>
-	<li><code class="inset">\d\u\{3}\d\{3}</code><br />利用\d匹配任意数字，而\u匹配任意大写字符，这种方式的查找效率要比第一种方法快得多。</li>
-	<li><code class="inset">\d\u\u\u\d\d\d</code><br /></li>
-	<li><code class="inset">[[:digit:]][[:upper:]]\{3][[:digit:]]\{3}</code><br /></li>
-</ul>
-https://regexr.com/
+	<ul>
+		<li><code class="inset">[0-9][A-Z]{3}[0-9]{3}</code><br /><img src="https://yyq123.github.io/learn-vim/images/Regex_example_serial_number_1.png" alt="Regex_example_serial_number" /><br />[0-9]匹配一个数字；[A-Z]匹配大写字母，并精确匹配{3}次；[0-9]{3}匹配3个数字。</li>
+	<li><code class="inset">\d\u{3}\d{3}</code><br />\d匹配任意数字；\u匹配任意大写字母；这种方式的查找效率要比第一种方法快得多。</li>
+	<li><code class="inset">\d\u\u\u\d\d\d</code><br />明确指示每个字符的类型；</li>
+	<li><code class="inset">[[:digit:]][[:upper:]]{3}[[:digit:]]{3}</code><br />[:digit:]匹配任意数字；[[:upper:]匹配任意大写字母。</li>
+	</ul>
+	<p>请注意，以上表达式均采用<a href="http://yyq123.github.io/learn-vim/learn-vim-Regex-VeryMagic.html" title="very magic">Very Magic</a>模式。</p>
+
 	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
 		<caption style="margin:0.5em; font-weight:bold">选项列表</caption>
 		<tr><th style="white-space: nowrap">选项</th><th>描述</th><th>帮助信息</th></tr>

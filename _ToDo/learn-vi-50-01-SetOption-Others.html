@@ -27,24 +27,32 @@
 	<p>如果使用以下命令将选项设置为"yes"，那么Alt键将只用于选择菜单，而不会执行其定义的映射命令：</p>
 	<p style="text-indent:2em"><code class="inset">:set winaltkeys=yes</code></p>
 在这里我们要知道的就是在Vim中Alt会被叫作M-,Meta的意思.
-Get Alt key to work in terminal
-https://vim.fandom.com/wiki/Get_Alt_key_to_work_in_terminal
 
-如果我们设置了下面的选项,Vim就会试着重新装入终端屏幕的内容.
-:set restorescreen
-换句话说,他会试着使得我们运行这个程序以后的屏幕看起来就像他运行以前的一样.
-set hidden " you can change buffers without saving
-	<p>支持三种操作系统的换行方式end-of-line (&lt;EOL&gt;)</p>
+	<p>在开始编辑新缓冲区或者读入文件到已有的缓冲区时，将根据'fileformats'选项来确定换行符（&lt;EOL&gt;）的格式。如果选项为空，则使用'fileformat'定义的格式。</p>
+	<p>在Windows操作系统中，默认值为：</p>
+	<p style="text-indent:2em"><code class="inset">:set fileformats=dos,unix</code></p>
+	<p>在Linux和Mac操作系统中，默认值为：</p>
+	<p style="text-indent:2em"><code class="inset">:set fileformats=unix,dos</code></p>
+	<p>例如以下命令，将设置支持三种换行方式的选项列表，</p>
 	<p style="text-indent:2em"><code class="inset">:set fileformats=unix,dos,mac</code></p>
-'fileformats' 'ffs'	string (default:
-				Vim+Vi	MS-Windows: "dos,unix",
-				Vim	Unix, macOS: "unix,dos",
+	<p>读入文件时会进行自动进行换行符检测：如果所有行都以&lt;CR&gt;&lt;NL&gt;结尾，而 'fileformats' 包含 "dos" 的话，那么'fileformat' 设为 "dos"。如果找到一个&lt;NL&gt;，而 'fileformats' 包含 "unix" 的话，那么'fileformat'设为 "unix"。如果 'fileformat' 没有设置，且文件里有&lt;CR&gt;，且 'fileformats' 包含"mac"，那么'fileformat' 设为 "mac"。这意味着 "mac" 只有在:
+              没有给出 "unix" 或者在文件里没有找到 <NL>，并且
+              没有给出 "dos" 或者没有在文件里找到 <CR><NL> 时
+             才会使用。</p>
+
+
+	
 	<p>'backspace'选项，用于控制在插入模式下退格键何时可以删除光标之前的字符。建议在vimrc文件中，设置如下：</p>
 	<p style="text-indent:2em"><code class="inset">set backspace=indent,eol,start</code></p>
 	<p>其中，以逗号分隔的三项内容分别指定了可以可以删除自动缩进的空格或制表符，断行，以及进入插入模式时的位置。</p>
+	<p>'rightleft'选项，用于控制文字排列是从左到右，还是从右到左。默认值"norightleft"，即从左到右模式。</p>
+	<p>使用以下命令，可以切换为从右到左模式：</p>
+	<p style="text-indent:2em"><code class="inset">:set rl</code></p>
+	<p>使用以下命令，可以切换为从左到右模式：</p>
+	<p style="text-indent:2em"><code class="inset">:set norl</code></p>
 
 
-但是如何来处理其他键的顺序呢?我们可以通过下面的两个选项来控制区:
+
 :set timeout
 :set ttimeout
 下面的是这些设置的作用:

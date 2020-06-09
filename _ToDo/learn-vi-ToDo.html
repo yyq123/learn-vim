@@ -45,23 +45,7 @@
 
 	<p>与d命令相类似是的<code class="inset">c</code>更改命令，他在删除一个字符的同时进入插入状态。<code class="inset">cw</code>命令删除一个单词并进入插入状态。<code class="inset">cc</code>命令删除本行上的所有内容并进入插入状态，而且还会保持当前的行缩进。命令<code class="inset">c$</code>将删除从光标处到行尾的所有内容并进入插入状态。</p>
 	<p>命令<code class="inset">s</code>相当于命令<code class="inset">cl</code>的简写，它将删除光标右侧的一个字符并进入插入状态。而命令<code class="inset">S</code>相当于命令<code class="inset">cc</code>的简写，它将删除一行并进入插入状态。</p>
-	<p>'rightleft'选项，用于控制文字排列是从左到右，还是从右到左。默认值"norightleft"，即从左到右模式。</p>
-	<p>使用以下命令，可以切换为从右到左模式：</p>
-	<p style="text-indent:2em"><code class="inset">:set rl</code></p>
-	<p>使用以下命令，可以切换为从左到右模式：</p>
-	<p style="text-indent:2em"><code class="inset">:set norl</code></p>
 	<p></p>
-通过这些选项的设置我们可以选择是从左到右的模式还是从右到左的模式
-:set ari
-:set allowrevins
-:set noari
-:set noallowrevins
-通过设置这些选项我们可以通过CTRL-_来设置revins选项.这个可以使得我们选择语言的输入的是从左到右还由右至左.
-:set ri
-:set revins
-:set nori
-:set norevins
-通过这些选项设置,我们可以选择在插入模式下是由左至右还是由右至左.如果设置了allowrevins选项我们可通过CTRL-_来在这几个选项间进行切换.
 	<p style="font-weight:bold">交换字符</p>
 	<p style="text-indent:2em"><code class="inset">xp</code></p>
 	x:删除当前光标下的字符
@@ -76,11 +60,6 @@
 	dd删除行
 	p粘贴行至当前行的下一行
 
-
-
-
-	<p>在插入模式下，点击<kbd>CTRL-R</kbd>，可以插入寄存器中的内容：</p>
-	<p style="text-indent:2em"><code class="inset">:help i_CTRL-R</code></p>
 
 	<p>使用<code class="inset">:changes</code>命令，可以列出最近对文件进行编辑的位置：</p>
 	<p><a href="https://www.flickr.com/photos/yyq123/32762763980/in/dateposted/" title="Changes"><img src="https://c2.staticflickr.com/4/3712/32762763980_740e90d96b_o.png" width="224" height="94" alt="Changes" /></a></p>
