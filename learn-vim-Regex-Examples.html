@@ -11,73 +11,73 @@
 
 	<h1>VIM学习笔记 正则表达式-实例(Regex-Examples)</h1>
 
-	<h2 class="article"><a id="regex-example-space">匹配空格</a></h2>
-	<p>删除所有行首的空格：</p>
+	<h2 class="article"><a id="space">匹配空格</a></h2>
+	<p>&diams;&nbsp;删除所有行首的空格：</p>
 	<p style="text-indent:2em"><code class="inset">:%s/^&#x25a1;&#x25a1;*\(.*\)/\1/</code></p>
 	<p>其中，使用^&#x25a1;&#x25a1;*查找行首的一个或多个空格；而\(.*\)将行中的其它内容捕获为组；在替换部分使用\1来恢复捕获组。</p>
-	<p>删除所有行尾的空格：</p>
+	<p>&diams;&nbsp;删除所有行尾的空格：</p>
 	<p style="text-indent:2em"><code class="inset">:%s/\(.*\)&#x25a1;&#x25a1;*$/\1/</code></p>
-	<p>其中，使用^&#x25a1;&#x25a1;*查找行首的一个或多个空格；而\(.*\)将行中的其它内容捕获为组；在替换部分使用\1来恢复捕获组。</p>
-	<p>将多个空格替换为一个空格：</p>
+	<p>其中，使用&#x25a1;&#x25a1;*$查找行尾的一个或多个空格；而\(.*\)将行中的其它内容捕获为组；在替换部分使用\1来恢复捕获组。</p>
+	<p>&diams;&nbsp;将多个空格替换为一个空格：</p>
 	<p style="text-indent:2em"><code class="inset">:%s/&#x25a1;&#x25a1;*/&#x25a1;/g</code></p>
 	<p>其中，第一个&#x25a1;代表一个实际的空格，而&#x25a1;*则会匹配零个或多个空格。</p>
-	<p>将冒号或句点之后的多个空格，替换为一个空格：</p>
+	<p>&diams;&nbsp;将冒号或句点之后的多个空格，替换为一个空格：</p>
 	<p style="text-indent:2em"><code class="inset">:%s/\([:.]\)&#x25a1;&#x25a1;*/\1&#x25a1;/g</code></p>
-	<p>请注意，方括号内的的特殊字符（比如.）并不需要转义。</p>
+	<p>其中，方括号内的的特殊字符（比如.）并不需要转义。</p>
 
-	<p>将单数单词，替换为复数：</p>
+	<h2 class="article"><a id="cr">匹配换行</a></h2>
+	<p>&diams;&nbsp;如果想要查找的内容之中包含换行符，那么可以使用"\n"通配符。执行以下命令，将匹配以"the"结尾的行，和以"word"开头的下一行：</p>
+	<p style="text-indent:2em"><code class="inset">/the\nword</code></p>
+	<p>&diams;&nbsp;如果希望同时匹配包含换行，以及不包含换行（但包含一个空格）的"the word"，那么可以使用"\_s"匹配空格或换行：</p>
+	<p style="text-indent:2em"><code class="inset">/the\_sword</code></p>
+	<p>&diams;&nbsp;如果希望同时匹配包含多个空格以及换行的"the word"，那么可以使用"+"通配符来匹配一次或多次：</p>
+	<p style="text-indent:2em"><code class="inset">/the\_s\+word</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Regex_example_the_word.png" title="Regex_example_the_word"><img src="https://yyq123.github.io/learn-vim/images/Regex_example_the_word.png" alt="Regex_example_the_word" /></a></p>
+	<p>关于删除换行和空行，请参阅<a href="http://yyq123.github.io/learn-vim/learn-vi-22-LineFeed.html" title="换行(Line Feed)">换行(Line Feed)</a>章节。</p>
+
+	<h2 class="article"><a id="singular">匹配单复数</a></h2>
+	<p>&diams;&nbsp;将单数单词，替换为复数：</p>
 	<p style="text-indent:2em"><code class="inset">:%s/^Note[&#x25a1;:s]*/Notes:&#x25a1;/g</code></p>
-	<p>其中，Note[&#x25a1;:s] 将匹配 Note&#x25a1;, Notes, 和 Note:；而星号则会匹配零个后缀，即 Note。</p>
+	<p>其中，"Note[&#x25a1;:s]"将匹配"Note&#x25a1;","Notes", 和"Note:"；而星号则会匹配零个后缀，即"Note"。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/Regex-Examples-Singular.png" title="Regex-Examples-Singular"><img src="https://yyq123.github.io/learn-vim/images/Regex-Examples-Singular.png" alt="Regex-Examples-Singular" /></a></p>
 
-	
-	<p>使用以下命令，可以查找字符串：</p>
-	<p style="text-indent:2em"><code class="inset"></code></p>
-	<p>匹配最少3个字符，最多16个字符，由字母和数字组成的用户名：</p>
+	<h2 class="article"><a id="format">匹配特定格式</a></h2>
+	<p>&diams;&nbsp;匹配最少3个字符，最多16个字符，由字母和数字组成的用户名：</p>
 	<p style="text-indent:2em"><code class="inset">^[a-zA-Z0-9_-]{3,16}$</code></p>
-
+	<p>&diams;&nbsp;匹配引号包围的字符串（包含换行）：</p>
+	<p style="text-indent:2em"><code class="inset">"\_[^"]*"</code></p>
+	<p>&diams;&nbsp;匹配特定单词包围的字符串（包含换行）：</p>
+	<p style="text-indent:2em"><code class="inset">\(we\).*\1</code></p>
+	<p>其中，"\(we\)"将指定单词捕获为组，然后使用"\1"反向引用捕获组，以定义字符串的边界。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/Regex_example_1967.png" title="Regex_example_1967"><img src="https://yyq123.github.io/learn-vim/images/Regex_example_1967.png" alt="" width="550" height="184" /></a></p>
-
-	<p></p>
-	<p style="text-indent:2em"><code class="inset"></code></p>
-
-	<h2 class="article"><a id="regex-example-cr">匹配换行</a></h2>
-	<p>如果你想要查找的内容之中包含换行符，那么可以使用"<strong>\n</strong>"通配符。执行以下命令，将匹配以"the"结尾的行，和以"word"开头的下一行：</p>
-	<p style="text-indent:2em"><code class="inset">/the\nword</code></p>
-	<p>如果希望同时匹配包含换行，以及不包含换行（但包含一个空格）的"the word"，那么可以使用"\_s"匹配空格或换行：</p>
-	<p style="text-indent:2em"><code class="inset">/the\_sword</code></p>
-	<p>如果希望同时匹配包含多个空格以及换行的"the word"，那么可以使用以下命令：</p>
-	<p style="text-indent:2em"><code class="inset">/the\_s\+word</code></p>
-	<p>如果想要查找引号包围的字符串（包含换行），那么可以使用以下命令：</p>
-	<p style="text-indent:2em"><code class="inset">/"\_[^"]*"</code></p>
+	<p>关于捕获组的详细介绍，请参阅<a href="http://yyq123.github.io/learn-vim/learn-vim-Regex-Groups.html" title="Groups">捕获组(Groups)</a>章节。</p>
 
 	<h2 class="article"><a id="section-number">匹配章节编号</a></h2>
-	<p>删除下图中黄色高亮区域，即行头以点分隔的章节号：</p>
+	<p>&diams;&nbsp;删除下图中黄色高亮区域，即行头以点分隔的章节号：</p>
 	<p style="text-indent:2em"><code class="inset">:%s/^[1-9][0-9]*\.[1-9][0-9.]*&#x25a1;//</code></p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/Regex_example_remove_section_headings.png" title="Regex_example_remove_section_headings"><img src="https://yyq123.github.io/learn-vim/images/Regex_example_remove_section_headings.png" alt="Regex_example_remove_section_headings" /></a></p>
 	<p>其中，模式末尾的[0-9.]*可以继续匹配更多层级的章节号。</p>
 
 	<h2 class="article"><a id="serial-number">匹配序列号</a></h2>
-	<p>假设需要查找特定格式的序列号，类似&ldquo;1MGU103&rdquo;的字符串，其由1个数字，3个大写字符和3个数字组成。那么可以使用以下几种表达式来匹配：</p>
+	<p>&diams;&nbsp;查找类似&ldquo;1MGU103&rdquo;的序列号。即由1个数字，3个大写字符和3个数字组成的字符串。</p>
+	<p style="text-indent:2em"><code class="inset">[0-9][A-Z]{3}[0-9]{3}</code></p>
+	<p style="text-indent:2em"><code class="inset">\d\u{3}\d{3}</code></p>
+	<p style="text-indent:2em"><code class="inset">\d\u\u\u\d\d\d</code></p>
+	<p style="text-indent:2em"><code class="inset">[[:digit:]][[:upper:]]{3}[[:digit:]]{3}</code></p>
+	<p>以上表达式使用不同的模式，查找相同的内容，其中：</p>
 	<ul>
-		<li><code class="inset">[0-9][A-Z]{3}[0-9]{3}</code><br /><img src="https://yyq123.github.io/learn-vim/images/Regex_example_serial_number_1.png" alt="Regex_example_serial_number" /><br />[0-9]匹配一个数字；[A-Z]匹配大写字母，并精确匹配{3}次；[0-9]{3}匹配3个数字。</li>
-	<li><code class="inset">\d\u{3}\d{3}</code><br />\d匹配任意数字；\u匹配任意大写字母；这种方式的查找效率要比第一种方法快得多。</li>
-	<li><code class="inset">\d\u\u\u\d\d\d</code><br />明确指示每个字符的类型；</li>
-	<li><code class="inset">[[:digit:]][[:upper:]]{3}[[:digit:]]{3}</code><br />[:digit:]匹配任意数字；[[:upper:]匹配任意大写字母。</li>
+	<li>"[0-9]"，"\d"，"[:digit:]"，均可匹配数字；</li>
+	<li>"[A-Z]"，"\u"，"[:upper:]"，均可匹配大写字母；</li>
+	<li>"{3}"，用于精确匹配3次。</li>
 	</ul>
+	<p><img src="https://yyq123.github.io/learn-vim/images/Regex_example_serial_number_1.png" alt="Regex_example_serial_number" /></p>
 	<p>请注意，以上表达式均采用<a href="http://yyq123.github.io/learn-vim/learn-vim-Regex-VeryMagic.html" title="very magic">Very Magic</a>模式。</p>
 
-	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
-		<caption style="margin:0.5em; font-weight:bold">选项列表</caption>
-		<tr><th style="white-space: nowrap">选项</th><th>描述</th><th>帮助信息</th></tr>
-		<tr><td><code class="inset">!</code></td><td>如果包含，表示。例如，。</td><td style="white-space: nowrap"><code class="inset">:help viminfo-!</code></td></tr>
-	</table>
-
 	<h2 class="article"><a id="ipv4-address">匹配IP地址</a></h2>
-	<p>使用以下命令，可以匹配IPv4网络地址。也就是说，匹配从 <code>0.0.0.0</code> 到 <code>999.999.999.999</code>范围内的，以点分割的四段数字。</p>
+	<p>&diams;&nbsp;匹配IPv4网络地址。即从"0.0.0.0"到"999.999.999.999"范围内的，以点分割的四段数字。</p>
 	<p style="text-indent:2em"><code class="inset">/\v([0-9]{1,3}[\.]){3}[0-9]{1,3}</code></p>
-	<p>但是以上命令，并不会判断数字串是否是一个有效的IP地址。比如<var>256.60.124.136</var>也将会被匹配。但有效的IP地址中的每段数字应该为0-255。</p>
-	<p>使用以下命令，则仅仅匹配有效的IP地址：</p>
+	<p>但是以上命令，并不会判断数字串是否是一个有效的IP地址。比如"256.60.124.136"也会被匹配。但有效的IP地址中，每段数字均应为"0-255"。</p>
+	<p>&diams;&nbsp;匹配有效的IP地址。</p>
 	<p style="text-indent:2em"><code class="inset">/\v(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)</code></p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/Regex_example_ipv4.png" title="Regex_example_ipv4"><img src="https://yyq123.github.io/learn-vim/images/Regex_example_ipv4.png" alt="Regex_example_ipv4" /></a></p>
 	<p>以上表达式分为四段重复的<a href="http://yyq123.github.io/learn-vim/learn-vim-Regex-Groups.html" title="Groups">捕获组</a>，每组数字的范围如下图所示：</p>

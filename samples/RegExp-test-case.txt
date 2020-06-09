@@ -184,3 +184,9 @@ D2
 69
 3F5B24
 FFE0A338
+
+
+"The problem is not that we are ignorant but that we know so much that\n\ 
+isn't true." — H.T. McAdams, "Elements of Experimental Design -\n\ 
+
+A Set of Lecture Notes," 1967 
