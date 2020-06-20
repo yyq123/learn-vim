@@ -5,7 +5,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记 ()</title>
+	<title>VIM学习笔记 脚本- (Script-List)</title>
 </head>
 <body>
 	<h1>VIM学习笔记 ()</h1>
@@ -13,8 +13,9 @@
 	<h2 class="article"><a id=""></a></h2>
 	<p></p>
 	<a href="#" title=""></a>
-:help list
-:help list-functions
+	<p style="text-indent:2em"><code class="inset">:help list</code></p>
+	<p style="text-indent:2em"><code class="inset">:help list-functions</code></p>
+
 	<p></p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
 	<p>列表（List），是一组由逗号分隔的项目的有序序列。它与其它编程语言中的数组（Array）概念非常相似。可以使用索引号来访问列表项目。也可以在序列的任何位置上增加或者删除项目。
@@ -73,11 +74,14 @@ let pedantic_pow[0][0] = 'indeterminate'
 	</code></pre>
 
 	<h2 class="article"><a id="script-list-split"></a></h2>
-	<p>You can also generate a list by splitting a string into a sequence of "words":</p>
+	<p>将字符串以空格为分隔符，拆分为列表：</p>
 	<pre class="block"><code>
-let words = split(str)                         " split on whitespace
-let words = split(str, delimiter_pat)          " split where pattern matches	
-	</code></pre>
+let words = split("one two three")             " split on whitespace
+echo words                                     " ['one', 'two', 'three']</code></pre>
+	<p>也可以将字符串以指定的分隔符，拆分为列表：</p>
+	<pre class="block"><code>
+let words = split("one:two three", ":")        " split where pattern matches
+echo words                                     " ['one', 'two three']</code></pre>
 
 	<h2 class="article"><a id="script-list-join"></a></h2>
 	<p>To reverse that, you can join the list back together:</p>
