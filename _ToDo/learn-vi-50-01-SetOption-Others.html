@@ -99,6 +99,15 @@ notimeout    ttimeout    只有代码键超时
 	<p style="text-indent:2em"><code class="inset">:set nowrite</code></p>
 	<p style="text-indent:2em"><code class="error">E142 File not written: Writing is disabled by 'write' option</code></p>
 
+	<h2 class="article"><a id="">安全选项</a></h2>
+	<p>启用'exrc'选项，将使得Vim在启动时会首先读取当前目录下的.exrc文件，并应用其中的设置。</p>
+	<p style="text-indent:2em"><code class="inset">:set exrc</code></p>
+	<p>也就是说，我们可以在不同的场景中使用不同的设置。比如对于编写HTML代码和写作文档，可以分别设置不同的<a href="http://yyq123.github.io/learn-vim/learn-vi-51-KeyMapping.html" title="Map">键盘映射(Map)</a>和<a href="http://yyq123.github.io/learn-vim/learn-vi-52-Abbreviation.html" title="缩写">缩写(Abbr)</a>，并保存在相应目录的.exrc文件中。这样在打开不同的文件时，就自动设置了相对应的系统选项了。</p>
+	<p>请注意，设置'exrc'选项存在潜在的安全风险。例如包含木马程序或错误的配置。请尽量不要启用本选项！潜在的替代方案是，在 .vimrc 里定义自动命令，为匹配的目录设置选项。</p>
+	<p>为了避免安全问题，可以设置以下安全选项：</p>
+	<p style="text-indent:2em"><code class="inset">:set secure</code></p>
+	<p>启用'secure'选项，将阻止当前目录下的".vimrc"和".exrc"初始文件中的:autocommand,:write,:shell命令的执行。</p>
+
 	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
 
 

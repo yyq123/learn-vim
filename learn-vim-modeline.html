@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 模式行(Modeline)</title>
+</head>
+<body>
+	<h1>VIM学习笔记 模式行(Modeline)</h1>
+	<p>程序员对于制表符常常有不同的偏好，有的使用8个空格，而有的则使用4个空格。可以想见，如果使用不同设置的用户操作相同的文件，必将对文本格式造成影响。</p>
+	<p>如果希望针对特定文件应用特定的设置，那么修改全局性的vimrc配置文件就显得小题大做了；而使用模式行(modeline)，则可以将选项设置配置在文件本身中。</p>
+	<p>例如将以下模式行放置到文件开头，将在打开该文件时设置制表符为4个字符：</p>
+	<p style="text-indent:2em"><code class="inset">/* vim:set tabstop=4: */</code></p>
+
+	<h2 class="article"><a id="modeline-on">启用模式行</a></h2>
+	<p>默认设置下，‘modeline’选项是打开的，Vim将会在文件的开头5行和结尾5行中查找模式行：</p>
+	<p style="text-indent:2em"><code class="inset">:set modeline</code></p>
+	<p>如果希望改变扫描的行数，那么可以设置‘modelines’选项：</p>
+	<p style="text-indent:2em"><code class="inset">:set modelines=1</code></p>
+	<p>定义以下快捷键，可以启用模式行并自动应用到当前文件，而不需要重新打开文件：</p>
+	<p style="text-indent:2em"><code class="inset">nnoremap &lt;leader&gt;ml :setlocal invmodeline &lt;bar&gt; doautocmd BufRead&lt;cr&gt;</code></p>
+	<p>模式行的格式，主要有以下两种：</p>
+	<p>（1）不包含set命令的格式</p>
+	<ul>
+		<li>[text{white}]{vi:|vim:|ex:}[white]{options}</li>
+		<li>模式行将持续到行尾处结束；</li>
+		<li>选项之间不能包含空格。</li>
+	</ul>
+	<p>以下为正确的模式行：</p>
+	<p style="text-indent:2em"><code class="insert">/* vim:tabstop=4:expandtabs:shiftwidth=4 */</code></p>
+	<p>以下模式行选项中包含空格，将报错&ldquo;Error E518: Unknown option: */&rdquo;：</p>
+	<p style="text-indent:2em"><code class="insert">/* vim: noai:ts=4:sw=4 */</code></p>
+	<p>（2）包含set命令的格式</p>
+	<ul>
+		<li>[text{white}]{vi:|vim:|Vim:|ex:}[white]se[t] {options}:[text]</li>
+		<li>模式行将在第二个&ldquo;:&rdquo;处结束；</li>
+		<li>模式行的开头和结尾可放置任意字符，建议使用&ldquo;/* */&rdquo;；</li>
+		<li>开头字符之后的空格为必需的分隔符，不可以省略；</li>
+		<li>选项之间以空格分隔。</li>
+	</ul>
+	<p>以下为正确的模式行：</p>
+	<p style="text-indent:2em"><code class="insert">/* vim: set ai tw=75: */</code></p>
+	<p>以下模式行开头字符之后缺少空格，将无法生效，但不会报错：</p>
+	<p style="text-indent:2em"><code class="inset">/*vim: set tabstop=4: */</code></p>
+
+	<h2 class="article"><a id="examples">模式行实例</a></h2>
+	<p>在Vim帮助文件的末尾，将发现以下模式行：</p>
+	<p style="text-indent:2em"><code class="insert"> vim:tw=78:ts=8:noet:ft=help:norl:</code></p>
+	<p>其中，tw(textwidth)选项设置最大文本宽度为78；ts(tabstop)选项设置制表符为8个空格；noet(noexpandtab)选项设置为不扩展制表符；ft(filetype)选项设置文件类型为help；norl(norightleft)选项设置文本从左向右显示。</p>
+	<p>在Apache配置文件中，包含以下模式行：</p>
+	<p style="text-indent:2em"><code class="insert"># vim: syntax=apache ts=4 sw=4 sts=4 sr noet</code></p>
+	<p>其中，"#"标记本行为注释；syntax选项设置语法为apache；sw(shiftwidth)选项设置缩进为4个字符；sts(softtabstop)选项设置插入Tab时算作4个空格；sr(shiftround)选项设置缩进取整到'shiftwidth'的倍数。</p>
+	<p>通过使用模式行，可以确保文本被按照正确的格式展示，而不受本地设置的干扰。</p>
+
+	<h2 class="article"><a id="modelin-off">禁用模式行</a></h2>
+	<p>使用以下设置，Vim将不会查找模式行：</p>
+	<p style="text-indent:2em"><code class="inset">:set nomodeline</code></p>
+
+	<h2 class="article"><a id="help">帮助信息</a></h2>
+	<p>使用以下命令，可以查看当前设置：</p>
+	<p style="text-indent:2em"><code class="inset">:verbose set modeline? modelines?</code></p>
+	<p>使用以下命令，可以查看帮助信息：</p>
+	<p style="text-indent:2em"><code class="inset">:help 'modeline'</code></p>
+	<p style="text-indent:2em"><code class="inset">:help 'modelines'</code></p>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:set modeline</code></td><td>启用模式行</td></tr>
+		<tr><td><code class="inset">:set modelines</code></td>设置检查模式行的行数<td></td></tr>
+	</table>
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="配置文件(vimrc)" href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="设置选项(set-option)" href="http://yyq123.github.io/learn-vim/learn-vi-50-SetOption.html.html">下一篇</a>&gt;</span></p>
+
+</body>
+</html>
