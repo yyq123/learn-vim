@@ -51,17 +51,23 @@
 	<p>使用以下命令，可以切换为从左到右模式：</p>
 	<p style="text-indent:2em"><code class="inset">:set norl</code></p>
 
+	<p>'timeout'和'ttimeout'选项共同决定输入部分映射的键序列或键码时的行为。</p>
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
+		<tr><th>timeout</th><th>ttimeout</th><th>行为</th></tr>
+		<tr><td><code>notimeout</code></td><td><code>nottimeout</code></td><td>没有超时</td></tr>
+		<tr><td rowspan="2"><code>timeout</code></td><td><code>ttimeout</code></td><td rowspan="2">所有的代码键(<F1>...)以及:map宏超时</td></tr>
+		<tr><td><code>nottimeout</code></td></tr>
+		<tr><td><code>notimeout</code></td><td><code>ttimeout</code></td><td>只有代码键超时</td></tr>
+	</table>
 
+<p>如果两个选项都关闭，Vim 会一直等待，直到收到完整的映射或键序列为止，如
+        果收到的字符没有对应的映射或者键序列，清除状态。比如: 如果映射 "vl" 而
+        Vim 收到 'v'，需要下一个字符来决定 'v' 后面跟的是不是 'l'。如果打开这
+        里的一个选项，Vim 会为下个字符等待一秒。在此之后，已经收到的字符被解释
+        为单个字符。等待的时间可以用 'timeoutlen' 选项改变。
+果键码没有问题而你希望 :map 映射的键序列不等
+        待 1 秒钟超时，置位 'ttimeout' 但关闭 'timeout' 选项。</p>
 
-:set timeout
-:set ttimeout
-下面的是这些设置的作用:
-timeout        ttimeout    结果
-notimeout    nottimeout    没有超时
-timeout        N/A        所有的代码键(<F1>...)以及:map宏超时.
-notimeout    ttimeout    只有代码键超时
-
-:set ttimeout=500
 这两个选项是告诉Vim在Esc按下后等待1/2秒来决定我们是否还会输入功能键或是等待1秒来决定是否还有其他的键盘映射输入.
 
 	<p><i>timeoutlen</i>选项，即等待后续按键输入的时间，单位为毫秒（millisecond），默认值为1000毫秒，即1秒。如果希望设置键盘等待时间，可以使用以下命令：</p>
@@ -104,17 +110,12 @@ notimeout    ttimeout    只有代码键超时
 	<p style="text-indent:2em"><code class="inset">:set exrc</code></p>
 	<p>也就是说，我们可以在不同的场景中使用不同的设置。比如对于编写HTML代码和写作文档，可以分别设置不同的<a href="http://yyq123.github.io/learn-vim/learn-vi-51-KeyMapping.html" title="Map">键盘映射(Map)</a>和<a href="http://yyq123.github.io/learn-vim/learn-vi-52-Abbreviation.html" title="缩写">缩写(Abbr)</a>，并保存在相应目录的.exrc文件中。这样在打开不同的文件时，就自动设置了相对应的系统选项了。</p>
 	<p>请注意，设置'exrc'选项存在潜在的安全风险。例如包含木马程序或错误的配置。请尽量不要启用本选项！潜在的替代方案是，在 .vimrc 里定义自动命令，为匹配的目录设置选项。</p>
-	<p>为了避免安全问题，可以设置以下安全选项：</p>
+	<p>'secure'选项默认是关闭的，为了避免安全问题，建议在vimrc文件中启用此安全选项：</p>
 	<p style="text-indent:2em"><code class="inset">:set secure</code></p>
-	<p>启用'secure'选项，将阻止当前目录下的".vimrc"和".exrc"初始文件中的:autocommand,:write,:shell命令的执行。</p>
+	<p>启用'secure'选项，将阻止当前目录下的.vimrc和.exrc初始化文件中的:autocommand，:write，:shell命令的执行。</p>
 
 	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
-
-
-	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
-		<tr><th>命令形式</th><th>描述</th><th>示例</th></tr>
-		<tr><td><code class="inset"></code></td><td></td><td><code class="inset"></code></td></tr>
-	</table>
+<p></p>
 	<p>：</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/" title=""><img src="https://yyq123.github.io/learn-vim/images/" alt="" /></a></p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
