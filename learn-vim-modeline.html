@@ -10,8 +10,8 @@
 <body>
 	<h1>VIM学习笔记 模式行(Modeline)</h1>
 	<p>程序员对于制表符常常有不同的偏好，有的使用8个空格，而有的则使用4个空格。可以想见，如果使用不同设置的用户操作相同的文件，必将对文本格式造成影响。</p>
-	<p>如果希望针对特定文件应用特定的设置，那么修改全局性的vimrc配置文件就显得小题大做了；而使用模式行(modeline)，则可以将选项设置配置在文件本身中。</p>
-	<p>例如将以下模式行放置到文件开头，将在打开该文件时设置制表符为4个字符：</p>
+	<p>如果希望针对特定文件应用特定的设置，那么修改全局性的vimrc配置文件就显得小题大做了；而使用模式行(modeline)，则可以将选项设置配置在文件本身当中。</p>
+	<p>例如将以下模式行放置到文件开头，将在打开该文件时设置制表符为4个空格：</p>
 	<p style="text-indent:2em"><code class="inset">/* vim:set tabstop=4: */</code></p>
 
 	<h2 class="article"><a id="modeline-on">启用模式行</a></h2>
@@ -20,8 +20,8 @@
 	<p>如果希望改变扫描的行数，那么可以设置‘modelines’选项：</p>
 	<p style="text-indent:2em"><code class="inset">:set modelines=1</code></p>
 	<p>定义以下快捷键，可以启用模式行并自动应用到当前文件，而不需要重新打开文件：</p>
-	<p style="text-indent:2em"><code class="inset">nnoremap &lt;leader&gt;ml :setlocal invmodeline &lt;bar&gt; doautocmd BufRead&lt;cr&gt;</code></p>
-	<p>模式行的格式，主要有以下两种：</p>
+	<p style="text-indent:2em"><code class="inset">:nnoremap &lt;leader&gt;ml :setlocal invmodeline &lt;bar&gt; doautocmd BufRead&lt;cr&gt;</code></p>
+	<p>模式行主要有以下两种格式：</p>
 	<p>（1）不包含set命令的格式</p>
 	<ul>
 		<li>[text{white}]{vi:|vim:|ex:}[white]{options}</li>
@@ -68,7 +68,7 @@
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
 		<tr><td><code class="inset">:set modeline</code></td><td>启用模式行</td></tr>
-		<tr><td><code class="inset">:set modelines</code></td>设置检查模式行的行数<td></td></tr>
+		<tr><td><code class="inset">:set modelines</code></td><td>设置检查模式行的行数</td></tr>
 	</table>
 
 	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="配置文件(vimrc)" href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="设置选项(set-option)" href="http://yyq123.github.io/learn-vim/learn-vi-50-SetOption.html.html">下一篇</a>&gt;</span></p>

@@ -5,15 +5,19 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记  配置文件(vimrc)</title>
+	<title>VIM学习笔记 配置文件(vimrc)</title>
 </head>
 <body>
-	<p>在vim启动过程中，首先将查找配置文件并执行其中的命令。而这些初始化文件一般有vimrc、gvimrc和exrc三种。</p>
-	<p>利用<code class="inset">:version</code>命令，可以得到配置文件的详细信息。</p>
+	<title>VIM学习笔记 配置文件(vimrc)</title>
+	<h2 class="article"><a id=""></a></h2>
+	<p>在vim启动过程中，首先将查找配置文件并执行其中的命令。初始化文件一般有vimrc、gvimrc和exrc三种。</p>
+	<p>使用<code class="inset">:version</code>命令，可以查看配置文件的详细列表：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/version-vimrc.png" title="version-vimrc"><img src="https://yyq123.github.io/learn-vim/images/version-vimrc.png" alt="version-vimrc" /></a></p>
 	<p><a href="http://www.flickr.com/photos/yyq123/6578885141/" title="version-vimrc by yyq123, on Flickr"><img src="http://farm8.staticflickr.com/7174/6578885141_52a0814b38.jpg" width="500" height="331" alt="version-vimrc" /></a></p>
 	<p>注意：如果执行gvim，那么$VIMRUNTIME/menu.vim也会被执行。</p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">配置文件位置</p>
+	http://vimcdoc.sourceforge.net/doc/starting.html#starting.txt
+	<h2 class="article"><a id="locations">配置文件位置</a></h2>
 	<p><strong>vimrc</strong>是主配置文件，它有全局和用户两种版本。</p>
 	<p>全局global vimrc文件，存放在Vim的安装目录中。可以使用以下命令，确定Vim的安装目录：</p>
 	<p style="text-indent:2em"><code class="inset">:echo $VIM</code></p>
@@ -41,6 +45,7 @@
 
 	<p>注意：在Unix和Linux下，vim的配置文件被命名为以点开头的隐藏文件；而在Windows下，配置文件则以下划线开头命名。</p>
 
+	<h2 class="article"><a id=""></a></h2>
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">编辑配置文件</p>
 	<p>可以使用以下命令，新建缓冲区来编辑配置文件：</p>
 	<p style="text-indent:2em"><code class="inset">:edit $MYVIMRC</code></p>
@@ -51,16 +56,16 @@
 	<p style="text-indent:2em">:set shiftwidth=4		"设置缩进宽度为4个空格</p>
 	<p>其中，单引号（"）为注释内容。</p>
 	
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">应用配置文件</p>
+	<h2 class="article"><a id="source">应用配置文件</a></h2>
 	<p>修改配置文件后，需要重新启动Vim，或使用:source命令来应用新的设置：</p>
 	<p style="text-indent:2em"><code class="inset">:source $MYVIMRC</code></p>
 	<p>我们可以在配置文件中增加以下命令，在保存后自动应用配置：</p>
 	<p style="text-indent:2em"><code class="inset">autocmd bufwritepost .vimrc source $MYVIMRC</code></p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">配置文件实例</p>
+	<h2 class="article"><a id="example">配置文件实例</a></h2>
 	<p>以下是本人的vim配置文件内容，供各位参考：</p>
-	<script src="https://gist.github.com/1611143.js"> </script>
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="标记(Mark)" href="http://yyq123.blogspot.com/2011/06/vim-mark.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="键盘映射(Map)" href="http://yyq123.blogspot.com/2010/12/vim-map.html">下一篇</a>&gt;</span></p>
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="启动 (Starting)" href="http://yyq123.github.io/learn-vim/learn-vi-209-Start.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="模式行(Modeline)" href="http://yyq123.github.io/learn-vim/learn-vim-modeline.html">下一篇</a>&gt;</span></p>
 </body>
 </html>
 
