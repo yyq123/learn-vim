@@ -5,16 +5,20 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记 信息(messages)</title>
+	<title>VIM学习笔记 信息(message)</title>
 </head>
 <body>
-	<h1>VIM学习笔记  ()</h1>
+	<h1>VIM学习笔记 信息(message)</h1>
 
 	<h2 class="article"><a id=""></a></h2>
+	<p></p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
-	<p>Vim编辑器可以记录上几次的错误以及在屏幕最后一行显示的信息.</p>
-	<a href="#" title=""></a>
-	<p>使用以下命令，可以查看信息：</p>
+
+	<p>Vim将默认记录近200次的信息显示。</p>
+	<p>使用以下命令，可以查看上一个命令的输出信息：</p>
+	<p style="text-indent:2em"><code class="inset">g&lt;</code></p>
+
+	<p>使用以下命令，可以查看所有信息：</p>
 	<p style="text-indent:2em"><code class="inset">:messages</code></p>
 
 	<p>使用以下命令，在显示信息的同时，也会将其存储在信息历史（message-history）之中。</p>
@@ -23,6 +27,25 @@
 	<h2 class="article"><a id=""></a></h2>
 	<p>从<a href="https://github.com/vim/vim/releases/tag/v7.4.1735" title="7.4.1735">7.4.1735</a>版本开始，可以使用以下命令清楚信息历史：</p>
 	<p style="text-indent:2em"><code class="inset">:messages clear</code></p>
+	<p>使用以下命令，可以查看更多帮助信息：</p>
+	<p style="text-indent:2em"><code class="inset">:help :messages</code></p>
+
+	<p>使用以下命令，可以查看信息使用的语言：</p>
+	<p style="text-indent:2em"><code class="inset">:language message</code></p>
+	<p>通过以下变量，也可以查看信息使用的语言：</p>
+	<p style="text-indent:2em"><code class="inset">:echo LC_MESSAGES</code></p>
+	<p>在vimrc文件中使用以下命令，可以指定信息使用中文显示：</p>
+	<p style="text-indent:2em"><code class="inset">:language message zh_CN.UTF-8</code></p>
+	<p>建议使用英文显示信息，以便在互联网上进行查找：</p>
+	<p style="text-indent:2em"><code class="inset">:language message en_US.UTF-8</code></p>
+
+	<p>假设使用<code>:messages</code>命令，可以显示以下信息：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/message.png" title="message"><img src="https://yyq123.github.io/learn-vim/images/message.png" alt="" width="550" height="220" /></a></p>
+	<p>而使用以下命令，则可以查看最近一条报错信息（error-messages）：</p>
+	<p style="text-indent:2em"><code class="inset">:echo errmsg</code></p>
+	<p style="text-indent:2em"><code class="error">E16: Invalid range</code></p>
+
+http://vimcdoc.sourceforge.net/doc/message.html
 
 	<h2 class="article"><a id="message-redir">重定向</a></h2>
 	<p>使用以下命令，在将信息输出到屏幕的同时，也会保存到指定的文件中：</p>

@@ -8,14 +8,12 @@
 	<title>VIM学习笔记 配置文件(vimrc)</title>
 </head>
 <body>
-	<title>VIM学习笔记 配置文件(vimrc)</title>
-	<h2 class="article"><a id=""></a></h2>
+	<h1>VIM学习笔记 配置文件(vimrc)</h1>
 	<p>在vim启动过程中，首先将查找配置文件并执行其中的命令。初始化文件一般有vimrc、gvimrc和exrc三种。</p>
 	<p>使用<code class="inset">:version</code>命令，可以查看配置文件的详细列表：</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/version_Win_Dir.png" title="version-vimrc"><img src="https://yyq123.github.io/learn-vim/images/version_Win_Dir.png" alt="version-vimrc" /></a></p>
 	<p>注意：如果执行gvim，那么$VIMRUNTIME/menu.vim也会被执行。</p>
 
-	http://vimcdoc.sourceforge.net/doc/starting.html#starting.txt
 	<h2 class="article"><a id="locations">配置文件位置</a></h2>
 	<p><strong>vimrc</strong>是主配置文件，它有全局和用户两种版本。</p>
 	<p>全局global vimrc文件，存放在Vim的安装目录中。可以使用以下命令，确定Vim的安装目录：</p>
@@ -61,14 +59,20 @@
 	<p>例如以下语法将设置一个章节，并将具体的选项包含其中：</p>
 	<pre class="block">" Section Name {{{
 	set number "This will be folded
-	" }}}</pre>
+" }}}</pre>
 	<p>打开vimrc文件之后，将仅仅显示折叠之后的章节结构：</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/vimrc-fold-close.png" title="vimrc-fold-close"><img src="https://yyq123.github.io/learn-vim/images/vimrc-fold-close.png" alt="vimrc-fold-close" /></a></p>
 	<p>展开折叠将可以查看详细的配置命令。建议使用引号（"）进行详细注释：</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/vimrc-fold-open.png" title="vimrc-fold-open"><img src="https://yyq123.github.io/learn-vim/images/vimrc-fold-open.png" alt="vimrc-fold-open" /></a></p>
 	<p>请参阅<a href="http://yyq123.github.io/learn-vim/learn-vi-63-Fold.html" title="Fold">折叠</a>章节，了解文本折叠及展开的操作方法。</p>
 	<p>在各个章节中，已经对具体选项进行详细介绍，在此不再赘述。</p>
-	<p>以下是本人的vim配置文件内容，供各位参考<p>使用<code class="inset">:TOhtml</code>命令，可以按照当前的颜色定义，将文件转化成(X)HTML文件，以通过网页形式展现高亮显示的代码：</p>：</p>
+	<p>请参考以下本人的在Windows下的vim配置：</p>
+	<ul>
+		<li><a href="https://github.com/yyq123/learn-vim/blob/master/samples/_vimrc" title="_vimrc">_vimrc</a>文件</li>
+		<li>使用<code class="inset">:TOhtml</code>命令生成的<a href="https://yyq123.github.io/learn-vim/learn-vim-vimrc-example.html" title="vimrc-example">HTML</a>网页文件</li>
+	</ul>
+	<p>使用以下命令，可以查看更多帮助信息：</p>
+	<p style="text-indent:2em"><code class="inset">:help vimrc</code></p>
 
 	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="启动 (Starting)" href="http://yyq123.github.io/learn-vim/learn-vi-209-Start.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="模式行(Modeline)" href="http://yyq123.github.io/learn-vim/learn-vim-modeline.html">下一篇</a>&gt;</span></p>
 </body>

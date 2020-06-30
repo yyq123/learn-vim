@@ -16,6 +16,17 @@
 	<p>顾名思义，<a href="https://github.com/tpope/vim-surround" title="surround">surround</a>插件可以方便地编辑围绕在内容两端的字符，比如成对出现的括号、引号，甚至HTML标签（pairs of things surrounding things）。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/plugin_vim_searchindex.gif" title="vim_searchindex"><img src="https://yyq123.github.io/learn-vim/images/plugin_vim_searchindex_500.gif" alt="plugin_vim_searchindex" width="500" height="131" /></a></p>
 
+	<pre class="block">Hello World.
+Hello *World*.
+Hello **World**.</pre>
+	<p>将光标移动到字母W之下，然后执行以下命令：</p>
+	<p style="text-indent:2em"><code class="inset">ysiw*</code></p>
+	<p>使用l命令，将光标移动到字母W之下，然后执行以下命令：</p>
+	<p style="text-indent:2em"><code class="inset">ysiw*</code></p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+
 	<h2 class="article"><a id="Install">安装配置</a></h2>
 	<p>推荐您使用<a href="http://yyq123.github.io/learn-vim/learn-vi-102-plugin-plug.html" title="插件管理器(vim-plug)">vim-plug</a>或<a href="http://yyq123.github.io/learn-vim/learn-vi-101-plugin-vundle.html" title="插件管理器(Vundle)">Vundle</a>等插件管理器，来安装GitHub上的<a href="https://github.com/tpope/vim-surround" title="surround">surround</a>插件。</p>
 	<p>使用<code class="inset">:help surround</code>命令，可以查看插件的帮助文件。</p>
