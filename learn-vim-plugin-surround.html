@@ -9,28 +9,89 @@
 </head>
 <body>
 	<h1>VIM学习笔记 surround</h1>
-	<p>更新 2019-11-18：自8.1.1270版本开始，Vim已经内置对搜索结果的计数显示，而不再需要安装额外的插件。</p>
 	<p>在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>配置文件中增加以下设置，可以在屏幕底部，显示匹配搜索结果的总数，以及当前所处第几个匹配结果。</p>
 	<p style="text-indent:2em"><code class="inset">set shortmess-=S</code></p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/set_shortmess_S.png" title="set_shortmess_S"><img src="https://yyq123.github.io/learn-vim/images/set_shortmess_S.png" alt="" width="500" height="42" /></a></p>
 	<p>顾名思义，<a href="https://github.com/tpope/vim-surround" title="surround">surround</a>插件可以方便地编辑围绕在内容两端的字符，比如成对出现的括号、引号，甚至HTML标签（pairs of things surrounding things）。</p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/plugin_vim_searchindex.gif" title="vim_searchindex"><img src="https://yyq123.github.io/learn-vim/images/plugin_vim_searchindex_500.gif" alt="plugin_vim_searchindex" width="500" height="131" /></a></p>
 
-	<pre class="block">Hello World.
-Hello *World*.
-Hello **World**.</pre>
+	<h2 class="article"><a id="Install">安装配置</a></h2>
+	<p>推荐您使用<a href="http://yyq123.github.io/learn-vim/learn-vi-102-plugin-plug.html" title="插件管理器(vim-plug)">vim-plug</a>或<a href="http://yyq123.github.io/learn-vim/learn-vi-101-plugin-vundle.html" title="插件管理器(Vundle)">Vundle</a>等插件管理器，来安装GitHub上的<a href="https://github.com/tpope/vim-surround" title="surround">surround</a>插件。</p>
+
 	<p>将光标移动到字母W之下，然后执行以下命令：</p>
-	<p style="text-indent:2em"><code class="inset">ysiw*</code></p>
 	<p>使用l命令，将光标移动到字母W之下，然后执行以下命令：</p>
 	<p style="text-indent:2em"><code class="inset">ysiw*</code></p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
 
-	<h2 class="article"><a id="Install">安装配置</a></h2>
-	<p>推荐您使用<a href="http://yyq123.github.io/learn-vim/learn-vi-102-plugin-plug.html" title="插件管理器(vim-plug)">vim-plug</a>或<a href="http://yyq123.github.io/learn-vim/learn-vi-101-plugin-vundle.html" title="插件管理器(Vundle)">Vundle</a>等插件管理器，来安装GitHub上的<a href="https://github.com/tpope/vim-surround" title="surround">surround</a>插件。</p>
+	<h2 class="article"><a id="add">新增环绕字符</a></h2>
+	<p>在常规模式下，使用<code class="inset">ys</code>命令可以新增环绕字符：</p>
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
+		<tr><th>模式</th><th>目标范围</th><th>新增内容</th><th></th><th>命令</th><th></th></tr>
+		<tr><td rowspan="4">常规模式下</td><td>单词</td><td>字符</td><td>Hello <mark>W</mark>orld</td><td><code>ysiw*</code></td><td>Hello *World*</td></tr>
+		<tr><td>单词</td><td>标签</td><td>Hello <mark>W</mark>orld</td><td><code>ysiwt&lt;strong&gt;</code></td><td>Hello &lt;strong&gt;World&lt;/strong&gt;</td></tr>
+		<tr><td>整行</td><td>字符</td><td>Hello <mark>W</mark>orld</td><td><code>yss"</code></td><td>"Hello World"</td></tr>
+		<tr><td>整行</td><td>新行</td><td>Hello <mark>W</mark>orld</td><td><code>ySS"</code></td><td>"<br />Hello World<br />"</td></tr>
+		<tr><td rowspan="2">插入模式</td><td></td><td></td><td><mark></mark></td><td><code>&lt;CTRL-g&gt;s"</code></td><td>""</td></tr>
+		<tr><td></td><td></td><td><mark></mark></td><td><code>&lt;CTRL-g&gt;S&lt;html&gt;</code></td><td>&lt;html&gt;<br/><br/>&lt;/html&gt;</td></tr>
+	</table>
+	<p>在下，使用<code class="inset">ys</code>命令可以新增环绕字符：</p>
+	<p>首先同时按下<kbd>CTRL-g</kbd>键，然后松开<kbd>CTRL</kbd>键，再点击<kbd>s</kbd>或<kbd>S</kbd>键。</p>
+
+
+	<h2 class="article"><a id="change">修改环绕字符</a></h2>
+	<p>使用<code class="inset">cs</code>命令可以修改环绕字符：</p>
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
+		<tr><th>目标范围</th><th>新增内容</th><th></th><th>命令</th><th></th></tr>
+		<tr><td>单词</td><td>字符</td><td>Hello <mark>W</mark>orld</td><td><code>ysiw*</code></td><td>Hello *World*</td></tr>
+	</table>
+
+	<h2 class="article"><a id="delete">删除环绕字符</a></h2>
+	<p>使用<code class="inset">ds</code>命令可以删除环绕字符It may be any of three quote marks, ', ", and `, the eight punctuation marks, (, ), {, }, [, ], <, > , and a special 't' target for deleting the innermost HTML tag.：</p>
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
+		<tr><th>目标范围</th><th>新增内容</th><th></th><th>命令</th><th></th></tr>
+		<tr><td>单词</td><td>字符</td><td>'Hello <mark>W</mark>orld'</td><td><code>ds'</code></td><td>Hello World</td></tr>
+		<tr><td>单词</td><td>字符</td>(1<mark>2</mark>3+4*56)/2<td></td><td><code>ds(</code></td><td>(123+4*56)/2</td></tr>
+		<tr><td>单词</td><td>标签</td><td>&lt;div&gt;<mark>H</mark>ello&lt;/div&gt;</td><td><code>dst</code></td><td>Hello</td></tr>
+	</table>
+
+
 	<p>使用<code class="inset">:help surround</code>命令，可以查看插件的帮助文件。</p>
 
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset">ys</code></td><td>添加环绕字符</td></tr>
+		<tr><td><code class="inset">yS</code></td><td>在新建行中添加环绕字符</td></tr>
+		<tr><td><code class="inset">cs</code></td><td>修改环绕字符</td></tr>
+		<tr><td><code class="inset">ds</code></td><td>删除环绕字符</td></tr>
+	</table>
+
+
+	<h2 class="article"><a id="Keymap">自定义快捷键</a></h2>
+	<p>如果查看surround插件的源码，那么将会发现快捷键逐一定义在<a href="https://github.com/tpope/vim-surround/blob/master/plugin/surround.vim#L599" title="surround.vim">surround.vim</a>文件中：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/plugin_surround_keymapping.png" title="plugin_surround_keymapping"><img src="https://yyq123.github.io/learn-vim/images/plugin_surround_keymapping.png" alt="plugin_vim_searchindex" width="550" height="365" /></a></p>
+	<p>也就是说，我们可以直接在vimrc配置文件中，重置或取消插件预定义的快捷键：</p>
+	<pre class="block"><code>" 不定义任何快捷键
+let g:surround_no_mappings = 1
+" 从plugin/surround.vim复制快捷键定义
+” 并按需要进行修改
+nmap ds &lt;Plug&gt;Dsurround
+nmap cs &lt;Plug&gt;Csurround
+nmap cS &lt;Plug&gt;CSurround
+nmap ys &lt;Plug&gt;Ysurround
+nmap yS &lt;Plug&gt;YSurround
+nmap yss &lt;Plug&gt;Yssurround
+nmap ySs &lt;Plug&gt;YSsurround
+nmap ySS &lt;Plug&gt;YSsurround
+" 取消不需要的快捷键
+"xmap S   &lt;Plug&gt;VSurround
+"xmap gS  &lt;Plug&gt;VgSurround
+"imap   &lt;C-S&gt; &lt;Plug&gt;Isurround
+imap    &lt;C-G&gt;s &lt;Plug&gt;Isurround
+imap    &lt;C-G&gt;S &lt;Plug&gt;ISurround
+	</code></pre>
 	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a href="http://yyq123.github.io/learn-vim/learn-vi-101-plugin-vundle.html" title="插件管理器(Vundle)">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a href="http://yyq123.github.io/learn-vim/learn-vi-102-plugin-plug.html" title="插件管理器(vim-plug)">下一篇</a>&gt;</span></p>
 </body>
 </html>
