@@ -1,0 +1,81 @@
+# surrounding practice
+# the first row is the original text and 
+# the second row is the goal or end state
+
+# remove the brackets
+# ds[ - 'd'elete 's'urrounding [
+['one', 'two']
+
+# add quote marks
+# ys3w" - Add (y) 's'urrounding 3 words with "
+print("Hit the button")
+
+I am happy. # start
+I am "happy". # goalI am happy; she is sad.
+(I am happy; she is sad.)Hello World! How are you?
+<p>Hello World! How are you?</p>I am very very happy.
+I am *very very* happy.Hello World! How are you?
+<em>Hello World</em>! How are you?The solution is x + y = z. You responded wrongly.
+The solution is `x + y = z`. You responded wrongly.# Delete"Hello World!"
+Hello **World**
+Hello (world)!
+Hello <strong>world</strong>
+Hello World<em><p>Hello World!</p></em>
+Hello World!# Change"Hello World!"
+*Hello World!*<p>Hello World!</p>
+<em>Hello World!</em># Examples
+3 + 2 + 5 + 7 / 4
+print((3 + 2 + 5 + 7) / 4)Hello World.
+"Hello World"
+"
+Hello World
+"
+
+'Hello World'
+(123+4*56)/2
+123+4*56/2
+
+<div>Hello</div>
+
+"Hello World"
+""
+<html>
+
+</html>
+
+1,2,3
+
+(1,2,3)
+[1,2,3]
+[ 1,2,3 ]
+'1,2,3'
+<p>
+Hello World
+</p>
+<p>Hello World</p>
+<h1>Hello World</h1>
+Hello 'World'!
+Hello 'World!'
+
+The solution is x + y = z. You responded wrongly.
+The solution is x + y = z. You responded wrongly.
+
+print var1, var2
+print (var1, var2)
+
+
+<p>
+The passion to save humanity is a
+cover for the desire to rule it.
+</p>
+
+Item 1
+Item 2
+Item 3
+
+<li><li>Item 1</li></li>
+<li><li>Item 2</li></li>
+<li><li>Item 3</li></li>
+
+George Bernard Shaw said, <p>"Patriotism is a pernicious, psychopathic form of idiocy."</p>
+George Bernard Shaw said, <blockquote>"Patriotism is a pernicious, psychopathic form of idiocy."</blockquote>
