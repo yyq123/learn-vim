@@ -9,44 +9,38 @@
 </head>
 <body>
 	<h1>VIM学习笔记 信息(message)</h1>
-
-	<h2 class="article"><a id=""></a></h2>
-	<p></p>
-	<p style="text-indent:2em"><code class="inset"></code></p>
-
 	<p>Vim将默认记录近200次的信息显示。</p>
+	<h2 class="article"><a id="view">查看信息</a></h2>
 	<p>使用以下命令，可以查看上一个命令的输出信息：</p>
 	<p style="text-indent:2em"><code class="inset">g&lt;</code></p>
-
+	<p>使用以下命令，在显示信息的同时，也会将其存储在信息历史（message-history）之中：</p>
+	<p style="text-indent:2em"><code class="inset">:echom "Hello World"</code></p>
 	<p>使用以下命令，可以查看所有信息：</p>
 	<p style="text-indent:2em"><code class="inset">:messages</code></p>
-
-	<p>使用以下命令，在显示信息的同时，也会将其存储在信息历史（message-history）之中。</p>
-	<p style="text-indent:2em"><code class="inset">:echom "Hello World"</code></p>
-
-	<h2 class="article"><a id=""></a></h2>
-	<p>从<a href="https://github.com/vim/vim/releases/tag/v7.4.1735" title="7.4.1735">7.4.1735</a>版本开始，可以使用以下命令清楚信息历史：</p>
-	<p style="text-indent:2em"><code class="inset">:messages clear</code></p>
-	<p>使用以下命令，可以查看更多帮助信息：</p>
-	<p style="text-indent:2em"><code class="inset">:help :messages</code></p>
-
-	<p>使用以下命令，可以查看信息使用的语言：</p>
-	<p style="text-indent:2em"><code class="inset">:language message</code></p>
-	<p>通过以下变量，也可以查看信息使用的语言：</p>
-	<p style="text-indent:2em"><code class="inset">:echo LC_MESSAGES</code></p>
-	<p>在vimrc文件中使用以下命令，可以指定信息使用中文显示：</p>
-	<p style="text-indent:2em"><code class="inset">:language message zh_CN.UTF-8</code></p>
-	<p>建议使用英文显示信息，以便在互联网上进行查找：</p>
-	<p style="text-indent:2em"><code class="inset">:language message en_US.UTF-8</code></p>
-
-	<p>假设使用<code>:messages</code>命令，可以显示以下信息：</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/message.png" title="message"><img src="https://yyq123.github.io/learn-vim/images/message.png" alt="" width="550" height="220" /></a></p>
 	<p>而使用以下命令，则可以查看最近一条报错信息（error-messages）：</p>
 	<p style="text-indent:2em"><code class="inset">:echo errmsg</code></p>
-	<p style="text-indent:2em"><code class="error">E16: Invalid range</code></p>
+	<p><code class="error">E16: Invalid range</code></p>
 
-	<h2 class="article"><a id="opt-message">'shortmess'选项</a></h2>
-	<p>'shortmess'选项有助于避免文件信息的所有  hit-enter  提示，比如用 CTRL-G 的时候。它还用于避免或减少一些其它消息。其默认值为：</p>
+	<h2 class="article"><a id="clear">清除信息</a></h2>
+	<p>从<a href="https://github.com/vim/vim/releases/tag/v7.4.1735" title="7.4.1735">7.4.1735</a>版本开始，可以使用以下命令清除信息历史：</p>
+	<p style="text-indent:2em"><code class="inset">:messages clear</code></p>
+
+	<h2 class="article"><a id="language">信息语言</a></h2>
+	<p>使用以下命令，可以查看显示信息的语言：</p>
+	<p style="text-indent:2em"><code class="inset">:language message</code></p>
+	<p>通过以下变量，也可以查看显示信息的语言：</p>
+	<p style="text-indent:2em"><code class="inset">:echo LC_MESSAGES</code></p>
+	<p>在vimrc文件中使用以下命令，可以指定信息使用中文显示：</p>
+	<p style="text-indent:2em"><code class="inset">:language message zh_CN.UTF-8</code></p>
+	<p>建议使用英文显示信息，以便在互联网上进行查找相关资源：</p>
+	<p style="text-indent:2em"><code class="inset">:language message en_US.UTF-8</code></p>
+
+	<p>使用以下命令，可以查看更多帮助信息：</p>
+	<p style="text-indent:2em"><code class="inset">:help :messages</code></p>
+
+	<h2 class="article"><a id="shortmess">'shortmess'选项</a></h2>
+	<p>'shortmess'选项，用于控制信息显示的种类和详细程度。其默认值为：</p>
 	<p style="text-indent:2em"><code class="inset">:set shormess=filnxtToOS</code></p>
 	<p>以下为主要标志位的含义（灰色行为默认值中的标志位）：</p>
 	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
@@ -57,38 +51,27 @@
 		<tr><td><code>m</code></td><td>用 "[+]" 代替 "[Modified]"</td></tr>
 		<tr style="background: #f4f4f4;"><td><code>n</code></td><td>用 "[New]" 代替 "[New File]"</td></tr>
 		<tr><td><code>r</code></td><td>用 "[RO]" 代替 "[readonly]"</td></tr>
-		<tr><td><code>w</code></td><td>用 "[w]" 代替文件写入消息的 "written"，<br />用 "[a]" 代替 ':w &gt;&gt; file' 命令的 "appended"</td></tr>
-		<tr style="background: #f4f4f4;"><td><code>x</code></td><td>用 "[dos]" 代替 "[dos format]"、<br />用 "[unix]" 代替 "[unix format]"、<br />还有用 "[mac]" 代替 "[mac format]"。</td></tr>
+		<tr><td><code>w</code></td><td>用 "[w]" 代替文件写入消息的 "written"；<br />用 "[a]" 代替 ':w &gt;&gt; file' 命令的 "appended"</td></tr>
+		<tr style="background: #f4f4f4;"><td><code>x</code></td><td>用 "[dos]" 代替 "[dos format]"；<br />用 "[unix]" 代替 "[unix format]"；<br />还有用 "[mac]" 代替 "[mac format]"</td></tr>
 		<tr><td><code>a</code></td><td>所有以上的缩写</td></tr>
-		<tr style="background: #f4f4f4;"><td><code>t</code></td><td>如果文件消息不能完整显示，则从开头截短该消息。最左列给出"&lt;"。Ex 模式忽略此标志位。</td></tr>
-		<tr style="background: #f4f4f4;"><td><code>T</code></td><td>如果其它消息不能完整显示，则从中间截短该消息。中间给出"&lt;"。Ex 模式忽略此标志位。</td></tr>
-		<tr style="background: #f4f4f4;"><td><code>o</code></td><td>后续文件的读入信息覆盖文件的写回消息 (":wn" 或打开 'autowrite'时有用)</td></tr>
+		<tr style="background: #f4f4f4;"><td><code>t</code></td><td>如果文件消息不能完整显示，则从开头截短该消息。最左列给出"&lt;"。</td></tr>
+		<tr style="background: #f4f4f4;"><td><code>T</code></td><td>如果其它消息不能完整显示，则从中间截短该消息。中间给出"&lt;"。</td></tr>
+		<tr style="background: #f4f4f4;"><td><code>o</code></td><td>后续文件的读入信息覆盖文件的写回消息 (:wn或打开autowrite时有用)</td></tr>
 		<tr style="background: #f4f4f4;"><td><code>O</code></td><td>文件的读入信息覆盖任何前面消息，包括快速修复消息 (比如，":cn")</td></tr>
-		<tr><td><code>s</code></td><td>不给出 "search hit BOTTOM, continuing at TOP" 或 "search hit TOP, continuing at BOTTOM" 消息；使用搜索计数时不在计数信息后显示 "W" (见下 S)</td></tr>
+		<tr><td><code>s</code></td><td>不显示 "search hit BOTTOM, continuing at TOP"；<br />不显示 "search hit TOP, continuing at BOTTOM"；<br />使用搜索计数时不在计数信息后显示 "W" (见下 S)</td></tr>
 		<tr style="background: #f4f4f4;"><td><code>S</code></td><td>搜索时不显示搜索计数，如 "[1/5]"</td></tr>
-		<tr><td><code></code></td><td></td></tr>
 	</table>
-
 	<p>如果不希望使用信息缩写，那么可以使用以下命令：</p>
 	<p style="text-indent:2em"><code class="inset">:set shm=</code></p>
 	<p>如果希望使用缩写，但不截短信息，那么可以使用以下命令：</p>
 	<p style="text-indent:2em"><code class="inset">:set shm=a</code></p>
 	<p>如果希望使用缩写，并在必要时截短信息，那么可以使用以下命令：</p>
 	<p style="text-indent:2em"><code class="inset">:set shm=at</code></p>
-
-	<p>这样您就可以使用<code class="inset">"+p</code>命令， 将信息输出粘贴到当前文本甚至其它应用中。</p>
-	<p>使用以下命令，可以将命令历史记录粘贴到当前文件中：</p>
-	<pre class="block"><code>:redir @+
-:set nomore
-:history
-:put +
-:set more
-:redir END</code></pre>
-	<p>其中<code class="inset">:set nomore</code>用于暂定显示&ldquo;--More--&rdquo;信息，否则在分页显示命令历史记录时，需要点击按键以继续下一页的显示。</p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
+	<p>从<a href="https://github.com/vim/vim/releases/tag/v8.1.1270" title="8.1.1270">8.1.1270</a>版本开始，在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>配置文件中增加以下设置，可以在屏幕底部，显示匹配搜索结果的总数，以及当前所处第几个匹配结果：</p>
+	<p style="text-indent:2em"><code class="inset">set shortmess-=S</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/set_shortmess_S.png" title="set_shortmess_S"><img src="https://yyq123.github.io/learn-vim/images/set_shortmess_S.png" alt="" width="500" height="42" /></a></p>
 	<p>使用以下命令，可以查看更多帮助信息：</p>
 	<p style="text-indent:2em"><code class="inset">:help 'shortmess'</code></p>
-
 
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
@@ -98,9 +81,7 @@
 		<tr><td><code class="inset">:</code></td><td></td></tr>
 		<tr><td><code class="inset">:</code></td><td></td></tr>
 	</table>
-&ldquo;&rdquo;
 
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
-
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="设置选项(set-option)" href="http://yyq123.github.io/learn-vim/learn-vi-50-SetOption.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="历史记录(history)" href="http://yyq123.github.io/learn-vim/learn-vi-46-01-History.html">下一篇</a>&gt;</span></p>
 </body>
 </html>

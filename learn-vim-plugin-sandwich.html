@@ -26,13 +26,13 @@
 	<p>在常规模式、插入模式和可视化模式下，可以分别使用<code>ys</code>和<code>S</code>命令来新增环绕字符：</p>
 	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="5">
 		<tr><th>模式</th><th>目标<br />范围</th><th>新增<br />内容</th><th>原始文本</th><th>命令</th><th>更改效果</th></tr>
-		<tr><td style="font-weight:bold; text-align:center" rowspan="8">常规模式</td><td>单词</td><td>字符</td><td>Hello <mark>W</mark>orld</td><td><code>ysiw*</code></td><td>Hello *World*</td></tr>
+		<tr><td style="font-weight:bold; text-align:center" rowspan="8">常规模式</td><td>单词</td><td>字符</td><td>Hello <mark>W</mark>orld</td><td><code>saiw*</code></td><td>Hello *World*</td></tr>
 		<tr><td>单词</td><td>标签</td><td>Hello <mark>W</mark>orld</td><td><code>saiwtstrong</code></td><td>Hello &lt;strong&gt;World&lt;/strong&gt;</td></tr>
 		<tr><td>单词</td><td>括号</td><td>print <mark>v</mark>ar1, var2</td><td><code>sa3w)</code></td><td>print (var1, var2)</td></tr>
 		<tr><td>行尾</td><td>括号</td><td>print <mark>v</mark>ar1, var2</td><td><code>sa$)</code></td><td>print (var1, var2)</td></tr>
 		<tr><td>查找</td><td>标签</td><td>William Shakespeare said, <br /><mark>"</mark>Brevity is the soul of wit."</td><td><code>saf"tem</code></td><td>William Shakespeare said, <br />&lt;em&gt;&quot;Brevity is the soul of wit.&quot;&lt;/em&gt;</td></tr>
-		<tr><td>整行</td><td>字符</td><td>Hello <mark>W</mark>orld</td><td><code>yss"</code></td><td>"Hello World"</td></tr>
-		<tr><td>整行</td><td>标签</td><td>Hello <mark>W</mark>orld</td><td><code>ysst&lt;p&gt;</code></td><td>&lt;p&gt;Hello World&lt;/p&gt;</td></tr>
+		<tr><td>整行</td><td>字符</td><td>Hello <mark>W</mark>orld</td><td><code>0sa$"</code></td><td>"Hello World"</td></tr>
+		<tr><td>整行</td><td>标签</td><td>Hello <mark>W</mark>orld</td><td><code>0sa$tp</code></td><td>&lt;p&gt;Hello World&lt;/p&gt;</td></tr>
 		<tr><td>整行</td><td>新行</td><td>Hello <mark>W</mark>orld</td><td><code>ySS"</code></td><td>"<br />Hello World<br />"</td></tr>
 		<tr><td style="font-weight:bold; text-align:center" rowspan="2">插入模式</td><td></td><td>引号</td><td></td><td><code>&lt;CTRL-g&gt;s"</code></td><td>""</td></tr>
 		<tr><td></td><td>标签</td><td></td><td><code>&lt;CTRL-g&gt;S&lt;html&gt;</code></td><td>&lt;html&gt;<br/><br/>&lt;/html&gt;</td></tr>

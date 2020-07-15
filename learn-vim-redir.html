@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 重定向(redir)</title>
+</head>
+<body>
+	<h1>VIM学习笔记 重定向(redir)</h1>
+
+	<h2 class="article"><a id="File">重定向到文件</a></h2>
+	<p>使用以下命令，在将信息输出到屏幕的同时，也会保存到指定的文件中：</p>
+	<p style="text-indent:2em"><code class="inset">:redir &gt; {file}</code></p>
+	<p>如果指定的文件以及存在，那么需要使用!参数进行强制覆盖：</p>
+	<p style="text-indent:2em"><code class="inset">:redir! &gt; {file}</code></p>
+	<p>如果希望信息被追加到文件末尾，那么可以使用以下命令：</p>
+	<p style="text-indent:2em"><code class="inset">:redir &gt;&gt; {file}</code></p>
+	<p>假设需要查询大量的信息输出（例如:version命令），或者保存调试信息，那么信息重定向就会非常有价值。</p>
+	<p>使用以下命令，可以停止信息的重定向：</p>
+	<p style="text-indent:2em"><code class="inset">:redir END</code></p>
+
+	<h2 class="article"><a id="Register">重定向到寄存器</a></h2>
+	<p>我们可以将信息输出重定至<a href="https://yyq123.github.io/learn-vim/learn-vi-12-Register.html" title="Register">寄存器</a>之中，比如剪贴板寄存器（+）、命名寄存器（a-z,A-Z）和未命名寄存器（"）。</p>
+	<p>使用以下命令，可以将信息输出重定向至剪贴板寄存器：</p>
+	<p style="text-indent:2em"><code class="inset">:redir @+</code></p>
+	<p>这样您就可以使用<code class="inset">"+p</code>命令， 将信息输出粘贴到当前文本。</p>
+	<p>使用以下命令，可以将命令历史记录粘贴到当前文件中：</p>
+	<pre class="block"><code>:redir @+
+:set nomore
+:history
+:put +
+:set more
+:redir END</code></pre>
+	<p>命令<code class="inset">:set nomore</code>用于暂定显示&ldquo;--More--&rdquo;信息，否则在分页显示命令历史记录时，需要点击按键以继续下一页的显示。</p>
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="信息(message)" href="http://yyq123.github.io/learn-vim/learn-vim-message.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="历史记录(history)" href="http://yyq123.github.io/learn-vim/learn-vi-46-01-History.html">下一篇</a>&gt;</span></p>
+
+</body>
+</html>
