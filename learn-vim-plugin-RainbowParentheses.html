@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 多重色彩括号(Rainbow Parentheses)</title>
+</head>
+<body>
+	<h1>VIM学习笔记 多重色彩括号(Rainbow Parentheses)</h1>
+	<p>在编写代码时，经常需要函数嵌套，这就会造成一行代码中会有很多括号，而变得难以阅读。我们可以使用<a style="text-weight:bold" href="http://www.vim.org/scripts/script.php?script_id=1561" title="Colors Parenthsis">Rainbow Parenthesis</a>插件或者<a href="http://www.vim.org/scripts/script.php?script_id=4176">Rainbow Parentheses Improved</a>插件，通过多种颜色来标识匹配的括号。</p>
+
+	<h2 class="article"><a id="RP-Install">安装Rainbow Parentheses</a></h2>
+	<p>推荐您使用<a href="http://yyq123.github.io/learn-vim/learn-vi-102-plugin-plug.html" title="插件管理器(vim-plug)">vim-plug</a>或<a href="http://yyq123.github.io/learn-vim/learn-vi-101-plugin-vundle.html" title="插件管理器(Vundle)">Vundle</a>等插件管理器，来安装GitHub上的<a href="https://github.com/vim-scripts/Rainbow-Parenthsis-Bundle" title="Rainbow-Parenthsis-Bundle">Rainbow Parenthsis</a>插件。</p>
+	<p>如果希望手动安装，那么首先<a style="text-weight:bold" href="https://www.vim.org/scripts/script.php?script_id=1561" title="Colors Parenthsis">下载</a>Rainbow Parenthesis；然后在vim中打开下载的vba文件；最后执行<code class="inset">:so %</code>命令以完成安装。</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/plugin_RainbowParentheses_install.png" title="plugin_RainbowParentheses_install"><img src="https://yyq123.github.io/learn-vim/images/plugin_RainbowParentheses_install.png" alt="plugin_RainbowParentheses_install" width="500" height="141" /></a></p>
+
+	<h2 class="article"><a id="RP-Config">配置Rainbow Parentheses</a></h2>
+	<p>打开<span style="font-weight:bold;">vimfiles\autoload\rainbow_parenthesis.vim</span>文件，在第66行插入以下命令，以避免Rainbow Parentheses插件运行时报错。</p>
+	<p><code class="inset">let rainbow_parenthesis#active = 0</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/plugin_RainbowParentheses_workaround1.png" title="plugin_RainbowParentheses_workaround1"><img src="https://yyq123.github.io/learn-vim/images/plugin_RainbowParentheses_workaround1.png" alt="plugin_RainbowParentheses_workaround1" /></a></p>
+	<p>将该文件第34-49行中的<em>guibg</em>部分删除，以避免Rainbow Parentheses插件改变括号的背景色。</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/plugin_RainbowParentheses_workaround2.png" title="plugin_RainbowParentheses_workaround2"><img src="https://yyq123.github.io/learn-vim/images/plugin_RainbowParentheses_workaround2.png" alt="plugin_RainbowParentheses_workaround2" width="500" height="182" /></a></p>
+
+	<h2 class="article"><a id="RP-Enable">启用Rainbow Parentheses</a></h2>
+	<p>使用以下命令，可以手工启动Rainbow Parentheses插件：</p>
+	<p style="text-indent:2em"><code class="inset">:ToggleRaibowParenthesis</code></p>
+	<p>显示效果如下图所示：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/plugin_RainbowParentheses.png" title="plugin_RainbowParentheses"><img src="https://yyq123.github.io/learn-vim/images/plugin_RainbowParentheses.png" alt="plugin_RainbowParentheses" /></a></p>
+	<p>也可以在<em>vimrc</em>文件里添加以下命令，在vim启动时自动加载Rainbow Parentheses插件：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/plugin_RainbowParentheses_load.png" title="plugin_RainbowParentheses_load"><img src="https://yyq123.github.io/learn-vim/images/plugin_RainbowParentheses_load.png" alt="plugin_RainbowParentheses_load" /></a></p>
+
+	<h2 class="article"><a id="RPI-Install">安装Rainbow Parentheses Improved</a></h2>
+	<p><a href="https://www.vim.org/scripts/script.php?script_id=4176">Rainbow Parentheses Improved</a>在以下几个方面进行了改进：不再限制括号的嵌套层数；可以分别自定义图形界面下和终端上所使用的括号颜色；甚至可以为不同类型的文件设定不同的配置；增加了中文说明。</p>
+	<p>推荐您使用<a href="http://yyq123.github.io/learn-vim/learn-vi-102-plugin-plug.html" title="插件管理器(vim-plug)">vim-plug</a>或<a href="http://yyq123.github.io/learn-vim/learn-vi-101-plugin-vundle.html" title="插件管理器(Vundle)">Vundle</a>等插件管理器，来安装GitHub上的<a href="https://github.com/luochen1990/rainbow" title="Rainbow Parentheses Improved">Rainbow Parentheses Improved</a>插件。</p>
+	<p>如果希望手动安装，那么首先，将下载到的<em>rainbow.vim</em>文件放到<em>vimfiles/plugin</em>文件夹（在linux系统里是<em>~/.vim/plugin</em>文件夹）中。然后，将以下句子，加入到你的<a href="https://yyq123.blogspot.com/2012/01/vim-vimrc.html">vimrc</a>配置文件中：</p>
+	<p style="text-indent:2em"><code class="inset">let g:rainbow_active = 1</code></p>
+
+	<h2 class="article"><a id="RPI-Enable">启用Rainbow Parentheses Improved</a></h2>
+	<p>我们可以使用以下命令，手工启动Rainbow Parentheses Improved插件：</p>
+	<p style="text-indent:2em"><code class="inset">:RainbowToggle</code></p>
+	<p>显示效果如下图所示：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/plugin_RainbowParenthesesImproved.png" title="plugin_RainbowParenthesesImproved"><img src="https://yyq123.github.io/learn-vim/images/plugin_RainbowParenthesesImproved.png" alt="" width="500" height="119" /></a></p>
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a href="http://yyq123.github.io/learn-vim/learn-vi-101-plugin-vundle.html" title="插件管理器(Vundle)">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a href="http://yyq123.github.io/learn-vim/learn-vi-102-plugin-plug.html" title="插件管理器(vim-plug)">下一篇</a>&gt;</span></p>
+</body>
+</html>

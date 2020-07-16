@@ -5,10 +5,10 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记  (Matching Parentheses)</title>
+	<title>VIM学习笔记 (Matching Pairs)</title>
 </head>
 <body>
-	<h1>VIM学习笔记  (Matching Brackets)</h1>
+	<h1>VIM学习笔记 (Match Pairs)</h1>
 
 	<h2 class="article"><a id="matchpairs">'matchpairs'选项</a></h2>
 	<p>matchpairs选项，用来控制哪些字符可以通过<code class="inset">%</code>命令进行匹配。此选项的默认值如下：</p>
@@ -25,11 +25,13 @@
 	<h2 class="article"><a id="showmatch">'showmatch'选项</a></h2>
 	<p>如果我们希望在输入括号时，光标自动跳转到与其匹配的位置，那么可以设置以下选项：</p>
 	<p style="text-indent:2em"><code class="inset">:set showmatch</code></p>
-test()
-通常情况下这个跳转持续的时间为0.5秒(半秒),我们可以用matchtime选项来控制这个时间.例如如果我们希望这个时间持续1.5秒,我们可以用下面的命令:
-:set matchtime=15
-在这里是以0.1秒为单位的.
-<p></p>
+
+	<h2 class="article"><a id="matchtime">'matchtime'选项</a></h2>
+	<p>'matchtime'选项，用于控制跳转持续的时间，其单位为0.1秒，默认值为5，即0.5秒。</p>
+	<p>如果希望将时间持续为1.5秒，那么可以使用以下命令：</p>
+	<p style="text-indent:2em"><code class="inset">:set matchtime=15</code></p>
+
+	<p></p>
 我们在Vim编辑器还可以用命令来查找未匹配的括号.如[{查找前一个未匹配的{,]{查找后一个未匹配的{.[}查找前一个未匹配的},而]}查找后一个未匹配的}.
 ])查找后一个未匹配的),而[(查找前一个未匹配的(.[#查找前一个未匹配的#if或者是#else.而]#查找后一个未匹配的同类情况.
 下面的命令可以移动一个Java方法的开头或结尾:
