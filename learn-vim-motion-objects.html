@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 在文本对象间移动(motion-object)</title>
+</head>
+<body>
+	<h1>VIM学习笔记 在文本对象间移动(motion-object)</h1>
+	<p style="color:gray; font-size:0.6em"><a href="https://www.reddit.com/r/vim/comments/366scg/reading_practical_vim_probably_the_best_figure_in/" title="Originally from Practical Vim by Drew Neal"><img src="https://yyq123.github.io/learn-vim/images/motion_Ninja.png" alt="motion_Ninja" width="550" height="205" /></a></br>&nbsp;Originally from Practical Vim by Drew Neal</p>
+	<p>使用以下命令，可以按照<a href="https://yyq123.github.io/learn-vim/learn-vi-10-TextObjects.html" title="文本对象(Text Objects)">文本对象</a>（Text Objects）为单位来快速移动；同时，对于浏览C、Java代码和HTML、Markdown等标签语言文档时，也更加友好和高效。当然，以下命令也接受[count]参数，以跳转多个对象。</p>
+
+	<h2 class="article"><a id="object-motions">按文本对象移动</a></h2>
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="5">
+		<thead>
+		<tr><th>对象</th><th>命令</th><th>描述</th></tr>
+		</thead>
+		<tbody>
+		<tr><td rowspan="2" style="text-align:center">句子</td><td style="text-align:center"><code>(</code></td><td>反向一个句子</td></tr>
+		<tr><td style="text-align:center"><code>)</code></td><td>正向一个句子</td></tr>
+		<tr><td rowspan="2" style="text-align:center">段落</td><td style="text-align:center"><code>{</code></td><td>反向一个段落</td></tr>
+		<tr><td style="text-align:center"><code>}</code></td><td>正向一个段落</td></tr>
+		<tr><td rowspan="4" style="text-align:center">小节</td><td style="text-align:center"><code>]]</code></td><td>正向一个小节或到后一个出现在首列的 '{'</td></tr>
+		<tr><td style="text-align:center"><code>][</code></td><td>一个小节或到后一个出现在首列的 '}'</td></tr>
+		<tr><td style="text-align:center"><code>[[</code></td><td>反向一个小节或到前一个出现在首列的 '{'</td></tr>
+		<tr><td style="text-align:center"><code>[]</code></td><td>反向一个小节或到前一个出现在首列的 '}'</td></tr>
+		</tbody>
+	</table>
+	<p>句子（sentence），是以 '.'、'!' 或者 '?' 结尾并紧随着一个换行符、空格或者制表符。结束标点和空白字符之间可以出现任何数量的闭括号和引号: ')'、']'、'"' 和 '''。段落和小节的边界也视为句子的边界。</p>
+	<p>段落（paragraph），是以每个空行或段落宏命令开始，段落宏由 'paragraphs' 选项里成对出现的字符所定义。它的缺省值为 "IPLPPPQPP TPHPLIPpLpItpplpipbp"，也就是宏 ".IP"、".LP"等 (这些是 nroff 宏，所以句号一定要出现在第一列)。小节边界也被视为段落边界。注意，空白行不是段落边界。</p>
+	<p>小节（section），是以每个首列出现的换页符（&lt;C-L&gt;，&lt;FF&gt;）或小节宏命令开始。小节宏由 'sections' 选项里成对出现的字符所定义。它的缺省值是 "SHNHH HUnhsh"，也就是宏 ".SH"、".NH"、".H"、".HU"、".nh" 和 ".sh"。</p>
+
+	<h2 class="article"><a id="various-motions">按其他对象移动</a></h2>
+	<p></p>
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="5">
+		<thead>
+		<tr><th>对象</th><th>命令</th><th>描述</th></tr>
+		</thead>
+		<tbody>
+		<tr><td rowspan="8" style="text-align:center">括号</td><td style="text-align:center"><code>[{</code></td><td>反向第一个的未匹配的 '{'</td></tr>
+		<tr><td style="text-align:center"><code>]{</code></td><td>正向第一个的未匹配的 '{'</td></tr>
+		<tr><td style="text-align:center"><code>[}</code></td><td>反向第一个的未匹配的 '}'</td></tr>
+		<tr><td style="text-align:center"><code>]}</code></td><td>正向第一个的未匹配的 '}'</td></tr>
+		<tr><td style="text-align:center"><code>[(</code></td><td>反向第一个的未匹配的 '('</td></tr>
+		<tr><td style="text-align:center"><code>](</code></td><td>正向第一个的未匹配的 '('</td></tr>
+		<tr><td style="text-align:center"><code>[)</code></td><td>反向第一个的未匹配的 ')'</td></tr>
+		<tr><td style="text-align:center"><code>])</code></td><td>正向第一个的未匹配的 ')'</td></tr>
+		<tr><td rowspan="4" style="text-align:center">方法<br />(method)</td><td style="text-align:center"><code>[m</code></td><td>反向第一个方法的开始处</td></tr>
+		<tr><td style="text-align:center"><code>[M</code></td><td>反向第一个方法的结束处</td></tr>
+		<tr><td style="text-align:center"><code>]m</code></td><td>正向第一个方法的开始处</td></tr>
+		<tr><td style="text-align:center"><code>]M</code></td><td>正向第一个方法的结束处</td></tr>
+		<tr><td rowspan="2" style="text-align:center">#if #else<br />#endif</td><td style="text-align:center"><code>[#</code></td><td>反向第一个未匹配的 "#if" 或 "#else"</td></tr>
+		<tr><td style="text-align:center"><code>]#</code></td><td>正向第一个未匹配的 "#else" 或 "#endif"</td></tr>
+		<tr><td rowspan="4" style="text-align:center">注释</td><td style="text-align:center"><code>[*</code></td><td rowspan="2">反向第一个注释的开始 "/*"</td></tr>
+		<tr><td style="text-align:center"><code>[/</code></td></tr>
+		<tr><td style="text-align:center"><code>]*</code></td><td rowspan="2">正向第一个注释的结束 "*/"</td></tr>
+		<tr><td style="text-align:center"><code>]/</code></td></tr>
+		</tbody>
+	</table>
+
+	<h2 class="article"><a id="examples">操作实例</a></h2>
+	<p>如果感觉以上介绍云山雾罩，那么不妨对照以下操作实例，请注意：</p>
+	<ul>
+	<li><span style="background-color: lime;">绿色</span>，标志光标初始位置；</li>
+	<li><span style="background-color: red;">红色</span>，标志光标移动到的目的位置；</li>
+	<li><span style="background-color: orange;">橙色</span>，标志光标移动的轨迹；</li>
+	<li>图片来源于<a href="https://of-vim-and-vigor.blogspot.com/2012/11/vim-motions.html" title="of-vim-and-vigor.blogspot.com">of-vim-and-vigor.blogspot.com</a></li>
+	</ul>
+	<p><a href="https://yyq123.github.io/learn-vim/images/motion_large_objects.png" title="motion_large_objects"><img src="https://yyq123.github.io/learn-vim/images/motion_large_objects.png" alt="motion_large_objects" width="500" height="1156" /></a></p>
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="移动 (Movement)" href="http://yyq123.github.io/learn-vim/learn-vi-02-Move.html.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="文本对象(Text Objects)" href="http://yyq123.github.io/learn-vim/learn-vi-10-TextObjects.html.html">下一篇</a>&gt;</span></p>
+
+</body>
+</html>

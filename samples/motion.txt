@@ -1,0 +1,22 @@
+int foo()
+{
+	return 1;
+}
+
+int bar()
+{
+	return foo();
+}
+
+
+// 注释
+class foo {
+        int method_one() {
+                body_one();
+        }
+        int method_two() {
+                body_two();
+        }
+}
+
+( this is { a test ( once more ) middle } end )

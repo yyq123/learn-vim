@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 (Zeavim)</title>
+</head>
+<body>
+	<h1>VIM学习笔记 (Zeavim)</h1>
+	<p><a href="https://zealdocs.org/" title="Zeal">Zeal</a>是开源的跨平台软件，用于离线浏览各种开发文档。Zeal使用<a href="https://kapeli.com/dash" title="Dash">Dash</a>提供的文档集（<a href="https://kapeli.com/docsets" title="Docset"></a>Docsets），涵盖近200种开发语言。</p>
+	<p><a href="https://github.com/KabbAmine/zeavim.vim" title="Zeavim">Zeavim</a>插件，可以在Vim中调用Zeal来查看文档。</p>
+
+	<p>推荐您使用<a href="http://yyq123.github.io/learn-vim/learn-vi-102-plugin-plug.html" title="插件管理器(vim-plug)">vim-plug</a>或<a href="http://yyq123.github.io/learn-vim/learn-vi-101-plugin-vundle.html" title="插件管理器(Vundle)">Vundle</a>等插件管理器，来安装GitHub上的<a href="https://github.com/KabbAmine/zeavim.vim" title="Zeavim">Zeavim</a>插件。</p>
+	<p><a href="https://github.com/KabbAmine/zeavim.vim#mapping" title="mapping">建议</a>在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>配置文件中增加以下设置，以利用<a href="http://yyq123.github.io/learn-vim/learn-vi-54-Leader.html" title="前缀键(leader)">前缀键</a>（leader）来调用Zeavim功能：</p>
+	<pre class="block"><code>nmap &lt;leader&gt;z &lt;Plug&gt;Zeavim
+vmap &lt;leader&gt;z &lt;Plug&gt;ZVVisSelection
+nmap gz &lt;Plug&gt;ZVOperator
+nmap &lt;leader&gt;&lt;leader&gt;z &lt;Plug&gt;ZVKeyDocset</code></pre>
+
+	<p>使用<kbd>&lt;leader&gt;z</kbd>快捷键或<code>:Zeavim</code>命令，将根据当前文件类型在相应的Docset中，查找当前光标下的单词；</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/plugin_zeavim_leaderZ.png" title="plugin_zeavim_leaderZ"><img src="https://yyq123.github.io/learn-vim/images/plugin_zeavim_leaderZ.png" alt="plugin_zeavim_leaderZ" width="550" height="488" /></a></p>
+	<p>使用<code>gz</code>命令，将根据当前文件类型在相应的Docset中，查找文本对象指定的关键词。例如在Vim脚本文件中，使用<code>gziw</code>命令，将在Vim Docset中查找当前光标下的单词：</p>
+	<p><a href="https://github.com/KabbAmine/zeavim.vim/raw/master/.img/zeavim.gif" title="Zeavim"><img src="https://yyq123.github.io/learn-vim/images/plugin_zeavim_550.gif" alt="Zeavim" /></a></p>
+	<p>使用<kbd>&lt;leader&gt;&lt;leader&gt;z</kbd>快捷键或<code>:Zeavim!</code>命令，可以在指定的Docset中，查找指定的关键词：</p>
+	<p><a href="https://github.com/KabbAmine/zeavim.vim/raw/master/.img/leaderLeaderZ.gif" title="Zeavim"><img src="https://yyq123.github.io/learn-vim/images/plugin_zeavim_leaderLeaderZ_550.gif" alt="Zeavim" /></a></p>
+	<p>使用以下命令，可以查看插件的帮助文件。</p>
+	<p style="text-indent:2em"><code class="inset">:help zeavim</code></p>
+
+	<p>如果不希望安装额外的插件，那么也可以直接调用Zeal<a href="https://github.com/zealdocs/zeal/#command-line" title="command-line">命令行</a>：</p>
+	<p>命令形式为"zeal docset:keyword"。例如以下命令，将在Vim文档中查找关键字"endif"</p>
+	<p style="text-indent:2em"><code class="inset">!zeal vim:endif</code></p>
+	<p>也可以定义快捷键，将根据当前文件类型在相应的Docset中，查找当前光标下的单词：</p>
+	<p style="text-indent:2em"><code class="inset">nnoremap &lt;Leader&gt;z :exec &quot;!zeal &quot; . expand(&amp;ft) . &quot;:&quot; . &quot;&lt;cword&gt;&quot;&lt;CR&gt;</code></p>
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a href="http://yyq123.github.io/learn-vim/learn-vi-101-plugin-vundle.html" title="插件管理器(Vundle)">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a href="http://yyq123.github.io/learn-vim/learn-vi-102-plugin-plug.html" title="插件管理器(vim-plug)">下一篇</a>&gt;</span></p>
+</body>
+</html>

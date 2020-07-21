@@ -67,7 +67,7 @@
 		<tr><th>目标范围</th><th>替换内容</th><th>原始文本</th><th>命令</th><th>更改效果</th></tr>
 		<tr><td>单词</td><td>引号</td><td>"Hello <mark>W</mark>orld"</td><td><code>srb'</code></td><td>'Hello World'</td></tr>
 		<tr><td>单词</td><td>标签及新行</td><td>'Hello <mark>W</mark>orld'</td><td><code>cS'&lt;p&gt;</code></td><td>&lt;p&gt;<br />Hello World<br />&lt;/p&gt;</td></tr>
-		<tr><td>单词</td><td>标签</td><td>&lt;p&gt;Hello <mark>W</mark>orld&lt;/p&gt;</td><td><code>cst&lt;h1&gt;</code></td><td>&lt;h1&gt;Hello World&lt;/h1&gt;</td></tr>
+		<tr><td>单词</td><td>标签</td><td>&lt;p&gt;Hello <mark>W</mark>orld&lt;/p&gt;</td><td><code>srtth1</code></td><td>&lt;h1&gt;Hello World&lt;/h1&gt;</td></tr>
 		<tr><td>单词</td><td>引号</td><td>Hello <mark>W</mark>orld!</td><td><code>csw'</code></td><td>Hello 'World'!</td></tr>
 		<tr><td>单词及标点</td><td>引号</td><td>Hello <mark>W</mark>orld!</td><td><code>csW'</code></td><td>Hello 'World!'</td></tr>
 		<tr><td>单词</td><td>括号</td><td>(1,<mark>2</mark>,3)</td><td><code>srb]</code></td><td>[1,2,3]</td></tr>
@@ -116,17 +116,19 @@ This is a paragraph. It has two sentences.
 	<pre class="block">Hello World</pre>
 	<p>使用以下命令：</p>
 	<p style="text-indent:2em"><code class="inset">sa$tp.class1#id1</code></p>
-	<pre class="block"><code>&lt;p class=&quot;class1&quot; id=&quot;id1&quot;&gt;Hello World&lt;/p&gt;</code></pre>
+	<pre class="block">&lt;p class=&quot;class1&quot; id=&quot;id1&quot;&gt;Hello World&lt;/p&gt;</pre>
 	<p>使用以下命令，为段落增加&lt;p&gt;标签：</p>
 	<p style="text-indent:2em"><code class="inset">sa}tp</code></p>
 
 	<h2 class="article"><a id="Keymap">自定义快捷键</a></h2>
-	<p>如果查看surround插件的源码，将会发现快捷键逐一定义在<a href="https://github.com/tpope/vim-surround/blob/master/plugin/surround.vim#L599" title="surround.vim">surround.vim</a>文件中：</p>
-	<p>也就是说，我们可以直接在vimrc配置文件中，重置或取消插件预定义的快捷键：</p>
+	<p>根据<a href="https://github.com/machakann/vim-sandwich/blob/master/doc/sandwich.txt" title="sandwich.txt">帮助文件</a>，建议在vimrc配置文件中取消当前<kbd>s</kbd>键配置：</p>
+	<p style="text-indent:2em"><code class="inset">nmap s &lt;Nop&gt;</code></p>
+	<p style="text-indent:2em"><code class="inset">xmap s &lt;Nop&gt;</code></p>
+	<p>请注意，<kbd>s</kbd>功能可以使用<kbd>cl</kbd>命令来代替。</p>
+	<p>如果频繁使用<kbd>srtt</kbd>快捷键来修改标签，那么建议映射为<kbd>srt</kbd>快捷键：</p>
+	<p style="text-indent:2em"><code class="inset">nmap srt &lt;Plug&gt;(operator-sandwich-replace)&lt;Plug&gt;(textobj-sandwich-query-a)tt</code></p>
 
-	
-	<p><a href="https://github.com/machakann/vim-sandwich/wiki/Introduce-vim-surround-keymappings" title="surround keymappings"></a>插件。可以使用surround的快捷键而死板繁琐的替代方案是，自定义快捷键来重复执行命令：</p>
-	<p style="text-indent:2em"><code class="inset">nmap &lt;C-J&gt; ysiw}lysiw{</code></p>
+	<p><a href="https://github.com/machakann/vim-sandwich/wiki/Introduce-vim-surround-keymappings" title="surround keymappings"></a>插件。
 
 	<p>使用以下命令，可以查看插件的帮助文件：</p>
 	<p style="text-indent:2em"><code class="inset">:help sandwich</code></p>
