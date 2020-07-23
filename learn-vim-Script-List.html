@@ -129,6 +129,79 @@ call sort(list)                    " re-order the elements of list alphabeticall
 call reverse(list)                 " reverse order of elements in list	
 	</code></pre>
 
+	<h2 class="article"><a id="script-list-filter">过滤列表</a></h2>
+	<p>使用 filter() 函数，可以过滤符合指定标准的成员。</p>
+The call filter() converts the string that is passed as its second argument to a piece of which it then applies to each element of the list that is passed as its first argument. I it repeatedly performseval() on its second argument. For each evaluation, it passes the n element of its first argument to the code, via the specialv:val. variableIftheresult of the evaluate code is zero (that is, false), the corresponding element is removed from the list.
+
+	<pre class="block"><code>
+let data = [-1,0,1,2,3,4,5]                           " [-1,0,1,2,3,4,5]
+let positive = filter(copy(data), 'v:val >= 0')       " 过滤掉负数
+echo positive                                         " [0,1,2,3,4,5]
+let words = ['Linux', 'Unix', 'Mac']                  "
+let nnix = filter(copy(words), 'v:val !~ ".*nix"')    " 过滤包含nix的字符串
+echo nnix                                             " ['Linux', 'Mac']
+	</code></pre>
+
+	<h2 class="article"><a id="script-list-map">列表</a></h2>
+	<p>使用 map() 函数，可以将列表中的每一个成员替换为指定的值。</p>
+map() evaluates the string passed as its second argument, passing each list element in turn, v:val. But, unlikefilter() , amap() always keeps every element of a list, replacing each value with the result of evaluating the code on that value.
+	<pre class="block"><code>
+let data = [-1,0,1,2,3,4,5]                           "
+let inc = map(copy(data), 'v:val + 1')                " 为每个成员+1
+echo inc                                              " [0,1,2,3,4,5，6]
+let words = ['Linux', 'Unix', 'Mac']                  "
+let cap = map(copy(words), 'toupper(v:val)')          " 将每个成员转换为大写
+echo cap                                              " ['LINUX', 'UNIX', 'MAC']
+	</code></pre>
+Once again, remember thatfilter() and map() modify their first argument in-place. A very common error when using them is to write something like:
+
+let squared_values = map(values, 'v:val * v:val')
+
+instead of:
+
+let squared_values = map(copy(values), 'v:val * v:val')
+
+	<h2 class="article"><a id="script-list-concatenate">列表</a></h2>
+You can concatenate lists with+ theand +=  operators, like so:
+	<pre class="block"><code>
+let activities = ['sleep', 'eat'] + ['drink']         " ['sleep', 'eat', 'drink']
+let activities += ['code']                            " ['sleep', 'eat', 'drink', 'code']
+	</code></pre>
+Remember that both sides must be lists. Don’t +=thinkas append"; you can’t use it to add a single value directly to the end of a list:
+List concatenation
+let activities += 'code'
+" Error: Wrong variable type for +=
+
+	<h2 class="article"><a id="script-list-split">列表</a></h2>
+You can extract part of a list by specifying a colon-separated range in the square bracke indexing operation. The limits of the range can be constants, variables with numeric valu numeric expression:
+	<pre class="block"><code>
+let data = [-1,0,1,2,3,4,5]                           " [-1,0,1,2,3,4,5]
+let positive = data[2:6]                              " [1,2,3,4,5]
+let week = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'] 
+let weekdays = week[1:5]
+	</code></pre>
+If you omit the starting index, the sublist automatically starts at zero; if you omit the the sublist finishes at the last element. For example, to split a list into two (near-)eq type:
+
+let middle = len(data)/2                              " middle = 3	
+let first_half = data[: middle-1]                     " same as: data[0 : middle-1]
+echo first_half                                       " [-1,0,1]
+let second_half	= data[middle :]                      " same as: data[middle : len(data)-1]
+echo first_half                                       " [2,3,4,5]
+
+A common mistake with list procedures
+
+请注意，所有列表相关的函数都将返回修改后的列表作为结果，同时参数中的列表也将被修改。
+<p>例如以下命令中的<var>unsorted_list</var>列表，也将被按倒序排序。也就是说，列表<var>unsorted_list</var>和<var>sorted_list</var>将变为包含相同内容的列表。</p>
+	<p style="text-indent:2em"><code class="inset">let sorted_list = reverse(sort(unsorted_list))</code></p>
+	<p>而通常，我们会希望返回修改后的列表，但保持原始列表不变。但是，Vimscript的列表功能并非如此。因此，需要在函数中使用copy()函数，复制原始列表作为参数，以避免其被修改：</p>
+	<p style="text-indent:2em"><code class="inset">let sorted_list = reverse(sort(<mark>copy</mark>(unsorted_list)))</code></p>
+
+
+
+
+ 
+
+
 	<h2 class="article"><a id="script-list-">列表</a></h2>
 	<pre class="block"><code>
 	</code></pre>
