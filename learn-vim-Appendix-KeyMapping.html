@@ -1,0 +1,2578 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 插件(Plugin)</title>
+    <style>
+      /* ----------------- */
+
+      a {
+        color: #000000;
+        text-decoration: none;
+      }
+
+      a:visited {
+        text-decoration: none;
+      }
+
+      a:hover {
+        /*color: #0366d6;*/
+        color: #000000; /* match adsense */
+        text-decoration: underline;
+      }
+
+      /* MIT licensed github-markdown.css */
+      /* https://github.com/sindresorhus/github-markdown-css */
+      .markdown-body {
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%;
+        line-height: 1.5;
+        color: #24292e;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        font-size: 16px;
+        line-height: 1.5;
+        word-wrap: break-word;
+      }
+      .markdown-body .pl-c {
+        color: #6a737d;
+      }
+      .markdown-body .pl-c1,
+      .markdown-body .pl-s .pl-v {
+        color: #005cc5;
+      }
+      .markdown-body .pl-e,
+      .markdown-body .pl-en {
+        color: #6f42c1;
+      }
+      .markdown-body .pl-smi,
+      .markdown-body .pl-s .pl-s1 {
+        color: #24292e;
+      }
+      .markdown-body .pl-ent {
+        color: #22863a;
+      }
+      .markdown-body .pl-k {
+        color: #d73a49;
+      }
+      .markdown-body .pl-s,
+      .markdown-body .pl-pds,
+      .markdown-body .pl-s .pl-pse .pl-s1,
+      .markdown-body .pl-sr,
+      .markdown-body .pl-sr .pl-cce,
+      .markdown-body .pl-sr .pl-sre,
+      .markdown-body .pl-sr .pl-sra {
+        color: #032f62;
+      }
+      .markdown-body .pl-v,
+      .markdown-body .pl-smw {
+        color: #e36209;
+      }
+      .markdown-body .pl-bu {
+        color: #b31d28;
+      }
+      .markdown-body .pl-ii {
+        color: #fafbfc;
+        background-color: #b31d28;
+      }
+      .markdown-body .pl-c2 {
+        color: #fafbfc;
+        background-color: #d73a49;
+      }
+      .markdown-body .pl-c2::before {
+        content: "^M";
+      }
+      .markdown-body .pl-sr .pl-cce {
+        font-weight: bold;
+        color: #22863a;
+      }
+      .markdown-body .pl-ml {
+        color: #735c0f;
+      }
+      .markdown-body .pl-mh,
+      .markdown-body .pl-mh .pl-en,
+      .markdown-body .pl-ms {
+        font-weight: bold;
+        color: #005cc5;
+      }
+      .markdown-body .pl-mi {
+        font-style: italic;
+        color: #24292e;
+      }
+      .markdown-body .pl-mb {
+        font-weight: bold;
+        color: #24292e;
+      }
+      .markdown-body .pl-md {
+        color: #b31d28;
+        background-color: #ffeef0;
+      }
+      .markdown-body .pl-mi1 {
+        color: #22863a;
+        background-color: #f0fff4;
+      }
+      .markdown-body .pl-mc {
+        color: #e36209;
+        background-color: #ffebda;
+      }
+      .markdown-body .pl-mi2 {
+        color: #f6f8fa;
+        background-color: #005cc5;
+      }
+      .markdown-body .pl-mdr {
+        font-weight: bold;
+        color: #6f42c1;
+      }
+      .markdown-body .pl-ba {
+        color: #586069;
+      }
+      .markdown-body .pl-sg {
+        color: #959da5;
+      }
+      .markdown-body .pl-corl {
+        text-decoration: underline;
+        color: #032f62;
+      }
+      .markdown-body .octicon {
+        display: inline-block;
+        vertical-align: text-top;
+        fill: currentColor;
+      }
+      .markdown-body a {
+        background-color: transparent;
+      }
+      .markdown-body a:active,
+      .markdown-body a:hover {
+        outline-width: 0;
+      }
+      .markdown-body strong {
+        font-weight: inherit;
+      }
+      .markdown-body strong {
+        font-weight: bolder;
+      }
+      .markdown-body h1 {
+        font-size: 2em;
+        margin: 0.67em 0;
+      }
+      .markdown-body img {
+        border-style: none;
+      }
+      .markdown-body code,
+      .markdown-body kbd,
+      .markdown-body pre {
+        font-family: monospace, monospace;
+        font-size: 1em;
+      }
+      .markdown-body hr {
+        box-sizing: content-box;
+        height: 0;
+        overflow: visible;
+      }
+      .markdown-body input {
+        font: inherit;
+        margin: 0;
+      }
+      .markdown-body input {
+        overflow: visible;
+      }
+      .markdown-body [type="checkbox"] {
+        box-sizing: border-box;
+        padding: 0;
+      }
+      .markdown-body * {
+        box-sizing: border-box;
+      }
+      .markdown-body input {
+        font-family: inherit;
+        font-size: inherit;
+        line-height: inherit;
+      }
+      .markdown-body a {
+        color: #0366d6;
+        text-decoration: none;
+      }
+      .markdown-body a:hover {
+        text-decoration: underline;
+      }
+      .markdown-body strong {
+        font-weight: 600;
+      }
+      .markdown-body hr {
+        height: 0;
+        margin: 15px 0;
+        overflow: hidden;
+        background: transparent;
+        border: 0;
+        border-bottom: 1px solid #dfe2e5;
+      }
+      .markdown-body hr::before {
+        display: table;
+        content: "";
+      }
+      .markdown-body hr::after {
+        display: table;
+        clear: both;
+        content: "";
+      }
+      .markdown-body table {
+        border-spacing: 0;
+        border-collapse: collapse;
+      }
+      .markdown-body td,
+      .markdown-body th {
+        padding: 0;
+      }
+      .markdown-body h1,
+      .markdown-body h2,
+      .markdown-body h3,
+      .markdown-body h4,
+      .markdown-body h5,
+      .markdown-body h6 {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+      .markdown-body h1 {
+        font-size: 32px;
+        font-weight: 600;
+      }
+      .markdown-body h2 {
+        font-size: 24px;
+        font-weight: 600;
+      }
+      .markdown-body h3 {
+        font-size: 20px;
+        font-weight: 600;
+      }
+      .markdown-body h4 {
+        font-size: 16px;
+        font-weight: 600;
+      }
+      .markdown-body h5 {
+        font-size: 14px;
+        font-weight: 600;
+      }
+      .markdown-body h6 {
+        font-size: 12px;
+        font-weight: 600;
+      }
+      .markdown-body p {
+        margin-top: 0;
+        margin-bottom: 10px;
+      }
+      .markdown-body blockquote {
+        margin: 0;
+      }
+      .markdown-body ul,
+      .markdown-body ol {
+        padding-left: 0;
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+      .markdown-body ol ol,
+      .markdown-body ul ol {
+        list-style-type: lower-roman;
+      }
+      .markdown-body ul ul ol,
+      .markdown-body ul ol ol,
+      .markdown-body ol ul ol,
+      .markdown-body ol ol ol {
+        list-style-type: lower-alpha;
+      }
+      .markdown-body dd {
+        margin-left: 0;
+      }
+      .markdown-body code {
+        font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+        font-size: 12px;
+      }
+      .markdown-body pre {
+        margin-top: 0;
+        margin-bottom: 0;
+        font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+        font-size: 12px;
+      }
+      .markdown-body .octicon {
+        vertical-align: text-bottom;
+      }
+      .markdown-body .pl-0 {
+        padding-left: 0 !important;
+      }
+      .markdown-body .pl-1 {
+        padding-left: 4px !important;
+      }
+      .markdown-body .pl-2 {
+        padding-left: 8px !important;
+      }
+      .markdown-body .pl-3 {
+        padding-left: 16px !important;
+      }
+      .markdown-body .pl-4 {
+        padding-left: 24px !important;
+      }
+      .markdown-body .pl-5 {
+        padding-left: 32px !important;
+      }
+      .markdown-body .pl-6 {
+        padding-left: 40px !important;
+      }
+      .markdown-body::before {
+        display: table;
+        content: "";
+      }
+      .markdown-body::after {
+        display: table;
+        clear: both;
+        content: "";
+      }
+      .markdown-body>*:first-child {
+        margin-top: 0 !important;
+      }
+      .markdown-body>*:last-child {
+        margin-bottom: 0 !important;
+      }
+      .markdown-body a:not([href]) {
+        color: inherit;
+        text-decoration: none;
+      }
+      .markdown-body .anchor {
+        float: left;
+        padding-right: 4px;
+        margin-left: -20px;
+        line-height: 1;
+      }
+      .markdown-body .anchor:focus {
+        outline: none;
+      }
+      .markdown-body p,
+      .markdown-body blockquote,
+      .markdown-body ul,
+      .markdown-body ol,
+      .markdown-body dl,
+      .markdown-body table,
+      .markdown-body pre {
+        margin-top: 0;
+        margin-bottom: 16px;
+      }
+      .markdown-body hr {
+        height: 0.25em;
+        padding: 0;
+        margin: 24px 0;
+        background-color: #e1e4e8;
+        border: 0;
+      }
+      .markdown-body blockquote {
+        padding: 0 1em;
+        color: #6a737d;
+        border-left: 0.25em solid #dfe2e5;
+      }
+      .markdown-body blockquote>:first-child {
+        margin-top: 0;
+      }
+      .markdown-body blockquote>:last-child {
+        margin-bottom: 0;
+      }
+      .markdown-body kbd {
+        display: inline-block;
+        padding: 3px 5px;
+        font-size: 11px;
+        line-height: 10px;
+        color: #444d56;
+        vertical-align: middle;
+        background-color: #fafbfc;
+        border: solid 1px #c6cbd1;
+        border-bottom-color: #959da5;
+        border-radius: 3px;
+        box-shadow: inset 0 -1px 0 #959da5;
+      }
+      .markdown-body h1,
+      .markdown-body h2,
+      .markdown-body h3,
+      .markdown-body h4,
+      .markdown-body h5,
+      .markdown-body h6 {
+        margin-top: 24px;
+        margin-bottom: 16px;
+        font-weight: 600;
+        line-height: 1.25;
+      }
+      .markdown-body h1 .octicon-link,
+      .markdown-body h2 .octicon-link,
+      .markdown-body h3 .octicon-link,
+      .markdown-body h4 .octicon-link,
+      .markdown-body h5 .octicon-link,
+      .markdown-body h6 .octicon-link {
+        color: #1b1f23;
+        vertical-align: middle;
+        visibility: hidden;
+      }
+      .markdown-body h1:hover .anchor,
+      .markdown-body h2:hover .anchor,
+      .markdown-body h3:hover .anchor,
+      .markdown-body h4:hover .anchor,
+      .markdown-body h5:hover .anchor,
+      .markdown-body h6:hover .anchor {
+        text-decoration: none;
+      }
+      .markdown-body h1:hover .anchor .octicon-link,
+      .markdown-body h2:hover .anchor .octicon-link,
+      .markdown-body h3:hover .anchor .octicon-link,
+      .markdown-body h4:hover .anchor .octicon-link,
+      .markdown-body h5:hover .anchor .octicon-link,
+      .markdown-body h6:hover .anchor .octicon-link {
+        visibility: visible;
+      }
+      .markdown-body h1 {
+        padding-bottom: 0.3em;
+        font-size: 2em;
+        border-bottom: 1px solid #eaecef;
+      }
+      .markdown-body h2 {
+        padding-bottom: 0.3em;
+        font-size: 1.5em;
+        border-bottom: 1px solid #eaecef;
+      }
+      .markdown-body h3 {
+        font-size: 1.25em;
+      }
+      .markdown-body h4 {
+        font-size: 1em;
+      }
+      .markdown-body h5 {
+        font-size: 0.875em;
+      }
+      .markdown-body h6 {
+        font-size: 0.85em;
+        color: #6a737d;
+      }
+      .markdown-body ul,
+      .markdown-body ol {
+        padding-left: 2em;
+      }
+      .markdown-body ul ul,
+      .markdown-body ul ol,
+      .markdown-body ol ol,
+      .markdown-body ol ul {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+      .markdown-body li {
+        word-wrap: break-all;
+      }
+      .markdown-body li>p {
+        margin-top: 16px;
+      }
+      .markdown-body li+li {
+        margin-top: 0.25em;
+      }
+      .markdown-body dl {
+        padding: 0;
+      }
+      .markdown-body dl dt {
+        padding: 0;
+        margin-top: 16px;
+        font-size: 1em;
+        font-style: italic;
+        font-weight: 600;
+      }
+      .markdown-body dl dd {
+        padding: 0 16px;
+        margin-bottom: 16px;
+      }
+      .markdown-body table {
+        display: block;
+        width: 100%;
+        overflow: auto;
+      }
+      .markdown-body table th {
+        font-weight: 600;
+      }
+      .markdown-body table th,
+      .markdown-body table td {
+        padding: 6px 13px;
+        border: 1px solid #dfe2e5;
+      }
+      .markdown-body table tr {
+        background-color: #fff;
+        border-top: 1px solid #c6cbd1;
+      }
+      .markdown-body table tr:nth-child(2n) {
+        background-color: #f6f8fa;
+      }
+      .markdown-body img {
+        max-width: 100%;
+        box-sizing: content-box;
+        background-color: #fff;
+      }
+      .markdown-body img[align=right] {
+        padding-left: 20px;
+      }
+      .markdown-body img[align=left] {
+        padding-right: 20px;
+      }
+      .markdown-body code {
+        padding: 0.2em 0.4em;
+        margin: 0;
+        font-size: 85%;
+        background-color: rgba(27,31,35,0.05);
+        border-radius: 3px;
+      }
+      .markdown-body pre {
+        word-wrap: normal;
+      }
+      .markdown-body pre>code {
+        padding: 0;
+        margin: 0;
+        font-size: 100%;
+        word-break: normal;
+        white-space: pre;
+        background: transparent;
+        border: 0;
+      }
+      .markdown-body .highlight {
+        margin-bottom: 16px;
+      }
+      .markdown-body .highlight pre {
+        margin-bottom: 0;
+        word-break: normal;
+      }
+      .markdown-body .highlight pre,
+      .markdown-body pre {
+        padding: 16px;
+        overflow: auto;
+        font-size: 85%;
+        line-height: 1.45;
+        background-color: #f6f8fa;
+        border-radius: 3px;
+      }
+      .markdown-body pre code {
+        display: inline;
+        max-width: auto;
+        padding: 0;
+        margin: 0;
+        overflow: visible;
+        line-height: inherit;
+        word-wrap: normal;
+        background-color: transparent;
+        border: 0;
+      }
+      .markdown-body .full-commit .btn-outline:not(:disabled):hover {
+        color: #005cc5;
+        border-color: #005cc5;
+      }
+      .markdown-body kbd {
+        display: inline-block;
+        padding: 3px 5px;
+        font: 11px "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+        line-height: 10px;
+        color: #444d56;
+        vertical-align: middle;
+        background-color: #fafbfc;
+        border: solid 1px #d1d5da;
+        border-bottom-color: #c6cbd1;
+        border-radius: 3px;
+        box-shadow: inset 0 -1px 0 #c6cbd1;
+      }
+      .markdown-body :checked+.radio-label {
+        position: relative;
+        z-index: 1;
+        border-color: #0366d6;
+      }
+      .markdown-body .task-list-item {
+        list-style-type: none;
+      }
+      .markdown-body .task-list-item+.task-list-item {
+        margin-top: 3px;
+      }
+      .markdown-body .task-list-item input {
+        margin: 0 0.2em 0.25em -1.6em;
+        vertical-align: middle;
+      }
+      .markdown-body hr {
+        border-bottom-color: #eee;
+      }
+      /* github-markdown.css overrides */
+      .markdown-body h2 {
+        margin-bottom: 0;
+        margin-top: 0;
+      }
+
+      .hll { background-color: #ffffcc }
+      .c { color: #008000 } /* Comment */
+      .err { border: 1px solid #FF0000 } /* Error */
+      .k { color: #0000ff } /* Keyword */
+      .cm { color: #008000 } /* Comment.Multiline */
+      .cp { color: #0000ff } /* Comment.Preproc */
+      .c1 { color: #008000 } /* Comment.Single */
+      .cs { color: #008000 } /* Comment.Special */
+      .ge { font-style: italic } /* Generic.Emph */
+      .gh { font-weight: bold } /* Generic.Heading */
+      .gp { font-weight: bold } /* Generic.Prompt */
+      .gs { font-weight: bold } /* Generic.Strong */
+      .gu { font-weight: bold } /* Generic.Subheading */
+      .kc { color: #0000ff } /* Keyword.Constant */
+      .kd { color: #0000ff } /* Keyword.Declaration */
+      .kn { color: #0000ff } /* Keyword.Namespace */
+      .kp { color: #0000ff } /* Keyword.Pseudo */
+      .kr { color: #0000ff } /* Keyword.Reserved */
+      .kt { color: #2b91af } /* Keyword.Type */
+      .s { color: #a31515 } /* Literal.String */
+      .nc { color: #2b91af } /* Name.Class */
+      .ow { color: #0000ff } /* Operator.Word */
+      .sb { color: #a31515 } /* Literal.String.Backtick */
+      .sc { color: #a31515 } /* Literal.String.Char */
+      .sd { color: #a31515 } /* Literal.String.Doc */
+      .s2 { color: #a31515 } /* Literal.String.Double */
+      .se { color: #a31515 } /* Literal.String.Escape */
+      .sh { color: #a31515 } /* Literal.String.Heredoc */
+      .si { color: #a31515 } /* Literal.String.Interpol */
+      .sx { color: #a31515 } /* Literal.String.Other */
+      .sr { color: #a31515 } /* Literal.String.Regex */
+      .s1 { color: #a31515 } /* Literal.String.Single */
+      .ss { color: #a31515 } /* Literal.String.Symbol */
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="markdown-body">
+
+<h1>
+<a id="rafael-bodills-neovim-config" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#rafael-bodills-neovim-config" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Rafael Bodill's Neo/vim Config</h1>
+<p>Lean mean Neo/vim machine, 30-45ms startup time.</p>
+<p>Best with <a href="https://github.com/neovim/neovim" rel="nofollow">Neovim</a> or <a href="https://github.com/vim/vim" rel="nofollow">Vim8</a> and <code>python3</code> enabled.</p>
+<details>
+  <summary>
+    <strong>Table of Contents</strong>
+    <i>(🔎 Click to expand/collapse)</i>
+  </summary>
+
+<ul>
+<li><a href="https://awesomeopensource.com/project/rafi/vim-config#features">Features</a></li>
+<li><a href="https://awesomeopensource.com/project/rafi/vim-config#screenshot">Screenshot</a></li>
+<li><a href="https://awesomeopensource.com/project/rafi/vim-config#prerequisites">Prerequisites</a></li>
+<li><a href="https://awesomeopensource.com/project/rafi/vim-config#install">Install</a></li>
+<li><a href="https://awesomeopensource.com/project/rafi/vim-config#language-server-protocol-lsp">Language-Server Protocol (LSP)</a></li>
+<li>
+<a href="https://awesomeopensource.com/project/rafi/vim-config#upgrade">Upgrade</a>
+<ul>
+<li><a href="https://awesomeopensource.com/project/rafi/vim-config#recommended-fonts">Recommended Fonts</a></li>
+<li><a href="https://awesomeopensource.com/project/rafi/vim-config#recommended-linters">Recommended Linters</a></li>
+<li><a href="https://awesomeopensource.com/project/rafi/vim-config#recommended-tools">Recommended Tools</a></li>
+</ul>
+</li>
+<li><a href="https://awesomeopensource.com/project/rafi/vim-config#user-custom-config">User Custom Config</a></li>
+<li><a href="https://awesomeopensource.com/project/rafi/vim-config#structure">Structure</a></li>
+<li><a href="https://awesomeopensource.com/project/rafi/vim-config#plugin-highlights">Plugin Highlights</a></li>
+<li>
+<a href="https://awesomeopensource.com/project/rafi/vim-config#plugins-included">Plugins Included</a>
+<ul>
+<li><a href="https://awesomeopensource.com/project/rafi/vim-config#non-lazy-loaded-plugins">Non Lazy-Loaded Plugins</a></li>
+<li>
+<a href="https://awesomeopensource.com/project/rafi/vim-config#lazy-loaded-plugins">Lazy-Loaded Plugins</a>
+<ul>
+<li><a href="https://awesomeopensource.com/project/rafi/vim-config#language">Language</a></li>
+<li><a href="https://awesomeopensource.com/project/rafi/vim-config#commands">Commands</a></li>
+<li><a href="https://awesomeopensource.com/project/rafi/vim-config#interface">Interface</a></li>
+<li><a href="https://awesomeopensource.com/project/rafi/vim-config#completion--code-analysis">Completion &amp; Code-Analysis</a></li>
+<li><a href="https://awesomeopensource.com/project/rafi/vim-config#denite">Denite</a></li>
+<li><a href="https://awesomeopensource.com/project/rafi/vim-config#operators--text-objects">Operators &amp; Text Objects</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<a href="https://awesomeopensource.com/project/rafi/vim-config#custom-key-mappings">Custom Key-mappings</a>
+<ul>
+<li><a href="https://awesomeopensource.com/project/rafi/vim-config#navigation">Navigation</a></li>
+<li><a href="https://awesomeopensource.com/project/rafi/vim-config#file-operations">File Operations</a></li>
+<li><a href="https://awesomeopensource.com/project/rafi/vim-config#edit">Edit</a></li>
+<li><a href="https://awesomeopensource.com/project/rafi/vim-config#search--replace">Search &amp; Replace</a></li>
+<li><a href="https://awesomeopensource.com/project/rafi/vim-config#clipboard">Clipboard</a></li>
+<li><a href="https://awesomeopensource.com/project/rafi/vim-config#command--history">Command &amp; History</a></li>
+<li><a href="https://awesomeopensource.com/project/rafi/vim-config#editor-ui">Editor UI</a></li>
+<li><a href="https://awesomeopensource.com/project/rafi/vim-config#custom-tools--plugins">Custom Tools &amp; Plugins</a></li>
+<li><a href="https://awesomeopensource.com/project/rafi/vim-config#window-management">Window Management</a></li>
+<li><a href="https://awesomeopensource.com/project/rafi/vim-config#git-version-control">Git Version Control</a></li>
+<li><a href="https://awesomeopensource.com/project/rafi/vim-config#plugin-denite">Plugin: Denite</a></li>
+<li><a href="https://awesomeopensource.com/project/rafi/vim-config#plugin-defx">Plugin: Defx</a></li>
+<li><a href="https://awesomeopensource.com/project/rafi/vim-config#plugin-asyncomplete-and-emmet">Plugin: Asyncomplete and Emmet</a></li>
+<li><a href="https://awesomeopensource.com/project/rafi/vim-config#plugin-signature">Plugin: Signature</a></li>
+</ul>
+</li>
+<li><a href="https://awesomeopensource.com/project/rafi/vim-config#credits--contribution">Credits &amp; Contribution</a></li>
+</ul>
+
+</details>
+<h2>
+<a id="features" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Features</h2>
+<ul>
+<li>Fast startup time</li>
+<li>Robust, yet light-weight</li>
+<li>Lazy-load 95% of plugins with <a href="https://github.com/Shougo/dein.vim" rel="nofollow">Shougo/dein.vim</a>
+</li>
+<li>Custom side-menu (try it out! <kbd>Space</kbd>+<kbd>l</kbd>)</li>
+<li>Custom context-menu (try it! <kbd>;</kbd>+<kbd>c</kbd>)</li>
+<li>Modular configuration (see <a href="https://awesomeopensource.com/project/rafi/vim-config#structure">structure</a>)</li>
+<li>Auto-complete <a href="https://github.com/prabirshrestha/asyncomplete.vim" rel="nofollow">prabirshrestha/asyncomplete.vim</a> extensive setup</li>
+<li>
+<a href="https://github.com/Shougo/denite.nvim" rel="nofollow">Shougo/denite.nvim</a> centric work-flow (lists)</li>
+<li>Structure view with <a href="https://github.com/liuchengxu/vista.vim" rel="nofollow">liuchengxu/vista.vim</a>
+</li>
+<li>Open SCM detailed URL in OS browser</li>
+<li>Light-weight but informative status/tabline</li>
+<li>Easy customizable theme</li>
+<li>Premium color-schemes</li>
+<li>Central location for tags and sessions</li>
+</ul>
+<h2>
+<a id="screenshot" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#screenshot" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Screenshot</h2>
+<p><a href="http://rafi.io/static/img/project/vim-config/features.png" target="_blank" rel="nofollow"><img src="./Vim Config_files/features.png" alt="Vim screenshot" style="max-width:100%;"></a></p>
+<h2>
+<a id="prerequisites" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#prerequisites" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Prerequisites</h2>
+<ul>
+<li>Python 3 (<code>brew install python</code>)</li>
+<li>Neovim or Vim (<code>brew install neovim</code> and/or <code>brew install vim</code>)</li>
+</ul>
+<h2>
+<a id="install" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#install" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Install</h2>
+<ul>
+<a id="recommended-fonts" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#recommended-fonts" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Recommended Fonts</h3>
+<ul>
+<li>Any of the <a href="https://www.nerdfonts.com/" rel="nofollow">Nerd Fonts</a>
+</li>
+</ul>
+<p>On macOS with Homebrew, choose one of the <a href="https://www.nerdfonts.com/" rel="nofollow">Nerd Fonts</a>,
+for example, to install the <a href="https://sourcefoundry.org/hack/" rel="nofollow">Hack</a> font:</p>
+<pre lang="bash" class="highlight-bash">brew tap homebrew/cask-fonts
+brew search nerd-font
+brew cask <span class="nb">install </span>font-hack-nerd-font
+brew cask <span class="nb">install </span>font-iosevka-nerd-font-mono
+brew cask <span class="nb">install </span>font-jetbrains-mono
+brew cask <span class="nb">install </span>font-fira-code
+</pre>
+<h3>
+<a id="recommended-linters" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#recommended-linters" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Recommended Linters</h3>
+<h3>
+<a id="recommended-tools" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#recommended-tools" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Recommended Tools</h3>
+<h2>
+<a id="user-custom-config" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#user-custom-config" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>User Custom Config</h2>
+<h2>
+<a id="structure" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#structure" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Structure</h2>
+<ul>
+<li>
+<a href="https://github.com/rafi/vim-config/blob/master/config" rel="nofollow">config/</a> - Configuration
+<ul>
+<li>
+<a href="https://github.com/rafi/vim-config/blob/master/config/plugins" rel="nofollow">plugins/</a> - Plugin configurations
+<ul>
+<li>
+<a href="https://github.com/rafi/vim-config/blob/master/config/plugins/all.vim" rel="nofollow">all.vim</a> - Plugin mappings</li>
+<li><a href="https://github.com/rafi/vim-config/blob/master/config/plugins" rel="nofollow">…</a></li>
+</ul>
+</li>
+<li>
+<a href="https://github.com/rafi/vim-config/blob/master/config/filetype.vim" rel="nofollow">filetype.vim</a> - Language behavior</li>
+<li>
+<a href="https://github.com/rafi/vim-config/blob/master/config/general.vim" rel="nofollow">general.vim</a> - General configuration</li>
+<li>
+<strong>local.plugins.yaml</strong> - Custom user plugins</li>
+<li>
+<strong>local.vim</strong> - Custom user settings</li>
+<li>
+<a href="https://github.com/rafi/vim-config/blob/master/config/mappings.vim" rel="nofollow">mappings.vim</a> - Key-mappings</li>
+<li>
+<a href="https://github.com/rafi/vim-config/blob/master/config/plugins.yaml" rel="nofollow">plugins.yaml</a> - My favorite <em><strong>Plugins!</strong></em>
+</li>
+<li>
+<a href="https://github.com/rafi/vim-config/blob/master/config/terminal.vim" rel="nofollow">terminal.vim</a> - Terminal configuration</li>
+<li>
+<a href="https://github.com/rafi/vim-config/blob/master/config/vimrc" rel="nofollow">vimrc</a> - Initialization</li>
+</ul>
+</li>
+<li>
+<a href="https://github.com/rafi/vim-config/blob/master/ftplugin" rel="nofollow">ftplugin/</a> - Language specific custom settings</li>
+<li>
+<a href="https://github.com/rafi/vim-config/blob/master/plugin" rel="nofollow">plugin/</a> - Customized small plugins</li>
+<li>
+<a href="https://github.com/rafi/vim-config/blob/master/snippets" rel="nofollow">snippets/</a> - Personal code snippets</li>
+<li>
+<a href="https://github.com/rafi/vim-config/blob/master/themes" rel="nofollow">themes/</a> - Colorscheme overrides</li>
+<li>
+<a href="https://github.com/rafi/vim-config/blob/master/filetype.vim" rel="nofollow">filetype.vim</a> - Custom filetype detection</li>
+</ul>
+<h2>
+<a id="plugin-highlights" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#plugin-highlights" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Plugin Highlights</h2>
+<ul>
+<li>Plugin management with cache and lazy loading for speed</li>
+<li>Auto-completion with Language-Server Protocol (LSP)</li>
+<li>Project-aware tabs and labels</li>
+<li>Defx as file-manager + Git status icons</li>
+<li>Extensive language extensions library</li>
+</ul>
+<h2>
+<a id="plugins-included" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#plugins-included" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Plugins Included</h2>
+<details open="">
+  <summary><strong>List</strong> <i>(🔎 Click to expand/collapse)</i></summary>
+<h3>
+<a id="non-lazy-loaded-plugins" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#non-lazy-loaded-plugins" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Non Lazy-Loaded Plugins</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/rafi/awesome-vim-colorschemes" rel="nofollow">rafi/awesome-colorschemes</a></td>
+<td>Awesome color-schemes</td>
+</tr>
+<tr>
+<td><a href="https://github.com/itchyny/vim-parenmatch" rel="nofollow">itchyny/vim-parenmatch</a></td>
+<td>Efficient alternative to the standard matchparen plugin</td>
+</tr>
+<tr>
+<td><a href="https://github.com/thinca/vim-localrc" rel="nofollow">thinca/vim-localrc</a></td>
+<td>Enable configuration file of each directory</td>
+</tr>
+<tr>
+<td><a href="https://github.com/romainl/vim-cool" rel="nofollow">romainl/vim-cool</a></td>
+<td>Simple plugin that makes hlsearch more useful</td>
+</tr>
+<tr>
+<td><a href="https://github.com/sgur/vim-editorconfig" rel="nofollow">sgur/vim-editorconfig</a></td>
+<td>EditorConfig plugin written entirely in Vimscript</td>
+</tr>
+<tr>
+<td><a href="https://github.com/christoomey/vim-tmux-navigator" rel="nofollow">christoomey/tmux-navigator</a></td>
+<td>Seamless navigation between tmux panes and vim splits</td>
+</tr>
+<tr>
+<td><a href="https://github.com/tpope/vim-sleuth" rel="nofollow">tpope/vim-sleuth</a></td>
+<td>Heuristically set buffer indent options</td>
+</tr>
+<tr>
+<td><a href="" title=""></a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2>
+<a id="custom-key-mappings" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#custom-key-mappings" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Custom Key-mappings</h2>
+<p>Note that,</p>
+<ul>
+<li>
+<strong>Leader</strong> key set as <kbd>Space</kbd>
+</li>
+<li>
+<strong>Local-Leader</strong> key set as <kbd>;</kbd> and used for navigation and search
+(Denite and Defx)</li>
+<li>Disable <kbd>←</kbd> <kbd>↑</kbd> <kbd>→</kbd> <kbd>↓</kbd> in normal mode by enabling <code>g:elite_mode</code> in <code>.vault.vim</code>
+</li>
+</ul>
+<details open="">
+  <summary>
+    <strong>Key-mappings</strong>
+    <i>(🔎 Click to expand/collapse)</i>
+  </summary>
+Modes: 𝐍=normal 𝐕=visual 𝐒=select 𝐈=insert 𝐂=command
+<h3>
+<a id="navigation" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#navigation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Navigation</h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th align="center">Mode</th>
+<th>Action</th>
+<th>Plugin or Mapping</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<kbd>j</kbd> / <kbd>k</kbd>
+</td>
+<td align="center">𝐍 𝐕</td>
+<td>Cursor moves through display-lines</td>
+<td>
+<code>g</code> <code>j/k</code>
+</td>
+</tr>
+<tr>
+<td>
+<kbd>g</kbd>+<kbd>j</kbd> / <kbd>k</kbd>
+</td>
+<td align="center">𝐍 𝐕 𝐒</td>
+<td>Jump to edge upward/downward</td>
+<td><a href="https://github.com/haya14busa/vim-edgemotion" rel="nofollow">haya14busa/vim-edgemotion</a></td>
+</tr>
+<tr>
+<td>
+<kbd>gh</kbd> / <kbd>gl</kbd>
+</td>
+<td align="center">𝐍 𝐕</td>
+<td>Easier line-wise movement</td>
+<td>
+<code>g</code> <code>^/$</code>
+</td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>Space</kbd>
+</td>
+<td align="center">𝐍 𝐕</td>
+<td>Toggle visual-line mode</td>
+<td>
+<code>V</code> / <kbd>Escape</kbd>
+</td>
+</tr>
+<tr>
+<td>
+<kbd>v</kbd> / <kbd>V</kbd>
+</td>
+<td align="center">𝐕</td>
+<td>Expand/reduce selection</td>
+<td><a href="https://github.com/terryma/vim-expand-region" rel="nofollow">terryma/vim-expand-region</a></td>
+</tr>
+<tr>
+<td>
+<kbd>zl</kbd> / <kbd>zh</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Scroll horizontally and vertically wider</td>
+<td>
+<code>z4</code> <code>l/h</code>
+</td>
+</tr>
+<tr>
+<td>
+<kbd>Ctrl</kbd>+<kbd>j</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Move to split below</td>
+<td><a href="https://github.com/christoomey/vim-tmux-navigator" rel="nofollow">christoomey/tmux-navigator</a></td>
+</tr>
+<tr>
+<td>
+<kbd>Ctrl</kbd>+<kbd>k</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Move to upper split</td>
+<td><a href="https://github.com/christoomey/vim-tmux-navigator" rel="nofollow">christoomey/tmux-navigator</a></td>
+</tr>
+<tr>
+<td>
+<kbd>Ctrl</kbd>+<kbd>h</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Move to left split</td>
+<td><a href="https://github.com/christoomey/vim-tmux-navigator" rel="nofollow">christoomey/tmux-navigator</a></td>
+</tr>
+<tr>
+<td>
+<kbd>Ctrl</kbd>+<kbd>l</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Move to right split</td>
+<td><a href="https://github.com/christoomey/vim-tmux-navigator" rel="nofollow">christoomey/tmux-navigator</a></td>
+</tr>
+<tr>
+<td><kbd>Return</kbd></td>
+<td align="center">𝐍</td>
+<td>Toggle fold</td>
+<td><code>za</code></td>
+</tr>
+<tr>
+<td>
+<kbd>Shift</kbd>+<kbd>Return</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Focus the current fold by closing all others</td>
+<td><code>zMzvzt</code></td>
+</tr>
+<tr>
+<td>
+<kbd>]q</kbd> or <kbd>]q</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Next/previous on quickfix list</td>
+<td>
+<code>:cnext</code> / <code>:cprev</code>
+</td>
+</tr>
+<tr>
+<td>
+<kbd>]l</kbd> or <kbd>]l</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Next/previous on location-list</td>
+<td>
+<code>:lnext</code> / <code>:lprev</code>
+</td>
+</tr>
+<tr>
+<td>
+<kbd>]w</kbd> or <kbd>]w</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Next/previous whitespace error</td>
+<td><a href="https://github.com/rafi/vim-config/blob/master/plugin/whitespace.vim" rel="nofollow">plugin/whitespace.vim</a></td>
+</tr>
+<tr>
+<td>
+<kbd>]g</kbd> or <kbd>]g</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Next/previous Git hunk</td>
+<td><a href="https://github.com/airblade/vim-gitgutter" rel="nofollow">airblade/vim-gitgutter</a></td>
+</tr>
+<tr>
+<td>
+<kbd>]c</kbd> or <kbd>]c</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Next/previous Ale diagnostic</td>
+<td><a href="https://github.com/dense-analysis/ale" rel="nofollow">dense-analysis/ale</a></td>
+</tr>
+<tr>
+<td>
+<kbd>Ctrl</kbd>+<kbd>f</kbd>
+</td>
+<td align="center">𝐂</td>
+<td>Move cursor forwards in command</td>
+<td><kbd>Right</kbd></td>
+</tr>
+<tr>
+<td>
+<kbd>Ctrl</kbd>+<kbd>b</kbd>
+</td>
+<td align="center">𝐂</td>
+<td>Move cursor backwards in command</td>
+<td><kbd>Left</kbd></td>
+</tr>
+<tr>
+<td>
+<kbd>Ctrl</kbd>+<kbd>h</kbd>
+</td>
+<td align="center">𝐂</td>
+<td>Move cursor to the beginning in command</td>
+<td><kbd>Home</kbd></td>
+</tr>
+<tr>
+<td>
+<kbd>Ctrl</kbd>+<kbd>l</kbd>
+</td>
+<td align="center">𝐂</td>
+<td>Move cursor to the end in command</td>
+<td><kbd>End</kbd></td>
+</tr>
+</tbody>
+</table>
+<h3>
+<a id="file-operations" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#file-operations" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>File Operations</h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th align="center">Mode</th>
+<th>Action</th>
+<th>Plugin or Mapping</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>cd</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Switch to the directory of opened buffer</td>
+<td><code>:lcd %:p:h</code></td>
+</tr>
+<tr>
+<td><kbd>gf</kbd></td>
+<td align="center">𝐍 𝐕</td>
+<td>Open file under the cursor in a vsplit</td>
+<td><code>:rightbelow wincmd f</code></td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>w</kbd>
+</td>
+<td align="center">𝐍 𝐕 𝐒</td>
+<td>Write buffer to file</td>
+<td><code>:write</code></td>
+</tr>
+<tr>
+<td>
+<kbd>Ctrl</kbd>+<kbd>s</kbd>
+</td>
+<td align="center">𝐍 𝐕 𝐒 𝐂</td>
+<td>Write buffer to file</td>
+<td><code>:write</code></td>
+</tr>
+</tbody>
+</table>
+<h3>
+<a id="edit" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#edit" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Edit</h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th align="center">Mode</th>
+<th>Action</th>
+<th>Plugin or Mapping</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<kbd>Ctrl</kbd>+<kbd>Return</kbd>
+</td>
+<td align="center">𝐈</td>
+<td>Expand emmet abbreviation</td>
+<td><a href="https://github.com/mattn/emmet-vim" rel="nofollow">mattn/emmet-vim</a></td>
+</tr>
+<tr>
+<td><kbd>Q</kbd></td>
+<td align="center">𝐍</td>
+<td>Start/stop macro recording</td>
+<td><code>q</code></td>
+</tr>
+<tr>
+<td><kbd>gQ</kbd></td>
+<td align="center">𝐍</td>
+<td>Play macro 'q'</td>
+<td><code>@q</code></td>
+</tr>
+<tr>
+<td>
+<kbd>Shift</kbd>+<kbd>Return</kbd>
+</td>
+<td align="center">𝐈</td>
+<td>Start new line from any cursor position</td>
+<td><code>&lt;C-o&gt;o</code></td>
+</tr>
+<tr>
+<td><kbd>&lt;</kbd></td>
+<td align="center">𝐕 𝐒</td>
+<td>Indent to left and re-select</td>
+<td><code>&lt;gv</code></td>
+</tr>
+<tr>
+<td><kbd>&gt;</kbd></td>
+<td align="center">𝐕 𝐒</td>
+<td>Indent to right and re-select</td>
+<td>`&gt;gv</td>
+</tr>
+<tr>
+<td><kbd>Tab</kbd></td>
+<td align="center">𝐕 𝐒</td>
+<td>Indent to right and re-select</td>
+<td>`&gt;gv</td>
+</tr>
+<tr>
+<td>
+<kbd>Shift</kbd>+<kbd>Tab</kbd>
+</td>
+<td align="center">𝐕 𝐒</td>
+<td>Indent to left and re-select</td>
+<td><code>&lt;gv</code></td>
+</tr>
+<tr>
+<td><kbd>gc</kbd></td>
+<td align="center">𝐍 𝐕 𝐒</td>
+<td>Caw (comments plugin) prefix</td>
+<td><a href="https://github.com/tyru/caw.vim" rel="nofollow">tyru/caw.vim</a></td>
+</tr>
+<tr>
+<td><kbd>gcc</kbd></td>
+<td align="center">𝐍 𝐕 𝐒</td>
+<td>Toggle comments</td>
+<td><a href="https://github.com/tyru/caw.vim" rel="nofollow">tyru/caw.vim</a></td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>v</kbd>
+</td>
+<td align="center">𝐍 𝐕 𝐒</td>
+<td>Toggle single-line comments</td>
+<td><a href="https://github.com/tyru/caw.vim" rel="nofollow">tyru/caw.vim</a></td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>V</kbd>
+</td>
+<td align="center">𝐍 𝐕 𝐒</td>
+<td>Toggle comment block</td>
+<td><a href="https://github.com/tyru/caw.vim" rel="nofollow">tyru/caw.vim</a></td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>j</kbd> or <kbd>k</kbd>
+</td>
+<td align="center">𝐍 𝐕</td>
+<td>Move lines down/up</td>
+<td>
+<code>:m</code> …</td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>d</kbd>
+</td>
+<td align="center">𝐍 𝐕</td>
+<td>Duplicate line or selection</td>
+<td></td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>cn</kbd> / <kbd>cN</kbd>
+</td>
+<td align="center">𝐍 𝐕</td>
+<td>Change current word in a repeatable manner</td>
+<td></td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>cp</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Duplicate paragraph</td>
+<td><code>yap&lt;S-}&gt;p</code></td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>cw</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Remove all spaces at EOL</td>
+<td><code>:%s/\s\+$//e</code></td>
+</tr>
+<tr>
+<td>
+<kbd>Ctrl</kbd>+<kbd>Tab</kbd>
+</td>
+<td align="center">𝐈</td>
+<td>Jump outside of pair</td>
+<td><a href="https://github.com/Raimondi/delimitMate" rel="nofollow">Raimondi/delimitMate</a></td>
+</tr>
+<tr>
+<td>
+<kbd>sj</kbd> / <kbd>sk</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Join/split arguments</td>
+<td><a href="https://github.com/AndrewRadev/splitjoin.vim" rel="nofollow">AndrewRadev/splitjoin.vim</a></td>
+</tr>
+<tr>
+<td>
+<kbd>dsf</kbd> / <kbd>csf</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Delete/change surrounding function call</td>
+<td><a href="https://github.com/AndrewRadev/dsf.vim" rel="nofollow">AndrewRadev/dsf.vim</a></td>
+</tr>
+</tbody>
+</table>
+<h3>
+<a id="search--replace" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#search--replace" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Search &amp; Replace</h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th align="center">Mode</th>
+<th>Action</th>
+<th>Plugin or Mapping</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<kbd>*</kbd> / <kbd>#</kbd>
+</td>
+<td align="center">𝐍 𝐕</td>
+<td>Search selection forward/backward</td>
+<td><a href="https://github.com/haya14busa/vim-asterisk" rel="nofollow">haya14busa/vim-asterisk</a></td>
+</tr>
+<tr>
+<td>
+<kbd>g*</kbd> / <kbd>g#</kbd>
+</td>
+<td align="center">𝐍 𝐕</td>
+<td>Search whole-word forward/backward</td>
+<td><a href="https://github.com/haya14busa/vim-asterisk" rel="nofollow">haya14busa/vim-asterisk</a></td>
+</tr>
+<tr>
+<td><kbd>Backspace</kbd></td>
+<td align="center">𝐍</td>
+<td>Match bracket</td>
+<td><code>%</code></td>
+</tr>
+<tr>
+<td><kbd>gp</kbd></td>
+<td align="center">𝐍</td>
+<td>Select last paste</td>
+<td></td>
+</tr>
+<tr>
+<td><kbd>sg</kbd></td>
+<td align="center">𝐕</td>
+<td>Replace within selected area</td>
+<td><code>:s/⌴/gc</code></td>
+</tr>
+<tr>
+<td>
+<kbd>Ctrl</kbd>+<kbd>r</kbd>
+</td>
+<td align="center">𝐕</td>
+<td>Replace selection with step-by-step confirmation</td>
+<td><code>:%s/\V/⌴/gc</code></td>
+</tr>
+</tbody>
+</table>
+<h3>
+<a id="clipboard" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#clipboard" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Clipboard</h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th align="center">Mode</th>
+<th>Action</th>
+<th>Plugin or Mapping</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><kbd>p</kbd></td>
+<td align="center">𝐕 𝐒</td>
+<td>Paste without yank</td>
+<td><a href="https://github.com/kana/vim-operator-replace" rel="nofollow">kana/vim-operator-replace</a></td>
+</tr>
+<tr>
+<td><kbd>Y</kbd></td>
+<td align="center">𝐍</td>
+<td>Yank to the end of line</td>
+<td><code>y$</code></td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>y</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Copy relative file-path to clipboard</td>
+<td></td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>Y</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Copy absolute file-path to clipboard</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3>
+<a id="command--history" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#command--history" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Command &amp; History</h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th align="center">Mode</th>
+<th>Action</th>
+<th>Plugin or Mapping</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><kbd>!</kbd></td>
+<td align="center">𝐍</td>
+<td>Shortcut for shell command</td>
+<td><code>:!</code></td>
+</tr>
+<tr>
+<td><kbd>g!</kbd></td>
+<td align="center">𝐍</td>
+<td>Read vim command into buffer</td>
+<td><code>:put=execute('⌴')</code></td>
+</tr>
+<tr>
+<td>
+<kbd>Ctrl</kbd>+<kbd>n</kbd> / <kbd>p</kbd>
+</td>
+<td align="center">𝐂</td>
+<td>Switch history search pairs</td>
+<td>
+<kbd>↓</kbd> / <kbd>↑</kbd>
+</td>
+</tr>
+<tr>
+<td>
+<kbd>↓</kbd> / <kbd>↑</kbd>
+</td>
+<td align="center">𝐂</td>
+<td>Switch history search pairs</td>
+<td>
+<code>Ctrl</code> <code>n</code>/<code>p</code>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>
+<a id="editor-ui" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#editor-ui" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Editor UI</h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th align="center">Mode</th>
+<th>Action</th>
+<th>Plugin or Mapping</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>ts</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Toggle spell-checker</td>
+<td><code>:setlocal spell!</code></td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>tn</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Toggle line numbers</td>
+<td><code>:setlocal nonumber!</code></td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>tl</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Toggle hidden characters</td>
+<td><code>:setlocal nolist!</code></td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>th</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Toggle highlighted search</td>
+<td><code>:set hlsearch!</code></td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>tw</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Toggle wrap</td>
+<td>
+<code>:setlocal wrap!</code> …</td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>ti</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Toggle indentation lines</td>
+<td><a href="https://github.com/nathanaelkane/vim-indent-guides" rel="nofollow">nathanaelkane/vim-indent-guides</a></td>
+</tr>
+<tr>
+<td><kbd>g1</kbd></td>
+<td align="center">𝐍</td>
+<td>Go to first tab</td>
+<td><code>:tabfirst</code></td>
+</tr>
+<tr>
+<td><kbd>g9</kbd></td>
+<td align="center">𝐍</td>
+<td>Go to last tab</td>
+<td><code>:tablast</code></td>
+</tr>
+<tr>
+<td><kbd>g5</kbd></td>
+<td align="center">𝐍</td>
+<td>Go to previous tab</td>
+<td><code>:tabprevious</code></td>
+</tr>
+<tr>
+<td>
+<kbd>Ctrl</kbd>+<kbd>Tab</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Go to next tab</td>
+<td><code>:tabnext</code></td>
+</tr>
+<tr>
+<td>
+<kbd>Ctrl</kbd>+<kbd>Shift</kbd><kbd>Tab</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Go to previous tab</td>
+<td><code>:tabprevious</code></td>
+</tr>
+<tr>
+<td>
+<kbd>Alt</kbd>+<kbd>j</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Go to next tab</td>
+<td><code>:tabnext</code></td>
+</tr>
+<tr>
+<td>
+<kbd>Alt</kbd>+<kbd>k</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Go to previous tab</td>
+<td><code>:tabprevious</code></td>
+</tr>
+<tr>
+<td>
+<kbd>Alt</kbd>+<kbd>{</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Move tab backward</td>
+<td><code>:-tabmove</code></td>
+</tr>
+<tr>
+<td>
+<kbd>Alt</kbd>+<kbd>}</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Move tab forward</td>
+<td><code>:+tabmove</code></td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>h</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Show highlight groups for word</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3>
+<a id="custom-tools--plugins" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#custom-tools--plugins" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Custom Tools &amp; Plugins</h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th align="center">Mode</th>
+<th>Action</th>
+<th>Plugin or Mapping</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><kbd>-</kbd></td>
+<td align="center">𝐍</td>
+<td>Choose a window to edit</td>
+<td><a href="https://github.com/t9md/vim-choosewin" rel="nofollow">t9md/vim-choosewin</a></td>
+</tr>
+<tr>
+<td>
+<kbd>;</kbd>+<kbd>c</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Open context-menu</td>
+<td><a href="https://github.com/rafi/vim-config/blob/master/plugin/actionmenu.vim" rel="nofollow">plugin/actionmenu.vim</a></td>
+</tr>
+<tr>
+<td><kbd>gK</kbd></td>
+<td align="center">𝐍</td>
+<td>Open Zeal or Dash on some file-types</td>
+<td><a href="https://github.com/rafi/vim-config/blob/master/plugin/devhelp.vim" rel="nofollow">plugin/devhelp.vim</a></td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>l</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Open side-menu helper</td>
+<td><a href="https://github.com/rafi/vim-sidemenu" rel="nofollow">rafi/vim-sidemenu</a></td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>b</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Open structure window</td>
+<td><a href="https://github.com/liuchengxu/vista.vim" rel="nofollow">liuchengxu/vista.vim</a></td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>a</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Show nearby tag in structure window</td>
+<td><a href="https://github.com/liuchengxu/vista.vim" rel="nofollow">liuchengxu/vista.vim</a></td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>se</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Save current workspace session</td>
+<td><a href="https://github.com/rafi/vim-config/blob/master/plugin/sessions.vim" rel="nofollow">plugin/sessions.vim</a></td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>sl</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Load workspace session</td>
+<td><a href="https://github.com/rafi/vim-config/blob/master/plugin/sessions.vim" rel="nofollow">plugin/sessions.vim</a></td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>o</kbd>
+</td>
+<td align="center">𝐍 𝐕</td>
+<td>Open SCM detailed URL in browser</td>
+<td><a href="https://github.com/rafi/vim-config/blob/master/plugin/browser.vim" rel="nofollow">plugin/browser.vim</a></td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>n</kbd>/<kbd>N</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Open alternative file</td>
+<td><a href="https://github.com/kana/vim-altr" rel="nofollow">kana/vim-altr</a></td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>tc</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Enable scroll-context window</td>
+<td><a href="https://github.com/wellle/context.vim" rel="nofollow">wellle/context.vim</a></td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>tp</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Peek scroll-context window</td>
+<td><a href="https://github.com/wellle/context.vim" rel="nofollow">wellle/context.vim</a></td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>S</kbd>
+</td>
+<td align="center">𝐍 𝐕</td>
+<td>Source selection</td>
+<td><code>y:execute @@</code></td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>?</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Open the macOS dictionary on current word</td>
+<td><code>:!open dict://</code></td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>P</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Use Marked 2 for real-time Markdown preview</td>
+<td><a href="https://marked2app.com/" rel="nofollow">Marked 2</a></td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>ml</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Append modeline to end of buffer</td>
+<td><a href="https://github.com/rafi/vim-config/blob/master/config/mappings.vim" rel="nofollow">config/mappings.vim</a></td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>mda</kbd>
+</td>
+<td align="center">𝐕</td>
+<td>Sequentially mark region for diff</td>
+<td><a href="https://github.com/AndrewRadev/linediff.vim" rel="nofollow">AndrewRadev/linediff.vim</a></td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>mdf</kbd>
+</td>
+<td align="center">𝐕</td>
+<td>Mark region for diff and compare if more than one</td>
+<td><a href="https://github.com/AndrewRadev/linediff.vim" rel="nofollow">AndrewRadev/linediff.vim</a></td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>mds</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Shows the comparison for all marked regions</td>
+<td><a href="https://github.com/AndrewRadev/linediff.vim" rel="nofollow">AndrewRadev/linediff.vim</a></td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>mdr</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Removes the signs denoting the diff regions</td>
+<td><a href="https://github.com/AndrewRadev/linediff.vim" rel="nofollow">AndrewRadev/linediff.vim</a></td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>mg</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Open Magit</td>
+<td><a href="https://github.com/jreybert/vimagit" rel="nofollow">jreybert/vimagit</a></td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>mt</kbd>
+</td>
+<td align="center">𝐍 𝐕</td>
+<td>Toggle highlighted word</td>
+<td><a href="https://github.com/t9md/vim-quickhl" rel="nofollow">t9md/vim-quickhl</a></td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>-</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Switch editing window with selected</td>
+<td><a href="https://github.com/t9md/vim-choosewin" rel="nofollow">t9md/vim-choosewin</a></td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>G</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Toggle distraction-free writing</td>
+<td><a href="https://github.com/junegunn/goyo.vim" rel="nofollow">junegunn/goyo</a></td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>gu</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Open undo-tree</td>
+<td><a href="https://github.com/mbbill/undotree" rel="nofollow">mbbill/undotree</a></td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>K</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Thesaurus</td>
+<td><a href="https://github.com/Ron89/thesaurus_query.vim" rel="nofollow">Ron89/thesaurus_query.vim</a></td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>W</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>VimWiki</td>
+<td><a href="https://github.com/vimwiki/vimwiki" rel="nofollow">vimwiki/vimwiki</a></td>
+</tr>
+</tbody>
+</table>
+<h3>
+<a id="window-management" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#window-management" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Window Management</h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th align="center">Mode</th>
+<th>Action</th>
+<th>Plugin or Mapping</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><kbd>q</kbd></td>
+<td align="center">𝐍</td>
+<td>Quit window (and Vim, if last window)</td>
+<td><code>:quit</code></td>
+</tr>
+<tr>
+<td>
+<kbd>Ctrl</kbd>+<kbd>q</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Remap to C-w</td>
+<td>
+<kbd>Ctrl</kbd>+<kbd>w</kbd>
+</td>
+</tr>
+<tr>
+<td>
+<kbd>Ctrl</kbd>+<kbd>x</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Rotate window placement</td>
+<td>
+<code>C-w</code> <code>x</code>
+</td>
+</tr>
+<tr>
+<td><kbd>sv</kbd></td>
+<td align="center">𝐍</td>
+<td>Horizontal split</td>
+<td><code>:split</code></td>
+</tr>
+<tr>
+<td><kbd>sg</kbd></td>
+<td align="center">𝐍</td>
+<td>Vertical split</td>
+<td><code>:vsplit</code></td>
+</tr>
+<tr>
+<td><kbd>st</kbd></td>
+<td align="center">𝐍</td>
+<td>Open new tab</td>
+<td><code>:tabnew</code></td>
+</tr>
+<tr>
+<td><kbd>so</kbd></td>
+<td align="center">𝐍</td>
+<td>Close other windows</td>
+<td><code>:only</code></td>
+</tr>
+<tr>
+<td><kbd>sb</kbd></td>
+<td align="center">𝐍</td>
+<td>Previous buffer</td>
+<td><code>:b#</code></td>
+</tr>
+<tr>
+<td><kbd>sc</kbd></td>
+<td align="center">𝐍</td>
+<td>Close current buffer</td>
+<td><code>:close</code></td>
+</tr>
+<tr>
+<td><kbd>sx</kbd></td>
+<td align="center">𝐍</td>
+<td>Delete buffer, leave blank window</td>
+<td><code>:enew │ bdelete</code></td>
+</tr>
+<tr>
+<td><kbd>ssv</kbd></td>
+<td align="center">𝐍</td>
+<td>Split with previous buffer</td>
+<td><code>:split │ wincmd p │ e#</code></td>
+</tr>
+<tr>
+<td><kbd>ssg</kbd></td>
+<td align="center">𝐍</td>
+<td>Vertical split with previous buffer</td>
+<td><code>:vsplit │ wincmd p │ e#</code></td>
+</tr>
+<tr>
+<td><kbd>sh</kbd></td>
+<td align="center">𝐍</td>
+<td>Toggle colorscheme background=dark/light</td>
+<td>
+<code>:set background</code> …</td>
+</tr>
+<tr>
+<td><kbd>s-</kbd></td>
+<td align="center">𝐍</td>
+<td>Lower solarized8 colorscheme contrast</td>
+<td>
+<code>:colorscheme</code> …</td>
+</tr>
+<tr>
+<td><kbd>s=</kbd></td>
+<td align="center">𝐍</td>
+<td>Raise solarized8 colorscheme contrast</td>
+<td>
+<code>:colorscheme</code> …</td>
+</tr>
+</tbody>
+</table>
+<h3>
+<a id="git-version-control" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#git-version-control" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Git Version Control</h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th align="center">Mode</th>
+<th>Action</th>
+<th>Plugin or Mapping</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><kbd>gs</kbd></td>
+<td align="center">𝐍</td>
+<td>Preview hunk</td>
+<td><a href="https://github.com/airblade/vim-gitgutter" rel="nofollow">airblade/vim-gitgutter</a></td>
+</tr>
+<tr>
+<td><kbd>gS</kbd></td>
+<td align="center">𝐍 𝐕 𝐒</td>
+<td>Stage hunk</td>
+<td><a href="https://github.com/airblade/vim-gitgutter" rel="nofollow">airblade/vim-gitgutter</a></td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>gr</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Revert hunk</td>
+<td><a href="https://github.com/airblade/vim-gitgutter" rel="nofollow">airblade/vim-gitgutter</a></td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>ga</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Git add current file</td>
+<td><a href="https://github.com/chemzqm/vim-easygit" rel="nofollow">chemzqm/vim-easygit</a></td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>gd</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Git diff</td>
+<td><a href="https://github.com/chemzqm/vim-easygit" rel="nofollow">chemzqm/vim-easygit</a></td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>gc</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Git commit</td>
+<td><a href="https://github.com/chemzqm/vim-easygit" rel="nofollow">chemzqm/vim-easygit</a></td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>gb</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Git blame</td>
+<td><a href="https://github.com/chemzqm/vim-easygit" rel="nofollow">chemzqm/vim-easygit</a></td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>gF</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Git fetch</td>
+<td><a href="https://github.com/chemzqm/vim-easygit" rel="nofollow">chemzqm/vim-easygit</a></td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>gp</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Git push</td>
+<td><a href="https://github.com/chemzqm/vim-easygit" rel="nofollow">chemzqm/vim-easygit</a></td>
+</tr>
+</tbody>
+</table>
+<h3>
+<a id="plugin-denite" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#plugin-denite" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Plugin: Denite</h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th align="center">Mode</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><kbd>;r</kbd></td>
+<td align="center">𝐍</td>
+<td>Resumes last Denite window</td>
+</tr>
+<tr>
+<td><kbd>;f</kbd></td>
+<td align="center">𝐍</td>
+<td>File search</td>
+</tr>
+<tr>
+<td><kbd>;g</kbd></td>
+<td align="center">𝐍</td>
+<td>Grep search</td>
+</tr>
+<tr>
+<td><kbd>;b</kbd></td>
+<td align="center">𝐍</td>
+<td>Buffers and MRU</td>
+</tr>
+<tr>
+<td><kbd>;d</kbd></td>
+<td align="center">𝐍</td>
+<td>Directories and MRU</td>
+</tr>
+<tr>
+<td><kbd>;v</kbd></td>
+<td align="center">𝐍 𝐕</td>
+<td>Yank history</td>
+</tr>
+<tr>
+<td><kbd>;l</kbd></td>
+<td align="center">𝐍</td>
+<td>Location list</td>
+</tr>
+<tr>
+<td><kbd>;q</kbd></td>
+<td align="center">𝐍</td>
+<td>Quick fix</td>
+</tr>
+<tr>
+<td><kbd>;n</kbd></td>
+<td align="center">𝐍</td>
+<td>Dein plugin list</td>
+</tr>
+<tr>
+<td><kbd>;j</kbd></td>
+<td align="center">𝐍</td>
+<td>Jump points and change stack</td>
+</tr>
+<tr>
+<td><kbd>;u</kbd></td>
+<td align="center">𝐍</td>
+<td>Junk files</td>
+</tr>
+<tr>
+<td><kbd>;o</kbd></td>
+<td align="center">𝐍</td>
+<td>Outline tags</td>
+</tr>
+<tr>
+<td><kbd>;s</kbd></td>
+<td align="center">𝐍</td>
+<td>Sessions</td>
+</tr>
+<tr>
+<td><kbd>;t</kbd></td>
+<td align="center">𝐍</td>
+<td>Tag list</td>
+</tr>
+<tr>
+<td><kbd>;p</kbd></td>
+<td align="center">𝐍</td>
+<td>Jumps</td>
+</tr>
+<tr>
+<td><kbd>;h</kbd></td>
+<td align="center">𝐍</td>
+<td>Help</td>
+</tr>
+<tr>
+<td><kbd>;m</kbd></td>
+<td align="center">𝐍</td>
+<td>Memo list</td>
+</tr>
+<tr>
+<td><kbd>;z</kbd></td>
+<td align="center">𝐍</td>
+<td>Z (jump around)</td>
+</tr>
+<tr>
+<td><kbd>;;</kbd></td>
+<td align="center">𝐍</td>
+<td>Command history</td>
+</tr>
+<tr>
+<td><kbd>;/</kbd></td>
+<td align="center">𝐍</td>
+<td>Buffer lines</td>
+</tr>
+<tr>
+<td><kbd>;*</kbd></td>
+<td align="center">𝐍</td>
+<td>Search word under cursor with lines</td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>gl</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Git log (all)</td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>gs</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Git status</td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>gc</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Git branches</td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>gt</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Find tags matching word under cursor</td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>gf</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Find files matching word under cursor</td>
+</tr>
+<tr>
+<td>
+<kbd>Space</kbd>+<kbd>gg</kbd>
+</td>
+<td align="center">𝐍 𝐕</td>
+<td>Grep word under cursor</td>
+</tr>
+<tr>
+<td><strong>Within <em>Denite</em> window</strong></td>
+<td align="center"></td>
+<td></td>
+</tr>
+<tr>
+<td>
+<kbd>jj</kbd> or <kbd>Escape</kbd>
+</td>
+<td align="center">𝐈</td>
+<td>Leave Insert mode</td>
+</tr>
+<tr>
+<td>
+<kbd>i</kbd> or <kbd>/</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Enter Insert mode (filter input)</td>
+</tr>
+<tr>
+<td>
+<kbd>q</kbd> or <kbd>Escape</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Exit denite window</td>
+</tr>
+<tr>
+<td>
+<kbd>Tab</kbd> or <kbd>Shift</kbd>+<kbd>Tab</kbd>
+</td>
+<td align="center">𝐈</td>
+<td>Next/previous candidate</td>
+</tr>
+<tr>
+<td><kbd>Space</kbd></td>
+<td align="center">𝐍</td>
+<td>Select candidate entry</td>
+</tr>
+<tr>
+<td><kbd>dd</kbd></td>
+<td align="center">𝐍</td>
+<td>Delete entry</td>
+</tr>
+<tr>
+<td><kbd>p</kbd></td>
+<td align="center">𝐍</td>
+<td>Preview entry</td>
+</tr>
+<tr>
+<td><kbd>st</kbd></td>
+<td align="center">𝐍</td>
+<td>Open in a new tab</td>
+</tr>
+<tr>
+<td><kbd>sg</kbd></td>
+<td align="center">𝐍</td>
+<td>Open in a vertical split</td>
+</tr>
+<tr>
+<td><kbd>sv</kbd></td>
+<td align="center">𝐍</td>
+<td>Open in a split</td>
+</tr>
+<tr>
+<td><kbd>'</kbd></td>
+<td align="center">𝐍</td>
+<td>Quick-move</td>
+</tr>
+<tr>
+<td><kbd>r</kbd></td>
+<td align="center">𝐍</td>
+<td>Redraw</td>
+</tr>
+<tr>
+<td><kbd>yy</kbd></td>
+<td align="center">𝐍</td>
+<td>Yank</td>
+</tr>
+<tr>
+<td><kbd>Tab</kbd></td>
+<td align="center">𝐍</td>
+<td>List and choose action</td>
+</tr>
+</tbody>
+</table>
+<h3>
+<a id="plugin-defx" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#plugin-defx" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Plugin: Defx</h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th align="center">Mode</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><kbd>;e</kbd></td>
+<td align="center">𝐍</td>
+<td>Open file-explorer (toggle)</td>
+</tr>
+<tr>
+<td><kbd>;a</kbd></td>
+<td align="center">𝐍</td>
+<td>Focus current file in file-explorer</td>
+</tr>
+<tr>
+<td><strong>Within <em>Defx</em> window</strong></td>
+<td align="center"></td>
+<td></td>
+</tr>
+<tr>
+<td>
+<kbd>j</kbd> or <kbd>k</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Move up and down the tree</td>
+</tr>
+<tr>
+<td>
+<kbd>l</kbd> or <kbd>Return</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Toggle collapse/expand directory or open file</td>
+</tr>
+<tr>
+<td><kbd>h</kbd></td>
+<td align="center">𝐍</td>
+<td>Collapse directory tree</td>
+</tr>
+<tr>
+<td><kbd>t</kbd></td>
+<td align="center">𝐍</td>
+<td>Expand directory tree recursively</td>
+</tr>
+<tr>
+<td><kbd>.</kbd></td>
+<td align="center">𝐍</td>
+<td>Toggle hidden files</td>
+</tr>
+<tr>
+<td><kbd>Space</kbd></td>
+<td align="center">𝐍</td>
+<td>Select entry</td>
+</tr>
+<tr>
+<td><kbd>*</kbd></td>
+<td align="center">𝐍</td>
+<td>Invert selection (select all)</td>
+</tr>
+<tr>
+<td>
+<kbd>&amp;</kbd> or <kbd>&lt;/kbd&gt;</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Change into current working directory</td>
+</tr>
+<tr>
+<td><kbd>~</kbd></td>
+<td align="center">𝐍</td>
+<td>Change to user home directory</td>
+</tr>
+<tr>
+<td>
+<kbd>u</kbd> or <kbd>Backspace</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Change into parent directory</td>
+</tr>
+<tr>
+<td>
+<kbd>u</kbd> <kbd>2</kbd>/<kbd>3</kbd>/<kbd>4</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Change into parent directory count</td>
+</tr>
+<tr>
+<td><kbd>st</kbd></td>
+<td align="center">𝐍</td>
+<td>Open file in new tab</td>
+</tr>
+<tr>
+<td><kbd>sv</kbd></td>
+<td align="center">𝐍</td>
+<td>Open file in a horizontal split</td>
+</tr>
+<tr>
+<td><kbd>sg</kbd></td>
+<td align="center">𝐍</td>
+<td>Open file in a vertical split</td>
+</tr>
+<tr>
+<td><kbd>N</kbd></td>
+<td align="center">𝐍</td>
+<td>Create new directories and/or files</td>
+</tr>
+<tr>
+<td><kbd>K</kbd></td>
+<td align="center">𝐍</td>
+<td>Create new directory</td>
+</tr>
+<tr>
+<td>
+<kbd>c</kbd> / <kbd>m</kbd> / <kbd>p</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Copy, move, and paste</td>
+</tr>
+<tr>
+<td><kbd>r</kbd></td>
+<td align="center">𝐍</td>
+<td>Rename file or directory</td>
+</tr>
+<tr>
+<td><kbd>dd</kbd></td>
+<td align="center">𝐍</td>
+<td>Trash selected files and directories</td>
+</tr>
+<tr>
+<td><kbd>y</kbd></td>
+<td align="center">𝐍</td>
+<td>Yank path to clipboard</td>
+</tr>
+<tr>
+<td><kbd>w</kbd></td>
+<td align="center">𝐍</td>
+<td>Toggle window size</td>
+</tr>
+<tr>
+<td><kbd>]g</kbd></td>
+<td align="center">𝐍</td>
+<td>Next dirty git item</td>
+</tr>
+<tr>
+<td><kbd>[g</kbd></td>
+<td align="center">𝐍</td>
+<td>Previous dirty git item</td>
+</tr>
+<tr>
+<td>
+<kbd>x</kbd> or <kbd>gx</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Execute associated system application</td>
+</tr>
+<tr>
+<td><kbd>gd</kbd></td>
+<td align="center">𝐍</td>
+<td>Open git diff on selected file</td>
+</tr>
+<tr>
+<td><kbd>gl</kbd></td>
+<td align="center">𝐍</td>
+<td>Open terminal file explorer with tmux</td>
+</tr>
+<tr>
+<td><kbd>gr</kbd></td>
+<td align="center">𝐍</td>
+<td>Grep in current position</td>
+</tr>
+<tr>
+<td><kbd>gf</kbd></td>
+<td align="center">𝐍</td>
+<td>Find files in current position</td>
+</tr>
+</tbody>
+</table>
+<h3>
+<a id="plugin-asyncomplete-and-emmet" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#plugin-asyncomplete-and-emmet" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Plugin: Asyncomplete and Emmet</h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th align="center">Mode</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<kbd>Tab</kbd> / <kbd>Shift-Tab</kbd>
+</td>
+<td align="center">𝐈</td>
+<td>Navigate completion-menu</td>
+</tr>
+<tr>
+<td><kbd>Enter</kbd></td>
+<td align="center">𝐈</td>
+<td>Select completion or expand snippet</td>
+</tr>
+<tr>
+<td>
+<kbd>Ctrl</kbd>+<kbd>j</kbd>/<kbd>k</kbd>/<kbd>d</kbd>/<kbd>u</kbd>
+</td>
+<td align="center">𝐈</td>
+<td>Movement in completion pop-up</td>
+</tr>
+<tr>
+<td>
+<kbd>Ctrl</kbd>+<kbd>Return</kbd>
+</td>
+<td align="center">𝐈</td>
+<td>Expand Emmet sequence</td>
+</tr>
+<tr>
+<td>
+<kbd>Ctrl</kbd>+<kbd>Space</kbd>
+</td>
+<td align="center">𝐈</td>
+<td>Refresh and show candidates</td>
+</tr>
+<tr>
+<td>
+<kbd>Ctrl</kbd>+<kbd>y</kbd>
+</td>
+<td align="center">𝐈</td>
+<td>Close pop-up</td>
+</tr>
+<tr>
+<td>
+<kbd>Ctrl</kbd>+<kbd>e</kbd>
+</td>
+<td align="center">𝐈</td>
+<td>Cancel selection and close pop-up</td>
+</tr>
+<tr>
+<td>
+<kbd>Ctrl</kbd>+<kbd>l</kbd>
+</td>
+<td align="center">𝐈</td>
+<td>Expand snippet at cursor</td>
+</tr>
+<tr>
+<td>
+<kbd>Ctrl</kbd>+<kbd>f</kbd>
+</td>
+<td align="center">𝐈 𝐒</td>
+<td>Jump to next snippet placeholder</td>
+</tr>
+<tr>
+<td>
+<kbd>Ctrl</kbd>+<kbd>b</kbd>
+</td>
+<td align="center">𝐈 𝐒</td>
+<td>Jump to previous snippet placeholder</td>
+</tr>
+</tbody>
+</table>
+<h3>
+<a id="plugin-signature" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#plugin-signature" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Plugin: Signature</h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th align="center">Mode</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<kbd>m/</kbd> or <kbd>m?</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Show list of buffer marks/markers</td>
+</tr>
+<tr>
+<td><kbd>mm</kbd></td>
+<td align="center">𝐍</td>
+<td>Toggle mark on current line</td>
+</tr>
+<tr>
+<td><kbd>m,</kbd></td>
+<td align="center">𝐍</td>
+<td>Place next mark</td>
+</tr>
+<tr>
+<td>
+<kbd>m</kbd> <kbd>a-z</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Place specific mark (Won't work for: <kbd>mm</kbd>, <kbd>mn</kbd>, <kbd>mp</kbd>)</td>
+</tr>
+<tr>
+<td>
+<kbd>dm</kbd> <kbd>a-z</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Remove specific mark (Won't work for: <kbd>mm</kbd>, <kbd>mn</kbd>, <kbd>mp</kbd>)</td>
+</tr>
+<tr>
+<td><kbd>mn</kbd></td>
+<td align="center">𝐍</td>
+<td>Jump to next mark</td>
+</tr>
+<tr>
+<td><kbd>mp</kbd></td>
+<td align="center">𝐍</td>
+<td>Jump to previous mark</td>
+</tr>
+<tr>
+<td><kbd>]=</kbd></td>
+<td align="center">𝐍</td>
+<td>Jump to next marker</td>
+</tr>
+<tr>
+<td><kbd>[=</kbd></td>
+<td align="center">𝐍</td>
+<td>Jump to previous marker</td>
+</tr>
+<tr>
+<td><kbd>m-</kbd></td>
+<td align="center">𝐍</td>
+<td>Purge all on current line</td>
+</tr>
+<tr>
+<td>
+<kbd>m</kbd> <kbd>Space</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Purge marks</td>
+</tr>
+<tr>
+<td>
+<kbd>m</kbd> <kbd>Backspace</kbd>
+</td>
+<td align="center">𝐍</td>
+<td>Purge markers</td>
+</tr>
+</tbody>
+</table>
+</details>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="在Windows下安装Vim" href="http://yyq123.github.io/learn-vim/learn-vi-203-Install-Vim-Win.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="在Mac下安装Vim" href="http://yyq123.github.io/learn-vim/learn-vi-202-Install-Vim-Mac.html">下一篇</a>&gt;</span></p>
+</div>
+</body>
+</html>

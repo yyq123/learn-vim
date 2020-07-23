@@ -6,7 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
 	<title>VIM学习笔记 插件(Plugin)</title>
     <style>
-      /* ----------------- */
+/* {{{ ----------------- */
 
       a {
         color: #000000;
@@ -632,6 +632,15 @@
       .s1 { color: #a31515 } /* Literal.String.Single */
       .ss { color: #a31515 } /* Literal.String.Symbol */
 
+      thead tr th:first-child,
+      tbody tr td:first-child {
+      width: 18em;
+      min-width: 18em;
+      max-width: 18em;
+      word-break: break-all;
+      }
+
+      /* ----------------- }}}*/
     </style>
 
 </head>
@@ -641,7 +650,7 @@
 <div class="markdown-body">
 
 <h1>VIM学习笔记</h1>
-<p>Best with <a href="https://github.com/neovim/neovim" rel="nofollow">Neovim</a> or <a href="https://github.com/vim/vim" rel="nofollow">Vim8</a> and <code>python3</code> enabled.</p>
+<p>Best with <a href="https://github.com/vim/vim" title="">Vim8</a> and <code>python3</code> enabled.</p>
 <details>
   <summary>
     <strong>Table of Contents</strong>
@@ -654,72 +663,20 @@
 <li><a href="https://awesomeopensource.com/project/rafi/vim-config#prerequisites">Prerequisites</a></li>
 <li><a href="https://awesomeopensource.com/project/rafi/vim-config#install">Install</a></li>
 <li><a href="https://awesomeopensource.com/project/rafi/vim-config#language-server-protocol-lsp">Language-Server Protocol (LSP)</a></li>
-<li>
-<a href="https://awesomeopensource.com/project/rafi/vim-config#upgrade">Upgrade</a>
-<ul>
-<li><a href="https://awesomeopensource.com/project/rafi/vim-config#recommended-fonts">Recommended Fonts</a></li>
-<li><a href="https://awesomeopensource.com/project/rafi/vim-config#recommended-linters">Recommended Linters</a></li>
-<li><a href="https://awesomeopensource.com/project/rafi/vim-config#recommended-tools">Recommended Tools</a></li>
-</ul>
-</li>
 <li><a href="https://awesomeopensource.com/project/rafi/vim-config#user-custom-config">User Custom Config</a></li>
 <li><a href="https://awesomeopensource.com/project/rafi/vim-config#structure">Structure</a></li>
 <li><a href="https://awesomeopensource.com/project/rafi/vim-config#plugin-highlights">Plugin Highlights</a></li>
-<li>
+</ul>
+</details>
+
+
+<h2><a id="notes" class="anchor" href="#notes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>说明：</h2>
 <ul>
-<li><a href="https://awesomeopensource.com/project/rafi/vim-config#language">Language</a></li>
-<li><a href="https://awesomeopensource.com/project/rafi/vim-config#commands">Commands</a></li>
-<li><a href="https://awesomeopensource.com/project/rafi/vim-config#interface">Interface</a></li>
-<li><a href="https://awesomeopensource.com/project/rafi/vim-config#completion--code-analysis">Completion &amp; Code-Analysis</a></li>
-<li><a href="https://awesomeopensource.com/project/rafi/vim-config#denite">Denite</a></li>
-<li><a href="https://awesomeopensource.com/project/rafi/vim-config#operators--text-objects">Operators &amp; Text Objects</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<a href="https://awesomeopensource.com/project/rafi/vim-config#custom-key-mappings">Custom Key-mappings</a>
-<ul>
-<li><a href="https://awesomeopensource.com/project/rafi/vim-config#navigation">Navigation</a></li>
-<li><a href="https://awesomeopensource.com/project/rafi/vim-config#file-operations">File Operations</a></li>
-<li><a href="https://awesomeopensource.com/project/rafi/vim-config#edit">Edit</a></li>
-<li><a href="https://awesomeopensource.com/project/rafi/vim-config#search--replace">Search &amp; Replace</a></li>
-<li><a href="https://awesomeopensource.com/project/rafi/vim-config#clipboard">Clipboard</a></li>
-<li><a href="https://awesomeopensource.com/project/rafi/vim-config#command--history">Command &amp; History</a></li>
-<li><a href="https://awesomeopensource.com/project/rafi/vim-config#editor-ui">Editor UI</a></li>
-<li><a href="https://awesomeopensource.com/project/rafi/vim-config#custom-tools--plugins">Custom Tools &amp; Plugins</a></li>
-<li><a href="https://awesomeopensource.com/project/rafi/vim-config#window-management">Window Management</a></li>
-<li><a href="https://awesomeopensource.com/project/rafi/vim-config#git-version-control">Git Version Control</a></li>
-<li><a href="https://awesomeopensource.com/project/rafi/vim-config#plugin-denite">Plugin: Denite</a></li>
-<li><a href="https://awesomeopensource.com/project/rafi/vim-config#plugin-defx">Plugin: Defx</a></li>
-<li><a href="https://awesomeopensource.com/project/rafi/vim-config#plugin-asyncomplete-and-emmet">Plugin: Asyncomplete and Emmet</a></li>
-<li><a href="https://awesomeopensource.com/project/rafi/vim-config#plugin-signature">Plugin: Signature</a></li>
-</ul>
-</li>
+	<li>建议使用<a href="http://yyq123.github.io/learn-vim/learn-vi-102-plugin-plug.html" title="插件管理器(vim-plug)">vim-plug</a>或<a href="http://yyq123.github.io/learn-vim/learn-vi-101-plugin-vundle.html" title="插件管理器(Vundle)">Vundle</a>等插件管理器，来安装和管理插件；</li>
+	<li>在&ldquo;插件&rdquo;列中的<span class="pl-k">&nbsp;&starf;</span>，表示推荐的插件</li>
+	<li>在&ldquo;描述&rdquo;列中的【<a href="http://yyq123.github.io/learn-vim/learn-vi-00-00-TOC.html" title="详细介绍">详细介绍</a>】，链接到专门章节详细介绍插件的配置与使用；</li>
 </ul>
 
-</details>
-<h2>
-<a id="screenshot" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#screenshot" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Screenshot</h2>
-<p><a href="http://rafi.io/static/img/project/vim-config/features.png" target="_blank" rel="nofollow"><img src="./Vim Config_files/features.png" alt="Vim screenshot" style="max-width:100%;"></a></p>
-<h2>
-<a id="prerequisites" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#prerequisites" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Prerequisites</h2>
-<ul>
-<li>Python 3 (<code>brew install python</code>)</li>
-<li>Neovim or Vim (<code>brew install neovim</code> and/or <code>brew install vim</code>)</li>
-</ul>
-<h2>
-<a id="install" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#install" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Install</h2>
-<ul>
-<a id="recommended-fonts" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#recommended-fonts" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Recommended Fonts</h3>
-<pre lang="bash" class="highlight-bash">brew tap homebrew/cask-fonts
-brew cask <span class="nb">install </span>font-fira-code
-</pre>
-<h3>
-<h3>
-<a id="recommended-tools" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#recommended-tools" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Recommended Tools</h3>
-<h2>
-<a id="user-custom-config" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#user-custom-config" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>User Custom Config</h2>
 <h2>
 <a id="plugin-highlights" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#plugin-highlights" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Plugin Highlights</h2>
 <ul>
@@ -729,9 +686,9 @@ brew cask <span class="nb">install </span>font-fira-code
 <a id="plugins-included" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#plugins-included" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Plugins Included</h2>
 <details open="">
   <summary><strong>List</strong> <i>(🔎 Click to expand/collapse)</i></summary>
+</details>
 
-<h3>
-<a id="non-lazy-loaded-plugins" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#non-lazy-loaded-plugins" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>色彩</h3>
+<h3><a id="system" class="anchor" href="#system" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link">&#128279;</span></a>系统工具</h3>
 <table>
 <thead>
 <tr>
@@ -741,16 +698,48 @@ brew cask <span class="nb">install </span>font-fira-code
 </thead>
 <tbody>
 <tr>
-<td><a href="https://github.com/rafi/awesome-vim-colorschemes" rel="nofollow">rafi/awesome-colorschemes</a></td>
-<td>Awesome color-schemes</td>
+<td><a href="https://github.com/junegunn/vim-plug" title="junegunn/vim-plug">junegunn/vim-plug</a>&nbsp;<span class="pl-v">&starf;</span></td>
+<td>插件管理器【<a href="http://yyq123.github.io/learn-vim/learn-vi-102-plugin-plug.html" title="vim-plug">详细介绍</a>】</td>
 </tr>
 <tr>
-<td><a href="https://github.com/romainl/vim-cool" title="vim-cool">romainl/vim-cool</a></td>
-<td>完成搜索之后自动禁用高亮显示，当再次查询时重新启用高亮显示。</td>
+<td><a href="https://github.com/VundleVim/Vundle.vim" title="VundleVim/Vundle.vim">VundleVim/Vundle.vim</a></td>
+<td>插件管理器【<a href="http://yyq123.github.io/learn-vim/learn-vi-101-plugin-vundle.html" title="vundle">详细介绍</a>】</td>
 </tr>
 <tr>
-<td><a href="https://github.com/guns/xterm-color-table.vim" rel="nofollow">guns/xterm-color-table.vim</a></td>
-<td>Display 256 xterm colors with their RGB equivalents</td>
+<td><a href="https://github.com/machakann/vim-highlightedyank" title="">machakann/vim-highlightedyank</a></td>
+<td>高亮显示yanked内容</td>
+</tr>
+<tr>
+<td><a href="https://github.com/svermeulen/vim-yoink" title="svermeulen/vim-yoink">svermeulen/vim-yoink</a></td>
+<td>yank历史纪录</td>
+</tr>
+<tr>
+<td><a href="https://www.vim.org/scripts/script.php?script_id=1234" title="DavidFishburn/YankRing.vim">DavidFishburn/YankRing.vim</a></td>
+<td>yank历史纪录【<a href="http://yyq123.github.io/learn-vim/learn-vi-107-plugin-YankRing.html" title="YankRing.vim">详细介绍</a>】</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Shougo/context_filetype.vim" title="">Shougo/context_filetype.vim</a></td>
+<td>文件类型侦测</td>
+</tr>
+<tr>
+<td><a href="https://github.com/vim-scripts/fencview.vim" title="vim-scripts/fencview.vim">vim-scripts/fencview.vim</a>&nbsp;<span class="pl-v">&starf;</span></td>
+<td>多编码（Multi-Encodings）格式识别【<a href="http://yyq123.github.io/learn-vim/learn-vi-104-plugin-fencview.html" title="fencview.vim">详细介绍</a>】</td>
+</tr>
+<tr>
+<td><a href="https://github.com/mhinz/vim-startify" title="mhinz/vim-startify">mhinz/vim-startify</a></td>
+<td>自定义启动页，可以包含最近使用的文件、书签和保持的会话。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/dstein64/vim-startuptime" title="dstein64/vim-startuptime">dstein64/vim-startuptime</a></td>
+<td>启动时间分析</td>
+</tr>
+<tr>
+<td><a href="https://github.com/MTDL9/vim-verbosity" title="MTDL9/vim-verbosity">MTDL9/vim-verbosity</a></td>
+<td>将verbose信息输出至日志文件</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Shougo/vinarise.vim" title="Shougo/vinarise.vim">Shougo/vinarise.vim</a></td>
+<td>十六进制（Hex）编辑器</td>
 </tr>
 <tr>
 <td><a href="" title=""></a></td>
@@ -759,7 +748,7 @@ brew cask <span class="nb">install </span>font-fira-code
 </tbody>
 </table>
 
-<h4><a id="language" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#language" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>语法高亮度文件</h4>
+<h3><a id="color" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#non-lazy-loaded-plugins" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link">&#128279;</span></a>色彩</h3>
 <table>
 <thead>
 <tr>
@@ -769,57 +758,88 @@ brew cask <span class="nb">install </span>font-fira-code
 </thead>
 <tbody>
 <tr>
-<td><a href="https://github.com/hail2u/vim-css3-syntax" rel="nofollow">hail2u/vim-css3-syntax</a></td>
-<td>CSS3 syntax support to vim's built-in <code>syntax/css.vim</code>
-</td>
+<td><a href="https://github.com/rafi/awesome-vim-colorschemes" title="awesome-vim-colorschemes">rafi/awesome-colorschemes</a></td>
+<td>Awesome配色方案合辑</td>
 </tr>
 <tr>
-<td><a href="https://github.com/othree/csscomplete.vim" rel="nofollow">othree/csscomplete.vim</a></td>
-<td>Updated built-in CSS complete with latest standards</td>
+<td><a href="https://github.com/romainl/vim-cool" title="vim-cool">romainl/vim-cool</a></td>
+<td>完成搜索之后自动禁用高亮显示，当再次查询时重新启用高亮显示。</td>
 </tr>
 <tr>
-<td><a href="https://github.com/cakebaker/scss-syntax.vim" rel="nofollow">cakebaker/scss-syntax.vim</a></td>
-<td>Syntax file for scss (Sassy CSS)</td>
+<td><a href="https://github.com/guns/xterm-color-table.vim" title="xterm-color-table">guns/xterm-color-table.vim</a></td>
+<td>xterm 256色及RGB值列表</td>
 </tr>
 <tr>
-<td><a href="https://github.com/othree/html5.vim" rel="nofollow">othree/html5.vim</a></td>
-<td>HTML5 omnicomplete and syntax</td>
+<td><a href="https://github.com/lilydjwg/colorizer" title="lilydjwg/colorizer">lilydjwg/colorizer</a><span class="pl-k">&nbsp;&starf;</span></td>
+<td>颜色代码的背景色显示相应色彩</td>
+</tr>
+</tbody>
+</table>
+
+<h3><a id="gui" class="anchor" href="#gui" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>界面</h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/vim-airline/vim-airline" title="vim-airline/vim-airline">vim-airline/vim-airline</a></td>
+<td>自定义状态栏</td>
 </tr>
 <tr>
-<td><a href="https://github.com/plasticboy/vim-markdown" rel="nofollow">plasticboy/vim-markdown</a></td>
-<td>Markdown syntax highlighting</td>
+<td><a href="https://github.com/powerline/powerline" title="powerline/powerline">powerline/powerline</a></td>
+<td>自定义状态栏</td>
 </tr>
 <tr>
-<td><a href="https://github.com/rhysd/vim-gfm-syntax" rel="nofollow">rhysd/vim-gfm-syntax</a></td>
-<td>GitHub Flavored Markdown syntax highlight extension</td>
+<td><a href="https://github.com/liuchengxu/vim-which-key" title="">liuchengxu/vim-which-key</a></td>
+<td>在pop-up窗口中显示快捷键定义</td>
 </tr>
 <tr>
-<td><a href="https://github.com/pangloss/vim-javascript" rel="nofollow">pangloss/vim-javascript</a></td>
-<td>Enhanced Javascript syntax</td>
+<td><a href="https://github.com/mbbill/undotree" title="">mbbill/undotree</a></td>
+<td>视觉化的undo历史</td>
 </tr>
 <tr>
-<td><a href="https://github.com/heavenshell/vim-jsdoc" rel="nofollow">heavenshell/vim-jsdoc</a></td>
-<td>Generate JSDoc to your JavaScript code</td>
+<td><a href="https://github.com/sjl/gundo.vim" rel="sjl/gundo.vim">sjl/gundo.vim</a></td>
+<td>视觉化的undo历史</td>
 </tr>
 <tr>
-<td><a href="https://github.com/elzr/vim-json" rel="nofollow">elzr/vim-json</a></td>
-<td>Better JSON support</td>
+<td><a href="https://github.com/kshenoy/vim-signature" title="">kshenoy/vim-signature</a></td>
+<td>在屏幕最左侧显示标记</td>
 </tr>
 <tr>
-<td><a href="https://github.com/vim-python/python-syntax" rel="nofollow">vim-python/python-syntax</a></td>
-<td>Enhanced version of the original Python syntax</td>
+<td><a href="https://github.com/nathanaelkane/vim-indent-guides" title="">nathanaelkane/vim-indent-guides</a></td>
+<td>可视化显示缩进级别</td>
 </tr>
 <tr>
-<td><a href="https://github.com/Vimjas/vim-python-pep8-indent" rel="nofollow">Vimjas/vim-python-pep8-indent</a></td>
-<td>A nicer Python indentation style</td>
+<td><a href="https://github.com/ryanoasis/vim-devicons" title="ryanoasis/vim-devicons">ryanoasis/vim-devicons</a></td>
+<td>根据文件类型显示图标</td>
 </tr>
 <tr>
-<td><a href="https://github.com/vim-jp/syntax-vim-ex" rel="nofollow">vim-jp/syntax-vim-ex</a></td>
-<td>Improved Vim syntax highlighting</td>
+<td><a href="https://github.com/bagrat/vim-buffet" title="bagrat/vim-buffet">bagrat/vim-buffet</a></td>
+<td>自定义Tabline显示缓冲区列表</td>
 </tr>
 <tr>
-<td><a href="https://github.com/chrisbra/csv.vim" rel="nofollow">chrisbra/csv.vim</a></td>
-<td>Handling column separated data</td>
+<td><a href="https://github.com/t9md/vim-choosewin" title="">t9md/vim-choosewin</a></td>
+<td>类似TMUX的display-pane快速选择窗口</td>
+</tr>
+</tbody>
+</table>
+
+<h3><a id="data" class="anchor" href="#data" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>数据</h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/chrisbra/csv.vim" title="">chrisbra/csv.vim</a></td>
+<td>处理按列存储的数据文件</td>
 </tr>
 <tr>
 <td><a href="https://github.com/mechatroner/rainbow_csv" title="mechatroner/rainbow_csv">mechatroner/rainbow_csv</a></td>
@@ -829,35 +849,98 @@ brew cask <span class="nb">install </span>font-fira-code
 <td><a href="https://github.com/vim-scripts/VisIncr" title="vim-scripts/VisIncr">vim-scripts/VisIncr</a></td>
 <td>增加数值和日期等</td>
 </tr>
+</tbody>
+</table>
+
+<h3><a id="sytanx" class="anchor" href="#sytanx" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link">&#128279;</span></a>语法</h3>
+<table>
+<thead>
 <tr>
-<td><a href="https://github.com/ekalinin/Dockerfile.vim" rel="nofollow">ekalinin/Dockerfile.vim</a></td>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/hail2u/vim-css3-syntax" title="">hail2u/vim-css3-syntax</a></td>
+<td>CSS3 syntax support to vim's built-in syntax/css.vim</td>
+</tr>
+<tr>
+<td><a href="https://github.com/cakebaker/scss-syntax.vim" title="">cakebaker/scss-syntax.vim</a></td>
+<td>Syntax file for scss (Sassy CSS)</td>
+</tr>
+<tr>
+<td><a href="https://github.com/othree/html5.vim" title="">othree/html5.vim</a></td>
+<td>HTML5 omnicomplete and syntax</td>
+</tr>
+<tr>
+<td><a href="https://github.com/plasticboy/vim-markdown" title="">plasticboy/vim-markdown</a></td>
+<td>Markdown syntax highlighting</td>
+</tr>
+<tr>
+<td><a href="https://github.com/rhysd/vim-gfm-syntax" title="">rhysd/vim-gfm-syntax</a></td>
+<td>GitHub Flavored Markdown syntax highlight extension</td>
+</tr>
+<tr>
+<td><a href="https://github.com/pangloss/vim-javascript" title="">pangloss/vim-javascript</a></td>
+<td>Enhanced Javascript syntax</td>
+</tr>
+<tr>
+<td><a href="https://github.com/heavenshell/vim-jsdoc" title="">heavenshell/vim-jsdoc</a></td>
+<td>Generate JSDoc to your JavaScript code</td>
+</tr>
+<tr>
+<td><a href="https://github.com/elzr/vim-json" title="">elzr/vim-json</a></td>
+<td>Better JSON support</td>
+</tr>
+<tr>
+<td><a href="https://github.com/vim-python/python-syntax" title="">vim-python/python-syntax</a></td>
+<td>Enhanced version of the original Python syntax</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Vimjas/vim-python-pep8-indent" title="">Vimjas/vim-python-pep8-indent</a></td>
+<td>A nicer Python indentation style</td>
+</tr>
+<tr>
+<td><a href="https://github.com/vim-jp/syntax-vim-ex" title="">vim-jp/syntax-vim-ex</a></td>
+<td>Improved Vim syntax highlighting</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ekalinin/Dockerfile.vim" title="">ekalinin/Dockerfile.vim</a></td>
 <td>Syntax and snippets for Dockerfile</td>
 </tr>
 <tr>
-<td><a href="https://github.com/tmux-plugins/vim-tmux" rel="nofollow">tmux-plugins/vim-tmux</a></td>
+<td><a href="https://github.com/tmux-plugins/vim-tmux" title="">tmux-plugins/vim-tmux</a></td>
 <td>Plugin for tmux.conf</td>
 </tr>
 <tr>
-<td><a href="https://github.com/MTDL9/vim-log-highlighting" rel="nofollow">MTDL9/vim-log-highlighting</a></td>
+<td><a href="https://github.com/MTDL9/vim-log-highlighting" title="">MTDL9/vim-log-highlighting</a></td>
 <td>Syntax highlighting for generic log files</td>
 </tr>
 <tr>
-<td><a href="https://github.com/mboughaba/i3config.vim" rel="nofollow">mboughaba/i3config.vim</a></td>
+<td><a href="https://github.com/mboughaba/i3config.vim" title="">mboughaba/i3config.vim</a></td>
 <td>i3 window manager config syntax</td>
 </tr>
 <tr>
-<td><a href="https://github.com/jstrater/mpvim" rel="nofollow">jstrater/mpvim</a></td>
+<td><a href="https://github.com/jstrater/mpvim" title="">jstrater/mpvim</a></td>
 <td>Macports portfile configuration files</td>
 </tr>
 <tr>
-<td><a href="https://github.com/chr4/nginx.vim" rel="nofollow">chr4/nginx.vim</a></td>
+<td><a href="https://github.com/chr4/nginx.vim" title="">chr4/nginx.vim</a></td>
 <td>Improved nginx syntax and indent</td>
 </tr>
+<tr>
+<td><a href="https://github.com/vim-syntastic/syntastic" title="vim-syntastic/syntastic">vim-syntastic/syntastic</a></td>
+<td>语法检查</td>
+</tr>
+<tr>
+<td><a href="https://github.com/dense-analysis/ale" title="dense-analysis/ale">dense-analysis/ale</a></td>
+<td>支持LSP的异步语法检查</td>
+</tr>
 </tbody>
 </table>
 
-<h4>
-<a id="commands" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#commands" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>系统</h4>
+<h3><a id="git" class="anchor" href="#git" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Git</h4>
 <table>
 <thead>
 <tr>
@@ -867,30 +950,29 @@ brew cask <span class="nb">install </span>font-fira-code
 </thead>
 <tbody>
 <tr>
-<td><a href="https://github.com/junegunn/vim-plug" title="junegunn/vim-plug"></a></td>
-<td>插件管理器<a href="http://yyq123.github.io/learn-vim/learn-vim-plugin-RainbowParentheses.html#RP-Install" title="vim-plug">详细介绍</a></td>
+<td><a href="https://github.com/jreybert/vimagit" title="jreybert/vimagit">jreybert/vimagit</a></td>
+<td>简化Git工作流程</td>
 </tr>
 <tr>
-<td><a href="" title=""></a></td>
-<td></td>
+<td><a href="https://github.com/lambdalisue/gina.vim" title="lambdalisue/gina.vim">lambdalisue/gina.vim</a></td>
+<td>异部控制Git</td>
 </tr>
 <tr>
-<td><a href="https://github.com/vim-airline/vim-airline" title="vim-airline/vim-airline">vim-airline/vim-airline</a></td>
-<td>自定义状态栏</td>
+<td><a href="https://github.com/airblade/vim-gitgutter" title="airblade/vim-gitgutter">airblade/vim-gitgutter</a></td>
+<td>显示和控制Git变更</td>
 </tr>
 <tr>
-<td><a href="https://github.com/powerline/powerline" title="powerline/powerline"></a></td>
-<td>自定义状态栏</td>
+<td><a href="https://github.com/tpope/vim-fugitive" title="tpope/vim-fugitive">tpope/vim-fugitive</a></td>
+<td>Git plugin for Vim</td>
 </tr>
 <tr>
-<td><a href="" title=""></a></td>
-<td></td>
+<td><a href="https://github.com/mattn/vim-gist" title="mattn/vim-gist">mattn/vim-gist</a>&nbsp;<span class="pl-v">&starf;</span></td>
+<td>管理存储在<a href="https://gist.github.com/" title="Gist">Gist</a>的代码片段【<a href="http://yyq123.github.io/learn-vim/learn-vi-103-plugin-Gist.html" title="vim-plug">详细介绍</a>】</td>
 </tr>
 </tbody>
 </table>
 
-<h4>
-<a id="commands" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#commands" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Git</h4>
+<h3><a id="writing" class="anchor" href="#writing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>写作</h4>
 <table>
 <thead>
 <tr>
@@ -900,46 +982,20 @@ brew cask <span class="nb">install </span>font-fira-code
 </thead>
 <tbody>
 <tr>
-<td><a href="https://github.com/jreybert/vimagit" rel="nofollow">jreybert/vimagit</a></td>
-<td>Ease your git work-flow within Vim</td>
+<td><a href="https://github.com/junegunn/goyo.vim" title="junegunn/goyo">junegunn/goyo</a></td>
+<td>无干扰（Distraction-free）写作</td>
 </tr>
 <tr>
-<td><a href="https://github.com/lambdalisue/gina.vim" rel="nofollow">lambdalisue/gina.vim</a></td>
-<td>Asynchronously control git repositories</td>
+<td><a href="https://github.com/junegunn/limelight.vim" title="junegunn/limelight">junegunn/limelight</a></td>
+<td>无干扰（Hyperfocus）写作</td>
 </tr>
 <tr>
-<td><a href="https://github.com/airblade/vim-gitgutter" rel="nofollow">airblade/vim-gitgutter</a></td>
-<td>Show git changes at Vim gutter and un/stages hunks</td>
-</tr>
-</tbody>
-</table>
-
-
-<h4>
-<a id="commands" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#commands" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>写作</h4>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="https://github.com/junegunn/goyo.vim" rel="nofollow">junegunn/goyo</a></td>
-<td>Distraction-free writing</td>
-</tr>
-<tr>
-<td><a href="https://github.com/junegunn/limelight.vim" rel="nofollow">junegunn/limelight</a></td>
-<td>Hyperfocus-writing</td>
-</tr>
-<tr>
-<td><a href="https://github.com/reedes/vim-wordy" rel="nofollow">reedes/vim-wordy</a></td>
+<td><a href="https://github.com/reedes/vim-wordy" title="reedes/vim-wordy">reedes/vim-wordy</a></td>
 <td>识别经常被误用的英文单词和短语</td>
 </tr>
 <tr>
-<td><a href="https://github.com/mzlogin/vim-markdown-toc" rel="nofollow">mzlogin/vim-markdown-toc</a></td>
-<td>自动生成目录（TOC）Markdown files</td>
+<td><a href="https://github.com/mzlogin/vim-markdown-toc" title="mzlogin/vim-markdown-toc">mzlogin/vim-markdown-toc</a></td>
+<td>自动生成Markdown目录（TOC）标签</td>
 </tr>
 <tr>
 <td><a href="https://github.com/iamcco/markdown-preview.nvim" title="iamcco/markdown-preview.nvim">iamcco/markdown-preview.nvim</a></td>
@@ -952,8 +1008,7 @@ brew cask <span class="nb">install </span>font-fira-code
 </tbody>
 </table>
 
-<h4>
-<a id="commands" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#commands" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Commands</h4>
+<h3><a id="motion" class="anchor" href="#motion" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>移动</h4>
 <table>
 <thead>
 <tr>
@@ -963,92 +1018,12 @@ brew cask <span class="nb">install </span>font-fira-code
 </thead>
 <tbody>
 <tr>
-<td><a href="https://github.com/tyru/caw.vim" rel="nofollow">tyru/caw.vim</a></td>
-<td>注释Robust comment plugin with operator support</td>
+<td><a href="https://github.com/haya14busa/vim-asterisk" title="">haya14busa/vim-asterisk</a></td>
+<td>增强的<code>*</code>命令</td>
 </tr>
 <tr>
-<td><a href="https://github.com/Shougo/context_filetype.vim" rel="nofollow">Shougo/context_filetype.vim</a></td>
-<td>Context filetype detection for nested code</td>
-</tr>
-<tr>
-<td><a href="https://github.com/liuchengxu/vim-which-key" rel="nofollow">liuchengxu/vim-which-key</a></td>
-<td>在pop-up窗口中显示快捷键</td>
-</tr>
-<tr>
-<td><a href="https://github.com/mbbill/undotree" rel="nofollow">mbbill/undotree</a></td>
-<td>视觉化的undo history visualizer</td>
-</tr>
-<tr>
-<td><a href="https://github.com/sjl/gundo.vim" rel="sjl/gundo.vim">sjl/gundo.vim</a></td>
-<td>视觉化的undo history visualizer</td>
-</tr>
-<tr>
-<td><a href="https://github.com/Shougo/vinarise.vim" rel="nofollow">Shougo/vinarise.vim</a></td>
-<td>Hex editor</td>
-</tr>
-<tr>
-<td><a href="https://github.com/mhinz/vim-startify" title="mhinz/vim-startify">mhinz/vim-startify</a></td>
-<td>自定义启动页，可以包含最近使用的文件、书签和保持的会话。</td>
-</tr>
-<tr>
-<td><a href="https://github.com/dstein64/vim-startuptime" rel="nofollow">dstein64/vim-startuptime</a></td>
-<td>Visually profile Vim's startup time</td>
-</tr>
-<tr>
-<td><a href="https://github.com/ryanoasis/vim-devicons" title="ryanoasis/vim-devicons">ryanoasis/vim-devicons</a></td>
-<td>根据文件类型显示图标</td>
-</tr>
-<tr>
-<td><a href="https://github.com/bagrat/vim-buffet" title="bagrat/vim-buffet">bagrat/vim-buffet</a></td>
-<td>自定义Tabline显示缓冲区列表</td>
-</tr>
-<tr>
-<td><a href="https://github.com/MTDL9/vim-verbosity" title="MTDL9/vim-verbosity">MTDL9/vim-verbosity</a></td>
-<td>将verbose信息输出至日志文件</td>
-</tr>
-<tr>
-<td><a href="https://github.com/jaawerth/nrun.vim" rel="nofollow">jaawerth/nrun.vim</a></td>
-<td>"which" and "exec" functions targeted at local node project bin</td>
-</tr>
-<tr>
-<td><a href="https://github.com/t9md/vim-choosewin" rel="nofollow">t9md/vim-choosewin</a></td>
-<td>快速选择窗口, like tmux's 'display-pane'</td>
-</tr>
-<tr>
-<td><a href="https://github.com/liuchengxu/vista.vim" rel="nofollow">liuchengxu/vista.vim</a></td>
-<td>Viewer &amp; Finder for LSP symbols and tags in Vim</td>
-</tr>
-<tr>
-<td><a href="https://github.com/junegunn/fzf" rel="nofollow">junegunn/fzf</a></td>
-<td>Powerful command-line fuzzy finder</td>
-</tr>
-<tr>
-<td><a href="https://github.com/junegunn/fzf.vim" rel="nofollow">junegunn/fzf.vim</a></td>
-<td>Fzf integration</td>
-</tr>
-<tr>
-<td><a href="https://github.com/Ron89/thesaurus_query.vim" rel="nofollow">Ron89/thesaurus_query.vim</a></td>
-<td>Multi-language thesaurus query and replacement</td>
-</tr>
-</tbody>
-</table>
-<h4>
-<a id="interface" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#interface" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Interface</h4>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="https://github.com/haya14busa/vim-asterisk" rel="nofollow">haya14busa/vim-asterisk</a></td>
-<td>Improved * motions</td>
-</tr>
-<tr>
-<td><a href="https://github.com/haya14busa/vim-edgemotion" rel="nofollow">haya14busa/vim-edgemotion</a></td>
-<td>Jump to the edge of block</td>
+<td><a href="https://github.com/haya14busa/vim-edgemotion" title="">haya14busa/vim-edgemotion</a></td>
+<td>跳转到代码块的边界</td>
 </tr>
 <tr>
 <td><a href="https://github.com/easymotion/vim-easymotion" title="easymotion/vim-easymotion">easymotion/vim-easymotion</a></td>
@@ -1058,31 +1033,11 @@ brew cask <span class="nb">install </span>font-fira-code
 <td><a href="https://github.com/terryma/vim-multiple-cursors" title="terryma/vim-multiple-cursors">terryma/vim-multiple-cursors</a></td>
 <td>多重光标选择</td>
 </tr>
-<tr>
-<td><a href="https://github.com/machakann/vim-highlightedyank" rel="nofollow">machakann/vim-highlightedyank</a></td>
-<td>高亮显示yanked内容</td>
-</tr>
-<tr>
-<td><a href="https://github.com/svermeulen/vim-yoink" title="svermeulen/vim-yoink">svermeulen/vim-yoink</a></td>
-<td>yank历史纪录</td>
-</tr>
-<tr>
-<td><a href="https://www.vim.org/scripts/script.php?script_id=1234" title="DavidFishburn/YankRing.vim">DavidFishburn/YankRing.vim</a></td>
-<td>yank/change/delete历史纪录</td>
-</tr>
-<tr>
-<td><a href="https://github.com/kshenoy/vim-signature" rel="nofollow">kshenoy/vim-signature</a></td>
-<td>在屏幕最左侧显示标记</td>
-</tr>
-<tr>
-<td><a href="https://github.com/nathanaelkane/vim-indent-guides" rel="nofollow">nathanaelkane/vim-indent-guides</a></td>
-<td>可视化显示缩进级别</td>
-</tr>
 
 </tbody>
 </table>
-<h4>
-<a id="completion--code-analysis" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#completion--code-analysis" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Completion &amp; Code-Analysis</h4>
+
+<h3><a id="completion" class="anchor" href="#completion" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>自动完成</h3>
 <table>
 <thead>
 <tr>
@@ -1092,102 +1047,33 @@ brew cask <span class="nb">install </span>font-fira-code
 </thead>
 <tbody>
 <tr>
-<td><a href="https://github.com/prabirshrestha/async.vim" rel="nofollow">prabirshrestha/async.vim</a></td>
-<td>Normalize async job control API for Vim and Neovim</td>
+<td><a href="https://github.com/othree/csscomplete.vim" title="othree/csscomplete.vim">othree/csscomplete.vim</a></td>
+<td>增强的CSS自动完成</td>
 </tr>
 <tr>
-<td><a href="https://github.com/prabirshrestha/asyncomplete.vim" rel="nofollow">prabirshrestha/asyncomplete.vim</a></td>
-<td>Async-completion in pure Vimscript for Vim8 and Neovim</td>
+<td><a href="https://github.com/prabirshrestha/asyncomplete.vim" title="prabirshrestha/asyncomplete.vim">prabirshrestha/asyncomplete.vim</a></td>
+<td>异步自动完成</td>
 </tr>
 <tr>
-<td><a href="https://github.com/prabirshrestha/asyncomplete-lsp.vim" rel="nofollow">prabirshrestha/asyncomplete-lsp.vim</a></td>
-<td>Provide Language Server Protocol autocompletion source</td>
+<td><a href="https://github.com/prabirshrestha/vim-lsp" title="prabirshrestha/vim-lsp">prabirshrestha/vim-lsp</a></td>
+<td>Async Language Server Protocol plugin for</td>
 </tr>
 <tr>
-<td><a href="https://github.com/prabirshrestha/vim-lsp" rel="nofollow">prabirshrestha/vim-lsp</a></td>
-<td>Async Language Server Protocol plugin for Vim and Neovim</td>
-</tr>
-<tr>
-<td><a href="https://github.com/mattn/vim-lsp-settings" rel="nofollow">mattn/vim-lsp-settings</a></td>
-<td>Auto LSP configurations for vim-lsp</td>
-</tr>
-<tr>
-<td><a href="https://github.com/Shougo/neco-vim" rel="nofollow">Shougo/neco-vim</a></td>
-<td>Completion source for Vimscript</td>
-</tr>
-<tr>
-<td><a href="https://github.com/prabirshrestha/asyncomplete-necovim.vim" rel="nofollow">prabirshrestha/asyncomplete-necovim.vim</a></td>
-<td>Provides syntax autocomplete via neco-vim</td>
-</tr>
-<tr>
-<td><a href="https://github.com/prabirshrestha/asyncomplete-tags.vim" rel="nofollow">prabirshrestha/asyncomplete-tags.vim</a></td>
-<td>Provides tag autocomplete via vim tagfiles</td>
-</tr>
-<tr>
-<td><a href="https://github.com/prabirshrestha/asyncomplete-file.vim" rel="nofollow">prabirshrestha/asyncomplete-file.vim</a></td>
-<td>Provides file autocomplete</td>
-</tr>
-<tr>
-<td><a href="https://github.com/wellle/tmux-complete.vim" rel="nofollow">wellle/tmux-complete.vim</a></td>
-<td>Completion of words in adjacent tmux panes</td>
-</tr>
-<tr>
-<td><a href="https://github.com/prabirshrestha/asyncomplete-ultisnips.vim" rel="nofollow">prabirshrestha/asyncomplete-ultisnips.vim</a></td>
-<td>Provides UltiSnips autocomplete</td>
-</tr>
-<tr>
-<td><a href="https://github.com/SirVer/ultisnips" rel="nofollow">SirVer/ultisnips</a></td>
-<td>Ultimate snippet solution</td>
-</tr>
-<tr>
-<td><a href="https://github.com/honza/vim-snippets" rel="nofollow">honza/vim-snippets</a></td>
-<td>Community-maintained snippets for programming languages</td>
-</tr>
-<tr>
-<td><a href="https://github.com/dense-analysis/ale" rel="nofollow">dense-analysis/ale</a></td>
-<td>Check syntax asynchronously and fix files with LSP support</td>
-</tr>
-<tr>
-<td><a href="https://github.com/vim-syntastic/syntastic" title="vim-syntastic/syntastic">vim-syntastic/syntastic</a></td>
-<td>语法检查</td>
+<td><a href="https://github.com/mattn/vim-lsp-settings" title="mattn/vim-lsp-settings">mattn/vim-lsp-settings</a></td>
+<td>vim-lsp自动配置</td>
 </tr>
 <tr>
 <td><a href="https://github.com/ycm-core/YouCompleteMe" title="ycm-core/YouCompleteMe">ycm-core/YouCompleteMe</a></td>
 <td>代码自动完成</td>
 </tr>
 <tr>
-<td><a href="https://github.com/luochen1990/rainbow" title="luochen1990/rainbow">luochen1990/rainbow</a></td>
-<td>多重色彩括号<a href="http://yyq123.github.io/learn-vim/learn-vim-plugin-RainbowParentheses.html#RP-Install" title="Rainbow Parentheses">详细介绍</a></td>
-</tr>
-<tr>
-<td><a href="https://github.com/vim-scripts/Rainbow-Parenthsis-Bundle" title="vim-scripts/Rainbow-Parenthsis-Bundle">vim-scripts/Rainbow-Parenthsis-Bundle</a></td>
-<td>多重色彩括号<a href="http://yyq123.github.io/learn-vim/learn-vim-plugin-RainbowParentheses.html#RPI-Install" title="Rainbow Parentheses Improved">详细介绍</a></td>
-</tr>
-<tr>
-<td><a href="https://github.com/rhysd/devdocs.vim" title="rhysd/devdocs.vim">rhysd/devdocs.vim</a></td>
-<td>查询<a href="https://devdocs.io/" title="devdocs.io">devdocs.io</a></td>
-</tr>
-<tr>
-<td><a href="https://github.com/rizzatti/dash.vim" title="rizzatti/dash.vim">rizzatti/dash.vim</a></td>
-<td>查询<a href="https://kapeli.com/dash" title="Dash.app">Dash.app</a></td>
-</tr>
-<tr>
-<td><a href="https://github.com/KabbAmine/zeavim.vim" title="KabbAmine/zeavim.vim">KabbAmine/zeavim.vim</a></td>
-<td>查询<a href="https://zealdocs.org/" title="Zeal">Zeal</a></td>
-</tr>
-<tr>
 <td><a href="" title=""></a></td>
 <td></td>
-</tr>
-<tr>
-<td><a href="https://github.com/ludovicchabant/vim-gutentags" rel="nofollow">ludovicchabant/vim-gutentags</a></td>
-<td>Manages your tag files</td>
 </tr>
 </tbody>
 </table>
 
-<h4>
-<a id="denite" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#denite" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>HTML</h4>
+<h3><a id="html" class="anchor" href="#html" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>HTML</h3>
 <table>
 <thead>
 <tr>
@@ -1197,22 +1083,21 @@ brew cask <span class="nb">install </span>font-fira-code
 </thead>
 <tbody>
 <tr>
-<td><a href="" title=""></a></td>
-<td></td>
+<td><a href="https://github.com/yyq123/HTML-Editor" title="yyq123/HTML-Editor">yyq123/HTML-Editor</a></td>
+<td>HTML代码输入和网页预览【<a href="http://yyq123.github.io/learn-vim/.html" title="">详细介绍</a>】</td>
 </tr>
 <tr>
 <td><a href="https://github.com/alvan/vim-closetag" title="alvan/vim-closetag">alvan/vim-closetag</a></td>
 <td>自动关闭(X)HTML标签</td>
 </tr>
 <tr>
-<td><a href="https://github.com/mattn/emmet-vim" rel="nofollow">mattn/emmet-vim</a></td>
-<td>Provides support for expanding abbreviations alá emmet</td>
+<td><a href="https://github.com/mattn/emmet-vim" title="mattn/emmet-vim">mattn/emmet-vim</a></td>
+<td>类似<a href="https://emmet.io/" title="emmet"></a>emmet的HTML代码快速输入</td>
 </tr>
 </tbody>
 </table>
 
-<h4>
-<a id="operators--text-objects" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#operators--text-objects" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Operators &amp; Text Objects</h4>
+<h3><a id="text-objects" class="anchor" href="#text-objects" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>文本对象</h3>
 <table>
 <thead>
 <tr>
@@ -1226,11 +1111,11 @@ brew cask <span class="nb">install </span>font-fira-code
 <td>扩展文本对象</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kana/vim-operator-user" rel="nofollow">kana/vim-operator-user</a></td>
-<td>Define your own custom operators</td>
+<td><a href="https://github.com/kana/vim-operator-user" title="kana/vim-operator-user">kana/vim-operator-user</a></td>
+<td>自定义操作符（operators）</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kana/vim-operator-replace" rel="nofollow">kana/vim-operator-replace</a></td>
+<td><a href="https://github.com/kana/vim-operator-replace" title="kana/vim-operator-replace">kana/vim-operator-replace</a></td>
 <td>Operator to replace text with register content</td>
 </tr>
 <tr>
@@ -1239,52 +1124,119 @@ brew cask <span class="nb">install </span>font-fira-code
 </tr>
 <tr>
 <td><a href="https://github.com/tpope/vim-surround" title="tpope/vim-surround">tpope/vim-surround</a></td>
-<td>环绕字符编辑</td>
+<td>环绕字符编辑【<a href="http://yyq123.github.io/learn-vim/learn-vim-plugin-surround.html" title="vim-surround">详细介绍</a>】</td>
 </tr>
 <tr>
-<td><a href="https://github.com/machakann/vim-sandwich" rel="nofollow">machakann/vim-sandwich</a></td>
-<td>Search, select, and edit sandwich text objects</td>
+<td><a href="https://github.com/machakann/vim-sandwich" title="">machakann/vim-sandwich</a></td>
+<td>环绕字符编辑【<a href="http://yyq123.github.io/learn-vim/.html" title="">详细介绍</a>】</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kana/vim-textobj-user" rel="nofollow">kana/vim-textobj-user</a></td>
+<td><a href="https://github.com/kana/vim-textobj-user" title="">kana/vim-textobj-user</a></td>
 <td>自定义文本对象</td>
 </tr>
 <tr>
-<td><a href="https://github.com/terryma/vim-expand-region" rel="nofollow">terryma/vim-expand-region</a></td>
-<td>Visually select increasingly larger regions of text</td>
+<td><a href="https://github.com/terryma/vim-expand-region" title="">terryma/vim-expand-region</a></td>
+<td>渐进可视化区域选择文本</td>
 </tr>
 <tr>
 <td><a href="https://github.com/chrisbra/matchit" title="chrisbra/matchit">chrisbra/matchit</a></td>
-<td>扩展<code>%</code>命令功能，支持if/else/endif语法结构；支持HTML标签</td>
+<td><code>%</code>命令功能扩展【<a href="http://yyq123.github.io/learn-vim/.html" title="">详细介绍</a>】</td>
 </tr>
 <tr>
 <td><a href="https://github.com/andymass/vim-matchup" title="andymass/vim-matchup">andymass/vim-matchup</a></td>
-<td>扩展<code>%</code>命令功能，支持if/else/endif语法结构；支持HTML标签</td>
-</tr>
-
-<tr>
-<td><a href="https://github.com/AndrewRadev/sideways.vim" rel="nofollow">AndrewRadev/sideways.vim</a></td>
-<td>Match function arguments</td>
+<td><code>%</code>命令功能扩展【<a href="http://yyq123.github.io/learn-vim/.html" title="">详细介绍</a>】</td>
 </tr>
 <tr>
-<td><a href="https://github.com/AndrewRadev/splitjoin.vim" rel="nofollow">AndrewRadev/splitjoin.vim</a></td>
-<td>Transition code between multi-line and single-line</td>
+<td><a href="https://github.com/AndrewRadev/sideways.vim" title="nofollow">AndrewRadev/sideways.vim</a></td>
+<td>匹配函数参数</td>
 </tr>
 <tr>
-<td><a href="https://github.com/AndrewRadev/linediff.vim" rel="nofollow">AndrewRadev/linediff.vim</a></td>
-<td>Perform diffs on blocks of code</td>
+<td><a href="https://github.com/osyo-manga/vim-textobj-multiblock" title="osyo-manga/vim-textobj-multiblock">osyo-manga/vim-textobj-multiblock</a></td>
+<td>处理成对括号</td>
 </tr>
 <tr>
-<td><a href="https://github.com/osyo-manga/vim-textobj-multiblock" rel="nofollow">osyo-manga/vim-textobj-multiblock</a></td>
-<td>Handle bracket objects</td>
-</tr>
-<tr>
-<td><a href="https://github.com/kana/vim-textobj-function" rel="nofollow">kana/vim-textobj-function</a></td>
-<td>Text objects for functions</td>
+<td><a href="https://github.com/kana/vim-textobj-function" title="kana/vim-textobj-function">kana/vim-textobj-function</a></td>
+<td>函数相关文本对象</td>
 </tr>
 </tbody>
 </table>
-</details>
+
+<h3><a id="coding" class="anchor" href="#coding" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link">&#128279;</span></a>编程辅助</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/AndrewRadev/splitjoin.vim" title="nofollow">AndrewRadev/splitjoin.vim</a></td>
+<td>拆分/合并行</td>
+</tr>
+<tr>
+<td><a href="https://github.com/AndrewRadev/linediff.vim" title="AndrewRadev/linediff.vim">AndrewRadev/linediff.vim</a></td>
+<td>代码块比较</td>
+</tr>
+<tr>
+<td><a href="https://github.com/SirVer/ultisnips" title="SirVer/ultisnips">SirVer/ultisnips</a></td>
+<td>代码片段管理</td>
+</tr>
+<tr>
+<td><a href="https://github.com/garbas/vim-snipmate" title="garbas/vim-snipmate">garbas/vim-snipmate</a></td>
+<td>代码片段管理</td>
+</tr>
+<tr>
+<td><a href="https://github.com/honza/vim-snippets" title="honza/vim-snippets">honza/vim-snippets</a></td>
+<td>代码片段管理</td>
+</tr>
+<tr>
+<td><a href="https://github.com/tyru/caw.vim" title="tyru/caw.vim">tyru/caw.vim</a></td>
+<td>注释工具</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ludovicchabant/vim-gutentags" title="">ludovicchabant/vim-gutentags</a></td>
+<td>管理tag文件</td>
+</tr>
+<tr>
+<td><a href="https://github.com/luochen1990/rainbow" title="luochen1990/rainbow">luochen1990/rainbow</a></td>
+<td>多重色彩括号【<a href="http://yyq123.github.io/learn-vim/learn-vim-plugin-RainbowParentheses.html#RP-Install" title="Rainbow Parentheses">详细介绍</a>】</td>
+</tr>
+<tr>
+<td><a href="https://github.com/vim-scripts/Rainbow-Parenthsis-Bundle" title="vim-scripts/Rainbow-Parenthsis-Bundle">Rainbow-Parenthsis-Bundle</a></td>
+<td>多重色彩括号【<a href="http://yyq123.github.io/learn-vim/learn-vim-plugin-RainbowParentheses.html#RPI-Install" title="Rainbow Parentheses Improved">详细介绍</a>】</td>
+</tr>
+<tr>
+<td><a href="https://github.com/rhysd/devdocs.vim" title="rhysd/devdocs.vim">rhysd/devdocs.vim</a></td>
+<td>查询<a href="https://devdocs.io/" title="devdocs.io">devdocs.io</a>离线文档</td>
+</tr>
+<tr>
+<td><a href="https://github.com/rizzatti/dash.vim" title="rizzatti/dash.vim">rizzatti/dash.vim</a></td>
+<td>查询<a href="https://kapeli.com/dash" title="Dash.app">Dash.app</a>离线文档</td>
+</tr>
+<tr>
+<td><a href="https://github.com/KabbAmine/zeavim.vim" title="KabbAmine/zeavim.vim">KabbAmine/zeavim.vim</a></td>
+<td>查询<a href="https://zealdocs.org/" title="Zeal">Zeal</a>离线文档【<a href="http://yyq123.github.io/learn-vim/.html" title="">详细介绍</a>】</td>
+</tr>
+</tbody>
+</table>
+
+<h3><a id="others" class="anchor" href="#others" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>其它</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/junegunn/fzf.vim" title="junegunn/fzf.vim">junegunn/fzf.vim</a></td>
+<td>集成Fzf模糊查询工具</td>
+</tr>
+</tbody>
+</table>
+
 	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="在Windows下安装Vim" href="http://yyq123.github.io/learn-vim/learn-vi-203-Install-Vim-Win.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="在Mac下安装Vim" href="http://yyq123.github.io/learn-vim/learn-vi-202-Install-Vim-Mac.html">下一篇</a>&gt;</span></p>
 </div>
 </body>
