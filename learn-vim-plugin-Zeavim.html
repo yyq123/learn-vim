@@ -31,7 +31,7 @@ nmap &lt;leader&gt;&lt;leader&gt;z &lt;Plug&gt;ZVKeyDocset</code></pre>
 	<p style="text-indent:2em"><code class="inset">:help zeavim</code></p>
 
 	<h2 class="article"><a id="zeal-cmdline">使用命令行调用Zeal</a></h2>
-	<p>如果不希望安装额外的插件，那么也可以用"zeal docset:keyword"的形式直接调用Zeal<a href="https://github.com/zealdocs/zeal/#command-line" title="command-line">命令行</a>。例如以下命令，将在Vim文档中查找关键字"endif"</p>
+	<p>如果不希望安装额外的插件，那么也可以用"zeal docset:keyword"的形式直接调用Zeal<a href="https://github.com/zealdocs/zeal/#command-line" title="command-line">命令行</a>。例如以下命令，将在Vim文档中查找关键字"endif"：</p>
 	<p style="text-indent:2em"><code class="inset">:!zeal vim:endif</code></p>
 	<p>定义以下快捷键，将根据当前文件类型在相应的Docset中，查找当前光标下的单词：</p>
 	<p style="text-indent:2em"><code class="inset">:nnoremap &lt;Leader&gt;z :exec &quot;!zeal &quot; . expand(&amp;ft) . &quot;:&quot; . &quot;&lt;cword&gt;&quot;&lt;CR&gt;</code></p>
