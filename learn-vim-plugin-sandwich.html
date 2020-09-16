@@ -70,15 +70,15 @@
 		<tr><td>单词</td><td>标签及新行</td><td>'Hello <mark>W</mark>orld'</td><td><code>srbTp</code></td><td>&lt;p&gt;Hello World&lt;/p&gt;</td><td>使用标识符T来输入包含尖括号的完整标签</td></tr>
 		<tr><td>单词</td><td>标签</td><td>&lt;p&gt;Hello <mark>W</mark>orld&lt;/p&gt;</td><td><code>srtth1</code></td><td>&lt;h1&gt;Hello World&lt;/h1&gt;</td><td>使用标识符t来指代尖括号之内的标签名称</td></tr>
 		<tr><td>单词</td><td>标签</td><td>&lt;h1&gt;Hello <mark>W</mark>orld&lt;/h1&gt;</td><td><code>srT)</code></td><td>(Hello World)</td><td>使用标识符T来指代包含尖括号的完整标签</td></tr>
-		<tr><td>单词</td><td>括号</td><td>(1,<mark>2</mark>,3)</td><td><code>srb]</code></td><td>[1,2,3]</td></tr>
-		<tr><td>单词</td><td>括号及空格<sup><a href="" title=""></a></sup></td><td>(1,<mark>2</mark>,3)</td><td><code>srb[</code></td><td>[&nbsp;1,2,3&nbsp;]</td></tr>
+		<tr><td>单词</td><td>括号</td><td>(1,<mark>2</mark>,3)</td><td><code>srb]</code></td><td>[1,2,3]</td><td>使用闭括号进行替换</td></tr>
+		<tr><td>单词</td><td>括号及空格<sup><a href="" title=""></a></sup></td><td>(1,<mark>2</mark>,3)</td><td><code>srb[</code></td><td>[&nbsp;1,2,3&nbsp;]</td><td>使用<a href="#recipes" title="recipes">自定义</a>开括号进行替换并增加间隔空格</td></tr>
 	</table>
-	<p>在sr命令中，并不需要具体指明环绕的，可以，既聪明又方便。</p>
-	<p>随着命令输入，将会高亮显示需要被替换的引号，以便您在操作之前确认范围是否正确。</p>
+	<p>从以上sr命令可以看到，并不需要指明环绕的括号字符，而可以通过标识符b来指代，既聪明又方便。</p>
+	<p>随着命令输入，会以高亮显示将被替换的环绕字符，以便在操作之前确认范围是否正确。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/plugin_sandwich_srbT.gif" title="plugin_sandwich_srbT"><img src="https://yyq123.github.io/learn-vim/images/plugin_sandwich_srbT.gif" alt="plugin_sandwich_srbT" /></a></p>
 
 	<h2 class="article"><a id="delete">删除环绕字符</a></h2>
-	<p>使用<code class="inset">ds</code>命令可以删除环绕字符：</p>
+	<p>使用<code class="inset">sd</code>命令可以删除环绕字符：</p>
 	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="5">
 		<tr><th>目标范围</th><th>新增内容</th><th>原始文本</th><th>命令</th><th>更改效果</th></tr>
 		<tr><td>单词</td><td>引号</td><td>'Hello <mark>W</mark>orld'</td><td><code>sdb</code></td><td>Hello World</td></tr>
@@ -112,13 +112,18 @@
 	</ul>
 
 	<h2 class="article"><a id="HTMLTag">HTML标签</a></h2>
-	<p>假设需要输入以下包含多个环绕字符的文本：</p>
+	<p>假设需要针对以下文本，添加包含多个属性的HTML标签：</p>
 	<pre class="block">Hello World</pre>
-	<p>使用以下命令：</p>
+	<p>可以使用以下命令，简化标签的录入：</p>
 	<p style="text-indent:2em"><code class="inset">sa$tp.class1#id1</code></p>
 	<pre class="block">&lt;p class=&quot;class1&quot; id=&quot;id1&quot;&gt;Hello World&lt;/p&gt;</pre>
-	<p>使用以下命令，为段落增加&lt;p&gt;标签：</p>
+	<p>假设需要针对以下文本段落，添加&lt;p&gt;标签：</p>
+	<pre class="block">The passion to save humanity is a
+cover for the desire to rule it.</pre>
+	<p>可以使用以下命令，针对整个段落进行操作：</p>
 	<p style="text-indent:2em"><code class="inset">sa}tp</code></p>
+	<pre class="block">&lt;p&gt;The passion to save humanity is a
+cover for the desire to rule it.&lt;/p&gt;</pre>
 
 	<h2 class="article"><a id="Keymap">自定义快捷键</a></h2>
 	<p>根据<a href="https://github.com/machakann/vim-sandwich/blob/master/doc/sandwich.txt" title="sandwich.txt">帮助文件</a>，建议在vimrc配置文件中取消当前<kbd>s</kbd>键配置：</p>

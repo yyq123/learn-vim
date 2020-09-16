@@ -5,11 +5,11 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记 (Matching Pairs)</title>
+	<title>VIM学习笔记 匹配成对字符(Matching Pairs)</title>
 </head>
 <body>
-	<h1>VIM学习笔记 (Match Pairs)</h1>
-	<p style="color:gray; font-size:0.6em"><a href="https://www.reddit.com/r/vim/comments/366scg/reading_practical_vim_probably_the_best_figure_in/" title="Originally from Practical Vim by Drew Neal"><img src="https://yyq123.github.io/learn-vim/images/motion_Ninja.png" alt="motion_Ninja" width="550" height="205" /></a></br>Source: </p>
+	<h1>VIM学习笔记 匹配成对字符(Match Pairs)</h1>
+	<p style="color:gray; font-size:0.6em"><a href="https://www.reddit.com/r/vim/comments/366scg/reading_practical_vim_probably_the_best_figure_in/" title="Originally from Practical Vim by Drew Neal"><img src="https://yyq123.github.io/learn-vim/images/motion_Ninja.png" alt="motion_Ninja" width="550" height="205" /></a></br>Originally from Practical Vim by Drew Neal</p>
 
 	<h2 class="article"><a id="matchpairs">'matchpairs'选项</a></h2>
 	<p>matchpairs选项，用来控制哪些字符可以通过<code class="inset">%</code>命令进行匹配。此选项的默认值如下：</p>
@@ -19,12 +19,11 @@
 	<p style="color:gray; font-size:0.5em"><a href="http://yyq123.github.io/learn-vim/images/matchit-vim-example.gif" title="matchit-vim-example"><img src="http://yyq123.github.io/learn-vim/images/matchit-vim-example.gif" alt="matchit-vim-example" /></a></br>Source: https://catonmat.net/vim-plugins-matchit-vim</p>
 	<p>如果需要新增匹配类型，例如增加对于HTML文件中的尖括号的匹配，那么可以使用以下命令：</p>
 	<p style="text-indent:2em"><code class="inset">:set mps+=&lt;:&gt;</code></p>
-	<p>利用<a href="http://yyq123.github.io/learn-vim/learn-vi-49-01-autocmd.html" title="自动命令(autocmd)">自动命令</a>（autocmd），可以针对特定文件类型设置匹配字符：A more exotic example, to jump between the '=' and ';' in an</p>
+	<p>利用<a href="http://yyq123.github.io/learn-vim/learn-vi-49-01-autocmd.html" title="自动命令(autocmd)">自动命令</a>（autocmd），可以针对特定文件类型设置匹配字符。例如针对C和Java代码，增加对于&ldquo;=&rdquo;和&ldquo;;&rdquo;的匹配：</p>
 	<p style="text-indent:2em"><code class="inset">:au FileType c,cpp,java set mps+==:;</code></p>
 
-
 	<h2 class="article"><a id="showmatch">'showmatch'选项</a></h2>
-	<p>如果希望在输入括号时，光标自动跳转到与其匹配的位置，那么可以设置以下选项：</p>
+	<p>如果希望在输入闭括号时，短暂地跳转到与之匹配的开括号，那么可以设置以下选项：</p>
 	<p style="text-indent:2em"><code class="inset">:set showmatch</code></p>
 
 	<h2 class="article"><a id="matchtime">'matchtime'选项</a></h2>
@@ -32,33 +31,23 @@
 	<p>如果希望持续显示配对括号1.5秒，那么可以使用以下命令：</p>
 	<p style="text-indent:2em"><code class="inset">:set matchtime=15</code></p>
 
-	<h2 class="article"><a id="matchit-install"></a></h2>
+	<h2 class="article"><a id="matchit-install">matchit插件</a></h2>
 	<p><a href="https://github.com/chrisbra/matchit" title="matchit">matchit</a>插件扩展了<code>%</code>命令的功能，支持if/else/endif语法结构；支持HTML标签。使用<code>:help matchit-languages</code>命令，可以查看当前支持的所有语言列表。</p>
-	<p>从Vim 6.0开始，<a href="https://github.com/chrisbra/matchit" title="matchit">matchit</a>插件伴随vim发行，不需要单独安装。</p>
-	<p>在vimrc文件中增加以下命令，可以激活matchit插件：</p>
+	<p>从Vim 6.0开始，<a href="https://github.com/chrisbra/matchit" title="matchit">matchit</a>插件伴随vim发行，内置于<code>$VIMRUNTIME\pack\dist\opt\matchit</code>目录中，并不需要单独安装。</p>
+	<p>在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>配置文件中增加以下命令，可以启用matchit插件：</p>
 	<p style="text-indent:2em"><code class="inset">packadd! matchit</code></p>
 	<p>在HTML标签中，点击<code>%</code>键，将移动到关闭标签上：</p>
 	<p style="color:gray; font-size:0.5em"><a href="http://yyq123.github.io/learn-vim/images/matchit-vim-html-example.gif" title="matchit-vim-example"><img src="http://yyq123.github.io/learn-vim/images/matchit-vim-html-example.gif" alt="matchit-vim-example" /></a></br>Source: https://catonmat.net/vim-plugins-matchit-vim</p>
- 
+	<p>使用以下命令，可以查看更多帮助信息：</p>
 	<p style="text-indent:2em"><code class="inset">:help matchit</code></p>
-
-	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
-
-	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
-		<caption style="margin:0.5em; font-weight:bold">选项列表</caption>
-		<tr><th style="white-space: nowrap">选项</th><th>描述</th><th>帮助信息</th></tr>
-		<tr><td><code class="inset">!</code></td><td>如果包含，表示。例如，。</td><td style="white-space: nowrap"><code class="inset">:help viminfo-!</code></td></tr>
-	</table>
 
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
-		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
-		<tr><td><code class="inset">:</code></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">%</code></td><td>跳转到匹配字符</td></tr>
+		<tr><td><code class="inset">:set matchpairs</code></td><td>设置形成配对的字符</td></tr>
+		<tr><td><code class="inset">:set showmatch</code></td><td>设置是否短暂跳转到匹配括号</td></tr>
+		<tr><td><code class="inset">:set matchtime</code></td><td>设置显示配对括号的时间长度</td></tr>
 	</table>
-&ldquo;&rdquo;
 
 	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="移动 (Movement)" href="http://yyq123.github.io/learn-vim/learn-vi-02-Move.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="在文本对象间移动(motion-object)" href="http://yyq123.github.io/learn-vim/learn-vim-motion-objects.html">下一篇</a>&gt;</span></p>
 
