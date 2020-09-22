@@ -10,7 +10,7 @@
 <body>
 	<h1>VIM学习笔记 环绕字符编辑(sandwich)</h1>
 	<p><a style="font-weight:bold" href="https://github.com/machakann/vim-sandwich" title="sandwich">sandwich</a>&nbsp;插件可以快速编辑围绕在内容两端的字符（pairs of things surrounding things），比如成对出现的括号、引号，甚至HTML/XML标签等。</p>
-	<p>sandwich支持vim的<a href="https://yyq123.github.io/learn-vim/learn-vi-10-TextObjects.html" title="文本对象(Text Objects)">文本对象(Text Objects)</a>，比如单词、句子和段落等等。<p>sandwich同时也支持<code>.</code>重复命令。</p>
+	<p>sandwich支持vim的<a href="https://yyq123.github.io/learn-vim/learn-vi-10-TextObjects.html" title="文本对象(Text Objects)">文本对象</a>（Text Objects)，比如单词、句子和段落等等。同时也支持<code>.</code>重复命令（Dot Command）。</p>
 
 	<h2 class="article"><a id="Install">安装配置</a></h2>
 	<p>推荐您使用<a href="http://yyq123.github.io/learn-vim/learn-vi-102-plugin-plug.html" title="插件管理器(vim-plug)">vim-plug</a>或<a href="http://yyq123.github.io/learn-vim/learn-vi-101-plugin-vundle.html" title="插件管理器(Vundle)">Vundle</a>等插件管理器，来安装GitHub上的<a href="https://github.com/machakann/vim-sandwich" title="surround">sandwich</a>插件。</p>
@@ -44,10 +44,9 @@
 	<p><a href="https://yyq123.github.io/learn-vim/images/plugin_sandwich_saiwt.gif" title="plugin_sandwich_saiwt"><img src="https://yyq123.github.io/learn-vim/images/plugin_sandwich_saiwt.gif" alt="plugin_sandwich_saiwt" /></a></p>
 	<p>从以上屏幕录像中可以看到：</p>
 	<ul>
-		<li>插件提供了友好的视觉反馈。将根据指定的文本对象，自动高亮显示命令将影响的操作范围。例如输入saiw命令时，将高亮显示当前单词；当在可视化模式下操作多行字符时，将会使用户更加胸有成竹。</li>
-		<li>命令中的<code>t</code>表示标签，将在屏幕底部显示提示行，在其中输入的标签名称然后按回车键即可，而不再需要输入&lt;&gt;；</li>
+		<li>插件提供了友好的视觉反馈。将根据指定的文本对象，自动高亮显示命令将影响的操作范围。例如输入saiw命令时，将高亮显示当前单词；当在可视化模式下操作多行字符时，视觉提示将使用户更加胸有成竹。</li>
+		<li>命令中的<code>t</code>表示标签，将在屏幕底部显示提示行，在其中输入的标签名称然后按回车键即可（并不需要输入&lt;&gt;）；</li>
 	</ul>
-	<p></p>
 	<p>请注意：</p>
 	<ol>
 		<li>插入模式下，并没有专门用于输入环绕字符的快捷键。</li>
@@ -65,51 +64,27 @@
 	<h2 class="article"><a id="change">修改环绕字符</a></h2>
 	<p>使用<code class="inset">sr</code>命令可以修改环绕字符：</p>
 	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="5">
-		<tr><th>目标范围</th><th>替换内容</th><th>原始文本</th><th>命令</th><th>更改效果</th><th>注释</th></tr>
-		<tr><td>单词</td><td>引号</td><td>"Hello <mark>W</mark>orld"</td><td><code>srb'</code></td><td>'Hello World'</td><td>使用标识符b来指代环绕字符</td></tr>
-		<tr><td>单词</td><td>标签及新行</td><td>'Hello <mark>W</mark>orld'</td><td><code>srbTp</code></td><td>&lt;p&gt;Hello World&lt;/p&gt;</td><td>使用标识符T来输入包含尖括号的完整标签</td></tr>
-		<tr><td>单词</td><td>标签</td><td>&lt;p&gt;Hello <mark>W</mark>orld&lt;/p&gt;</td><td><code>srtth1</code></td><td>&lt;h1&gt;Hello World&lt;/h1&gt;</td><td>使用标识符t来指代尖括号之内的标签名称</td></tr>
-		<tr><td>单词</td><td>标签</td><td>&lt;h1&gt;Hello <mark>W</mark>orld&lt;/h1&gt;</td><td><code>srT)</code></td><td>(Hello World)</td><td>使用标识符T来指代包含尖括号的完整标签</td></tr>
-		<tr><td>单词</td><td>括号</td><td>(1,<mark>2</mark>,3)</td><td><code>srb]</code></td><td>[1,2,3]</td><td>使用闭括号进行替换</td></tr>
-		<tr><td>单词</td><td>括号及空格<sup><a href="" title=""></a></sup></td><td>(1,<mark>2</mark>,3)</td><td><code>srb[</code></td><td>[&nbsp;1,2,3&nbsp;]</td><td>使用<a href="#recipes" title="recipes">自定义</a>开括号进行替换并增加间隔空格</td></tr>
+		<tr><th>替换内容</th><th>原始文本</th><th>命令</th><th>更改效果</th><th>注释</th></tr>
+		<tr><td>引号</td><td>"Hello <mark>W</mark>orld"</td><td><code>srb'</code></td><td>'Hello World'</td><td>使用标识符b来指代环绕字符</td></tr>
+		<tr><td>标签</td><td>'Hello <mark>W</mark>orld'</td><td><code>srbTp</code></td><td>&lt;p&gt;Hello World&lt;/p&gt;</td><td>使用标识符T来输入包含尖括号的完整标签</td></tr>
+		<tr><td>标签</td><td>&lt;p&gt;Hello <mark>W</mark>orld&lt;/p&gt;</td><td><code>srtth1</code></td><td>&lt;h1&gt;Hello World&lt;/h1&gt;</td><td>使用标识符t来指代尖括号之内的标签名称</td></tr>
+		<tr><td>标签</td><td>&lt;h1&gt;Hello <mark>W</mark>orld&lt;/h1&gt;</td><td><code>srT)</code></td><td>(Hello World)</td><td>使用标识符T来指代包含尖括号的完整标签</td></tr>
+		<tr><td>括号</td><td>(1,<mark>2</mark>,3)</td><td><code>srb]</code></td><td>[1,2,3]</td><td>使用闭括号替换环绕字符</td></tr>
+		<tr><td>括号及空格</td><td>(1,<mark>2</mark>,3)</td><td><code>srb[</code></td><td>[&nbsp;1,2,3&nbsp;]</td><td>使用<a href="#recipes" title="recipes">自定义</a>开括号替换环绕字符并增加间隔空格</td></tr>
 	</table>
-	<p>从以上sr命令可以看到，并不需要指明环绕的括号字符，而可以通过标识符b来指代，既聪明又方便。</p>
+	<p>从以上sr命令可以看到，并不需要明确指明环绕字符，而可以通过标识符<code>b</code>来指代，既聪明又方便。</p>
 	<p>随着命令输入，会以高亮显示将被替换的环绕字符，以便在操作之前确认范围是否正确。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/plugin_sandwich_srbT.gif" title="plugin_sandwich_srbT"><img src="https://yyq123.github.io/learn-vim/images/plugin_sandwich_srbT.gif" alt="plugin_sandwich_srbT" /></a></p>
 
 	<h2 class="article"><a id="delete">删除环绕字符</a></h2>
 	<p>使用<code class="inset">sd</code>命令可以删除环绕字符：</p>
 	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="5">
-		<tr><th>目标范围</th><th>新增内容</th><th>原始文本</th><th>命令</th><th>更改效果</th></tr>
-		<tr><td>单词</td><td>引号</td><td>'Hello <mark>W</mark>orld'</td><td><code>sdb</code></td><td>Hello World</td></tr>
-		<tr><td>单词</td><td>括号</td><td>(1<mark>2</mark>3+4*56)/2</td><td><code>sdb</code></td><td>123+4*56/2</td></tr>
-		<tr><td>单词</td><td>标签</td><td>&lt;div&gt;<mark>H</mark>ello&lt;/div&gt;</td><td><code>sdt</code></td><td>Hello</td></tr>
+		<tr><th>新增内容</th><th>原始文本</th><th>命令</th><th>更改效果</th></tr>
+		<tr><td>引号</td><td>'Hello <mark>W</mark>orld'</td><td><code>sdb</code></td><td>Hello World</td></tr>
+		<tr><td>括号</td><td>(1<mark>2</mark>3+4*56)/2</td><td><code>sdb</code></td><td>123+4*56/2</td></tr>
+		<tr><td>标签</td><td>&lt;div&gt;<mark>H</mark>ello&lt;/div&gt;</td><td><code>sdt</code></td><td>Hello</td></tr>
 	</table>
-	<p>Hellp</p>
-	<p>surround插件主要提供以下命令：</p>
-	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
-		<caption>命令小结</caption>
-		<tr><td><code class="inset">sa</code></td><td>添加环绕字符</td></tr>
-		<tr><td><code class="inset"></code></td><td>添加环绕字符并拆分新行</td></tr>
-		<tr><td><code class="inset"></code></td><td>为整行添加环绕字符</td></tr>
-		<tr><td><code class="inset"></code></td><td>为整行添加环绕字符并拆分新行</td></tr>
-		<tr><td><code class="inset">sr</code></td><td>修改环绕字符</td></tr>
-		<tr><td><code class="inset"></code></td><td>修改环绕字符并拆分新行</td></tr>
-		<tr><td><code class="inset">sd</code></td><td>删除环绕字符</td></tr>
-	</table>
-
-	<p>surround插件可以识别并处理以下目标实体：</p>
-	<ul>
-		<li><code>(&nbsp;)</code></li>
-		<li><code>{&nbsp;}</code></li>
-		<li><code>[&nbsp;]</code></li>
-		<li><code>&lt;&nbsp;&gt;</code></li>
-		<li><code>`</code></li>
-		<li><code>&quot;</code></li>
-		<li><code>'</code></li>
-		<li><code>t</code>（标签）</li>
-		<li><code>w</code>（单词）</li>
-	</ul>
+	<p>同样在sd删除命令中，也不需要明确指明环绕字符，而可以通过标识符<code>b</code>来指代，大大减少了命令的复杂度。</p>
 
 	<h2 class="article"><a id="HTMLTag">HTML标签</a></h2>
 	<p>假设需要针对以下文本，添加包含多个属性的HTML标签：</p>
@@ -117,30 +92,25 @@
 	<p>可以使用以下命令，简化标签的录入：</p>
 	<p style="text-indent:2em"><code class="inset">sa$tp.class1#id1</code></p>
 	<pre class="block">&lt;p class=&quot;class1&quot; id=&quot;id1&quot;&gt;Hello World&lt;/p&gt;</pre>
-	<p>假设需要针对以下文本段落，添加&lt;p&gt;标签：</p>
+	<p>假设需要针对以下文本段落，添加&lt;blockquote&gt;标签：</p>
 	<pre class="block">The passion to save humanity is a
 cover for the desire to rule it.</pre>
 	<p>可以使用以下命令，针对整个段落进行操作：</p>
-	<p style="text-indent:2em"><code class="inset">sa}tp</code></p>
-	<pre class="block">&lt;p&gt;The passion to save humanity is a
-cover for the desire to rule it.&lt;/p&gt;</pre>
+	<p style="text-indent:2em"><code class="inset">sa}tblockquote</code></p>
+	<pre class="block">&lt;blockquote&gt;The passion to save humanity is a
+cover for the desire to rule it.&lt;/blockquote&gt;</pre>
 
 	<h2 class="article"><a id="Keymap">自定义快捷键</a></h2>
 	<p>根据<a href="https://github.com/machakann/vim-sandwich/blob/master/doc/sandwich.txt" title="sandwich.txt">帮助文件</a>，建议在vimrc配置文件中取消当前<kbd>s</kbd>键配置：</p>
 	<p style="text-indent:2em"><code class="inset">nmap s &lt;Nop&gt;</code></p>
 	<p style="text-indent:2em"><code class="inset">xmap s &lt;Nop&gt;</code></p>
-	<p>请注意，<kbd>s</kbd>功能可以使用<kbd>cl</kbd>命令来代替。</p>
-	<p>如果频繁使用<kbd>srtt</kbd>快捷键来修改标签，那么建议映射为<kbd>srt</kbd>快捷键：</p>
+	<p>请注意，在日常操作中可以使用<kbd>cl</kbd>命令来代替<kbd>s</kbd>功能。</p>
+	<p>如果频繁使用<kbd>srtt</kbd>快捷键来修改标签，那么建议映射为较短的<kbd>srt</kbd>快捷键：</p>
 	<p style="text-indent:2em"><code class="inset">nmap srt &lt;Plug&gt;(operator-sandwich-replace)&lt;Plug&gt;(textobj-sandwich-query-a)tt</code></p>
-
-	<p><a href="https://github.com/machakann/vim-sandwich/wiki/Introduce-vim-surround-keymappings" title="surround keymappings"></a>插件。
-
-	<p>使用以下命令，可以查看插件的帮助文件：</p>
-	<p style="text-indent:2em"><code class="inset">:help sandwich</code></p>
+	<p>如果希望使用<a href="https://github.com/tpope/vim-surround">surround</a>风格的快捷键，那么可以参照<a href="https://github.com/machakann/vim-sandwich/wiki/Introduce-vim-surround-keymappings" title="surround keymappings">surround keymappings</a>进行配置。
 
 	<h2 class="article"><a id="recipes">自定义环绕字符</a></h2>
-	<p></p>
-	<p>通过自定义receipe，可以设置用户特有的环绕字符。例如在vimrc文件中增加以下命令，以使用<a href="https://github.com/machakann/vim-sandwich/wiki/Bracket-with-spaces" title="Bracket with spaces"> ( [ { </a>来指定在括号之后附带一个空格：</p>
+	<p>通过自定义receipe，可以设置用户特有的环绕字符。例如在vimrc文件中增加以下命令，以使用<a href="https://github.com/machakann/vim-sandwich/wiki/Bracket-with-spaces" title="Bracket with spaces"> ( [ { </a>来指定在括号之后附带一个间隔空格：</p>
 	<pre class="block"><code>" if you have not copied default recipes
 let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
 
@@ -154,47 +124,23 @@ let g:sandwich#recipes += [
       \   {'buns': ['(\s*', '\s*)'],   'nesting': 1, 'regex': 1, 'match_syntax': 1, 'kind': ['delete', 'replace', 'textobj'], 'action': ['delete'], 'input': ['(']},
       \ ]
 	</code></pre>
+	<p>使用<code>:help textobj-sandwich</code>命令，可以查看sandwich文本对象的帮助信息，使用<code>:help operator-sandwich</code>命令，可以查看sandwich操作符的帮助信息。</p>
+	<p>使用以下命令，可以查看插件的帮助文件：</p>
+	<p style="text-indent:2em"><code class="inset">:help sandwich</code></p>
 
 	<h2 class="article"><a id="FinalThoughts">使用感受</a></h2>
-
-	<h2 class="article"><a id=""></a></h2>
-	<p></p>
-	<a href="#" title=""></a>
-urround.vim is repeatable however it relies on tpope’s repeat.vim plugin being installed, vim-sandwich has built-in support for repeatability.
-	<p></p>
-	<p style="text-indent:2em"><code class="inset"></code></p>
-
-	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
-
-	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
-
-	<pre class="block">
-	</pre>
-
-	<ul>
-		<li><p class="item"><br /></p></li>
-		<li><p class="item"><a href="#" title=""></a><br /></p></li>
-	</ul>
-
-	<span style="font-weight:bold; color:#4169E1; margin-left:0.2em">&#65311;</span>
-
-	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
-		<caption style="margin:0.5em; font-weight:bold">选项列表</caption>
-		<tr><th style="white-space: nowrap">选项</th><th>描述</th><th>帮助信息</th></tr>
-		<tr><td><code class="inset">!</code></td><td>如果包含，表示。例如，。</td><td style="white-space: nowrap"><code class="inset">:help viminfo-!</code></td></tr>
-	</table>
+	<p>一，相较<a href="http://yyq123.github.io/learn-vim/learn-vim-plugin-surround.html" title="环绕字符编辑(surround)">surround</a>重新发明一系列新概念，<a href="https://github.com/machakann/vim-sandwich" title="surround">sandwich</a>更多地重用了已经存在的元素，比如Vim的<a href="https://yyq123.github.io/learn-vim/learn-vi-10-TextObjects.html" title="文本对象(Text Objects)">文本对象(Text Objects)</a>和<a href="https://yyq123.github.io/learn-vim/learn-vi-20-DotCommand.html" title="重复命令(Dot Command)">重复命令(Dot Command)</a>，以此保证操作的一致性，并大大降低学习成本。</p>
+	<p>二，sandwich提供了非常友好的视觉辅助。对于相隔较远或者多层嵌套的环绕字符，随着命令的输入将会高亮显示被影响的字符，这使用户在执行操作之前，能有机会确认命令执行范围是否准确。</p>
+	<p>我个人更喜欢sandwich的举重若轻，而不是surround的举轻若重。此诚为一家之言，还请自行斟酌。</p>
 
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
-		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
-		<tr><td><code class="inset">:</code></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">sa</code></td><td>添加环绕字符</td></tr>
+		<tr><td><code class="inset">sr</code></td><td>修改环绕字符</td></tr>
+		<tr><td><code class="inset">sd</code></td><td>删除环绕字符</td></tr>
 	</table>
-&ldquo;&rdquo;
 
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a href="http://yyq123.github.io/learn-vim/learn-vi-101-plugin-vundle.html" title="插件管理器(Vundle)">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a href="http://yyq123.github.io/learn-vim/learn-vi-102-plugin-plug.html" title="插件管理器(vim-plug)">下一篇</a>&gt;</span></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a href="http://yyq123.github.io/learn-vim/learn-vi-101-plugin-vundle.html" title="插件管理器(Vundle)">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a href="http://yyq123.github.io/learn-vim/learn-vi-102-plugin-plug.html" title="插件管理器(vim-plug)">下一篇</a>&gt;</span></p>
 
 </body>
 </html>
