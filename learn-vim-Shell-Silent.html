@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 过滤器(Filter)</title>
+</head>
+<body>
+	<h1>VIM学习笔记 过滤器(Filter)</h1>
+	<p>过滤程序是一个接受文本作为标准输入（stdin），然后进行某些处理，并把结果放置到标准输出（stdout）的程序。可以理解为，Vim将当前缓冲区同时作为输入和输出，并借助外部程序进行文字处理。例如使用外部sort命令进行排序，然后用输出结果替换当前文本内容。</p>
+	<p></p>
+	<p style="text-indent:2em"><code class="inset">:silent exec "!command"</code></p>
+
+	<h2 class="article"><a id=""></a></h2>
+	<p></p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" /></a></p>
+
+	<p>静默执行外部命令，并在新建<a href="http://yyq123.github.io/learn-vim/learn-vi-15-Tabs.html" title="标签页(Tab)">标签页</a>（Tab）内显示命令输出：</p>
+	<p style="text-indent:2em"><code class="inset">:silent exec "!(echo 'Hello World') &gt; test.txt" | :tabedit test.txt</code></p>
+	<p>如果希望在<a href="http://yyq123.github.io/learn-vim/learn-vi-14-MultiWindows.html" title="窗口(Window)">分割窗口</a>内显示命令输出，那么可以使用:split命令：</p>
+	<p style="text-indent:2em"><code class="inset">:silent exec "!(echo 'Hello World') &gt; test.txt" | :sp test.txt</code></p>
+
+	<p>例如在当前文件中，包含以逗号分隔的多列文本：</p>
+<pre class="block" style="width:30em"></pre>
+	<p>使用以下Linux命令cut，可以仅保留其中的2-3列文本：</p>
+	<h2 class="article"><a id=""></a></h2>
+	<p>shell环境（比如sh和cmd），也可以作为过滤器来执行外部命令。</p>
+	<p>使用以下命令，可以将当前目录下的文件列表读取到当前文件中：</p>
+	<p style="text-indent:2em"><code class="inset">:r! ls *.html</code></p>
+	<p>利用替代命令，可以针对文件列表组合出需要的Shell命令。例如生成mv命令，将所有HTML文件重命名为XHTML文件：</p>
+	<p style="text-indent:2em"><code class="inset">:%s/\(.*\).html/mv &amp; \1.xhtml</code></p>
+	<p>使用以下命令，则可以调用Shell来执行当前文件中的命令：</p>
+	<p style="text-indent:2em"><code class="inset">:!sh</code></p>
+	<p>可以看到，利用过滤器可以灵活生成并执行操作系统命令，以完成例如文件复制备份等批处理操作。</p>
+	<p>假设当前文件中包含以下Windows命令：</p>
+	<pre class="block" style="width:30em">ping -n 1 1.1.1.1
+ping -n 1 1.1.1.2
+ping -n 1 1.1.1.3</pre>
+	<p>使用以下命令，将用文件中ping命令的输出来替换当前文本：</p>
+	<p style="text-indent:2em"><code class="inset">%!cmd</code></p>
+	<pre class="block" style="width:30em">Microsoft Windows [Version 10.0.18362.720]
+</pre>
+	<p>在以上命令的执行过程中可以看到，Vim会将文本行保存为临时文件，然后调用外部程序进行过滤处理，然后再用输出结果替换当前文本。</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/filter_windows_tempdir.png" title="filter_windows_tempdir"><img src="https://yyq123.github.io/learn-vim/images/filter_windows_tempdir.png" alt="filter_windows_tempdir" width="550" height="45" /></a></p>
+	<p>过滤器使用的临时文件，通常保存在以下位置：</p>
+	<ul>
+		<li>Windows：$TMP、$TEMP、c:\TMP、c:\TEMP；</li>
+		<li>Linux：$TMPDIR、/tmp、当前目录、$HOME。</li>
+	</ul>
+	<p>请注意，Vim将依次检查以上目录，请确保有足够的权限读写这些目录。</p>
+
+	<p>使用以下命令，可以查看更多帮助信息：</p>
+	<p style="text-indent:2em"><code class="inset">:help :silent</code></p>
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="运行外部命令(Shell Command)" href="http://yyq123.github.io/learn-vim/learn-vi-71-Shell.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="文本排序(sort)" href="http://yyq123.github.io/learn-vim/learn-vi-09-03-sort.html">下一篇</a>&gt;</span></p>
+
+</body>
+</html>

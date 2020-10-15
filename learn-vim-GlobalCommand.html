@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 全局命令(Global Command)</title>
+</head>
+<body>
+	<h1>VIM学习笔记 全局命令(Global Command)</h1>
+	<p>使用<code class="inset">:g</code>全局命令，可以搜索并显示所有包含模式的行。命令<code class="inset">:g!</code>及其同义词<code class="inset">:v</code>，则可以搜索并显示不包行该模式的行。</p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+
+	<p>:g命令的格式为：</p>
+	<p style="text-indent:2em"><code class="inset">:[range]g/{pattern}/[command]</code></p>
+	<p>即针对在<var>[range]</var>范围内，所有匹配<var>{pattern}</var>条件的行，执行<var>[command]</var>命令。</p>
+	<p>:g!命令的格式为：</p>
+	<p style="text-indent:2em"><code class="inset">:[range]g!/{pattern}/[command]</code></p>
+	<p>即针对在<var>[range]</var>范围内，所有不匹配<var>{pattern}</var>条件的行，执行<var>[command]</var>命令。</p>
+	<p>如果没有指定<var>[range]</var>，则针对文件中的所有行执行命令。也可以使用行地址，把全局搜索限定在指定的行或行范围内。</p>
+
+	<h2 class="article"><a id="">全局查找</a></h2>
+	<p>查找并显示文件中所有包含模式pattern的行，并移动到最后一个匹配处：</p>
+	<p style="text-indent:2em"><code class="inset">:g/pattern</code></p>
+	<p>查找并显示文件中所有包含模式pattern的行：</p>
+	<p style="text-indent:2em"><code class="inset">:g/pattern/p</code></p>
+	<p>查找并显示第20到40行之间所有包含模式pattern的行：</p>
+	<p style="text-indent:2em"><code class="inset">:20,40g/pattern/p</code></p>
+	<p>查找并显示文件中所有不包行模式pattern的行，并显示这些行号：</p>
+	<p style="text-indent:2em"><code class="inset">:g!/pattern/nu</code></p>
+	<p></p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+
+	<h2 class="article"><a id="">全局删除</a></h2>
+	<p>删除包含模式pattern的行：</p>
+	<p style="text-indent:2em"><code class="inset">:g/pattern/d</code></p>
+	<p>删除不包含模式pattern的行：</p>
+	<p style="text-indent:2em"><code class="inset">:g!/pattern/d</code></p>
+	<p>删除所有空行：</p>
+	<p style="text-indent:2em"><code class="inset">:g/^$/d</code></p>
+	<p>删除所有空行以及仅包含空格和Tab制表符的行：</p>
+	<p style="text-indent:2em"><code class="inset">:g/^[&#x25a1;tab]*$/d</code></p>
+	<p>删除指定范围内的文本，例如以下文本中的&ldquo;DESCRIPTION&rdquo;部分：</p>
+	<p style="text-indent:2em"><code class="inset">:g/DESCRIPTION/,/PARAMETERS/-1d</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/g_cmd_range_del.png" title="g_cmd_range_del"><img src="https://yyq123.github.io/learn-vim/images/g_cmd_range_del.png" alt="g_cmd_range_del" width="550" height="267" /></a></p>
+
+	<h2 class="article"><a id="">全局替换</a></h2>
+	<p>利用全局命令，可以仅针对符合查询条件的行，进行替换操作。例如使用以下命令，将包含&ldquo;microsoft antitrust&rdquo;的行中的&ldquo;judgment&rdquo;替换为&ldquo;ripoff&rdquo;</p>
+	<p style="text-indent:2em"><code class="inset">:g/microsoft antitrust/s/judgment/ripoff/</code></p>
+	<p>你还可以在命令中指定查找的范围。比如以下命令，将在包含&ldquo;microsoft antitrust&rdquo;的前两行及后两行中进行替换：</p>
+	<p style="text-indent:2em"><code class="inset">:g/microsoft antitrust/-2,/microsoft antitrust/+2s/judgment/ripoff/c</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/g_cmd_range.png" title="g_cmd_range"><img src="https://yyq123.github.io/learn-vim/images/g_cmd_range.png" alt="g_cmd_range" width="550" height="53" /></a></p>
+	<p>以上命令末尾的<var>c</var>参数，用于提示用户对每一个替换操作进行确认。</p>
+	<p>假设希望在以&ldquo;end&rdquo;结尾的行中，将第1部分文字替换为&ldquo;The greatest of times;&rdquo;：</p>
+	<p><code class="msg">the best of times; the worst of times: end&nbsp;&nbsp;&nbsp;&nbsp;</code></p>
+	<p>由于会尽可能多（as much text as possible）的匹配，以下命令将替换至第2个&ldquo;of&rdquo;处：</p>
+	<p style="text-indent:2em"><code class="inset">:g/end$/s/.*of/The greatest of/</code></p>
+	<p><code class="msg">The greatest of times: end&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code></p>
+	<p>为了只替换第1部分，则需要更精确的匹配条件：</p>
+	<p style="text-indent:2em"><code class="inset">:g/end$/s/.*of times;/The greatest of times;/</code></p>
+	<p><code class="msg">The greatest of times; the worst of times: end</code></p>
+
+	<h2 class="article"><a id="">全局移动</a></h2>
+	<p>将所有的行按相反的顺序排列。其中，查找模式<var>.*</var>将匹配所有行，<var>mo0</var>命令将每一行移动到0行之后：</p>
+	<p style="text-indent:2em"><code class="inset">:g/.*/mo0</code></p>
+	<p>将以下文本中的&ldquo;DESCRIPTION&rdquo;部分，上移到&ldquo;SYNTAX&rdquo;之前：</p>
+	<p style="text-indent:2em"><code class="inset">:g /SYNTAX/.,/DESCRIPTION/-1 move /PARAMETERS/-1</code></p>
+	<p>首先匹配从包含&ldquo;SYNTAX&rdquo;的行到包含&ldquo;DESCRIPTION&rdquo;的上一行；然后将这些行移动到包含&ldquo;PARAMETERS&rdquo;的上一行。</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/g_cmd_range_move.png" title="g_cmd_range_move"><img src="https://yyq123.github.io/learn-vim/images/g_cmd_range_move.png" alt="g_cmd_range_move" width="550" height="256" /></a></p>
+	<p>将所有不是以数字开头的行，移动到文件末尾：</p>
+	<p style="text-indent:2em"><code class="inset">:g!/^[[:digit:]]/m$</code></p>
+	<p style="text-indent:2em"><code class="inset">:g/^[^[:digit:]]/m$</code></p>
+
+	<h2 class="article"><a id="">全局复制</a></h2>
+	<p>重复每一行：</p>
+	<p style="text-indent:2em"><code class="inset">:g/^/t.</code></p>
+	<p>将包含模式pattern的行，复制到文件末尾：</p>
+	<p style="text-indent:2em"><code class="inset">:g/fred/t$</code></p>
+	<p>为&ldquo;Chapter&rdquo;开头的标题行增加下划线：</p>
+	<p style="text-indent:2em"><code class="inset">:g/^Chapter/t.|s/./-/g</code></p>
+	<pre class="block">Chapter 1
+---------
+Chapter 2
+---------</pre>
+
+	<h2 class="article"><a id="">其它实例</a></h2>
+	<p>将所有未标志为&ldquo;DONE&rdquo;的行，都在行尾标注&ldquo;TODO&rdquo;：</p>
+	<p style="text-indent:2em"><code class="inset">:g!/DONE/s/$/ TODO/</code></p>
+	<p style="text-indent:2em"><code class="inset">:v/DONE/s/$/ TODO/</code></p>
+	<p>使用以下命令，将所有不是以2个Tab制表符开头的行，增加到top2levels.otl文件的末尾：</p>
+	<p style="text-indent:2em"><code class="inset">:g!/^\t\t/.w&gt;&gt;top2levels.otl</code></p>
+	<p>从第5行到第10行，在每一行下插入空行：</p>
+	<p style="text-indent:2em"><code class="inset">:5,10g/^/pu _</code></p>
+	<p>重复每一行，并以&ldquo;print ''&rdquo;包围：</p>
+	<p style="text-indent:2em"><code class="inset">:g/./yank|put|-1s/'/"/g|s/.*/Print '&amp;'/</code></p>
+	<pre class="block">Chapter 1
+Print 'Chapter 1'</pre>
+	<p></p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+
+
+	<p>首先移动到文件头，然后执行以下命令，可以搜集相对于指定字符偏移位置的行：</p>
+	<p style="text-indent:2em"><code class="inset">:g /^Chapter/ .+2w &gt;&gt; begin</code></p>
+	<p>包含&ldquo;Chapter&rdquo;字符的章节号、名称和描述，分处在连续的行中。<var>^Chapter</var>将查找以&ldquo;Chapter&rdquo;字符开头的行；<var>.+2</var>将定位到匹配处之后的第2行；然后使用<code>w</code>命令将其追加到名为begin的文件中。</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/g_cmd_range_lines.png" title="g_cmd_range_lines"><img src="https://yyq123.github.io/learn-vim/images/g_cmd_range_lines.png" alt="g_cmd_range_lines" width="550" height="301" /></a></p>
+
+	<p>使用以下命令，可以查看更多帮助文件：</p>
+	<p style="text-indent:2em"><code class="inset">:h :global</code></p>
+
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
+		<tr><td><code class="inset">:</code></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+	</table>
+
+</body>
+</html>
