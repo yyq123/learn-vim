@@ -640,62 +640,55 @@
       word-break: break-all;
       }
 
+      thead tr th:nth-child(2),
+      tbody tr td:nth-child(2) {
+      width: 28em;
+      min-width: 28em;
+      max-width: 28em;
+      word-break: break-all;
+      }
+
       /* ----------------- }}}*/
     </style>
 
 </head>
 
 <body>
-
 <div class="markdown-body">
 
-<h1>VIM学习笔记</h1>
-<p>Best with <a href="https://github.com/vim/vim" title="">Vim8</a> and <code>python3</code> enabled.</p>
-<details>
-  <summary>
-    <strong>Table of Contents</strong>
-    <i>(🔎 Click to expand/collapse)</i>
-  </summary>
+<h1>VIM学习笔记 插件列表 (Plugins)</h1>
+<p>Best with <a href="https://github.com/vim/vim" title="vim">Vim8</a> and <a href="https://www.python.org/" title="python">python3</a> enabled.</p>
 
+<h2><a id="notes" class="anchor" href="#notes" aria-hidden="true"></a>说明：</h2>
 <ul>
-<li><a href="https://awesomeopensource.com/project/rafi/vim-config#features">Features</a></li>
-<li><a href="https://awesomeopensource.com/project/rafi/vim-config#screenshot">Screenshot</a></li>
-<li><a href="https://awesomeopensource.com/project/rafi/vim-config#prerequisites">Prerequisites</a></li>
-<li><a href="https://awesomeopensource.com/project/rafi/vim-config#install">Install</a></li>
-<li><a href="https://awesomeopensource.com/project/rafi/vim-config#language-server-protocol-lsp">Language-Server Protocol (LSP)</a></li>
-<li><a href="https://awesomeopensource.com/project/rafi/vim-config#user-custom-config">User Custom Config</a></li>
-<li><a href="https://awesomeopensource.com/project/rafi/vim-config#structure">Structure</a></li>
-<li><a href="https://awesomeopensource.com/project/rafi/vim-config#plugin-highlights">Plugin Highlights</a></li>
-</ul>
-</details>
-
-
-<h2><a id="notes" class="anchor" href="#notes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>说明：</h2>
-<ul>
+	<li>本列表完全基于作者的主观体验，既不客观也不完整；</li>
 	<li>建议使用<a href="http://yyq123.github.io/learn-vim/learn-vi-102-plugin-plug.html" title="插件管理器(vim-plug)">vim-plug</a>或<a href="http://yyq123.github.io/learn-vim/learn-vi-101-plugin-vundle.html" title="插件管理器(Vundle)">Vundle</a>等插件管理器，来安装和管理插件；</li>
-	<li>在&ldquo;插件&rdquo;列中的<span class="pl-k">&nbsp;&starf;</span>，表示推荐的插件</li>
-	<li>在&ldquo;描述&rdquo;列中的【<a href="http://yyq123.github.io/learn-vim/learn-vi-00-00-TOC.html" title="详细介绍">详细介绍</a>】，链接到专门章节详细介绍插件的配置与使用；</li>
+	<li>在&ldquo;插件&rdquo;列中的<span class="pl-k">&nbsp;&starf;</span>，表示推荐的插件；</li>
+	<li>在&ldquo;描述&rdquo;列中的【<a href="http://yyq123.github.io/learn-vim/learn-vi-00-00-TOC.html" title="详细介绍">详细介绍</a>】，链接到插件配置与使用的详细介绍。</li>
 </ul>
 
-<h2>
-<a id="plugin-highlights" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#plugin-highlights" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Plugin Highlights</h2>
-<ul>
-<li>Project-aware tabs and labels</li>
-</ul>
-<h2>
-<a id="plugins-included" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#plugins-included" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Plugins Included</h2>
+<h2><a id="plugins-included" class="anchor" href="http://yyq123.github.io/learn-vim/learn-vim-plugin.html#type" aria-hidden="true"></a>类别</h2>
 <details open="">
-  <summary><strong>List</strong> <i>(🔎 Click to expand/collapse)</i></summary>
+  <summary><strong>List</strong> <i>(🔎 请点击展开/合并)</i></summary>
+  <ul style="width:50em; column-count:5">
+	  <li><a href="http://yyq123.github.io/learn-vim/learn-vim-plugin.html#tool" title="Tools">工具</a></li>
+	  <li><a href="http://yyq123.github.io/learn-vim/learn-vim-plugin.html#color" title="Color">色彩</a></li>
+	  <li><a href="http://yyq123.github.io/learn-vim/learn-vim-plugin.html#gui" title="GUI">界面</a></li>
+	  <li><a href="http://yyq123.github.io/learn-vim/learn-vim-plugin.html#data" title="Data">数据</a></li>
+	  <li><a href="http://yyq123.github.io/learn-vim/learn-vim-plugin.html#sytanx" title="Sytanx">语法</a></li>
+	  <li><a href="http://yyq123.github.io/learn-vim/learn-vim-plugin.html#git" title="Git">Git</a></li>
+	  <li><a href="http://yyq123.github.io/learn-vim/learn-vim-plugin.html#writing" title="Writing">写作</a></li>
+	  <li><a href="http://yyq123.github.io/learn-vim/learn-vim-plugin.html#motion" title="Motion">快速移动</a></li>
+	  <li><a href="http://yyq123.github.io/learn-vim/learn-vim-plugin.html#completion" title="">自动完成</a></li>
+	  <li><a href="http://yyq123.github.io/learn-vim/learn-vim-plugin.html#html" title="HTML">HTML</a></li>
+	  <li><a href="http://yyq123.github.io/learn-vim/learn-vim-plugin.html#text-objects" title="Text Objects">文本对象</a></li>
+	  <li><a href="http://yyq123.github.io/learn-vim/learn-vim-plugin.html#coding" title="Coding">编程辅助</a></li>
+	  <li><a href="http://yyq123.github.io/learn-vim/learn-vim-plugin.html#others" title="Others">其它</a></li>
+  </ul>
 </details>
 
-<h3><a id="system" class="anchor" href="#system" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link">&#128279;</span></a>系统工具</h3>
+<h3><a id="tool" class="anchor" href="#tool" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link">&#128279;</span></a>工具</h3>
 <table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-</tr>
-</thead>
 <tbody>
 <tr>
 <td><a href="https://github.com/junegunn/vim-plug" title="junegunn/vim-plug">junegunn/vim-plug</a>&nbsp;<span class="pl-v">&starf;</span></td>
@@ -727,7 +720,7 @@
 </tr>
 <tr>
 <td><a href="https://github.com/mhinz/vim-startify" title="mhinz/vim-startify">mhinz/vim-startify</a></td>
-<td>自定义启动页，可以包含最近使用的文件、书签和保持的会话。</td>
+<td>自定义启动页（包含最近使用的文件、书签和保持的会话）</td>
 </tr>
 <tr>
 <td><a href="https://github.com/dstein64/vim-startuptime" title="dstein64/vim-startuptime">dstein64/vim-startuptime</a></td>
@@ -741,21 +734,11 @@
 <td><a href="https://github.com/Shougo/vinarise.vim" title="Shougo/vinarise.vim">Shougo/vinarise.vim</a></td>
 <td>十六进制（Hex）编辑器</td>
 </tr>
-<tr>
-<td><a href="" title=""></a></td>
-<td></td>
-</tr>
 </tbody>
 </table>
 
-<h3><a id="color" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#non-lazy-loaded-plugins" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link">&#128279;</span></a>色彩</h3>
+<h3><a id="color" class="anchor" href="http://yyq123.github.io/learn-vim/learn-vim-plugin.html#color" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link">&#128279;</span></a>色彩</h3>
 <table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-</tr>
-</thead>
 <tbody>
 <tr>
 <td><a href="https://github.com/rafi/awesome-vim-colorschemes" title="awesome-vim-colorschemes">rafi/awesome-colorschemes</a></td>
@@ -763,7 +746,7 @@
 </tr>
 <tr>
 <td><a href="https://github.com/romainl/vim-cool" title="vim-cool">romainl/vim-cool</a></td>
-<td>完成搜索之后自动禁用高亮显示，当再次查询时重新启用高亮显示。</td>
+<td>完成搜索后自动禁用高亮显示，再次查询时重新高亮显示</td>
 </tr>
 <tr>
 <td><a href="https://github.com/guns/xterm-color-table.vim" title="xterm-color-table">guns/xterm-color-table.vim</a></td>
@@ -771,19 +754,13 @@
 </tr>
 <tr>
 <td><a href="https://github.com/lilydjwg/colorizer" title="lilydjwg/colorizer">lilydjwg/colorizer</a><span class="pl-k">&nbsp;&starf;</span></td>
-<td>颜色代码的背景色显示相应色彩</td>
+<td>颜色代码的背景色显示相应的色彩【<a href="http://yyq123.github.io/learn-vim/learn-vi-604-WebDesign-ColorSelect.html#HTML-colorizer-plugin" title="colorizer">详细介绍</a>】</td>
 </tr>
 </tbody>
 </table>
 
-<h3><a id="gui" class="anchor" href="#gui" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>界面</h4>
+<h3><a id="gui" class="anchor" href="http://yyq123.github.io/learn-vim/learn-vim-plugin.html#gui" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link">&#128279;</span></a>界面</h4>
 <table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-</tr>
-</thead>
 <tbody>
 <tr>
 <td><a href="https://github.com/vim-airline/vim-airline" title="vim-airline/vim-airline">vim-airline/vim-airline</a></td>
@@ -807,7 +784,7 @@
 </tr>
 <tr>
 <td><a href="https://github.com/kshenoy/vim-signature" title="">kshenoy/vim-signature</a></td>
-<td>在屏幕最左侧显示标记</td>
+<td>在屏幕最左侧显示标记【<a href="http://yyq123.github.io/learn-vim/learn-vi-53-Mark.html#plugin-vim-signature" title="vim-signature">详细介绍</a>】</td>
 </tr>
 <tr>
 <td><a href="https://github.com/nathanaelkane/vim-indent-guides" title="">nathanaelkane/vim-indent-guides</a></td>
@@ -828,14 +805,8 @@
 </tbody>
 </table>
 
-<h3><a id="data" class="anchor" href="#data" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>数据</h4>
+<h3><a id="data" class="anchor" href="http://yyq123.github.io/learn-vim/learn-vim-plugin.html#data" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link">&#128279;</span></a>数据</h4>
 <table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-</tr>
-</thead>
 <tbody>
 <tr>
 <td><a href="https://github.com/chrisbra/csv.vim" title="">chrisbra/csv.vim</a></td>
@@ -852,14 +823,8 @@
 </tbody>
 </table>
 
-<h3><a id="sytanx" class="anchor" href="#sytanx" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link">&#128279;</span></a>语法</h3>
+<h3><a id="sytanx" class="anchor" href="http://yyq123.github.io/learn-vim/learn-vim-plugin.html#sytanx" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link">&#128279;</span></a>语法</h3>
 <table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-</tr>
-</thead>
 <tbody>
 <tr>
 <td><a href="https://github.com/hail2u/vim-css3-syntax" title="">hail2u/vim-css3-syntax</a></td>
@@ -940,14 +905,8 @@
 </tbody>
 </table>
 
-<h3><a id="git" class="anchor" href="#git" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Git</h4>
+<h3><a id="git" class="anchor" href="http://yyq123.github.io/learn-vim/learn-vim-plugin.html#git" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link">&#128279;</span></a>Git</h4>
 <table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-</tr>
-</thead>
 <tbody>
 <tr>
 <td><a href="https://github.com/jreybert/vimagit" title="jreybert/vimagit">jreybert/vimagit</a></td>
@@ -972,14 +931,8 @@
 </tbody>
 </table>
 
-<h3><a id="writing" class="anchor" href="#writing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>写作</h4>
+<h3><a id="writing" class="anchor" href="http://yyq123.github.io/learn-vim/learn-vim-plugin.html#writing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link">&#128279;</span></a>写作</h4>
 <table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-</tr>
-</thead>
 <tbody>
 <tr>
 <td><a href="https://github.com/junegunn/goyo.vim" title="junegunn/goyo">junegunn/goyo</a></td>
@@ -1008,14 +961,8 @@
 </tbody>
 </table>
 
-<h3><a id="motion" class="anchor" href="#motion" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>移动</h4>
+<h3><a id="motion" class="anchor" href="http://yyq123.github.io/learn-vim/learn-vim-plugin.html#motion" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link">&#128279;</span></a>快速移动</h4>
 <table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-</tr>
-</thead>
 <tbody>
 <tr>
 <td><a href="https://github.com/haya14busa/vim-asterisk" title="">haya14busa/vim-asterisk</a></td>
@@ -1037,14 +984,8 @@
 </tbody>
 </table>
 
-<h3><a id="completion" class="anchor" href="#completion" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>自动完成</h3>
+<h3><a id="completion" class="anchor" href="http://yyq123.github.io/learn-vim/learn-vim-plugin.html#completion" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link">&#128279;</span></a>自动完成</h3>
 <table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-</tr>
-</thead>
 <tbody>
 <tr>
 <td><a href="https://github.com/othree/csscomplete.vim" title="othree/csscomplete.vim">othree/csscomplete.vim</a></td>
@@ -1056,7 +997,7 @@
 </tr>
 <tr>
 <td><a href="https://github.com/prabirshrestha/vim-lsp" title="prabirshrestha/vim-lsp">prabirshrestha/vim-lsp</a></td>
-<td>Async Language Server Protocol plugin for</td>
+<td>异步语言服务器协议插件</td>
 </tr>
 <tr>
 <td><a href="https://github.com/mattn/vim-lsp-settings" title="mattn/vim-lsp-settings">mattn/vim-lsp-settings</a></td>
@@ -1066,25 +1007,15 @@
 <td><a href="https://github.com/ycm-core/YouCompleteMe" title="ycm-core/YouCompleteMe">ycm-core/YouCompleteMe</a></td>
 <td>代码自动完成</td>
 </tr>
-<tr>
-<td><a href="" title=""></a></td>
-<td></td>
-</tr>
 </tbody>
 </table>
 
-<h3><a id="html" class="anchor" href="#html" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>HTML</h3>
+<h3><a id="html" class="anchor" href="http://yyq123.github.io/learn-vim/learn-vim-plugin.html#html" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link">&#128279;</span></a>HTML</h3>
 <table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-</tr>
-</thead>
 <tbody>
 <tr>
 <td><a href="https://github.com/yyq123/HTML-Editor" title="yyq123/HTML-Editor">yyq123/HTML-Editor</a></td>
-<td>HTML代码输入和网页预览【<a href="http://yyq123.github.io/learn-vim/.html" title="">详细介绍</a>】</td>
+<td>HTML代码输入和网页预览【<a href="http://yyq123.github.io/learn-vim/learn-vi-601-WebDesign-HTMLTag-Input.html" title="">详细介绍</a>】</td>
 </tr>
 <tr>
 <td><a href="https://github.com/alvan/vim-closetag" title="alvan/vim-closetag">alvan/vim-closetag</a></td>
@@ -1097,14 +1028,8 @@
 </tbody>
 </table>
 
-<h3><a id="text-objects" class="anchor" href="#text-objects" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>文本对象</h3>
+<h3><a id="text-objects" class="anchor" href="http://yyq123.github.io/learn-vim/learn-vim-plugin.html#text-objects" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link">&#128279;</span></a>文本对象</h3>
 <table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-</tr>
-</thead>
 <tbody>
 <tr>
 <td><a href="https://github.com/wellle/targets.vim" title="wellle/targets.vim">wellle/targets.vim</a></td>
@@ -1116,7 +1041,7 @@
 </tr>
 <tr>
 <td><a href="https://github.com/kana/vim-operator-replace" title="kana/vim-operator-replace">kana/vim-operator-replace</a></td>
-<td>Operator to replace text with register content</td>
+<td>使用寄存器内容进行替换操作</td>
 </tr>
 <tr>
 <td><a href="https://github.com/jiangmiao/auto-pairs" title="jiangmiao/auto-pairs">jiangmiao/auto-pairs</a></td>
@@ -1127,8 +1052,8 @@
 <td>环绕字符编辑【<a href="http://yyq123.github.io/learn-vim/learn-vim-plugin-surround.html" title="vim-surround">详细介绍</a>】</td>
 </tr>
 <tr>
-<td><a href="https://github.com/machakann/vim-sandwich" title="">machakann/vim-sandwich</a></td>
-<td>环绕字符编辑【<a href="http://yyq123.github.io/learn-vim/.html" title="">详细介绍</a>】</td>
+<td><a href="https://github.com/machakann/vim-sandwich" title="">machakann/vim-sandwich</a><span class="pl-k">&nbsp;&starf;</span></td>
+<td>环绕字符编辑【<a href="http://yyq123.github.io/learn-vim/learn-vim-plugin-sandwich.html" title="vim-sandwich">详细介绍</a>】</td>
 </tr>
 <tr>
 <td><a href="https://github.com/kana/vim-textobj-user" title="">kana/vim-textobj-user</a></td>
@@ -1140,11 +1065,11 @@
 </tr>
 <tr>
 <td><a href="https://github.com/chrisbra/matchit" title="chrisbra/matchit">chrisbra/matchit</a></td>
-<td><code>%</code>命令功能扩展【<a href="http://yyq123.github.io/learn-vim/.html" title="">详细介绍</a>】</td>
+<td><code>%</code>命令功能扩展【<a href="http://yyq123.github.io/learn-vim/learn-vim-matchpairs.html#matchit-install" title="">详细介绍</a>】</td>
 </tr>
 <tr>
 <td><a href="https://github.com/andymass/vim-matchup" title="andymass/vim-matchup">andymass/vim-matchup</a></td>
-<td><code>%</code>命令功能扩展【<a href="http://yyq123.github.io/learn-vim/.html" title="">详细介绍</a>】</td>
+<td><code>%</code>命令功能扩展</td>
 </tr>
 <tr>
 <td><a href="https://github.com/AndrewRadev/sideways.vim" title="nofollow">AndrewRadev/sideways.vim</a></td>
@@ -1161,14 +1086,8 @@
 </tbody>
 </table>
 
-<h3><a id="coding" class="anchor" href="#coding" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link">&#128279;</span></a>编程辅助</h3>
+<h3><a id="coding" class="anchor" href="http://yyq123.github.io/learn-vim/learn-vim-plugin.html#coding" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link">&#128279;</span></a>编程辅助</h3>
 <table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-</tr>
-</thead>
 <tbody>
 <tr>
 <td><a href="https://github.com/AndrewRadev/splitjoin.vim" title="nofollow">AndrewRadev/splitjoin.vim</a></td>
@@ -1216,23 +1135,21 @@
 </tr>
 <tr>
 <td><a href="https://github.com/KabbAmine/zeavim.vim" title="KabbAmine/zeavim.vim">KabbAmine/zeavim.vim</a></td>
-<td>查询<a href="https://zealdocs.org/" title="Zeal">Zeal</a>离线文档【<a href="http://yyq123.github.io/learn-vim/.html" title="">详细介绍</a>】</td>
+<td>查询<a href="https://zealdocs.org/" title="Zeal">Zeal</a>离线文档【<a href="http://yyq123.github.io/learn-vim/learn-vim-plugin-Zeavim.html" title="">详细介绍</a>】</td>
 </tr>
 </tbody>
 </table>
 
-<h3><a id="others" class="anchor" href="#others" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>其它</h3>
+<h3><a id="others" class="anchor" href="http://yyq123.github.io/learn-vim/learn-vim-plugin.html#others" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link">&#128279;</span></a>其它</h3>
 <table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-</tr>
-</thead>
 <tbody>
 <tr>
 <td><a href="https://github.com/junegunn/fzf.vim" title="junegunn/fzf.vim">junegunn/fzf.vim</a></td>
 <td>集成Fzf模糊查询工具</td>
+</tr>
+<tr>
+<td><a href="https://github.com/skywind3000/asyncrun.vim" title="skywind3000/asyncrun.vim">skywind3000/asyncrun.vim</a></td>
+<td>后台异步执行外部命令</td>
 </tr>
 </tbody>
 </table>
