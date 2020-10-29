@@ -18,6 +18,8 @@ set viminfo=<100,'100,/50,:100,h,r$TEMP:,s10
 "           |    + 保存最近100个文件中的标记
 "           + 每个寄存器中保存的行数
 
+"set selection=inclusive
+
 " }}}
 
  " General {{{
@@ -102,8 +104,8 @@ set shellxquote=\"
 
 " don't wrap lines
 set wrap 
-map <F2> <Esc>:set nowrap<CR>
-map <S-F2> <Esc>:set wrap<CR>
+map <F2> <Esc>:set wrap!<CR>
+"map <S-F2> <Esc>:set wrap<CR>
 " Makes gj/gk move by virtual lines when used without a count, and by physical lines when used with a count.
 noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
 noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
@@ -136,13 +138,14 @@ set clipboard=unnamed
 set cursorline cursorcolumn 
 highlight Cursor guifg=white guibg=#1874cd
 highlight iCursor guifg=white guibg=#1874cd
-highlight CursorLine guibg=white
-
+"highlight CursorLine guibg=white
 " set the menu & the message to English
 set langmenu=en_US
 let $LANG = 'en_US'
 source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
+"language message zh_CN.UTF-8
+language message en_US.UTF-8
 
 set number
 " set relativenumber
@@ -171,9 +174,67 @@ amenu Tabs.&Close :confirm tabclose<CR>
 amenu 1.10 ToolBar.New :new<CR>
 amenu 1.20 ToolBar.Open :browse confirm e<CR>
 
+"    an <silent> icon=~/.gvim/bitmaps/16/document-save.png 1.30 ToolBar.Save :if expand("%") == ""<Bar>browse confirm w<Bar>else<Bar>confirm w<Bar>endif<CR>
+"    an icon=~/.gvim/bitmaps/16/system-floppy.png 1.40 ToolBar.SaveAll :browse confirm wa<cr>
+
+"    an 1.45 ToolBar.-sep1- <Nop>
+
+"    an icon=$VIMFILES/bitmaps/16/edit-undo.png 1.50 ToolBar.Undo u
+"    an icon=$VIMFILES/bitmaps/16/edit-redo.png 1.60 ToolBar.Redo <C-R>
+
+"    an 1.65 ToolBar.-sep2- <Nop>
+
+"    vnoremenu icon=~/.gvim/bitmaps/16/edit-cut.png 1.70 ToolBar.Cut "+x
+"    vnoremenu icon=~/.gvim/bitmaps/16/edit-copy.png 1.80 ToolBar.Copy "+y
+"    cnoremenu icon=~/.gvim/bitmaps/16/edit-copy.png 1.80 ToolBar.Copy <C-Y>
+"    nnoremenu icon=~/.gvim/bitmaps/16/edit-paste.png 1.90 ToolBar.Paste "+gP
+"    cnoremenu icon=~/.gvim/bitmaps/16/edit-paste.png ToolBar.Paste <C-R>+
+"    exe 'vnoremenu <script> ToolBar.Paste ' . paste#paste_cmd['v']
+"    exe 'inoremenu <script> ToolBar.Paste ' . paste#paste_cmd['i']
+
+aunmenu ToolBar.-sep6-
+aunmenu ToolBar.Make
+aunmenu ToolBar.RunCtags
+aunmenu ToolBar.TagJump
+
 an 1.400 ToolBar.-sep8- <Nop>
+"an icon=~/.gvim/bitmaps/16/preferences-system-windows.png 1.300 ToolBar.MiniBufExplorer :TMiniBufExplorer<CR>
 an icon=WinMax 1.410 ToolBar.Maximize <C-w>_
 an icon=WinVSplit 1.420 ToolBar.ResizeEqual <C-w>=
+
+ "an icon=~/.gvim/bitmaps/16/stock_spellcheck.png 1.130 ToolBar.Syntastic :SyntasticCheck<CR>
+ "an icon=~/.gvim/bitmaps/16/document-revert.png 1.140 ToolBar.Alternate :A<CR>
+
+"an 1.195 ToolBar.-sep4- <Nop>
+
+"an icon=~/.gvim/bitmaps/16/accessories-dictionary.png 1.200 ToolBar.Tagbar :TagbarToggle<CR>
+"if version >= 703
+"    an 1.210 ToolBar.Undotree :UndotreeToggle<CR>
+"endif
+"an icon=~/.gvim/bitmaps/16/system-file-manager.png 1.220 ToolBar.FileExplorer :NERDTreeToggle<CR>
+
+"an 1.395 ToolBar.-sep6- <Nop>
+"if version >= 703
+"    an icon=~/.gvim/bitmaps/16/applications-engineering.png 1.400 ToolBar.Numbers :NumbersToggle<CR>
+"endif
+"nmenu icon=~/.gvim/bitmaps/16/format-text-direction-ltr.png 1.410 ToolBar.Comment gcc
+"vmenu icon=~/.gvim/bitmaps/16/format-text-direction-ltr.png 1.410 ToolBar.Comment gc
+"imenu icon=~/.gvim/bitmaps/16/format-text-direction-ltr.png 1.410 ToolBar.Comment <C-O>gcc
+"nmenu icon=~/.gvim/bitmaps/16/format-indent-more.png 1.420 ToolBar.IndentMore >>
+"vmenu icon=~/.gvim/bitmaps/16/format-indent-more.png 1.420 ToolBar.IndentMore >
+"imenu icon=~/.gvim/bitmaps/16/format-indent-more.png 1.420 ToolBar.IndentMore <C-O>>>
+"nmenu icon=~/.gvim/bitmaps/16/format-indent-less.png 1.430 ToolBar.IndentLess <<
+"vmenu icon=~/.gvim/bitmaps/16/format-indent-less.png 1.430 ToolBar.IndentLess <
+"imenu icon=~/.gvim/bitmaps/16/format-indent-less.png 1.430 ToolBar.IndentLess <C-O><<
+
+"if !has("gui_athena")
+"    an 1.895 ToolBar.-sep7- <Nop>
+"        an icon=~/.gvim/bitmaps/16/edit-find-replace.png 1.900 ToolBar.Replace :promptrepl<CR>
+"        vunmenu ToolBar.Replace
+"        vnoremenu icon=~/.gvim/bitmaps/16/edit-find-replace.png ToolBar.Replace y:promptrepl <C-R>=<SID>FixFText()<CR><CR>
+"        an icon=~/.gvim/bitmaps/16/go-next.png 1.910 ToolBar.FindNext n
+"        an icon=~/.gvim/bitmaps/16/go-previous.png 1.920 ToolBar.FindPrev N
+"    endif
 
 "}}}
 
@@ -188,8 +249,31 @@ tmenu 1.70 ToolBar.Redo Redo
 tmenu 1.80 ToolBar.Cut Cut
 tmenu 1.90 ToolBar.Copy Copy
 tmenu 1.100 ToolBar.Paste Paste
+tmenu ToolBar.RunScript Run Script
+tmenu ToolBar.Help Help
+tmenu ToolBar.FindHelp Find Help
+
+"tmenu 1.200 ToolBar.Tagbar Afficher les tags
+"if version >= 703
+"    tmenu 1.210 ToolBar.Undotree Afficher l'historique d'édition
+"endif
+
+"tmenu 1.300 ToolBar.MiniBufExplorer Afficher le mini explorateur de tampons
 tmenu 1.310 ToolBar.Maximize Maximize Buffer
 tmenu 1.320 ToolBar.ResizeEqual Resize Equal Buffer
+
+if version >= 703
+       tmenu 1.400 ToolBar.Numbers Alterner entre affichage classique et relatif des numéros de lignes
+endif
+tmenu 1.410 ToolBar.Comment Commenter
+tmenu 1.420 ToolBar.IndentMore Indenter
+tmenu 1.430 ToolBar.IndentLess Désindenter
+
+if !has("gui_athena")
+        tmenu 1.900 ToolBar.Replace Replace
+        tmenu 1.910 ToolBar.FindNext Find Nex
+        tmenu 1.920 ToolBar.FindPrev Find Previous
+  endif
 "}}}
 
 " File {{{
@@ -198,16 +282,13 @@ set encoding=utf-8
 set tenc=utf-8
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 
-"language message zh_CN.UTF-8
-language message en_US.UTF-8
-
 set autoread		"error alert for destructive write
 
 "print the current clock time
-set printheader=%<%f%h%m%40{strftime(\"%I:%M:%S\ \%p,\ %a\ %b\ %d,\ %Y\")}%=Page\ %N
+"set printheader=%<%f%h%m%40{strftime(\"%I:%M:%S\ \%p,\ %a\ %b\ %d,\ %Y\")}%=Page\ %N
 
 "Print the last modification time
-set printheader=%<%f%h%m\ %40{strftime(\"%c\",getftime(expand(\"%%\")))}%=Page\ %N
+"set printheader=%<%f%h%m\ %40{strftime(\"%c\",getftime(expand(\"%%\")))}%=Page\ %N
 
 "Turning on options for filetypes; detection, plugins, and indentation
 filetype plugin on
@@ -252,6 +333,7 @@ hi User1 guifg=gray
 hi User2 guifg=peru
 hi User3 guifg=white
 hi User4 gui=bold
+
 " }}}
 
 " Font {{{
@@ -263,10 +345,6 @@ if has('gui_running')
 	set guioptions-=r
 	set guioptions-=l
 	set guioptions-=b
-	" Alternate open/close menu/toolbar
-	nnoremap <C-F1> :if &go=~#'m'<Bar>set go-=m<Bar>else<Bar>set go+=m<Bar>endif<CR>
-	nnoremap <C-F2> :if &go=~#'T'<Bar>set go-=T<Bar>else<Bar>set go+=T<Bar>endif<CR>
-	nnoremap <C-F3> :if &go=~#'r'<Bar>set go-=r<Bar>else<Bar>set go+=r<Bar>endif<CR>
 
 	if has("win16") || has("win32") || has("win95") || has("win64")
 		set guifont=Sarasa\ Mono\ SC:h11,SpaceMono\ NF:h11,Inconsolata:h12,Consolas:h11,Courier_New:h11:cANSI
@@ -304,6 +382,12 @@ vmap <silent> //    y/<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
 
 " Open help on current word in a new tab
 noremap <silent> <F1> :execute "tab h " . expand("<cword>")<cr>
+
+" Alternate open/close menu/toolbar
+nnoremap <C-F1> :if &go=~#'m'<Bar>set go-=m<Bar>else<Bar>set go+=m<Bar>endif<CR>
+nnoremap <C-F2> :if &go=~#'T'<Bar>set go-=T<Bar>else<Bar>set go+=T<Bar>endif<CR>
+nnoremap <C-F3> :if &go=~#'r'<Bar>set go-=r<Bar>else<Bar>set go+=r<Bar>endif<CR>
+nnoremap <C-F4> :if &laststatus==2<Bar>set laststatus=0<Bar>else<Bar>set laststatus=2<Bar>endif<CR>
 
 " 显示/禁止行列光标
 nmap <silent> <F6> <Esc>:call ToggleCursor()<CR>
@@ -379,13 +463,13 @@ nnoremap <leader>ce :!start explorer %:p:h:8<cr>
 nmap <leader>fn :let @*=substitute(expand("%"), "/", "\\", "g")<CR>
 nmap <leader>fp :let @*=substitute(expand("%:p"), "/", "\\", "g")<CR>
 
-vnoremap <leader>a <c-a>
-vnoremap <leader>x <c-x>
+nnoremap <leader>a <C-A>
+nnoremap <leader>x <C-X>
 
 " toggle use of 'modeline' command.  Doesn't reload the
 " settings until you do BufRead.  vimrc doesn't support the command
 " separator '|' so we use '<bar>':
- nnoremap <leader>ml :setlocal invmodeline <bar> doautocmd BufRead<cr>
+" nnoremap <leader>ml :setlocal invmodeline <bar> doautocmd BufRead<cr>
 
 " }}}
 
@@ -422,8 +506,7 @@ set listchars=tab:\|.,trail:,nbsp:.,extends:¬
 " Enter the Pilcrow mark by pressing Ctrl-k then PI
 " The command :dig displays other digraphs you can use.
 
-" save on losing focus
-au FocusLost * :wa
+"au FocusLost * :wa	"save on losing focus
 
 " visually select text then press ~ to convert the text to  UPPER CASE,
 " then to lower case, then to Title Case.
@@ -438,6 +521,20 @@ function! TwiddleCase(str)
   return result
 endfunction
 vnoremap ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgvl
+
+" Advanced Incrementing
+let g:UNum=0
+function! INC(increment)
+  let g:UNum = g:UNum + a:increment
+  return g:UNum
+endfunction
+
+" Delete duplicate lines
+function! DelDupLine()
+  if getline(".") == getline(line(".") - 1)
+    norm dd
+  endif
+endfunction
 
 " }}}
 
@@ -499,6 +596,15 @@ augroup vgrep
     autocmd QuickFixCmdPost l*    lwindow
 augroup END
 
+"function! UpdateTimestamp ()
+"  '[,']s/Last Updated: 12/23/2019 4:04:19 PM
+"endfunction
+
+"augroup TimeStamping
+"  autocmd!
+"  autocmd BufWritePre,FileWritePre,FileAppendPre * :call UpdateTimestamp()
+"augroup END
+
 " }}}
 
 " User Defined Command {{{
@@ -516,15 +622,209 @@ augroup make_python
 augroup end
 "}}}
 
+" BeforPlugin {{{
+"let g:no_html_tab_mapping = 'yes'
+"let g:html_map_leader = mapleader 
+packadd! matchit
+" }}}
+
+" Plugin Vundle {{{
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" set the runtime path to include Vundle and initialize
+let $VIM="C:\\Users\\yiqyuan"
+set rtp+=$VIM\vimfiles\bundle\Vundle.vim\
+call vundle#begin('$VIM\vimfiles\bundle\')
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+Plugin 'lilydjwg/colorizer'
+Plugin 'kshenoy/vim-signature'		"toggle, display and navigate marks
+Plugin 'MarcWeber/vim-addon-mw-utils'	"interpret a file by function and cache file automatically
+Plugin 'tomtom/tlib_vim'		"Some utility functions
+Plugin 'garbas/vim-snipmate'
+Plugin 'honza/vim-snippets'
+Plugin 'yyq123/HTML-Editor'
+Plugin 'mattn/webapi-vim'
+Plugin 'mbbill/fencview'
+Plugin 'liuchengxu/vim-which-key'
+Plugin 'machakann/vim-sandwich'
+Plugin 'KabbAmine/zeavim.vim'
+"Disabled plugin
+"Plugin 'mattn/gist-vim'
+"---------------------------------------------------
+"plugin from http://vim-scripts.org/vim/scripts.html
+"Plugin 'L9'
+" Git plugin not hosted on GitHub
+"Plugin 'https://github.com/wincent/command-t.git'
+" git repos on your local machine (i.e. when working on your own plugin)
+"Plugin 'file:///home/gmarik/path/to/plugin'
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
+"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Install L9 and avoid a Naming conflict if you've already installed a
+" different version somewhere else.
+"Plugin 'ascenator/L9', {'name': 'newL9'}
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+" }}}
+
+" Plugin vim-signature {{{
+hi SignColumn ctermbg=NONE guibg=#131313
+hi SignatureMarkText ctermbg=NONE guibg=#131313 gui=bold term=bold cterm=bold
+" }}}
+
+" Plugin vim-sinpmate {{{
+" Alt+Space
+imap <M-space> <Plug>snipMateNextOrTrigger
+smap <M-space> <Plug>snipMateNextOrTrigger
+xmap <M-space> <Plug>snipMateVisual
+" }}}
+
+" Plugin Gist-vim {{{
+" let github_user = 'yyq123'
+" }}}
+
+" Rainbow Parentheses Improved {{{
+" let g:rainbow_active = 0 "0 if you want to enable it later via :RainbowToggle
+" }}}
+
+" Plugin Netrw {{{
+if ($OS =~ "Windows")
+	let g:netrw_scp_cmd="pscp.exe -q"
+endif
+let g:netrw_liststyle = 3
+let g:netrw_banner = 0
+let g:netrw_winsize = 25
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+"augroup ProjectDrawer
+"autocmd!
+"autocmd VimEnter * :Vexplore
+"augroup END
+map <F3> <Esc>:Vex<CR>
+" }}}
+
+" Plugin vim-sandwich {{{
+
+nmap s <Nop>
+xmap s <Nop>
+"xunmap S
+"runtime macros/sandwich/keymap/surround.vim
+nmap srt <Plug>(operator-sandwich-replace)<Plug>(textobj-sandwich-query-a)tt
+
+" if you have not copied default recipes
+let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
+" add spaces inside bracket
+let g:sandwich#recipes += [
+      \   {'buns': ['{ ', ' }'], 'nesting': 1, 'match_syntax': 1, 'kind': ['add', 'replace'], 'action': ['add'], 'input': ['{']},
+      \   {'buns': ['[ ', ' ]'], 'nesting': 1, 'match_syntax': 1, 'kind': ['add', 'replace'], 'action': ['add'], 'input': ['[']},
+      \   {'buns': ['( ', ' )'], 'nesting': 1, 'match_syntax': 1, 'kind': ['add', 'replace'], 'action': ['add'], 'input': ['(']},
+      \   {'buns': ['{\s*', '\s*}'],   'nesting': 1, 'regex': 1, 'match_syntax': 1, 'kind': ['delete', 'replace', 'textobj'], 'action': ['delete'], 'input': ['{']},
+      \   {'buns': ['\[\s*', '\s*\]'], 'nesting': 1, 'regex': 1, 'match_syntax': 1, 'kind': ['delete', 'replace', 'textobj'], 'action': ['delete'], 'input': ['[']},
+      \   {'buns': ['(\s*', '\s*)'],   'nesting': 1, 'regex': 1, 'match_syntax': 1, 'kind': ['delete', 'replace', 'textobj'], 'action': ['delete'], 'input': ['(']},
+      \ ]
+
+" }}}
+
+" Plugin vim-which-key {{{
+
+set timeoutlen=500	" By default timeoutlen is 1000 ms
+
+"nnoremap <silent> <leader> :WhichKey ','<CR>
+call which_key#register(',', "g:which_key_map")
+
+nnoremap <silent> <leader> :<c-u>WhichKey ','<CR>
+vnoremap <silent> <leader> :<c-u>WhichKeyVisual ','<CR>
+
+" Define prefix dictionary
+let g:which_key_map =  {}
+
+" Second level dictionaries:
+" 'name' is a special field. It will define the name of the group, e.g., leader-f is the "+file" group.
+" Unnamed groups will show a default empty string.
+
+" =======================================================
+" Create menus based on existing mappings
+" =======================================================
+" You can pass a descriptive text to an existing mapping.
+let g:which_key_map.m = { 'name' : 'match' }
+let g:which_key_map.m.t = 'Match-CR'
+let g:which_key_map.p = { 'p' : 'Reselect the text that was just pasted' }
+let g:which_key_map.s = { 'name' : '+source' }
+let g:which_key_map.s.v = 'Source-vimrc'
+let g:which_key_map.t = { 'name' : '+tab' }
+let g:which_key_map.t.v = 'Tab-vimrc'
+" =======================================================
+" Create menus not based on existing mappings:
+" =======================================================
+" Provide commands(ex-command, <Plug>/<C-W>/<C-d> mapping, etc.) and descriptions for existing mappings
+let g:which_key_map.b = {
+      \ 'name' : '+buffer' ,
+      \ '1' : ['b1'        , 'buffer 1']        ,
+      \ '2' : ['b2'        , 'buffer 2']        ,
+      \ 'd' : ['bd'        , 'delete-buffer']   ,
+      \ 'f' : ['bfirst'    , 'first-buffer']    ,
+      \ 'h' : ['Startify'  , 'home-buffer']     ,
+      \ 'l' : ['blast'     , 'last-buffer']     ,
+      \ 'n' : ['bnext'     , 'next-buffer']     ,
+      \ 'p' : ['bprevious' , 'previous-buffer'] ,
+      \ '?' : ['Buffers'   , 'fzf-buffer']      ,
+      \ }
+let g:which_key_map.f = {
+      \ 'name' : '+file' ,
+      \ 'n' : ['fn' , 'File Name to Clipboard'] ,
+      \ 'p' : ['fp' , 'Path Name to Clipboard'] ,
+      \ }
+let g:which_key_map.F = {
+      \ 'name' : '+Function-Key' ,
+      \ 'F1'   : ['help'         , 'help']        ,
+      \ 'F2'   : ['set nowrap'   , 'set nowrap']        ,
+      \ 'F3'   : ['Vex'          , 'Vex']   ,
+      \ 'F4'   : ['bfirst'       , 'first-buffer']    ,
+      \ 'F5'   : ['Startify'     , 'home-buffer']     ,
+      \ 'F6'   : ['call ToggleCursor()'     , 'ToggleCursorLine']     ,
+      \ 'F7'   : ['hi'           , 'highlight']     ,
+      \ 'F8'   : ['tabs'         , 'Show all buffers in tabs'] ,
+      \ 'F9'   : ['HTML Escape'  , 'Escape Character Entity)'] ,
+      \ 'F10'  : ['gJ'           , 'join lines without producing a space'] ,
+      \ 'C-F1' : ['set go-=m'    , 'Show Menu']      ,
+      \ 'C-F2' : ['set go-=T'    , 'Show Toolbar']      ,
+      \ 'C-F3' : ['set go-=r'    , 'Show Scroolba']      ,
+      \ 'C-F4' : ['laststatus=2' , 'Show Statusline']      ,
+      \ 'C-Ins' : ['tabnew'      , 'tabnew']      ,
+      \ 'C-Del' : ['tabclose'    , 'tabclose']      ,
+      \ }
+
+" }}}
+
 " AfterPlugin {{{
 " 取消用Ctrl-F调用查找窗口
-unmap <C-F>
+"unmap <C-F>
 
-"避免删除的当字符进入剪切板
+" Prevent single letter deletes to spam clipboard manager
 nnoremap x "_x
 
-" show a colored column 
-" so I can see when I write a too-long line of code)
-set colorcolumn=70	
-highlight ColorColumn guibg=darkred
+"show a colored column (so I can see when I write a too-long line of code)
+"set colorcolumn=70
+"highlight ColorColumn ctermbg=darkred guibg=darkred
+
 " }}}

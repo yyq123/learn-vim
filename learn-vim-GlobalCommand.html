@@ -121,7 +121,7 @@ else {
 	<p style="text-indent:2em"><code class="inset">:g/TODO/yank A | :let @+=@a</code></p>
 	<p>请注意，在Mac和Windows下，寄存器*和+都用于访问系统剪切板；在Linux下，寄存器+用于访问系统剪切板。</p>
 	<p>使用以下命令，可以看到内容已经被放入寄存器和剪切板：</p>
-	<p style="text-indent:2em"><code class="inset">:registers a,+,*</code></p>
+	<p style="text-indent:2em"><code class="inset">:registers a+*</code></p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/g_cmd_register_append.png" title="g_cmd_register_append"><img src="https://yyq123.github.io/learn-vim/images/g_cmd_register_append.png" alt="g_cmd_register_append" width="550" height="87" /></a></p>
 	<p>请注意，vim使用&ldquo;^J&rdquo;符号表示换行。</p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
@@ -129,10 +129,25 @@ else {
 	<pre class="block">    // TODO: something1
     // TODO: something2</pre>
 
+	<p>通过调用<code>:sort</code>命令，针对对指定范围内的文本进行<a href="http://yyq123.github.io/learn-vim/learn-vi-09-03-sort.html" title="文本排序(sort)">排序</a>。例如以下命令，将对&ldquo;{}&rdquo;包围的CSS属性按字母排序：</p>
+	<p style="text-indent:2em"><code class="inset">:g/{/ .+1,/}/-1 sort</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/g_cmd_range_sort.png" title="g_cmd_range_sort"><img src="https://yyq123.github.io/learn-vim/images/g_cmd_range_sort.png" alt="g_cmd_range_sort" /></a></p>
+	<p>同理，使用以下命令，可以针对&ldquo;{}&rdquo;包围的文本增加<a href="http://yyq123.github.io/learn-vim/learn-vi-66-Indent.html" title="Indent">缩进</a>：</p>
+
 	<p>首先移动到文件头，然后执行以下命令，可以搜集相对于指定字符偏移位置的行：</p>
 	<p style="text-indent:2em"><code class="inset">:g /^Chapter/ .+2w &gt;&gt; begin</code></p>
 	<p>包含&ldquo;Chapter&rdquo;字符的章节号、名称和描述，分处在连续的行中。<var>^Chapter</var>将查找以&ldquo;Chapter&rdquo;字符开头的行；<var>.+2</var>将定位到匹配处之后的第2行；然后使用<code>w</code>命令将其追加到名为begin的文件中。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/g_cmd_range_lines.png" title="g_cmd_range_lines"><img src="https://yyq123.github.io/learn-vim/images/g_cmd_range_lines.png" alt="g_cmd_range_lines" width="550" height="301" /></a></p>
+
+	<p>首先在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>配置文件中，新增以下自定义函数：</p>
+	<pre class="block"><code>" Delete duplicate lines
+function! DelDupLine()
+  if getline(".") == getline(line(".") - 1)
+    norm dd
+  endif
+endfunction</code></pre>
+	<p>然后使用以下命令，则可以删除文件中重复的行：</p>
+	<p style="text-indent:2em"><code class="inset">:g/^/ call Del()</code></p>
 
 	<p>使用以下命令，可以查看更多帮助文件：</p>
 	<p style="text-indent:2em"><code class="inset">:h :g</code></p>

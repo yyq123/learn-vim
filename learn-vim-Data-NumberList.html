@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 ()</title>
+</head>
+<body>
+	<h1>VIM学习笔记 ()</h1>
+
+	<h2 class="article"><a id=""></a></h2>
+	<p></p>
+	<a href="#" title=""></a>
+
+	<h2 class="article"><a id="">增加行号</a></h2>
+	<pre class="block">.KS
+.IP "TTY_ARGV" 2n
+The command, specified as an argument vector,
+that the TTY subwindow executes.
+.KE
+.KS</pre>
+
+	<p>使用以下命令，可以在每行开头增加行号：</p>
+	<p style="text-indent:2em"><code class="inset">:%s/^/\=line('.'). ' '</code></p>
+	<pre class="block">1 .KS
+2 .IP "TTY_ARGV" 2n
+3 The command, specified as an argument vector,
+4 that the TTY subwindow executes.
+5 .KE
+6 .KS</pre>
+	<p>以上命令末尾的引号部分，用来定义行号与文本之间的间隔符。例如以下命令，将在行号后紧跟2个&ldquo;&gt;&rdquo;：</p>
+	<p style="text-indent:2em"><code class="inset">:%s/^/\=line('.'). '&gt;&gt;'</code></p>
+	<pre class="block">1&gt;&gt;.KS
+2&gt;&gt;.IP "TTY_ARGV" 2n
+3&gt;&gt;The command, specified as an argument vector,
+4&gt;&gt;that the TTY subwindow executes.
+5&gt;&gt;.KE
+6&gt;&gt;.KS</pre>
+
+	<p>如果在Linux和Mac操作系统下，或者在Windows下安装有<a href="http://yyq123.github.io/learn-vim/learn-vi-804-Toolkit-CLI-Win.html#Cygwin" title="Windows命令行环境(Toolkit-CLI-Win)">Cygwin</a>，那么可以通过<a href="http://yyq123.github.io/learn-vim/learn-vim-Shell-Filter.html" title="过滤器(Filter)">过滤器</a>调用外部<a href="https://osxdaily.com/2010/05/20/easily-add-line-numbers-to-a-text-file/" title="Add Line Numbers to a Text File">cat或nl命令</a>来增加行号：</p>
+	<p style="text-indent:2em"><code class="inset">:%!nl</code></p>
+	<pre class="block">     1	.KS
+     2	.IP "TTY_ARGV" 2n
+     3	The command, specified as an argument vector,
+     4	that the TTY subwindow executes.
+     5	.KE
+     6	.KS</pre>
+
+	<h2 class="article"><a id="">生成数字列表</a></h2>
+	<p>使用以下命令，将在文件开头（行号0之后）生成数字1-5的列表：</p>
+	<p style="text-indent:2em"><code class="inset">:call append(0,range(1,5))</code></p>
+	<pre class="block">1
+2
+3
+4
+5</pre>
+	<p>如果希望在文件末尾生成数字列表，那么需要指定行号为line('$')：</p>
+	<p style="text-indent:2em"><code class="inset">:call append(line('$'),range(1,5))</code></p>
+	<p>如果希望生成指定增幅的数字列表，那么可以在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>配置文件中新增以下自定义函数：</p>
+	<pre class="block"><code>" Advanced Incrementing
+let g:UNum=0
+    function! INC(increment)
+let g:UNum = g:UNum + a:increment
+    return g:UNum
+endfunction</code></pre>
+	<p>使用以下命令，则可以生成指定起始数值和增幅的数字列表：</p>
+	<p style="text-indent:2em"><code class="inset">:let UNum=5 | 1,5s/.*/\=INC(5)/</code></p>
+	<pre class="block">10
+15
+20
+25
+30</pre>
+	<p>请注意，通过指定行范围，可以生成任意长度的列表；但指定的行范围必须已经存在于文件内。</p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+	<p>通过录制<a href="http://yyq123.github.io/learn-vim/learn-vi-29-Macro.html" title="Macro">宏</a>（Macro），也可以批量创建数字列表：</p>
+	<p style="text-indent:2em"><code class="inset">&lt;ESC&gt;qqyyp&lt;C-A&gt;q5@q</code></p>
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="3" cellpadding="5">
+		<thead>
+		<tr><th>命令</th><th>描述</th><th>数据变化</th></tr>
+		</thead>		
+		<tbody>
+		<tr><td><code>&lt;ESC&gt;</code></td><td>返回常规模式</td><td rowspan="3" style="background:#f4f4f4;text-align:center">10</td></tr>
+		<tr><td><code>qq</code></td><td>开始录制宏</td></tr>
+		<tr><td><code>yy</code></td><td>复制当前行</td></tr>
+		<tr><td><code>p</code></td><td>粘贴至下一行</td><td style="background:#f4f4f4;text-align:center">10<br />10</td></tr>
+		<tr><td><code>&lt;C-A&gt;</code></td><td><a href="http://yyq123.github.io/learn-vim/learn-vim-Data-CtrlA-CtrlX.html" title="增减数值(CTRL-A/CTRL-X)">数值加1</a></td><td rowspan="2" style="background:#f4f4f4;text-align:center">10<br />11</td></tr>
+		<tr><td><code>q</code></td><td>结束录制宏</td></tr>
+		<tr><td><code>5@q</code></td><td>执行宏5次</td><td style="background:#f4f4f4;text-align:center">10<br />11<br />12<br />13<br />14<br />15<br />16</td></tr>
+		</tbody>
+	</table>
+<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
+
+	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
+
+	<pre class="block">
+	</pre>
+
+	<ul>
+		<li><p class="item"><br /></p></li>
+		<li><p class="item"><a href="#" title=""></a><br /></p></li>
+	</ul>
+
+	<span style="font-weight:bold; color:#4169E1; margin-left:0.2em">&#65311;</span>
+
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
+		<caption style="margin:0.5em; font-weight:bold">选项列表</caption>
+		<thead>
+		<tr><th style="white-space: nowrap">选项</th><th>描述</th><th>帮助信息</th></tr>
+		</thead>
+		<tbody>
+		<tr><td><code class="inset">!</code></td><td>如果包含，表示。例如，。</td><td style="white-space: nowrap"><code class="inset">:help viminfo-!</code></td></tr>
+		</tbody>
+	</table>
+
+
+&ldquo;&rdquo;
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
+
+</body>
+</html>

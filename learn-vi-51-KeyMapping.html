@@ -9,12 +9,14 @@
 </head>
 <body>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">设置键盘映射</p>
+	<h1>VIM学习笔记 键盘映射 (Map)</h1>
+
+	<h2 class="article"><a id="map-cmd">设置键盘映射</a></h2>
 	<p>使用:map命令，可以将键盘上的某个按键与Vim的命令绑定起来。例如使用以下命令，可以通过F5键将单词用花括号括起来：</p>
 	<p style="text-indent:2em"><code class="inset">:map &lt;F5&gt; i{ea}&lt;Esc&gt;</code></p>
 	<p>其中：i{将插入字符{，然后使用Esc退回到命令状态；接着用e移到单词结尾，a}增加字符}，最后退至命令状态。在执行以上命令之后，光标定位在一个单词上（例如amount），按下F5键，这时字符就会变成{amount}的形式。</p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">不同模式下的键盘映射</p>
+	<h2 class="article"><a id="map-mode">不同模式下的键盘映射</a></h2>
 	<p>使用下表中不同形式的map命令，可以针对特定的模式设置键盘映射：</p>
 	<table summary="Map in diffent mode" border="1" rules="all" cellspacing="0" cellpadding="2" style="text-align:center">
 		<tr><td colspan="2">Command<br />命令</td><td>Normal<br />&nbsp;&nbsp;常规模式&nbsp;&nbsp;</td><td>Visual<br />可视化模式</td><td>Operator Pending<br />运算符模式</td><td>Insert Only<br />插入模式</td><td>Command Line<br />命令行模式</td></tr>
@@ -28,7 +30,8 @@
 	</table>
 	<p>Operator-pending模式，是指当你输入操作符（比如<kbd>d</kbd>）时，然后继续输入的移动步长和文本对象（<kbd>dw</kbd>）的状态。</p>
 	<p>第一列命令定义的映射，仍然可以被重新映射；第二列命令（包含noremap）定义的映射，是不可以被重新映射的。</p>
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">键盘映射实例</p>
+
+	<h2 class="article"><a id="map-samples">键盘映射实例</a></h2>
 	<p>使用以下命令，可以在Normal Mode和Visual/Select Mode下，利用Tab键和Shift-Tab键来缩进文本：</p>
 	<p><code class="inset">
 	nmap &lt;tab&gt; V&gt;<br />
@@ -43,10 +46,9 @@
 	<p>注意：<kbd>Alt</kbd>键可以使用&lt;M-key&gt;或&lt;A-key&gt;来表示。</p>
 	<p>关于键盘符号的详细说明，请参考下表。使用<code class="inset">:help key-notation</code>命令可以查看相关帮助信息。</p>
 <table summary="special notations for keyboard keys" border="1" rules="all" cellspacing="0" cellpadding="2">
-	<tbody>
 	<colgroup>
 	<col style="width:10em;" />
-	<col style="width:15em;"/>
+	<col style="width:15em;" />
 	</colgroup>
 <tr>
 <td><strong>Keys</strong></td>
@@ -79,6 +81,10 @@
 <tr>
 <td>&lt;Space&gt;</td>
 <td>Space</td>
+</tr>
+<tr>
+<td>&lt;Bar&gt;</td>
+<td>| 竖直线</td>
 </tr>
 <tr>
 <td>&lt;Up&gt;</td>
@@ -128,17 +134,18 @@
 <td>&lt;PageDown&gt;</td>
 <td>Page down</td>
 </tr>
-</tbody>
 </table>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">查看键盘映射</p>
-	<p><a href="http://www.flickr.com/photos/yyq123/5236968127/" title="map by yyq123, on Flickr"><img src="http://farm6.static.flickr.com/5081/5236968127_0b9a53f183.jpg" width="457" height="152" alt="map" /></a></p>
+	<h2 class="article"><a id="map-listing">查看键盘映射</a></h2>
+	<p><a href="https://yyq123.github.io/learn-vim/images/map.png" title="map"><img src="https://yyq123.github.io/learn-vim/images/map.png" alt="map" /></a></p>
 	<p>使用<code class="inset">:map</code>命令，可以列出所有键盘映射。其中第一列标明了映射在哪种模式下工作：</p>
 	<table summary="Map in diffent mode" border="1" rules="all" cellspacing="0" cellpadding="2" style="text-align:center">
 		<tr><td>标记</td><td>模式</td></tr>
-		<tr><td>&lt;space&gt;</td><td>常规模式，可视化模式，运算符模式</td></tr>
+		<tr><td>&lt;space&gt;</td><td>常规模式，可视化模式，选择模式，运算符模式</td></tr>
 		<tr><td>n</td><td>常规模式</td></tr>
-		<tr><td>v</td><td>可视化模式</td></tr>
+		<tr><td>v</td><td>可视化模式，选择模式</td></tr>
+		<tr><td>s</td><td>选择模式</td></tr>
+		<tr><td>x</td><td>可视化模式</td></tr>
 		<tr><td>o</td><td>运算符模式</td></tr>
 		<tr><td>!</td><td>插入模式，命令行模式</td></tr>
 		<tr><td>i</td><td>插入模式</td></tr>
@@ -157,7 +164,7 @@
 		<tr><td><code class="inset">:cmap</code></td><td><code class="inset">:cnoremap</code></td><td></td><td></td><td></td><td></td><td>y</td></tr>
 	</table>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">取消键盘映射</p>
+	<h2 class="article"><a id="umap-cmd">取消键盘映射</a></h2>
 	<p>如果想要取消一个映射，可以使用以下命令：</p>
 	<p style="text-indent:2em"><code class="inset">:unmap &lt;F10&gt;</code></p>
 	<p>注意：必须为:unmap命令指定一个参数。如果未指定任何参数，那么系统将会报错，而不会取消所有的键盘映射。</p>
@@ -174,6 +181,6 @@
 	</table>
 	<p>可以使用以下命令，取消所有映射。请注意，这个命令将会移除所有用户定义和系统默认的键盘映射。</p>
 	<p style="text-indent:2em"><code class="inset">:mapclear</code></p>
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="比较文件(diff)" href="http://yyq123.blogspot.com/2010/09/vim-diff.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="缩写(Abbr)" href="http://yyq123.blogspot.com/2010/12/vim-abbreviation.html">下一篇</a>&gt;</span></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="比较文件(diff)" href="http://yyq123.blogspot.com/2010/09/vim-diff.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="缩写(Abbr)" href="http://yyq123.blogspot.com/2010/12/vim-abbreviation.html">下一篇</a>&gt;</span></p>
 </body>
 </html>
