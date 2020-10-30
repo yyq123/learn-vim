@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 全局命令-实例(Global Command-Examples)</title>
+</head>
+<body>
+	<h1>VIM学习笔记 全局命令-实例(Global Command-Examples)</h1>
+
+	<h2 class="article"><a id="">其它实例</a></h2>
+	<p>将所有未标志为&ldquo;DONE&rdquo;的行，都在行尾标注&ldquo;TODO&rdquo;：</p>
+	<p style="text-indent:2em"><code class="inset">:g!/DONE/s/$/ TODO/</code></p>
+	<p style="text-indent:2em"><code class="inset">:v/DONE/s/$/ TODO/</code></p>
+	<p>为&ldquo;Chapter&rdquo;开头的标题行增加下划线：</p>
+	<p style="text-indent:2em"><code class="inset">:g/^Chapter/t.|s/./-/g</code></p>
+	<pre class="block">Chapter 1
+---------
+Chapter 2
+---------</pre>
+
+	<p>将所有不是以2个Tab制表符开头的行，增加到文件&ldquo;top2levels.otl&rdquo;的末尾：</p>
+	<p style="text-indent:2em"><code class="inset">:g!/^\t\t/.w&gt;&gt;top2levels.otl</code></p>
+	<p>拆分当前文件，将每一行内容，分别保存为一个文本文件（1.txt,2.txt,3,txt依次类推）：</p>
+	<p style="text-indent:2em"><code class="inset">:g/^/exe ".w ".line(".").".txt"</code></p>
+	<p>将字符串&ldquo;MARK&rdquo;替换为文件&ldquo;tmp.txt&rdquo;的内容：</p>
+	<p style="text-indent:2em"><code class="inset">:g/^MARK$/r tmp.txt | -d</code></p>
+	<p>从以上命令可以看到，通过使用&ldquo;|&rdquo;可以针对行连续执行多条命令。</p>
+
+	<p></p>
+	<p style="text-indent:2em"><code class="inset">:global /apples\|cherries/ substitute /apples/bananas/g | substitute /cherries/oranges/g</code></p>
+In the case given, it will be on the final line in the buffer that
+had "apples". IF that line also contained "cherries" THEN the second substitute
+would apply.
+	<p>从第5行到第10行，在每一行下插入空行：</p>
+	<p style="text-indent:2em"><code class="inset">:5,10g/^/pu _</code></p>
+	<p>假设需要从以下代码中，提取所有以&ldquo;TODO&rdquo;开头的注释文字：</p>
+	<pre class="block">if ( m &amp;&amp; m[2] )
+    // TODO: something1
+    return [ m[1].length + m[2].length ];
+else {
+    // TODO: something2
+    return [ 1, "`" ];
+}</pre>
+	<p>首先，使用<code>qaq</code>命令来清除<a href="https://yyq123.github.io/learn-vim/learn-vi-12-Register.html" title="寄存器(Regists)">寄存器</a>a的内容，作文存储提取内容的中介位置；</p>
+	<p>然后，使用以下命令将包含&ldquo;TODO&rdquo;的行添加到寄存器a；请注意，使用大写的寄存器编号&ldquo;A&rdquo;以表示向寄存器添加内容，而小写字母则表示覆盖内容；</p>
+	<p style="text-indent:2em"><code class="inset">:g/TODO/yank A</code></p>
+	<p>如果希望将文本同时放入指定寄存器和系统剪切板，那么可以使用以下命令：</p>
+	<p style="text-indent:2em"><code class="inset">:g/TODO/yank A | :let @+=@a</code></p>
+	<p>请注意，在Mac和Windows下，寄存器*和+都用于访问系统剪切板；在Linux下，寄存器+用于访问系统剪切板。</p>
+	<p>使用以下命令，可以看到内容已经被放入寄存器和剪切板：</p>
+	<p style="text-indent:2em"><code class="inset">:registers a+*</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/g_cmd_register_append.png" title="g_cmd_register_append"><img src="https://yyq123.github.io/learn-vim/images/g_cmd_register_append.png" alt="g_cmd_register_append" width="550" height="87" /></a></p>
+	<p>请注意，vim使用&ldquo;^J&rdquo;符号表示换行。</p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+	<p>使用<code>"ap</code>命令，即可以将寄存器a中存储的TODO信息粘贴出来：</p>
+	<pre class="block">    // TODO: something1
+    // TODO: something2</pre>
+
+	<p>通过调用<code>:sort</code>命令，针对对指定范围内的文本进行<a href="http://yyq123.github.io/learn-vim/learn-vi-09-03-sort.html" title="文本排序(sort)">排序</a>。例如以下命令，将对&ldquo;{}&rdquo;包围的CSS属性按字母排序：</p>
+	<p style="text-indent:2em"><code class="inset">:g/{/ .+1,/}/-1 sort</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/g_cmd_range_sort.png" title="g_cmd_range_sort"><img src="https://yyq123.github.io/learn-vim/images/g_cmd_range_sort.png" alt="g_cmd_range_sort" /></a></p>
+	<p>同理，使用以下命令，可以针对&ldquo;{}&rdquo;包围的文本增加<a href="http://yyq123.github.io/learn-vim/learn-vi-66-Indent.html" title="Indent">缩进</a>：</p>
+	<p style="text-indent:2em"><code class="inset">:g/{/ .+1,/}/-1 &gt;</code></p>
+
+	<p>首先移动到文件头，然后执行以下命令，可以搜集相对于指定字符偏移位置的行：</p>
+	<p style="text-indent:2em"><code class="inset">:g /^Chapter/ .+2w &gt;&gt; begin</code></p>
+	<p>包含&ldquo;Chapter&rdquo;字符的章节号、名称和描述，分处在连续的行中。<var>^Chapter</var>将查找以&ldquo;Chapter&rdquo;字符开头的行；<var>.+2</var>将定位到匹配处之后的第2行；然后使用<code>w</code>命令将其追加到名为begin的文件中。</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/g_cmd_range_lines.png" title="g_cmd_range_lines"><img src="https://yyq123.github.io/learn-vim/images/g_cmd_range_lines.png" alt="g_cmd_range_lines" width="550" height="301" /></a></p>
+
+	<p>首先在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>配置文件中，新增以下自定义函数：</p>
+	<pre class="block"><code>" Delete duplicate lines
+function! DelDupLine()
+  if getline(".") == getline(line(".") - 1)
+    norm dd
+  endif
+endfunction</code></pre>
+	<p>然后使用以下命令，则可以删除文件中重复的行：</p>
+	<p style="text-indent:2em"><code class="inset">:g/^/ call Del()</code></p>
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="全局命令-实例(Global Command-Examples)" href="http://yyq123.github.io/learn-vim/learn-vim-GlobalCommand-Examples.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="Ex模式(Ex Mode)" href="http://yyq123.github.io/learn-vim/learn-vi-48-ExMode.html">下一篇</a>&gt;</span></p>
+
+</body>
+</html>
