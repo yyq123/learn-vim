@@ -9,6 +9,7 @@
 </head>
 <body>
 	<h1>VIM学习笔记 全局命令-实例(Global Command-Examples)</h1>
+	<p><a title="全局命令-实例(Global Command)" href="http://yyq123.github.io/learn-vim/learn-vim-GlobalCommand.html">上一篇</a>介绍了<code class="inset">:global</code>全局命令的基本格式和使用场景。本篇将借助命令示例，来演示与寄存器、文件和自定义函数相配合的复杂操作。</p>
 
 	<h2 class="article"><a id="single-commands">执行单条命令</a></h2>
 	<p>将所有未标志为&ldquo;DONE&rdquo;的行，都在行尾标注&ldquo;TODO&rdquo;：</p>
@@ -43,7 +44,7 @@ function! DelDupLine()
   endif
 endfunction</code></pre>
 	<p>然后使用以下命令，调用函数来删除文件中重复的行：</p>
-	<p style="text-indent:2em"><code class="inset">:g/^/ call Del()</code></p>
+	<p style="text-indent:2em"><code class="inset">:g/^/ call DelDupLine()</code></p>
 
 	<h2 class="article"><a id="file">读取和写入文件</a></h2>
 	<p>将所有不是以2个Tab制表符开头的行，增加到文件&ldquo;top2levels.otl&rdquo;的末尾：</p>

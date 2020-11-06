@@ -41,7 +41,7 @@ Created by yyq123@gmail.com using [vim](http://www.vim.org/)
   - [Ex命令寻址方式(Ex Command-Address)](http://yyq123.github.io/learn-vim/learn-vi-48-01-ExCommand-Adress.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/08/vim-ex-command-address.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/79802241)
   - [Ex脚本(Ex Script)](http://yyq123.github.io/learn-vim/learn-vi-48-05-ExScript.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/09/vim-ex-script.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/81508169)
   - [全局命令(Global Command)](http://yyq123.github.io/learn-vim/learn-vim-GlobalCommand.html)[<sup>B</sup>](https://yyq123.blogspot.com/2020/11/vim-global-command.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/270402117)
-  - [全局命令-实例(Global Command-Examples)](http://yyq123.github.io/learn-vim/learn-vim-GlobalCommand-Examples.html)[<sup>B</sup>]()<sup>/</sup>[<sup>Z</sup>]()
+  - [全局命令-实例(Global Command-Examples)](http://yyq123.github.io/learn-vim/learn-vim-GlobalCommand-Examples.html)[<sup>B</sup>](https://yyq123.blogspot.com/2020/11/vim-global-command-examples.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/274717149)
 - **文字处理**
   - [换行（Line Feed）](http://yyq123.blogspot.com/2010/07/vim-line-feed.html)[<sup>B</sup>](http://yyq123.blogspot.com/2010/07/vim-line-feed.html)<sup>/</sup>[<sup>Z</sup>](http://zhuanlan.zhihu.com/p/26133311)
   - [折行（Wrap）](http://yyq123.blogspot.com/2010/07/vim-wrap.html)[<sup>B</sup>](http://yyq123.blogspot.com/2010/07/vim-wrap.html)<sup>/</sup>[<sup>Z</sup>](http://zhuanlan.zhihu.com/p/26301974)
