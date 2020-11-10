@@ -5,26 +5,102 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记 ()</title>
+	<title>VIM学习笔记 作业(job)</title>
 </head>
 <body>
-	<h1>VIM学习笔记 ()</h1>
+	<h1>VIM学习笔记 作业(job)</h1>
 
 	<h2 class="article"><a id=""></a></h2>
 	<p></p>
 	<a href="#" title=""></a>
-	<p>自Vim 8.0起，只要包含channel和job特性，Vim即可以支持异步（asynchronous IO）,Start another process through the job,Process communication through channels.
-You can make the plugin or script have a better  experience by using Vim's asynchronous support,For example, asynchronous  compilation prevents Vim from blocking during compilation,Vim gets  faster speeds when asynchronous syntax highlighting comes.</p>
+	<p>自Vim 8.0起，只要包含channel和job特性，Vim即可以支持异步执行命令。Vim使用作业（job）来启动进程，并利用通道（channel）和其他进程通信。</p>
+	<p>利用异步支持，可以在后台进行复杂耗时的操作，而不影响前台的正常编辑</p>
+
+	<h2 class="article"><a id=job-start">启动作业</a></h2>
+	<p>使用</p>
+	<p style="text-indent:2em"><code class="inset">job_start(command, {options})</code></p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/job_start_version.png" title="job_start_version"><img src="https://yyq123.github.io/learn-vim/images/job_start_version.png" alt="job_start_version" width="550" height="515" /></a></p>
+	<p>使用以下命令，可以将输出重定向到指定缓冲区：</p>
+	<p style="text-indent:2em"><code class="inset">:let job = job_start('ls -alh', {'out_io': 'buffer', 'out_name': 'mybuffer'})</code></p>
+	<p>使用以下命令，则可以打开缓冲区：</p>
+	<p style="text-indent:2em"><code class="inset">:sbuf mybuffer</code></p>
 	<p></p>
+	<p style="text-indent:2em"><code class="inset">:call job_start(["/bin/sh", "-c", "ls -al &gt; /tmp/file.txt"])</code></p>
+	<p>启<a href="http://httpd.apache.org/" title="Apache HTTP Server">Apache HTTP Server</a></p>
+	<p style="text-indent:2em"><code class="inset">:let job = job_start('apachectl start')</code></p>
+	<p>使用以下命令，即可以载入首页的内容：</p>
+	<p style="text-indent:2em"><code class="inset">:silent r ! curl localhost</code></p>
 
+	<h2 class="article"><a id=job-status">作业状态</a></h2>
+	<p>取得对应的通道: </p>
+	<p style="text-indent:2em"><code class="inset">let channel = job_getchannel(job)</code></p>
+
+	<h2 class="article"><a id=job-status">作业状态</a></h2>
+	<p style="text-indent:2em"><code class="inset">:echo job_status(job)</code></p>
+返回字符串，返回 {job} 的状态:
+                        "run"   作业运行中
+                        "fail"  作业无法启动
+                        "dead"  作业启动后结束或被终止
+	<p style="text-indent:2em"><code class="inset">:echo job_info(job)</code></p>
+               返回关于 {job} 信息的字典:
+                   "status"      job_status()  返回值
+                   "channel"     job_getchannel()  返回值
+                   "cmd"        启动作业的命令行参数列表
+                   "process"    进程 ID
+                   "tty_in"     终端输入名，如果没有则为空
+                   "tty_out"    终端输出名，如果没有则为空
+                   "exitval"    "status" 为 "dead" 时才有效
+                   "exit_cb"    退出时调用的函数
+                   "stoponexit"  job-stoponexit 
+
+                   仅用于 Unix:
+                   "termsig"    终止程序的信号 (相关值见  job_stop() )
+                                仅当 "status" 为 "dead" 时才有意义
+
+                   仅用于 MS-Windows:
+                   "tty_type"   使用的虚拟控制台类型。
+                                可选值是 "winpty" 或 "conpty"。
+                                见 'termwintype'。
+
+	<h2 class="article"><a id=job-stop">停止作业</a></h2>
+	<p style="text-indent:2em"><code class="inset">:call job_stop(job)</code></p>
+function! s:on_find(chan, msg)
+  lgetexpr split(a:msg, '')
+endfunction
+
+call job_start('find . -print0', {
+      \ 'out_mode': 'raw',
+      \ 'callback': function('<SID>on_find')
+      \ })
+
+HTTP response.
+
+function! s:on_line(chan, msg)
+  if empty(a:msg)
+    let body = "Hello from Vim!"
+    call ch_sendraw(a:chan, join([
+          \ "HTTP/1.1 200 OK",
+          \ "Content-Length: " . len(body),
+          \ "Content-Type: text/plain",
+          \ "",
+          \ body
+          \ ], "\n"))
+  endif
+endfunction
+
+" Save reference to long-running job or it will be garbage collected
+let server = call job_start('nc -lp 3000', {
+      \ 'callback': function('<SID>on_line'),
+      \ 'in_mode': 'raw',
+      \ 'out_mode': 'nl'
+      \ })
 	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
-
+https://github.com/skywind3000/asyncrun.vim
 	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
 
 	<pre class="block">
 	</pre>
-	<p style="text-indent:2em"><code class="inset">:help job-start</code></p>
+	<p style="text-indent:2em"><code class="inset">:help job</code></p>
 
 	<ul>
 		<li><p class="item"><br /></p></li>
