@@ -63,14 +63,14 @@
 
 	<h2 class="article"><a id="example_loadview">实例：静默载入视图</a></h2>
 	<p>如果希望记忆光标位置和手动<a href="http://yyq123.github.io/learn-vim/learn-vi-63-Fold.html" title="Fold">折叠</a>（Fold），以便在重新打开文件时恢复到之前的编辑状态。那么可以在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>配置文件中，增加以下<a href="http://yyq123.github.io/learn-vim/learn-vi-49-01-autocmd.html" title="自动命令(autocmd)">自动命令</a>：</p>
-	<pre class="block" style="width:30em">set viewdir=$HOME/vimfiles/views/
+	<pre class="block" style="width:30em"><code>set viewdir=$HOME/vimfiles/views/
 autocmd BufWinLeave * mkview
-autocmd BufWinEnter * silent loadview</pre>
+autocmd BufWinEnter * silent loadview</code></pre>
 
 	<h2 class="article"><a id="fun_system">使用system()函数静默执行命令</a></h2>
 	<p>通过调用system()函数，也可静默执行命令：</p>
 	<p style="text-indent:2em"><code class="inset">:call system('espeak "hello world" &amp;')</code></p>
-
+	<p>函数<code>system()</code>和<code>!</code>命令都可以调用外部命令，但system()函数不会切到shell终端，而是仍停留在vim界面。所调用外部命令的输出将会被system()函数捕获，并被保存在VimL变量中以供后续使用。</p>
 	<p>使用以下命令，可以查看更多帮助信息：</p>
 	<p style="text-indent:2em"><code class="inset">:help :silent</code></p>
 	<p style="text-indent:2em"><code class="inset">:help system()</code></p>
