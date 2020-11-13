@@ -16,7 +16,7 @@
 	<p>在传统的单线程模式下，运行外部命令时，将中断用户当前的编辑操作，并等待命令完成以返回vim。</p>
 	<p>自8.0版本起，包含+channel和+job特性的Vim将可以支持异步操作。Vim使用作业（job）来启动进程，并利用通道（channel）和其他进程通信。</p>
 	<p>利用异步支持，可以在后台进行复杂耗时的操作（比如使用外部<a href="http://yyq123.github.io/learn-vim/learn-vim-Regex.html" title="">grep</a>工具查找文本），不必等待外部命令结束即可返回Vim，而不中断前台的正常编辑。在外部命令结束运行时，可以通过回调函数来处理执行结果。</p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/job_start_version.png" title="job_start_version"><img src="https://yyq123.github.io/learn-vim/images/job_start_version.png" alt="job_start_version" width="550" height="515" /></a></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/job_start_version.png" title="job_start_version"><img src="https://yyq123.github.io/learn-vim/images/job_start_version.png" alt="job_start_version" width="550" height="272" /></a></p>
 
 	<p>例如使用<code>:!ls</code>外部命令，将在屏幕底部列示目录内容，并等待用户按回车键以返回常规模式：</p>
 	<p style="text-indent:2em"><code class="inset">:!ls</code></p>
@@ -71,25 +71,40 @@ endfunc </code></pre>
 	<h2 class="article"><a id=job-status">作业状态</a></h2>
 	<p>使用job_status()函数，可以返回指定任务的状态：</p>
 	<p style="text-indent:2em"><code class="inset">:echo job_status(job)</code></p>
-                        "run"   作业运行中
-                        "fail"  作业无法启动
-                        "dead"  作业启动后结束或被终止
+	<p>函数返回关于状态的字符串：</p>
+	<ul>
+		<li>"run"   作业运行中</li>
+		<li>"fail"  作业无法启动</li>
+		<li>"dead"  作业启动后结束或被终止</li>
+	</ul>
 	<p>使用job_info()函数，则可返回指定任务的详细信息：</p>
 	<p style="text-indent:2em"><code class="inset">:echo job_info(job)</code></p>
-               返回关于 {job} 信息的字典:
-                   "status"      job_status()  返回值
+	<p><a href="https://yyq123.github.io/learn-vim/images/job_info.png" title="job_info"><img src="https://yyq123.github.io/learn-vim/images/job_info.png" alt="job_info" width="550" height="35" /></a></p>
+	<p>函数返回包含详细信息的字典：</p>
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
+		<thead>
+		<tr><th style="white-space: nowrap">选项</th><th>描述</th></tr>
+		</thead>
+		<tbody>
+		<tr><td>"status"      </td><td>job_status()  返回值</td></tr>
+		<tr><td>"cmd"        </td><td>启动作业的命令行参数列表</td></tr>
+		<tr><td>"stoponexit"</td><td>Vim 结束时给作业发信号（缺省是 "term"）</td></tr>
+		<tr><td></td><td></td></tr>
+		<tr><td></td><td></td></tr>
+		<tr><td></td><td></td></tr>
+		<tr><td></td><td></td></tr>
+		<tr><td></td><td></td></tr>
+		<tr><td></td><td></td></tr>
+		<tr><td>"termsig"</td><td>仅用于 Unix终止程序的信号 ()仅当 "status" 为 "dead" 时才有意义</td></tr>
+		<tr><td></td><td></td></tr>
+		</tbody>
+	</table>
                    "channel"     job_getchannel()  返回值
-                   "cmd"        启动作业的命令行参数列表
                    "process"    进程 ID
                    "tty_in"     终端输入名，如果没有则为空
                    "tty_out"    终端输出名，如果没有则为空
                    "exitval"    "status" 为 "dead" 时才有效
                    "exit_cb"    退出时调用的函数
-                   "stoponexit"  job-stoponexit 
-
-                   仅用于 Unix:
-                   "termsig"    终止程序的信号 (相关值见  job_stop() )
-                                仅当 "status" 为 "dead" 时才有意义
 
                    仅用于 MS-Windows:
                    "tty_type"   使用的虚拟控制台类型。
@@ -98,43 +113,30 @@ endfunc </code></pre>
 
 	<h2 class="article"><a id=job-stop">停止作业</a></h2>
 	<p style="text-indent:2em"><code class="inset">:call job_stop(job)</code></p>
-function! s:on_find(chan, msg)
+
+	<p>假设当前脚本文件中包含以下代码：</p>
+	<pre class="block"><code>function! s:on_find(chan, msg)
   lgetexpr split(a:msg, '')
 endfunction
 
 call job_start('find . -print0', {
       \ 'out_mode': 'raw',
-      \ 'callback': function('<SID>on_find')
-      \ })
+      \ 'callback': function('&lt;SID&gt;on_find')
+      \ })</code></pre>
+	<p>使用以下命令，执行当前脚本：</p>
+	<p style="text-indent:2em"><code class="inset">:so %</code></p>
+	<p>使用以下命令，将可以在位置列表（location list）中显示外部<a href="http://man.he.net/?topic=find&section=all" title="find">find</a>命令输出的文件列表：</p>
+	<p style="text-indent:2em"><code class="inset">:lopen</code>
+	<p></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/job_start_out_mode_raw.png" title="job_start_out_mode_raw"><img src="https://yyq123.github.io/learn-vim/images/job_start_out_mode_raw.png" alt="job_start_out_mode_raw" width="500" height="" /></a></p>
 
-HTTP response.
-
-function! s:on_line(chan, msg)
-  if empty(a:msg)
-    let body = "Hello from Vim!"
-    call ch_sendraw(a:chan, join([
-          \ "HTTP/1.1 200 OK",
-          \ "Content-Length: " . len(body),
-          \ "Content-Type: text/plain",
-          \ "",
-          \ body
-          \ ], "\n"))
-  endif
-endfunction
-
-" Save reference to long-running job or it will be garbage collected
-let server = call job_start('nc -lp 3000', {
-      \ 'callback': function('<SID>on_line'),
-      \ 'in_mode': 'raw',
-      \ 'out_mode': 'nl'
-      \ })
 	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
-https://github.com/skywind3000/asyncrun.vim
+
 	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
 
 
-	<pre class="block">
-	</pre>
+	<pre class="block"><code>
+	</code></pre>
 	<p style="text-indent:2em"><code class="inset">:help job</code></p>
 
 	<ul>
@@ -144,15 +146,6 @@ https://github.com/skywind3000/asyncrun.vim
 
 	<span style="font-weight:bold; color:#4169E1; margin-left:0.2em">&#65311;</span>
 
-	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
-		<caption style="margin:0.5em; font-weight:bold">选项列表</caption>
-		<thead>
-		<tr><th style="white-space: nowrap">选项</th><th>描述</th><th>帮助信息</th></tr>
-		</thead>
-		<tbody>
-		<tr><td><code class="inset">!</code></td><td>如果包含，表示。例如，。</td><td style="white-space: nowrap"><code class="inset">:help viminfo-!</code></td></tr>
-		</tbody>
-	</table>
 
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>

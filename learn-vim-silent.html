@@ -9,7 +9,7 @@
 </head>
 <body>
 	<h1>VIM学习笔记 静默执行命令(silent)</h1>
-	<p>通常在使用<code>!</code><a href="https://yyq123.github.io/learn-vim/learn-vi-71-Shell.html" title="Shell">运行外部Shell命令</a>时，将显示提示信息&ldquo;Press ENTER or type command to continue&rdquo;，需要用户点击回车键才可以返回常规模式：</p>
+	<p>通常在使用<code>!</code><a href="https://yyq123.github.io/learn-vim/learn-vi-71-Shell.html" title="Shell">运行外部Shell命令</a>时，将显示提示信息&ldquo;Press ENTER or type command to continue&rdquo;，需要用户点击回车键才可以返回常规模式。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/shell_cmd_msg.png" title="shell_cmd_msg"><img src="https://yyq123.github.io/learn-vim/images/shell_cmd_msg.png" alt="shell_cmd_msg" /></a></p>
 
 	<h2 class="article"><a id="cmd_silent">使用silent静默执行命令</a></h2>
@@ -22,7 +22,7 @@
 	<p style="text-indent:2em"><code class="inset">:Silent echo 'Hello World'</code></p>
 	<p>通过结合<code>:execute</code>命令，可以生成并执行较复杂的命令：</p>
 	<p style="text-indent:2em"><code class="inset">:silent exec "!command"</code></p>
-	<p>定义以下快捷键，在Linux下静默执行命令。比如使用<a href="http://espeak.sourceforge.net/" title="eSpeak text to speech">eSpeak</a>将文字文字转换为语音：</p>
+	<p>定义以下快捷键，在Linux下静默执行命令。比如使用<a href="http://espeak.sourceforge.net/" title="eSpeak text to speech">eSpeak</a>将文字转换为语音：</p>
 	<p style="text-indent:2em"><code class="inset">:nnoremap &lt;leader&gt;es :silent exec '!espeak "hello world" &amp;'&lt;CR&gt;</code></p>
 	<p>定义以下快捷键，在Windows下使用默认程序打开当前文件。比如使用默认浏览器，打开当前编辑的HTML文档：</p>
 	<p style="text-indent:2em"><code class="inset">:nmap &lt;Leader&gt;x :silent ! start "1" "%:p"&lt;CR&gt;</code></p>
@@ -56,7 +56,7 @@
 	<p style="text-indent:2em"><code class="inset">:!zip test.zip %:p</code></p>
 	<p>屏幕将显示以下信息，并等待用户按回车键以返回常规模式：</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/shell_cmd_zip_msg.png" title="shell_cmd_zip_msg"><img src="https://yyq123.github.io/learn-vim/images/shell_cmd_zip_msg.png" alt="shell_cmd_zip_msg" /></a></p>
-	<p>使用以下命令，则屏幕不会显示任何信息，并且立刻返回常规模式：</p>
+	<p>使用以下命令，则屏幕不会显示任何信息，并且自动返回常规模式：</p>
 	<p style="text-indent:2em"><code class="inset">:silent !zip test.zip %:p</code></p>
 	<p>使用以下命令，可以批量压缩所有打开的文件：</p>
 	<p style="text-indent:2em"><code class="inset">:silent bufdo !zip test.zip %:p</code></p>
@@ -70,7 +70,7 @@ autocmd BufWinEnter * silent loadview</code></pre>
 	<h2 class="article"><a id="fun_system">使用system()函数静默执行命令</a></h2>
 	<p>通过调用system()函数，也可静默执行命令：</p>
 	<p style="text-indent:2em"><code class="inset">:call system('espeak "hello world" &amp;')</code></p>
-	<p>函数<code>system()</code>和<code>!</code>命令都可以调用外部命令，但system()函数不会切到shell终端，而是仍停留在vim界面。所调用外部命令的输出将会被system()函数捕获，并被保存在VimL变量中以供后续使用。</p>
+	<p>函数<code>system()</code>和<code>!</code>命令都可以调用外部命令，但system()函数不会切到shell终端，而是仍停留在vim界面。所调用外部命令的输出将会被system()函数捕获，可以将其保存在VimL变量中以供后续使用。</p>
 	<p>使用以下命令，可以查看更多帮助信息：</p>
 	<p style="text-indent:2em"><code class="inset">:help :silent</code></p>
 	<p style="text-indent:2em"><code class="inset">:help system()</code></p>
