@@ -8,11 +8,12 @@
 	<title>VIM学习笔记 启动Vim(Starting)</title>
 </head>
 <body>
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">启动命令</p>
-	<p>我们通常使用 vim [arguments] [file ..] 的形式，使用指定的选项打开指定的文件。例如使用以下命令，以只读模式打开virmc配置文件：</p>
+	<h1>VIM学习笔记 启动Vim(Starting)</h1>
+
+	<p>我们通常使用 vim [arguments] [filename] .. 的形式，使用指定的选项打开指定的文件。例如使用以下命令，以只读模式打开virmc配置文件：</p>
 	<p><code class="inset">$ vim -R .vimrc</code></p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">命令参数</p>
+	<h2 class="article"><a id="vim-arguments">启动命令参数</a></h2>
 	<p>在操作系统中执行以下命令，可以查看完整的命令行参数列表：</p>
 	<p style="text-indent:2em"><code class="inset">$ vim --help</code></p>
 	<table summary="" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
@@ -53,7 +54,7 @@
 	<tr><td><code class="inset">--version</code></td><td>查看版本信息</td></tr>
 	</table>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">命令变体</p>
+	<h2 class="article"><a id="vim-starting-mode">启动命令变体</a></h2>
 	<p>Vim编辑器实际上是一个有着不同的名字或链接的文件，执行以下不同的命令，就可以使编辑器在不同的模式下启动：</p>
 	<table summary="" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 	<tr style="background: #e5e5e5;"><td>命令</td><td>功能</td><td>对应参数</td></tr>
@@ -73,7 +74,11 @@
 	<tr><td><code class="inset">gvimdiff</code></td><td>在Diff模式下启动图形模式</td><td><code class="inset">-gd</code></td></tr>
 	</table>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">操作实例</p>
+	<h2 class="article"><a id="vim-starting-example">启动命令实例</a></h2>
+	<p>打开文件时，自动执行查找命令，并定位到匹配处：</p>
+	<p><code class="inset"> vim -c "/main" test.c</code></p>
+	<p>在打开大型文件时，不使用vimrc文件和插件：</p>
+	<p><code class="inset"> vim -u NONE -U NONE -N hugefile.txt</code></p>
 	<p>例如，需要将多个文件中的字符串-person-替换成Jones：如果是手工方式，那么就需要打开多个文件进行重复操作；而利用命令行参数，则可以进行自动化地批处理。</p>
 	<p>首先，将以下命令保存为change.vim文件：</p>
 	<p><code class="inset">:%s/-person-/Jones/g<br/>
@@ -81,6 +86,8 @@
 	:quit</code></p>
 	<p>然后，在操作系统中执行以下命令，以ex模式运行Vim，进行替换操作：</p>
 	<p><code class="inset">$ vim -es file.txt&lt;change.vim</code></p>
+	<p><span style="font-weight:bold; color:#4169E1; margin-left:0.2em">&#65311;</span>使用以下命令，可以查看关于Vim启动的帮助信息：</p>
+	<p><code class="inset">:help vim-arguments</code></p>
 
 	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="在Linux下安装Vim" href="http://yyq123.github.io/learn-vim/learn-vi-201-Install-Vim-Linux.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="基本编辑" href="http://yyq123.github.io/learn-vim/learn-vi-01-Basic.html">下一篇</a>&gt;</span></p>
 </body>

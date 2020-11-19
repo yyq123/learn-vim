@@ -10,7 +10,7 @@
 <body>
 	<h1>VIM学习笔记 在目录中查找文件(find file in path)</h1>
 
-	<p>假设正在编辑README.md</p>
+	<p>假设正在编辑文件 E:\Anthony_GitHub\learn-vim\README.md</p>
 	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
 		<caption style="margin:0.5em; font-weight:bold">选项列表</caption>
 		<tr><th style="white-space: nowrap">选项</th><th>描述</th><th>帮助信息</th></tr>
@@ -24,16 +24,27 @@
 		<tr><td><code class="inset">:echom expand('%:p:h')</code></td><td>E:\Anthony_GitHub\learn-vim</td><td></td></tr>
 		<tr><td><code class="inset"></code></td><td></td><td></td></tr>
 		<tr><td><code class="inset">:echom expand('%:p')</code></td><td>E:\Anthony_GitHub\learn-vim\README.md</td><td>完整全路径名</td></tr>
-		<tr><td><code class="inset">:echom expand('%:p:h:t')</code></td><td>learn-vim</td><td>First get the full path with :p (/abc/def/my.txt), then get the head of that with :h (/abc/def), then get the tail of that with :t (def)</td></tr>
+		<tr><td><code class="inset">:echom expand('%:p:h:t')</code></td><td>learn-vim</td><td>当前路径名</td></tr>
 		<tr><td><code class="inset">:echom expand('~/_vimrc')</code></td><td>C:\Users\yiqyuan\_vimrc</td><td></td></tr>
 	</table>
-
+	<p>在插入模式下，</p>
 	<p>在下一行插入当前文件名（不包含扩展名）：</p>
 	<p style="text-indent:2em"><code class="inset">:r!echo %:t:r</code></p>
+	<p>将当前文件所处目录，设置为当前工作目录（:pwd）</p>
+	<p style="text-indent:2em"><code class="inset">:cd %:p:h</code></p>
+	<p>在vimrc文件中增加以下自动命令，将确保在打开文件时，自动切换当前工作目录：</p>
+	<p style="text-indent:2em"><code class="inset">:autocmd BufEnter * lcd %:p:h</code></p>
+
+	<p>将当前文件，保存到指定目录：</p>
+	<p style="text-indent:2em"><code class="inset">:w c:/%</code></p>
+	<p>将当前文件，另存为指定的扩展名：</p>
+	<p style="text-indent:2em"><code class="inset">:save %:r.bak</code></p>
+	<p>通过替换操作另存文件，并更改扩展名:</p>
+	<p style="text-indent:2em"><code class="inset">:sav %:s/test/sample/:r.bak2</code></p>
+
 	<p>使用以下命令，可以查看相关的帮助信息：</p>
 <pre><code>:help filename-modifiers
 :help expand()</code></pre>
-echom fnamemodify(expand('%'), ':p') "Absolute path
 	<p style="text-indent:2em"><code class="inset"></code></p>
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>

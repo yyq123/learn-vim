@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 定时器(timer)</title>
+</head>
+<body>
+	<h1>VIM学习笔记 定时器(timer)</h1>
+
+	<p>自8.0版本起，包含+timers特性的Vim将提供计时器功能。</p>
+	<h2 class="article"><a id=""></a></h2>
+	<p></p>
+	<a href="#" title=""></a>
+function! SlowWork()
+    call timer_start(5*1000, 'DoneWork')
+endfunction
+
+function! DoneWork(timer)
+    echo "done!!"
+endfunction
+
+call SlowWork()
+
+现在再调用 SlowWork() 函数时就不会“暂停” 5 秒了，该调用立即返回，用户可如常 操作 vim 。大约过了 5 秒后，函数 DoneWork() 被调用，显示 "done!!" 。
+
+	<h2 class="article"><a id="timer-start">启用定时器</a></h2>
+	<p>使用timer_start()函数，可以启用定时器，其格式为：</p>
+	<p style="text-indent:2em"><code class="inset">timer_start({time}, {callback} [, {options}])</code></p>
+	<p><var>time</var>，指定时间间隔，单位为毫秒（milliseconds）；<var>callback</var>，指定需要触发的回调函数；<var>options</var>，是包含键值的字典选项，用于配置和控制定时器的行为。该函数有返回值，表示定时器 ID。回调函数一般是自 定义函数，必须接收一个表示定时器 ID 的参数。</p>
+	<p></p>
+
+
+	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
+
+
+	<h2 class="article"><a id="timer-options">定时器选项</a></h2>
+	<p>使用"repeat"选项，可以控制执行回调函数的次数。缺省为执行"1"次。如果希望持续无限执行，那么可以将此值设置为"-1"。</p>
+	<p>使用以下命令，设置在<a href="http://yyq123.blogspot.com/2009/10/vim-statusline.html" title="">状态行</a>中显示时间：</p>
+	<pre class="block"><code>set laststatus=2
+if has("win32")
+    set statusline=%{strftime(\"%I:%M:%S\ \%p,\ %a\ %b\ %d,\ %Y\")}
+else
+    set statusline=%{strftime(\"%l:%M:%S\ \%p,\ %a\ %b\ %d,\ %Y\")}
+endif</code></pre>
+	<p>自定义以下函数，用于更新状态行：</p>
+<pre class="block"><code>function! UpdateStatusBar(timer)
+    execute 'let &amp;ro = &amp;ro'
+endfunction</code></pre>
+	<p>使用以下命令启动定时器，回调函数将持续更新状态行的时间显示：</p>
+	<p style="text-indent:2em"><code class="inset">let timer = timer_start(3000, 'UpdateStatusBar',{'repeat':-1})</code></p>
+
+	<h2 class="article"><a id="timer-info">定时器信息</a></h2>
+	<p>使用不带参数的timer_info()函数，可以获取所有定时器的信息：</p>
+	<p style="text-indent:2em"><code class="inset">:echo timer_info()</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/timer_info_all.png" title="timer_info_all"><img src="https://yyq123.github.io/learn-vim/images/timer_info_all.png" alt="timer_info_all" width="550" height="51" /></a></p>
+	<p>使用带有ID参数的timer_info()函数，可以获取指定定时器的信息：</p>
+	<p style="text-indent:2em"><code class="inset">:echo timer_info(timer)</code></p>
+	<p>函数返回包含详细信息的字典：</p>
+	<table summary="job_info" border="1" frame="border" rules="all" cellspacing="0" cellpadding="6">
+		<thead>
+		<tr><th style="white-space: nowrap">项目</th><th>描述</th></tr>
+		</thead>
+		<tbody>
+		<tr><td>id</td><td>该定时器的 ID</td></tr>
+		<tr><td>repeat</td><td>定时器还需要重复执行的次数，无限执行则返回 -1</td></tr>
+		<tr><td>remaining</td><td>距定时器启动还剩余的毫秒数</td></tr>
+		<tr><td>time</td><td>计时器时间间隔（毫秒数）</td></tr>
+		<tr><td>paused</td><td>暂停状态时返回 1，否则返回 0</td></tr>
+		<tr><td>callback</td><td>回调函数</td></tr>
+		</tbody>
+	</table>
+
+	<h2 class="article"><a id="timer-pause">暂停定时器</a></h2>
+	<p>使用timer_pause()函数，并指定第二个参数为非0数值或非空字符串，可以暂停定时器：</p>
+	<p style="text-indent:2em"><code class="inset">:call timer_pause(timer,1)</code></p>
+	<p>使用timer_pause()函数，并指定第二个参数为数值0或空字符串，可以对定时器取消暂停：</p>
+	<p style="text-indent:2em"><code class="inset">:call timer_pause(timer,0)</code></p>
+
+	<h2 class="article"><a id=timer-stop">取消定时器</a></h2>
+	<p>假设启动以下定时器，将在指定延时之后强制退出Vim：</p>
+	<p style="text-indent:2em"><code class="inset">:let timer_id = timer_start(10000, {id -&gt; execute('quit!')})</code></p>
+	<p>使用timer_stop()函数，可以取消指定定时器：</p>
+	<p style="text-indent:2em"><code class="inset">:call timer_stop(timer_id)</code></p>
+	<p>使用timer_stopall()函数，可以取消所有定时器：</p>
+	<p style="text-indent:2em"><code class="inset">:call timer_stopall()</code></p>
+
+
+	<h2 class="article"><a id=timer-example">定时器实例</a></h2>
+	<p>假设当前脚本文件中包含以下代码：</p>
+	<pre class="block"><code>let s:timeouts = [5000, 10000, 30000, 1000, 1000, 3200, 500, 700]
+
+function! s:noop(timer_id)
+    let s:timeouts = insert(s:timeouts, remove(s:timeouts, len(s:timeouts) - 1))
+    normal dd
+   call timer_start(s:timeouts[0], function('&lt;SID&gt;noop'))
+endfunction
+
+call s:noop(0)
+</code></pre>
+	<p>使用以下命令执行当前脚本，将从当前行开始，按照设定的时间间隔逐行删除文本：</p>
+	<p style="text-indent:2em"><code class="inset">:so %</code></p>
+
+<ul>
+		<li><p class="item"><br /></p></li>
+		<li><p class="item"><a href="#" title=""></a><br /></p></li>
+	</ul>
+
+	<p><span style="font-weight:bold; color:#4169E1; margin-left:0.2em">&#65311;</span>使用以下命令，可以查看关于定时器的帮助信息：</p>
+	<p style="text-indent:2em"><code class="inset">:help timer</code></p>
+
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
+		<caption style="margin:0.5em; font-weight:bold">选项列表</caption>
+		<thead>
+		<tr><th style="white-space: nowrap">选项</th><th>描述</th><th>帮助信息</th></tr>
+		</thead>
+		<tbody>
+		<tr><td><code class="inset">!</code></td><td>如果包含，表示。例如，。</td><td style="white-space: nowrap"><code class="inset">:help viminfo-!</code></td></tr>
+		</tbody>
+	</table>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tbody>
+		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
+		<tr><td><code class="inset">:</code></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		</tbody>
+	</table>
+&ldquo;&rdquo;
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
+
+</body>
+</html>

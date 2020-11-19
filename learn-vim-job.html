@@ -10,32 +10,29 @@
 <body>
 	<h1>VIM学习笔记 作业(job)</h1>
 
-	<h2 class="article"><a id=""></a></h2>
-	<p></p>
-	<a href="#" title=""></a>
-	<p>在传统的单线程模式下，运行外部命令时，将中断用户当前的编辑操作，并等待命令完成以返回vim。</p>
+	<p>在传统的单线程模式下，运行外部命令时，将中断用户当前的编辑操作，并等待命令完成才可以返回vim。</p>
 	<p>自8.0版本起，包含+channel和+job特性的Vim将可以支持异步操作。Vim使用作业（job）来启动进程，并利用通道（channel）和其他进程通信。</p>
-	<p>利用异步支持，可以在后台进行复杂耗时的操作（比如使用外部<a href="http://yyq123.github.io/learn-vim/learn-vim-Regex.html" title="">grep</a>工具查找文本），不必等待外部命令结束即可返回Vim，而不中断前台的正常编辑。在外部命令结束运行时，可以通过回调函数来处理执行结果。</p>
+	<p>利用异步支持，可以在后台进行复杂耗时的操作（比如使用外部<a href="http://yyq123.github.io/learn-vim/learn-vim-Regex.html" title="">grep</a>工具查找文本），不必等待外部命令结束即可返回Vim，而不中断前台的正常编辑。在外部命令结束运行时，可以通过回调函数来处理输出结果。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/job_start_version.png" title="job_start_version"><img src="https://yyq123.github.io/learn-vim/images/job_start_version.png" alt="job_start_version" width="550" height="272" /></a></p>
 
-	<p>例如使用<code>:!ls</code>外部命令，将在屏幕底部列示目录内容，并等待用户按回车键以返回常规模式：</p>
-	<p style="text-indent:2em"><code class="inset">:!ls</code></p>
+	<p>例如使用<code>:!ls</code>外部命令，将在屏幕底部列示目录内容，并等待用户按回车键以返回常规模式，此时用户无法进行其它操作：</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/shell_cmd_ls.png" title="shell_cmd_ls"><img src="https://yyq123.github.io/learn-vim/images/shell_cmd_ls.png" alt="shell_cmd_ls" /></a></p>
 
 	<h2 class="article"><a id="job-start">启动作业</a></h2>
 	<p>使用job_start()函数，可以异步执行命令，其格式为：</p>
 	<p style="text-indent:2em"><code class="inset">job_start({command} [, {options}])</code></p>
 	<p>其中：<var>command</var>，用于指定需要运行的外部系统命令；<var>options</var>，是包含多个键值的字典选项，用于配置和控制作业的行为。</p>
-	<p>使用以下命令，则可以启动作业以执行外部命令，并立刻返回常规模式，不影响用户的后续操作：</p>
+	<p>使用以下命令，可以启动作业以执行外部命令，并立刻返回常规模式，不影响用户的后续操作：</p>
 	<p style="text-indent:2em"><code class="inset">:call job_start('ls')</code></p>
 
 	<h2 class="article"><a id="job-options">作业选项</a></h2>
 	<p>作业采用管道（pipe）将外部命令与vim联接起来，并与标准输入（stdin）、标准输出（stdout）和标准错误（stderr）输出进行交互。</p>
+	<p>在使用job_start()函数启动作业时，可以注册一个或多个回调函数来处理特定的信息。如果希望静默执行命令，而不关心输出信息，那么也可以不注册任何回调函数。</p>
 	<p>使用"callback"选项，可以同时捕获标准输出与标准错误输出；也可以分别使用"out_cb"或"err_cb"选项，来单独捕获标准输出或标准错误输出。</p>
 	<p>首先定义用于捕获输出的回调函数：</p>
 	<pre class="block"><code>func! MyHandler (channel, msg)
     echomsg a:msg
-endfunc </code></pre>
+endfunc</code></pre>
 	<p>通过"callback"选项，指定回调函数来处理stdout和stderr的内容：</p>
 	<p style="text-indent:2em"><code>let job = job_start ('ls', {"callback": "MyHandler"})</code></p>
 	<p>通过"out_cb"选项，指定回调函数来处理stdout的内容：</p>
@@ -44,79 +41,69 @@ endfunc </code></pre>
 	<p style="text-indent:2em"><code>let job = job_start ('ls', {"err_cb": "ErrHandler"})</code></p>
 	<p>在以上回调函数中使用了<code>:echomsg</code>命令，因此随后可以使用<code>:message</code>命令来查看<a href="http://yyq123.github.io/learn-vim/learn-vim-message.html" title="信息(message)">信息历史</a>，以确认命令执行结果：</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/job_start_ls_messages.png" title="job_start_ls_messages"><img src="https://yyq123.github.io/learn-vim/images/job_start_ls_messages.png" alt="job_start_ls_messages" /></a></p>
-	<p>在使用job_start()函数启动作业时，可以注册一个或多个回调函数来处理特定的信息。如果希望静默执行命令，而不关心输出信息，那么也可以不注册任何回调函数。</p>
 
 	<p>使用"in_io"、"out_io"或"err_io"选项，可以将作业管道重定向到文件或缓冲区。</p>
 	<p>使用以下命令，可以将标准输出重定向至指定缓冲区：</p>
 	<p style="text-indent:2em"><code class="inset">:let job = job_start('ls', {'out_io': 'buffer', 'out_name': 'mybuffer'})</code></p>
-	<p>使用以下命令，则可以打开缓冲区查看执行结果：</p>
+	<p>使用以下命令，则可以打开缓冲区查看输出信息：</p>
 	<p style="text-indent:2em"><code class="inset">:sbuf mybuffer</code></p>
 	<p>请注意，首行包含了&ldquo;Reading from channel output...&rdquo;的说明文字：</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/job_start_ls_out_io.png" title="job_start_ls_out_io"><img src="https://yyq123.github.io/learn-vim/images/job_start_ls_out_io.png" alt="job_start_ls_out_io" /></a></p>
 	<p>使用以下任一命令，都可以将标准输出重定向至指定文件：</p>
 	<p style="text-indent:2em"><code class="inset">:let job = job_start('ls -al', {'out_io': 'file', 'out_name': '/tmp/file.txt'})</code></p>
 	<p style="text-indent:2em"><code class="inset">:call job_start(["/bin/sh", "-c", "ls -al &gt; /tmp/file.txt"])</code></p>
-	<p> 使用以下命令，可以查看作业选项的帮助信息：</p>
+	<p><span style="font-weight:bold; color:#4169E1; margin-left:0.2em">&#65311;</span>使用以下命令，可以查看作业选项的帮助信息：</p>
 	<p style="text-indent:2em"><code class="inset">:help job-options</code></p>
 
-	<h2 class="article"><a id=job-example">实例：</a></h2>
-	<p>使用以下命令，启动<a href="http://httpd.apache.org/" title="Apache HTTP Server">Apache HTTP Server</a>：</p>
-	<p style="text-indent:2em"><code class="inset">:let job = job_start('apachectl start')</code></p>
-	<p>使用以下命令载入首页内容，以确认服务启动成功：</p>
-	<p style="text-indent:2em"><code class="inset">:silent r ! curl localhost</code></p>
-
-	<p></p>
-	<p style="text-indent:2em"><code class="inset"></code></p>
-
 	<h2 class="article"><a id=job-status">作业状态</a></h2>
-	<p>使用job_status()函数，可以返回指定任务的状态：</p>
+	<p>使用job_status()函数，可以返回指定作业的状态：</p>
 	<p style="text-indent:2em"><code class="inset">:echo job_status(job)</code></p>
 	<p>函数返回关于状态的字符串：</p>
-	<ul>
-		<li>"run"   作业运行中</li>
-		<li>"fail"  作业无法启动</li>
-		<li>"dead"  作业启动后结束或被终止</li>
-	</ul>
-	<p>使用job_info()函数，则可返回指定任务的详细信息：</p>
+	<table summary="job_status" border="1" frame="border" rules="all" cellspacing="0" cellpadding="6">
+		<thead>
+		<tr><th style="white-space: nowrap">状态</th><th>描述</th></tr>
+		</thead>
+		<tbody>
+		<tr><td>run</td><td>作业运行中</td></tr>
+		<tr><td>fail</td><td>作业无法启动</td></tr>
+		<tr><td>dead</td><td>作业启动后结束或被终止</td></tr>
+		</tbody>
+	</table>
+	<p>使用job_info()函数，则可返回指定作业的详细信息：</p>
 	<p style="text-indent:2em"><code class="inset">:echo job_info(job)</code></p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/job_info.png" title="job_info"><img src="https://yyq123.github.io/learn-vim/images/job_info.png" alt="job_info" width="550" height="35" /></a></p>
 	<p>函数返回包含详细信息的字典：</p>
-	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
+	<table summary="job_info" border="1" frame="border" rules="all" cellspacing="0" cellpadding="6">
 		<thead>
-		<tr><th style="white-space: nowrap">选项</th><th>描述</th></tr>
+		<tr><th style="white-space: nowrap">项目</th><th>描述</th></tr>
 		</thead>
 		<tbody>
-		<tr><td>"status"      </td><td>job_status()  返回值</td></tr>
-		<tr><td>"cmd"        </td><td>启动作业的命令行参数列表</td></tr>
-		<tr><td>"stoponexit"</td><td>Vim 结束时给作业发信号（缺省是 "term"）</td></tr>
-		<tr><td></td><td></td></tr>
-		<tr><td></td><td></td></tr>
-		<tr><td></td><td></td></tr>
-		<tr><td></td><td></td></tr>
-		<tr><td></td><td></td></tr>
-		<tr><td></td><td></td></tr>
-		<tr><td>"termsig"</td><td>仅用于 Unix终止程序的信号 ()仅当 "status" 为 "dead" 时才有意义</td></tr>
-		<tr><td></td><td></td></tr>
+		<tr><td>status</td><td>job_status()返回值</td></tr>
+		<tr><td>cmd</td><td>启动作业的命令行参数列表</td></tr>
+		<tr><td>stoponexit</td><td>Vim结束时给作业发信号（缺省是 "term"）</td></tr>
+		<tr><td>channel</td><td>job_getchannel()返回值</td></tr>
+		<tr><td>process</td><td>进程ID</td></tr>
+		<tr><td>tty_in</td><td>终端输入名，如果没有则为空</td></tr>
+		<tr><td>tty_out</td><td>终端输出名，如果没有则为空</td></tr>
+		<tr><td>exitval</td><td>"status" 为 "dead" 时才有效</td></tr>
+		<tr><td>exit_cb</td><td>退出时调用的函数</td></tr>
+		<tr><td>termsig</td><td>终止程序的信号（仅用于Unix）<br />仅当"status"为"dead"时才有意义</td></tr>
+		<tr><td>tty_type</td><td>使用的虚拟控制台类型（仅用于MS-Windows）<br />可选值是"winpty"或"conpty"</td></tr>
 		</tbody>
 	</table>
-                   "channel"     job_getchannel()  返回值
-                   "process"    进程 ID
-                   "tty_in"     终端输入名，如果没有则为空
-                   "tty_out"    终端输出名，如果没有则为空
-                   "exitval"    "status" 为 "dead" 时才有效
-                   "exit_cb"    退出时调用的函数
-
-                   仅用于 MS-Windows:
-                   "tty_type"   使用的虚拟控制台类型。
-                                可选值是 "winpty" 或 "conpty"。
-                                见 'termwintype'。
 
 	<h2 class="article"><a id=job-stop">停止作业</a></h2>
+	<p>使用job_stop()函数，可以停止指定的作业：</p>
 	<p style="text-indent:2em"><code class="inset">:call job_stop(job)</code></p>
 
+	<h2 class="article"><a id=job-example">作业实例</a></h2>
+	<p>使用以下命令，可以启动<a href="http://httpd.apache.org/" title="Apache HTTP Server">Apache HTTP Server</a>：</p>
+	<p style="text-indent:2em"><code class="inset">:let job = job_start('apachectl start')</code></p>
+	<p>使用以下命令载入首页内容，以确认服务启动成功：</p>
+	<p style="text-indent:2em"><code class="inset">:silent r ! curl localhost</code></p>
 	<p>假设当前脚本文件中包含以下代码：</p>
 	<pre class="block"><code>function! s:on_find(chan, msg)
-  lgetexpr split(a:msg, '')
+      lgetexpr split(a:msg, '')
 endfunction
 
 call job_start('find . -print0', {
@@ -125,41 +112,24 @@ call job_start('find . -print0', {
       \ })</code></pre>
 	<p>使用以下命令，执行当前脚本：</p>
 	<p style="text-indent:2em"><code class="inset">:so %</code></p>
-	<p>使用以下命令，将可以在位置列表（location list）中显示外部<a href="http://man.he.net/?topic=find&section=all" title="find">find</a>命令输出的文件列表：</p>
+	<p>使用以下命令，将在位置列表（location list）中显示外部<a href="http://man.he.net/?topic=find&section=all" title="find">find</a>命令输出的文件列表：</p>
 	<p style="text-indent:2em"><code class="inset">:lopen</code>
-	<p></p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/job_start_out_mode_raw.png" title="job_start_out_mode_raw"><img src="https://yyq123.github.io/learn-vim/images/job_start_out_mode_raw.png" alt="job_start_out_mode_raw" width="500" height="" /></a></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/job_start_out_mode_raw.png" title="job_start_out_mode_raw"><img src="https://yyq123.github.io/learn-vim/images/job_start_out_mode_raw.png" alt="job_start_out_mode_raw" /></a></p>
 
-	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
-
-	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
-
-
-	<pre class="block"><code>
-	</code></pre>
+	<p><span style="font-weight:bold; color:#4169E1; margin-left:0.2em">&#65311;</span>使用以下命令，可以查看关于作业的帮助信息：</p>
 	<p style="text-indent:2em"><code class="inset">:help job</code></p>
 
-	<ul>
-		<li><p class="item"><br /></p></li>
-		<li><p class="item"><a href="#" title=""></a><br /></p></li>
-	</ul>
-
-	<span style="font-weight:bold; color:#4169E1; margin-left:0.2em">&#65311;</span>
-
-
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
-		<caption>命令小结</caption>
+		<caption>函数小结</caption>
 		<tbody>
-		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
-		<tr><td><code class="inset">:</code></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">job_start()</code></td><td>启动作业</td></tr>
+		<tr><td><code class="inset">job_status()</code></td><td>显示作业状态</td></tr>
+		<tr><td><code class="inset">job_info()</code></td><td>显示作业的详细信息</td></tr>
+		<tr><td><code class="inset">job_stop()</code></td><td>停止作业</td></tr>
 		</tbody>
 	</table>
 
-
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="静默执行命令(silent)" href="http://yyq123.github.io/learn-vim/learn-vim-silent.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="定时器(timer)" href="http://yyq123.github.io/learn-vim/learn-vim-job.html">下一篇</a>&gt;</span></p>
 
 </body>
 </html>
