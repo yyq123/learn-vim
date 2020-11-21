@@ -49,7 +49,7 @@ endfunc</code></pre>
 	<p style="text-indent:2em"><code class="inset">:sbuf mybuffer</code></p>
 	<p>请注意，首行包含了&ldquo;Reading from channel output...&rdquo;的说明文字：</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/job_start_ls_out_io.png" title="job_start_ls_out_io"><img src="https://yyq123.github.io/learn-vim/images/job_start_ls_out_io.png" alt="job_start_ls_out_io" /></a></p>
-	<p>使用以下任一命令，都可以将标准输出重定向至指定文件：</p>
+	<p>使用以下任一命令，均可以将标准输出重定向至指定文件：</p>
 	<p style="text-indent:2em"><code class="inset">:let job = job_start('ls -al', {'out_io': 'file', 'out_name': '/tmp/file.txt'})</code></p>
 	<p style="text-indent:2em"><code class="inset">:call job_start(["/bin/sh", "-c", "ls -al &gt; /tmp/file.txt"])</code></p>
 	<p><span style="font-weight:bold; color:#4169E1; margin-left:0.2em">&#65311;</span>使用以下命令，可以查看作业选项的帮助信息：</p>
@@ -58,7 +58,6 @@ endfunc</code></pre>
 	<h2 class="article"><a id=job-status">作业状态</a></h2>
 	<p>使用job_status()函数，可以返回指定作业的状态：</p>
 	<p style="text-indent:2em"><code class="inset">:echo job_status(job)</code></p>
-	<p>函数返回关于状态的字符串：</p>
 	<table summary="job_status" border="1" frame="border" rules="all" cellspacing="0" cellpadding="6">
 		<thead>
 		<tr><th style="white-space: nowrap">状态</th><th>描述</th></tr>
@@ -72,10 +71,10 @@ endfunc</code></pre>
 	<p>使用job_info()函数，则可返回指定作业的详细信息：</p>
 	<p style="text-indent:2em"><code class="inset">:echo job_info(job)</code></p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/job_info.png" title="job_info"><img src="https://yyq123.github.io/learn-vim/images/job_info.png" alt="job_info" width="550" height="35" /></a></p>
-	<p>函数返回包含详细信息的字典：</p>
+	<p>函数将返回包含详细信息的字典：</p>
 	<table summary="job_info" border="1" frame="border" rules="all" cellspacing="0" cellpadding="6">
 		<thead>
-		<tr><th style="white-space: nowrap">项目</th><th>描述</th></tr>
+		<tr><th style="white-space: nowrap">键</th><th>描述</th></tr>
 		</thead>
 		<tbody>
 		<tr><td>status</td><td>job_status()返回值</td></tr>
@@ -97,11 +96,11 @@ endfunc</code></pre>
 	<p style="text-indent:2em"><code class="inset">:call job_stop(job)</code></p>
 
 	<h2 class="article"><a id=job-example">作业实例</a></h2>
-	<p>使用以下命令，可以启动<a href="http://httpd.apache.org/" title="Apache HTTP Server">Apache HTTP Server</a>：</p>
+	<p>实例1：启动<a href="http://httpd.apache.org/" title="Apache HTTP Server">Apache HTTP Server</a>服务</p>
 	<p style="text-indent:2em"><code class="inset">:let job = job_start('apachectl start')</code></p>
 	<p>使用以下命令载入首页内容，以确认服务启动成功：</p>
 	<p style="text-indent:2em"><code class="inset">:silent r ! curl localhost</code></p>
-	<p>假设当前脚本文件中包含以下代码：</p>
+	<p>实例2：在位置列表中显示命令输出</p>
 	<pre class="block"><code>function! s:on_find(chan, msg)
       lgetexpr split(a:msg, '')
 endfunction
@@ -110,7 +109,7 @@ call job_start('find . -print0', {
       \ 'out_mode': 'raw',
       \ 'callback': function('&lt;SID&gt;on_find')
       \ })</code></pre>
-	<p>使用以下命令，执行当前脚本：</p>
+	<p>使用以下命令，执行包含以上命令的脚本：</p>
 	<p style="text-indent:2em"><code class="inset">:so %</code></p>
 	<p>使用以下命令，将在位置列表（location list）中显示外部<a href="http://man.he.net/?topic=find&section=all" title="find">find</a>命令输出的文件列表：</p>
 	<p style="text-indent:2em"><code class="inset">:lopen</code>

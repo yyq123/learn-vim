@@ -5,15 +5,15 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记 在目录中查找文件(find file in path)</title>
+	<title>VIM学习笔记 文件名修饰符(filename-modifiers)</title>
 </head>
 <body>
-	<h1>VIM学习笔记 在目录中查找文件(find file in path)</h1>
+	<h1>VIM学习笔记 文件名修饰符(filename-modifiers)</h1>
 
-	<p>假设正在编辑文件 E:\Anthony_GitHub\learn-vim\README.md</p>
+	<p>假设正在编辑以下文件， 以下表格列示了各个文件名修饰符的含义：</p>
+	<p><code class="inset">E:\Anthony_GitHub\learn-vim\README.md</code></p>
 	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
-		<caption style="margin:0.5em; font-weight:bold">选项列表</caption>
-		<tr><th style="white-space: nowrap">选项</th><th>描述</th><th>帮助信息</th></tr>
+		<tr><th style="white-space: nowrap">修饰符</th><th>返回值</th><th>描述</th></tr>
 		<tr><td><code class="inset">:echom expand('%:t:r')</code></td><td>README</td><td>文件名（不包括扩展名）</td></tr>
 		<tr><td><code class="inset">:echom @%</code></td><td>README.md</td><td></td></tr>
 		<tr><td><code class="inset">:echom expand('%')</code></td><td>README.md</td><td>relative file path</td></tr>
@@ -27,6 +27,8 @@
 		<tr><td><code class="inset">:echom expand('%:p:h:t')</code></td><td>learn-vim</td><td>当前路径名</td></tr>
 		<tr><td><code class="inset">:echom expand('~/_vimrc')</code></td><td>C:\Users\yiqyuan\_vimrc</td><td></td></tr>
 	</table>
+	<p>其中：expand()函数，用于扩展表达式中的通配符和特殊关键字。请使用<code>:help expand()</code>查看帮助信息；:echom命令，用于显示表达式的结果。请使用<code>:help :echom</code>查看帮助信息；</p>
+
 	<p>在插入模式下，</p>
 	<p>在下一行插入当前文件名（不包含扩展名）：</p>
 	<p style="text-indent:2em"><code class="inset">:r!echo %:t:r</code></p>
@@ -37,14 +39,27 @@
 
 	<p>将当前文件，保存到指定目录：</p>
 	<p style="text-indent:2em"><code class="inset">:w c:/%</code></p>
+
+	<p>使用<code>:edit newdir/test.txt</code>命令编辑文件时，如果引用了尚不存在的目录，那么在<code>:write</code>命令保存文件时，那么将显示以下报错信息：</p>
+	<p><code class="err">"newdir/test.txt" E212: Can't open file for writing</code></p>
+	<p>也可以定义自动命令，在保存文件时<a href="learn-vi-49-02-autocmd-example#autocmd-ex-mkdir" title="">自动创建新目录</a>。</h2>
+	<p>此时在Vim中，可以调用外部命令来直接创建所引用的新目录：</p>
+	<p style="text-indent:2em"><code class="inset">:!mkdir -p %:h</code></p>
+	<p>再次使用<code>:write</code>命令，即可成功保存文件。</p>
+
+<pre><code>
+</code></pre>
+	<p></p>
+	<p>你可以输入&ldquo;y&rdquo;，以自动创建目录并保存文件。</p>
+	<p>如果使用<code class="inset">:w!</code>命令保存文件时，引用了不存在的目录，那么将不会显示询问信息，而直接创建目录并保存文件。</p>
+
 	<p>将当前文件，另存为指定的扩展名：</p>
 	<p style="text-indent:2em"><code class="inset">:save %:r.bak</code></p>
 	<p>通过替换操作另存文件，并更改扩展名:</p>
 	<p style="text-indent:2em"><code class="inset">:sav %:s/test/sample/:r.bak2</code></p>
 
 	<p>使用以下命令，可以查看相关的帮助信息：</p>
-<pre><code>:help filename-modifiers
-:help expand()</code></pre>
+	<p style="text-indent:2em"><code class="inset">:help filename-modifiers</code></p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
