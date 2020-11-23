@@ -11,63 +11,44 @@
 	<h1>VIM学习笔记 ()</h1>
 
 	<h2 class="article"><a id=""></a></h2>
-	<p>可以将字典（Dictionary)，理解为存储了关于键-值的成对的二元数组。如果你知道了键，就能快速地查找它对应的值。</p>
+	<p></p>
 	<a href="#" title=""></a>
 
-	<h2 class="article"><a id="">创建字典</a></h2>
-	<p>使用以花括号包含键-值列表，来创建字典。</p>
-	<pre class="block"><code>let flavor = {
-\ '01': 'guava'
-\ '02': 'mangosteen'
-\ '03': 'mango'
-\ '04': 'banana'
-\ '05': 'coconut'
-\ '06': 'passionfruit'
-\ '07': 'watermelon'
-\ '08': 'papya'
-}</code></pre>
-
-	<h2 class="article"><a id="">访问字典</a></h2>
-	<p>可以使用以方括号包围的索引编号，来访问字典的值；而更直观的方式，是使用键的名称：</p>
-	<p style="text-indent:2em"><code class="inset">:let Dx = flavor['09']</code></p>
-	<p>如果键不存在，那么将显示以下报错信息：</p>
-	<p style="text-indent:2em"><code class="error">E716: Key not present in Dictionary: 09</code></p>
-
-
-	
-	<p style="text-indent:2em"><code class="inset"></code></p>
-	<p></p>
-	<p style="text-indent:2em"><code class="inset"></code></p>
-	<p></p>
-	<p style="text-indent:2em"><code class="inset"></code></p>
-"	Remove any entry whose key starts with C... 
-
-call filter(diagnosis, 'v:key[0] != "C"') 
-
-"	Remove any entry whose value doesn't contain 'Savant'... 
-
-call filter(diagnosis, 'v:val =~ "Savant"') 
-
-"	Remove any entry whose value is the same as its key... 
-
-call filter(diagnosis, 'v:key != v:val')
+	<h2 class="article"><a id="">内置终端与vim交互</a></h2>
+	<p>从内置终端（的任务中）向 vim 发起交互的需求， 向开启它的“宿主” vim 发送消息，令其打开某个文件。在内置终端的运行的程序，只要向标准输出打印如下序列：</p>
+	<p style="text-indent:2em"><code class="inset">]51;["drop", "filenmae"]&lt;07&gt;</code></p>
+	<p>实际上就会将 ["drop", "filenmae"] 传递给宿主 vim ，然后 vim 就知道将该消息解 释为执行 :drop filename 命令。:drop 命令其实与 :edit 命令类似，就是打开 一个文件，只不过如果文件已被打开，就会跳到相应的目标窗口。:drop 命令也就是随 内置终端版本一起增加的，可见它的原意就是想解决这个痛点。</p>
+	<p>Esc 字符是终端的转义符，但在其他语言（如 C 语言）中，则一般用 \e 表示，或直接用其 ASCII 码（ \x1B 或 \033 即十进 制的 27）表示。</p>
+	<p>例如，可以在~目录下drop.sh 脚本：</p>
+	<pre class="block"><code>#! /bin/bash
+echo -e "\e]51;[\"drop\", \"$1\"]\x07"</code></pre>
+	<p>注意传给 vim 的消息要求是 json 模式，drop 与文件名参数 须按 json 标准用双引号括起。在多数语言或脚本中如果用双引号括起整个序列字符串， 就得将里面的 json 字符串的双引号用 \" 转义。</p>
+	<p>为脚本文件增加执行权限：</p>
+	<p style="text-indent:2em"><code class="inset">$ chmod +x drop.sh</code></p>
+	<p>在vim terminal窗口中，执行以下命令即可打开指定的文件：</p>
+	<p style="text-indent:2em"><code class="inset">./drop.sh test.txt</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/terminal_drop.png" title="terminal_drop"><img src="https://yyq123.github.io/learn-vim/images/terminal_drop.png" alt="terminal_drop" /></a></p>
 
 	<h2 class="article"><a id=""></a></h2>
+	<p></p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+	<h2 class="article"><a id=""></a></h2>
+
 	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
 
 	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
 
 	<pre class="block">
 	</pre>
+	<pre class="block"><code>
+	</code></pre>
 
 	<ul>
 		<li><p class="item"><br /></p></li>
 		<li><p class="item"><a href="#" title=""></a><br /></p></li>
 	</ul>
 
-	<p><span style="font-weight:bold; color:#4169E1; margin-left:0.2em">&#65311;</span></p>
-	<p style="text-indent:2em"><code class="inset">:help Dictionary</code></p>
-
+	<span style="font-weight:bold; color:#4169E1; margin-left:0.2em">&#65311;</span>
 
 	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
 		<caption style="margin:0.5em; font-weight:bold">选项列表</caption>

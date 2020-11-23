@@ -11,54 +11,29 @@
 	<h1>VIM学习笔记 ()</h1>
 
 	<h2 class="article"><a id=""></a></h2>
-	<p>可以将字典（Dictionary)，理解为存储了关于键-值的成对的二元数组。如果你知道了键，就能快速地查找它对应的值。</p>
+	<p></p>
 	<a href="#" title=""></a>
 
-	<h2 class="article"><a id="">创建字典</a></h2>
-	<p>使用以花括号包含键-值列表，来创建字典。</p>
-	<pre class="block"><code>let flavor = {
-\ '01': 'guava'
-\ '02': 'mangosteen'
-\ '03': 'mango'
-\ '04': 'banana'
-\ '05': 'coconut'
-\ '06': 'passionfruit'
-\ '07': 'watermelon'
-\ '08': 'papya'
-}</code></pre>
+	<p>ROT13（回转13位，英语：rotate by 13 places，有时也记为ROT-13）是一种简易的替换式密码。ROT13是一种在英文网络论坛用作隐藏八卦（spoiler）、妙句、谜题解答以及某些脏话的工具，目的是逃过版主或管理员的匆匆一瞥。ROT13被描述成“杂志字谜上下颠倒解答的Usenet点对点体”。ROT13 也是过去在古罗马开发的凯撒加密的一种变体。ROT13是它自己本身的逆反；也就是说，要还原ROT13，套用加密同样的算法即可得，故同样的操作可用再加密与解密。该算法并没有提供真正的密码学上的保全，故它不应该被套用在需要保全的用途上。它常常被当作弱加密示例的典型。</p>
+	<p style="color:gray; font-size:0.6em"><a href="https://zh.wikipedia.org/zh-cn/ROT13" title="ROT13"><img src="http://yyq123.github.io/learn-vim/images/ROT13_table_with_example.png" alt="ROT13_table_with_example" /></a></br>Source: zh.wikipedia.org/zh-cn/ROT13</p>
 
-	<h2 class="article"><a id="">访问字典</a></h2>
-	<p>可以使用以方括号包围的索引编号，来访问字典的值；而更直观的方式，是使用键的名称：</p>
-	<p style="text-indent:2em"><code class="inset">:let Dx = flavor['09']</code></p>
-	<p>如果键不存在，那么将显示以下报错信息：</p>
-	<p style="text-indent:2em"><code class="error">E716: Key not present in Dictionary: 09</code></p>
-
-
-	
-	<p style="text-indent:2em"><code class="inset"></code></p>
-	<p></p>
-	<p style="text-indent:2em"><code class="inset"></code></p>
-	<p></p>
-	<p style="text-indent:2em"><code class="inset"></code></p>
-"	Remove any entry whose key starts with C... 
-
-call filter(diagnosis, 'v:key[0] != "C"') 
-
-"	Remove any entry whose value doesn't contain 'Savant'... 
-
-call filter(diagnosis, 'v:val =~ "Savant"') 
-
-"	Remove any entry whose value is the same as its key... 
-
-call filter(diagnosis, 'v:key != v:val')
-
-	<h2 class="article"><a id=""></a></h2>
 	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
 
-	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
+	<p>例如，下面的英文笑话，精华句为ROT13所隐匿：</p>
+	<pre class="block">How can you tell an extrovert from an
+introvert at NSA? Va gur ryringbef,
+gur rkgebireg ybbxf ng gur BGURE thl'f fubrf.</pre>
+	<p>使用以下命令，透过ROT13表格转换整片文字，该笑话的解答揭露如下：</p>
+	<p style="text-indent:2em"><code class="inset">ggVGg?</code></p>
+	<pre class="block">Ubj pna lbh gryy na rkgebireg sebz na
+vagebireg ng AFN? In the elevators,
+the extrovert looks at the OTHER guy's shoes.</pre>
+	<p>再次执行该命令，将重现对文本进行解密。以此类推，可以反复加密和解密整个文件。</p>
 
-	<pre class="block">
-	</pre>
+	<p>使用以下命令，将对从当前行到文件末尾的文本进行ROT13转换：</p>
+	<p style="text-indent:2em"><code class="inset">:normal VGg?</code></p>
+	<p>使用以下命令，将对从指定行到文件末尾的文本进行ROT13转换：</p>
+	<p style="text-indent:2em"><code class="inset">:normal 10GVGg?</code></p>
 
 	<ul>
 		<li><p class="item"><br /></p></li>
@@ -66,8 +41,7 @@ call filter(diagnosis, 'v:key != v:val')
 	</ul>
 
 	<p><span style="font-weight:bold; color:#4169E1; margin-left:0.2em">&#65311;</span></p>
-	<p style="text-indent:2em"><code class="inset">:help Dictionary</code></p>
-
+	<p style="text-indent:2em"><code class="inset">:help rot13</code></p>
 
 	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
 		<caption style="margin:0.5em; font-weight:bold">选项列表</caption>

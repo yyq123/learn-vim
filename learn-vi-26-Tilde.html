@@ -8,29 +8,35 @@
 <title>VIM学习笔记 大小写转换（tilde）</title>
 </head>
 <body>
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">转换字符大小写</p>
+
+	<h1>VIM学习笔记 大小写转换（tilde）</h1>
+	<h2 class="article"><a id="switch-case">转换字符大小写</a></h2>
 	<p>命令<code class="inset">~</code>可以改变字母的大小写。如果当前光标下的字母为小写，那么点击<code class="inset">~</code>可以将该字母转换为大写。同理如果当前光标下的字母为大写，那么点击<code class="inset">~</code>则可以将该字母转换为小写。</p>
-	<p>tildeop选项可以控制命令<code class="inset">~</code>的行为。默认设置下，只会对单个字符进行大小转换。</p>
+	<p>'tildeop'选项可以控制命令<code class="inset">~</code>的行为。以下默认设置下，只会对单个字符进行大小转换：</p>
 	<p style="text-indent:2em"><code class="inset">:set notildeop</code></p>
-	<p>如果设置了tildeop选项，那么命令就会变为~motion的模式：</p>
+	<p>如果设置了tildeop选项，那么将会使用~motion模式：</p>
 	<p style="text-indent:2em"><code class="inset">:set tildeop</code></p>
-	<p>例如，在下面的句子中:</p>
+	<p>例如以下文字：</p>
 	<p style="text-indent:2em"><span style="color:white; background-color:#1C1C1C">this is a test</span></p>
-	<p>我们将光标放在第一个t上并执行<code class="inset">~ft</code>命令，则结果为：</p>
+	<p>在行首执行<code class="inset">~ft</code>命令，则结果为：</p>
 	<p style="text-indent:2em"><span style="color:white; background-color:#1C1C1C">THIS IS A Test</span></p>
-	<p>命令使得当前光标以后第一个t和光标间的字符全部转换为大写，如果这个句子中还有小写字符，那么这个命令还可以执行第二次，直到句子中的字符全部为大写为止。</p>
-	<p>可以指定转换字符的个数和方向。例如命令<code class="inset">3~l</code>是从当前字符开始向右3个字符进行大小写的转换。</p>
+	<p>命令将当前光标至第一个"t"字符处的全部文字转换为大写。如果句子中还有小写字符"t"，那么可以继续执行此命令。</p>
+	<p>可以指定转换字符的个数和方向。例如<code class="inset">3~</code>命令，将从当前光标向右3个字符进行大小写转换。</p>
 	<p>命令<code class="inset">g~3w</code>可以转换当前光标开始之后的3个单词；而命令<code class="inset">g~iw</code>则可以转换当前<a href="http://yyq123.blogspot.com/2016/12/vim-text-objects.html" title="Text Objects">inner word</a>；而命令<code class="inset">g~$</code>则可以转换从当前位置到行尾的所有字符。</p>
 	<p>命令<code class="inset">g~g~</code>和<code class="inset">g~~</code>可以转换整行的大小写。而且并不依赖于<a href="http://vimcdoc.sourceforge.net/doc/options.html#'notildeop'" title="tildeop">tildeop</a>选项的设置。</p>
-	<p>在可视化模式下，可以使用<code class="inset">u</code>命令，将选中的字母转换为小写；也可以使用<code class="inset">U</code>命令，将选中的字母转换为大写。</p>
+	<p>在可视化模式下，可以使用<code class="inset">u</code>命令，将选中的字母转换为小写；也可以使用<code class="inset">U</code>命令，将选中的字母转换为大写。而使用<code class="inset">~</code>命令，则可以进行大小写转换。</p>
 	<p><code class="inset">gUU</code>和<code class="inset">gUgU</code>命令，都可以将整行字符转换为大写。如果指定了数字参数，例如<code class="inset">3gUU</code>则可对指定行数进行转换。</p>
 	<p>相对应的<code class="inset">guu</code>和<code class="inset">gugu</code>命令，则是用于将整行字符转化为小写。</p>
 	<p>命令<code class="inset">ggguG</code>可以将整个文件转化为小写；而命令<code class="inset">gggUG</code>则可以将整个文件转化为大写。</p>
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">首字母大写</p>
-	<p>选中文本，然后进入命令行模式并使用以下命令，可以将选中的文本转换为首字母大写（title case / initial capitals）。</p>
-	<p style="text-indent:2em"><code class="inset">:s/\&lt;\(\w\)\(\w*\)\&gt;/\u\1\L\2/g</code></p>
-	<p><a data-flickr-embed="true"  href="https://www.flickr.com/photos/yyq123/30925006713/in/dateposted/" title="Title_Case"><img src="https://c1.staticflickr.com/1/298/30925006713_5ea85d9372_o.png" width="320" height="85" alt="Title_Case"></a></p>
-	
+
+	<h2 class="article"><a id="title-case">首字母大写</a></h2>
+	<p>选中文本，然后进入命令行模式并使用以下命令，可以将选中的文本转换为首字母大写（title case / initial capitals）：</p>
+	<p><code class="inset">:s/\&lt;\(\w\)\(\w*\)\&gt;/\u\1\L\2/g</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Title_Case.png" title="Title_Case"><img src="https://yyq123.github.io/learn-vim/images/Title_Case.png" alt="Title_Case" /></a></p>
+	<p>使用以下命令，将句首字母转换为大写：</p>
+	<p><code class="inset">:%s/[.!?]\_s\+\a/\U&amp;\E/g</code></p>
+	<p>使用以下命令，可以查看大小写转换的帮助信息：</p>
+	<p><code class="inset">:help case</code></p>
 
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
@@ -40,7 +46,7 @@
 		<tr><td><code class="inset">:set notildeop</code></td><td>设置大小写转换命令的行为仅针对单个字符</td></tr>
 		<tr><td><code class="inset">:set tildeop</code></td><td>设置大小写转换命令的行为类似于操作符</td></tr>
 	</table>
-		<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="缩进 (Indent)" href="http://yyq123.blogspot.com/2010/10/vim-indent.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="加密 (Encyption)" href="http://yyq123.blogspot.com/2011/01/vim-encyption.html">下一篇</a>&gt;</span></p>
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="缩进 (Indent)" href="http://yyq123.github.io/learn-vim/learn-vi-66-Indent.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="加密 (Encyption)" href="http://yyq123.github.io/learn-vim/learn-vi-27-crypt.html">下一篇</a>&gt;</span></p>
 </body>
 </html>
-
