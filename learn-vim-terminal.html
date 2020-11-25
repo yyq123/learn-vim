@@ -5,20 +5,16 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记 ()</title>
+	<title>VIM学习笔记 与内置终端交互()</title>
 </head>
 <body>
 	<h1>VIM学习笔记 ()</h1>
 
-	<h2 class="article"><a id=""></a></h2>
-	<p></p>
-	<a href="#" title=""></a>
-
-	<h2 class="article"><a id="">内置终端与vim交互</a></h2>
+	<h2 class="article"><a id="terminal_external_shell">内置终端与外部系统交互</a></h2>
 	<p>从内置终端（的任务中）向 vim 发起交互的需求， 向开启它的“宿主” vim 发送消息，令其打开某个文件。在内置终端的运行的程序，只要向标准输出打印如下序列：</p>
-	<p style="text-indent:2em"><code class="inset">]51;["drop", "filenmae"]&lt;07&gt;</code></p>
+	<p style="text-indent:2em"><code class="inset">&lt;Esc&gt;]51;["drop", "filename"]&lt;07&gt;</code></p>
 	<p>实际上就会将 ["drop", "filenmae"] 传递给宿主 vim ，然后 vim 就知道将该消息解 释为执行 :drop filename 命令。:drop 命令其实与 :edit 命令类似，就是打开 一个文件，只不过如果文件已被打开，就会跳到相应的目标窗口。:drop 命令也就是随 内置终端版本一起增加的，可见它的原意就是想解决这个痛点。</p>
-	<p>Esc 字符是终端的转义符，但在其他语言（如 C 语言）中，则一般用 \e 表示，或直接用其 ASCII 码（ \x1B 或 \033 即十进 制的 27）表示。</p>
+	<p>&lt;Esc&gt;字符是终端的转义符，但在其他语言（如 C 语言）中，则一般用 \e 表示，或直接用其 ASCII 码（ \x1B 或 \033 即十进 制的 27）表示。</p>
 	<p>例如，可以在~目录下drop.sh 脚本：</p>
 	<pre class="block"><code>#! /bin/bash
 echo -e "\e]51;[\"drop\", \"$1\"]\x07"</code></pre>
@@ -26,29 +22,113 @@ echo -e "\e]51;[\"drop\", \"$1\"]\x07"</code></pre>
 	<p>为脚本文件增加执行权限：</p>
 	<p style="text-indent:2em"><code class="inset">$ chmod +x drop.sh</code></p>
 	<p>在vim terminal窗口中，执行以下命令即可打开指定的文件：</p>
-	<p style="text-indent:2em"><code class="inset">./drop.sh test.txt</code></p>
+	<p style="text-indent:2em"><code class="inset">$ ./drop.sh test.txt</code></p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/terminal_drop.png" title="terminal_drop"><img src="https://yyq123.github.io/learn-vim/images/terminal_drop.png" alt="terminal_drop" /></a></p>
 
-	<h2 class="article"><a id=""></a></h2>
-	<p></p>
-	<p style="text-indent:2em"><code class="inset"></code></p>
-	<h2 class="article"><a id=""></a></h2>
+	<h2 class="article"><a id="term_sendkeys">在内置终端中发送命令</a></h2>
+	<p>使用term_sendkeys()函数，可以 向内置终端发送一个字符串，效果等同于在终端提示符下手动键入。注意该函数与 feedkeys() 的区别，后者是相当于向 vim 键入字符串，会 被 vim 截获，并受 tmap 映射影响；而前者是直接向内置终端键入，不受 tmap 影 响。</p>
+	<p>在内置终端窗口中，使用<kbd>Ctrl-W:</kbd>进入命令行，执行以下命令：</p>
+	<p style="text-indent:2em"><code class="inset">:call feedkeys('ls')</code></p>
+	<p>在内置终端的提示符之后将显&ldquo;ls&rdquo;这两个字符，也就是相当于用户键入了两个字符，但还没有按下回车键来执行该命令。你可以继续编辑这个命令，或者点击回车键以执行命令。</p>
+	<p>在内置终端窗口中，再次使用<kbd>Ctrl-W:</kbd>进入命令行，执行以下命令：</p>
+	<p style="text-indent:2em"><code class="inset">:call term_sendkeys('', 'ls')</code></p>
+	<p>term_sendkeys()函数的第一个参数，是指定内置终端的buffer编号，空值表示当前内置终端。</p>
+	<p>执行效果一致，字符出现在内置终端提示符之后并等待执行。</p>
+	<p>由此可见，需要向函数参数传递回车键，以通知内置终端立即执行命令：</p>
+	<p style="text-indent:2em"><code class="inset">:call feedkeys('ls' . "\&lt;cr&gt;")</code></p>
+	<p style="text-indent:2em"><code class="inset">:call term_sendkeys('', 'ls' . "\&lt;cr&gt;")</code></p>
+	<p>请注意，回车键&lt;CR&gt;需要双引号转义。为了安全起见以及语义明确，向内置终端发消息时，最好使用 term_sendkeys() 函数。</p>
+	<p><span style="font-weight:bold; color:#4169E1; margin-left:0.2em">&#65311;</span>请使用以下命令，查看相关帮助信息：</p>
+	<p style="text-indent:2em"><code class="inset">:help term_sendkeys()</code></p>
 
+	<h2 class="article"><a id="terminal_internal">在普通窗口中发送命令</a></h2>
+	<p>显然，在内置终端窗口本身再进入命令行输命令是多此一举了。而从普通文本窗口中，进入命令行向内置终端发送命令，则可以避免打开/跳转到内置终端的繁琐；（当内置终端不存在时，显然应该打开一个新的内置终端。）</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
-
 	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
 
-	<pre class="block">
-	</pre>
+	<pre class="block"><code>function! Useterm_shell_SendShellCmd(bang, cmd) abort
+    " save current window
+    if a:bang
+        let l:tab = tabpagenr()
+        let l:win = winnr()
+    endif
+
+    let l:jobname = fnamemodify(&amp;shell, ':t')
+    let l:found = s:GotoTermWin(l:jobname)
+    if empty(l:found)
+        :terminal
+    endif
+    if !empty(a:cmd) &amp;&amp; a:cmd !~# '^\s*$'
+        call term_sendkeys('', a:cmd . "\&lt;CR&gt;")
+    endif
+endfunction
+
+function! s:FindTermWin(...) abort
+    let l:jobname = get(a:000, 0, &amp;shell)
+    let l:count = winnr('$')
+    for l:win in range(1, l:count)
+        if getwinvar(l:win, '&amp;buftype') ==# 'terminal'
+            let l:bufnr = winbufnr(l:win)
+            if fnamemodify(bufname(l:bufnr), ':t') =~? l:jobname
+                return l:win
+            endif
+        endif
+    endfor
+
+    let l:iTabOld = tabpagenr()
+    for l:tab in range(1, tabpagenr('$'))
+        if l:tab == l:iTabOld
+            continue
+        endif 
+        : execute l:tab . 'tabnext'
+        for l:win in range(1, tabpagewinnr(l:tab, '$'))
+            if gettabwinvar(l:tab, l:win, '&amp;buftype') ==# 'terminal'
+                let l:bufnr = winbufnr(l:win)
+                if fnamemodify(bufname(l:bufnr), ':t') =~? l:jobname
+                    : execute l:iTabOld . 'tabnext'
+                    return [l:tab, l:win]
+                endif
+            endif
+        endfor
+    endfor
+
+    : execute l:iTabOld . 'tabnext'
+    return 0
+endfunction
+
+function! s:GotoTermWin(...) abort
+    let l:jobname = get(a:000, 0, &amp;shell)
+    let l:target = s:FindTermWin(l:jobname)
+    if empty(l:target)
+        return 0
+    endif
+    if type(l:target) == type(0)
+        let l:win = l:target
+        if l:win != 0 &amp;&amp; l:win != winnr()
+            execute l:win . 'wincmd w'
+        endif
+        return l:win
+    elseif type(l:target) == type([])
+        let l:tab = get(l:target, 0, 0)
+        let l:win = get(l:target, 1, 0)
+        if l:tab != 0 &amp;&amp; l:tab != tabpagenr()
+            execute l:tab . 'tabnext'
+            if l:win != 0 &amp;&amp; l:win != winnr()
+                execute l:win . 'wincmd w'
+            endif
+        endif
+        return [l:tab, l:win]
+    endif
+endfunction</code></pre>
+	<p>请参考完整脚本<a href="https://github.com/yyq123/learn-vim/blob/master/samples/Useterm.vim" title="Useterm.vim">Useterm.vim</a></p>
 	<pre class="block"><code>
 	</code></pre>
+	<p>使用以下命令来调用函数，跳到内置终端窗口，并执行指定的外部命令：</p>
+	<p style="text-indent:2em"><code class="inset">:call Useterm_shell_SendShellCmd(0, 'dir')</code></p>
+	<p>通过自定义命令来调用函数，跳到内置终端窗口，并将当前目录切到正在编辑文件所在的目录：</p>
+	<p style="text-indent:2em"><code class="inset">:command! -nargs=* TCD call Useterm_shell_SendShellCmd(0, 'cd ' . expand('%:p:h'))</code></p>
+	<p></p>
 
-	<ul>
-		<li><p class="item"><br /></p></li>
-		<li><p class="item"><a href="#" title=""></a><br /></p></li>
-	</ul>
-
-	<span style="font-weight:bold; color:#4169E1; margin-left:0.2em">&#65311;</span>
 
 	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
 		<caption style="margin:0.5em; font-weight:bold">选项列表</caption>
@@ -70,7 +150,7 @@ echo -e "\e]51;[\"drop\", \"$1\"]\x07"</code></pre>
 		<tr><td><code class="inset">:</code></td><td></td></tr>
 		</tbody>
 	</table>
-&ldquo;&rdquo;
+
 
 	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
 

@@ -1,12 +1,13 @@
 " File: shell
 " Author: lymslive
+" Source: https://github.com/lymslive/autoplug/tree/master/autoload/useterm
 " Description: terminal shell tools
 " Create: 2018-08-01
 " Modify: 2018-08-01
 
 " SendShellCmd: 
 " send a cmd to an existed terminal shell or open a new one
-function! useterm#shell#SendShellCmd(bang, cmd) abort "{{{
+function! Useterm_shell_SendShellCmd(bang, cmd) abort "{{{
     " save current window
     if a:bang
         let l:tab = tabpagenr()
@@ -21,7 +22,7 @@ function! useterm#shell#SendShellCmd(bang, cmd) abort "{{{
     if !empty(a:cmd) && a:cmd !~# '^\s*$'
         call term_sendkeys('', a:cmd . "\<CR>")
         " into insert mode in terminal window, to redraw shell result
-        normal! i
+        "normal! i
     endif
 
     " back to origin window
