@@ -5,32 +5,102 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记 ()</title>
+	<title>VIM学习笔记 通道（channel）</title>
 </head>
 <body>
-	<h1>VIM学习笔记 ()</h1>
+	<h1>VIM学习笔记 通道（channel）</h1>
+	<p>假设使用以下命令，连续开启两个异步作业：</p>
+	<pre class="block"><code>:call job_start('cd ~/.vim/')
+:call job_start('ls')</code></pre>
+	<p>这些作业之间是相互独立的。也就是说，连续执行这两条命令，并不能进入指定目录并列示文件。第一条命令，开启一个后台作业并使用'cd'命令进入目录；第二条命令，开启另一个独立的后台作业并使用'ls'命令列示当前目录的文件。</p>
 
-	<h2 class="article"><a id=""></a></h2>
-	<p></p>
-	<a href="#" title=""></a>
+	<h2 class="article"><a id="channel-overview">通道概念</a></h2>
+	<p>利用Vim内置终端功能，可以改变当前目录并列示文件：</p>
+	<pre class="block"><code>:terminal
+$ cd ~/.vim
+$ ls</code></pre>
+	<p>也就是说，terminal命令开启了一个异步作业（即shell进程），它持续等待用户的输入，再解释执行键入的shell命令。vim利用通道（channel）来与后台异步作业（即shell进程）进行通讯。借由此机制，vim可以获取外部命令的输出和状态，并调用回调函数进行响应。而随着外部命令的结束，通道也会自动关闭。</p>
 
-	<p></p>
-	<p style="text-indent:2em"><code class="inset"></code></p>
-
-	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
-
-	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
-
-	<pre class="block">
-	</pre>
-
+	<h2 class="article"><a id="ch_opn">开启通道</a></h2>
+	<p>使用ch_open()函数，可以开启通道：</p>
+	<p style="text-indent:2em"><code class="inset">ch_open({address} [, {options}])</code></p>
+	<p>在通道选项中，模式"mode"规定了通讯的消息格式，可以直观地理解为传输、读写的字符串格式。共支持四种模式：</p>
 	<ul>
-		<li><p class="item"><br /></p></li>
-		<li><p class="item"><a href="#" title=""></a><br /></p></li>
+		<li><var>nl</var>模式，利用换行符（newline）来分隔消息。使用job_start()函数启动的作业，默认使用此模式；</li>
+		<li><var>json</var>模式，<a href="https://www.json.org/" title="json">json</a>数据交换格式。使用ch_open()函数开启的通道，默认使用json模式；</li>
+		<li><var>js</var>模式，JavaScript风格的信息格式，效率比json更好；</li>
+		<li><var>raw</var>模式，原始格式，完全由用户在回调函数中进行处理。</li>
 	</ul>
+	<p>至于该使用哪种模式的通道，这取决于要连接的另一端的程序如何提供服务了。简单的可以用 NL 模式，复杂的服务就推荐 json 了。</p>
+	<p>模式之所以重要，是因为它深刻影响了回调函数的写法。一般是形如这样的：</p>
+	<pre class="block"><code>function! Callback_Handler(channel, msg)
+    echo 'Received: ' . a:msg
+endfunction
+</code></pre>
+<p>其中第一参数 a:channel 是通道 ID ，就是 ch_open() 的返回值，代表某个特定的通道。第二参数 a:msg 所谓的消息，就与通道模式有 关了。如果是 json 或 js 模式，虽然 vim 收到的消息初始也是字符串，但 vim 自 动给你解码了，于是 a:msg 就转换为 VimL 数据类型了，比如可能是富有嵌套的字典 与列表结构。如果是 NL 模式，则是去除换行符的字符串；当然如果是 raw 模式， 那就是最原始的消息了，可能有的换行符也得用户在回调中注意处理。</p>
+
+	<h2 class="article"><a id="">通道交互</a></h2>
+	<p>开启通道并与另一端的程序建立连接之后，vim可以向对方发送请求，并等待回应。通过处理往来消息，来协同工作。</p>
+	<p>向 json 或 js 模式的通道（彼端）发消息，推荐如下三种方式之一：</p>
+	
+
+1. call ch_sendexpr(channel, {expr})
+2. call ch_sendexpr(channel, {expr}, {'callback': Handler})
+3. let response = ch_evalexpr(channel, {expr})
+注意前两种写法，直接用 :call 命令调用函数，忽略函数返回值。它单纯地发送消息 ，异步等待回应；当之后某个时刻收到响应后，就调用通道的回调函数。但是如第二种用 法，在发送消息时提供额外选项，单独指定这条消息的回调函数。
+	<p>于是就要一种机制来区分哪条消息，vim 在发送消息时实际上发送 [{number},{expr}] ，即在消息之前附加一个编号，组成一个二元列表。该编号是 vim 内部处理的，一般是递增保证唯一，{expr} 才是由程序员指定的 VimL 有效数值（或数据结构），并再由 vim 编码成 json 字符串，或 js 风格的类似字符串。通道彼端接收到这样的消息， 将 json 字符串解码，经其内部处理后，再由通道发还给 vim ，并且也是由编号、消 息体组成的二元列表 [{number},{response}]。在同一请求——回应中，编号是相同的， vim 据此就能分发到对应的回调函数，传入的第二参数也就是 {response} ，不包含编 号的消息主体。 当然，按第一种写法未指定回调地发送消息，收到响应时就会默认分到 在 ch_open() 中指定的回调函数中。</p>
+	<p>至于第三种写法，一般要用 :let 命令获取 ch_evalexpr() 的返回值。这是同步等待，就如 system() 函数捕获输出一样。同步虽然可能阻塞，但优点是程序逻辑简单， 不必管回调函数那么绕。在通道已经建立的情况下，如果另一端的服务程序也运行在本地 机器， ch_evalexpr() 可能比 system() 快些。因此，如果预期将要请求执行的操 作并不太复杂时，可尽量用这种同步消息组织编程。另外，通道也有个超时选项，不致于 让 vim 陷入无限等待的恶劣情况。在超时或出错情况下，ch_evalexpr() 返回空字符 中，否则返回的也是已解码的 VimL 数据，如同 ch_sendexpr() 收到回应时传给回调 函数的消息主体。</p>
+	<p>对于 NL 或 raw 模式，无法使用上面这两个函数交互，应该使用另外两个对应的函数：</p>
+1. call ch_sendraw(channel, {string})
+2. call ch_sendraw(channel, {string}, {'callback': 'MyHandler'})
+3. let response = ch_evalraw(channel, {string})
+其中第二参数必须是字符串，而不能是其他复杂的 VimL 数据结构，并且可能需要手动添 加末尾换行符（视通道彼端程序需求而论）。
+	<p>json 与 js 模式的通道也能用 ch_sendraw() 与 ch_evalraw() ，不过需要事 先调用 json_encode() 将要发送的 VimL 数据转换（编码）为 json 字符串再传给 这俩函数；然后在收到响应时，又要将响应消息用 json_decode() 解码以获得方便可 用 VimL 数据。</p>
+
+
+	<h2 class="article"><a id="">通道实例</a></h2>
+	<p><a href="https://github.com/ZSaberLv0/ZFVimTerminal" title="ZFVimTerminal">ZFVimTerminal</a>插件，将普通buffer当作shell前端来使用，可以在其中执行外部系统命令。</li>
+	<p>以下为:ZFTerminal命令调用的s:zfterminal函数：</p>
+	<pre class="block"><code>command! -nargs=* -complete=file ZFTerminal :call s:zfterminal()
+
+function! s:zfterminal(...)
+    let arg = get(a:, 1, '')
+    " ... (省略)
+    let needSend=!empty(arg)
+    if exists('b:job')
+        let needSend=1
+    else
+        call s:updateConfig()
+        let job = s:job_start(s:shell)
+        let handle = s:job_getchannel(job)
+        call s:initialize()
+        let b:job = job
+        let b:handle = handle
+        if exists('g:ZFVimTerminal_onStart') &amp;&amp; g:ZFVimTerminal_onStart!=''
+            execute 'g:ZFVimTerminal_onStart(' . b:job . ', ' . b:handle . ')'
+        endif
+    endif
+    if needSend
+        silent! call s:ch_sendraw(b:handle, arg . "\n")
+    endif
+    " ... (省略)
+endfunction
+</code></pre>
+	<p>是将开启的作业保存在 b:job 中。随后的回调函数通过作业ID与之通讯。</p>
+	<p>如果在执行命令时，任务不存在，就用 job_start() 开始一个任务，并将通道模式设为 raw 。在后续与通道交互时，则可以使用用 ch_sendraw() 发送消息。job_start()定义如下：</p>
+	<pre class="block"><code>function! s:job_start(command)
+    return job_start(a:command, {
+    \   'exit_cb' : 'ZFVimTerminal#exitcb',
+    \   'out_cb' : 'ZFVimTerminal#outcb_vim',
+    \   'err_cb' : 'ZFVimTerminal#outcb_vim',
+    \   'stoponexit' : 'kill',
+    \   'mode': 'raw',
+    \ })
+endfunction</code></pre>
 
 	<p><span style="font-weight:bold; color:#4169E1; margin-left:0.2em">&#65311;</span>使用以下命令，可以查看关于通道的帮助信息：</p>
 	<p style="text-indent:2em"><code class="inset">:help channel</code></p>
+	<p></p>
 
 	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
 		<caption style="margin:0.5em; font-weight:bold">选项列表</caption>
@@ -45,16 +115,16 @@
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
 		<tbody>
-		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
-		<tr><td><code class="inset">:</code></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">ch_open()</code></td><td>打开通道</td></tr>
+		<tr><td><code class="inset">ch_sendexpr()</code></td><td>发送消息并异步处理响应</td></tr>
+		<tr><td><code class="inset">ch_evalexpr()</code></td><td>发送消息并同步处理响应</td></tr>
+		<tr><td><code class="inset">ch_sendraw()</code></td><td>发送消息并异步处理响应</td></tr>
+		<tr><td><code class="inset">ch_evalraw()</code></td><td>发送消息并异步处理响应</td></tr>
 		</tbody>
 	</table>
 &ldquo;&rdquo;
 
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="作业(job)" href="http://yyq123.github.io/learn-vim/learn-vim-job.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="定时器(timer)" href="http://yyq123.github.io/learn-vim/learn-vim-timer.html">下一篇</a>&gt;</span></p>
 
 </body>
 </html>
