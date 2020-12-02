@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 使用rot13加密</title>
+</head>
+<body>
+	<h1>VIM学习笔记 使用rot13加密</h1>
+
+	<h2 class="article"><a id="rot13_algorithm">ROT13算法</a></h2>
+	<p>ROT13（回转13位，英语：rotate by 13 places，有时也记为ROT-13）是一种简易的替换式密码。ROT13是一种在英文网络论坛用作隐藏八卦（spoiler）、妙句、谜题解答以及某些脏话的工具，目的是逃过版主或管理员的匆匆一瞥。ROT13被描述成“杂志字谜上下颠倒解答的Usenet点对点体”。ROT13 也是过去在古罗马开发的凯撒加密的一种变体。ROT13是它自己本身的逆反；也就是说，要还原ROT13，套用加密同样的算法即可得，故同样的操作可用再加密与解密。该算法并没有提供真正的密码学上的保全，故它不应该被套用在需要保全的用途上。它常常被当作弱加密示例的典型。</p>
+	<p style="color:gray; font-size:0.6em"><a href="https://zh.wikipedia.org/zh-cn/ROT13" title="ROT13"><img src="http://yyq123.github.io/learn-vim/images/ROT13_table_with_example.png" alt="ROT13_table_with_example" /></a><br />Source: zh.wikipedia.org/zh-cn/ROT13</p>
+
+	<h2 class="article"><a id="rot13_cmd">g?命令</a></h2>
+	<p>使用 g?{motion} 命令，可以使用Rot13对{motion}跨越的文本进行编码。例如以下命令，将对当前行进行ROT13转换：</p>
+	<p style="text-indent:2em"><code class="inset">g??</code></p>
+	<p>使用以下命令，将对从当前行到文件末尾的文本进行ROT13转换：</p>
+	<p style="text-indent:2em"><code class="inset">:normal VGg?</code></p>
+	<p>使用以下命令，将对从指定行到文件末尾的文本进行ROT13转换：</p>
+	<p style="text-indent:2em"><code class="inset">:normal 10GVGg?</code></p>
+	<p>假设需要针对以下id属性值进行ROT13转换：</p>
+	<pre class="block">&lt;li id="<strong style="color:#FFAF00;">lorem</strong>"&gt;foo&lt;/li&gt;</pre>
+	<p>那么可以在g?命令中指定<a href="https://yyq123.github.io/learn-vim/learn-vi-10-TextObjects.html" title="文本对象(Text Objects)">文本对象</a>：</p>
+	<p style="text-indent:2em"><code class="inset">g?i"</code></p>
+	<pre class="block">&lt;li id="<strong style="color:#FFAF00;">yberz</strong>"&gt;foo&lt;/li&gt;</pre>
+
+	<p>以下英文笑话，精华句为ROT13所隐匿：</p>
+	<pre class="block">How can you tell an extrovert from an
+introvert at NSA? Va gur ryringbef,
+gur rkgebireg ybbxf ng gur BGURE thl'f fubrf.</pre>
+	<p>使用以下命令，透过ROT13表格转换整片文字，该笑话的解答揭露如下：</p>
+	<p style="text-indent:2em"><code class="inset">ggVGg?</code></p>
+	<pre class="block">Ubj pna lbh gryy na rkgebireg sebz na
+vagebireg ng AFN? In the elevators,
+the extrovert looks at the OTHER guy's shoes.</pre>
+	<p>再次执行该命令，将重现对文本进行解密。以此类推，可以反复加密和解密整个文件。</p>
+	<p>定义以下快捷键，也可以对整个文件进行ROT13转换：</p>
+	<p style="text-indent:2em"><code class="inset">map &lt;F3&gt; ggg?G</code></p>
+
+	<p><span style="font-weight:bold; color:#4169E1; margin-left:0.2em">&#65311;</span>使用以下命令，可以查看相关帮助信息：</p>
+	<p style="text-indent:2em"><code class="inset">:help g?</code></p>
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="加密(crypt)" href="http://yyq123.github.io/learn-vim/learn-vi-27-crypt.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="过滤器(Filter)" href="http://yyq123.github.io/learn-vim/learn-vim-Shell-Filter.html">下一篇</a>&gt;</span></p>
+
+</body>
+</html>
