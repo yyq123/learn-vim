@@ -8,7 +8,6 @@
 	<title>VIM学习笔记 键盘映射 (Map)</title>
 </head>
 <body>
-
 	<h1>VIM学习笔记 键盘映射 (Map)</h1>
 
 	<h2 class="article"><a id="map-cmd">设置键盘映射</a></h2>
@@ -19,14 +18,18 @@
 	<h2 class="article"><a id="map-mode">不同模式下的键盘映射</a></h2>
 	<p>使用下表中不同形式的map命令，可以针对特定的模式设置键盘映射：</p>
 	<table summary="Map in diffent mode" border="1" rules="all" cellspacing="0" cellpadding="2" style="text-align:center">
-		<tr><td colspan="2">Command<br />命令</td><td>Normal<br />&nbsp;&nbsp;常规模式&nbsp;&nbsp;</td><td>Visual<br />可视化模式</td><td>Operator Pending<br />运算符模式</td><td>Insert Only<br />插入模式</td><td>Command Line<br />命令行模式</td></tr>
-		<tr><td><code class="inset">:map</code></td><td><code class="inset">:noremap</code></td><td>y</td><td>y</td><td>y</td><td></td><td></td></tr>
-		<tr><td><code class="inset">:nmap</code></td><td><code class="inset">:nnoremap</code></td><td>y</td><td></td><td></td><td></td><td></td></tr>
-		<tr><td><code class="inset">:vmap</code></td><td><code class="inset">:vnoremap</code></td><td></td><td>y</td><td></td><td></td><td></td></tr>
-		<tr><td><code class="inset">:omap</code></td><td><code class="inset">:onoremap</code></td><td></td><td></td><td>y</td><td></td><td></td></tr>
-		<tr><td><code class="inset">:map!</code></td><td><code class="inset">:noremap!</code></td><td></td><td></td><td></td><td>y</td><td>y</td></tr>
-		<tr><td><code class="inset">:imap</code></td><td><code class="inset">:inoremap</code></td><td></td><td></td><td></td><td>y</td><td></td></tr>
-		<tr><td><code class="inset">:cmap</code></td><td><code class="inset">:cnoremap</code></td><td></td><td></td><td></td><td></td><td>y</td></tr>
+		<tr><td colspan="2">Command<br />命令</td><td><br />Normal<br />&nbsp;&nbsp;常规模式&nbsp;&nbsp;</td><td><br />Visual<br />可视化模式</td><td><br />Select<br />选择模式</td><td>Operator<br />Pending<br />运算符模式</td><td><br />Insert<br />插入模式</td><td>Command<br />Line<br />命令行模式</td><td><br />Terminal-Job<br />终端作业模式</td><td>Help<br />帮助信息</td></tr>
+		<tr><td><code class="inset">:map</code></td><td><code class="inset">:noremap</code></td><td>y</td><td>y</td><td>y</td><td>y</td><td></td><td></td><td></td><td style="text-align:left"><code>:h mapmode-nvo</code></td></tr>
+		<tr><td><code class="inset">:nmap</code></td><td><code class="inset">:nnoremap</code></td><td>y</td><td></td><td></td><td></td><td></td><td></td><td></td><td style="text-align:left"><code>:h mapmode-n</code></td></tr>
+		<tr><td><code class="inset">:vmap</code></td><td><code class="inset">:vnoremap</code></td><td></td><td>y</td><td>y</td><td></td><td></td><td></td><td></td><td style="text-align:left"><code>:h mapmode-v</code></td></tr>
+		<tr><td><code class="inset">:xmap</code></td><td><code class="inset">:xnoremap</code></td><td></td><td>y</td><td></td><td></td><td></td><td></td><td></td><td style="text-align:left"><code>:h mapmode-x</code></td></tr>
+		<tr><td><code class="inset">:smap</code></td><td><code class="inset">:snoremap</code></td><td></td><td></td><td>y</td><td></td><td></td><td></td><td></td><td style="text-align:left"><code>:h mapmode-s</code></td></tr>
+		<tr><td><code class="inset">:omap</code></td><td><code class="inset">:onoremap</code></td><td></td><td></td><td></td><td>y</td><td></td><td></td><td></td><td style="text-align:left"><code>:h mapmode-o</code></td></tr>
+		<tr><td><code class="inset">:map!</code></td><td><code class="inset">:noremap!</code></td><td></td><td></td><td></td><td></td><td>y</td><td>y</td><td></td><td style="text-align:left"><code>:h mapmode-ic</code></td></tr>
+		<tr><td><code class="inset">:imap</code></td><td><code class="inset">:inoremap</code></td><td></td><td></td><td></td><td></td><td>y</td><td></td><td></td><td style="text-align:left"><code>:h mapmode-i</code></td></tr>
+		<tr><td><code class="inset">:lmap</code></td><td><code class="inset">:lnoremap</code></td><td></td><td></td><td></td><td></td><td>y</td><td>y</td><td></td><td style="text-align:left"><code>:h mapmode-l</code></td></tr>
+		<tr><td><code class="inset">:cmap</code></td><td><code class="inset">:cnoremap</code></td><td></td><td></td><td></td><td></td><td></td><td>y</td><td></td><td style="text-align:left"><code>:h mapmode-c</code></td></tr>
+		<tr><td><code class="inset">:tmap</code></td><td><code class="inset">:tnoremap</code></td><td></td><td></td><td></td><td></td><td></td><td></td><td>y</td><td style="text-align:left"><code>:h mapmode-t</code></td></tr>
 	</table>
 	<p>Operator-pending模式，是指当你输入操作符（比如<kbd>d</kbd>）时，然后继续输入的移动步长和文本对象（<kbd>dw</kbd>）的状态。</p>
 	<p>第一列命令定义的映射，仍然可以被重新映射；第二列命令（包含noremap）定义的映射，是不可以被重新映射的。</p>
@@ -149,19 +152,24 @@
 		<tr><td>o</td><td>运算符模式</td></tr>
 		<tr><td>!</td><td>插入模式，命令行模式</td></tr>
 		<tr><td>i</td><td>插入模式</td></tr>
-		<tr><td>c</td><td>命令模式</td></tr>
+		<tr><td>l</td><td>插入模式，命令行模式，Lang-Arg模式</td></tr>
+		<tr><td>c</td><td>命令行模式</td></tr>
+		<tr><td>t</td><td>终端作业模式</td></tr>
 	</table>
 	<p>使用下表中不同形式的map命令（不带任何参数），可以列出针对特定模式设置的键盘映射：</p>
 	<table summary="Map in diffent mode" border="1" rules="all" cellspacing="0" cellpadding="2" style="text-align:center">
-	<table summary="Map in diffent mode" border="1" rules="all" cellspacing="0" cellpadding="2" style="text-align:center">
-		<tr><td colspan="2">Command<br />命令</td><td>Normal<br />&nbsp;&nbsp;常规模式&nbsp;&nbsp;</td><td>Visual<br />可视化模式</td><td>Operator Pending<br />运算符模式</td><td>Insert Only<br />插入模式</td><td>Command Line<br />命令行模式</td></tr>
-		<tr><td><code class="inset">:map</code></td><td><code class="inset">:noremap</code></td><td>y</td><td>y</td><td>y</td><td></td><td></td></tr>
-		<tr><td><code class="inset">:nmap</code></td><td><code class="inset">:nnoremap</code></td><td>y</td><td></td><td></td><td></td><td></td></tr>
-		<tr><td><code class="inset">:vmap</code></td><td><code class="inset">:vnoremap</code></td><td></td><td>y</td><td></td><td></td><td></td></tr>
-		<tr><td><code class="inset">:omap</code></td><td><code class="inset">:onoremap</code></td><td></td><td></td><td>y</td><td></td><td></td></tr>
-		<tr><td><code class="inset">:map!</code></td><td><code class="inset">:noremap!</code></td><td></td><td></td><td></td><td>y</td><td>y</td></tr>
-		<tr><td><code class="inset">:imap</code></td><td><code class="inset">:inoremap</code></td><td></td><td></td><td></td><td>y</td><td></td></tr>
-		<tr><td><code class="inset">:cmap</code></td><td><code class="inset">:cnoremap</code></td><td></td><td></td><td></td><td></td><td>y</td></tr>
+		<tr><td colspan="2">Command<br />命令</td><td><br />Normal<br />&nbsp;&nbsp;常规模式&nbsp;&nbsp;</td><td><br />Visual<br />可视化模式</td><td><br />Select<br />选择模式</td><td>Operator<br />Pending<br />运算符模式</td><td><br />Insert<br />插入模式</td><td>Command<br />Line<br />命令行模式</td><td><br />Terminal-Job<br />终端作业模式</td></tr>
+		<tr><td><code class="inset">:map</code></td><td><code class="inset">:noremap</code></td><td>y</td><td>y</td><td>y</td><td>y</td><td></td><td></td><td></td></tr>
+		<tr><td><code class="inset">:nmap</code></td><td><code class="inset">:nnoremap</code></td><td>y</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+		<tr><td><code class="inset">:vmap</code></td><td><code class="inset">:vnoremap</code></td><td></td><td>y</td><td>y</td><td></td><td></td><td></td><td></td></tr>
+		<tr><td><code class="inset">:xmap</code></td><td><code class="inset">:xnoremap</code></td><td></td><td>y</td><td></td><td></td><td></td><td></td><td></td></tr>
+		<tr><td><code class="inset">:smap</code></td><td><code class="inset">:snoremap</code></td><td></td><td></td><td>y</td><td></td><td></td><td></td><td></td></tr>
+		<tr><td><code class="inset">:omap</code></td><td><code class="inset">:onoremap</code></td><td></td><td></td><td></td><td>y</td><td></td><td></td><td></td></tr>
+		<tr><td><code class="inset">:map!</code></td><td><code class="inset">:noremap!</code></td><td></td><td></td><td></td><td></td><td>y</td><td>y</td><td></td></tr>
+		<tr><td><code class="inset">:imap</code></td><td><code class="inset">:inoremap</code></td><td></td><td></td><td></td><td></td><td>y</td><td></td><td></td></tr>
+		<tr><td><code class="inset">:lmap</code></td><td><code class="inset">:lnoremap</code></td><td></td><td></td><td></td><td></td><td>y</td><td>y</td><td></td></tr>
+		<tr><td><code class="inset">:cmap</code></td><td><code class="inset">:cnoremap</code></td><td></td><td></td><td></td><td></td><td></td><td>y</td><td></td></tr>
+		<tr><td><code class="inset">:tmap</code></td><td><code class="inset">:tnoremap</code></td><td></td><td></td><td></td><td></td><td></td><td></td><td>y</td></tr>
 	</table>
 
 	<h2 class="article"><a id="umap-cmd">取消键盘映射</a></h2>
@@ -169,18 +177,22 @@
 	<p style="text-indent:2em"><code class="inset">:unmap &lt;F10&gt;</code></p>
 	<p>注意：必须为:unmap命令指定一个参数。如果未指定任何参数，那么系统将会报错，而不会取消所有的键盘映射。</p>
 	<p>针对不同模式下的键盘映射，需要使用与其相对应的unmap命令。例如：使用<code class="inset">:iunmap</code>命令，取消插入模式下的键盘映射；而取消常规模式下的键盘映射，则需要使用<code class="inset">:nunmap</code>命令。</p>
-	<table summary="Map in diffent mode" border="1" rules="all" cellspacing="0" cellpadding="2" style="text-align:center">
-		<tr><td>Command<br />命令</td><td>Normal<br />&nbsp;&nbsp;常规模式&nbsp;&nbsp;</td><td>Visual<br />可视化模式</td><td>Operator Pending<br />运算符模式</td><td>Insert Only<br />插入模式</td><td>Command Line<br />命令行模式</td></tr>
-		<tr><td><code class="inset">:unmap</code></td><td>y</td><td>y</td><td>y</td><td></td><td></td></tr>
-		<tr><td><code class="inset">:nunmap</code></td><td>y</td><td></td><td></td><td></td><td></td></tr>
-		<tr><td><code class="inset">:vunmap</code></td><td></td><td>y</td><td></td><td></td><td></td></tr>
-		<tr><td><code class="inset">:ounmap</code></td><td></td><td></td><td>y</td><td></td><td></td></tr>
-		<tr><td><code class="inset">:unmap!</code></td><td></td><td></td><td></td><td>y</td><td>y</td></tr>
-		<tr><td><code class="inset">:iunmap</code></td><td></td><td></td><td></td><td>y</td><td></td></tr>
-		<tr><td><code class="inset">:cunmap</code></td><td></td><td></td><td></td><td></td><td>y</td></tr>
-	</table>
-	<p>可以使用以下命令，取消所有映射。请注意，这个命令将会移除所有用户定义和系统默认的键盘映射。</p>
+	<p>使用以下命令，可以取消指定模式中的所有键盘映射。请注意，此命令将会移除所有用户定义和系统默认的键盘映射。</p>
 	<p style="text-indent:2em"><code class="inset">:mapclear</code></p>
+	<table summary="Map in diffent mode" border="1" rules="all" cellspacing="0" cellpadding="2" style="text-align:center">
+		<tr><td colspan="2">Command<br />命令</td><td><br />Normal<br />&nbsp;&nbsp;常规模式&nbsp;&nbsp;</td><td><br />Visual<br />可视化模式</td><td><br />Select<br />选择模式</td><td>Operator<br />Pending<br />运算符模式</td><td><br />Insert<br />插入模式</td><td>Command<br />Line<br />命令行模式</td><td><br />Terminal-Job<br />终端作业模式</td></tr>
+		<tr><td><code class="inset">:unmap</code></td><td><code class="inset">:mapclear</code></td><td>y</td><td>y</td><td>y</td><td>y</td><td></td><td></td><td></td></tr>
+		<tr><td><code class="inset">:nunmap</code></td><td><code class="inset">:nmapclear</code></td><td>y</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+		<tr><td><code class="inset">:vunmap</code></td><td><code class="inset">:vmapclear</code></td><td></td><td>y</td><td>y</td><td></td><td></td><td></td><td></td></tr>
+		<tr><td><code class="inset">:xunmap</code></td><td><code class="inset">:xmapclear</code></td><td></td><td>y</td><td></td><td></td><td></td><td></td><td></td></tr>
+		<tr><td><code class="inset">:sunmap</code></td><td><code class="inset">:smapclear</code></td><td></td><td></td><td>y</td><td></td><td></td><td></td><td></td></tr>
+		<tr><td><code class="inset">:ounmap</code></td><td><code class="inset">:omapclear</code></td><td></td><td></td><td></td><td>y</td><td></td><td></td><td></td></tr>
+		<tr><td><code class="inset">:unmap!</code></td><td><code class="inset">:mapclear!</code></td><td></td><td></td><td></td><td></td><td>y</td><td>y</td><td></td></tr>
+		<tr><td><code class="inset">:iunmap</code></td><td><code class="inset">:imapclear</code></td><td></td><td></td><td></td><td></td><td>y</td><td></td><td></td></tr>
+		<tr><td><code class="inset">:lunmap</code></td><td><code class="inset">:lmapclear</code></td><td></td><td></td><td></td><td></td><td>y</td><td>y</td><td></td></tr>
+		<tr><td><code class="inset">:cunmap</code></td><td><code class="inset">:cmapclear</code></td><td></td><td></td><td></td><td></td><td></td><td>y</td><td></td></tr>
+		<tr><td><code class="inset">:tunmap</code></td><td><code class="inset">:tmapclear</code></td><td></td><td></td><td></td><td></td><td></td><td></td><td>y</td></tr>
+	</table>
 	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="比较文件(diff)" href="http://yyq123.blogspot.com/2010/09/vim-diff.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="缩写(Abbr)" href="http://yyq123.blogspot.com/2010/12/vim-abbreviation.html">下一篇</a>&gt;</span></p>
 </body>
 </html>

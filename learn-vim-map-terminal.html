@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 终端模式的快捷键映射(tmap)</title>
+</head>
+<body>
+	<h1>VIM学习笔记 终端模式的快捷键映射(tmap)</h1>
+
+	<h2 class="article"><a id=""></a></h2>
+	<p></p>
+	<a href="#" title=""></a>
+	<p>在内置的终端窗口中，为了能正常使用外部 shell 本身的快捷键，Vim 禁用了绝大部分快捷键。也即是说，在内置终端窗口中键入shell命令，既不是插入模式也不是命令行模式，所以imap与cmap都不生效。Vim为此专门定义了一种特殊模式，叫做终端作业（Terminal-Job）模式。如果希望为终端作业模式自定义快捷键，那么需要使用<code>:tmap</code>命令。</p>
+	<p></p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+	<p>请注意，在内置终端窗口中，<kbd>Esc</kbd>键也保留为外部shell所用，并不会返回到普通模式。</p>
+
+	<h2 class="article"><a id="opt_termwinkey">termwinkey</a></h2>
+	<p>'termwinkey'选项，用于设置终端窗口中引导为<kbd>&lt;CTRL-W&gt;</kbd>系列命令的键。其默认值为空，即在终端窗口与普通窗口中，<kbd>&lt;CTRL-W&gt;</kbd>引导的快捷键含义保持一致。</p>
+	<p>使用默认选项的好处在于，不论是在普通窗口还是在终端窗口之中，点击<kbd>&lt;CTRL-Ww&gt;</kbd>键都可以切换到下一窗口；点击<kbd>&lt;CTRL-Wp&gt;</kbd>键都可以切换到之前所在窗口。也就是说，适用于普通窗口的<kbd>&lt;CTRL-W&gt;</kbd>快捷键，也同样适用于终端窗口。</p>
+	<p>使用<kbd>&lt;CTRL-W:&gt;</kbd>快捷键，则可以进入vim命令行。</p>
+	<p>请注意，为了保持操作的一致性，不建议对'termwinkey'选项进行修改。</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
+	<p>自定义<kbd>Shift-Tab</kbd>键，用于切换至下一窗口：</p>
+	<p style="text-indent:2em"><code class="inset">:tnoremap &lt;S-Tab&gt; &lt;C-w&gt;w</code></p>
+
+	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
+
+	<pre class="block">
+	</pre>
+
+	<ul>
+		<li><p class="item"><br /></p></li>
+		<li><p class="item"><a href="#" title=""></a><br /></p></li>
+	</ul>
+
+	<span style="font-weight:bold; color:#4169E1; margin-left:0.2em">&#65311;</span>
+	<p style="text-indent:2em"><code class="inset">:help :tmap</code></p>
+
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
+		<caption style="margin:0.5em; font-weight:bold">选项列表</caption>
+		<thead>
+		<tr><th style="white-space: nowrap">选项</th><th>描述</th><th>帮助信息</th></tr>
+		</thead>
+		<tbody>
+		<tr><td><code class="inset">!</code></td><td>如果包含，表示。例如，。</td><td style="white-space: nowrap"><code class="inset">:help viminfo-!</code></td></tr>
+		</tbody>
+	</table>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tbody>
+		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
+		<tr><td><code class="inset">:</code></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		</tbody>
+	</table>
+&ldquo;&rdquo;
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
+
+</body>
+</html>
