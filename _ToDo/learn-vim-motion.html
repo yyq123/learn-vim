@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 ()</title>
+</head>
+<body>
+	<h1>VIM学习笔记 ()</h1>
+
+	<h2 class="article"><a id=""></a></h2>
+	<p></p>
+	<a href="#" title=""></a>
+
+	<p></p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+
+	<p><code>&nbsp;</code></p>
+	<p><code>&nbsp;</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/motion_columns_0.png" title="motion_columns_0"><img src="https://yyq123.github.io/learn-vim/images/motion_columns_0.png" alt="motion_columns_0" width="550" height="157" /></a></p>
+	<p><code>0&nbsp;</code>移动到行首第一个字符；</p>
+	<p><code>^&nbsp;</code>移动到行首第一个非空字符；</p>
+	<p><code>$&nbsp;</code>移动到行尾；</p>
+
+	<p><a href="https://yyq123.github.io/learn-vim/images/motion_columns_hl.png" title="motion_columns_hl"><img src="https://yyq123.github.io/learn-vim/images/motion_columns_hl.png" alt="motion_columns_hl" width="550" height="157" /></a></p>
+	<p><code>9h&nbsp;&nbsp;</code>向左移动9个字符；</p>
+	<p><code>6l&nbsp;&nbsp;</code>向右移动6个字符；</p>
+	<p><code>12|&nbsp;</code>移动到第12列；</p>
+
+	<p><a href="https://yyq123.github.io/learn-vim/images/motion_columns_g0_wrap.png" title="motion_columns_g0_wrap"><img src="https://yyq123.github.io/learn-vim/images/motion_columns_g0_wrap.png" alt="motion_columns_g0_wrap" width="550" height="155" /></a></p>
+	<p>在<code>set wrap</code>启用折行显示的情况下：</p>
+	<p><code>g0&nbsp;&nbsp;</code>移动到屏幕行首第一个字符；</p>
+	<p><code>g^&nbsp;&nbsp;</code>移动到屏幕行首第一个非空字符；</p>
+	<p><code>2g$&nbsp;</code>移动到第12列；</p>
+
+	<p><a href="https://yyq123.github.io/learn-vim/images/motion_columns_g0_nowrap.png" title="motion_columns_g0_nowrap"><img src="https://yyq123.github.io/learn-vim/images/motion_columns_g0_nowrap.png" alt="motion_columns_g0_nowrap" width="550" height="90" /></a></p>
+	<p></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/motion_columns_gm.png" title="motion_columns_gm"><img src="https://yyq123.github.io/learn-vim/images/motion_columns_gm.png" alt="motion_columns_gm" width="550" height="87" /></a></p>
+	<h2 class="article"><a id="examples">操作实例</a></h2>
+	<p>如果感觉以上介绍云山雾罩，那么不妨对照以下操作实例，请注意：</p>
+	<ul>
+	<li><span style="background-color: lime;">绿色</span>，标志光标初始位置；</li>
+	<li><span style="background-color: red;">红色</span>，标志光标移动到的目的位置；</li>
+	<li><span style="background-color: orange;">橙色</span>，标志光标移动的轨迹；</li>
+	<li>图片来源于<a href="https://of-vim-and-vigor.blogspot.com/2012/11/vim-motions.html" title="of-vim-and-vigor.blogspot.com">of-vim-and-vigor.blogspot.com</a></li>
+	</ul>
+	<p><a href="https://yyq123.github.io/learn-vim/images/motion_large_objects.png" title="motion_large_objects"><img src="https://yyq123.github.io/learn-vim/images/motion_large_objects.png" alt="motion_large_objects" width="500" height="1156" /></a></p>
+
+	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
+
+	<pre class="block">
+	</pre>
+
+	<ul>
+		<li><p class="item"><br /></p></li>
+		<li><p class="item"><a href="#" title=""></a><br /></p></li>
+	</ul>
+
+	<span style="font-weight:bold; color:#4169E1; margin-left:0.2em">&#65311;</span>
+
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
+		<caption style="margin:0.5em; font-weight:bold">选项列表</caption>
+		<thead>
+		<tr><th style="white-space: nowrap">选项</th><th>描述</th><th>帮助信息</th></tr>
+		</thead>
+		<tbody>
+		<tr><td><code class="inset">!</code></td><td>如果包含，表示。例如，。</td><td style="white-space: nowrap"><code class="inset">:help viminfo-!</code></td></tr>
+		</tbody>
+	</table>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tbody>
+		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
+		<tr><td><code class="inset">:</code></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		</tbody>
+	</table>
+&ldquo;&rdquo;
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
+
+</body>
+</html>

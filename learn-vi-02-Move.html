@@ -8,31 +8,39 @@
 <title>VIM学习笔记 移动 (Movement)</title>
 </head>
 <body>
-<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">在行内移动</p>
-<p>我们可以用<code class="inset">w</code>命令向前移动一个单词，用<code class="inset">b</code>命令向后移动一个单词。我们也可以用数字做前缀组成新的命令，来快速的移动。例如<code class="inset">4w</code>就是向前移动4个单词，而<code class="inset">5b</code>则是向后移动5个单词。命令<code class="inset">e</code>也是向前移到一个单词，但是将光标定位在单词的结尾处；命令<code class="inset">ge</code>则是向后移到一个单词并到达前一个单词的结尾处。</p>
+<h1>VIM学习笔记 移动 (Movement)</h1>
+<h2 class="article"><a id="left-right-motions">在行内移动</a></h2>
+<p>使用<code class="inset">w</code>命令可以向前移动一个单词，使用<code class="inset">b</code>命令可以向后移动一个单词。通过在命令中增加数字前缀，可以快速移动指定个数的单词。例如<code class="inset">4w</code>可以向前移动4个单词，而<code class="inset">5b</code>则是向后移动5个单词。命令<code class="inset">e</code>也是向前移到一个单词，并将光标定位到单词的结尾处；命令<code class="inset">ge</code>则是向后移到一个单词并定位到前一个单词的结尾处。</p>
 <p>利用<code class="inset">$</code>命令可以使光标移到一行的结尾处；而<code class="inset">g_</code>命令则会而将光标移到一行的最后一个非空字符处。</p>
-<p>利用<code class="inset">0</code>命令可以使光标移到一行的开始处。而<code class="inset">^</code>命令则会忽略开头的空格，而将光标移到一行的第一个字符处。</p>
-<p><a href="https://www.flickr.com/photos/yyq123/30423229355/in/dateposted/" title="Movement_Inline"><img src="https://c4.staticflickr.com/9/8271/30423229355_07c585b8e5.jpg" width="500" height="217" alt="Movement_Inline"></a></p>
-<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">在行间移动</p>
-<p>进入命令状态，直接输入行号，按下回车键就可以移动到指定的行。</p>
-<p>使用<code class="inset">G</code>命令，可以移动到指定的行。例如<code class="inset">3G</code>可以使我们快速的移到第3行。而<code class="inset">1G</code>则可以使我们移到文章的最顶端，而<code class="inset">G</code>则是定位到文章的最后一行。</p>
+<p>利用<code class="inset">0</code>命令可以使光标移到一行的开始处。而<code class="inset">^</code>命令则会忽略开头的空格，而将光标移到一行的第一个非空字符处。</p>
+<p><a href="https://yyq123.github.io/learn-vim/images/Movement_Inline.png" title="Movement_Inline"><img src="https://yyq123.github.io/learn-vim/images/Movement_Inline.png" alt="Movement_Inline" width="550" height="239" /></a></p>
+
+<h2 class="article"><a id="up-down-motions">在行间移动</a></h2>
+<p>进入<a href="http://yyq123.github.io/learn-vim/learn-vi-46-CommandlineMode.html" title="命令行模式(Command-line Mode)">命令行模式</a>，直接输入行号，按下回车键即可移动到指定的行。</p>
+<p>在常规模式下使用<code class="inset">G</code>命令，可以移动到指定的行。例如<code class="inset">3G</code>可以移动到第3行。而<code class="inset">1G</code>则可以移到文件的开头，而<code class="inset">G</code>则是移动到文件末尾。</p>
 <p>使用<code class="inset">-</code>命令，可以移动到上一行的第一个非空字符处；而<code class="inset">+</code>命令，则可以移动到下一行的第一个非空字符处。</p>
-<p>使用<code class="inset">)</code>命令，可以向前移动一个句子；而<code class="inset">(</code>命令，则可以向后移动一个句子。</p>
+<p>使用<code class="inset">)</code>命令，可以向前移动一个句子；而<code class="inset">(</code>命令，则向后移动一个句子。</p>
 <p>使用<code class="inset">}</code>命令，可以向前移动一个段落；而<code class="inset">{</code>命令，则向后移动一个段落。</p>
 <p>将以上移动命令与数字相结合，可以进一步加快移动的速度。</p>
-<p><a href="https://www.flickr.com/photos/yyq123/30423459525/in/dateposted/" title="Movement_Gotoline"><img src="https://c2.staticflickr.com/6/5783/30423459525_210bfda116_o.png" width="290" height="427" alt="Movement_Gotoline"></a></p>
-<p>除了在行间移动，我们还可以使用<kbd>ctrl+U</kbd>和<kbd>ctrl+D</kbd>命令进行向上和向下翻页，以快速移动到文章的不同部分。我们将在<a title="滚动屏幕" href="http://yyq123.blogspot.com/2009/02/vim_27.html">滚动屏幕</a>章节中做详细介绍。</p>
-<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">显示位置信息</p>
-<p>那么又如何知道现在第几行呢？我们可以使用<code class="inset">:set number</code>命令使vi显示行号；而取消行号的命令为<code class="inset">:set nonumber</code></p>
-<p>即使没有显示行号，也可以使用<code class="inset">CTRL-G</code>命令在屏幕的下端显示当前所在位置的信息。我们还可以在CTRL-G命令加上一个数字参数，这个数字越大得到的信息就越详细。命令<code class="inset">1CTRL-G</code>会显示文件的全路径。命令<code class="inset">2CTRL-G</code>会同时显示缓冲区的数字标号。</p>
-<p><a href="https://www.flickr.com/photos/yyq123/29665109363/in/dateposted/" title="info_CtrlG"><img src="https://c2.staticflickr.com/6/5746/29665109363_9f2976235a_o.png" width="608" height="44" alt="info_CtrlG"></a></p>
-<p>命令<code class="inset">gCTRL-G</code>可显示出当前文件中的字符数的信息。主要显示出当前行数（Line）、列数（Col）、字数（Word）、字符数（Char）和字节数（Byte）等信息。</p>
-<p><a  href="https://www.flickr.com/photos/yyq123/29665109203/in/photostream/" title="info_gCtrlG"><img src="https://c1.staticflickr.com/9/8278/29665109203_f825ac8782_o.png" width="617" height="61" alt="info_gCtrlG"></a></p>
-<p>命令<code class="inset">:set ruler</code>可以打开标尺选项(ruler option)。将在屏幕右下角，显示当前所在的行和列，以及相对于整个文件所处的位置。</p>
-<p><a href="https://www.flickr.com/photos/yyq123/29665133933/in/dateposted/" title="set_ruler"><img src="https://c1.staticflickr.com/9/8270/29665133933_23232f877d_o.png" width="608" height="28" alt="set_ruler"></a></p>
-<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">移动的历史记录</p>
-<p>Vim可以记录你曾经到过的地方，并且可以使你回到前一次到过的地方。例如在编辑文件时执行了下面的命令，从而到过不同的行：<code class="inset">1G</code>到第一行；<code class="inset">10G</code>到第十行；<code class="inset">20G</code>到第二十行。现在执行<code class="inset">:jumps</code>命令，就会看到一个曾到过的行的列表。使用命令<code class="inset">CTRL-O</code>跳转到移动记录列表中上一个位置。而命令<code class="inset">CTRL-I</code>跳转到移动记录列表中下一个位置。你不但可以在当前文件内跳转，甚至还可以移动到曾经涉足过的其它文件。</p>
-<p><a href="https://www.flickr.com/photos/yyq123/29665041673/in/dateposted/" title="jumps"><img src="https://c1.staticflickr.com/9/8131/29665041673_cfe85c53d8_o.png" width="361" height="111" alt="jumps"></a></p>
+<p><a href="https://yyq123.github.io/learn-vim/images/Movement_Gotoline.png" title="Movement_Gotoline"><img src="https://yyq123.github.io/learn-vim/images/Movement_Gotoline.png" alt="Movement_Gotoline" width="550" height="365" /></a></p>
+<p>使用<kbd>ctrl+U</kbd>和<kbd>ctrl+D</kbd>命令可以向上和向下翻页，以快速移动到文章的不同部分。请参考<a title="滚动屏幕" href="http://yyq123.blogspot.com/2009/02/vim_27.html">滚动屏幕</a>章节中的详细介绍。</p>
+
+<h2 class="article"><a id="CTRL-G">显示位置信息</a></h2>
+<p>使用<code class="inset">:set number</code>命令可以显示行号；而<code class="inset">:set nonumber</code>命令则取消行号显示。</p>
+<p>使用<code class="inset">CTRL-G</code>命令，将在屏幕底部显示当前所在位置的信息。我们还可以在CTRL-G命令之前增加数字参数，数字越大得到的信息就越详细。命令<code class="inset">1CTRL-G</code>会显示文件的全路径。命令<code class="inset">2CTRL-G</code>会同时显示缓冲区的数字标号。</p>
+<p><a href="https://yyq123.github.io/learn-vim/images/info_CtrlG.png" title="info_CtrlG"><img src="https://yyq123.github.io/learn-vim/images/info_CtrlG.png" alt="info_CtrlG" width="550" height="40" /></a></p>
+<p>使用<code class="inset">gCTRL-G</code>命令，可以显示当前文件中的字符统计信息。包括当前行数（Line）、列数（Col）、字数（Word）、字符数（Char）和字节数（Byte）等信息。</p>
+<p><a href="https://yyq123.github.io/learn-vim/images/info_gCtrlG.png" title="info_gCtrlG"><img src="https://yyq123.github.io/learn-vim/images/info_gCtrlG.png" alt="info_gCtrlG" width="550" height="54" /></a></p>
+<p>使用<code class="inset">:set ruler</code>命令，将在屏幕右下角显示当前所在的行和列，以及相对于整个文件的位置。</p>
+<p><a href="https://yyq123.github.io/learn-vim/images/set_ruler.png" title="set_ruler"><img src="https://yyq123.github.io/learn-vim/images/set_ruler.png" alt="set_ruler" width="550" height="25" /></a></p>
+
+<h2 class="article"><a id="jump-motions">移动的历史记录</a></h2>
+<p>Vim可以记录在文件中的移动轨迹，并可以回溯到之前到过的位置。例如执行以下命令，移动到不同的行：<code class="inset">1G</code>到第一行；<code class="inset">10G</code>到第十行；<code class="inset">20G</code>到第二十行。然后执行<code class="inset">:jumps</code>命令，将会显示移动记录的列表。使用<code class="inset">CTRL-O</code>命令，可以跳转到上一个（较旧的）位置。而<code class="inset">CTRL-I</code>命令，则可以跳转到下一个（较新的）位置。跳转不仅仅涉及当前文件，也会跳转到曾经涉足的其它文件。</p>
+<p><a href="https://yyq123.github.io/learn-vim/images/jumps.png" title="jumps"><img src="https://yyq123.github.io/learn-vim/images/jumps.png" alt="jumps" /></a></p>
+<p>使用<code class="inset">:clearjumps</code>命令，可以清除所有移动历史记录。</p>
+
+<p><span style="font-weight:bold; color:#4169E1; margin-left:0.2em">&#65311;</span>使用以下命令，可以查看相关帮助信息：</p>
+<p style="text-indent:2em"><code class="inset">:help motion.txt</code></p>
 
 <table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 <caption>命令小结</caption>
@@ -68,6 +76,6 @@
 <tr><td><code class="inset">gg</code></td><td>移动到文件开头</td></tr>
 <tr><td><code class="inset">`.</code></td><td>移动到上次编辑处</td></tr>
 </table>
-<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.1</span><span>&lt;<a title="基本编辑" href="http://yyq123.blogspot.com/2009/02/vim.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="复制和粘贴" href="http://yyq123.blogspot.com/2009/02/vim_25.html">下一篇</a>&gt;</span></p>
+<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="基本编辑" href="http://yyq123.github.io/learn-vim/learn-vi-01-Basic.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="复制和粘贴" href="http://yyq123.github.io/learn-vim/learn-vi-03-yank.html">下一篇</a>&gt;</span></p>
 </body>
 </html>

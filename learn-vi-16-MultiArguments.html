@@ -10,22 +10,27 @@
 <body>
 	<h1>VIM学习笔记 参数(Arguments)</h1>
 
-	<h2 class="article"><a id="Arguments">启动参数</a></h2>
+	<h2 class="article"><a id="args">启动参数</a></h2>
 	<p>在启动vim时，可以指定多个文件做为参数，例如以下操作系统命令将打开多个文件，并显示第一个文件：</p>
-	<p style="text-indent:2em"><code class="inset">vim file1.txt file2.txt file3.txt</code></p>
-	<p>参数（Arguments）和<a href="http://yyq123.github.io/learn-vim/learn-vi-13-MultiBuffers.html" title="Buffer">缓冲区（Buffer）</a>是不同的概念。早在Vi之中，就存在参数概念；而缓冲区则是在Vim之中新引进的。参数列表中的所有文件名，都会同时存在于缓冲区列表之中；但并不是所有缓冲区列表中的文件名，也都会出现在参数列表之中。</p>
-	<p>例如在启动vim之后，我们使用以下命令打开并编辑文件4：</p>
+	<p style="text-indent:2em"><code class="inset">$ vim file1.txt file2.txt file3.txt</code></p>
+	<p>参数（Arguments）和<a href="http://yyq123.github.io/learn-vim/learn-vi-13-MultiBuffers.html" title="Buffer">缓冲区</a>（Buffer）是不同的概念。早在Vi时期，就存在参数概念；而缓冲区则是在Vim之中新引进的。参数列表中的所有文件名，都会同时存在于缓冲区列表之中；但并不是所有缓冲区列表中的文件名，也都会出现在参数列表之中。</p>
+	<p>例如在启动vim之后，使用以下命令打开并编辑文件：</p>
 	<p style="text-indent:2em"><code class="inset">:e file4.txt</code></p>
 	<p>此时显示以下3个参数：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/args_3.jpg" title="args_3"><img src="https://yyq123.github.io/learn-vim/images/args_3.jpg" alt="args_3" /></a></p>
 	<p><a href="https://www.flickr.com/photos/yyq123/42559299455/in/dateposted/" title="args_3"><img src="https://farm2.staticflickr.com/1829/42559299455_0e76c01a10_o.jpg" width="552" height="42" alt="args_3" /></a></p>
 	<p>而缓冲区则为4个：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/args_4.jpg" title="args_4"><img src="https://yyq123.github.io/learn-vim/images/args_4.jpg" alt="args_4.jpg" /></a></p>
 	<p><a href="https://www.flickr.com/photos/yyq123/41656148030/in/dateposted/" title="args_4"><img src="https://farm2.staticflickr.com/1789/41656148030_ededba7c03_o.jpg" width="552" height="146" alt="args_4" /></a></p>
 
-	<h2 class="article"><a id="args">参数列表</a></h2>
+	<h2 class="article"><a id="arglist">参数列表</a></h2>
 	<p>命令<code class="inset">:args</code>可以列示打开的多个文件，并用中括号&ldquo;[]&rdquo;标识出正在编辑的文件名。</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/args.png" title="args"><img src="https://yyq123.github.io/learn-vim/images/args.png" alt="args" /></a></p>
 	<p><a href="https://www.flickr.com/photos/yyq123/3737701803/" title="args by yyq123, on Flickr"><img src="https://farm3.static.flickr.com/2513/3737701803_11f4eb9625_o.png" width="491" height="144" alt="args" /></a></p>
+	<p>如果在命令中指定了文件名列表，那么可以打开多个文件：</p>
+	<p style="text-indent:2em"><code class="inset">:args *.txt</code></p>
 
-	<h2 class="article"><a id="*alternate-file">切换多个文件</a></h2>
+	<h2 class="article"><a id="alternate-file">切换多个文件</a></h2>
 	<p>可以使用:argument命令，直接切换到指定的文件。例如以下命令，将切换至列表中的第三个文件：</p>
 	<p style="text-indent:2em"><code class="inset">:argument 3</code></p>
 	<p>需要切换到下一个文件时，可以输入<code class="inset">:next</code>命令，如果你没有保存当前文件的修改，vim将给出提示信息，不允许切换到下一文件。输入<code class="inset">:write</code>和<code class="inset">:next</code>命令，则可以保存并切换到第二个文件（此命令也可简写为<code class="inset">:wnext</code>）。</p>

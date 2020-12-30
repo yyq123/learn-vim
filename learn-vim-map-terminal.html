@@ -13,9 +13,9 @@
 	<h2 class="article"><a id=""></a></h2>
 	<p></p>
 	<a href="#" title=""></a>
-	<p>在内置的终端窗口中，为了能正常使用外部 shell 本身的快捷键，Vim 禁用了绝大部分快捷键。也即是说，在内置终端窗口中键入shell命令，既不是插入模式也不是命令行模式，所以imap与cmap都不生效。Vim为此专门定义了一种特殊模式，叫做终端作业（Terminal-Job）模式。如果希望为终端作业模式自定义快捷键，那么需要使用<code>:tmap</code>命令。</p>
-	<p></p>
-	<p style="text-indent:2em"><code class="inset"></code></p>
+	<p>在内置的终端窗口中，为了能正常使用外部 shell 本身的快捷键，Vim 禁用了绝大部分快捷键。也就是说，在内置终端窗口中键入shell命令，既不是插入模式也不是命令行模式，所以imap与cmap都不会生效。Vim为此定义了一种特殊模式，叫做终端作业（Terminal-Job）模式。如果希望为终端作业模式自定义快捷键，那么需要使用<code>:tmap</code>命令。</p>
+	<p>例如定义<kbd>Shift+Insert</kbd>键，用于在终端中粘贴系统剪切板的内容：</p>
+	<p style="text-indent:2em"><code class="inset">:tmap &lt;S-Insert&gt; &lt;C-W&gt;"+</code></p>
 	<p>请注意，在内置终端窗口中，<kbd>Esc</kbd>键也保留为外部shell所用，并不会返回到普通模式。</p>
 
 	<h2 class="article"><a id="opt_termwinkey">termwinkey</a></h2>
@@ -24,8 +24,8 @@
 	<p>使用<kbd>&lt;CTRL-W:&gt;</kbd>快捷键，则可以进入vim命令行。</p>
 	<p>请注意，为了保持操作的一致性，不建议对'termwinkey'选项进行修改。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
-	<p>自定义<kbd>Shift-Tab</kbd>键，用于切换至下一窗口：</p>
-	<p style="text-indent:2em"><code class="inset">:tnoremap &lt;S-Tab&gt; &lt;C-w&gt;w</code></p>
+	<p>自定义<kbd>Shift-Tab</kbd>键，用于切换至下一普通窗口或终端窗口：</p>
+	<p style="text-indent:2em"><code class="inset">:map &lt;S-Tab&gt; &lt;C-W&gt;w</code></p>
 
 	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
 
