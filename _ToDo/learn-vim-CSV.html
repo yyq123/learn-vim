@@ -18,10 +18,14 @@
 	<p style="text-indent:2em"><code class="inset"></code></p>
 
 	<p>假设有以下逗号分割的CSV文件，如下图红线所示，数据列没有对齐：</p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/CSV-Column-Align-Before.png" title="CSV-Column-Align-Before"><img src="https://yyq123.github.io/learn-vim/images/CSV-Column-Align-Before.png" alt="CSV-Column-Align-Before" width="500" height="" /></a></p>
-	<p>利用<a href="http://yyq123.github.io/learn-vim/learn-vim-Shell-Filter.html" title="过滤器(Filter)">过滤器</a>按列对齐：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/CSV-Column-Align-Before.png" title="CSV-Column-Align-Before"><img src="https://yyq123.github.io/learn-vim/images/CSV-Column-Align-Before.png" alt="CSV-Column-Align-Before" width="550" height="84" /></a></p>
+	<p>通过<a href="http://yyq123.github.io/learn-vim/learn-vim-Shell-Filter.html" title="过滤器(Filter)">过滤器</a>使用<a href="http://man.he.net/?topic=column&section=all" title="column">column</a>命令来按列对齐：</p>
 	<p style="text-indent:2em"><code class="inset">:%!column -t</code></p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/CSV-Column-Align-Before.png" title="CSV-Column-Align-Before"><img src="https://yyq123.github.io/learn-vim/images/CSV-Column-Align-Before.png" alt="CSV-Column-Align-Before" width="500" height="" /></a></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/CSV-Column-Align-After.png" title="CSV-Column-Align-After"><img src="https://yyq123.github.io/learn-vim/images/CSV-Column-Align-After.png" alt="CSV-Column-Align-After" width="550" height="77" /></a></p>
+
+	<p>使用<a href="https://github.com/chrisbra/csv.vim" title="csv.vim">csv.vim</a>插件，执行以下命令可以按列对齐：</p>
+	<p style="text-indent:2em"><code class="inset">:%ArrangeColumn</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/plugin_csv_ArrangeColumn.png" title="plugin_csv_ArrangeColumn"><img src="https://yyq123.github.io/learn-vim/images/plugin_csv_ArrangeColumn.png" alt="plugin_csv_ArrangeColumn" width="550" height="55" /></a></p>
 
 	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
 
