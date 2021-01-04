@@ -27,7 +27,7 @@
 	<p><a href="http://www.flickr.com/photos/yyq123/5100818807/" title="VisualMode_Line by yyq123, on Flickr"><img src="http://farm5.static.flickr.com/4110/5100818807_654901eb04.jpg" width="266" height="87" alt="VisualMode_Line" /></a></p>
 	<p>使用命令<code class="inset">ctrl-Q</code>进入<strong>块可视化模式</strong>。在此模式下，我们使用<code class="inset">2l</code>命令向右移动，然后使用<code class="inset">3j</code>命令向下移动，就可以选中4行2列的文本块。</p>	
 	<p><a href="http://www.flickr.com/photos/yyq123/5100856819/" title="VisualMode_Block by yyq123, on Flickr"><img src="http://farm5.static.flickr.com/4107/5100856819_81acfbf1fa.jpg" width="266" height="87" alt="VisualMode_Block" /></a></p>
-	<p>命令<code class="inset">gv</code>可以重复前一次可视化模式时选中的文本。如果已经在可视化模式下，执行该命令会选中前一次选择的文本。如果重复行执行gv命令，就会在当前选中的文本和前一次选中的文本之间进行切换。</p>
+	<p>命令<code class="inset">gv</code>可以重复前一次可视化模式的选择。如果已经在可视化模式下，执行该命令会选中前一次选择的文本。如果重复行执行gv命令，就会在当前选中的文本和前一次选中的文本之间进行切换。</p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">在可视化模式下移动</p>
 	<p>如果你已经在可视化模式下选择了若干文本，并且希望移动到已选择文本的另一结尾处，那么可以使用<code class="inset">o</code>命令。</p>
@@ -36,7 +36,7 @@
 	<p><a href="http://www.flickr.com/photos/yyq123/445669724/" title="Photo Sharing"><img src="http://farm1.static.flickr.com/231/445669724_d04cc4cf52.jpg" width="500" height="349" alt="VisualMode_o_2" /></a></p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">在可视化模式下编辑</p>
-	<p>在可视化模式下，我们可以进行各种编辑操作。如<code class="inset">d</code>命令可以删除高亮显示的文本，而<code class="inset">D</code>命令则会删除一行，即使这一行中只有部分文本是高亮显示的。类似的，<code class="inset">y</code>命令将复制高亮显示的文本，而<code class="inset">Y</code>命令会复制整行。</p>
+	<p>在可视化模式下，可以进行各种编辑操作。使用<code class="inset">d</code>命令可以删除高亮显示的文本，而<code class="inset">D</code>命令则会删除一行，即使这一行中只有部分文本是高亮显示的。类似的，<code class="inset">y</code>命令将复制高亮显示的文本，而<code class="inset">Y</code>命令则会复制整行。</p>
 	<p>在块可视化模式下，使用<code class="inset">c</code>命令将删除高亮选中的文本并进入插入模式，在你输入文本并点击<kbd>Esc</kbd>返回之后，输入的文本将插入到块选中的每一行里。</p>
 	<p><a href="https://www.flickr.com/photos/yyq123/33871058340/in/dateposted/" title="VisualMode_cstring"><img src="https://c1.staticflickr.com/3/2817/33871058340_88ed064576.jpg" width="500" height="73" alt="VisualMode_cstring"></a></p>
 	<p>而<code class="inset">C</code>命令会删除从选中文本到行尾的所有字符并进入插入状态。</p>

@@ -16,9 +16,22 @@
 
 	<p></p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
+	<p>请注意：</p>
+	<ul>
+	<li><span style="background-color: lime;">绿色</span>，标志光标初始位置；</li>
+	<li><span style="background-color: red;">红色</span>，标志光标移动到的目的位置；</li>
+	<li><span style="background-color: orange;">橙色</span>，标志光标移动的轨迹；</li>
+	<li>当前窗口行，指的是在当前窗口可视范围内显示的行内容，也就是屏幕显示的部分行内容，而非实际完整的行内容。</li>
+	<li>图片来源于<a href="https://of-vim-and-vigor.blogspot.com/2012/11/vim-motions.html" title="of-vim-and-vigor.blogspot.com">of-vim-and-vigor.blogspot.com</a></li>
+	</ul>
 
 	<p><code>&nbsp;</code></p>
 	<p><code>&nbsp;</code></p>
+
+	<h2 class="article"><a id="motion_lines">按列移动</a></h2>
+	<p><a href="https://yyq123.github.io/learn-vim/images/motion_kj.png" title="motion_kj"><img src="https://yyq123.github.io/learn-vim/images/motion_kj.png" alt="motion_kj" width="550" height="390" /></a></p>
+
+	<h2 class="article"><a id="motion_columns">按列移动</a></h2>
 	<p><a href="https://yyq123.github.io/learn-vim/images/motion_columns_0.png" title="motion_columns_0"><img src="https://yyq123.github.io/learn-vim/images/motion_columns_0.png" alt="motion_columns_0" width="550" height="157" /></a></p>
 	<p><code>0&nbsp;</code>移动到行首第一个字符；</p>
 	<p><code>^&nbsp;</code>移动到行首第一个非空字符；</p>
@@ -30,22 +43,27 @@
 	<p><code>12|&nbsp;</code>移动到第12列；</p>
 
 	<p><a href="https://yyq123.github.io/learn-vim/images/motion_columns_g0_wrap.png" title="motion_columns_g0_wrap"><img src="https://yyq123.github.io/learn-vim/images/motion_columns_g0_wrap.png" alt="motion_columns_g0_wrap" width="550" height="155" /></a></p>
-	<p>在<code>set wrap</code>启用折行显示的情况下：</p>
-	<p><code>g0&nbsp;&nbsp;</code>移动到屏幕行首第一个字符；</p>
-	<p><code>g^&nbsp;&nbsp;</code>移动到屏幕行首第一个非空字符；</p>
-	<p><code>2g$&nbsp;</code>移动到第12列；</p>
+	<p>使用<code>set wrap</code>选项，启用折行显示的情况下：</p>
+	<p><code>g0&nbsp;&nbsp;</code>移动到当前窗口行首第一个字符；</p>
+	<p><code>g^&nbsp;&nbsp;</code>移动到当前窗口行首第一个非空字符；</p>
+	<p><code>2g$&nbsp;</code>移动到当前窗口行下一行（2-1）末尾最后一个字符；</p>
 
 	<p><a href="https://yyq123.github.io/learn-vim/images/motion_columns_g0_nowrap.png" title="motion_columns_g0_nowrap"><img src="https://yyq123.github.io/learn-vim/images/motion_columns_g0_nowrap.png" alt="motion_columns_g0_nowrap" width="550" height="90" /></a></p>
-	<p></p>
+	<p>使用<code>set nowrap</code>选项，取消折行显示的情况下：</p>
+	<p><code>g0&nbsp;&nbsp;</code>移动到当前窗口行首第一个字符；</p>
+	<p><code>g^&nbsp;&nbsp;</code>移动到当前窗口行首第一个非空字符；</p>
+	<p><code>g$&nbsp;</code>移动到当前窗口行末尾最后一个字符；</p>
+
 	<p><a href="https://yyq123.github.io/learn-vim/images/motion_columns_gm.png" title="motion_columns_gm"><img src="https://yyq123.github.io/learn-vim/images/motion_columns_gm.png" alt="motion_columns_gm" width="550" height="87" /></a></p>
+	<p><code>g0&nbsp;&nbsp;</code>移动到当前窗口行中间位置；</p>
+
+	<h2 class="article"><a id="motion_words">按单词移动</a></h2>
+	<p><a href="https://yyq123.github.io/learn-vim/images/motion_word_8.png" title="motion_word_8"><img src="https://yyq123.github.io/learn-vim/images/motion_word_8.png" alt="motion_word_8" width="550" height="384" /></a></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/motion_word_1.png" title="motion_word_1"><img src="https://yyq123.github.io/learn-vim/images/motion_word_1.png" alt="motion_word_1" width="550" height="239" /></a></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/motion_WORD_2.png" title="motion_WORD_2"><img src="https://yyq123.github.io/learn-vim/images/motion_WORD_2.png" alt="motion_WORD_2" width="550" height="299" /></a></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/motion_WORD_3.png" title="motion_WORD_3"><img src="https://yyq123.github.io/learn-vim/images/motion_WORD_3.png" alt="motion_WORD_3" width="550" height="299" /></a></p>
+
 	<h2 class="article"><a id="examples">操作实例</a></h2>
-	<p>如果感觉以上介绍云山雾罩，那么不妨对照以下操作实例，请注意：</p>
-	<ul>
-	<li><span style="background-color: lime;">绿色</span>，标志光标初始位置；</li>
-	<li><span style="background-color: red;">红色</span>，标志光标移动到的目的位置；</li>
-	<li><span style="background-color: orange;">橙色</span>，标志光标移动的轨迹；</li>
-	<li>图片来源于<a href="https://of-vim-and-vigor.blogspot.com/2012/11/vim-motions.html" title="of-vim-and-vigor.blogspot.com">of-vim-and-vigor.blogspot.com</a></li>
-	</ul>
 	<p><a href="https://yyq123.github.io/learn-vim/images/motion_large_objects.png" title="motion_large_objects"><img src="https://yyq123.github.io/learn-vim/images/motion_large_objects.png" alt="motion_large_objects" width="500" height="1156" /></a></p>
 
 	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
