@@ -100,6 +100,7 @@ Created by yyq123@gmail.com using [vim](http://www.vim.org/)
 - **与外部系统交互**
   - [作业(job)](http://yyq123.github.io/learn-vim/learn-vim-job.html)[<sup>B</sup>](https://yyq123.blogspot.com/2020/11/vim-job.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/308170366)
   - [定时器(timer)](http://yyq123.github.io/learn-vim/learn-vim-timer.html)[<sup>B</sup>](https://yyq123.blogspot.com/2020/11/vim-timer.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/322256004)
+  - [通道(channel)](http://yyq123.github.io/learn-vim/learn-vim-channel.html)[<sup>B</sup>](https://yyq123.blogspot.com/2021/01/vim-channel.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/344108477)
 - **开发环境**
   - [编译Vim支持Python3(Compile Vim with Python3 support)](http://yyq123.github.io/learn-vim/learn-vim-CompileVim-Mac.html)[<sup>B</sup>](https://yyq123.blogspot.com/2020/03/vim-with-python3.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/111592292)
   - [编译源码(Compile Code)-C](http://yyq123.github.io/learn-vim/learn-vim-CompileCode-C.html)[<sup>B</sup>](https://yyq123.blogspot.com/2020/03/vim-compile-code-c.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/115270014)
