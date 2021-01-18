@@ -5,235 +5,205 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记 脚本- (Script-List)</title>
+	<title>VIM学习笔记 脚本-列表(Script-List)</title>
 </head>
 <body>
-	<h1>VIM学习笔记 ()</h1>
+	<h1>VIM学习笔记 脚本-列表(Script-List)</h1>
 
-	<h2 class="article"><a id=""></a></h2>
-	<p></p>
-	<a href="#" title=""></a>
-	<p style="text-indent:2em"><code class="inset">:help list</code></p>
-	<p style="text-indent:2em"><code class="inset">:help list-functions</code></p>
+	<p>列表（List），是一组由逗号分隔的项目的有序序列。它与其它编程语言中的数组（Array）概念非常相似。可以使用索引号来访问列表项目。也可以在序列的任何位置上增加或者删除项目。</p>
+	<p>请注意下文中引号后的文字为命令执行的结果，以演示各个函数的功能。</p>
 
-	<p></p>
-	<p style="text-indent:2em"><code class="inset"></code></p>
-	<p>列表（List），是一组由逗号分隔的项目的有序序列。它与其它编程语言中的数组（Array）概念非常相似。可以使用索引号来访问列表项目。也可以在序列的任何位置上增加或者删除项目。
-</p>
 	<h2 class="article"><a id="script-list-create">创建列表</a></h2>
 	<p>可以将一组由逗号分隔的项目放置在方括号之内，以创建一个列表。列表中的项目索引从0开始。可以使用[<var>n</var>]形式，来引用特定的列表项目。</p>
 	<pre class="block"><code>let data = [1,2,3,4,5,6,"seven"]
-echo data[0]                 " echoes: 1
+echo data[0]                 " 1
 let data[1] = 42             " [1,42,3,4,5,6,"seven"]
 let data[2] += 99            " [1,42,102,4,5,6,"seven"]
 let data[6] .= ' samurai'    " [1,42,102,4,5,6,"seven samurai"]</code></pre>
-	<p>使用 range() 函数，可以生成一个整数值的列表。 range(max)，将生成从0到max-1；range(min, max)，包含min和max在内的连续值；range(min, max, step), 从min到max，不畅为step：</p>
-	<pre class="block"><code>
-let sequence_of_ints = range(5)                " [0,1,2,3,4]
+	<p>使用[<var>m:n</var>]形式，可以引用指定范围的列表项目。</p>
+	<pre class="block"><code>let data = [-1,0,1,2,3,4,5]
+let positive = data[2:6]                              " [1,2,3,4,5]
+let week = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat']
+let weekdays = week[1:5]                              " ['Mon','Tue','Wed','Thu','Fri']</code></pre>
+	<p>如果忽略起始位置，那么将默认从列表首个项目开始；如果忽略结束位置，那么将默认至列表最后一个项目。</p>
+	<pre class="block"><code>let middle = len(data)/2                              " middle = 3
+let first_half = data[: middle-1]                     " data[0 : middle-1]
+echo first_half                                       " [-1,0,1]
+let second_half	= data[middle :]                      " data[middle : len(data)-1]
+echo first_half                                       " [2,3,4,5]</code></pre>
+	<p>使用 range() 函数，可以生成一个整数值的列表。 range(max)将生成从0到max-1的列表；range(min, max)将生成包含min和max在内的连续值列表；range(min, max, step)将从min到max，按照step指定的步长来生成列表。</p>
+	<pre class="block"><code>let sequence_of_ints = range(5)                " [0,1,2,3,4]
 let sequence_of_ints = range(1,5)              " [1,2,3,4,5]
 let sequence_of_ints = range(1, 10, 2)         " [1,3,5,7,9]</code></pre>
-
 
 	<h2 class="article"><a id="script-list-nested">列表嵌套</a></h2>
 	<p>除了数值和字符串之外，列表中也可以包含嵌套的列表。</p>
 	<pre class="block"><code>let pow = [
 \   [ 1, 0, 0, 0  ],
 \   [ 1, 1, 1, 1  ],
-\   [ 1, 2, 4, 8  ],
-\   [ 1, 3, 9, 27 ],
+\   [ 1, 3, 9, 27 ]
 \]
-" and later...
-echo pow[x][y]</code></pre>
-	<p>Here, the first indexing operation (pow[x]) returns one of the elements of the list in pow. That element is itself a list, so the second indexing ([y]) returns one of the nested list’s elements.</p>
+
+echo pow[2][3]     " 27</code></pre>
+	<p>在以上echo pow[2][3]命令中，根据第一个索引参数，将返回指定的第3个嵌套列表；根据第二个索引参数，将返回嵌套列表中的第4个项目。</p>
 
 	<h2 class="article"><a id="script-list-assign">引用列表</a></h2>
-	<p>当变量赋值为列表时, you’re really assigning a pointer or reference to So, assigning from one list variable to another causes them to both point at or refer to underlying list. This usually leads to unpleasant action-at-a-distance surprises like the here:</p>
-
+	<p>将变量赋值为列表时，实际上是将变量指向列表；如果将该列表变量赋给其它变量，那么这两个变量都将被指向同一个列表。也就是说，对于实际列表值的变更，将同时影响所有指向它的变量。</p>
 	<pre class="block"><code>let old_suffixes = ['.c', '.h', '.py']
 let new_suffixes = old_suffixes
 let new_suffixes[2] = '.js'
-echo old_suffixes      |" echoes: ['.c', '.h', '.js']
-echo new_suffixes      |" echoes: ['.c', '.h', '.js']</code></pre>
+echo old_suffixes      " ['.c', '.h', '.js']
+echo new_suffixes      " ['.c', '.h', '.js']</code></pre>
 
 	<h2 class="article"><a id="script-list-copy">复制列表</a></h2>
-	<p>To avoid this aliasing effect, you need to call the built-in copy() function to duplicate the list, and then assign the copy instead:</p>
+	<p>使用copy()函数，可以复制列表。这样就可以使用不同的变量，来保存不同状态下的列表值。</p>
 	<pre class="block"><code>let old_suffixes = ['.c', '.h', '.py']
 let new_suffixes = copy(old_suffixes)
 let new_suffixes[2] = '.js'
-echo old_suffixes      |" echoes: ['.c', '.h', '.py']
-echo new_suffixes      |" echoes: ['.c', '.h', '.js']</code></pre>
-	<p>Note, that copy() only duplicates the top level of the list. If any of those values is itself a nested list, it’s really a pointer/reference to some separate external list. In that case, copy() will duplicate that pointer/reference, and the nested list will still be shared by both the original and the copy, as shown here:</p>
-
+echo old_suffixes      " ['.c', '.h', '.py']
+echo new_suffixes      " ['.c', '.h', '.js']</code></pre>
+	<p>请注意，copy()函数只会复制最顶层的列表，即列表的浅备份。如果顶层列表包含嵌套列表，那么嵌套的子列表，将仅仅被作为指向实际子列表的指针被复制。也就是说，对于实际子列表的更改，将同时影响所有指向它的变量。</p>
 	<pre class="block"><code>let pedantic_pow = copy(pow)
-let pedantic_pow[0][0] = 'indeterminate'
+echo pow               " [[1, 0, 0, 0], [1, 1, 1, 1], [1, 3, 9, 27]]
+echo pedantic_pow      " [[1, 0, 0, 0], [1, 1, 1, 1], [1, 3, 9, 27]]
+
+let pedantic_pow[0][0] = 'vague'
+echo pow               " [['vague', 0, 0, 0], [1, 1, 1, 1], [1, 3, 9, 27]]
+echo pedantic_pow      " [['vague', 0, 0, 0], [1, 1, 1, 1], [1, 3, 9, 27]]
+
 " also changes pow[0][0] due to shared nested list</code></pre>
-	<p>If that’s not what you want (and it’s almost always not what you want), then you can use the built-in deepcopy() function instead, which duplicates any nested data structure “all the way down”:</p>
+	<p>使用deepcopy()函数，则可以复制顶层列表及其包含的嵌套列表，即列表的完整备份。</p>
 	<pre class="block"><code>let pedantic_pow = deepcopy(pow)
-let pedantic_pow[0][0] = 'indeterminate'
+echo pow               " [[1, 0, 0, 0], [1, 1, 1, 1], [1, 3, 9, 27]]
+echo pedantic_pow      " [[1, 0, 0, 0], [1, 1, 1, 1], [1, 3, 9, 27]]
+
+let pedantic_pow[0][0] = 'vague'
+echo pow               " [[1, 0, 0, 0], [1, 1, 1, 1], [1, 3, 9, 27]]
+echo pedantic_pow      " [['vague', 0, 0, 0], [1, 1, 1, 1], [1, 3, 9, 27]]
+
 " pow[0][0] now unaffected; no nested list is shared
 	</code></pre>
 
-	<h2 class="article"><a id="script-list-split"></a></h2>
-	<p>将字符串以空格为分隔符，拆分为列表：</p>
-	<pre class="block"><code>
-let words = split("one two three")             " split on whitespace
+	<h2 class="article"><a id="script-list-split">拆分列表</a></h2>
+	<p>使用split()函数，可以将字符串以空格为分隔符，拆分为列表：</p>
+	<pre class="block"><code>let words = split("one two three")             " split on whitespace
 echo words                                     " ['one', 'two', 'three']</code></pre>
 	<p>也可以将字符串以指定的分隔符，拆分为列表：</p>
-	<pre class="block"><code>
-let words = split("one:two three", ":")        " split where pattern matches
+	<pre class="block"><code>let words = split("one:two three", ":")        " split where pattern matches
 echo words                                     " ['one', 'two three']</code></pre>
 
-	<h2 class="article"><a id="script-list-join"></a></h2>
-	<p>To reverse that, you can join the list back together:</p>
-	<pre class="block"><code>
+	<h2 class="article"><a id="script-list-join">合并列表</a></h2>
+	<p>使用join()函数，可以将列表中的项目合并为字符串：</p>
+	<pre class="block"><code>let list = ['one', 'two', 'three']
 let str = join(list)                           " use a single space char to join
-let str = join(list, delimiter)                " use delimiter string to join
-	</code></pre>
+echo str                                       " one two three
+let str = join(list, ';')                      " use delimiter string to join
+echo str                                       " one;two;three</code></pre>
 
-	<h2 class="article"><a id="script-list-">列表</a></h2>
-	<pre class="block"><code>" Size of list...
-let list_length   = len(a_list)
-let list_is_empty = empty(a_list)     " same as: len(a_list) == 0" Numeric minima and maxima...
-let greatest_elem = max(list_of_numbers)
-let least_elem    = min(list_of_numbers)
+	<h2 class="article"><a id="script-list-len">列表长度和位置</a></h2>
+	<p>使用以下函数，可以计算列表的长度，以及指定值所处列表中的位置：</p>
+	<pre class="block"><code>let list = [1, 2, 3]
+let list_length   = len(list)         " 列表的项目总数
+echo list_length                      " 3
+let greatest_elem = max(list)         " 列表项目的最大值
+echo greatest_elem                    " 3
+let least_elem    = min(list)         " 列表项目的最小值
+echo least_elem                       " 1
+let list_is_empty = empty(list)       " 将列表置为空
+echo list_is_empty                    " 0
 
-" Index of first occurrence of value or pattern in list...
-let value_found_at = index(list, value)      " uses == comparison
-let pat_matched_at = match(list, pattern)    " uses =~ comparison</code></pre>
+let week = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat','Sun']
+let value_found = index(week, 'Sun')      " 第一次出现指定值的索引位置
+echo value_found                          " 0
+let value_found = index(week, 'sun')      " 如果没有找到匹配值(区分大小写)将返回-1
+echo value_found                          " -1
+let value_count = count(week, 'Sun')      " 出现指定值的次数
+echo value_count                          " 2
+</code></pre>
 
-	<h2 class="article"><a id="script-list-">列表</a></h2>
+	<h2 class="article"><a id="script-list-insert">增加列表项目</a></h2>
 	<pre class="block"><code>
-call insert(list, newval)          " insert new value at start of list
-call insert(list, newval, idx)     " insert new value before index idx
-call    add(list, newval)          " append new value to end of list	
-	</code></pre>
-
-	<h2 class="article"><a id="script-list-">列表</a></h2>
-	<pre class="block"><code>
-call insert(list, newval)          " insert new value at start of list
-call insert(list, newval, idx)     " insert new value before index idx
-call    add(list, newval)          " append new value to end of list	
-	</code></pre>
-
-	<h2 class="article"><a id="script-list-">列表</a></h2>
-	<pre class="block"><code>
-call remove(list, idx)             " remove element at index idx
-call remove(list, from, to)        " remove elements in range of indices
-	</code></pre>
-
+call insert(list, newval)          " 在列表开头增加新项目
+call insert(list, newval, idx)     " 在列表指定位置之前增加新项目
+call    add(list, newval)          " 在列表末尾增加新项目</code></pre>
 
 	<h2 class="article"><a id="script-list-">列表</a></h2>
 	<pre class="block"><code>
-call sort(list)                    " re-order the elements of list alphabetically
-
-call reverse(list)                 " reverse order of elements in list	
 	</code></pre>
 
-	<h2 class="article"><a id="script-list-filter">过滤列表</a></h2>
-	<p>使用 filter() 函数，可以过滤符合指定标准的成员。</p>
-The call filter() converts the string that is passed as its second argument to a piece of which it then applies to each element of the list that is passed as its first argument. I it repeatedly performseval() on its second argument. For each evaluation, it passes the n element of its first argument to the code, via the specialv:val. variableIftheresult of the evaluate code is zero (that is, false), the corresponding element is removed from the list.
+	<h2 class="article"><a id="script-list-remove">删除列表项目</a></h2>
+	<pre class="block"><code>let list = [3, 2, 1]
+call remove(list, idx)             " 删除列表指定位置的项目
+call remove(list, from, to)        " 删除列表指定范围的项目
+	</code></pre>
 
-	<pre class="block"><code>
-let data = [-1,0,1,2,3,4,5]                           " [-1,0,1,2,3,4,5]
-let positive = filter(copy(data), 'v:val >= 0')       " 过滤掉负数
+	<h2 class="article"><a id="script-list-sort">排序列表项目</a></h2>
+	<pre class="block"><code>let list = [3, 2, 1]
+call sort(list)                   " 为列表排序
+echo list                         " [1, 2, 3]
+call reverse(list)                " 反转列表项目的排序
+call list                         " [3, 2, 1]</code></pre>
+
+	<h2 class="article"><a id="script-list-filter">过滤列表项目</a></h2>
+	<p>使用filter({expr1}, {expr2})函数，可以对{expr1}指定的列表中的每个项目计算{expr2}表达式，以过滤掉符合指定模式的项目。</p>
+	<pre class="block"><code>let data = [-1,0,1,2,3,4,5]
+let positive = filter(copy(data), 'v:val &gt;= 0')       " 过滤掉负数
 echo positive                                         " [0,1,2,3,4,5]
-let words = ['Linux', 'Unix', 'Mac']                  "
+let words = ['Linux', 'Unix', 'Mac']
 let nnix = filter(copy(words), 'v:val !~ ".*nix"')    " 过滤包含nix的字符串
 echo nnix                                             " ['Linux', 'Mac']
-	</code></pre>
+call filter(words, 0)                                 " 过滤掉所有项目
+echo words                                            " []</code></pre>
 
-	<h2 class="article"><a id="script-list-map">列表</a></h2>
-	<p>使用 map() 函数，可以将列表中的每一个成员替换为指定的值。</p>
-map() evaluates the string passed as its second argument, passing each list element in turn, v:val. But, unlikefilter() , amap() always keeps every element of a list, replacing each value with the result of evaluating the code on that value.
-	<pre class="block"><code>
-let data = [-1,0,1,2,3,4,5]                           "
+	<h2 class="article"><a id="script-list-map">替换列表项目</a></h2>
+	<p>使用map({expr1}, {expr2})函数，可以将{expr1}指定的列表中的每个项目替换为{expr2}表达式的的计算结果。</p>
+	<pre class="block"><code>let data = [-1,0,1,2,3,4,5]
 let inc = map(copy(data), 'v:val + 1')                " 为每个成员+1
-echo inc                                              " [0,1,2,3,4,5，6]
-let words = ['Linux', 'Unix', 'Mac']                  "
+echo inc                                              " [0,1,2,3,4,5,6]
+let words = ['Linux', 'Unix', 'Mac']
 let cap = map(copy(words), 'toupper(v:val)')          " 将每个成员转换为大写
-echo cap                                              " ['LINUX', 'UNIX', 'MAC']
-	</code></pre>
-Once again, remember thatfilter() and map() modify their first argument in-place. A very common error when using them is to write something like:
+echo cap                                              " ['LINUX', 'UNIX', 'MAC']</code></pre>
 
-let squared_values = map(values, 'v:val * v:val')
+	<h2 class="article"><a id="script-list-concatenate">连结列表</a></h2>
+	<p>使用<code>+</code>和<code>+=</code>操作符，可以连结多个列表。</p>
+	<pre class="block"><code>let activities = ['sleep', 'eat'] + ['drink']         " ['sleep', 'eat', 'drink']
+let activities += ['code']                            " ['sleep', 'eat', 'drink', 'code']</code></pre>
+	<p>请注意，操作符两侧必须均为列表。如果将列表与其它类型的数据连结，将会报错：</p>
+	<pre class="block"><code>let activities += 'code'                              " E734: Wrong variable type for +=</code></pre>
 
-instead of:
+	<h2 class="article"><a id="script-list-faq">常见问题</a></h2>
+	<p>请注意，所有列表相关的函数都将返回修改后的列表作为结果，同时参数中的列表也将被修改。而通常，我们会希望返回修改后的列表，但保持原始列表不变。因此，通常会使用<a href="#script-list-copu" title="copy()">copy()</a>函数来复制原始列表作为参数，以避免其被修改。</p>
+	<p>例如如filter()和map()函数，都将直接更改第一个参数所指定的列表。</p>
+	<pre class="block"><code>let result = map(values, 'v:val * v:val')             " 错误写法
+let result = map(<mark>copy</mark>(values), 'v:val * v:val')       " 正确写法
 
-let squared_values = map(copy(values), 'v:val * v:val')
+let sorted_list = reverse(sort(unsorted_list))        " unsorted_list和sorted_list均被修改
+let sorted_list = reverse(sort(<mark>copy</mark>(unsorted_list)))  " unsorted_list保持不变</code></pre>
 
-	<h2 class="article"><a id="script-list-concatenate">列表</a></h2>
-You can concatenate lists with+ theand +=  operators, like so:
-	<pre class="block"><code>
-let activities = ['sleep', 'eat'] + ['drink']         " ['sleep', 'eat', 'drink']
-let activities += ['code']                            " ['sleep', 'eat', 'drink', 'code']
-	</code></pre>
-Remember that both sides must be lists. Don’t +=thinkas append"; you can’t use it to add a single value directly to the end of a list:
-List concatenation
-let activities += 'code'
-" Error: Wrong variable type for +=
-
-	<h2 class="article"><a id="script-list-split">列表</a></h2>
-You can extract part of a list by specifying a colon-separated range in the square bracke indexing operation. The limits of the range can be constants, variables with numeric valu numeric expression:
-	<pre class="block"><code>
-let data = [-1,0,1,2,3,4,5]                           " [-1,0,1,2,3,4,5]
-let positive = data[2:6]                              " [1,2,3,4,5]
-let week = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'] 
-let weekdays = week[1:5]
-	</code></pre>
-If you omit the starting index, the sublist automatically starts at zero; if you omit the the sublist finishes at the last element. For example, to split a list into two (near-)eq type:
-
-let middle = len(data)/2                              " middle = 3	
-let first_half = data[: middle-1]                     " same as: data[0 : middle-1]
-echo first_half                                       " [-1,0,1]
-let second_half	= data[middle :]                      " same as: data[middle : len(data)-1]
-echo first_half                                       " [2,3,4,5]
-
-A common mistake with list procedures
-
-请注意，所有列表相关的函数都将返回修改后的列表作为结果，同时参数中的列表也将被修改。
-<p>例如以下命令中的<var>unsorted_list</var>列表，也将被按倒序排序。也就是说，列表<var>unsorted_list</var>和<var>sorted_list</var>将变为包含相同内容的列表。</p>
-	<p style="text-indent:2em"><code class="inset">let sorted_list = reverse(sort(unsorted_list))</code></p>
-	<p>而通常，我们会希望返回修改后的列表，但保持原始列表不变。但是，Vimscript的列表功能并非如此。因此，需要在函数中使用copy()函数，复制原始列表作为参数，以避免其被修改：</p>
-	<p style="text-indent:2em"><code class="inset">let sorted_list = reverse(sort(<mark>copy</mark>(unsorted_list)))</code></p>
-
-
-
-
- 
-
-
-	<h2 class="article"><a id="script-list-">列表</a></h2>
-	<pre class="block"><code>
-	</code></pre>
-	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
-
-	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
-
-	<pre class="block"><code>
-	</code></pre>
-
-	<ul>
-		<li><p class="item"><br /></p></li>
-		<li><p class="item"><a href="#" title=""></a><br /></p></li>
-	</ul>
-
-	<span style="font-weight:bold; color:#4169E1; margin-left:0.2em">&#65311;</span>
-
-	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
-		<caption style="margin:0.5em; font-weight:bold">选项列表</caption>
-		<tr><th style="white-space: nowrap">选项</th><th>描述</th><th>帮助信息</th></tr>
-		<tr><td><code class="inset">!</code></td><td>如果包含，表示。例如，。</td><td style="white-space: nowrap"><code class="inset">:help viminfo-!</code></td></tr>
-	</table>
+	<p><span style="font-weight:bold; color:#4169E1; margin-left:0.2em">&#65311;</span>使用以下命令，可以查看列表相关的帮助信息：</p>
+	<p><code class="inset">:help list</code><br /><code class="inset">:help list-functions</code></p>
 
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
-		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
-		<tr><td><code class="inset">:</code></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">len()</code></td><td>列表的项目总数</td></tr>
+		<tr><td><code class="inset">empty()</code></td><td>检查列表是否为空</td></tr>
+		<tr><td><code class="inset">insert()</code></td><td>在列表某处插入项目</td></tr>
+		<tr><td><code class="inset">add()</code></td><td>在列表后附加项目</td></tr>
+		<tr><td><code class="inset">remove()</code></td><td>删除列表里一或多个项目</td></tr>
+		<tr><td><code class="inset">copy()</code></td><td>建立列表的浅备份</td></tr>
+		<tr><td><code class="inset">deepcopy()</code></td><td>建立列表的完整备份</td></tr>
+		<tr><td><code class="inset">filter()</code></td><td>过滤指定的列表项目</td></tr>
+		<tr><td><code class="inset">map()</code></td><td>改变每个列表项目</td></tr>
+		<tr><td><code class="inset">sort()</code></td><td>为列表项目排序</td></tr>
+		<tr><td><code class="inset">reverse()</code></td><td>反转列表项目的顺序</td></tr>
+		<tr><td><code class="inset">split()</code></td><td>分割字符串成为列表</td></tr>
+		<tr><td><code class="inset">join()</code></td><td>合并列表项目成为字符串</td></tr>
+		<tr><td><code class="inset">range()</code></td><td>返回数值序列的列表</td></tr>
+		<tr><td><code class="inset">index()</code></td><td>列表里某值的索引</td></tr>
+		<tr><td><code class="inset">max()</code></td><td>列表项目的最大值</td></tr>
+		<tr><td><code class="inset">min()</code></td><td>列表项目的最小值</td></tr>
+		<tr><td><code class="inset">count()</code></td><td>计算列表里某值的出现次数</td></tr>
 	</table>
-&ldquo;&rdquo;
 
 	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
 
