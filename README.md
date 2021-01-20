@@ -147,7 +147,7 @@ Created by yyq123@gmail.com using [vim](http://www.vim.org/)
 - **脚本**
   - [变量和表达式(Var. &amp; Exp.)](http://yyq123.github.io/learn-vim/learn-vi-91-ScriptVar.html)[<sup>B</sup>](http://yyq123.blogspot.com/2017/05/vim-script-variables-and-expressions.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/60260968)
   - [语句(Statements)](http://yyq123.github.io/learn-vim/learn-vi-92-ScriptStatement.html)[<sup>B</sup>](http://yyq123.blogspot.com/2017/06/vim-script-statements.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/60260968)
-  - [列表(List)](http://yyq123.github.io/learn-vim/learn-vim-Script-List.html)[<sup>B</sup>]()<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/345554629)
+  - [列表(List)](http://yyq123.github.io/learn-vim/learn-vim-Script-List.html)[<sup>B</sup>](https://yyq123.blogspot.com/2021/01/vim-script-list.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/345554629)
   - [自定义函数(UDF)](http://yyq123.github.io/learn-vim/learn-vi-93-ScriptUDF.html)[<sup>B</sup>](http://yyq123.blogspot.com/2017/06/vim-script-user-defined-function.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/60260968)
   - [自定义命令(UDC)](http://yyq123.github.io/learn-vim/learn-vi-94-ScriptUDC.html)[<sup>B</sup>](http://yyq123.blogspot.com/2017/06/vim-script-user-defined-command.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/60260968)
 - **插件**
