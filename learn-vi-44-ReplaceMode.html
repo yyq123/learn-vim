@@ -3,46 +3,47 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIMѧϰ�ʼ� �滻ģʽ(Replace Mode)</title>
+	<title>VIM学习笔记 替换模式(Replace Mode)</title>
 </head>
 <body>
-	<h1>VIMѧϰ�ʼ� �滻ģʽ(Replace Mode)</h1>
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">�����滻ģʽ</p>
-	<p>ʹ�ô�д<code class="inset">R</code>����������滻ģʽ����Ļ�ײ���ʾ&ldquo;--REPLACE--&rdquo;������ʱ��������ı���ֱ�����/�����Ѿ����ڵ����ݣ�ֱ�����<kbd>ESC</kbd>�����س���ģʽ��</p>
+	<h1>VIM学习笔记 替换模式(Replace Mode)</h1>
+
+	<h2 class="article"><a id="replace-mode-enter">进入替换模式</a></h2>
+	<p>使用大写<code class="inset">R</code>命令，将进入替换模式（屏幕底部显示&ldquo;--REPLACE--&rdquo;）。此时新输入的文本将直接替代/覆盖已经存在的内容，直至点击<kbd>ESC</kbd>键返回常规模式。</p>
 	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/ReplaceMode_Edit.gif" title="ReplaceMode_Edit"><img src="http://yyq123.github.io/learn-vim/images/ReplaceMode_Edit.gif" alt="ReplaceMode_Edit.gif" width="500" height="86" /></a></br>Source: medium.com/vim-drops</p>
-	<p>ʹ��Сд<code class="inset">r</code>��������뵥�ַ��滻ģʽ����ʱ��������ַ���������֮�µĵ�ǰ�ַ���Ȼ���Զ����ص�����ģʽ��</p>
-	<p>ͨ����r��������������ǰ׺������һ�����滻����ַ������磬����궨λ��&ldquo;||&rdquo;�ַ�����Ȼ��ִ��<code class="inset">2r&amp;</code>������Խ����滻Ϊ&ldquo;&amp;&amp;&rdquo;��</p>
-	<p>ʹ��<code class="inset">gR</code>��������������滻ģʽ��virtual replace mode������Ļ�ײ���ʾ&ldquo;--VREPLACE--&rdquo;���������滻ģʽ����Ҫ���������ڣ���&lt;Tab&gt;���ͻ��з��Ĳ�ͬ������ʽ��</p>
-	<p><strong>����1</strong>������&lt;Tab&gt;���Ĵ�����ʽ</p>
-	<p>���滻ģʽ��REPLACE���£���ԭ��&lt;Tab&gt;����������ĸ'a'����ֱ�����&lt;Tab&gt;����ռ�õ����пո��λ�ã��ı���ʽ�⵽�ƻ���</p>
+	<p>使用小写<code class="inset">r</code>命令，将进入单字符替换模式，此时新输入的字符将替代光标之下的当前字符，然后自动返回到常规模式。</p>
+	<p>通过在r命令中增加数字前缀，可以一次性替换多个字符。例如，将光标定位到&ldquo;||&rdquo;字符处，然后执行<code class="inset">2r&amp;</code>命令，可以将其替换为&ldquo;&amp;&amp;&rdquo;。</p>
+	<p>使用<code class="inset">gR</code>命令，将进入虚拟替换模式（virtual replace mode）（屏幕底部显示&ldquo;--VREPLACE--&rdquo;），其与替换模式最主要的区别在于，对&lt;Tab&gt;键和换行符的不同处理方式。</p>
+	<p><strong>区别1</strong>：对于&lt;Tab&gt;键的处理方式</p>
+	<p>在替换模式（REPLACE）下，在原有&lt;Tab&gt;键处输入字母'a'，将直接替代&lt;Tab&gt;键所占用的所有空格的位置，文本格式遭到破坏：</p>
 	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/REPLACE_A.gif" title="REPLACE_A"><img src="http://yyq123.github.io/learn-vim/images/REPLACE_A.gif" alt="REPLACE_A" /></a></br>Source: medium.com/vim-drops</p>
-	<p>�������滻ģʽ��VREPLACE���£���ԭ��&lt;Tab&gt;����������ĸ'a'����������������ո��ı���ʽ���ֲ��䣺</p>
+	<p>在虚拟替换模式（VREPLACE）下，在原有&lt;Tab&gt;键处输入字母'a'，将仅仅替代单个空格，文本格式保持不变：</p>
 	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/VREPLACE_A.gif" title="VREPLACE_A"><img src="http://yyq123.github.io/learn-vim/images/VREPLACE_A.gif" alt="VREPLACE_A" /></a></br>Source: medium.com/vim-drops</p>
-	<p>������ʵ�����Է��֣��滻ģʽ��REPLACE����&lt;Tab&gt;����Ϊһ����������������������ʵռ�ö��ٸ��ո�λ�ã����������滻ģʽ��VREPLACE����&lt;Tab&gt;�����Ϊ��������Ŀո����ֱ���������ı���&lt;Tab&gt;�ָ��Ų����ڱ༭������ϣ������ԭ�е��ı��������Ű��ʽ����ô����ʹ�������滻ģʽ�� </p>
-	<p><strong>����2</strong>������&lt;NL&gt;���еĴ�����ʽ</p>
-	<p>���滻ģʽ��REPLACE���£�����&lt;Enter&gt;�س������������У�</p>
+	<p>从以上实例可以发现：替换模式（REPLACE）将&lt;Tab&gt;键作为一个整体来处理（不管其真实占用多少个空格位置）；而虚拟替换模式（VREPLACE）则将&lt;Tab&gt;键拆分为多个独立的空格来分别处理。如果文本以&lt;Tab&gt;分隔排布，在编辑过程中希望保持原有的文本缩进和排版格式，那么建议使用虚拟替换模式。 </p>
+	<p><strong>区别2</strong>：对于&lt;NL&gt;换行的处理方式</p>
+	<p>在替换模式（REPLACE）下，输入&lt;Enter&gt;回车键将增加新行：</p>
 	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/REPLACE_NL.gif" title="REPLACE_NL"><img src="http://yyq123.github.io/learn-vim/images/REPLACE_NL.gif" alt="REPLACE_NL" width="250" height="229" /></a></p>
-	<p>�������滻ģʽ��VREPLACE���£�����&lt;Enter&gt;�س����������������ǰ�����ݣ�����յ�ǰ�У���</p>
+	<p>在虚拟替换模式（VREPLACE）下，输入&lt;Enter&gt;回车键将用新行替代当前行内容（即清空当前行）：</p>
 	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/VREPLACE_NL.gif" title="VREPLACE_NL"><img src="http://yyq123.github.io/learn-vim/images/VREPLACE_NL.gif" alt="VREPLACE_NL" width="250" height="229" /></a></p>
 
-	<p>ʹ��<code class="inset">gr</code>������Խ��뵥�ַ������滻ģʽ�����滻����µĵ�ǰ�ַ�֮�󣬽��Զ����ص�����ģʽ��</p>
-	<p>��ע�⣬ֻ�а���+vreplace���Ե�Vim�汾��֧�������滻ģʽ����ʹ��<code class="inset">:version</code>����鿴�����б����Ƿ��Ѱ������</p>
-	<p>��ʹ����������鿴���������滻ģʽ�ĸ��������Ϣ��</p>
+	<p>使用<code class="inset">gr</code>命令，可以进入单字符虚拟替换模式。在替换光标下的当前字符之后，将自动返回到常规模式。</p>
+	<p>请注意，只有包含+vreplace特性的Vim版本才支持虚拟替换模式。请使用<code class="inset">:version</code>命令，查看特性列表中是否已包括此项。</p>
+	<p>请使用以下命令，查看关于虚拟替换模式的更多帮助信息：</p>
 	<p style="text-indent:2em"><code class="inset">:help vreplace-mode</code></p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">�˳��滻ģʽ</p>
-	<p>����<kbd>ESC</kbd>�������뿪�滻ģʽ�����ص�����ģʽ��</p>
+	<h2 class="article"><a id="replace-mode-exit">退出替换模式</a></h2>
+	<p>按下<kbd>ESC</kbd>键即可离开替换模式，返回到常规模式。</p>
 
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
-		<caption>����С��</caption>
-		<tr><td><code class="inset">R</code></td><td>�����滻ģʽ</td></tr>
-		<tr><td><code class="inset">r</code></td><td>���뵥�ַ��滻ģʽ</td></tr>
-		<tr><td><code class="inset">gR</code></td><td>���������滻ģʽ</td></tr>
-		<tr><td><code class="inset">gr</code></td><td>���뵥�ַ������滻ģʽ</td></tr>
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">R</code></td><td>进入替换模式</td></tr>
+		<tr><td><code class="inset">r</code></td><td>进入单字符替换模式</td></tr>
+		<tr><td><code class="inset">gR</code></td><td>进入虚拟替换模式</td></tr>
+		<tr><td><code class="inset">gr</code></td><td>进入单字符虚拟替换模式</td></tr>
 	</table>
 
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="����ģʽ" href="http://yyq123.github.io/learn-vim/learn-vi-42-InsertMode.html">��һƪ</a>&nbsp;|<a title="�ʼ��б�" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;Ŀ¼&nbsp;</a>|&nbsp;<a title="���ӻ�ģʽ(Visual Mode)" href="http://yyq123.github.io/learn-vim/learn-vi-45-VisualMode.html">��һƪ</a>&gt;</span></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="插入模式" href="http://yyq123.github.io/learn-vim/learn-vi-42-InsertMode.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="可视化模式(Visual Mode)" href="http://yyq123.github.io/learn-vim/learn-vi-45-VisualMode.html">下一篇</a>&gt;</span></p>
 </body>
 </html>
