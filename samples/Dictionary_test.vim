@@ -9,12 +9,15 @@ let flavor = {
 \ '08': 'papya'
 }
 
+let flavor = {'01': 'guava', '02': 'mangosteen', '03': 'mango', '04':'banana', '05': 'coconut', '06': 'passionfruit', '07': 'watermelon', '08': 'papya'}
+
+let names = {'u1': 'TOM', 'u2': 'jerry', 'u3': 'alEX'}
 
 let seen = {}	" Haven't seen anything yet
 let daytonum = {'Sun':0, 'Mon':1, 'Tue':2, 'Wed':3, 'Thu':4, 'Fri':5, 'Sat':6 }
 let diagnosis = {
 \	'Perl'	: 'Tourettes',
-\	'Python'	: 'OCD',
+\	'Python': 'OCD',
 \	'Lisp'	: 'Megalomania',
 \	'PHP'	: 'Idiot-Savant',
 \	'C++'	: 'Savant-Idiot',
