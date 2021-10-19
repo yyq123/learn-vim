@@ -24,7 +24,7 @@
 		<li>使用搜索模式，指定匹配地址。</li>
 	</ul>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">指定行号的绝对地址</p>
+	<h2 class="article"><a id="Ex-Address-Absolute">指定行号的绝对地址</a></h2>
 	<p>使用以下命令，可以打印当前文件的第二行内容（到屏幕）：</p>
 	<p style="text-indent:2em"><code class="inset">:2p</code></p>
 	<p>通过在命令中指定行号范围，可以显示多行内容：</p>
@@ -36,7 +36,7 @@
 	<p>使用:line delete count形式的命令，即移动到line所指定的行（默认为当前行），然后删除总数为count行的文本（包括line所指定的行在内）。例如，以下命令将删除3至4行（总计两行）文本：</p>
 	<p style="text-indent:2em"><code class="inset">:3 delete 2</code></p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">特殊符合指定的相对地址</p>
+	<h2 class="article"><a id="Ex-Address-Relative">特殊符合指定的相对地址</a></h2>
 	<p>在指定行地址时，可以将以下特殊符号与行号组合使用：</p>
 	<ul>
 		<li>&ldquo;<code class="inset">.</code>&rdquo;，点代表当前行；</li>
@@ -47,6 +47,8 @@
 	</ul>
 	<p>使用以下命令，可以删除最后一行：</p>
 	<p style="text-indent:2em"><code class="inset">:$d</code></p>
+	<p>使用以下命令，可以将当前行复制到文件开头：</p>
+	<p style="text-indent:2em"><code class="inset">:.t0</code></p>
 	<p>使用以下命令，可以删除从当前行到文件末尾：</p>
 	<p style="text-indent:2em"><code class="inset">:.,$d</code></p>
 	<p>使用以下命令，可以删除文件中的所有行：</p>
@@ -67,7 +69,7 @@
 	<p>使用以下命令，可以复制3行（当前行，前一行，后一行），并粘贴到文件开头：</p>
 	<p style="text-indent:2em"><code class="inset">:-,+t0</code></p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">搜索模式指定的匹配地址</p>
+	<h2 class="article"><a id="Ex-Address-Pattern">搜索模式指定的匹配地址</a></h2>
 	<p>使用以下命令，可以删除下一个包含模式pattern的行：</p>
 	<p style="text-indent:2em"><code class="inset">:/pattern/d</code></p>
 	<p>使用以下命令，可以删除下一个包含模式pattern的行的下一行：</p>
@@ -81,7 +83,7 @@
 	<p>在命令中指定行号，将从指定行开始进行查找。例如，以下命令将从第7行开始查找，然后删除匹配行：</p>
 	<p style="text-indent:2em"><code class="inset">:7/pattern/d</code></p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">重新定义当前行的位置</p>
+	<h2 class="article"><a id="Ex-Address-Offset">重新定义当前行的位置</a></h2>
 	<p>假设当前光标在第一行，执行以下命令：</p>
 	<p style="text-indent:2em"><code class="inset">:100,+5p</code></p>
 	<p>系统将反馈以下信息，认为终止行位置小于起始行位置：</p>

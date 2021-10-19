@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 注释 (Comments)</title>
+</head>
+<body>
+	<h1>VIM学习笔记 注释 (Comments)</h1>
+
+	<h2 class="article"><a id="comments-gq">格式化注释</a></h2>
+	<p>例如我们有下面的一段注释:</p>
+	<pre class="block">/*
+ *This is a test.
+ *Of the text formatting.
+ */</pre>
+	<p>我们可以通过以下操作来格式化这段注释代码：</p>
+	<ol>
+		<li>将光标移动到注释开头；</li>
+		<li>使用命令<code>v</code>进入可视化模式；</li>
+		<li>将光标移动到注释结尾；</li>
+		<li>使用命令<code>gq</code>来格式化注释。</li>
+	</ol>
+	<p>结果如下：</p>
+	<pre class="block">/*
+ *This is a test.Of the text formatting.
+ */</pre>
+	
+	<h2 class="article"><a id="opt-comments">comments选项</a></h2>
+	<p><i>'comments'</i>选项，用来定义哪些文本是注释而哪些文本不是注释。此选项由成对出现的标记:字符串（flag:string）组成。</p>
+	<p>可以使用的标记{flags}包括：</p>
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
+		<tbody>
+		<tr><td><code class="inset">n</code></td><td>可嵌套的注释: 允许多个部分间的嵌套。</td></tr>
+		<tr><td><code class="inset">b</code></td><td>如果一个字符后面紧跟空格或是空白符（&lt;Space&gt;, &lt;Tab&gt;, &lt;EOL&gt;）,那么这个字符开始了一个注释。</td></tr>
+		<tr><td><code class="inset">f</code></td><td>该注释字符串只在首行出现。下一行不重复注释，但保留相同的缩进。</td></tr>
+		<tr><td><code class="inset">s</code></td><td>三段式注释的起始字符串</td></tr>
+		<tr><td><code class="inset">m</code></td><td>三段式注释的中间字符串</td></tr>
+		<tr><td><code class="inset">e</code></td><td>三段式注释的结尾字符串</td></tr>
+		<tr><td><code class="inset">l</code></td><td>左对齐。在三段注释中，与s或e标记搭配使用。起始或结尾字符串的最左字符和中间字符串的最左字符对齐。</td></tr>
+		<tr><td><code class="inset">r</code></td><td>右对齐。同上，但为最右字符。</td></tr>
+		<tr><td><code class="inset">O</code></td><td>"O" 命令不把它当作注释。</td></tr>
+		<tr><td><code class="inset">x</code></td><td>允许三段式注释用以下方式结束: 在中间字符串自动提供的情况下，在新行第一
+        个动作是输入结尾字符串的最后一个字符。</td></tr>
+		<tr><td><code class="inset">{digits}</code></td><td>在和s或e标记一起使用时: 对自动插入的中间或结尾字符串增加{digit}单位的位移。该位移以左对齐的位置为基准。</td></tr>
+		<tr><td><code class="inset">-{digits}</code></td><td>和{digits}类似，但减少缩进。这只对开始或结尾部分至少有相当数量的缩进时才有效。</td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		<tr><td><code class="inset"></code></td><td></td></tr>
+		</tbody>
+	</table>
+x
+告诉Vim在三段注释的情况下我们可以在下面的三种情况下仅输入最后一个字符就可以结束注注释:
+1 我们已经在注释的开头输入了.
+2 注释有中间部分.
+3 结束字符串的第一个字符是这一行的第一个字符.
+对于三段注释的情况,下面的一些标记适用:
+	<p>例如以下C语言的注释，用/*开始；有中间部分*；以*/结尾：</p>
+	<pre class="block">/*
+ * This is a comment
+ */</pre>
+	<p>以上注释格式可以由以下comments选项所指定：</p>
+	<pre class="block"><code>:set comments=sl:/*,mb:*,ex:*/</code></pre>
+	<pre class="block"><code></code></pre>
+	<p>其中，</p>
+	<ul>
+	<li><i>sl</i>表明这是一个三段注释的起始处并且其他行需要缩进一个额外的空格；</li>
+	<li>注释是以/*开始；</li>
+	<li>注释的中间部分由mb:*来定义，m表明了一个中间部分，b要求任何内容后必须有一个空格，同时中间部分注释以*开；</li>
+	<li>注释的结束以ex:*/指定，e表明注释的结束,x则是表明只需要输入结束标记的最后一个字符来完成注释，而结束的定界符是*/；</li>
+	<li></li>
+	</ul>
+
+	<h2 class="article"><a id="opt-formatoptions">formatoptions选项</a></h2>
+	<p>设置下面的选项</p>
+	<p style="text-indent:2em"><code class="inset">:set formatoptions=qro</code></p>
+	<p></p>
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
+		<tbody>
+		<tr><td><code class="inset">r</code></td><td>在插入模式按回车时，自动插入当前注释前导符。</td></tr>
+		<tr><td><code class="inset">o</code></td><td>在常规模式下使用o或者O命令时，自动插入当前注释前导符。</td></tr>
+		<tr><td><code class="inset">q</code></td><td>允许使用gq命令来格式化注释。</td></tr>
+		</tbody>
+	</table>
+	<p>我们在一行输入注释的开始标记&ldquo;/*&rdquo;，然后按下回车键，因为r选项，所以在下一行中会自动添加注释的前导符&ldquo;*&rdquo;，以及紧随其后的一个空格；继续输入具体的注释文字；当想要结束注释输入时，只需要输入&ldquo;/&rdquo;时，光标就会自动回退一格并插入&ldquo;/&rdquo;，即正确完成了注释输入。其结果如下：</p>
+	<pre class="block">/*
+ * This is a test
+ */</pre>
+
+	<p>定义快捷键，为当前行增加注释&ldquo;/* ... */&rdquo;：</p>
+	<p style="text-indent:2em"><code class="inset">:map = I/* &lt;ESC&gt;A */&lt;ESC&gt;</code></p>
+	<p>使用以下替换命令，为指定行增加注释&ldquo;/* ... */&rdquo;：</p>
+	<p style="text-indent:2em"><code class="inset">:1,10s!.*!/* &amp; */!</code></p>
+	<p>使用以下替换命令，将删除所有&ldquo;/* ... */&rdquo;注释：</p>
+	<p style="text-indent:2em"><code class="inset">%s!\s*/\*\_.\{-}\*/\s*! !g</code></p>
+	<p>其中，<var>\_.</var>将匹配包含换行在内的所有字符；<var>\{-}</var>表示前一个字符可出现零次或多次。请注意，被有&ldquo;/* ... */&rdquo;包围的所有字符也将被删除。</p>
+
+	<p>使用以下替换命令，将删除所有&ldquo;//&rdquo;注释：</p>
+	<p style="text-indent:2em"><code class="inset">:%s!\s*//.*!!</code></p>
+	<p>请注意，所有&ldquo;//&rdquo;开头的所有字符也将被删除。</p>
+
+	<p>使用以下替换命令，为指定行增加注释&ldquo;#...&rdquo;</p>
+	<p style="text-indent:2em"><code class="inset">:1,10s/^/#</code></p>
+	<p>使用以下替换命令，为指定行取消注释&ldquo;#...&rdquo;</p>
+	<p style="text-indent:2em"><code class="inset">:1,10s/^#/</code></p>
+
+	<h2 class="article"><a id="comment-drawing">Drawing comment boxes</a></h2>
+	<p>
+I like to put a big comment box at the top of each of my procedures.  For
+example:
+</p><pre>	/*******************************************************
+	 * Program -- Solve it -- Solves the worlds problems.  *
+	 *     All of them.  At once.  This will be a great    *
+	 *   program when I finish it.                         *
+	 *******************************************************/
+</pre>
+	<p></p>
+	<p>利用:abbreviate<a href="http://yyq123.github.io/learn-vim/learn-vi-52-Abbreviation.html" title="缩写">缩写</a>命令，可以用一个缩写来代替一组字符，此后只要输入缩写，就可以自动扩展为其代表的字符串以提高输入效率。</p>
+	<p>首先在vimrc配置文件中，增加以下缩写定义：</p>
+	<pre>ab #b /************************************************
+ab #e ************************************************/</pre>
+	<p>在输入代码时，只需要键入&ldquo;#b&rdquo;，然后按下回车键，即可以扩展为以下注释：</p>
+	<pre>/************************************************
+ *
+</pre>
+	<p>输入具体注释文字之后，键入&ldquo;#e&rdquo;，然后按下回车键，即可以扩展为以下注释：</p>
+	<pre>*******************************************************/</pre>
+
+
+	<p><span style="font-weight:bold; color:#4169E1; margin-left:0.2em">&#65311;</span></p>
+	<p style="text-indent:2em"><code class="inset">:help format-comments</code></p>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
+		<tr><td><code class="inset">:</code></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+	</table>
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="()" href="">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="()" href="">下一篇</a>&gt;</span></p>
+</body>
+</html>
+

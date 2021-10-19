@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 设置选项(set-option)</title>
+</head>
+<body>
+	<h1>VIM学习笔记 设置选项(set-option)</h1>
+
+	<h2 class="article"><a id="opt-winheight">窗口尺寸选项</a></h2>
+	<p><i>'winheight'</i>和<i>'winwidth'</i>选项，用于分别控制窗口的最小高度和宽度。</p>
+	<p>默认打开的<i>'equalalways'</i>选项，用于在拆分和关闭窗口的过程中，始终保持窗口均分以维持整洁的窗口布局。</p>
+	<p><i>'eadirection'</i>选项，默认值为&ldquo;both&rdquo;，说明'equalalways'窗口均分选项适用于垂直和水平分隔窗口。如果只希望针对垂直均分窗口，那么可以设置为：</p>
+	<p style="text-indent:2em"><code class="inset">:set ead=hor</code></p>
+	<p>如果只希望针对垂直均分窗口，那么可以设置为：</p>
+	<p style="text-indent:2em"><code class="inset">:set ead=ver</code></p> 
+
+	<h2 class="article"><a id="opt-colorcolumn">垂直标尺选项</a></h2>
+	<p>使用<i>'colorcolumn'</i>选项，可以在指定列显示垂直标尺，以用于文本对齐：</p>
+	<p style="text-indent:2em"><code class="inset">:set colorcolumn=80</code></p>
+	<p>通过'ColorColumn'高亮组，可以设置标尺列的颜色：</p>
+	<p style="text-indent:2em"><code class="inset">:highlight ColorColumn ctermbg=red guibg=darkred</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/set_ColorColumn.png" title="set_ColorColumn"><img src="https://yyq123.github.io/learn-vim/images/set_ColorColumn.png" alt="set_ColorColumn" width="550" height="145" /></a></p>
+	<p>'colorcolumn'选项，是以逗号分隔的列表，可以是列的绝对值：</p>
+	<p style="text-indent:2em"><code class="inset">:set cc=80,81</code></p>
+	<p>如果'colorcolumn'选项中的数值之前带有'+'或'-'，那么是指以'textwidth'选项值为基数，然后加上或减去指定的值。例如以下命令，将高亮显示'textwidth'之后的三列：</p>
+	<p style="text-indent:2em"><code class="inset">:set cc=+1,+2,+3</code></p>
+	<p>请注意：'textwidth'为零时，无法使用带有'-'和'+'的项目；最多可以高亮显示256列。</p>
+
+	<h2 class="article"><a id="opt-rightleft">文本方向选项</a></h2>
+	<p><i>'rightleft'</i>选项，用于控制文字排列是从左到右，还是从右到左。默认值"norightleft"，即从左到右模式。</p>
+	<p>使用以下命令，可以切换为从右到左模式：</p>
+	<p style="text-indent:2em"><code class="inset">:set rl</code></p>
+	<p>使用以下命令，可以切换为从左到右模式：</p>
+	<p style="text-indent:2em"><code class="inset">:set norl</code></p>
+
+	<h2 class="article"><a id="opt-print">打印选项</a></h2>
+	<p>使用<code class="inset">:hardcopy</code>命令<a href="http://yyq123.github.io/learn-vim/learn-vi-07-Print.html" title="print">打印</a>文件时，将根据<i>printheader</i>选项来定义页眉格式。其默认值为"%&lt;%f%h%m%=Page %N"，将在页眉中显示以下信息：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/set_printheader_default.png" title="set_printheader_default"><img src="https://yyq123.github.io/learn-vim/images/set_printheader_default.png" alt="set_printheader_default" width="525" height="103" /></a></p>
+	<ul>
+		<li><i>File name</i>，文件名；</li>
+		<li><i>Help buffer flag</i>，如果当前缓冲区打开的是帮助文件，将显示&ldquo;[help]&rdquo;；</li>
+		<li><i>Modified flag</i>，如果当前文件已被更改（modified），将显示&ldquo;[+]&rdquo;；如果当前文件不可编辑（nomodifiable），将显示&ldquo;[-]&rdquo;</li>
+		<li><i>Page number</i>，页码。</li>
+	</ul>
+	<p>使用以下命令，可以设置在页眉中打印当前日期和时间：</p>
+	<p style="text-indent:2em"><code class="inset">set printheader=%&lt;%f%h%m%40{strftime(\"%I:%M:%S\ \%p,\ %a\ %b\ %d,\ %Y\")}%=Page\ %N</code></p>
+	<p>使用以下命令，可以设置在页眉中打印文件最后修改时间：</p>
+	<p style="text-indent:2em"><code class="inset">set printheader=%&lt;%f%h%m%40{strftime(\"%c\",getftime(expand(\"%%\")))}%=Page\ %N</code></p>
+	<p>使用以下命令，可以设置页眉为空（请注意，命令末尾包括一个空格）：</p>
+	<p style="text-indent:2em"><code class="inset">:set printheader=\&nbsp;</code></p>
+
+	<h2 class="article"><a id="opt-nowrite">文件保存选项</a></h2>
+	<p>默认情况下，write选项是启用的，以使Vim可以保存文件。如果关闭此选项，那么将无法保存文件并显示报错信息。</p>
+	<p style="text-indent:2em"><code class="inset">:set nowrite</code></p>
+	<p style="text-indent:2em"><code class="error">E142 File not written: Writing is disabled by 'write' option</code></p>
+
+	<h2 class="article"><a id="opt-secure">安全选项</a></h2>
+	<p>启用'exrc'选项，将使得Vim在启动时会首先读取当前目录下的.exrc文件，并应用其中的设置。</p>
+	<p style="text-indent:2em"><code class="inset">:set exrc</code></p>
+	<p>也就是说，我们可以在不同的场景中使用不同的设置。比如对于编写HTML代码和写作文档，可以分别设置不同的<a href="http://yyq123.github.io/learn-vim/learn-vi-51-KeyMapping.html" title="Map">键盘映射(Map)</a>和<a href="http://yyq123.github.io/learn-vim/learn-vi-52-Abbreviation.html" title="缩写">缩写(Abbr)</a>，并保存在相应目录的.exrc文件中。这样在打开不同的文件时，就自动设置了相对应的系统选项了。</p>
+	<p>请注意，设置'exrc'选项存在潜在的安全风险。例如包含木马程序或错误的配置。请尽量不要启用本选项！潜在的替代方案是，在 .vimrc 里定义自动命令，为匹配的目录设置选项。</p>
+	<p>'secure'选项默认是关闭的，为了避免安全问题，建议在vimrc文件中启用此安全选项：</p>
+	<p style="text-indent:2em"><code class="inset">:set secure</code></p>
+	<p>启用'secure'选项，将阻止当前目录下的.vimrc和.exrc初始化文件中的:autocommand，:write，:shell命令的执行。</p>
+
+	<h2 class="article"><a id="opt-others-summay">键盘选项小结</a></h2>
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<tbody>
+		<tr><td><code class="inset">:set </code></td><td>设置ALT键选项</td><td><code class="inset">:help ''</code></td></tr>
+		<tr><td><code class="inset">:set </code></td><td>设置退格键选项</td><td><code class="inset">:help ''</code></td></tr>
+		<tr><td><code class="inset">:set </code></td><td rowspan="2">设置键盘超时行为</td><td><code class="inset">:help ''</code></td></tr>
+		<tr><td><code class="inset">:set </code></td><td><code class="inset">:help ''</code></td></tr>
+		<tr><td><code class="inset">:set </code></td><td>设置键盘等待时长</td><td><code class="inset">:help ''</code></td></tr>
+		</tbody>
+	</table>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="设置选项(set-option)" href="http://yyq123.github.io/learn-vim/learn-vi-50-SetOption.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="设置选项-键盘(set-option-keyboard)" href="http://yyq123.github.io/learn-vim/learn-vim-SetOption-Keyboard.html">下一篇</a>&gt;</span></p>
+</body>
+</html>

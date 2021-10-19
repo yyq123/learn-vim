@@ -10,7 +10,8 @@
 <body>
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">启用/禁用</p>
 	<p></p>
-<h2>Gvim or Vim?</h2>
+
+	<h2 class="article"><a id="grepprg">Gvim or Vim?</a></h2>
 <p>Some scripts have extra features when used in the GUI version of Vim (Gvim). This could be adding menus, toolbars, or other things that only work if you are using Gvim. So what do you do to check if the user runs the script in a console Vim or in Gvim? Vim has already prepared the information for you. You simply have to check if the feature <i>gui_running</i> is enabled. To do so, you use a function called <i>has()</i>, which returns 1 (true) if a given feature is supported / enabled and 0 (false), otherwise.</p>
 <p></p>
 	<p><code class="inset">
@@ -19,7 +20,8 @@
 	endif</code></p>
 <p>This is all you need to do to check if a user has used Gvim or not. Note that it is not enough to check if the feature "gui" exists, because this will return true if your Vim is just compiled with GUI support—even if it is not using it.</p>
 <p> <code class="inset">:help feature-list</code>for a complete list of other features you can check with the <i>has()</i> function.</i></p>
-<h2>Which operating system?</h2>
+
+	<h2 class="article"><a id="grepprg">Which operating system?</a></h2>
 <p>Vim可以判断当前是在何种操作系统之内，以便执行特点的操作</p>
 <p><code class="inset">
 if has("win16") || has("win32") || has("win64")|| has("win95")<br />
@@ -31,7 +33,7 @@ endif</code></p>
 <p>This example only shows how to check for Windows and Linux / Unix. As Vim is available on a wide variety of platforms, you can of course also check for these. All of the operating systems can be found in:</p>
 <pre style="margin-left: 40px;"><p style="white-space: pre;"><br><b>:help 'feature-list'</b></p></pre>
 
-<h2>Which version of Vim?</h2>
+	<h2 class="article"><a id="grepprg">Which version of Vim?</a></h2>
 <p>The number consists of three parts:</p>
 <ul>
 <li>Major number (for example, 7 for Vim version 7)</li>
@@ -49,10 +51,9 @@ endif</code></p>
 <pre style="margin-left: 40px;"><p style="white-space: pre;"><br>" WideMsg() prints [long] message up to (&amp;columns-1) length<br>function! WideMsg(msg)<br>  let x=&amp;ruler | let y=&amp;showcmd<br>  set noruler noshowcmd<br>  redraw<br>  echo a:msg<br>  let &amp;ruler=x | let &amp;showcmd=y<br>endfunction</p></pre><p style="margin-left:40px;margin-right:40px"><i>This function was originally proposed by the Vim script developer Yakov Lerner on the Vim online community site at <a href="http://www.vim.org" target="_blank">http://www.vim.org</a>.</i></p>
 <p>Now whenever you need to echo a long line of text in your script, instead of using the <i>echo</i> statement you simply use the function <i>Widemsg()</i>. An example could be:</p>
 <pre style="margin-left: 40px;"><p style="white-space: pre;"><b>:call WideMsg("This should be a very long line of text")</b></p></pre><p>The length of a single line message is still limited, but now it is limited to the width of the Vim window instead of the traditional 80-1 characters.</p>
-<h1>Debugging Vim scripts</h1>
+
+	<h2 class="article"><a id="grepprg">Debugging Vim scripts</a></h2>
 <p>Sometimes things in your scripts do not work exactly as you expect them to. In these cases, it is always good to know how to debug your script.</p>
-<p>In this section, we will look at some of the methods you can use to find your error.</p>
-<p style="margin-left:40px;margin-right:40px"><i>Well-structured code often has fewer bugs and is also easier to debug.</i></p>
 <p>In Vim, there is a special mode to perform script debugging. Depending on what you want to debug, there are some different ways to start this mode. So let's look at some different cases.</p>
 <p>If Vim just throws some errors (by printing them at the bottom of the Vim window), but you are not really sure where it is or why it happens, then you might want to try to start Vim directly in debugging mode. This is done on the command line by invoking Vim with the <i>-D</i>argument.</p>
 <pre style="margin-left: 40px;"><p style="white-space: pre;"><b>vim -D somefile.txt</b></p></pre><p>The debugging mode is started when Vim starts to read the first <i>vimrc</i> file it loads (in most cases the global <i>vimrc</i> file where Vim is installed). We will look at what to do when you get into debug mode in a moment.</p>
@@ -61,7 +62,6 @@ endif</code></p>
 <pre style="margin-left: 40px;"><p style="white-space: pre;"><b>:debug read somefile.txt<br>:debug nmap ,a :call Myfunction() &lt;CR&gt;<br>:debug help :debug</b></p></pre><p>So let's look at what to do when we get into the debugging mode.</p>
 <p>When reaching the first line that it should debug, Vim breaks the loading and shows something like:</p>
 <pre style="margin-left: 40px;"><p style="white-space: pre;">Entering Debug mode. Type "cont" to continue.<br>cmd: call MyFunction()<br>&gt;</p></pre><p>Now you are in the Vim script debugger and have some choices for what to make Vim do.</p>
-<p style="margin-left:40px;margin-right:40px"><i>If you are not familiar with debugging techniques, it might be a good idea to read up on this subject before starting to debug your scripts.</i></p>
 <p>The following commands are available in the debugger (shortcuts are in parentheses):</p>
 <ul>
 <li><i>cont</i> (<i>c</i>): Continue running the scripts / commands as normal (no debugging) until the next breakpoint (more about this later).</li>
@@ -90,8 +90,9 @@ endif</code></p>
 <pre style="margin-left: 40px;"><p style="white-space: pre;"><br><b>:breakdel *</b></p></pre>
 <p style="margin-left:40px;margin-right:40px"><i>You can add a breakpoint directly on the command line when going into debug mode. Simply use the <i>-c</i> argument as follows:</i></p>
 <pre style="margin-left: 40px;"><p style="white-space: pre;"><b>vim -D -c 'breakadd file 15 */.vimrc' somefile.txt</b></p></pre>
-<h1>Distributing Vim scripts</h1>
-<p>Now that your script is ready, it is time for you to distribute the script (if you have chosen to do so). The online Vim community has become the de facto place to publish scripts for others to find. Because of this, I urge you to do the same. But before you get to this, there are a couple of things you have to get ready.</p>
+
+	<h2 class="article"><a id="grepprg">Distributing Vim scripts</a></h2>
+<p>Now that your script is ready, it is time for you to distribute the script. </p>
 <p>First of all, you need to figure out whether your script needs to be packed into a compressed file such as a ZIP file, or if it should just be distributed as a single <i>.vim</i> file. The main reason for choosing the first option is that your script consists of multiple files (such as main script, file type plugin, syntax file, documentation, and so on).</p>
 <p>How to create ZIP files (or related file types) is beyond what this article will look at, but here are a couple of pointers on how I make my ZIP files "install ready":</p>
 <ul>
@@ -105,7 +106,7 @@ endif</code></p>
 </ul>
 <p>Even though you only have one script file, it can still be a good idea to put it in a ZIP file together with a help file. This makes it easier for you to remember to add documentation. We will look more at how to create Vim documentation in the next section.</p>
 <h2>Making Vimballs</h2>
-<p>Another, maybe even more interesting, alternative is to make a Vimball. We have previously looked at how to use Vimballs to install scripts, so it could now be interesting to look a bit at how to create one.</p>
+<p>Another alternative is to make a Vimball. </p>
 <p>The command to create a Vimball is constructed as:</p>
 <pre style="margin-left: 40px;"><p style="white-space: pre;"><br><b>:[range]MkVimball filename.vba</b></p></pre>
 <p></p>

@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 设置选项-键盘(set-option-keyboard)</title>
+</head>
+<body>
+	<h1>VIM学习笔记  设置选项-键盘(set-option-keyboard)</h1>
+	<p>Vim是一个高度可定制的编辑器，我们可以使用<a href="http://yyq123.github.io/learn-vim/learn-vi-50-SetOption.html" title="set-option">:set</a>命令来设置大量的选项，以下将介绍与键盘行为相关的选项。</p>
+
+	<h2 class="article"><a id="opt-winaltkeys">ALT键选项</a></h2>
+	<p>在GVim中使用<kbd>Alt</kbd>键，可以选择菜单，例如<kbd>Alt-F</kbd>将选择文件菜单；<kbd>Alt</kbd>键也可以用于在:map命令中定义键盘映射，例如以下命令将使用<kbd>Alt-F</kbd>来保存文件：</p>
+	<p style="text-indent:2em"><code class="inset">:map &lt;M-f&gt; :write</code></p>
+	<p><i>'winaltkeys'</i>选项，用于控制<kbd>Alt</kbd>键在以上两种情况中的应用。请注意，Vim中Alt会被叫作M-（即Meta的缩写）。</p>
+	<p>其默认值为"menu"，即<kbd>Alt</kbd>键优先用于选择菜单；如果快捷键没有被菜单占用，那么就会执行其定义的映射命令：</p>
+	<p style="text-indent:2em"><code class="inset">:set winaltkeys=menu</code></p>
+	<p>如果使用以下命令将选项设置为"no"，那么Alt键将不会激活菜单，而只会执行其定义的映射命令：</p>
+	<p style="text-indent:2em"><code class="inset">:set winaltkeys=no</code></p>
+	<p>如果使用以下命令将选项设置为"yes"，那么Altä键将只用于选择菜单，而不会执行其定义的映射命令：</p>
+	<p style="text-indent:2em"><code class="inset">:set winaltkeys=yes</code></p>
+
+	<h2 class="article"><a id="opt-backspace">退格键选项</a></h2>
+	<p><i>'backspace'</i>选项，用于控制在插入模式下退格键何时可以删除光标之前的字符。建议在vimrc文件中，设置如下：</p>
+	<p style="text-indent:2em"><code class="inset">:set backspace=indent,eol,start</code></p>
+	<p>其中，以逗号分隔的三项内容分别指定了可以删除自动缩进的空格或制表符，断行，以及进入插入模式时的位置。</p>
+
+	<h2 class="article"><a id="opt-timeout">按键超时选项</a></h2>
+	<p><i>'timeout'</i>和<i>'ttimeout'</i>选项共同决定收到部分映射的键序列或键码时的行为：</p>
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
+		<tr><th>timeout</th><th>ttimeout</th><th>行为</th></tr>
+		<tr><td><code>notimeout</code></td><td><code>nottimeout</code></td><td>没有超时</td></tr>
+		<tr><td rowspan="2"><code>timeout</code></td><td><code>ttimeout</code></td><td rowspan="2">所有的代码键以及:map映射超时</td></tr>
+		<tr><td><code>nottimeout</code></td></tr>
+		<tr><td><code>notimeout</code></td><td><code>ttimeout</code></td><td>只有代码键超时</td></tr>
+	</table>
+	<p>如果两个选项都关闭，Vim会一直等待，直到收到完整的映射或键序列为止，如果收到的字符没有对应的映射或者键序列，清除状态。比如: 如果映射 "vl" 而
+        Vim 收到 'v'，需要下一个字符来决定 'v' 后面跟的是不是 'l'。如果打开这里的一个选项，Vim 会为下个字符等待一秒。在此之后，已经收到的字符被解释为单个字符。等待的时间可以用 'timeoutlen' 选项改变。如果键码没有问题而你希望 :map 映射的键序列不等待 1 秒钟超时，置位 'ttimeout' 但关闭 'timeout' 选项。</p>
+	<p><i>timeoutlen</i>选项，即等待后续按键输入的时间，单位为毫秒（millisecond），默认值为1000毫秒，即1秒。使用以下命令，可以更改键盘等待时间：</p>
+	<p style="text-indent:2em"><code class="inset">:set timeoutlen=500</code></p>
+
+	<h2 class="article"><a id="opt-keyboard-summay">键盘选项小结</a></h2>
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<tbody>
+		<tr><td><code class="inset">:set winaltkeys</code></td><td>设置ALT键选项</td><td><code class="inset">:help 'winaltkeys'</code></td></tr>
+		<tr><td><code class="inset">:set backspace</code></td><td>设置退格键选项</td><td><code class="inset">:help 'backspace'</code></td></tr>
+		<tr><td><code class="inset">:set timeout</code></td><td rowspan="2">设置键盘超时行为</td><td><code class="inset">:help 'timeout'</code></td></tr>
+		<tr><td><code class="inset">:set ttimeout</code></td><td><code class="inset">:help 'ttimeout'</code></td></tr>
+		<tr><td><code class="inset">:set timeoutlen</code></td><td>设置键盘等待时长</td><td><code class="inset">:help 'timeoutlen'</code></td></tr>
+		</tbody>
+	</table>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="设置选项(set-option)" href="http://yyq123.github.io/learn-vim/learn-vi-50-SetOption.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="键盘映射(Map)" href="http://yyq123.github.io/learn-vim/learn-vi-51-KeyMapping.html">下一篇</a>&gt;</span></p>
+</body>
+</html>

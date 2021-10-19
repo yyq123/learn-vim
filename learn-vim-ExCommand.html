@@ -5,51 +5,28 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记 Ex命令</title>
+	<title>VIM学习笔记 Ex命令 (Ex Command)</title>
 </head>
 <body>
-	<h1>VIM学习笔记 ()</h1>
-
-	<h2 class="article"><a id=""></a></h2>
-	<p></p>
-	<a href="#" title=""></a>
+	<h1>VIM学习笔记 Ex命令 (Ex Command)</h1>
 	<p>传统上，我们将在<a href="http://yyq123.github.io/learn-vim/learn-vi-46-CommandlineMode.html" title="命令行模式(Command-line Mode)">命令行模式</a>（Command-line Mode）下执行的命令，称之为Ex命令。</p>
-	<p>使用Ex命令，可以读取（<code>:edit</code>）和写入（<code>:write</code>）文件；可以创建标签页（<code>:tabnew</code>）或分隔窗口（<code>:split</code>），可以切换缓冲区（<code>:prev</code>/<code>:next</code>） or the buffer list (:bprev/:bnext). In fact, Vim has an Ex command for just about everything </p>
-	<p>使用以下命令，可以查看所以Ex命令的完整列表：</p>
+	<p>使用Ex命令，可以读取（<code>:edit</code>）和写入（<code>:write</code>）文件；可以创建标签页（<code>:tabnew</code>）或分隔窗口（<code>:split</code>），可以切换文件（<code>:prev</code>/<code>:next</code>） 或缓冲区（<code>:bprev</code>/<code>:bnext</code>）等等。</p>
+	<p>使用Ex命令，可以不用离开命令行即可完成文本操作，也可以在脚本中进行自动化。使用以下命令，可以查看所有Ex命令的完整列表：</p>
 	<p style="text-indent:2em"><code class="inset">:help ex-cmd-index</code></p>
+	<p>以下将以实例介绍Ex命令的使用场景和方法。</p>
 
-	<p>对于大部分Ex命令，都可以指定其执行范围。例如以下命令，将复制当前行到文件开头：</p>
-	<p style="text-indent:2em"><code class="inset">:.t0</code></p>
-	<p><a href="http://yyq123.github.io/learn-vim/learn-vi-48-01-ExCommand-Adress.html" title="Ex命令寻址方式(Ex Command-Address)">Ex命令寻址方式(Ex Command-Address)</a></p>
-
-	<h2 class="article"><a id="inserting-ex"></a></h2>
+	<h2 class="article"><a id="ex-inserting">插入文本</a></h2>
 	<p>可以使用Ex命令，来插入文本。输入以下命令，点击回车键然后在屏幕底部继续输入文本，最后在新一行中输入句点(.)来结束录入，所输入的文本将会被添加到当前行之下：</p>
 	<p style="text-indent:2em"><code class="inset">:append</code></p>
 	<p>通过在命令中指定行号，可以在指定行的下面插入文本。例如，以下命令将在第一行下面插入新的文本：</p>
 	<p style="text-indent:2em"><code class="inset">:1a</code></p>
 	<p>与:append相似的<code class="inset">:insert</code>命令，可以在指定行的上面插入文本。</p>
 
+	<h2 class="article"><a id="cmd-normal"></a>执行常规模式命令</h2>
 	<p>:normal命令可以执行一个常规模式下的命令。例如以下命令，将交换当前行及下一行的内容</p>
 	<p style="text-indent:2em"><code class="inset">:normal ddp</code></p>
 
-	<p>向前搜索并定位到第一个匹配行：</p>
-	<p style="text-indent:2em"><code class="inset">:/search</code></p>
-	<p>向后搜索并定位到第一个匹配行：</p>
-	<p style="text-indent:2em"><code class="inset">?search</code></p>
-	<p>执行全局命令：</p>
-	<p style="text-indent:2em"><code class="inset">:g/search/cmd</code></p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
-
-	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
-
-	<pre class="block">
-	</pre>
-
-	<ul>
-		<li><p class="item"><br /></p></li>
-		<li><p class="item"><a href="#" title=""></a><br /></p></li>
-	</ul>
-	<h2 class="article"><a id="cmd-exit"></a></h2>
+	<h2 class="article"><a id="cmd-exit"></a>保存文件</h2>
 	<p>使用以下命令，将保存当前文本并退出Vim：</p>
 	<p style="text-indent:2em"><code class="inset">:exit</code></p>
 	<p>如果在命令中使用!选项，那么即使文件被标记为只读，也会被强制保存：</p>
@@ -58,7 +35,7 @@
 	<p style="text-indent:2em"><code class="inset">:exit file.txt</code></p>
 	<p>通过指定范围，可以仅保存部分文件内容：</p>
 	<p style="text-indent:2em"><code class="inset">:1,100 exit file.txt</code></p>
-	<p>:exit命令，只是在文件发生改变时才会进行保存；而相类似:wq命令，则总是会保存文件：</p>
+	<p>:exit命令，只是在文件发生改变时才会进行保存；而类似的:wq命令，则总是会保存文件：</p>
 	<p style="text-indent:2em"><code class="inset">:1,100 wq! file.txt</code></p>
 	<p></p>
 

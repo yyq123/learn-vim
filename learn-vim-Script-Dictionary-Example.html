@@ -9,93 +9,27 @@
 </head>
 <body>
 	<h1>VIM学习笔记 脚本-字典-实例(Script-Dictionary-Example)</h1>
-	<p>可以将<a href="http://yyq123.github.io/learn-vim/learn-vim-Script-Dictionary.html" title="字典(Script-Dictionary)">字典（Dictionary)</a>，理解为存储了关于键-值的成对的二元数组。以下将将演示在脚本中利用字典数据结构的实例。</p>
+	<p>可以将<a href="http://yyq123.github.io/learn-vim/learn-vim-Script-Dictionary.html" title="字典(Script-Dictionary)">字典（Dictionary)</a>，理解为存储了关于键-值的成对的二元数组。以下将演示在脚本中利用字典数据结构的实例。</p>
 
 	<h2 class="article"><a id="script-dictionary-example-sort">删除重复行</a></h2>
 	<p>在<a href="http://yyq123.github.io/learn-vim/learn-vim-sort.html" title="文本排序(sort)">文本排序(sort)</a>章节中，使用以下Vim内置的排序命令，可以去除文件中的重复行，同时原始行的顺序也将随之改变。对于重复的多行，将仅仅保留第一行，而其它的行将被删除。</p>
-	<p style="text-indent:2em"><code class="inset">:%sort u</code></p>
-	<pre class="block"><code></code></pre>
-	<p>以下将自定义Uniq()函数，利用字典数据结构来去除重复行，同时保留原始的行顺序。</p>
+	<pre class="block"><code>:%sort u</code></pre>
 
-unction is declared to take a range, so it will only be called once, even whe on a range of lines in the buffer.
-<p style="color:gray; font-size:0.6em"><a href="https://yyq123.github.io/learn-vim/images/Script-UDF-Uniq.png" title="Script-UDF-Uniq"><img src="https://yyq123.github.io/learn-vim/images/Script-UDF-Uniq.png" alt="Script-UDF-Uniq" width="550" height="244" /></a></br>Source code: <a href="https://yyq123.github.io/learn-vim/samples/Uniq.vim" title="Uniq.vim">Uniq.vim</a></p>
-	<h2 class="article"><a id="script-dictionary-access">访问字典</a></h2>
-	<p>可以使用以方括号包围的索引编号，来访问字典的值；而更直观的方式，是使用键的名称：</p>
-	<pre class="block"><code>let Dx = flavor['09']</code></pre>
-	<p>如果键只包含字母、数字和下划线，那么可以使用以点标记的形式进行访问。这种类似&ldquo;表名.列名&rdquo;的书写形式，非常类似于数据库的记录格式，显得更简洁也更易读：</p>
-<pre class="block"><code>let user = {}
-let user.name = 'Bram'
-let user.acct = 123007</code></pre>
-	<p>如果键不存在，那么将显示以下报错信息：</p>
-	<p><code class="error">E716: Key not present in Dictionary: 09</code></p>
-	<p>使用get()函数来访问字典的值，第一个参数指定字典，第二个参数指定需要查找的键。如果该键存在，将返回对应的值，如果指定的键不存在，则返回0。如果指定了第三个参数，那么在指定的键不存在时，则返回此参数值。</p>
-	<pre class="block"><code>echo get(flavor, '08')          "papya
-echo get(flavor, '09')          "0
-echo get(flavor, '09', 'None')  "None</code></pre>
+	<h2 class="article"><a id="script-dictionary-example-sort-udf-create">创建自定义函数</a></h2>
+	<p>以下将<a href="http://yyq123.github.io/learn-vim/learn-vi-93-ScriptUDF.html" title="Script-User Defined Function">自定义</a>Uniq()函数，利用字典数据结构来去除重复行，同时保留原始的行顺序。</p>
+	<p style="color:gray; font-size:0.6em"><a href="https://yyq123.github.io/learn-vim/images/Script-UDF-Uniq.png" title="Script-UDF-Uniq"><img src="https://yyq123.github.io/learn-vim/images/Script-UDF-Uniq.png" alt="Script-UDF-Uniq" width="550" height="244" /></a></br>Source code: <a href="https://yyq123.github.io/learn-vim/samples/Uniq.vim" title="Uniq.vim">Uniq.vim</a></p>
+	<p>首先，新建一个空字典"have_already_seen"用于遍历指定区域内的所有行；而不重复的行将被加入到字典"unique_lines"中。</p>
+	<p>因为字典结构不会存储键为空的项目，所以在循环语句中，将为每行内容新增前导字符'&gt;'，以确保行不为空。</p>
+	<p>函数将检查行是否已经作为键存在于字典"have_already_seen"中。如果已经存在，就忽略此行；如果不存在，则被加入字典"unique_lines"中。最后，字典"unique_lines"将仅仅包含所有唯一的行，并以原始的顺序排列；而重复的行，则会被删除。</p>
 
-	<h2 class="article"><a id="script-dictionary-add">新增项目</a></h2>
-	<p>使用以下命令为新的键赋值，即可为字典新增项目：</p>
-	<pre class="block"><code>let diagnosis = {'1':'item1'}</code></pre>
-	<p>使用extend()函数，可以为字典新增多个项目：</p>
-	<pre class="block"><code>call extend(diagnosis, {'2':'item2', '3':'item3'})
-" '1': 'item1', '2': 'item2', '3': 'item3'</code></pre>
-	<p>使用extend()函数，也可以合并两个字典：</p>
-	<pre class="block"><code>let new_diagnosis = {'0':'new'}
-call extend(diagnosis, new_diagnosis)
-" '0': 'new', '1': 'item1', '2': 'item2', '3': 'item3'</code></pre>
-	
-	<h2 class="article"><a id="script-dictionary-remove">删除项目</a></h2>
-	<p>使用remove()函数，可以删除字典中的项目：</p>
-	<pre class="block"><code>let removed_value = remove(flavor, '09')</code></pre>
-	<p>当需要删除多个项目时，使用filter()函数将更加高效。 与<a href="http://yyq123.github.io/learn-vim/learn-vim-Script-List.html#script-list-filter" title="filter()">过滤</a>列表项目类似，您可以使用v:val和v:key进行操作：</p>
-	<pre class="block"><code>" 删除所有以0开头键值的项目
-call filter(flavor, 'v:key[0] != "0"') 
-" 删除所有不包含指定内容的项目
-call filter(flavor, 'v:val =~ "mango"') 
-" 删除所有键与值相同的项目
-call filter(diagnosis, 'v:key != v:val')</code></pre>
+	<h2 class="article"><a id="script-dictionary-example-sort-udf-call">调用自定义函数</a></h2>
+	<p>将以上代码添加到vimrc配置文件之后，使用以下命令，可以针对整个文件执行函数：</p>
+	<pre class="block"><code>:%call Uniq()</code></pre>
+	<p>也可以创建快捷键，针对指定的行范围（如可视化模式下选中的行）执行函数：</p>
+	<pre class="block"><code>vmap u :call Uniq()&lt;CR&gt;</code></pre>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Script-Dictionary-Example-sort.png" title="Script-Dictionary-Example-sort"><img src="https://yyq123.github.io/learn-vim/imagesScript-Dictionary-Example-sort.png" alt="Script-UDF-Uniq" /></a></p>
 
-	<h2 class="article"><a id="script-dictionary-fun">字典和列表</a></h2>
-	<p>使用以下命令，可以获取字典中的键列表，值列表，和键-值列表：</p>
-	<pre class="block"><code>let dict = {'key1':'value1', 'key2':'value2', 'key3':'value3'}
-let keylist = keys(dict)
-" ['key1', 'key2', 'key3']
-let valuelist =	values(dict)
-" ['value1', 'value2', 'value3']
-let pairlist = items(dict)
-" [['key1':'value1'], ['key2':'value2'], ['key3':'value3']]
-</code></pre>
-	<p>大多数关于列表的函数，同样也适用于字典：</p>
-	<pre class="block"><code>let is_empty =	empty(dict)           " 测试字典是否为空
-let entry_count = len(dict)           " 返回字典中包含项目的总数量	
-let occurrences = count(dict, str)    " 返回字典中值为str的项目的数量
-let greatest = max(dict)              " 返回最大值
-let least = min(dict)                 " 返回最小值</code></pre>
-	<p>使用map()函数操作数据，可以将其中的字符串格式化为首字母大写：</p>
-	<pre class="block"><code>let names = {'u1': 'TOM', 'u2': 'jerry', 'u3': 'alEX'}
-call map( names, 'toupper(v:val[0]) . tolower(v:val[1:])' )
-" {'u1': 'Tom', 'u2': 'Jerry', 'u3': 'ALex'}</code></pre>
-	<p>关于相关函数的使用说明，请参阅<a href="http://yyq123.github.io/learn-vim/learn-vim-Script-List.html" title="列表(Script-List)">列表(List)</a>章节。</p>
-
-	<h2 class="article"><a id="script-dictionary-help">帮助信息</a></h2>
-	<p><span style="font-weight:bold; color:#4169E1; margin-left:0.2em">&#65311;</span>使用以下命令，可以查看字典相关的帮助信息：</p>
-	<p><code class="inset">:help Dictionary</code><br /><code class="inset">:help Dictionary-function</code></p>
-
-	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
-		<caption>函数小结</caption>
-		<tr><td><code class="inset">len()</code></td><td>字典的项目总数</td></tr>
-		<tr><td><code class="inset">empty()</code></td><td>检查字典是否为空</td></tr>
-		<tr><td><code class="inset">remove()</code></td><td>删除字典里一或多个项目</td></tr>
-		<tr><td><code class="inset">copy()</code></td><td>建立字典的浅备份</td></tr>
-		<tr><td><code class="inset">deepcopy()</code></td><td>建立字典的完整备份</td></tr>
-		<tr><td><code class="inset">filter()</code></td><td>过滤指定的字典项目</td></tr>
-		<tr><td><code class="inset">map()</code></td><td>改变每个字典项目</td></tr>
-		<tr><td><code class="inset">max()</code></td><td>字典项目的最大值</td></tr>
-		<tr><td><code class="inset">min()</code></td><td>字典项目的最小值</td></tr>
-		<tr><td><code class="inset">count()</code></td><td>计算字典里某值的出现次数</td></tr>
-	</table>
-
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="列表(Script-List)" href="http://yyq123.github.io/learn-vim/learn-vim-Script-List.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="自定义函数(UDF)" href="http://yyq123.github.io/learn-vim/learn-vi-93-ScriptUDF.html">下一篇</a>&gt;</span></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="字典(Dictionary)" href="http://yyq123.github.io/learn-vim/learn-vim-Script-Dictionary">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="自定义函数(UDF)" href="http://yyq123.github.io/learn-vim/learn-vi-93-ScriptUDF.html">下一篇</a>&gt;</span></p>
 
 </body>
 </html>
