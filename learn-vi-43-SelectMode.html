@@ -3,44 +3,44 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIMѧϰ�ʼ� ѡ��ģʽ (Select Mode)</title>
+	<title>VIM学习笔记 选择模式 (Select Mode)</title>
 </head>
 <body>
-	<h1>VIMѧϰ�ʼ� ѡ��ģʽ (Select Mode)</h1>
-	<p>ѡ��ģʽ����������Ϊ��һ�ֿ��ӻ�ģʽ����ѡ��ģʽ�£����Զ�ѡ�е��ı����п��ٲ����������ȸ���ѡ���ı���Ȼ����<kbd>Backspace</kbd>��ɾ������ı��������ȸ���ѡ���ı���Ȼ����������������滻��Щ�ı���ִ�в���֮��Vim���Զ�����<a href="http://yyq123.github.io/learn-vim/learn-vi-42-InsertMode.html" title="����ģʽ(Insert Mode)">����ģʽ(Insert Mode)</a>��</p>
-	<p>ѡ��ģʽ����ӻ�ģʽ����Ҫ�������ڣ��ڿ��ӻ�ģʽ�£�����ѡ���ı���Ȼ��ִ�����������Ҳ����˵��Ҫ���������������ӻ�ģʽ������ѡ��ģʽ�£����������<kbd>Backspace</kbd>������ɾ���������Ϳɴ�ӡ���ַ��������滻����������Ϊ����Ҫ����������Բ�����ø�Ϊ�򵥣���ͬʱҲ���ںܶ����ơ�</p>
+	<h1>VIM学习笔记 选择模式 (Select Mode)</h1>
+	<p>选择模式，可以理解为另一种可视化模式。在选择模式下，可以对选中的文本进行快速操作。比如先高亮选中文本，然后用<kbd>Backspace</kbd>来删除这段文本；或者先高亮选中文本，然后用输入的内容来替换这些文本。执行操作之后，Vim将自动进入<a href="http://yyq123.github.io/learn-vim/learn-vi-42-InsertMode.html" title="插入模式(Insert Mode)">插入模式(Insert Mode)</a>。</p>
+	<p>选择模式与可视化模式的主要区别在于：在可视化模式下，可以选中文本，然后执行命令操作。也就是说，要用命令来结束可视化模式。而在选择模式下，命令仅限于<kbd>Backspace</kbd>（用于删除操作）和可打印的字符（用于替换操作）。因为不需要输入命令，所以操作变得更为简单，但同时也存在很多限制。</p>
 
-	<h2 class="article"><a id="selectmode-enter">����ѡ��ģʽ</a></h2>
-	<p>�ڳ���ģʽ�£�����ʹ�������������ѡ��ģʽ������Ѿ�����<a href="http://yyq123.github.io/learn-vim/learn-vi-46-03-CMD-Options.html#opt-showmode" title="�������ѡ�� (Options-CMD)">'showmode'</a>ѡ���ô������Ļ�ײ���ʾ��Ӧ��ѡ��ģʽ���ƣ�</p>
+	<h2 class="article"><a id="selectmode-enter">进入选择模式</a></h2>
+	<p>在常规模式下，可以使用以下命令进入选择模式。如果已经启用<a href="http://yyq123.github.io/learn-vim/learn-vi-46-03-CMD-Options.html#opt-showmode" title="命令相关选项 (Options-CMD)">'showmode'</a>选项，那么将在屏幕底部显示相应的选择模式名称：</p>
 	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
 		<thead>
-		<tr><th style="white-space: nowrap">����</th><th>����</th><th>ģʽ����</th></tr>
+		<tr><th style="white-space: nowrap">命令</th><th>描述</th><th>模式名称</th></tr>
 		</thead>
 		<tbody>
-		<tr><td><code class="inset">gh</code></td><td>�����ַ�ѡ��ģʽ</td><td>-- SELECT --</td></tr>
-		<tr><td><code class="inset">gH</code></td><td>������ѡ��ģʽ</td><td>-- SELECT LINE --</td></tr>
-		<tr><td><code class="inset">gCTRL-H</code></td><td>�����ѡ��ģʽ</td><td>-- SELECT BLOCK --</td></tr>
+		<tr><td><code class="inset">gh</code></td><td>进入字符选择模式</td><td>-- SELECT --</td></tr>
+		<tr><td><code class="inset">gH</code></td><td>进入行选择模式</td><td>-- SELECT LINE --</td></tr>
+		<tr><td><code class="inset">gCTRL-H</code></td><td>进入块选择模式</td><td>-- SELECT BLOCK --</td></tr>
 		</tbody>
 	</table>
-	<p>��<a href="http://yyq123.github.io/learn-vim/learn-vi-45-VisualMode.html" title="���ӻ�ģʽ(Visual Mode)">���ӻ�ģʽ(Visual Mode)</a>�£�����ʹ��<kbd>Ctrl + g</kbd>��ݼ�������ѡ��ģʽ��Vim�����ݵ�ǰ�����Ŀ��ӻ�ģʽ�����ͣ��Զ�������֮һ�µ��ַ�/��/��ѡ��ģʽ���ٴε��<kbd>ctrl-G</kbd>���������ص����ӻ�ģʽ��</p>
-	<p>����ʹ��<kbd>ctrl-O</kbd>�����ѡ��ģʽ�л������ӻ�ģʽ��</p>
+	<p>在<a href="http://yyq123.github.io/learn-vim/learn-vi-45-VisualMode.html" title="可视化模式(Visual Mode)">可视化模式(Visual Mode)</a>下，可以使用<kbd>Ctrl + g</kbd>快捷键，进入选择模式。Vim将根据当前所处的可视化模式的类型，自动进入与之一致的字符/行/块选择模式。再次点击<kbd>ctrl-G</kbd>键，将返回到可视化模式。</p>
+	<p>可以使用<kbd>ctrl-O</kbd>命令从选择模式切换到可视化模式。</p>
 
-	<h2 class="article"><a id="selectmode-operation">ѡ��ģʽ�µĲ���</a></h2>
-	<p>��ѡ��ģʽ���ƶ�����������ģʽ��Ҫ����һЩ����Ϊ�����κοɴ�ӡ�ַ��ͻس�����Vim�ͻ�ɾ����ѡ�е��ı���������״̬������Ҫѡ���ı���ֻ��ʹ�÷������CTRL�Լ����ܼ���</p>
-	<p>���ϣ��ʹ��<kbd>Shift</kbd>������չѡ����ô��Ҫ��'keymodel'ѡ���а���"startsel"�� </p>
+	<h2 class="article"><a id="selectmode-operation">选择模式下的操作</a></h2>
+	<p>在选择模式下移动光标比在正常模式下要困难一些。因为输入任何可打印字符和回车符，Vim就会删掉已选中的文本并进插入状态。所以要选择文本就只能使用方向键、CTRL以及功能键。</p>
+	<p>如果希望使用<kbd>Shift</kbd>键来扩展选择，那么需要在'keymodel'选项中包含"startsel"： </p>
 	<p style="text-indent:2em"><code class="inset">:set keymodel=startsel,stopsel</code></p>
-	<p>���Ҫ��ѡ��ģʽ���������ѡ���ı�����Ҫ��������ѡ�</p>
+	<p>如果要在选择模式下用鼠标来选择文本，需要设置以下选项：</p>
 	<p style="text-indent:2em"><code class="inset">:set selectmode=mouse</code></p>
 
-	<h2 class="article"><a id="selectmode-exit">�˳�ѡ��ģʽ</a></h2>
-	<p>ʹ��<kbd>Esc</kbd>��<kbd>Ctrl-[</kbd>���������˳�ѡ��ģʽ��
+	<h2 class="article"><a id="selectmode-exit">退出选择模式</a></h2>
+	<p>使用<kbd>Esc</kbd>或<kbd>Ctrl-[</kbd>键，可以退出选择模式。
 
-	<h2 class="article"><a id="selectmode-help">������Ϣ</a></h2>
+	<h2 class="article"><a id="selectmode-help">帮助信息</a></h2>
 	<p style="text-indent:2em"><code class="inset">:help select-mode</code></p>
 
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="����ģʽ(Insert Mode)" href="http://yyq123.github.io/learn-vim/learn-vi-42-InsertMode.html">��һƪ</a>&nbsp;|<a title="�ʼ��б�" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;Ŀ¼&nbsp;</a>|&nbsp;<a title="���ӻ�ģʽ(Visual Mode)" href="http://yyq123.github.io/learn-vim/learn-vi-45-VisualMode.html">��һƪ</a>&gt;</span></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="插入模式(Insert Mode)" href="http://yyq123.github.io/learn-vim/learn-vi-42-InsertMode.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="可视化模式(Visual Mode)" href="http://yyq123.github.io/learn-vim/learn-vi-45-VisualMode.html">下一篇</a>&gt;</span></p>
 </body>
 </html>
 
