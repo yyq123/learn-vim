@@ -149,6 +149,7 @@ Created by yyq123@gmail.com using [vim](http://www.vim.org/)
   - [语句(Statements)](http://yyq123.github.io/learn-vim/learn-vi-92-ScriptStatement.html)[<sup>B</sup>](http://yyq123.blogspot.com/2017/06/vim-script-statements.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/60260968)
   - [列表(List)](http://yyq123.github.io/learn-vim/learn-vim-Script-List.html)[<sup>B</sup>](https://yyq123.blogspot.com/2021/01/vim-script-list.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/345554629)
   - [字典(Dictionary)](http://yyq123.github.io/learn-vim/learn-vim-Script-Dictionary.html)[<sup>B</sup>](https://yyq123.blogspot.com/2021/09/vim-script-dictionary.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/408592411)
+  - [字典-实例(Dictionary-Example)](http://yyq123.github.io/learn-vim/learn-vim-Script-Dictionary-Example.html)[<sup>B</sup>](https://yyq123.blogspot.com/2021/10/vim-script-dictionary-example.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/424424251)
   - [自定义函数(UDF)](http://yyq123.github.io/learn-vim/learn-vi-93-ScriptUDF.html)[<sup>B</sup>](http://yyq123.blogspot.com/2017/06/vim-script-user-defined-function.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/60260968)
   - [自定义命令(UDC)](http://yyq123.github.io/learn-vim/learn-vi-94-ScriptUDC.html)[<sup>B</sup>](http://yyq123.blogspot.com/2017/06/vim-script-user-defined-command.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/60260968)
 - **插件**

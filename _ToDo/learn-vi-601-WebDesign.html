@@ -20,9 +20,13 @@
 	<p>使用以下命令，可以查找所有以&lt;开头以&gt;结尾的HTML代码标签：</p>
 	<p style="text-indent:2em"><code class="inset">/&lt;.\{-}&gt;</code></p>
 
-	<h2 class="article"><a id="html_close_tag">关闭标签</a></h2>
-	<p><code class="inset">inoremap &lt;lt&gt;/ &lt;/&lt;C-x&gt;&lt;C-o&gt;</code></p>
+	<h2 class="article"><a id="html-tag-close">关闭标签</a></h2>
+	<p>在vimrc配置文件中定义以下快捷键，在输入闭合标签&ldquo;&lt;/&rdquo;时，将自动完成匹配的标签名称部分，可以减少代码的手工输入：</p>
+	<p style="text-indent:2em"><code class="inset">inoremap &lt;lt&gt;/ &lt;/&lt;C-x&gt;&lt;C-o&gt;</code></p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/HTML_CloseTag.png" title="HTML_CloseTag"><img src="https://yyq123.github.io/learn-vim/images/HTML_CloseTag.png" alt="HTML_CloseTag" /></a></p>
+	<p>如果连闭合标签也懒得输入，那么可以定义以下快捷键，点击回车键将自动输入匹配的标签：</p>
+	<p style="text-indent:2em"><code class="inset">inoremap &lt;C-Entert&gt; &lt;/&lt;C-xt&gt;&lt;C-ot&gt;</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/HTML_CloseTag_CtrlEnter.gif" title="HTML_CloseTag"><img src="https://yyq123.github.io/learn-vim/images/HTML_CloseTag_CtrlEnter.gif" alt="HTML_CloseTag" /></a></p>
 
 	<h2 class="article"><a id="html-tag-insert">新建标签</a></h2>
 	<p>假设需要将单词&ldquo;Importan&rdquo;包围在&lt;strong&gt;&lt;/strong&gt;标签之内。可以首先点击<kbd>ESC</kbd>键返回到常规模式；然后使用<code class="inset">bi</code>命令在单词之前进入插入状态，并输入标签&ldquo;&lt;strong&gt;&rdquo;；再次点击<kbd>ESC</kbd>键返回到常规模式；使用<code class="inset">ea</code>命令在单词之后进入插入状态；使用刚刚定义的快捷键来关闭标签。</p>
