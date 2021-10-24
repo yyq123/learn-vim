@@ -34,6 +34,7 @@ Created by yyq123@gmail.com using [vim](http://www.vim.org/)
   - [插入模式 (Insert Mode)](http://yyq123.github.io/learn-vim/learn-vi-42-InsertMode.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/07/vim-insert-mode.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/72335772)
   - [替换模式(Replace Mode)](http://yyq123.github.io/learn-vim/learn-vi-44-ReplaceMode.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/07/vim-replace-mode.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/72577235)
   - [可视化模式 (Visual Mode)](http://yyq123.github.io/learn-vim/learn-vi-45-VisualMode.html)[<sup>B</sup>](http://yyq123.blogspot.com/2010/11/vim-visual-mode.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/58513837)
+  - [选择模式 (Select Mode)](http://yyq123.github.io/learn-vim/learn-vim-Mode-Select.html)[<sup>B</sup>](https://yyq123.blogspot.com/2021/10/vim-select-mode.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/425201797)
   - [命令行模式 (Command-line Mode)](http://yyq123.github.io/learn-vim/learn-vi-46-CommandlineMode.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/08/vim-command-line-mode.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/76531156)
   - [Ex模式 (Ex Mode)](http://yyq123.github.io/learn-vim/learn-vi-48-ExMode.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/08/vim-ex-mode.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/78778165)
 - **Ex命令**
