@@ -8,13 +8,12 @@
 <title>VIM学习笔记 宏(Macro)</title>
 </head>
 <body>
+	<h1>VIM学习笔记 宏(Macro)</h1>
 	<p>利用键盘宏（Macro），可以录制一组命令，然后重复执行。</p>
-	<ul>
-		<li>tansen is the singer</li>
-		<li>daswant is the painter</li>
-		<li>birbal is the wazir</li>
-	</ul>
-	<p>例如，我们需要对以上文字，进行下列处理：</p>
+	<p>假设需要对以下文字，进行下列处理：</p>
+	<pre class="block">tansen is the singer
+daswant is the painter
+birbal is the wazir</pre>
 	<ol>
 		<li>将每行的首字符大写；</li>
 		<li>将"is"改为"was"；</li>
@@ -22,7 +21,7 @@
 	</ol>
 	<p>显然，手工重复完成这些操作是相当繁琐和费时的，而使用宏则会非常高效。</p>
 
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">录制宏</p>
+	<h2 class="article"><a id="macro-create">录制宏</a></h2>
 	<ol>
 		<li>进入常规模式；</li>
 		<li>将光标移动到第一行的第一个字母上；</li>
@@ -37,8 +36,13 @@
 		<li>点击<kbd>Esc</kbd>键，返回常规模式；</li>
 		<li>执行<code class="inset">q</code>命令，完成录制宏；</li>
 	</ol>
-	
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">执行宏</p>
+
+	<h2 class="article"><a id="macro-register">查看宏</a></h2>
+	<p>宏录制的命令序列，将被存储在指定的<a href="https://yyq123.github.io/learn-vim/learn-vi-12-Register.html" title="寄存器(Regists)">寄存器</a>（Regists）中。使用以下命令，可以查看宏的内容：</p>
+	<p style="text-indent:2em"><code class="inset">:register a</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/macro_register.png" title="macro_register"><img src="https://yyq123.github.io/learn-vim/images/macro_register.png" alt="macro_register" /></a></p>
+
+	<h2 class="article"><a id="macro-execute">执行宏</a></h2>
 	<p>在完成一行的修改并录制宏后，就可以使用宏快速完成其它行的处理了：</p>
 	<ol>
 		<li>执行<code class="inset">j</code>命令，移动到下一行；</li>
@@ -46,12 +50,16 @@
 		<li>执行<code class="inset">@a</code>命令，执行宏a；</li>
 	</ol>
 	<p>我们还可以在执行命令前加上数字，比如<code class="inset">3@a</code>，来告诉vi执行几次宏。</p>
-	
+
+	<h2 class="article"><a id="macro-del">删除宏</a></h2>
+	<p>通过重新录制宏，可以覆盖当前宏的内容。例如，使用<code class="inset">qaq</code>命令，将清空宏a的内容；使用以下命令，也可以将宏a置为空：</p>
+	<p style="text-indent:2em"><code class="inset">:let @a = ''</code></p>
+
+	<h2 class="article"><a id="macro-help">命令小结</a></h2>
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
-		<caption>命令小结</caption>
-		<tr><td><code class="inset">q</code></td><td>录制宏</td></tr>
-		<tr><td><code class="inset">@</code></td><td>执行宏</td></tr>
+		<tr><td><code class="inset">q</code></td><td>录制宏</td><td><code class="inset">:help q</code></td></tr>
+		<tr><td><code class="inset">@</code></td><td>执行宏</td><td><code class="inset">:help @</code></td></tr>
 	</table>
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.1</span><span>&lt;<a title="加密" href="http://bit.ly/vim-crypt">上一篇</a>&nbsp;|<a title="笔记列表" href="http://bit.ly/vim-TOC">&nbsp;目录&nbsp;</a>|&nbsp;<a title="寄存器" href="http://bit.ly/vim-register">下一篇</a>&gt;</span></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="加密" href="http://yyq123.github.io/learn-vim/learn-vi-27-crypt.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="寄存器" href="http://yyq123.github.io/learn-vim/learn-vi-12-Register.html">下一篇</a>&gt;</span></p>
 </body>
 </html>
