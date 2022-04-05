@@ -5,128 +5,66 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记 附录-选项(Appendix-Options)</title>
+	<title>VIM学习笔记 附录-命令(Appendix-Commands)</title>
 </head>
 <body>
-	<h1>VIM学习笔记 附录-选项(Appendix-Options)</h1>
+	<h1>VIM学习笔记 附录-命令(Appendix-Commands)</h1>
 
-<p>The <a href="http://www.oreilly.com/catalog/vipr/noframes.html"><em>vi
-Editor Pocket Reference</em></a> is a companion volume to
-O'Reilly's newly updated <a href="http://www.oreilly.com/catalog/vi6/"><em>Learning the vi
-Editor</em></a>, now in its 6th edition, a complete guide to text
-editing with <em>vi</em>. New topics in <em>Leanring the vi
-Editor</em> include coverage of four <em>vi</em> clones, <em>vim</em>,
-expressions, and GUI interfaces.</p>
+	<h2><a id="Conventions"><em>Conventions</em></a></h2>
 
-<p><strong>Arnold Robbins</strong>, an Atlanta native now happily
-living in Israel, is a professional programmer and technical
-author, and author of the second edition of O'Reilly's <em>sed
-&amp; awk</em> as well as the new <em>Learning the vi Editor</em>.
-He has been working with Unix systems since 1980. He currently
-maintains <em>gawk</em> (<em>GNU awk</em>) and its documentation.</p>
-
-
-<h1><a name="Conventions"><em>Conventions</em></a></h1>
-
-
-<h1><a name="1. Command Line Options"><em>1. Command Line Options</em></a></h1>
+	<h2><a id="Starting-Command">启动命令 Starting Commands</a></h1>
 
 <table border="0">
-    <tbody><tr>
-        <td><strong>Command</strong></td>
-        <td><strong>Action</strong></td>
-    </tr>
-    <tr>
-        <td><code>vi file&nbsp;</code></td>
-        <td>Invoke <em>vi</em> on <em>file</em></td>
-    </tr>
-    <tr>
-        <td><code>vi file1
-        file2&nbsp;</code></td>
-        <td>Invoke <em>vi</em> on files sequentially</td>
-    </tr>
-    <tr>
-        <td><code>view file&nbsp;</code></td>
-        <td>Invoke <em>vi</em> on <em>file</em> in read-only mode</td>
-    </tr>
-    <tr>
-        <td><code>vi -R file&nbsp;</code></td>
-        <td>Invoke <em>vi</em> on <em>file</em> in read-only mode</td>
-    </tr>
-    <tr>
-        <td><code>vi -r file&nbsp;</code></td>
-        <td>Recover <em>file</em> and recent edits after a crash</td>
-    </tr>
-    <tr>
-        <td><code>vi -S file&nbsp;</code></td>
-        <td>Reload all files from <em>file</em> named session</td>
-    </tr>
-    <tr>
-        <td><code>vi -t tag&nbsp;</code></td>
-        <td>Look up a <em>tag</em> and start editing at its
-        definition</td>
-    </tr>
-    <tr>
-        <td><code>vi -w n&nbsp;</code></td>
-        <td>Set the windows size to <em>n</em>; useful over a
-        slow connection</td>
-    </tr>
-    <tr>
-        <td><code>vi + file&nbsp;</code></td>
-        <td>Open <em>file</em> at last line</td>
-    </tr>
-    <tr>
-        <td><code>vi +n file&nbsp;</code></td>
-        <td>Open <em>file</em> directly at line number <em>n</em></td>
-    </tr>
-    <tr>
-        <td><code>vi -c command
-        file&nbsp;</code></td>
-        <td>Open <em>file</em>, execute <em>command</em>, which
-        is usually a search command or line number (POSIX)</td>
-    </tr>
-    <tr>
-        <td><code>vi +/pattern
-        file&nbsp;</code></td>
-        <td>Open <em>file</em> directly at <em>pattern</em></td>
-    </tr>
-    <tr>
-        <td><code>ex file&nbsp;</code></td>
-        <td>Invoke <em>ex</em> on <em>file</em></td>
-    </tr>
-    <tr>
-        <td><code>ex - file
-        &lt;script&nbsp;</code></td>
-        <td>Invoke <em>ex</em> on <em>file</em>, taking commands
-        from <em>script</em>; surpress informative messages and
-        prompts</td>
-    </tr>
-    <tr>
-        <td><code>ex -s file
-        &lt;script&nbsp;</code></td>
-        <td>Invoke <em>ex</em> on <em>file</em>, taking commands
-        from <em>script</em>; surpress informative messages and
-        prompts (POSIX)</td>
-    </tr>
-</tbody></table>
+    <tbody>
+    <tr><td><code>vi file&nbsp;</code></td><td>Invoke <em>vi</em> on <em>file</em></td></tr>
+    <tr><td><code>vi file1 file2&nbsp;</code></td><td>Invoke <em>vi</em> on files sequentially</td></tr>
+    <tr><td><code>view file&nbsp;</code></td><td>Invoke <em>vi</em> on <em>file</em> in read-only mode</td></tr>
+    <tr><td><code>vi -b file&nbsp;</code></td><td>Invoke <em>vi</em> on <em>file</em> in binary mode</td></tr>
+    <tr><td><code>vi -c command file&nbsp;</code></td><td>Open <em>file</em>, execute <em>command</em>, which is usually a search command or line number (POSIX)</td></tr>
+    <tr><td><code>vi -d file&nbsp;</code></td><td>Invoke <em>vi</em> on <em>file</em> in diff mode</td></tr>
+    <tr><td><code>vi -D file&nbsp;</code></td><td>Invoke <em>vi</em> on <em>file</em> in debugging mode</td></tr>
+    <tr><td><code>vi -h file&nbsp;</code></td><td>显示帮助信息</td></tr>
+    <tr><td><code>vi -m file&nbsp;</code></td><td>允许修改文本，但不允许保存文件</td></tr>
+    <tr><td><code>vi -M file&nbsp;</code></td><td>不允许修改文本，也不允许保存文件</td></tr>
+    <tr><td><code>vi -n file&nbsp;</code></td><td>不使用swap文件</td></tr>
+    <tr><td><code>vi -N file&nbsp;</code></td><td>非兼容模式（nocompatible）</td></tr>
+    <tr><td><code>vi -o[N]&nbsp;</code></td><td>新建N个水平窗口</td></tr>
+    <tr><td><code>vi -O[N]&nbsp;</code></td><td>新建N个垂直窗口</td></tr>
+    <tr><td><code>vi -r file&nbsp;</code></td><td>Recover <em>file</em> and recent edits after a crash</td></tr><tr>
+    <tr><td><code>vi -R file&nbsp;</code></td><td>Invoke <em>vi</em> on <em>file</em> in read-only mode</td></tr>
+    <tr><td><code>vi -s file&nbsp;</code></td><td>安静(批处理)模式</td></tr>
+    <tr><td><code>vi -S file&nbsp;</code></td><td>Reload all files from <em>file</em> named session</td></tr>
+    <tr><td><code>vi -t tag&nbsp;</code></td><td>Look up a <em>tag</em> and start editing at its definition</td></tr>
+    <tr><td><code>vi -T type&nbsp;</code></td><td>指定terminal类型</td></tr>
+    <tr><td><code>vi -u file&nbsp;</code></td><td>使用file为初始化文件，而不使用vimrc作为初始化文件</td></tr>
+    <tr><td><code>vi -U file&nbsp;</code></td><td>使用file为初始化文件，而不使用gvimrc作为初始化文件</td></tr>
+    <tr><td><code>vi -v&nbsp;</code></td><td>全屏幕vi模式</td></tr>
+    <tr><td><code>vi -V[N]&nbsp;</code></td><td>输出更多信息的Verbose模式</td></tr>
+    <tr><td><code>vi -w n&nbsp;</code></td><td>Set the windows size to <em>n</em></td></tr>
+    <tr><td><code>vi -W scriptout&nbsp;</code></td><td>将用户输入的所有命令，覆盖存储到指定的脚本文件</td></tr>
+    <tr><td><code>vi -x&nbsp;</code></td><td>使用<a href="http://yyq123.github.io/learn-vim/learn-vi-27-crypt.html" title="使用密钥加密(cryptv)">使用密钥加密(cryptv)</a>文件</td></tr>
+    <tr><td><code>vi -y&nbsp;</code></td><td>使用Easy模式，仅可输入文本，无法使用命令</td></tr>
+    <tr><td><code>vi -z&nbsp;</code></td><td>使用受限模式，不允许使用外部Shell命令</td></tr>
+    <tr><td><code>vi + file&nbsp;</code></td><td>Open <em>file</em> at last line</td></tr>
+    <tr><td><code>vi +n file&nbsp;</code></td><td>Open <em>file</em> directly at line number <em>n</em></td></tr>
+    <tr><td><code>vi +/pattern file&nbsp;</code></td><td>打开<em>file</em>文件，并定位至<em>pattern</em>模式匹配处</td></tr>
+    <tr><td><code>vi --noplugin&nbsp;</code></td><td>不启用插件</td></tr>
+    <tr><td><code>vi --version&nbsp;</code></td><td>查看版本信息</td></tr>
+    <tr><td><code>ex file&nbsp;</code></td><td>Invoke <em>ex</em> on <em>file</em></td></tr>
+    <tr><td><code>ex - file &lt;script&nbsp;</code></td><td>Invoke <em>ex</em> on <em>file</em>, taking commands from <em>script</em>; surpress informative messages and prompts</td></tr>
+    <tr><td><code>ex -s file &lt;script&nbsp;</code></td><td>Invoke <em>ex</em> on <em>file</em>, taking commands from <em>script</em>; surpress informative messages and prompts (POSIX)</td></tr>
+</tbody>
+</table>
+<p>更多内容，请参阅<a href="http://yyq123.github.io/learn-vim/learn-vi-209-Start.html" title="">启动 (Starting)</a>章节。</p>
 
-<h1><a name="2. vi Commands"><em>2. vi Commands</em></a></h1>
+<h2><a id="vi-Commands">vi Commands</a></h2>
 
 <p>Most vi command follow a general pattern:</p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+	<p style="text-indent:2em"><code class="inset">[command][number]text object</code></p>
+	<p style="text-indent:2em"><code class="inset">[number][command]text object</code></p>
 
-<blockquote>
-    <p><code>[command][number]text
-    object</code></p>
-</blockquote>
-
-<p>or the equivalent form:</p>
-
-<blockquote>
-    <p><code>[number][command]text
-    object</code></p>
-</blockquote>
-
-<h2>Movement Commands</h2>
+<h3>Movement Commands</h3>
 	<p><a href="https://yyq123.github.io/learn-vim/images/Movement.png" title="Movement"><img src="https://yyq123.github.io/learn-vim/images/Movement.png" alt="Movement" /></a></p>
 
 <table border="0">
@@ -156,25 +94,28 @@ maintains <em>gawk</em> (<em>GNU awk</em>) and its documentation.</p>
         <td>&nbsp;</td>
     </tr>
     <tr>
-        <td><code>w, W,&nbsp;<br>
-        b, B&nbsp;</code></td>
-        <td valign="bottom">Forward, backward by word</td>
+        <td><code>w, W,&nbsp;</code></td>
+        <td valign="bottom">Forward by word/WORD</td>
+    </tr>
+     <tr>
+        <td><code>b, B&nbsp;</code></td>
+        <td valign="bottom">Backward by word/WOED</td>
     </tr>
     <tr>
         <td><code>e, E&nbsp;</code></td>
-        <td>End of word</td>
+        <td>End of word/WORD</td>
     </tr>
     <tr><td><code>(</code></td><td>Beginning of current sentence</td></tr>
     <tr><td><code>)</code></td><td>End of current sentence</td></tr>
     <tr><td><code>{</code></td><td>Beginning of current paragraph</td></tr>
     <tr><td><code>}</code></td><td>End of current paragraph</td></tr>
     <tr>
-        <td><code>]], [[&nbsp;</code></td>
-        <td>Beginning of next, previous section</td>
+        <td><code>]]&nbsp;</code></td>
+        <td>Beginning of next section</td>
     </tr>
     <tr>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
+        <td><code>[[&nbsp;</code></td>
+        <td>Beginning of previous section</td>
     </tr>
     <tr>
         <td><em>Lines</em></td>
@@ -184,12 +125,10 @@ maintains <em>gawk</em> (<em>GNU awk</em>) and its documentation.</p>
         <td><code>RETURN</code></td>
         <td>First nonblank character of next line</td>
     </tr>
+    <tr><td><code>0</code></td><td>First position of current line</td></td>
+    <tr><td><code>$</code></td><td>Last position of current line</td></tr>
     <tr>
-        <td><code>0</code></td><td>First position of current line</td>
-        <td><code>$</code></td><td>Last position of current line</td>
-    </tr>
-    <tr>
-        <td><code>^&nbsp;</code></td>
+        <td><code>^, _&nbsp;</code></td>
         <td>First nonblank character of current line</td>
     </tr>
     <tr>
@@ -200,6 +139,19 @@ maintains <em>gawk</em> (<em>GNU awk</em>) and its documentation.</p>
         <td><code>n|&nbsp;</code></td>
         <td>Column <em>n</em> of current line</td>
     </tr>
+    <tr>
+        <td><code></code></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code></code></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code></code></td>
+        <td></td>
+    </tr>
+
     <tr>
         <td><code>H&nbsp;</code></td>
         <td>Top line of screen</td>
@@ -269,10 +221,7 @@ maintains <em>gawk</em> (<em>GNU awk</em>) and its documentation.</p>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
     </tr>
-    <tr>
-        <td><em>Searches</em></td>
-        <td>&nbsp;</td>
-    </tr>
+    <tr><td><strong><em>Searches</em></strong></td><td>&nbsp;</td></tr>
     <tr>
         <td><code>/pattern&nbsp;</code></td>
         <td>Search forward for <em>pattern</em></td>
@@ -289,6 +238,10 @@ maintains <em>gawk</em> (<em>GNU awk</em>) and its documentation.</p>
         <td><code>/, ?&nbsp;</code></td>
         <td>Repeat previous search forward, backward</td>
     </tr>
+    <tr><td><code>*</code></td><td>向前查找当前光标下的word</td></tr>
+    <tr><td><code>#</code></td><td>向后查找当前光标下的word</td></tr>
+    <tr><td><code>%</code></td><td>查找匹配的括号</td></tr>
+    <tr><td><code></code></td><td></td></tr>
     <tr>
         <td><code>fx&nbsp;</code></td>
         <td>Search forward for character <em>x</em> in current
@@ -318,14 +271,8 @@ maintains <em>gawk</em> (<em>GNU awk</em>) and its documentation.</p>
         <td>Repeat previous current line search in opposite
         direction</td>
     </tr>
-    <tr>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <td><em>Line Number</em></td>
-        <td>&nbsp;</td>
-    </tr>
+    <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+    <tr><td><strong><em>Line Number</em></strong></td><td>&nbsp;</td></tr>
     <tr>
         <td><code><strong>CTRL-G</strong></code></td>
         <td>Display current line number</td>
@@ -334,10 +281,8 @@ maintains <em>gawk</em> (<em>GNU awk</em>) and its documentation.</p>
         <td><code>nG&nbsp;</code></td>
         <td>Move to line number <em>n</em></td>
     </tr>
-    <tr>
-        <td><code>G&nbsp;</code></td>
-        <td>Move to last line in file</td>
-    </tr>
+    <tr><td><code>gg&nbsp;</code></td><td>Move to first line in file</td></tr>
+    <tr><td><code>G&nbsp;</code></td><td>Move to last line in file</td></tr>
     <tr>
         <td><code>:n&nbsp;</code></td>
         <td>Move to line <em>n</em> in file</td>
@@ -346,10 +291,7 @@ maintains <em>gawk</em> (<em>GNU awk</em>) and its documentation.</p>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
     </tr>
-    <tr>
-        <td><em>Marking position</em></td>
-        <td>&nbsp;</td>
-    </tr>
+    <tr><td><strong><em>Marking position</em></strong></td><td>&nbsp;</td></tr>
     <tr>
         <td><code>mx&nbsp;</code></td>
         <td>Mark current position as <em>x</em></td>
@@ -366,27 +308,22 @@ maintains <em>gawk</em> (<em>GNU awk</em>) and its documentation.</p>
         <td><code>'x&nbsp;</code></td>
         <td>(Apostrophe) Moves the cursor to the first character of the line marked by <em>x</em></td>
     </tr>
-    <tr>
-        <td><code>''&nbsp;</code></td>
-        <td>(Apostrophes) Returns to the beginning of the line of the previous mark or context</td>
-    </tr>
+    <tr><td><code>''&nbsp;</code></td><td>(Apostrophes) Returns to the beginning of the line of the previous mark or context</td></tr>
+    <tr><td><code>`.&nbsp;</code></td><td>(Backquote period) 移动到当前文件的上次修改处</td></tr>
+    <tr><td><code>'.&nbsp;</code></td><td>(Apostrophe period) 移动到当前文件的上次修改处的行首</td></tr>
+    <tr><td><code>'0&nbsp;</code></td><td>(Apostrophe zero) 移动到上次退出时的位置</td></tr>
+    <tr><td><code>:marks&nbsp;</code></td><td>显示所有标记</td></tr>
 </tbody></table>
 
 <h2><em>Editing Commands</em></h2>
 
 <table border="0">
-    <tbody><tr>
-        <td><strong>Command</strong></td>
-        <td><strong>Action</strong></td>
-    </tr>
+    <tbody>
     <tr>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
     </tr>
-    <tr>
-        <td><em>Insert</em></td>
-        <td>&nbsp;</td>
-    </tr>
+    <tr><td><strong><em>Insert</em></strong></td><td>&nbsp;</td></tr>
     <tr>
         <td><code>i, a&nbsp;</code></td>
         <td>Insert text before, after cursor</td>
@@ -403,10 +340,7 @@ maintains <em>gawk</em> (<em>GNU awk</em>) and its documentation.</p>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
     </tr>
-    <tr>
-        <td><em>Change</em></td>
-        <td>&nbsp;</td>
-    </tr>
+    <tr><td><strong><em>Change</em></strong></td><td>&nbsp;</td></tr>
     <tr>
         <td><code>r&nbsp;</code></td>
         <td>Replace character</td>
@@ -415,16 +349,13 @@ maintains <em>gawk</em> (<em>GNU awk</em>) and its documentation.</p>
         <td><code>cw&nbsp;</code></td>
         <td>Change word</td>
     </tr>
-    <tr>
-        <td><code>cc&nbsp;</code></td>
-        <td>Change current line</td>
-    </tr>
+    <tr><td><code>cc&nbsp;</code></td><td>Change current line</td></tr>
     <tr>
         <td><code>cmotion&nbsp;</code></td>
         <td>Change text between the cursor and the target of <em>motion</em></td>
     </tr>
     <tr>
-        <td><code>C&nbsp;</code></td>
+        <td><code>C, c$</code></td>
         <td>Change to end of line</td>
     </tr>
     <tr>
@@ -443,10 +374,7 @@ maintains <em>gawk</em> (<em>GNU awk</em>) and its documentation.</p>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
     </tr>
-    <tr>
-        <td><em>Delete, move</em></td>
-        <td>&nbsp;</td>
-    </tr>
+    <tr><td><strong><em>Delete, move</em></strong></td><td>&nbsp;</td></tr>
     <tr>
         <td><code>x&nbsp;</code></td>
         <td>Delete character under cursor</td>
@@ -455,10 +383,14 @@ maintains <em>gawk</em> (<em>GNU awk</em>) and its documentation.</p>
         <td><code>X&nbsp;</code></td>
         <td>Delete character before cursor</td>
     </tr>
-    <tr>
-        <td><code>dw&nbsp;</code></td>
-        <td>Delete word</td>
-    </tr>
+    <tr><td><code>dw&nbsp;</code></td><td>Delete word</td></tr>
+    <tr><td><code>d}</code></td><td>删除至下一个段落paragraph</td></tr>
+    <tr><td><code>d^</code></td><td>删除至行首</td></tr>
+    <tr><td><code>dG</code></td><td>删除至文件末尾</td></tr>
+    <tr><td><code>~</code></td><td>转换当前字符大小写</td></tr>
+    <tr><td><code>g~w</code></td><td>转换当前word大小写</td></tr>
+    <tr><td><code>guw</code></td><td>转换当前word为小写</td></tr>
+    <tr><td><code>gUw</code></td><td>转换当前word为大写</td></tr>
     <tr>
         <td><code>dd&nbsp;</code></td>
         <td>Delete current line</td>
@@ -468,36 +400,24 @@ maintains <em>gawk</em> (<em>GNU awk</em>) and its documentation.</p>
         <td>Delete text between the cursor and the target of <em>motion</em></td>
     </tr>
     <tr>
-        <td><code>D&nbsp;</code></td>
+        <td><code>D, d$</code></td>
         <td>Delete to end of line</td>
     </tr>
     <tr>
-        <td><code>p, P&nbsp;</code></td>
-        <td>Put deleted text after, before cursor</td>
-    </tr>
-    <tr>
-        <td><codenp&nbsp;</code></td>
-        <td>Put text from delete buffer number <em>n</em> after
-        cursor (for last nine deletions)</td>
-    </tr>
-    <tr>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
     </tr>
-    <tr>
-        <td><em>Yank</em></td>
-        <td>&nbsp;</td>
-    </tr>
+    <tr><td><strong><em>Yank</em></strong></td><td>&nbsp;</td></tr>
     <tr>
         <td><code>yw&nbsp;</code></td>
         <td>Yank (copy) word</td>
     </tr>
     <tr>
-        <td><code>yy&nbsp;</code></td>
+        <td><code>yy, Y</code></td>
         <td>Yank cureent line</td>
     </tr>
     <tr>
-        <td><codeayy&nbsp;</code></td>
+	    <td><code>ayy&nbsp;</code></td>
         <td>Yank current line into named buffer <em>a</em> (a-z).
         Uppercase names append text</td>
     </tr>
@@ -510,25 +430,23 @@ maintains <em>gawk</em> (<em>GNU awk</em>) and its documentation.</p>
         <td>Put yanked text after, before cursor</td>
     </tr>
     <tr>
-        <td><codeaPv</code></td>
+	    <td><code>aPv</code></td>
         <td>Put text from buffer <em>a</em> before cursor (a-z)</td>
     </tr>
     <tr>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
     </tr>
-    <tr>
-        <td><em>Other Commands</em></td>
-        <td>&nbsp;</td>
-    </tr>
+    <tr><td><strong><em>Other Commands</em></strong></td><td>&nbsp;</td></tr>
     <tr>
         <td><code>.&nbsp;</code></td>
         <td>Repeat last edit command</td>
     </tr>
-    <tr>
-        <td><code>u, U&nbsp;</code></td>
-        <td>Undo last edit, restore current line</td>
-    </tr>
+    <tr><td><code>u</code></td><td>Undo last edit</td></tr>
+    <tr><td><code>U</code></td><td>restore current line</td></tr>
+    <tr><td><code>CTRL-A</code></td><td>增加当前光标下的数值</td></tr>
+    <tr><td><code>CTRL-X</code></td><td>减少当前光标下的数值</td></tr>
+<tr><td><code></code></td><td></td></tr>
     <tr>
         <td><code>J&nbsp;</code></td>
         <td>Join two lines</td>
@@ -569,19 +487,11 @@ maintains <em>gawk</em> (<em>GNU awk</em>) and its documentation.</p>
     </tr>
 </tbody></table>
 
-<h2><em>Exit Commands</em></h2>
-
+<h2>Save Commands</h2>
 <table border="0">
-    <tbody><tr>
-        <td><strong>Command</strong></td>
-        <td><strong>Meaning</strong></td>
-    </tr>
+    <tbody>
     <tr>
-        <td><code>ZZ&nbsp;</code></td>
-        <td>Write (save) and quit file</td>
-    </tr>
-    <tr>
-        <td><code>:x&nbsp;</code></td>
+        <td><code>ZZ, :x</code></td>
         <td>Write (save) and quit file</td>
     </tr>
     <tr>
@@ -597,13 +507,11 @@ maintains <em>gawk</em> (<em>GNU awk</em>) and its documentation.</p>
         <td>Write (save) file, overriding protection</td>
     </tr>
     <tr>
-        <td><code>:30,60w
-        newfile&nbsp;</code></td>
+        <td><code>:30,60w newfile&nbsp;</code></td>
         <td>Write from line 30 through line 60 as <em>newfile</em></td>
     </tr>
     <tr>
-        <td><code>:30,60w&gt;&gt;
-        file&nbsp;</code></td>
+        <td><code>:30,60w&gt;&gt; file&nbsp;</code></td>
         <td>Write from line 30 through line 60 and append to <em>file</em></td>
     </tr>
     <tr>
@@ -622,32 +530,27 @@ maintains <em>gawk</em> (<em>GNU awk</em>) and its documentation.</p>
         <td><code>Q&nbsp;</code></td>
         <td>Quit <em>vi</em> and invoke <em>ex</em></td>
     </tr>
+</tbody></table>
+
+<h2>Accessing Multiple Files</h2>
+<table border="0">
+    <tbody>
     <tr>
-        <td><code>:e file2&nbsp;</code></td>
-        <td>Edit <em>file2</em> without leaving <em>vi</em></td>
-    </tr>
-    <tr>
-        <td><code>:n&nbsp;</code></td>
-        <td>Edit next file</td>
+        <td><code>:e file</code></td>
+	<td>编辑另一文件，当前文件变为<em>alternate</em>文件</td>
     </tr>
     <tr>
         <td><code>:e!&nbsp;</code></td>
-        <td>Return to version of current file at time of last
-        write (save)</td>
+        <td>Return to version of current file at time of last write (save)</td>
     </tr>
     <tr>
         <td><code>:e #&nbsp;</code></td>
-        <td>Edit alternate file</td>
+        <td>编辑<em>alternate</em>文件</td>
     </tr>
-    <tr>
-        <td><code>:vi&nbsp;</code></td>
-        <td>Invoke <em>vi</em> from <em>ex</em></td>
-    </tr>
-    <tr>
-        <td><code>:&nbsp;</code></td>
-        <td>Invoke one <em>ex</em> command from <em>vi</em>
-        editor</td>
-    </tr>
+    <tr><td><code>:n&nbsp;</code></td><td>编辑下一个文件</td></tr>
+    <tr><td><code>:rewind</code></td><td>编辑第一个文件</td></tr>
+    <tr><td><code>:prev</code></td><td>编辑上一个文件</td></tr>
+    <tr><td><code>:args</code></td><td>显示文件列表</td></tr>
     <tr>
         <td><code>%&nbsp;</code></td>
         <td>Current filename (substitutes into <em>ex</em>
@@ -683,7 +586,7 @@ maintains <em>gawk</em> (<em>GNU awk</em>) and its documentation.</p>
 <tbody>
 	<tr><td><strong>Command</strong></td><td><strong>Action</strong></td></tr>
 	<tr><td><code>:ls[!]</code></td><td rowspan="3">List buffers and file names. Include unlisted buffers if ! modifier is included.</td></tr>
-	<tr><td><code>:files[!]</code></td></tr>
+	<tr><td><code>:files[!]</code></td><td></td></tr>
 	<tr><td><code>:ba[ll]</code></td><td>Edit all args or buffers</td></tr>
 	<tr><td><code>:sba[ll]</code></td><td>Edit all args or buffers (opens them in new windows)</td></tr>
 	<tr><td><code>:badd file</code></td><td>Add file to list.</td></tr>
@@ -760,7 +663,7 @@ to be unloaded without being saved.</td></tr>
 
 
 <table border="0">
-<caption style="margin:0.5em; font-weight:bold">Summary of window commands</caption>
+<caption style="margin:0.5em; font-weight:bold">Window commands</caption>
 <tbody><tr><th>Command</th><th>Action</th></tr>
     <tr><td><code class="inset">:split</code></td><td><code class="inset">^Ws</code></td><td>Split the current window into two from side to side, placing the cursor in the new window. The optional file argument places that file in the newly created window. The windows are created as equal in size as possible, determined by free window space.</td></tr>
     <tr><td><code class="inset">:new</code></td><td><code class="inset">^Wn</code></td><td>Same as :split, but start the new window editing an empty file. Note that the buffer will have no name until one is assigned.</td></tr>
@@ -768,7 +671,7 @@ to be unloaded without being saved.</td></tr>
     <tr><td><code class="inset">:sfind</code></td><td><code class="inset"></code></td><td>Split window and open file (if specified) in the new window.Look for file in the path.</td></tr>
     <tr><td><code class="inset">:vsplit</code></td><td><code class="inset">^Wv</code></td><td>Split current window into two from top to bottom and open file (if specified) in the new window.</td></tr>
     <tr><td><code class="inset">:vnew</code></td><td><code class="inset"></code></td><td>Vertical version of :new.</td></tr>
-    <tr><td><code class="inset"></code></td><td></td></tr>
+    <tr><td><code class="inset">:close</code></td><td>关闭当前窗口</td></tr>
 </tbody>
 </table>
 
@@ -856,60 +759,48 @@ to be unloaded without being saved.</td></tr>
 
 <h1><a name="3. Input Mode Shortcuts"><em>3. Input Mode Shortcuts</em></a></h1>
 
-
 <h2><em>Command and Input Mode Maps</em></h2>
 
 <p><code>:map x sequence</code></p>
-
-<blockquote>
     <p>Define character(s) <em>x</em> as a <em>sequence</em> of
     editing commands.</p>
-</blockquote>
 
 <p><code>:unmap x</code></p>
-
-<blockquote>
     <p>Disable <em>sequence</em> defined for <em>x</em></p>
-</blockquote>
 
 <p><code>:map</code></p>
-
-<blockquote>
     <p>List the characters that are currently mapped .</p>
-</blockquote>
 
 <p><code>:map! x sequence</code></p>
-
-<blockquote>
     <p>Define character(s) <em>x</em> as a <em>sequence</em> of
     editing commands or text that will be recognized in input
     mode.</p>
-</blockquote>
 
 <p><code>:unmap! x</code></p>
-
-<blockquote>
     <p>Disable the <em>sequence</em> defined for the input mode
     map <em>x</em>.</p>
-</blockquote>
 
 <p>For both command and input mode maps, the map name <em>x</em>
 can take several forms:</p>
 
 <p><em>One Character</em></p>
-
-<blockquote>
     <p>When you type the character, <em>vi</em> executes the
     associated sequence of commands.</p>
-</blockquote>
 
 <p><em>Multiple Characters</em></p>
-
-<blockquote>
     <p>All the characters must be txped within one second. The
     value of <code>notimeout</code>
     changes the behaviour.</p>
-</blockquote>
+
+<h2><em>Macros</em></h2>
+<table border="0">
+<caption style="margin:0.5em; font-weight:bold"></caption>
+<tbody><tr><th>Command</th><th>Action</th></tr>
+    <tr><td><code class="inset">qx</code></td><td>开始录制宏x</td></tr>
+    <tr><td><code class="inset">q</code></td><td>结束录制宏</td></tr>
+    <tr><td><code class="inset">@x</code></td><td>执行宏x</td></tr>
+</tbody>
+</table>
 
 <table border="0">
     <tbody><tr>
@@ -1234,9 +1125,9 @@ bracket expression.</p>
     </tr>
 </tbody></table>
 
-<table border="1" cellpadding="3" nosave="">
+<table border="1" cellpadding="3">
 <tbody><tr>
-<td nosave="" bgcolor="#cccccc"><b><tt>Shortcut</tt></b></td>
+<td style="background:#cccccc"><tt>Shortcut</tt></td>
 
 <td bgcolor="#cccccc"><b><tt>Equivalent
       <br>
@@ -1371,6 +1262,41 @@ expression ends its effect.
         one.</li>
 </ul>
 
+<h1><a name="5. :set Commands"><em>5. :set Commands</em></a></h1>
+
+<table border="0">
+   <tr>
+	<td valign="top"><code>:set <em>option</em></code></td>
+        <td>&nbsp;</td>
+        <td valign="top">对于布尔值选项，将启用该选项；对于其他类型选项，将显示当前选项值。</td>
+    </tr>
+       <tr>
+        <td valign="top"><code>:set no <em>option</code></td>
+        <td>&nbsp;</td>
+        <td valign="top">禁用该选项</td>
+    </tr>
+   <tr>
+	<td valign="top"><code>:set <em>option</em>=<em>value</em></code></td>
+        <td>&nbsp;</td>
+        <td valign="top">设置选项值</td>
+    </tr>
+   <tr>
+        <td valign="top"><code>:set</code></td>
+        <td>&nbsp;</td>
+        <td valign="top">显示所有已更改的选项</td>
+    </tr>
+   <tr>
+        <td valign="top"><code>:set all</code></td>
+        <td>&nbsp;</td>
+        <td valign="top">显示所有选项</td>
+    </tr>
+   <tr>
+        <td valign="top"><code>:set <em>option</em> ?</code></td>
+        <td>&nbsp;</td>
+        <td valign="top">显示选项<em>option</em>的值</td>
+    </tr>
+</tbody></table>
+
 <h1><a name="5. ex Commands"><em>5. ex Commands</em></a></h1>
 
 <h2><em>Command Syntax</em></h2>
@@ -1459,11 +1385,14 @@ expression ends its effect.
         <td valign="top">Previous mark</td>
     </tr>
     <tr>
-        <td valign="top"><code><br>
-        ?pat?</code></td>
+        <td valign="top"><code>/pattern/</code></td>
         <td>&nbsp;</td>
-        <td valign="top">Ahead or back to line where <em>pat</em>
-        matches</td>
+        <td valign="top">向前匹配模式<em>pattern</em></td>
+    </tr>
+    <tr>
+        <td valign="top"><code>?pattern?</code></td>
+        <td>&nbsp;</td>
+        <td valign="top">向后匹配模式<em>pattern</em></td>
     </tr>
 </tbody></table>
 
@@ -1801,9 +1730,16 @@ expression ends its effect.
         <td valign="top"><code>wq[!]</code></td>
     </tr>
     <tr>
+        <td valign="top">X</td>
+        <td>&nbsp;</td>
+        <td valign="top"><code>X</code></td>
+	<td><a href="http://yyq123.github.io/learn-vim/learn-vi-27-crypt.html" title="使用密钥加密(cryptv)">使用密钥加密(cryptv)</a></td>
+    </tr>
+    <tr>
         <td valign="top">Xit</td>
         <td>&nbsp;</td>
         <td valign="top"><code>x</code></td>
+        <td>保存修改并退出</td>
     </tr>
     <tr>
         <td valign="top">Yank</td>
@@ -1811,24 +1747,21 @@ expression ends its effect.
         <td valign="top"><code>[address]y[char][count]</code></td>
     </tr>
     <tr>
-        <td valign="top">Z (position line)</td>
+	<td valign="top">Z (position line)</td>
         <td>&nbsp;</td>
-        <td valign="top"><code>[address]z[type][count]<br>
-        </code><code>
-            <tbody><tr>
+        <td valign="top"><code>[address]z[type][count]</code>
+            <table><tbody>
+	    <tr>
                 <td valign="top"><code>+&nbsp;</code></td>
-                <td valign="top">Place line at the top of the
-                window (default)</td>
+                <td valign="top">Place line at the top of the window (default)</td>
             </tr>
             <tr>
                 <td valign="top"><code>-&nbsp;</code></td>
-                <td valign="top">Place line at bottom of the
-                window</td>
+                <td valign="top">Place line at bottom of the window</td>
             </tr>
             <tr>
                 <td valign="top"><code>.&nbsp;</code></td>
-                <td valign="top">Place line in the center of the
-                window</td>
+                <td valign="top">Place line in the center of the window</td>
             </tr>
             <tr>
                 <td valign="top"><code>^&nbsp;</code></td>
@@ -1836,8 +1769,7 @@ expression ends its effect.
             </tr>
             <tr>
                 <td valign="top"><code>=&nbsp;</code></td>
-                <td valign="top">Place line in the center of the
-                window and leave the current line at this line</td>
+                <td valign="top">Place line in the center of the window and leave the current line at this line</td>
             </tr>
         </tbody></table>
         </td>
@@ -1846,11 +1778,13 @@ expression ends its effect.
         <td valign="top">!</td>
         <td>&nbsp;</td>
         <td valign="top"><code>[address]!command</code></td>
+	<td><a href="https://yyq123.github.io/learn-vim/learn-vi-71-Shell.html" title="Shell">运行外部命令(Shell Command)</a></td>
     </tr>
     <tr>
         <td valign="top">= (line number)</td>
         <td>&nbsp;</td>
         <td valign="top"><code>[address]=</code></td>
+	<td></td>
     </tr>
     <tr>
         <td valign="top">&lt;&gt; (shift)</td>
@@ -1871,17 +1805,14 @@ expression ends its effect.
     <tr>
         <td valign="top">&amp;</td>
         <td>&nbsp;</td>
-        <td valign="top"><code>[address]&amp;
-        [options][count]<br>
-        </code><code>repeat substitute</code></td>
+        <td valign="top"><code>[address]&amp;[options][count]<br></code></td>
+	<td>repeat substitute</td>
     </tr>
     <tr>
-        <td valign="top">~</td>
+	<td valign="top"><code>~</code></td>
         <td>&nbsp;</td>
-        <td valign="top"><code>[address]~[count]<br>
-        </code><code>, but with
-        last used regular expression; for details, see Chapter 6
-        of <em>Learning the vi Editor</em></code></td>
+        <td valign="top"><code>[address]~[count]</code></td>
+        <td>Replace the last-used regular expression</td>
     </tr>
 </tbody></table>
 
@@ -1955,8 +1886,14 @@ in your scripts by starting a line with a double quote (<code</code>). This is r
 		<tr><td rowspan="2">关键字</td><td><kbd>Ctrl-N</kbd></td><td rowspan="2">'complete'</td><td rowspan="2"><code class="inset">:h compl-generic</code></td></tr>
 		<tr><td><kbd>Ctrl-P</kbd></td></tr>
 	</table>
+	
+	<h2 style="border-bottom:1px solid lightgray"><span>说明：</span></h1>
+	<ol>
+	<li>The <a href="http://www.oreilly.com/catalog/vipr/noframes.html"><em>vi Editor Pocket Reference</em></a> is a companion volume to O'Reilly's <a href="http://www.oreilly.com/catalog/vi6/"><em>Learning the vi Editor</em></a>, a complete guide to text editing with <em>vi</em>. New topics in <em>Leanring the vi Editor</em> include coverage of four <em>vi</em> clones, <em>vim</em>, expressions, and GUI interfaces.</li>
+	<li><strong>Arnold Robbins</strong>, an Atlanta native now happily living in Israel, is a professional programmer and technical author, and author of the second edition of O'Reilly's <em>sed &amp; awk</em> as well as the new <em>Learning the vi Editor</em>. He has been working with Unix systems since 1980. He currently maintains <em>gawk</em> (<em>GNU awk</em>) and its documentation.</li>
+	</ol>
 
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="撤销 (Undo)" href="http://yyq123.blogspot.com/2010/10/vim-undo.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="帮助信息(Help)" href="http://yyq123.blogspot.com/2012/04/vim-help.html">下一篇</a>&gt;</span></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="学习资源(Resources)" href="http://yyq123.github.io/learn-vim/learn-vi-998-Resources.html">上一篇</a>&nbsp;|<a title="笔记列表" href="https://yyq123.github.io/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="插件列表(Plugins)" href="http://yyq123.github.io/learn-vim/learn-vim-plugin.html">下一篇</a>&gt;</span></p>
 
 </body>
 </html>
