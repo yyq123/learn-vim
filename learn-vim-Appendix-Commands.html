@@ -12,7 +12,7 @@
 
 	<h2><a id="Conventions"><em>Conventions</em></a></h2>
 
-	<h2><a id="Starting-Command">启动命令 Starting Commands</a></h1>
+	<h2 style="border-bottom:1px solid lightgray"><a id="Starting-Command">启动命令 Starting Commands</a></h1>
 
 <table border="0">
     <tbody>
@@ -57,42 +57,45 @@
 </table>
 <p>更多内容，请参阅<a href="http://yyq123.github.io/learn-vim/learn-vi-209-Start.html" title="">启动 (Starting)</a>章节。</p>
 
-<h2><a id="vi-Commands">vi Commands</a></h2>
+<h2 style="border-bottom:1px solid lightgray"><a id="Initialization-Commands">初始化 Initialization</a></h2>
+<p><em>vi</em> performs the following initialization steps:</p>
 
-<p>Most vi command follow a general pattern:</p>
+<ol type="1" start="1">
+    <li>If the <code>EXINIT</code>
+        environment variable exist, execute the commands it
+        contains. Separate multiple commands by a pipe symboll (<code>|</code>).</li>
+    <li>If <code>EXINIT</code>
+        doesn't exist, look for file <em>$HOME/.exrc</em>. If it
+        exists, read and execute it.</li>
+    <li>If either <code> or <em>$HOME/.exrc</em> turns on the exrc
+        option, read and execute the file ./.exrc, if it exists</code></li>
+    <li><code>
+        option).</code></li>
+</ol>
+
+<p>The <em>.exrc</em> files are simple scripts of <em>ex</em>
+commands; they don't need a leading colon. You can put comments
+in your scripts by starting a line with a double quote (<code</code>). This is recommended.</p>
+
+
+
+<h2 style="border-bottom:1px solid lightgray"><a id="vi-Commands">vi Commands</a></h2>
+<p>vi命令格式如下：</p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
 	<p style="text-indent:2em"><code class="inset">[command][number]text object</code></p>
 	<p style="text-indent:2em"><code class="inset">[number][command]text object</code></p>
 
-<h3>Movement Commands</h3>
-	<p><a href="https://yyq123.github.io/learn-vim/images/Movement.png" title="Movement"><img src="https://yyq123.github.io/learn-vim/images/Movement.png" alt="Movement" /></a></p>
-
+	<h3><a id="Movement-Commands">移动命令 Movement Commands</a></h3>
 <table border="0">
-    <tbody><tr>
-        <td><strong>Command</strong></td>
-        <td><strong>Meaning</strong></td>
-    </tr>
-    <tr>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <td><em>Character</em></td>
-        <td>&nbsp;</td>
-    </tr>
+    <tbody>
+    <tr><td><em>字符间移动 Character</em></td><td>&nbsp;</td></tr>
     <tr><td><code>h</code></td><td>Left, one space</td></tr>
     <tr><td><code>j</code></td><td>down, one line</td></tr>
     <tr><td><code>k</code></td><td>up, one line</td></tr>
     <tr><td><code>l</code></td><td>right, one space</td></tr>
-    </tr>
-    <tr>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <td><em>Text</em></td>
-        <td>&nbsp;</td>
-    </tr>
+    <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+
+    <tr><td><em>词间移动 Text</em></td><td>&nbsp;</td></tr>
     <tr>
         <td><code>w, W,&nbsp;</code></td>
         <td valign="bottom">Forward by word/WORD</td>
@@ -117,10 +120,9 @@
         <td><code>[[&nbsp;</code></td>
         <td>Beginning of previous section</td>
     </tr>
-    <tr>
-        <td><em>Lines</em></td>
-        <td>&nbsp;</td>
-    </tr>
+    <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+
+    <tr><td><em>行间移动 Lines</em></td><td>&nbsp;</td></tr>
     <tr>
         <td><code>RETURN</code></td>
         <td>First nonblank character of next line</td>
@@ -139,19 +141,6 @@
         <td><code>n|&nbsp;</code></td>
         <td>Column <em>n</em> of current line</td>
     </tr>
-    <tr>
-        <td><code></code></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code></code></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code></code></td>
-        <td></td>
-    </tr>
-
     <tr>
         <td><code>H&nbsp;</code></td>
         <td>Top line of screen</td>
@@ -177,13 +166,17 @@
     <tr><td><code>Ctrl-Home</code></td><td>Go to the first nonwhitespace character of the first line of the file</td></tr>
     <tr><td><code>Ctrl-End</code></td><td>Go to the end of file</td></tr>
     <tr><td><code>{count}%</code></td><td>Go to the line <var>count</var> percent into the file, putting the cursor on the first nonblank line</td></tr>
-    <tr><td><code></code></td><td></td></tr>
+    <tr><td><code><strong>CTRL-G</strong></code></td><td>Display current line number</td></tr>
+    <tr><td><code>nG&nbsp;</code></td><td>Move to line number <em>n</em></td></tr>
+    <tr><td><code>gg&nbsp;</code></td><td>Move to first line in file</td></tr>
+    <tr><td><code>G&nbsp;</code></td><td>Move to last line in file</td></tr>
+    <tr><td><code>:n&nbsp;</code></td><td>Move to line <em>n</em> in file</td></tr>
     <tr>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
     </tr>
     <tr>
-        <td><em>Scrolling</em></td>
+        <td><em>滚动屏幕 Scrolling</em></td>
         <td>&nbsp;</td>
     </tr>
     <tr>
@@ -221,7 +214,8 @@
         <td>&nbsp;</td>
         <td>&nbsp;</td>
     </tr>
-    <tr><td><strong><em>Searches</em></strong></td><td>&nbsp;</td></tr>
+
+    <tr><td><em>搜索 Searches</em></td><td>&nbsp;</td></tr>
     <tr>
         <td><code>/pattern&nbsp;</code></td>
         <td>Search forward for <em>pattern</em></td>
@@ -272,26 +266,8 @@
         direction</td>
     </tr>
     <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
-    <tr><td><strong><em>Line Number</em></strong></td><td>&nbsp;</td></tr>
-    <tr>
-        <td><code><strong>CTRL-G</strong></code></td>
-        <td>Display current line number</td>
-    </tr>
-    <tr>
-        <td><code>nG&nbsp;</code></td>
-        <td>Move to line number <em>n</em></td>
-    </tr>
-    <tr><td><code>gg&nbsp;</code></td><td>Move to first line in file</td></tr>
-    <tr><td><code>G&nbsp;</code></td><td>Move to last line in file</td></tr>
-    <tr>
-        <td><code>:n&nbsp;</code></td>
-        <td>Move to line <em>n</em> in file</td>
-    </tr>
-    <tr>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-    </tr>
-    <tr><td><strong><em>Marking position</em></strong></td><td>&nbsp;</td></tr>
+    
+    <tr><td><em>标记间移动 Marking position</em></td><td>&nbsp;</td></tr>
     <tr>
         <td><code>mx&nbsp;</code></td>
         <td>Mark current position as <em>x</em></td>
@@ -314,16 +290,13 @@
     <tr><td><code>'0&nbsp;</code></td><td>(Apostrophe zero) 移动到上次退出时的位置</td></tr>
     <tr><td><code>:marks&nbsp;</code></td><td>显示所有标记</td></tr>
 </tbody></table>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Movement.png" title="Movement"><img src="https://yyq123.github.io/learn-vim/images/Movement.png" alt="Movement" /></a></p>
 
-<h2><em>Editing Commands</em></h2>
+<h3><a id="Editing-Commands">编辑命令 Editing Commands</h3>
 
 <table border="0">
     <tbody>
-    <tr>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-    </tr>
-    <tr><td><strong><em>Insert</em></strong></td><td>&nbsp;</td></tr>
+    <tr><td><strong><em>插入 Insert</em></strong></td><td>&nbsp;</td></tr>
     <tr>
         <td><code>i, a&nbsp;</code></td>
         <td>Insert text before, after cursor</td>
@@ -340,7 +313,7 @@
         <td>&nbsp;</td>
         <td>&nbsp;</td>
     </tr>
-    <tr><td><strong><em>Change</em></strong></td><td>&nbsp;</td></tr>
+    <tr><td><strong><em>更改 Change</em></strong></td><td>&nbsp;</td></tr>
     <tr>
         <td><code>r&nbsp;</code></td>
         <td>Replace character</td>
@@ -374,7 +347,7 @@
         <td>&nbsp;</td>
         <td>&nbsp;</td>
     </tr>
-    <tr><td><strong><em>Delete, move</em></strong></td><td>&nbsp;</td></tr>
+    <tr><td><strong><em>删除 移动 Delete, move</em></strong></td><td>&nbsp;</td></tr>
     <tr>
         <td><code>x&nbsp;</code></td>
         <td>Delete character under cursor</td>
@@ -407,7 +380,7 @@
         <td>&nbsp;</td>
         <td>&nbsp;</td>
     </tr>
-    <tr><td><strong><em>Yank</em></strong></td><td>&nbsp;</td></tr>
+    <tr><td><strong><em>复制 Yank</em></strong></td><td>&nbsp;</td></tr>
     <tr>
         <td><code>yw&nbsp;</code></td>
         <td>Yank (copy) word</td>
@@ -437,7 +410,7 @@
         <td>&nbsp;</td>
         <td>&nbsp;</td>
     </tr>
-    <tr><td><strong><em>Other Commands</em></strong></td><td>&nbsp;</td></tr>
+    <tr><td><strong><em>其他 Other Commands</em></strong></td><td>&nbsp;</td></tr>
     <tr>
         <td><code>.&nbsp;</code></td>
         <td>Repeat last edit command</td>
@@ -453,10 +426,6 @@
     </tr>
     <tr>
         <td>&nbsp;</td>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <td><em>ex edit commands</em></td>
         <td>&nbsp;</td>
     </tr>
     <tr>
@@ -487,7 +456,7 @@
     </tr>
 </tbody></table>
 
-<h2>Save Commands</h2>
+<h3><a id="Save-Commands">保存命令 Save Commands</h3>
 <table border="0">
     <tbody>
     <tr>
@@ -532,7 +501,7 @@
     </tr>
 </tbody></table>
 
-<h2>Accessing Multiple Files</h2>
+<h3><a id="Multiple-Files-Commands">处理多文件 Multiple Files</h3>
 <table border="0">
     <tbody>
     <tr>
@@ -563,12 +532,11 @@
     </tr>
 </tbody></table>
 
-<h2><em>Buffer Names</em></h2>
-
+<h3><a id="Buffer-Commands">缓冲区命令 Buffer Names</h3>
 <table border="0">
     <tbody><tr>
-        <td><strong>Buffer Names</strong></td>
-        <td><strong>Buffer Use</strong></td>
+        <td><em>缓冲区名称</em></td>
+        <td></td>
     </tr>
     <tr>
         <td><code>1-9&nbsp;</code></td>
@@ -581,10 +549,9 @@
     </tr>
 </tbody></table>
 
-<h2><em>Buffer and Marking Commands</em></h2>
 <table border="0">
 <tbody>
-	<tr><td><strong>Command</strong></td><td><strong>Action</strong></td></tr>
+	<tr><td><em>缓冲区命令</em></td><td></td></tr>
 	<tr><td><code>:ls[!]</code></td><td rowspan="3">List buffers and file names. Include unlisted buffers if ! modifier is included.</td></tr>
 	<tr><td><code>:files[!]</code></td><td></td></tr>
 	<tr><td><code>:ba[ll]</code></td><td>Edit all args or buffers</td></tr>
@@ -603,17 +570,15 @@
 	<tr><td><code>:sblast</code></td><td>Move to last buffer (opens a new window)</td></tr>
 	<tr><td><code>:unhide</code></td><td>Edit all loaded buffers</td></tr>
 	<tr><td><code>:sunhide</code></td><td>Edit all loaded buffers (opens them in new windows.)</td></tr>
-	<tr><td><code>:bunload[!]</code></td><td>Unload buffer from memory. The ! modifier forces a modified buffer to be unloaded
-without being saved.</td></tr>
-	<tr><td><code>:bdelete[!]</code></td><td>Unload buffer and delete it from the buffer list. The ! modifier forces a modified buffer
-to be unloaded without being saved.</td></tr>
+	<tr><td><code>:bunload[!]</code></td><td>Unload buffer from memory. The ! modifier forces a modified buffer to be unloaded without being saved.</td></tr>
+	<tr><td><code>:bdelete[!]</code></td><td>Unload buffer and delete it from the buffer list. The ! modifier forces a modified buffer to be unloaded without being saved.</td></tr>
 	<tr><td><code></code></td><td></td></tr>
 </tbody>
 </table>
 
+<h3><a id="Tab-Commands">多标签页 Multiple Tab</a></h3>
 <table border="0">
 <tbody>
-	<tr><td><strong>Command</strong></td><td><strong>Action</strong></td></tr>
 	<tr><td><code>:tabedit [file]</code></td><td></td></tr>
 	<tr><td><code>:tabclose</code></td><td></td></tr>
 	<tr><td><code>:tabnext n</code></td><td></td></tr>
@@ -628,59 +593,25 @@ to be unloaded without being saved.</td></tr>
 </tbody>
 </table>
 
-
+<h3><a id="Window-Commands">窗口命令 Window commands</a></h3>
 <table border="0">
-    <tbody><tr>
-        <td><strong>Command</strong></td>
-        <td><strong>Meaning</strong></td>
-    </tr>
-    <tr>
-	<td><code>bcommand&nbsp;</code></td>
-        <td>Do <em>command</em> with buffer <em>b</em></td>
-    </tr>
-    <tr>
-        <td><code>mx&nbsp;</code></td>
-        <td>Mark current position with <em>x</em></td>
-    </tr>
-    <tr>
-        <td><code>'x&nbsp;</code></td>
-        <td>Move cursor to first character of line marked by <em>x</em></td>
-    </tr>
-    <tr>
-        <td><code>`x&nbsp;</code></td>
-        <td>Move cursor to character marked by <em>x</em></td>
-    </tr>
-    <tr>
-        <td><code>``&nbsp;</code></td>
-        <td>Return to exact position of previous mark or context</td>
-    </tr>
-    <tr>
-        <td><code>''&nbsp;</code></td>
-        <td>Return to beginning of the line of previous mark or
-        context</td>
-    </tr>
-</tbody></table>
-
-
-<table border="0">
-<caption style="margin:0.5em; font-weight:bold">Window commands</caption>
-<tbody><tr><th>Command</th><th>Action</th></tr>
+<tbody>
     <tr><td><code class="inset">:split</code></td><td><code class="inset">^Ws</code></td><td>Split the current window into two from side to side, placing the cursor in the new window. The optional file argument places that file in the newly created window. The windows are created as equal in size as possible, determined by free window space.</td></tr>
     <tr><td><code class="inset">:new</code></td><td><code class="inset">^Wn</code></td><td>Same as :split, but start the new window editing an empty file. Note that the buffer will have no name until one is assigned.</td></tr>
     <tr><td><code class="inset">:sview</code></td><td><code class="inset"></code></td><td>Read-only version of :split.</td></tr>
     <tr><td><code class="inset">:sfind</code></td><td><code class="inset"></code></td><td>Split window and open file (if specified) in the new window.Look for file in the path.</td></tr>
     <tr><td><code class="inset">:vsplit</code></td><td><code class="inset">^Wv</code></td><td>Split current window into two from top to bottom and open file (if specified) in the new window.</td></tr>
     <tr><td><code class="inset">:vnew</code></td><td><code class="inset"></code></td><td>Vertical version of :new.</td></tr>
-    <tr><td><code class="inset">:close</code></td><td>关闭当前窗口</td></tr>
+    <tr><td><code class="inset">:close</code></td><td></td><td>关闭当前窗口</td></tr>
 </tbody>
 </table>
 
 <table border="0">
 <caption style="margin:0.5em; font-weight:bold">Commands to rotate window positions</caption>
-<tbody><tr><th>Command</th><th>Action</th></tr>
-    <tr><td><code class="inset">^Wr</code></td><td>Rotate windows down or to the right.</td></tr>
-    <tr><td><code class="inset">^WR</code></td><td>Rotate windows up or to the left.</td></tr>
-    <tr><td><code class="inset">^Wx</code></td><td>Swap positions with the next window, or if issued with a count n, swap with nth next window.</td></tr>
+<tbody>
+    <tr><td><code class="inset">Ctrl-Wr</code></td><td>Rotate windows down or to the right.</td></tr>
+    <tr><td><code class="inset">Ctrl-WR</code></td><td>Rotate windows up or to the left.</td></tr>
+    <tr><td><code class="inset">Ctrl-Wx</code></td><td>Swap positions with the next window, or if issued with a count n, swap with nth next window.</td></tr>
     <tr><td><code class="inset"></code></td><td></td></tr>
     <tr><td><code class="inset"></code></td><td></td></tr>
     <tr><td><code class="inset"></code></td><td></td></tr>
@@ -715,15 +646,6 @@ to be unloaded without being saved.</td></tr>
 </table>
 
 <table border="0">
-<caption style="margin:0.5em; font-weight:bold">Commands to change position (Rotate or Exchange)</caption>
-<tbody><tr><th>Command</th><th>Action</th></tr>
-    <tr><td><code class="inset">CTRL-Wr</code></td><td>rotates windows to the right or down.</td></tr>
-    <tr><td><code class="inset">CTRL-WR</code></td><td>rotates windows to the left or up.</td></tr>
-    <tr><td><code class="inset">CTRL-WR</code></td><td>exchange two windows in a row or column of windows.</td></tr>
-</tbody>
-</table>
-
-<table border="0">
 <caption style="margin:0.5em; font-weight:bold">Commands to change position and layout</caption>
 <tbody><tr><th>Command</th><th>Action</th></tr>
     <tr><td><code class="inset">^WK</code></td><td>Move window to top of screen and use full width. The cursor stays with the moved window.</td></tr>
@@ -735,10 +657,7 @@ to be unloaded without being saved.</td></tr>
 </table>
 
 <table border="0">
-<tbody><tr>
-        <td><strong>Command</strong></td>
-        <td><strong>Action</strong></td>
-    </tr>
+<tbody>
     <tr><td><code class="inset">^W=</code></td><td>Resize all windows equally. The current window honors the settings of the winheight and winwidth options.</td></tr>
     <tr><td><code class="inset">:resize -n</code></td><td></td></tr>
     <tr><td><code class="inset">^W-</code></td><td>Decrease the current window size. The default amount is one line.</td></tr>
@@ -794,7 +713,6 @@ can take several forms:</p>
 
 <h2><em>Macros</em></h2>
 <table border="0">
-<caption style="margin:0.5em; font-weight:bold"></caption>
 <tbody><tr><th>Command</th><th>Action</th></tr>
     <tr><td><code class="inset">qx</code></td><td>开始录制宏x</td></tr>
     <tr><td><code class="inset">q</code></td><td>结束录制宏</td></tr>
@@ -890,11 +808,8 @@ command is taken from the default (unnamed) buffer.</p>
 
 <p>The default shift is the value of <code>shiftwidth</code>, usually eight spaces.</p>
 
-<h1><a name="4. Substitution and Regular Expressions"><em>4.
-Substitution and Regular Expressions</em></a></h1>
-
-
-<h2>Regular Expressions</h2>
+<h2><a name="Substitution-Regular-Expressions">Substitution and Regular Expressions</a></h2>
+<h3>正则表达式 Regular Expressions</h3>
 
 <table border="0">
     <tbody><tr>
@@ -1262,57 +1177,25 @@ expression ends its effect.
         one.</li>
 </ul>
 
-<h1><a name="5. :set Commands"><em>5. :set Commands</em></a></h1>
+<h2 style="border-bottom:1px solid lightgray"><a id="Set-Commands">:set Commands</a></h2>
 
 <table border="0">
-   <tr>
-	<td valign="top"><code>:set <em>option</em></code></td>
-        <td>&nbsp;</td>
-        <td valign="top">对于布尔值选项，将启用该选项；对于其他类型选项，将显示当前选项值。</td>
-    </tr>
-       <tr>
-        <td valign="top"><code>:set no <em>option</code></td>
-        <td>&nbsp;</td>
-        <td valign="top">禁用该选项</td>
-    </tr>
-   <tr>
-	<td valign="top"><code>:set <em>option</em>=<em>value</em></code></td>
-        <td>&nbsp;</td>
-        <td valign="top">设置选项值</td>
-    </tr>
-   <tr>
-        <td valign="top"><code>:set</code></td>
-        <td>&nbsp;</td>
-        <td valign="top">显示所有已更改的选项</td>
-    </tr>
-   <tr>
-        <td valign="top"><code>:set all</code></td>
-        <td>&nbsp;</td>
-        <td valign="top">显示所有选项</td>
-    </tr>
-   <tr>
-        <td valign="top"><code>:set <em>option</em> ?</code></td>
-        <td>&nbsp;</td>
-        <td valign="top">显示选项<em>option</em>的值</td>
-    </tr>
+	<tr><td><code>:set <em>option</em></code></td><td>&nbsp;</td><td>对于布尔值选项，将启用该选项；对于其他类型选项，将显示当前选项值。</td></tr>
+	<tr><td><code>:set no <em>option</code></td><td>&nbsp;</td><td>禁用该选项</td></tr>
+	<tr><td><code>:set <em>option</em>=<em>value</em></code></td><td>&nbsp;</td><td>设置选项值</td></tr>
+	<tr><td><code>:set</code></td><td>&nbsp;</td><td>显示所有已更改的选项</td></tr>
+	<tr><td><code>:set all</code></td><td>&nbsp;</td><td>显示所有选项</td></tr>
+	<tr><td><code>:set <em>option</em> ?</code></td><td>&nbsp;</td><td>显示选项<em>option</em>的值</td></tr>
 </tbody></table>
 
-<h1><a name="5. ex Commands"><em>5. ex Commands</em></a></h1>
-
-<h2><em>Command Syntax</em></h2>
-
-<blockquote>
+<h2 style="border-bottom:1px solid lightgray"><a id="ex Commands">ex Commands</a></h2>
+<h3><em>Command Syntax</em></h3>
     <p><code>:[address]command[options]</code></p>
-</blockquote>
 
-<h2><em>Address Symbols</em></h2>
+<h3>寻址符号 Address Symbols</h3>
 
 <table border="0">
-    <tbody><tr>
-        <td valign="top"><strong>Address</strong></td>
-        <td>&nbsp;</td>
-        <td valign="top"><strong>Inlcudes</strong></td>
-    </tr>
+    <tbody>
     <tr>
         <td valign="top"><code>1,$</code></td>
         <td>&nbsp;</td>
@@ -1469,7 +1352,25 @@ expression ends its effect.
 </tbody>
 </table>
 
-<h2><em>Alphabetical List of Commands</em></h2>
+<h2 style="border-bottom:1px solid lightgray"><a id="GUI-Commands">图形界面设置 GUI</a></h2>
+<table border="0">
+<tbody>
+    <tr><td><code class="inset">:menu</code></td><td>List all menus</td></tr>
+    <tr><td><code class="inset">:menu menupath</code></td><td>List menus starting with menupath</td></tr>
+    <tr><td><code class="inset">:menu menupath action</code></td><td>Add menu menupath, to perform action action</td></tr>
+    <tr><td><code class="inset">:menu n menupath action</code></td><td>Add menu menupath with positional priority of n</td></tr>
+    <tr><td><code class="inset">:menu ToolBar.toolbarname action</code></td><td>Add toolbar item toolbarname to perform action</td></tr>
+    <tr><td><code class="inset">:tmenu menupath text</code></td><td>Create tooltip for menu item menupath with text</td></tr>
+    <tr><td><code class="inset">:unmenu menupath</code></td><td>Remove menu menupath</td></tr>
+    <tr><td><code class="inset"></code></td><td></td></tr>
+    <tr><td><code class="inset"></code></td><td></td></tr>
+    <tr><td><code class="inset"></code></td><td></td></tr>
+    <tr><td><code class="inset"></code></td><td></td></tr>
+</tbody>
+</table>
+
+
+<h2 style="border-bottom:1px solid lightgray"><a id="Commands-Alphabetical">Alphabetical List of Commands</a></h2>
 
 <table border="0">
     <tbody><tr>
@@ -1478,256 +1379,437 @@ expression ends its effect.
         <td valign="top"><strong>Command</strong></td>
     </tr>
     <tr>
-        <td valign="top">Abbrev</td>
+        <td>Abbreviate</td>
         <td>&nbsp;</td>
-        <td valign="top"><code>ab
-        [string text]</code></td>
+        <td><code>ab [string text]</code></td>
+	<td>定义<a href="http://yyq123.github.io/learn-vim/learn-vi-52-Abbreviation.html" title="缩写">缩写</a>来快速输入一组字符</td>
     </tr>
     <tr>
-        <td valign="top">Append</td>
+        <td>Append</td>
         <td>&nbsp;</td>
-        <td valign="top"><code>[address]a[!]<br>
-        text<br>
+        <td><code>[address] a[!]<br>
+	<em>text</em><br>
         .</code></td>
+	<td>在指定地址增加字符串<em>text</em>，输入只包含句点的行以完成输入</td>
     </tr>
     <tr>
-        <td valign="top">Args</td>
+        <td>Arguments</td>
         <td>&nbsp;</td>
-        <td valign="top"><code>ar</code></td>
+        <td><code>args</code></td>
+	<td>显示正在编辑的<a href="http://yyq123.github.io/learn-vim/learn-vi-16-MultiArguments.html" title="Arguments">文件列表</a></td>
     </tr>
     <tr>
-        <td valign="top">Change</td>
+        <td>bdelete</td>
         <td>&nbsp;</td>
-        <td valign="top"><code>[address]c[!]<br>
-        text<br>
+        <td><code>[num] bd[!] [num]</code></td>
+	<td>卸载并从列表中移除指定<a href="http://yyq123.github.io/learn-vim/learn-vi-13-MultiBuffers.html" title="Buffer">缓冲区</a></td>
+    </tr>
+    <tr>
+        <td>buffer</td>
+        <td>&nbsp;</td>
+        <td><code>[num] b[!] [num]</code></td>
+	<td>编辑指定<a href="http://yyq123.github.io/learn-vim/learn-vi-13-MultiBuffers.html" title="Buffer">缓冲区</a></td>
+    </tr>
+    <tr>
+        <td>center</td>
+        <td>&nbsp;</td>
+        <td><code>[address] ce [width]</code></td>
+	<td>文字居中</td>
+    </tr>
+    <tr>
+        <td>Change</td>
+        <td>&nbsp;</td>
+        <td><code>[address] c[!]<br>
+	<em>text</em><br>
         .</code></td>
+	<td>将指定地址的文字替换为字符串<em>text</em>，输入只包含句点的行以完成输入</td>
     </tr>
     <tr>
-        <td valign="top">Copy</td>
+        <td>Close</td>
         <td>&nbsp;</td>
-        <td valign="top"><code>[address]co
-        destination</code></td>
+        <td><code>clo[!]</code></td>
+	<td>关闭当前<a href="http://yyq123.github.io/learn-vim/learn-vi-14-MultiWindows.html" title="Window">窗口</a></td>
     </tr>
     <tr>
-        <td valign="top">Delete</td>
+        <td>Copy</td>
         <td>&nbsp;</td>
-        <td valign="top"><code>[address]d
-        [buffer]</code></td>
+        <td><code>[address] co destination</code></td>
+	<td>复制指定行到目标地址</td>
     </tr>
     <tr>
-        <td valign="top">Edit</td>
+        <td>Delete</td>
         <td>&nbsp;</td>
-        <td valign="top"><code>e[!][+n]
-        [filename]</code></td>
+        <td><code>[address] d [register] [count]</code></td>
+	<td>删除行并保存至指定<a href="https://yyq123.github.io/learn-vim/learn-vi-12-Register.html" title="寄存器(Regists)">寄存器</a></td>
     </tr>
     <tr>
-        <td valign="top">File</td>
+        <td>Edit</td>
         <td>&nbsp;</td>
-        <td valign="top"><code>f
-        [filename]</code></td>
+        <td><code>e[!][+num] [filename]</code></td>
+	<td>编辑文件</td>
     </tr>
     <tr>
-        <td valign="top">Global</td>
+        <td>File</td>
         <td>&nbsp;</td>
-        <td valign="top"><code>[address]g[!]/pattern/[commands]</code></td>
+        <td><code>f [filename]</code></td>
+	<td>显示当前文件名（或更改为指定文件名）</td>
     </tr>
     <tr>
-        <td valign="top">Insert</td>
+        <td>Fold</td>
         <td>&nbsp;</td>
-        <td valign="top"><code>[address]i[!]<br>
-        text<br>
+        <td><code>address fo</code></td>
+	<td>手动折叠指定的行</td>
+    </tr>
+    <tr>
+        <td>Foldclose</td>
+        <td>&nbsp;</td>
+        <td><code>[address] foldc[!]</code></td>
+	<td>关闭指定行的折叠</td>
+    </tr>
+    <tr>
+        <td>Foldopen</td>
+        <td>&nbsp;</td>
+        <td><code>[address] foldo[!]</code></td>
+	<td>打开指定行的折叠</td>
+    </tr>
+    <tr>
+        <td>Global</td>
+        <td>&nbsp;</td>
+        <td><code>[address] g[!]/pattern/[commands]</code></td>
+	<td>针对匹配模式的所有行执行<a href="http://yyq123.github.io/learn-vim/learn-vim-GlobalCommand.html" title="全局命令(Global Command)">全局命令</a></td>
+    </tr>
+    <tr>
+        <td>Hide</td>
+        <td>&nbsp;</td>
+        <td><code>hid</code></td>
+	<td>隐藏<a href="http://yyq123.github.io/learn-vim/learn-vi-13-MultiBuffers.html" title="Buffer">缓冲区</a></td>
+    </tr>
+
+    <tr>
+        <td>Insert</td>
+        <td>&nbsp;</td>
+        <td><code>[address] i[!]<br>
+	<em>text</em><br>
         .</code></td>
+	<td>在指定地址插入字符串<em>text</em>，输入只包含句点的行以完成输入</td>
     </tr>
     <tr>
-        <td valign="top">Join</td>
+        <td>Join</td>
         <td>&nbsp;</td>
-        <td valign="top"><code>[address]j[!][count]</code></td>
+        <td><code>[address] j[!][count]</code></td>
+	<td>合并行</td>
     </tr>
     <tr>
-        <td valign="top">K (mark)</td>
+        <td>Jumps</td>
         <td>&nbsp;</td>
-        <td valign="top"><code>[address]k
-        char</code></td>
+        <td><code>ju</code></td>
+	<td>显示移动记录的列表</td>
     </tr>
     <tr>
-        <td valign="top">List</td>
+        <td>Left</td>
         <td>&nbsp;</td>
-        <td valign="top"><code>[address]l
-        [count]</code></td>
+        <td><code>[address] le [count]</code></td>
+	<td>左对齐</td>
     </tr>
     <tr>
-        <td valign="top">Map</td>
+        <td>List</td>
         <td>&nbsp;</td>
-        <td valign="top"><code>map
-        char commands</code></td>
+        <td><code>[address] l [count]</code></td>
+	<td>与:print命令类似，但以'^I'显示Tab键，以'$'显示行结尾</td>
     </tr>
     <tr>
-        <td valign="top">Mark</td>
+        <td>Map</td>
         <td>&nbsp;</td>
-        <td valign="top"><code>[address]ma
-        char</code></td>
+        <td><code>map[!] [string commands]</code></td>
+	<td>定义<a href="http://yyq123.github.io/learn-vim/learn-vi-51-KeyMapping.html" title="Map">键盘映射</a></td>
     </tr>
     <tr>
-        <td valign="top">Move</td>
+        <td>Mark</td>
         <td>&nbsp;</td>
-        <td valign="top"><code>[address]m
-        destination</code></td>
+        <td><code>[address] ma char</code></td>
+	<td>创建<a href="http://yyq123.github.io/learn-vim/learn-vi-53-Mark.html" title="">标记</a></td>
     </tr>
     <tr>
-        <td valign="top">Next</td>
+        <td>Marks</td>
         <td>&nbsp;</td>
-        <td valign="top"><code>n[!][[+command]
-        filelist]</code></td>
+        <td><code>marks char</code></td>
+	<td>列示<a href="http://yyq123.github.io/learn-vim/learn-vi-53-Mark.html" title="">标记</a></td>
     </tr>
     <tr>
-        <td valign="top">Number</td>
+        <td>Move</td>
         <td>&nbsp;</td>
-        <td valign="top"><code>[address]nu
-        [count]</code></td>
+        <td><code>[address] m destination</code></td>
+	<td>移动行至目标地址</td>
     </tr>
     <tr>
-        <td valign="top">Open</td>
+        <td>New</td>
         <td>&nbsp;</td>
-        <td valign="top"><code>[address]o
-        [/pattern]</code></td>
+        <td><code>[count] new</code></td>
+	<td>创建新<a href="http://yyq123.github.io/learn-vim/learn-vi-14-MultiWindows.html" title="Window">窗口</a></td>
     </tr>
     <tr>
-        <td valign="top">Preserve</td>
+        <td>Next</td>
         <td>&nbsp;</td>
-        <td valign="top"><code>pre</code></td>
+        <td><code>n[!] [[+num] filelist]</code></td>
+	<td>编辑文件列表中的下一个文件</td>
     </tr>
     <tr>
-        <td valign="top">Print</td>
+        <td>nohlsearch</td>
         <td>&nbsp;</td>
-        <td valign="top"><code>[address]P
-        [count]<br>
-        [address]p [count]</code></td>
+        <td><code>noh</code></td>
+	<td>关闭当前高亮显示的结果</td>
     </tr>
     <tr>
-        <td valign="top">Put</td>
+        <td>Number</td>
         <td>&nbsp;</td>
-        <td valign="top"><code>[address]pu
-        [char]</code></td>
+        <td><code>[address]nu [count]</code></td>
+	<td>显示带行号的指定行内容</td>
     </tr>
     <tr>
-        <td valign="top">Quit</td>
+        <td>Only</td>
         <td>&nbsp;</td>
-        <td valign="top"><code>q[!]</code></td>
+        <td><code>on [!]</code></td>
+	<td>仅显示当前<a href="http://yyq123.github.io/learn-vim/learn-vi-14-MultiWindows.html" title="Window">窗口</a></td>
     </tr>
     <tr>
-        <td valign="top">Read</td>
+        <td>Preserve</td>
         <td>&nbsp;</td>
-        <td valign="top"><code>[address]r
-        filename</code></td>
+        <td><code>pre</code></td>
+	<td>保存修改到<a href="http://yyq123.github.io/learn-vim/learn-vi-58-swap.html" title="swap">交换文件</a></td>
     </tr>
     <tr>
-        <td valign="top">Read</td>
+        <td>Previous</td>
         <td>&nbsp;</td>
-        <td valign="top"><code>[address]r
-        ! command</code></td>
+        <td><code>prev[!]</code></td>
+	<td>编辑文件列表中的上一个文件</td>
     </tr>
     <tr>
-        <td valign="top">Recover</td>
+        <td>Print</td>
         <td>&nbsp;</td>
-        <td valign="top"><code>rec</code></td>
+        <td><code>[address] p [count]</code></td>
+	<td><a href="http://yyq123.github.io/learn-vim/learn-vi-07-Print.html" title="打印(Print)">显示信息</a></td>
     </tr>
     <tr>
-        <td valign="top">Rewind</td>
+        <td>Put</td>
         <td>&nbsp;</td>
-        <td valign="top"><code>rew[!]</code></td>
+        <td><code>[address] pu [char]</code></td>
+	<td>粘贴之前删除或复制的内容</td>
     </tr>
     <tr>
-        <td valign="top">Set</td>
+        <td>Quit All</td>
         <td>&nbsp;</td>
-        <td valign="top"><code>set<br>
-        set option<br>
-        set nooption<br>
-        set option=value<br>
-        set option?</code></td>
+        <td><code>qa[!]</code></td>
+	<td>关闭所有窗口并退出</td>
     </tr>
     <tr>
-        <td valign="top">Shell</td>
+        <td>Quit</td>
         <td>&nbsp;</td>
-        <td valign="top"><code>sh</code></td>
+        <td><code>q[!]</code></td>
+	<td>退出</td>
     </tr>
     <tr>
-        <td valign="top">Source</td>
+        <td>Read</td>
         <td>&nbsp;</td>
-        <td valign="top"><code>so
-        filename</code></td>
+        <td><code>[address] r filename</code></td>
+	<td>读取文件内容至指定行之后</td>
     </tr>
     <tr>
-        <td valign="top">Substitute</td>
+        <td>Read Commands</td>
         <td>&nbsp;</td>
-        <td valign="top"><code>[addr]s
-        [/pat/repl/][opts]</code></td>
+        <td><code>[address] r !command</code></td>
+	<td>读取命令输出至指定行之后</td>
     </tr>
     <tr>
-        <td valign="top">T (to)</td>
+        <td>Recover</td>
         <td>&nbsp;</td>
-        <td valign="top"><code>[address]t
-        destination</code></td>
+        <td><code>rec 【file]</code></td>
+	<td>从<a href="http://yyq123.github.io/learn-vim/learn-vi-58-swap.html" title="swap">交换文件</a>恢复</td>
     </tr>
     <tr>
-        <td valign="top">Tag</td>
+        <td>Redo</td>
         <td>&nbsp;</td>
-        <td valign="top"><code>[address]ta
-        tag</code></td>
+        <td><code>red</code></td>
+	<td>重做</td>
     </tr>
     <tr>
-        <td valign="top">Unabbreviate</td>
+        <td>Resize</td>
         <td>&nbsp;</td>
-        <td valign="top"><code>una
-        word</code></td>
+        <td><code>res [[+/-num]</code></td>
+	<td>更改<a href="http://yyq123.github.io/learn-vim/learn-vi-14-MultiWindows.html" title="Window">窗口</a>尺寸</td>
     </tr>
     <tr>
-        <td valign="top">Undo</td>
+        <td>Rewind</td>
         <td>&nbsp;</td>
-        <td valign="top"><code>u</code></td>
+        <td><code>rew[!]</code></td>
+	<td>编辑文件列表中的第一个文件</td>
     </tr>
     <tr>
-        <td valign="top">Unmap</td>
+        <td>Right</td>
         <td>&nbsp;</td>
-        <td valign="top"><code>unm
-        char</code></td>
+        <td><code>[address] ri [width]</code></td>
+	<td>右对齐</td>
     </tr>
     <tr>
-        <td valign="top">V (global exclude)</td>
+        <td>sbnext</td>
         <td>&nbsp;</td>
-        <td valign="top"><code>[address]v/pattern/[commands]</code></td>
+        <td><code>[count] sbn [count]</code></td>
+	<td>分割<a href="http://yyq123.github.io/learn-vim/learn-vi-14-MultiWindows.html" title="Window">窗口</a>以编辑下一<a href="http://yyq123.github.io/learn-vim/learn-vi-13-MultiBuffers.html" title="Buffer">缓冲区</a></td>
     </tr>
     <tr>
-        <td valign="top">Version</td>
+        <td>sbuffer</td>
         <td>&nbsp;</td>
-        <td valign="top"><code>ve</code></td>
+        <td><code>[num] sb [num]</code></td>
+	<td>分割<a href="http://yyq123.github.io/learn-vim/learn-vi-14-MultiWindows.html" title="Window">窗口</a>以编辑指定<a href="http://yyq123.github.io/learn-vim/learn-vi-13-MultiBuffers.html" title="Buffer">缓冲区</a></td>
     </tr>
     <tr>
-        <td valign="top">Visual</td>
+        <td>Set</td>
         <td>&nbsp;</td>
-        <td valign="top"><code>[address]vi[type][count]</code></td>
+        <td><code>set [option][?] [=] [value]</code></td>
+	<td>设置选项</td>
     </tr>
     <tr>
-        <td valign="top">Visual</td>
+        <td>Shell</td>
         <td>&nbsp;</td>
-        <td valign="top"><code>vi
-        [+n] [filename]</code></td>
+        <td><code>sh</code></td>
+	<td>打开操作系统的命令终端窗口</td>
     </tr>
     <tr>
-        <td valign="top">Write</td>
+        <td>snext</td>
         <td>&nbsp;</td>
-        <td valign="top"><code>[address]w[!]
-        [[&gt;&gt;]filename]</code></td>
+        <td><code>[count] sn [[+num] filelist]</code></td>
+	<td>分割<a href="http://yyq123.github.io/learn-vim/learn-vi-14-MultiWindows.html" title="Window">窗口</a>以编辑下一文件</td>
     </tr>
     <tr>
-        <td valign="top">Write</td>
+        <td>Source</td>
         <td>&nbsp;</td>
-        <td valign="top"><code>[address]w
-        !command</code></td>
+        <td><code>so filename</code></td>
+	<td>读取并执行文件中的命令</td>
     </tr>
     <tr>
-        <td valign="top">Wq</td>
+        <td>Split</td>
         <td>&nbsp;</td>
-        <td valign="top"><code>wq[!]</code></td>
+        <td><code>[count] sp [+num] [filenumber]</code></td>
+	<td>分割<a href="http://yyq123.github.io/learn-vim/learn-vi-14-MultiWindows.html" title="Window">窗口</a>以编辑指定文件</td>
+    </tr>
+    <tr>
+        <td>Sprevious</td>
+        <td>&nbsp;</td>
+        <td><code>[count] spr [+num]</code></td>
+	<td>分割<a href="http://yyq123.github.io/learn-vim/learn-vi-14-MultiWindows.html" title="Window">窗口</a>以编辑上一文件</td>
+    </tr>
+    <tr>
+        <td>Substitute</td>
+        <td>&nbsp;</td>
+        <td><code>[address] s [/pattern/replacement/] [options] [count]</code></td>
+	<td><a href="http://yyq123.github.io/learn-vim/learn-vi-05-Substitute.html" title="Substitute">替换</a></td>
+    </tr>
+    <tr>
+        <td>SView</td>
+        <td>&nbsp;</td>
+        <td><code>[count] sv [+num] [filename]</code></td>
+	<td>分割<a href="http://yyq123.github.io/learn-vim/learn-vi-14-MultiWindows.html" title="Window">窗口</a>以只读显示文件</td>
+    </tr>
+    <tr>
+        <td>T (to)</td>
+        <td>&nbsp;</td>
+        <td><code>[address] t destination</code></td>
+	<td>复制指定行到目标地址（等同于copy命令）</td>
+    </tr>
+    <tr>
+        <td>Tags</td>
+        <td>&nbsp;</td>
+        <td><code>tags</code></td>
+	<td>显示标签列表</td>
+    </tr>
+    <tr>
+        <td>Unabbreviate</td>
+        <td>&nbsp;</td>
+        <td><code>una <em>word</em></code></td>
+	<td>删除<a href="http://yyq123.github.io/learn-vim/learn-vi-52-Abbreviation.html" title="缩写">缩写</a></td>
+    </tr>
+    <tr>
+        <td>Undo</td>
+        <td>&nbsp;</td>
+        <td><code>u</code></td>
+	<td><a href="http://yyq123.github.io/learn-vim/learn-vi-06-Undo.html" title="撤销(Undo)">撤销</a>操作</td>
+    </tr>
+    <tr>
+        <td>Unhide</td>
+        <td>&nbsp;</td>
+        <td><code>[count] unh</code></td>
+	<td>显示<a href="http://yyq123.github.io/learn-vim/learn-vi-13-MultiBuffers.html" title="Buffer">缓冲区</a></td>
+    </tr>
+    <tr>
+        <td>Unmap</td>
+        <td>&nbsp;</td>
+	<td><code>unm[!] <em>string</em></code></td>
+	<td>删除<a href="http://yyq123.github.io/learn-vim/learn-vi-51-KeyMapping.html" title="Map">键盘映射</a></td>
+    </tr>
+    <tr>
+        <td>V (global exclude)</td>
+        <td>&nbsp;</td>
+        <td><code>[address] v /pattern/[command]</code></td>
+	<td>针对不匹配模式的所有行执行<a href="http://yyq123.github.io/learn-vim/learn-vim-GlobalCommand.html" title="全局命令(Global Command)">全局命令</a></td>
+    </tr>
+    <tr>
+        <td>Version</td>
+        <td>&nbsp;</td>
+        <td><code>ve</code></td>
+	<td>显示版本信息</td>
+    </tr>
+    <tr>
+        <td>View</td>
+        <td>&nbsp;</td>
+        <td><code>vie[[+num] filename]</code></td>
+	<td>只读显示文件</td>
+    </tr>
+    <tr>
+        <td>Visual</td>
+        <td>&nbsp;</td>
+        <td><code>[address] vi [type] [count]</code></td>
+	<td>进入<a href="http://yyq123.github.io/learn-vim/learn-vi-45-VisualMode.html" title="可视化模式(Visual Mode)">可视化模式</a></td>
+    </tr>
+    <tr>
+        <td>Vsplit</td>
+        <td>&nbsp;</td>
+        <td><code>[count] vs [+num] [filename]</code></td>
+	<td>垂直分割<a href="http://yyq123.github.io/learn-vim/learn-vi-14-MultiWindows.html" title="Window">窗口</a></td>
+    </tr>
+    <tr>
+        <td>Wall</td>
+        <td>&nbsp;</td>
+        <td><code>wa[!]</code></td>
+	<td>保存所有<a href="http://yyq123.github.io/learn-vim/learn-vi-13-MultiBuffers.html" title="Buffer">缓冲区</a></td>
+    </tr>
+    <tr>
+        <td>Wnext</td>
+        <td>&nbsp;</td>
+        <td><code>[count] wn[!] [[+num] filename]</code></td>
+	<td>保存当前<a href="http://yyq123.github.io/learn-vim/learn-vi-13-MultiBuffers.html" title="Buffer">缓冲区</a>，并打开下一个文件</td>
+    </tr>
+    <tr>
+        <td>Write</td>
+        <td>&nbsp;</td>
+        <td><code>[address] w[!] [[&gt;&gt;] filename]</code></td>
+	<td>写入至指定文件</td>
+    </tr>
+    <tr>
+        <td>Write</td>
+        <td>&nbsp;</td>
+        <td><code>[address] w !command</code></td>
+	<td>执行文件中的命令</td>
+    </tr>
+    <tr>
+        <td>Wq</td>
+        <td>&nbsp;</td>
+        <td><code>wq[!]</code></td>
+	<td>保存并退出</td>
+    </tr>
+    <tr>
+        <td>Wqall</td>
+        <td>&nbsp;</td>
+        <td><code>wqa[!]</code></td>
+	<td>保存全部并退出</td>
     </tr>
     <tr>
         <td valign="top">X</td>
@@ -1809,55 +1891,13 @@ expression ends its effect.
 	<td>repeat substitute</td>
     </tr>
     <tr>
-	<td valign="top"><code>~</code></td>
+	<td>~</td>
         <td>&nbsp;</td>
-        <td valign="top"><code>[address]~[count]</code></td>
-        <td>Replace the last-used regular expression</td>
+        <td><code>[address]~[count]</code></td>
+        <td>替代最近一次使用的<a href="http://yyq123.github.io/learn-vim/learn-vi-81-RegularExpressionBasic.html" title="Regular Expression Basic">正则表达式</a></td>
     </tr>
 </tbody></table>
 
-<h1><a name="6. Initialization and Recovery"><em>6.
-Initialization and Recovery</em></a></h1>
-
-<h2><em>Initialization</em></h2>
-
-<p><em>vi</em> performs the following initialization steps:</p>
-
-<ol type="1" start="1">
-    <li>If the <code>EXINIT</code>
-        environment variable exist, execute the commands it
-        contains. Separate multiple commands by a pipe symboll (<code>|</code>).</li>
-    <li>If <code>EXINIT</code>
-        doesn't exist, look for file <em>$HOME/.exrc</em>. If it
-        exists, read and execute it.</li>
-    <li>If either <code> or <em>$HOME/.exrc</em> turns on the exrc
-        option, read and execute the file ./.exrc, if it exists</code></li>
-    <li><code>
-        option).</code></li>
-</ol>
-
-<p>The <em>.exrc</em> files are simple scripts of <em>ex</em>
-commands; they don't need a leading colon. You can put comments
-in your scripts by starting a line with a double quote (<code</code>). This is recommended.</p>
-
-<table border="0">
-<tbody><tr>
-        <td><strong>Command</strong></td>
-        <td><strong>Action</strong></td>
-    </tr>
-    <tr><td><code class="inset">:menu</code></td><td>List all menus</td></tr>
-    <tr><td><code class="inset">:menu menupath</code></td><td>List menus starting with menupath</td></tr>
-    <tr><td><code class="inset">:menu menupath action</code></td><td>Add menu menupath, to perform action action</td></tr>
-    <tr><td><code class="inset">:menu n menupath action</code></td><td>Add menu menupath with positional priority of n</td></tr>
-    <tr><td><code class="inset">:menu ToolBar.toolbarname action</code></td><td>Add toolbar item toolbarname to perform action</td></tr>
-    <tr><td><code class="inset">:tmenu menupath text</code></td><td>Create tooltip for menu item menupath with text</td></tr>
-    <tr><td><code class="inset">:unmenu menupath</code></td><td>Remove menu menupath</td></tr>
-    <tr><td><code class="inset"></code></td><td></td></tr>
-    <tr><td><code class="inset"></code></td><td></td></tr>
-    <tr><td><code class="inset"></code></td><td></td></tr>
-    <tr><td><code class="inset"></code></td><td></td></tr>
-</tbody>
-</table>
 
 <table border="0">
 <tbody><tr>
