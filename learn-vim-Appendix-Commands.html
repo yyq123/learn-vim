@@ -10,15 +10,13 @@
 <body>
 	<h1>VIM学习笔记 附录-命令(Appendix-Commands)</h1>
 
-	<h2><a id="Conventions"><em>Conventions</em></a></h2>
-
-	<h2 style="border-bottom:1px solid lightgray"><a id="Starting-Command">启动命令 Starting Commands</a></h1>
+	<h2 style="border-bottom:1px solid lightgray"><a id="Starting-Command">启动命令 Starting</a></h2>
 
 <table border="0">
     <tbody>
-    <tr><td><code>vi file&nbsp;</code></td><td>Invoke <em>vi</em> on <em>file</em></td></tr>
-    <tr><td><code>vi file1 file2&nbsp;</code></td><td>Invoke <em>vi</em> on files sequentially</td></tr>
-    <tr><td><code>view file&nbsp;</code></td><td>Invoke <em>vi</em> on <em>file</em> in read-only mode</td></tr>
+    <tr><td><code>vi file&nbsp;</code></td><td>启动vim并打开<em>file</em>文件</td></tr>
+    <tr><td><code>vi file1 file2&nbsp;</code></td><td>启动vim并打开<em>file1</em>和<em>file2</em>文件</td></tr>
+    <tr><td><code>view file&nbsp;</code></td><td>启动vim并以只读模式打开<em>file</em>文件</td></tr>
     <tr><td><code>vi -b file&nbsp;</code></td><td>Invoke <em>vi</em> on <em>file</em> in binary mode</td></tr>
     <tr><td><code>vi -c command file&nbsp;</code></td><td>Open <em>file</em>, execute <em>command</em>, which is usually a search command or line number (POSIX)</td></tr>
     <tr><td><code>vi -d file&nbsp;</code></td><td>Invoke <em>vi</em> on <em>file</em> in diff mode</td></tr>
@@ -30,7 +28,7 @@
     <tr><td><code>vi -N file&nbsp;</code></td><td>非兼容模式（nocompatible）</td></tr>
     <tr><td><code>vi -o[N]&nbsp;</code></td><td>新建N个水平窗口</td></tr>
     <tr><td><code>vi -O[N]&nbsp;</code></td><td>新建N个垂直窗口</td></tr>
-    <tr><td><code>vi -r file&nbsp;</code></td><td>Recover <em>file</em> and recent edits after a crash</td></tr><tr>
+    <tr><td><code>vi -r file&nbsp;</code></td><td>Recover <em>file</em> and recent edits after a crash</td></tr>
     <tr><td><code>vi -R file&nbsp;</code></td><td>Invoke <em>vi</em> on <em>file</em> in read-only mode</td></tr>
     <tr><td><code>vi -s file&nbsp;</code></td><td>安静(批处理)模式</td></tr>
     <tr><td><code>vi -S file&nbsp;</code></td><td>Reload all files from <em>file</em> named session</td></tr>
@@ -57,45 +55,22 @@
 </table>
 <p>更多内容，请参阅<a href="http://yyq123.github.io/learn-vim/learn-vi-209-Start.html" title="">启动 (Starting)</a>章节。</p>
 
-<h2 style="border-bottom:1px solid lightgray"><a id="Initialization-Commands">初始化 Initialization</a></h2>
-<p><em>vi</em> performs the following initialization steps:</p>
-
-<ol type="1" start="1">
-    <li>If the <code>EXINIT</code>
-        environment variable exist, execute the commands it
-        contains. Separate multiple commands by a pipe symboll (<code>|</code>).</li>
-    <li>If <code>EXINIT</code>
-        doesn't exist, look for file <em>$HOME/.exrc</em>. If it
-        exists, read and execute it.</li>
-    <li>If either <code> or <em>$HOME/.exrc</em> turns on the exrc
-        option, read and execute the file ./.exrc, if it exists</code></li>
-    <li><code>
-        option).</code></li>
-</ol>
-
-<p>The <em>.exrc</em> files are simple scripts of <em>ex</em>
-commands; they don't need a leading colon. You can put comments
-in your scripts by starting a line with a double quote (<code</code>). This is recommended.</p>
-
-
-
 <h2 style="border-bottom:1px solid lightgray"><a id="vi-Commands">vi Commands</a></h2>
-<p>vi命令格式如下：</p>
-	<p style="text-indent:2em"><code class="inset"></code></p>
-	<p style="text-indent:2em"><code class="inset">[command][number]text object</code></p>
-	<p style="text-indent:2em"><code class="inset">[number][command]text object</code></p>
+<p>vi命令采用以下格式：</p>
+<p><code class="inset">[command][number]text object</code></p>
+<p><code class="inset">[number][command]text object</code></p>
 
-	<h3><a id="Movement-Commands">移动命令 Movement Commands</a></h3>
+<h3><a id="Movement-Commands">移动命令 Movement Commands</a></h3>
 <table border="0">
     <tbody>
-    <tr><td><em>字符间移动 Character</em></td><td>&nbsp;</td></tr>
-    <tr><td><code>h</code></td><td>Left, one space</td></tr>
-    <tr><td><code>j</code></td><td>down, one line</td></tr>
-    <tr><td><code>k</code></td><td>up, one line</td></tr>
-    <tr><td><code>l</code></td><td>right, one space</td></tr>
+    <tr><td colspan="2"><em>字符间移动 Character</em></td></tr>
+    <tr><td><code>h</code></td><td>向左移动一个字符 Left, one space</td></tr>
+    <tr><td><code>j</code></td><td>向下移动一行 down, one line</td></tr>
+    <tr><td><code>k</code></td><td>向上移动一行 up, one line</td></tr>
+    <tr><td><code>l</code></td><td>向右移动一个字符 right, one space</td></tr>
     <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
 
-    <tr><td><em>词间移动 Text</em></td><td>&nbsp;</td></tr>
+    <tr><td colspan="2"><em>词间移动 Text</em></td></tr>
     <tr>
         <td><code>w, W,&nbsp;</code></td>
         <td valign="bottom">Forward by word/WORD</td>
@@ -112,22 +87,19 @@ in your scripts by starting a line with a double quote (<code</code>). This is r
     <tr><td><code>)</code></td><td>End of current sentence</td></tr>
     <tr><td><code>{</code></td><td>Beginning of current paragraph</td></tr>
     <tr><td><code>}</code></td><td>End of current paragraph</td></tr>
-    <tr>
-        <td><code>]]&nbsp;</code></td>
-        <td>Beginning of next section</td>
-    </tr>
+    <tr><td><code>]]</code></td><td>Beginning of next section</td></tr>
     <tr>
         <td><code>[[&nbsp;</code></td>
         <td>Beginning of previous section</td>
     </tr>
     <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
 
-    <tr><td><em>行间移动 Lines</em></td><td>&nbsp;</td></tr>
+    <tr><td colspan="2"><em>行间移动 Lines</em></td></tr>
     <tr>
         <td><code>RETURN</code></td>
         <td>First nonblank character of next line</td>
     </tr>
-    <tr><td><code>0</code></td><td>First position of current line</td></td>
+    <tr><td><code>0</code></td><td>First position of current line</td></tr>
     <tr><td><code>$</code></td><td>Last position of current line</td></tr>
     <tr>
         <td><code>^, _&nbsp;</code></td>
@@ -175,10 +147,7 @@ in your scripts by starting a line with a double quote (<code</code>). This is r
         <td>&nbsp;</td>
         <td>&nbsp;</td>
     </tr>
-    <tr>
-        <td><em>滚动屏幕 Scrolling</em></td>
-        <td>&nbsp;</td>
-    </tr>
+    <tr><td colspan="2"><em>滚动屏幕 Scrolling</em></td></tr>
     <tr>
         <td><code><strong>CTRL-F,
         CTRL-B</strong>&nbsp;</code></td>
@@ -215,7 +184,7 @@ in your scripts by starting a line with a double quote (<code</code>). This is r
         <td>&nbsp;</td>
     </tr>
 
-    <tr><td><em>搜索 Searches</em></td><td>&nbsp;</td></tr>
+    <tr><td colspan="2"><em>搜索 Searches</em></td></tr>
     <tr>
         <td><code>/pattern&nbsp;</code></td>
         <td>Search forward for <em>pattern</em></td>
@@ -267,7 +236,7 @@ in your scripts by starting a line with a double quote (<code</code>). This is r
     </tr>
     <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
     
-    <tr><td><em>标记间移动 Marking position</em></td><td>&nbsp;</td></tr>
+    <tr><td colspan="2"><em>标记间移动 Marking position</em></td></tr>
     <tr>
         <td><code>mx&nbsp;</code></td>
         <td>Mark current position as <em>x</em></td>
@@ -284,7 +253,7 @@ in your scripts by starting a line with a double quote (<code</code>). This is r
         <td><code>'x&nbsp;</code></td>
         <td>(Apostrophe) Moves the cursor to the first character of the line marked by <em>x</em></td>
     </tr>
-    <tr><td><code>''&nbsp;</code></td><td>(Apostrophes) Returns to the beginning of the line of the previous mark or context</td></tr>
+    <tr><td><code>''&nbsp;</code></td><td>(Apostrophes) 移动到上一标记的行首</td></tr>
     <tr><td><code>`.&nbsp;</code></td><td>(Backquote period) 移动到当前文件的上次修改处</td></tr>
     <tr><td><code>'.&nbsp;</code></td><td>(Apostrophe period) 移动到当前文件的上次修改处的行首</td></tr>
     <tr><td><code>'0&nbsp;</code></td><td>(Apostrophe zero) 移动到上次退出时的位置</td></tr>
@@ -292,11 +261,11 @@ in your scripts by starting a line with a double quote (<code</code>). This is r
 </tbody></table>
 	<p><a href="https://yyq123.github.io/learn-vim/images/Movement.png" title="Movement"><img src="https://yyq123.github.io/learn-vim/images/Movement.png" alt="Movement" /></a></p>
 
-<h3><a id="Editing-Commands">编辑命令 Editing Commands</h3>
+	<h3><a id="Editing-Commands">编辑命令 Editing Commands</a></h3>
 
 <table border="0">
     <tbody>
-    <tr><td><strong><em>插入 Insert</em></strong></td><td>&nbsp;</td></tr>
+    <tr><td colspan="2"><strong>插入 Insert</strong></td></tr>
     <tr>
         <td><code>i, a&nbsp;</code></td>
         <td>Insert text before, after cursor</td>
@@ -313,7 +282,7 @@ in your scripts by starting a line with a double quote (<code</code>). This is r
         <td>&nbsp;</td>
         <td>&nbsp;</td>
     </tr>
-    <tr><td><strong><em>更改 Change</em></strong></td><td>&nbsp;</td></tr>
+    <tr><td colspan="2"><strong>更改 Change</strong></td></tr>
     <tr>
         <td><code>r&nbsp;</code></td>
         <td>Replace character</td>
@@ -347,7 +316,7 @@ in your scripts by starting a line with a double quote (<code</code>). This is r
         <td>&nbsp;</td>
         <td>&nbsp;</td>
     </tr>
-    <tr><td><strong><em>删除 移动 Delete, move</em></strong></td><td>&nbsp;</td></tr>
+    <tr><td colspan="2"><strong>删除 移动 Delete, move</strong></td></tr>
     <tr>
         <td><code>x&nbsp;</code></td>
         <td>Delete character under cursor</td>
@@ -380,7 +349,7 @@ in your scripts by starting a line with a double quote (<code</code>). This is r
         <td>&nbsp;</td>
         <td>&nbsp;</td>
     </tr>
-    <tr><td><strong><em>复制 Yank</em></strong></td><td>&nbsp;</td></tr>
+    <tr><td colspan="2"><strong>复制 Yank</strong></td></tr>
     <tr>
         <td><code>yw&nbsp;</code></td>
         <td>Yank (copy) word</td>
@@ -410,7 +379,7 @@ in your scripts by starting a line with a double quote (<code</code>). This is r
         <td>&nbsp;</td>
         <td>&nbsp;</td>
     </tr>
-    <tr><td><strong><em>其他 Other Commands</em></strong></td><td>&nbsp;</td></tr>
+    <tr><td colspan="2"><strong>其他 Miscellaneous</strong></td></tr>
     <tr>
         <td><code>.&nbsp;</code></td>
         <td>Repeat last edit command</td>
@@ -456,7 +425,7 @@ in your scripts by starting a line with a double quote (<code</code>). This is r
     </tr>
 </tbody></table>
 
-<h3><a id="Save-Commands">保存命令 Save Commands</h3>
+<h3><a id="Save-Commands">保存命令 Save Commands</a></h3>
 <table border="0">
     <tbody>
     <tr>
@@ -501,7 +470,7 @@ in your scripts by starting a line with a double quote (<code</code>). This is r
     </tr>
 </tbody></table>
 
-<h3><a id="Multiple-Files-Commands">处理多文件 Multiple Files</h3>
+<h3><a id="Multiple-Files-Commands">处理多文件 Multiple Files</a></h3>
 <table border="0">
     <tbody>
     <tr>
@@ -532,7 +501,7 @@ in your scripts by starting a line with a double quote (<code</code>). This is r
     </tr>
 </tbody></table>
 
-<h3><a id="Buffer-Commands">缓冲区命令 Buffer Names</h3>
+<h3><a id="Buffer-Commands">缓冲区命令 Buffer Names</a></h3>
 <table border="0">
     <tbody><tr>
         <td><em>缓冲区名称</em></td>
@@ -674,11 +643,7 @@ in your scripts by starting a line with a double quote (<code</code>). This is r
 </tbody>
 </table>
 
-
-
-<h1><a name="3. Input Mode Shortcuts"><em>3. Input Mode Shortcuts</em></a></h1>
-
-<h2><em>Command and Input Mode Maps</em></h2>
+<h3><a id="Map"><em>键盘映射 Maps</em></a></h3>
 
 <p><code>:map x sequence</code></p>
     <p>Define character(s) <em>x</em> as a <em>sequence</em> of
@@ -711,7 +676,7 @@ can take several forms:</p>
     value of <code>notimeout</code>
     changes the behaviour.</p>
 
-<h2><em>Macros</em></h2>
+    <h3><a id="Marcos"><em>宏 Macros</em></a></h3>
 <table border="0">
 <tbody><tr><th>Command</th><th>Action</th></tr>
     <tr><td><code class="inset">qx</code></td><td>开始录制宏x</td></tr>
@@ -1177,65 +1142,58 @@ expression ends its effect.
         one.</li>
 </ul>
 
-<h2 style="border-bottom:1px solid lightgray"><a id="Set-Commands">:set Commands</a></h2>
+<h2 style="border-bottom:1px solid lightgray"><a id="Set-Commands">设置选项 :set Commands</a></h2>
 
-<table border="0">
+<table border="0"><tbody>
 	<tr><td><code>:set <em>option</em></code></td><td>&nbsp;</td><td>对于布尔值选项，将启用该选项；对于其他类型选项，将显示当前选项值。</td></tr>
-	<tr><td><code>:set no <em>option</code></td><td>&nbsp;</td><td>禁用该选项</td></tr>
+	<tr><td><code>:set no <em>option</em></code></td><td>&nbsp;</td><td>禁用该选项</td></tr>
 	<tr><td><code>:set <em>option</em>=<em>value</em></code></td><td>&nbsp;</td><td>设置选项值</td></tr>
 	<tr><td><code>:set</code></td><td>&nbsp;</td><td>显示所有已更改的选项</td></tr>
 	<tr><td><code>:set all</code></td><td>&nbsp;</td><td>显示所有选项</td></tr>
 	<tr><td><code>:set <em>option</em> ?</code></td><td>&nbsp;</td><td>显示选项<em>option</em>的值</td></tr>
 </tbody></table>
 
-<h2 style="border-bottom:1px solid lightgray"><a id="ex Commands">ex Commands</a></h2>
-<h3><em>Command Syntax</em></h3>
-    <p><code>:[address]command[options]</code></p>
+<h2 style="border-bottom:1px solid lightgray"><a id="ex-Commands">ex Commands</a></h2>
+<p>ex命令采用以下格式：</p>
+<p><code>:[address]command[options]</code></p>
 
 <h3>寻址符号 Address Symbols</h3>
-
 <table border="0">
     <tbody>
     <tr>
         <td valign="top"><code>1,$</code></td>
         <td>&nbsp;</td>
-        <td valign="top">All lines in the file</td>
+        <td valign="top"> 所有行 All lines in the file</td>
     </tr>
     <tr>
         <td valign="top"><code>x,y</code></td>
         <td>&nbsp;</td>
-        <td valign="top">Lines <em>x</em> through <em>y</em></td>
-    </tr>
-    <tr>
-        <td valign="top"><code>x;y</code></td>
-        <td>&nbsp;</td>
-        <td valign="top">Lines <em>x</em> through <em>y</em>,
-        with current line reset to <em>x</em></td>
+        <td valign="top">从<em>x</em>到<em>y</em>的所有行</td>
     </tr>
     <tr>
         <td valign="top"><code>0</code></td>
         <td>&nbsp;</td>
-        <td valign="top">Top of the file</td>
+        <td valign="top">文件开头 Top of the file</td>
     </tr>
     <tr>
         <td valign="top"><code>.</code></td>
         <td>&nbsp;</td>
-        <td valign="top">Current line</td>
+        <td valign="top">当前行 Current line</td>
     </tr>
     <tr>
         <td valign="top"><code>n</code></td>
         <td>&nbsp;</td>
-        <td valign="top">Absolute line number <em>n</em></td>
+        <td valign="top">绝对<a href="http://yyq123.github.io/learn-vim/learn-vi-32-LineNumber.html" title="">行号</a>Absolute line number<em>n</em></td>
     </tr>
     <tr>
         <td valign="top"><code>$</code></td>
         <td>&nbsp;</td>
-        <td valign="top">Last line</td>
+        <td valign="top">最后一行 Last line</td>
     </tr>
     <tr>
         <td valign="top"><code>%</code></td>
         <td>&nbsp;</td>
-        <td valign="top">All lines; same as <code>1,$</code></td>
+        <td valign="top">所有行 All lines; same as <code>1,$</code></td>
     </tr>
     <tr>
         <td valign="top"><code>x-n</code></td>
@@ -1260,12 +1218,12 @@ expression ends its effect.
     <tr>
         <td valign="top"><code>'x</code></td>
         <td>&nbsp;</td>
-        <td valign="top">Line marked with <em>x</em></td>
+        <td valign="top"><a href="http://yyq123.github.io/learn-vim/learn-vi-53-Mark.html" title="">标记</a><em>x</em></td>
     </tr>
     <tr>
         <td valign="top"><code>''</code></td>
         <td>&nbsp;</td>
-        <td valign="top">Previous mark</td>
+        <td valign="top">上一<a href="http://yyq123.github.io/learn-vim/learn-vi-53-Mark.html" title="">标记</a> Previous mark</td>
     </tr>
     <tr>
         <td valign="top"><code>/pattern/</code></td>
@@ -1339,16 +1297,11 @@ expression ends its effect.
 <h2><em>Tags</em></h2>
 <table border="0">
 <tbody>
-<th><td><strong>Command</strong></td><td><strong>Action</strong></td></th>
 <tr><td><code class="inset">:X</code></td><td>加密</td></tr>
     <tr><td><code class="inset"></code></td><td></td></tr>
     <tr><td><code class="inset"></code></td><td></td></tr>
     <tr><td><code class="inset"></code></td><td></td></tr>
     <tr><td><code class="inset"></code></td><td></td></tr>
-    <tr>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-    </tr>
 </tbody>
 </table>
 
@@ -1927,13 +1880,12 @@ expression ends its effect.
 		<tr><td><kbd>Ctrl-P</kbd></td></tr>
 	</table>
 	
-	<h2 style="border-bottom:1px solid lightgray"><span>说明：</span></h1>
+	<h2 style="border-bottom:1px solid lightgray"><span>说明：</span></h2>
 	<ol>
 	<li>The <a href="http://www.oreilly.com/catalog/vipr/noframes.html"><em>vi Editor Pocket Reference</em></a> is a companion volume to O'Reilly's <a href="http://www.oreilly.com/catalog/vi6/"><em>Learning the vi Editor</em></a>, a complete guide to text editing with <em>vi</em>. New topics in <em>Leanring the vi Editor</em> include coverage of four <em>vi</em> clones, <em>vim</em>, expressions, and GUI interfaces.</li>
 	<li><strong>Arnold Robbins</strong>, an Atlanta native now happily living in Israel, is a professional programmer and technical author, and author of the second edition of O'Reilly's <em>sed &amp; awk</em> as well as the new <em>Learning the vi Editor</em>. He has been working with Unix systems since 1980. He currently maintains <em>gawk</em> (<em>GNU awk</em>) and its documentation.</li>
 	</ol>
 
 	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="学习资源(Resources)" href="http://yyq123.github.io/learn-vim/learn-vi-998-Resources.html">上一篇</a>&nbsp;|<a title="笔记列表" href="https://yyq123.github.io/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="插件列表(Plugins)" href="http://yyq123.github.io/learn-vim/learn-vim-plugin.html">下一篇</a>&gt;</span></p>
-
 </body>
 </html>
