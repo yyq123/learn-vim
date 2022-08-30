@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 wildoptions()</title>
+</head>
+<body>
+	<h1>VIM学习笔记 wildoptions()</h1>
+
+	<p>使用以下命令，可以启用wildmenu：</p>
+	<p style="text-indent:2em"><code class="inset">:set wildmenu</code></p>
+	<p>例如在命令行中输入&ldquo;:spe&rdquo;，然后点击<kbd>Tab</kbd>键，将列出以spe开头的命令列表；再次点击<kbd>Tab</kbd>键，将可以在wildmenu中遍历匹配的命令：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/wildmenu_spell.png" title="wildmenu_spell"><img src="https://yyq123.github.io/learn-vim/images/wildmenu_spell.png" alt="wildmenu_spell.png" /></a></p>
+
+	<h2 class="article"><a id="wildoptions_pum">wildoptions=pum</a></h2>
+	<p>使用Vim <a href="https://vimhelp.org/version9.txt.html#new-popup-compl" title="new-popup-compl">9.0</a>新增的'pum'选项值：</p>
+	<p style="text-indent:2em"><code class="inset">:set wildoptions=pum</code></p>
+	<p>将使用弹出菜单来显示补全匹配：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/wildoptions_pum.png" title="wildoptions_pum"><img src="https://yyq123.github.io/learn-vim/images/wildoptions_pum.png" alt="wildoptions_pum.png" /></a></p>
+
+	<h2 class="article"><a id="wildoptions_fuzzy">wildoptions=fuzzy</a></h2>
+	<p>使用'fuzzy'选项值，将利用模糊匹配（fuzzy-matching）来找到补全匹配：</p>
+	<p style="text-indent:2em"><code class="inset">:set wildoptions=pum</code></p>
+	<p>指定此值时，补全不用通配符扩展。模糊匹配使用非精确的搜索字符串匹配字符串的方法，这将比通配符扩展能找到更多的匹配。模糊匹配将忽略大小写。匹
+配的字符串中，搜索字符串两个连续的字符之间可以有其它字符。如果搜索字符串有多个单词，每个单词分别匹配。这意味着搜索字符串里这些单词可以在字符串中以任何顺序出现。</p>
+	<p>例如，用模糊匹配来搜索 "get pat" 字符串，会匹配如下字符串"GetPattern"、"PatternGet"、"getPattern"、"patGetter"、"getSomePattern"、
+"MatchpatternGet" 等等。</p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+	<p>请注意，目前（Ver 9.0）文件和目录名不支持此基于模糊匹配的补全方法，而只能用通配符扩展。</p>
+
+	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
+
+	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
+
+	<pre class="block">
+	</pre>
+
+	<ul>
+		<li><p class="item"><br /></p></li>
+		<li><p class="item"><a href="#" title=""></a><br /></p></li>
+	</ul>
+
+	<span style="font-weight:bold; color:#4169E1; margin-left:0.2em">&#65311;</span>
+
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
+		<caption style="margin:0.5em; font-weight:bold">选项列表</caption>
+		<thead>
+		<tr><th style="white-space: nowrap">选项</th><th>描述</th><th>帮助信息</th></tr>
+		</thead>
+		<tbody>
+		<tr><td><code class="inset">!</code></td><td>如果包含，表示。例如，。</td><td style="white-space: nowrap"><code class="inset">:help viminfo-!</code></td></tr>
+		</tbody>
+	</table>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tbody>
+		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
+		<tr><td><code class="inset">:</code></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		</tbody>
+	</table>
+&ldquo;&rdquo;
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
+
+</body>
+</html>
