@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 软件包(packages)</title>
+</head>
+<body>
+
+	<h1>VIM学习笔记 软件包(packages)</h1>
+	<p><a href="https://raw.githubusercontent.com/vim/vim/master/runtime/doc/version8.txt" title="packages">Vim8</a>引入了内置的<a href="https://raw.githubusercontent.com/vim/vim/master/runtime/doc/version8.txt" title="packages">packages</a>软件包功能。Vim软件包将创建一个或多个目录，用于安装和更新插件。和普通插件管理器相比，它主要有以下优点：</p>
+	
+	<ul>
+		<li>软件包可作为归档下载，并可解压到单独的目录。这样文件就不会和其它插件的文件混杂。也方便后续更新和删除。</li>
+		<li>软件包可以使用git等版本库进行更新。</li>
+		<li>软件包可包含相互依赖的多个插件。</li>
+		<li>软件包可包含启动时自动载入的插件和通过:packadd手动载入的插件。</li>
+	</ul>
+	<p></p>
+	<p>任何位于<kbd>~/.vim/pack</kbd>之下的目录，都将被视为软件包。一个软件包，可以将插件存储在<kbd>start</kbd>或<kbd>opt</kbd>子目录中。. The plugins under start/ folder are loaded on startup, while the plugins under opt/ folder are loaded manually by the user with the command :packadd.</p>
+	<ul>
+		<li><kbd>~/.vim/pack/*/start/{name}</kbd><br />存储自动载入的插件</li>
+		<li><kbd>~/.vim/pack/*/opt/{name}</kbd><br />存储:packadd {name}手动载入的插件</li>
+	</ul>
+	<p>使用以下命令，创建相应的目录结构：</p>
+	<p style="text-indent:2em"><code class="inset">mkdir -p ~/.vim/pack/plugins/start</code></p>
+	<p style="text-indent:2em"><code class="inset">mkdir -p ~/.vim/pack/plugins/opt</code></p>
+
+	<h2 class="article">安装配置</h2>
+	<p>可以clone或者使用子模块（<a href="https://git-scm.com/book/en/v2/Git-Tools-Submodules" title="Submodules">Submodules</a>）功能，将git库同步到本地软件包目录。</p>
+	<pre class="block">Git子模块允许你将一个Git仓库作为另一个Git仓库的子目录。 它能让你将另一个仓库克隆到自己的项目中，同时还保持提交的独立。</pre>
+	<p>为<em>pack</em>目录创建git库：</p>
+	<pre class="block"><code class="inset">cd ~/.vim/pack
+git init
+git add *
+git commit -m "Initial commit"
+git submodule init
+git remote add origin https://github.com/username/reponame.git
+git push -u origin master</code></pre>
+	<p>目录结构如下，之后安装的插件将存放在<kbd>plugged</kbd>目录中：<br /><img src="https://yyq123.github.io/learn-vim/images/plugin_plug_DirTree.png" alt="vim-plug Directory Tree" /></p>
+
+	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">配置实例</p>
+
+	<h2 class="article">安装插件</h2>
+	<p>vim-plug支持源码托管在<a href="https://github.com/">GitHub</a>的插件，你可以在<a href="https://github.com/vim-scripts/">github.com/vim-scripts/</a>上找到<a href="http://www.vim.org/">vim官网</a>里所有插件的镜像。</p>
+	<p>如果希望安装新插件，首先找到其在github.com的网址，然后执行以下命令安装所有引用的插件：</p>
+	<p style="text-indent:2em"><code class="inset">git submodule add https://github.com/chrisbra/unicode.vim plugins/start/unicode</code></p>
+	<p><img src="https://yyq123.github.io/learn-vim/images/packages-git-submodule-add.png" alt="packages-git-submodule-add" width="550" height="116" /></p>
+	<p>提交变更，：</p>
+	<p style="text-indent:2em"><code class="inset">$ git commit -m "Added submodules"</code></p>
+	<p style="text-indent:2em"><code class="inset">$ git push origin master</code></p>
+
+	<h2 class="article">卸载插件</h2>
+	<p>如果希望卸载插件，请先在执行以下命令移除git submodule：</p>
+	<p style="text-indent:2em"><code class="inset">:PlugClean</code></p>
+	<p><img src="https://yyq123.github.io/learn-vim/images/.png" alt="vim-plug Directory" /></p>
+
+	<h2 class="article">更新插件</h2>
+	<p>使用以下命令，可以更新指定插件'unicode'：</p>
+	<pre class="block"><code class="inset"></code></pre>
+	<pre class="block"><code class="inset"></code></pre>
+	<pre class="block"><code class="inset">$ cd ~/.vim/pack
+$ git submodule update --remote --merge</code></pre>
+	<p>使用以下命令，可以批量更新所有已安装的插件：</p>
+	<p style="text-indent:2em"><code class="inset">:PlugUpdate</code></p>
+	<p><img src="https://yyq123.github.io/learn-vim/images/.png" alt="vim-plug PlugUpdate" /></p>
+
+	<h2 class="article">插件状态</h2>
+	<p>使用以下命令，可以查看packages的帮助信息：</p>
+	<p style="text-indent:2em"><code class="inset">:help packages</code></p>
+	<p><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" /></p>
+	<p>Vim内置的软件包功能：</p>
+	<ul>
+		<li>仅仅负责载入插件，而需要用户自行下载、安装和更新插件，用户友好度欠佳；</li>
+		<li>调用git的clone和submodule，对于普通用户的门槛过高；</li>
+		<li>需要自行生成帮助文档（Help tags）</li>
+		<li></li>
+		<li></li>
+	</ul>
+	<p>If you work across many computers (and even otherwise!), it's a good idea to keep a copy of your setup on the cloud, preferably in a git repository, and clone it on another machine when you need.</p>
+	
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tr><td><code class="inset">:PlugInstall</code></td><td>安装插件</td></tr>
+		<tr><td><code class="inset">:PlugClean</code></td><td>卸载插件</td></tr>
+		<tr><td><code class="inset">:PlugUpdate</code></td><td>更新插件</td></tr>
+	</table>
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="插件管理器(Vundle)" href="http://yyq123.github.io/learn-vim/learn-vi-101-plugin-vundle.html.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="运行外部命令(shell)" href="http://yyq123.github.io/learn-vim/learn-vi-71-Shell.html">下一篇</a>&gt;</span></p>
+
+</body>
+</html>

@@ -67,7 +67,15 @@ http://tiny.cc/netrw-local	https://yyq123.github.io/learn-vim/learn-vi-105-plugi
 
 " }}}
 
-" {{{
+" {{{ https://t.ly/
+https://app.dub.sh/links
 https://git.io/learn-vim	https://github.com/yyq123/learn-vim
 https://git.io/vim-toc
+" }}}
+
+" {{{
+<a href="" title=""></a> 
+<a href="https://www.debian.org/" title="Debian">Debian</a> 
+<a href="https://git-scm.com/" title="Git">Git</a> 
+<a href="https://github.com/" title="GitHub">GitHub</a> 
 " }}}
