@@ -19,12 +19,13 @@
 		<li>软件包可包含启动时自动载入的插件和通过:packadd手动载入的插件。</li>
 	</ul>
 	<p></p>
-	<p>任何位于<kbd>~/.vim/pack</kbd>之下的目录，都将被视为软件包。一个软件包，可以将插件存储在<kbd>start</kbd>或<kbd>opt</kbd>子目录中。. The plugins under start/ folder are loaded on startup, while the plugins under opt/ folder are loaded manually by the user with the command :packadd.</p>
+	<p>任何位于<kbd>~/.vim/pack</kbd>之下的目录，都将被视为软件包。一个软件包，可以将插件存储在<kbd>start</kbd>或<kbd>opt</kbd>子目录中：</p>
 	<ul>
 		<li><kbd>~/.vim/pack/*/start/{name}</kbd><br />存储自动载入的插件</li>
-		<li><kbd>~/.vim/pack/*/opt/{name}</kbd><br />存储:packadd {name}手动载入的插件</li>
+		<li><kbd>~/.vim/pack/*/opt/{name}</kbd><br />存储通过:packadd {name}命令手动载入的插件</li>
 	</ul>
-	<p>使用以下命令，创建相应的目录结构：</p>
+	<p>其中，<code class="insert">*</code>可以为任意名称。</p>
+	<p>例如使用以下命令，创建以“plugins”命名的目录结构：</p>
 	<p style="text-indent:2em"><code class="inset">mkdir -p ~/.vim/pack/plugins/start</code></p>
 	<p style="text-indent:2em"><code class="inset">mkdir -p ~/.vim/pack/plugins/opt</code></p>
 
@@ -39,32 +40,44 @@ git commit -m "Initial commit"
 git submodule init
 git remote add origin https://github.com/username/reponame.git
 git push -u origin master</code></pre>
-	<p>目录结构如下，之后安装的插件将存放在<kbd>plugged</kbd>目录中：<br /><img src="https://yyq123.github.io/learn-vim/images/plugin_plug_DirTree.png" alt="vim-plug Directory Tree" /></p>
+	<p>目录结构如下，之后安装的插件将存放在<kbd>~/.vim/pack</kbd>子目录中：</p>
+	<p><img src="https://yyq123.github.io/learn-vim/images/packages-directory-tree.png" alt="packages Directory" /></p>
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">配置实例</p>
 
 	<h2 class="article">安装插件</h2>
-	<p>vim-plug支持源码托管在<a href="https://github.com/">GitHub</a>的插件，你可以在<a href="https://github.com/vim-scripts/">github.com/vim-scripts/</a>上找到<a href="http://www.vim.org/">vim官网</a>里所有插件的镜像。</p>
-	<p>如果希望安装新插件，首先找到其在github.com的网址，然后执行以下命令安装所有引用的插件：</p>
-	<p style="text-indent:2em"><code class="inset">git submodule add https://github.com/chrisbra/unicode.vim plugins/start/unicode</code></p>
+	<p>软件包支持源码托管在<a href="https://github.com/">GitHub</a>的插件，你可以在<a href="https://github.com/vim-scripts/">github.com/vim-scripts/</a>上找到<a href="http://www.vim.org/">vim官网</a>里所有插件的镜像，也可以直接引用github.com的网址。</p>
+	<p>如果希望安装新插件，可以执行以下命令安装指定的插件：</p>
+	<pre class="block"><code>$ git submodule add https://github.com/chrisbra/unicode.vim plugins/start/unicode</code></pre>
 	<p><img src="https://yyq123.github.io/learn-vim/images/packages-git-submodule-add.png" alt="packages-git-submodule-add" width="550" height="116" /></p>
-	<p>提交变更，：</p>
-	<p style="text-indent:2em"><code class="inset">$ git commit -m "Added submodules"</code></p>
-	<p style="text-indent:2em"><code class="inset">$ git push origin master</code></p>
+	<p>然后使用以下命令，来提交变更：</p>
+	<pre class="block"><code>$ git commit -m "Added submodules"
+$ git push origin master</code></pre>
+	<p>使用以下命令，可以安装用于演示Vim8.2新功能的<a href="https://github.com/vim/killersheep" title="killersheep">killersheep</a>小游戏。</p>
+	<pre class="block"><code>$ git submodule add https://github.com/vim/killersheep plugins/opt/killersheep
+$ git commit -m "Added killersheep"
+$ git push origin master</code></pre>
+	<p>使用以下命令，手动载入插件：</p>
+	<pre class="block"><code>:packadd killersheep</code></pre>
+	<p>使用以下命令，启动游戏：</p>
+	<pre class="block"><code>:Kill</code></pre>
+	<p><img src="https://yyq123.github.io/learn-vim/images/packages-killersheep.png" alt="packages-killersheep" width="550" height="415" /></p>
+
 
 	<h2 class="article">卸载插件</h2>
 	<p>如果希望卸载插件，请先在执行以下命令移除git submodule：</p>
 	<p style="text-indent:2em"><code class="inset">:PlugClean</code></p>
-	<p><img src="https://yyq123.github.io/learn-vim/images/.png" alt="vim-plug Directory" /></p>
 
 	<h2 class="article">更新插件</h2>
 	<p>使用以下命令，可以更新指定插件'unicode'：</p>
-	<pre class="block"><code class="inset"></code></pre>
-	<pre class="block"><code class="inset"></code></pre>
 	<pre class="block"><code class="inset">$ cd ~/.vim/pack
 $ git submodule update --remote --merge</code></pre>
 	<p>使用以下命令，可以批量更新所有已安装的插件：</p>
-	<p style="text-indent:2em"><code class="inset">:PlugUpdate</code></p>
+	<pre class="block"><code>$ cd ~/.vim
+$ git submodule foreach git pull origin master</code></pre>
+	<p>Note that new commits to plugins create uncommitted changes in the main repository. Thus, after any updates in the submodules, you need to commit the main repository as well:</p>
+	<pre class="block"><code>$ cd ~/.vim
+$ git commit -am "Updated plugins."</code></pre>
 	<p><img src="https://yyq123.github.io/learn-vim/images/.png" alt="vim-plug PlugUpdate" /></p>
 
 	<h2 class="article">插件状态</h2>
@@ -79,7 +92,14 @@ $ git submodule update --remote --merge</code></pre>
 		<li></li>
 		<li></li>
 	</ul>
-	<p>If you work across many computers (and even otherwise!), it's a good idea to keep a copy of your setup on the cloud, preferably in a git repository, and clone it on another machine when you need.</p>
+	<p>如果您同时使用多台电脑，那么结合packages和git功能即可以实现插件配置的同步。当然,这过程中牵扯了诸多手工操作和git知识，平衡取舍还请各位自行斟酌。</p>
+	<pre class="block"><code>$ git clone https://github.com/username/reponame.git ~/.vim
+$ cd ~/.vim
+git submodule update --init
+$ git commit -am "Updated plugins."
+$ git submodule foreach git pull origin master
+$ git add .
+$ git commit -m "update submodules"</code></pre>
 	
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
