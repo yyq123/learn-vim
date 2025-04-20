@@ -30,7 +30,7 @@
 	<p style="text-indent:2em"><code class="inset">mkdir -p ~/.vim/pack/plugins/opt</code></p>
 
 	<h2 class="article">安装配置</h2>
-	<p>可以clone或者使用子模块（<a href="https://git-scm.com/book/en/v2/Git-Tools-Submodules" title="Submodules">Submodules</a>）功能，将git库同步到本地软件包目录。</p>
+	<p>可以clone或者使用子模块（<a href="https://git-scm.com/book/en/v2/Git-Tools-Submodules" title="Submodules">Submodules</a>）功能，将git库同步到本地软件包目录。这也意味着，您可以在Git库里集中管理<kbd>.vimrc</kbd>配置文件和<kbd>.vim</kbd>目录结构，并同步到不同的计算机里。</p>
 	<pre class="block">Git子模块允许你将一个Git仓库作为另一个Git仓库的子目录。 它能让你将另一个仓库克隆到自己的项目中，同时还保持提交的独立。</pre>
 	<p>为<em>pack</em>目录创建git库：</p>
 	<pre class="block"><code class="inset">cd ~/.vim/pack
@@ -42,8 +42,6 @@ git remote add origin https://github.com/username/reponame.git
 git push -u origin master</code></pre>
 	<p>目录结构如下，之后安装的插件将存放在<kbd>~/.vim/pack</kbd>子目录中：</p>
 	<p><img src="https://yyq123.github.io/learn-vim/images/packages-directory-tree.png" alt="packages Directory" /></p>
-
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">配置实例</p>
 
 	<h2 class="article">安装插件</h2>
 	<p>软件包支持源码托管在<a href="https://github.com/">GitHub</a>的插件，你可以在<a href="https://github.com/vim-scripts/">github.com/vim-scripts/</a>上找到<a href="http://www.vim.org/">vim官网</a>里所有插件的镜像，也可以直接引用github.com的网址。</p>
@@ -63,39 +61,39 @@ $ git push origin master</code></pre>
 	<pre class="block"><code>:Kill</code></pre>
 	<p><img src="https://yyq123.github.io/learn-vim/images/packages-killersheep.png" alt="packages-killersheep" width="550" height="415" /></p>
 
-
 	<h2 class="article">卸载插件</h2>
-	<p>如果希望卸载插件，请先在执行以下命令移除git submodule：</p>
-	<p style="text-indent:2em"><code class="inset">:PlugClean</code></p>
+	<p>如果希望卸载插件，请先执行以下命令来移除git submodule：</p>
+	<p style="text-indent:2em"><code class="inset">git submodule deinit -f -- ~/.vim/pack/plugins/opt/killersheep</code></p>
+	<p>然后使用以下命令，删除插件文件目录：</p>
+	<p style="text-indent:2em"><code class="inset">rm -rf ~/.vim/pack/plugins/opt/killersheep</code></p>
+	<p>最后使用以下命令，从远处Git库中删除插件：</p>
+	<p style="text-indent:2em"><code class="inset">git rm -rf ~/.vim/pack/plugins/opt/</code></p>
 
 	<h2 class="article">更新插件</h2>
 	<p>使用以下命令，可以更新指定插件'unicode'：</p>
-	<pre class="block"><code class="inset">$ cd ~/.vim/pack
+	<pre class="block"><code class="inset">$ cd ~/.vim/pack/plugins/start/unicode
 $ git submodule update --remote --merge</code></pre>
 	<p>使用以下命令，可以批量更新所有已安装的插件：</p>
-	<pre class="block"><code>$ cd ~/.vim
+	<pre class="block"><code>$ cd ~/.vim/pack
 $ git submodule foreach git pull origin master</code></pre>
-	<p>Note that new commits to plugins create uncommitted changes in the main repository. Thus, after any updates in the submodules, you need to commit the main repository as well:</p>
-	<pre class="block"><code>$ cd ~/.vim
+	<p>请注意，如果有任何插件更新，请使用以下命令提交更新至Git repository：</p>
+	<pre class="block"><code>$ cd ~/.vim/pack
 $ git commit -am "Updated plugins."</code></pre>
-	<p><img src="https://yyq123.github.io/learn-vim/images/.png" alt="vim-plug PlugUpdate" /></p>
 
-	<h2 class="article">插件状态</h2>
+	<h2 class="article">帮助信息</h2>
 	<p>使用以下命令，可以查看packages的帮助信息：</p>
 	<p style="text-indent:2em"><code class="inset">:help packages</code></p>
-	<p><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" /></p>
-	<p>Vim内置的软件包功能：</p>
+	<p>请注意，对于Vim内置的软件包功能：</p>
 	<ul>
 		<li>仅仅负责载入插件，而需要用户自行下载、安装和更新插件，用户友好度欠佳；</li>
 		<li>调用git的clone和submodule，对于普通用户的门槛过高；</li>
-		<li>需要自行生成帮助文档（Help tags）</li>
-		<li></li>
-		<li></li>
+		<li>需要自行生成帮助文档（Help tags），例如以下命令将生成指定目录下的帮助文档：<br /><code class="inset">:helptags ~/.vim/pack/plugins/start/reponame</code><br />而以下命令则将生成所有帮助文档：<br /><code class="inset">:helptags ALL</code></li>
+		
 	</ul>
 	<p>如果您同时使用多台电脑，那么结合packages和git功能即可以实现插件配置的同步。当然,这过程中牵扯了诸多手工操作和git知识，平衡取舍还请各位自行斟酌。</p>
 	<pre class="block"><code>$ git clone https://github.com/username/reponame.git ~/.vim
 $ cd ~/.vim
-git submodule update --init
+$ git submodule update --init
 $ git commit -am "Updated plugins."
 $ git submodule foreach git pull origin master
 $ git add .
@@ -103,12 +101,10 @@ $ git commit -m "update submodules"</code></pre>
 	
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
-		<tr><td><code class="inset">:PlugInstall</code></td><td>安装插件</td></tr>
-		<tr><td><code class="inset">:PlugClean</code></td><td>卸载插件</td></tr>
-		<tr><td><code class="inset">:PlugUpdate</code></td><td>更新插件</td></tr>
+		<tr><td><code class="inset">:packadd></code></td><td>安装插件</td></tr>
 	</table>
 
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="插件管理器(Vundle)" href="http://yyq123.github.io/learn-vim/learn-vi-101-plugin-vundle.html.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="运行外部命令(shell)" href="http://yyq123.github.io/learn-vim/learn-vi-71-Shell.html">下一篇</a>&gt;</span></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver 25.4.20&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="插件管理器(Vundle)" href="http://yyq123.github.io/learn-vim/learn-vi-101-plugin-vundle.html">上一篇</a>&nbsp;|<a title="笔记列表" href="https://yyq123.github.io/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="运行外部命令(shell)" href="http://yyq123.github.io/learn-vim/learn-vi-71-Shell.html">下一篇</a>&gt;</span></p>
 
 </body>
 </html>
