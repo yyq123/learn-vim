@@ -1,0 +1,293 @@
+# VIM versus other text-editors: usability test
+# ---------------------------------------------
+
+# note:    there was never the need to move the hands away from the
+#          basic typing position. On the vim: examples, I left out how to move
+#          to the according lines (<nr>G, or /pat, or jjjjj... it is most of the time).
+#
+# result:  all things together takes me less than 80 seconds (beginning from
+#          line 1). How about with your editor?
+
+########################################################################################
+# 1. change 'table' to 'chair'
+
+put the apple onto the table. Yes, on that table over there! exactly that table yeah.
+
+,---------------------------------------------------------------------------------------
+| put the apple onto the chair. Yes, on that chair over there! exactly that chair yeah.
+`---------------------------------------------------------------------------------------
+
+vim:          /table<ret>cwchair<esc>n.n.  (6 sec)
+or vim:       jj:s/table/chair/g<return>   (3 sec)
+your editor:
+
+
+########################################################################################
+# 2. sort the following list alphabetially.
+
+picture
+television
+apple 
+tree
+mobile
+table
+book
+guest
+lesson
+
+,------------
+| apple
+| book
+| guest
+| lesson
+| mobile
+| picture
+| table
+| television
+| tree
+`------------
+
+vim:         Vip:sort<enter> (3 sec)
+your editor:
+
+
+########################################################################################
+# 3. change accordingly
+#    (macro usage)
+
+function foo(arg)
+function bar(arg)
+function foobar()
+function foobar(xy)
+function barf(f)
+function barfo(b)
+function bf(foo, bar)
+function foobar(bar, foo)
+
+,------------------------------
+| foo = function (arg)
+| bar = function (arg)
+| foobar = function ()
+| foobar = function (xy)
+| barf = function (f)
+| barfo = function (b)
+| bf = function (foo, bar)
+| foobar = function (bar, foo)
+`------------------------------
+
+vim:         f(hviwd0Pa = <esc>0j (10 seconds)
+your editor:
+
+########################################################################################
+# 4. put the functions into the right order (1, 2, 3) and according content as well
+#    (it's about moving/shifting things around)
+
+    func3(arg)
+    { 
+      /* func2-2222 - content */
+      /* foo2 */
+      /* bar2 */
+      /* foobar2 */
+    }
+    func2(arg)
+    { 
+      /* func1-1111 - content */
+      /* foobar1 */
+      /* bar1 */
+    }
+    func1(arg)
+    { 
+      /* func3-3333 - content */
+      /* bar3 */
+    }
+
+    ,------------------------------
+    | func1(arg)
+    | {
+    |   /* func1-1111 - content */
+    |   /* foobar1 */
+    |   /* bar1 */
+    | }
+    | func2(arg)
+    | {
+    |   /* func2-2222 - content */
+    |   /* foo2 */
+    |   /* bar2 */
+    |   /* foobar2 */
+    | }
+    | func3(arg)
+    | {
+    |   /* func3-3333 - content */
+    |   /* bar3 */
+    | }
+    `------------------------------
+
+
+vim:         jVj%d}kpkkkkkVj%d{pjjVjdjjjjjjjjpjjVjjjdkkkkkkpkVkkdkkkkp (about 10 seconds)
+or shorter:  jdd%jj%jVp(Pjd%jV%pkP (by Sitakif)
+your editor:
+
+
+########################################################################################
+# 5. on each row:  - put a dot after the day of the month 
+#                  - make the first letter of the month uppercase
+#                  - increment the year by 3
+#    e.g. 9 october 1947 ->  9. October 1950
+#    (example macro usage)
+
+2 may 1945
+9 october 1947
+31 march 1844
+1 january 1144
+11 october 2093
+
+,------------------
+| 2. May 1948
+| 9. October 1950
+| 31. March 1847
+| 1. January 1147
+| 11. October 2096
+`------------------
+
+vim:         qqf i.<esc>w~w3<ctrl-a>0jq4@q  (12 seconds, macro usage)
+your editor:
+
+
+########################################################################################
+# 6. you reply to a letter. Say hello <Name>, trimm everything unless the
+#    middle paragraph. Add two comments: one in the middle of that paragraph and
+#    one to the end. see example below..
+#    (general every day usage)
+
+> this is paragraph one.
+> and here I write and write
+> 
+> paragraph two, also
+> very important stuff
+> I mention here, 
+> isn't it.
+> 
+> this is the last paragraph
+> delete this as well
+> 
+> sender says bye bye
+> Jaqueline
+
+,------------------------
+| Hello Jaqueline,
+|
+| > paragraph two, also
+| > very important stuff
+|
+| that's true
+|
+| > I mention here,
+| > isn't it.
+|
+| cheers
+| vim-user
+`------------------------
+
+
+vim: iHi Jaq<tab>,<return><esc>jVjjdjo<return>that's true<return><esc>jjjVjjjjjdko
+     <return>cheers<return>vim-user<esc> (15 sec)
+your editor:
+
+
+########################################################################################
+# 7. delete every word with an uppercae X inside (including the comma)
+#
+
+TabXle, chair, leXtter, pen, boXXle, knive, piXture, rifle, elephant, mouse, X-box, grip, disX
+
+,-------------------------------------------------
+| chair, pen, knive, rifle, elephant, mouse, grip
+`-------------------------------------------------
+
+:vim         fXdaW;.;.;.;.;.x  (4 seconds, usage of .)
+your editor:
+
+
+########################################################################################
+# 8. Append to every line  a '/* foo */ '
+#    (multiline editing)
+#
+
+line 1
+line 2
+line 3
+line 4
+line 5
+line 6
+line 7
+line 8
+
+,------------------
+| line 1 /* foo */
+| line 2 /* foo */
+| line 3 /* foo */
+| line 4 /* foo */
+| line 5 /* foo */
+| line 6 /* foo */
+| line 7 /* foo */
+| line 8 /* foo */
+`------------------
+
+vim:         $<ctrl-v>7jA /* foo */<esc> (10 seconds)
+your editor:
+
+########################################################################################
+# 9. put the prize column at the end, % into the middle, and change 20 with 33 (in the % column)
+#    (multiline shifting)
+#
+
+item    prize       %
+apple      20      20
+door       10      20
+bottle      5      20
+key       120      20
+
+,------------------------
+| item        %    prize
+| apple      33       20
+| door       33       10
+| bottle     33        5
+| key        33      120
+`------------------------
+
+vim:         w<ctrl-v>jjjjwwhhhhd$a   <esc>pbjh<ctrl-v>jjjlc33<esc> (8 seconds)
+your editor:
+
+########################################################################################
+# 10. delete every line containing the text 'delete'
+
+It's no secret that
+InterActiveCorp delete is
+delete facing a corporate
+hurricane. But CEO Barry
+Diller's delete plan to delted
+split the company in five
+delete parts might not calm
+the waters. In the fall, the
+sprawling delete new media
+conglomerate delete announced
+a plan to spin off many of its
+brands delete into a total of
+five publicly delte traded
+companies, focusing its delete
+core business delete on
+ad-supported media, 
+
+,--------------------------------
+| It's no secret that
+| hurricane. But CEO Barry
+| split the company in five
+| the waters. In the fall, the
+| a plan to spin off many of its
+| five publicly delte traded
+| ad-supported media,
+`--------------------------------
+
+vim:         Vip:g/delete/d<ret> (5 seconds)
+your editor:
+

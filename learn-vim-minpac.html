@@ -42,15 +42,17 @@ call minpac#add('yyq123/HTML-Editor')</code></pre>
 
 	<h2 class="article">卸载插件</h2>
 	<p>如果希望卸载插件，请先在vimrc文件中删除相关call minpac#add('')命令；然后重新载入vimrc文件，并执行以下命令：</p>
-	<pre class="block"><code>:call minpac#update()</code></pre>
+	<pre class="block"><code>:call minpac#clean()</code></pre>
 
 	<h2 class="article">更新插件</h2>
-	<p>建议在vimrc文件中，增加以下命令映射：</p>
+	<p>建议在vimrc文件中，增加以下命令映射以便于后续操作：</p>
 	<pre class="block"><code>" minpac commands:
+" 安装和更新插件
 command! PackUpdate call minpac#update()
+" 卸载插件
 command! PackClean call minpac#clean()
-command! PackStatus call minpac#status()
-</code></pre>
+" 查看插件状态
+command! PackStatus call minpac#status()</code></pre>
 	<p>然后就可以使用以下命令，批量更新所有已安装的插件：</p>
 	<pre class="block"><code>:PackUpdate</code></pre>
 
@@ -58,11 +60,6 @@ command! PackStatus call minpac#status()
 	<p>使用以下命令，可以查看minpac的帮助信息：</p>
 	<p style="text-indent:2em"><code class="inset">:help minpac</code></p>
 	
-	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
-		<caption>命令小结</caption>
-		<tr><td><code class="inset">:packadd</code></td><td>安装插件</td></tr>
-	</table>
-
 	<p style="border-top:1px solid lightgray"><span style="float:right">Ver 25.4.22&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="软件包(packages)" href="http://yyq123.github.io/learn-vim/learn-vim-packages.html">上一篇</a>&nbsp;|<a title="笔记列表" href="https://yyq123.github.io/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="运行外部命令(shell)" href="http://yyq123.github.io/learn-vim/learn-vi-71-Shell.html">下一篇</a>&gt;</span></p>
 
 </body>
