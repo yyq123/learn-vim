@@ -155,6 +155,7 @@ Created by yyq123@gmail.com using [vim](http://www.vim.org/)
   - [自定义命令(UDC)](http://yyq123.github.io/learn-vim/learn-vi-94-ScriptUDC.html)[<sup>B</sup>](http://yyq123.blogspot.com/2017/06/vim-script-user-defined-command.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/60260968)
 - **插件**
   - [软件包(packages)](http://yyq123.github.io/learn-vim/learn-vim-packages.html)[<sup>B</sup>](https://yyq123.blogspot.com/2025/04/vim-packages.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/1897408475706925265)
+  - [插件管理器(minpac)](http://yyq123.github.io/learn-vim/learn-vim-plugin-minpac.html)[<sup>B</sup>](https://yyq123.blogspot.com/2025/04/vim-packages.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/1898764258185049144)
   - [插件管理器(Vundle)](http://yyq123.github.io/learn-vim/learn-vi-101-plugin-vundle.html)[<sup>B</sup>](http://yyq123.blogspot.com/2018/07/vim--plugin-vundle.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/39516694)
   - [插件管理器(vim-plug)](http://yyq123.github.io/learn-vim/learn-vi-102-plugin-plug.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/02/vim-vim-plug.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/56910536)
   - [代码片段管理器(Gist.vim)](http://yyq123.github.io/learn-vim/learn-vi-103-plugin-Gist.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/02/vim-gistvim.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/57381412)
