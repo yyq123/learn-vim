@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 使用Git Bash环境()</title>
+</head>
+<body>
+	<h1>VIM学习笔记 使用Git Bash环境()</h1>
+	<p>Git Bash是一款将Git版本控制系统和Bash shell的集成至单一界面的工具。允许用户在Windows系统的Bash环境中使用Git命令，为熟悉Linux系统的开发人员提供无缝体验；同时还能利用Bash强大的脚本和命令行功能。</p>
+
+	<h2 class="article">集成Git Bash和ConEmu<a id="ConEmu"></a></h2>
+	<p>如果您已经安装了<a href="http://yyq123.github.io/learn-vim/learn-vi-803-Toolkit-Git.html" title="版本控制(Toolkit-Git)">Git</a>和<a href="http://yyq123.github.io/learn-vim/learn-vi-804-Toolkit-CLI-Win.html#ConEmu" title="Windows命令行环境(Toolkit-CLI-Win)">ConEmu</a>，那么通过以下配置将可以在虚拟终端和Vim中调用Git Bash。</p>
+	<p>在ConEmu中，点击<kbd>Win+Alt+P</kbd>快捷键以打开设置对话框。</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/ConEmu-Setting-Task-Git-Bash.png" title="Git Bash"><img src="https://yyq123.github.io/learn-vim/images/ConEmu-Setting-Task-Git-Bash.png" alt="Git Bash" width="550" height="371" /></a></p>
+	<ol>
+		<li>在侧边栏中，选择<em>Startup</em>下的<em>Tasks</em>；</li>
+		<li>点击<em>+</em>按钮，新增项目；</li>
+		<li>输入项目名称"<code class="inset">Bash::git bash</code>"；</li>
+		<li>在<em>Task Parameters</em>编辑框中，指定启动目录和图标文件：<br /><pre class="block"><code>/single /Dir "C:\" /icon "C:\Program Files\Git\mingw64\share\git\git-for-windows.ico"</code></pre></li>
+		<li>在<em>Commands</em>编辑框中，指定Git Bash命令：<br /><pre class="block"><code>"%ProgramFiles%\Git\bin\sh.exe" --login -i</code></pre></li>
+		<li>点击<em>Save Settings</em>按钮，保存设置。</li>
+	</ol>
+	<p>在ConEmu中，选择新建Git Bash终端窗口：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/ConEmu-New-Console-Git-Bash.png" title="New Console"><img src="https://yyq123.github.io/learn-vim/images/ConEmu-New-Console-Git-Bash.png" alt="New Console" width="550" height="190" /></a></p>
+	<p>您可以在命令行环境下管理Git库：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/ConEmu-Git-Bash-Command.png" title="Command"><img src="https://yyq123.github.io/learn-vim/images/ConEmu-Git-Bash-Command.png" alt="Command" width="550" height="211" /></a></p>
+	<p>除了Git命令，Git Bash也提供一系列Linux经典命令工具，您可以使用<code class="inset">$ help</code>命令列出命令列表：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/ConEmu-Git-Bash-Help.png" title="Help"><img src="https://yyq123.github.io/learn-vim/images/ConEmu-Git-Bash-Help.png" alt="Help" width="550" height="377" /></a></p>
+
+	<h2 class="article"><a id="vim-Cygwin-Shell">配置Vim使用Git Bash</a></h2>
+	<p>Vim在Windows下，默认使用命令提示符 "Command Prompt"：</p>
+	<p style="text-indent:2em"><code class="inset">:set shell?</code></p>
+	<p style="text-indent:2em"><code class="msg">shell=C:\WINDOWS\system32\cmd.exe</code></p>
+	<p>在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>配置文件中设置以下函数：</p>
+<pre><code>fun! ShellGitBash()
+	" Makes bash open in the working directory
+	let $CHERE_INVOKING=1
+	set shell=C:\PROGRA~1\Git\bin\sh.exe
+	set shellcmdflag=--login\ -c
+	set shellxquote=\"
+	set shellslash
+	let $PATH .= ';C:\PROGRA~1\Git\bin'
+endfun</code></pre>
+	<p>通过以下命令，则可切换至Git Bash的Shell环境：</p>
+	<p style="text-indent:2em"><code class="inset">:call ShellGitBash()</code></p>
+	<p>在Vim中使用<code class="inset">:terminal</code>命令，即可打开Git Bash终端窗口：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Git-Bash-Vim-terminal.png" title="terminal"><img src="https://yyq123.github.io/learn-vim/images/Git-Bash-Vim-terminal.png" alt="terminal" /></a></p>
+	<p>你也可以使用<code class="inset">:!</code>或<code class="inset">:shell</code>命令，来<a href="http://yyq123.github.io/learn-vim/learn-vi-71-Shell.html" title="Shell">执行bash命令</a>。</p>
+
+	<h2 class="article"><a id=""></a></h2>
+	<p></p>
+	<a href="#" title=""></a>
+
+
+
+	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
+
+	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
+
+	<pre class="block">
+	</pre>
+
+	<ul>
+		<li><p class="item"><br /></p></li>
+		<li><p class="item"><a href="#" title=""></a><br /></p></li>
+	</ul>
+
+	<span style="font-weight:bold; color:#4169E1; margin-left:0.2em">&#65311;</span>
+
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
+		<caption style="margin:0.5em; font-weight:bold">选项列表</caption>
+		<thead>
+		<tr><th style="white-space: nowrap">选项</th><th>描述</th><th>帮助信息</th></tr>
+		</thead>
+		<tbody>
+		<tr><td><code class="inset">!</code></td><td>如果包含，表示。例如，。</td><td style="white-space: nowrap"><code class="inset">:help viminfo-!</code></td></tr>
+		</tbody>
+	</table>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tbody>
+		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
+		<tr><td><code class="inset">:</code></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		</tbody>
+	</table>
+&ldquo;&rdquo;
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
+
+</body>
+</html>
