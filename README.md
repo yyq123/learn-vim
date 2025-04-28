@@ -169,6 +169,7 @@ Created by yyq123@gmail.com using [vim](http://www.vim.org/)
 - **工具箱**
   - [大写锁定键(Caps)映射为Esc](http://yyq123.github.io/learn-vim/learn-vim-Toolkit-Caps2Esc.html)[<sup>B</sup>](https://yyq123.blogspot.com/2020/05/vim-toolkit-Caps2Esc.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/144050387)
   - [Windows命令行环境(Toolkit-CLI-Win)](http://yyq123.github.io/learn-vim/learn-vi-804-Toolkit-CLI-Win.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/10/vim-toolkit-cli-win.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/89370092)
+  - [使用Git Bash Shell环境](http://yyq123.github.io/learn-vim/learn-vim-git-bash.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/10/vim-toolkit-cli-win.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/1900137997632009955)
   - [屏幕截图(Screenshot)](http://yyq123.github.io/learn-vim/learn-vi-801-Toolkit-Screen.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/08/vim-toolkit-screenshot.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/76965810)
   - [图表制作(Diagram)](http://yyq123.github.io/learn-vim/learn-vi-802-Toolkit-Diagram.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/08/vim-toolkit-diagram.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/80209657)
   - [版本控制(Git)](http://yyq123.github.io/learn-vim/learn-vi-803-Toolkit-Git.html)[<sup>B</sup>](https://yyq123.blogspot.com/2019/09/vim-toolkit-git.html)<sup>/</sup>[<sup>Z</sup>](https://zhuanlan.zhihu.com/p/82742807)
