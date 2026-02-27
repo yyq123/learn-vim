@@ -9,6 +9,7 @@
 </head>
 <body>
 	<h1>VIM学习笔记 内建函数 (Builtin Functions)</h1>
+	<p>&spades; 本列表并不是所有内建函数的完整列表。为了阅读便利，已根据本人理解对信息进行简化。完整函数列表，请参阅<a href="https://yianwillis.github.io/vimcdoc/doc/builtin.html#builtin-functions" title=" builtin.txt">VIM参考手册</a>。</p>
 	<p>使用以下命令，将在新建窗口中列示所有内建函数：</p>
 	<p style="text-indent:2em"><code class="inset">:new | put! =getcompletion('*', 'function')-&gt;filter({_, v -&gt; v =~# '^[a-z][^#]*$'})</code></p>
 	<p></p>
@@ -25,213 +26,52 @@
 	<tr><td><code class="inset">bufloaded(<a style="text-decoration:none" href="#" title="缓冲区的名称">buffer_name</a>)</code><br />缓冲区是否被装入<br /></td><td></td><td>缓冲区存在且已载入则返回真(1)，否则为假(0)</td></tr>
 	<tr><td><code class="inset">bufname(<a style="text-decoration:none" href="#" title="缓冲区的标号或名字（三个特殊的缓冲区：%当前缓冲区；#交换缓冲区；$列表中的最后一个缓冲区）">buffer_specification</a>)</code>返回缓冲区的名字<br />返回缓冲区全名的字符串；如果发生错误或没有匹配时则会返回空串<br /></td></tr>
 	<tr><td><code class="inset">bufnr(<a style="text-decoration:none" href="#" title="缓冲区的标号或名字">buffer_expression</a>)</code><br />返回缓冲区的标号<br />返回缓冲区的标号。若有错，则返回-1</td></tr>
-	<tr><td><code class="inset"></code><br /><br /></td></tr>
-	<tr><td><code class="inset"></code><br /><br /></td></tr>
-	<tr><td><code class="inset"></code><br /><br /></td></tr>
-	<tr><td><code class="inset"></code><br /><br /></td></tr>
+	<tr><td><code class="inset">bufwinnr(<a style="text-decoration:none" href="#" title="缓冲区的标号或名字">buffer_expression</a>)</code><br />&target; 得到一个缓冲区的窗口号<br />&LeftTeeArrow; 整数.与缓冲区相匹配的第一窗口的标号.或是有错误或是没有匹配的窗口时返回-1</td></tr>
+	<tr><td><code class="inset">byte2line(<a style="text-decoration:none" href="#" title="当前缓冲区的字符索引">byte_index</a>)</code><br />返回当前缓冲区第 {byte} 个字节所在的行号<br />包含由byte_index所指定的字符的行号；byte_index值非法时则返回-1</td></tr>
+	<tr><td><code class="inset">char2nr(<a style="text-decoration:none" href="#" title="转换单一的字符。如果指定了一个字符串，也只使用第一个字符">character</a>)</code><br />&target; 将字符转换为数字<br />&LeftTeeArrow; 返回与字符相对应的数字值</td></tr>
+	<tr><td><code class="inset">col({<a style="text-decoration:none" href="#" title="是 [lnum, col]: 包含行号和列号的 List">expr</a>} [, {<a style="text-decoration:none" href="#" title="从该窗口而不是当前窗口中取值">winid</a>}])</code><br />&target; 返回指定位置的列号<br />&LeftTeeArrow; 返回标记或是光标的所在的列号.当有错误发生时则返回0</td></tr>
+	<tr><td><code class="inset">confirm({<a style="text-decoration:none" href="#" title="提示信息">message</a>},{<a style="text-decoration:none" href="#" title="包含选择列表的字符串">choice_list</a>},[<a style="text-decoration:none" href="#" title="默认选择的索引。如果没有指定这个参数，则默认选择第一个按钮。">default</a>],[<a style="text-decoration:none" href="#" title="对话框类型，包括"Error","Question","Info","Warning","Generic"。默认为"Generic"">type</a>])</code><br />&target; 显示对话框<br />&LeftTeeArrow; 返回选择的序号。第一个选择为1。如果用户用&lt;Esc&gt;、CTRL‑C 或者其他中断键中止对话框则返回0。</td></tr>
+	<tr><td><code class="inset">delete({<a style="text-decoration:none" href="#" title="要删除的文件名">file_name</a>})</code><br />&target; 删除文件<br />&LeftTeeArrow; 返回0表明文件已被删除，非0则表示发生错误。</td></tr>
+	<tr><td><code class="inset">did_filetype()</code><br />&target; 检测FileType事件是否发生<br />&LeftTeeArrow; 如果自动命令正在执行并且至少有一个事件已发生则返回非0，否则返回0</td></tr>
+	<tr><td><code class="inset">escape({<a style="text-decoration:none" href="#" title="">string</a>},{<a style="text-decoration:none" href="#" title="">character_list</a>})</code><br />&target; 将 {string} 中出现在 {chars} 集合里的字符用反斜杠转义。<br />&LeftTeeArrow; 返回转义后的字符串</td></tr>
+	<tr><td><code class="inset">exsits({<a style="text-decoration:none" href="#" title="要检测的内容。可以用来指定选项、环境变量、函数名或者变量。">string</a>})</code><br />&target; 检测由{string}所指定的内容是否存在<br />&LeftTeeArrow; 如果存在返回1，否则返回0</td></tr>
+	<tr><td><code class="inset">expand({<a style="text-decoration:none" href="#" title="">string</a>} [, {<a style="text-decoration:none" href="#" title="">nosuf</a>} [, {<a style="text-decoration:none" href="#" title="{list} 给出且为  TRUE  时，返回列表。">list</a>}]])</code><br />&target; 扩展 {string} 里的通配符和下列特殊关键字。<br />&LeftTeeArrow; 返回字符列表。如果没有匹配，则返回回空字符串。</td></tr>
+	<tr><td><code class="inset">filereadable({<a style="text-decoration:none" href="#" title="要检测的文件名">file_name</a>})</code><br />&target; 检测文件是否可读<br />&LeftTeeArrow; 如果文件存在并可读则返回非0值；文件不存在或文件不可读则返回非0值</td></tr>
+	<tr><td><code class="inset">fnamemodify({<a style="text-decoration:none" href="#" title="文件名">fname</a>},{<a style="text-decoration:none" href="#" title="是与命令行上文件名所用相同格式的修饰符字符串。如:r:h">mods</a>})</code><br />&target; 根据 {mods} 修改文件名 {fname}<br />&LeftTeeArrow; 返回修改后的文件名</td></tr>
+	<tr><td><code class="inset">getcwd()</code><br />&target; 得到当前的工作目录<br />&LeftTeeArrow; 返回当前工作目录名</td></tr>
+	<tr><td><code class="inset">getftime(<a style="text-decoration:none" href="#" title="要检测的文件名">file_name</a>})</code><br />&target; 得到文件的修改时间<br />&LeftTeeArrow; 近回文件的修改时间，若发生错误则返回-1</td></tr>
+	<tr><td><code class="inset">getline({<a style="text-decoration:none" href="#" title="行号或'.'表明光标所在的行">line_number</a>})</code><br />&target; 从当前的编辑缓冲区中取出一行<br />&LeftTeeArrow; 返回指定行的文本；如果{line_number}超出范围则会返回空字符串</td></tr>
+	<tr><td><code class="inset">getwinposx()</code><br />&target; 返回GUI窗口的x坐标<br />&LeftTeeArrow; 返回以像素表示的GUI窗口的x坐标</td></tr>
+	<tr><td><code class="inset">getwinposy()</code><br />&target; 返回GUI窗口的y坐标<br />&LeftTeeArrow; 返回以像素表示的GUI窗口的y坐标</td></tr>
+	<tr><td><code class="inset">glob({<a style="text-decoration:none" href="#" title="表明要匹配文件名的字符串">file_name</a>})</code><br />&target; 在文件名中扩展通配符并返回文件列表<br />&LeftTeeArrow; 返回由&lt;NL&gt;分隔的匹配的文件列表；如果没有匹配的则会返回空串</td></tr>
+	<tr><td><code class="inset">has({<a style="text-decoration:none" href="#" title="特性名">feature</a>})</code><br />&target; 检测某一个特性是否可用<br />&LeftTeeArrow; 如果支持特性{feature}则返回1，否则返回0</td></tr>
+	<tr><td><code class="inset">histadd({<a style="text-decoration:none" href="#" title="使用以下名称和标识：&#10;cmd或:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;命令行历史&#10;search或/&nbsp;&nbsp;&nbsp;&nbsp;搜索模式历史&#10;expr或=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;输入表达式历史&#10;input或@&nbsp;&nbsp;&nbsp;&nbsp;输入行历史&#10;debug或&gt;&nbsp;&nbsp;调试命令历史&#10;空&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当前或最后使用的历史">history</a>},{<a style="text-decoration:none" href="#" title="">item</a>})</code><br />&target; 在历史列表加入项目<br />&LeftTeeArrow; 成功返回1，错误则返回0</td></tr>
+	<tr><td><code class="inset">histdel({<a style="text-decoration:none" href="#" title="">history</a>},[<a style="text-decoration:none" href="#" title="定义要移除内容的表达式。如果没有指定类型，将会从历史中移除所有的内容。">pattern</a>])</code><br />&target; 从历史列表中移除项目<br />&LeftTeeArrow; </td></tr>
+	<tr><td><code class="inset">histget({<a style="text-decoration:none" href="#" title="历史列表">history</a>},[<a style="text-decoration:none" href="#" title="项目索引。最新的输入为-1，次新的为-2，依次类推。最后的为1，次后为2，依次类推。如果没有指定索引，则返回最后一项。">index</a>])</code><br />&target; 返回历史记录中某项内容<br />&LeftTeeArrow; 返回字符串，即历史记录中指定的命令，如果有错误发生则会返回空串。</td></tr>
+	<tr><td><code class="inset">histnr({<a style="text-decoration:none" href="#" title="历史列表">history</a>})</code><br />&target; 返回历史列表中的当前项目的编号<br />&LeftTeeArrow; 返回整数项目编号；如果有错，则返回-1</td></tr>
+	<tr><td><code class="inset">hlexists({<a style="text-decoration:none" href="#" title="要检测的组名">name</a>})</code><br />&target; 检测一个语法高亮组是否存在<br />&LeftTeeArrow; 若存在则返回非0，否则返回0</td></tr>
+	<tr><td><code class="inset">hlID({<a style="text-decoration:none" href="#" title="语法高亮组的名称">name</a>})</code><br />&target; 返回指定名称的语法高亮组的ID<br />&LeftTeeArrow; 返回语法高亮组的ID</td></tr>
+	<tr><td><code class="inset">hostname()</code><br />&target; 返回运行Vim的机器主机名<br />&LeftTeeArrow; 返回主机名</td></tr>
+	<tr><td><code class="inset">input({<a style="text-decoration:none" href="#" title="提示字符串">prompt</a>})</code><br />&target; 返回用户在命令行上输入的内容<br />&LeftTeeArrow; 返回用户在命令行上输入的字符串</td></tr>
+	<tr><td><code class="inset">isdirectory({<a style="text-decoration:none" href="#" title="要检测的名称">directory</a>})</code><br />&target; 检测目录是否存在<br />&LeftTeeArrow; 如果是目录时则返回1，如果不是目录或不存在则返回0</td></tr>
+	<tr><td><code class="inset">libcall({<a style="text-decoration:none" href="#" title="共享库的文件名,在其中定义了{function}">dll_name</a>},{<a style="text-decoration:none" href="#" title="函数名">function</a>},{<a style="text-decoration:none" href="#" title="参数">argument</a>})</code><br />&target; 调用在运行库中的函数<br />&LeftTeeArrow; 调用后的结果是函数返回的字符串</td></tr>
+	<tr><td><code class="inset">line({<a style="text-decoration:none" href="#" title="位置标记">position</a>})</code><br />&target; 返回给定的文件位置所在的行号<br />&LeftTeeArrow; 返回行号。如果没有标记或发生错误，则返回0</td></tr>
+	<tr><td><code class="inset">line2byte({<a style="text-decoration:none" href="#" title="要转换的行号">line_number</a>})</code><br />&target; 返回从当前缓冲区开头到指定行的字节数<br />&LeftTeeArrow; 返回字节数加1，如果发生错误则返回-1</td></tr>
+	<tr><td><code class="inset">localtime()</code><br />&target; 返回当前时间<br />&LeftTeeArrow; 返回整数 (从1970年1月1日开始计算的秒数)</td></tr>
+	<tr><td><code class="inset">maparg({<a style="text-decoration:none" href="#" title="映射名">name</a>},[<a style="text-decoration:none" href="#" title="映射的模式">mode</a>])</code><br />&target; 返回指定映射的内容。只查找名字和{name}完全一致的映射。<br />&LeftTeeArrow; 返回映射结果字符串，如果没有映射则返回空串</td></tr>
+	<tr><td><code class="inset">mapcheck({<a style="text-decoration:none" href="#" title="映射名">name</a>},[<a style="text-decoration:none" href="#" title="映射的模式">mode</a>])</code><br />&target; 检测指定映射是否存在。 查找名字和{name}部分匹配的映射。<br />&LeftTeeArrow; 返回匹配{name}的任何映射</td></tr>
+	<tr><td><code class="inset">match({<a style="text-decoration:none" href="#" title="要检测的字符串">string</a>},{<a style="text-decoration:none" href="#" title="匹配模式">pattern</a>})</code><br />&target; 检测{string}是否与{pattern}相匹配<br />&LeftTeeArrow; 返回{string}中{pattern}出现的第一个字符索引。第一个字符为0。如果没有匹配则返回-1。</td></tr>
+	<tr><td><code class="inset"></code><br />&target; <br />&LeftTeeArrow; </td></tr>
+	<tr><td><code class="inset"></code><br />&target; <br />&LeftTeeArrow; </td></tr>
+	<tr><td><code class="inset"></code><br />&target; <br />&LeftTeeArrow; </td></tr>
+	<tr><td><code class="inset"></code><br />&target; <br />&LeftTeeArrow; </td></tr>
+	<tr><td><code class="inset"></code><br />&target; <br />&LeftTeeArrow; </td></tr>
+	<tr><td><code class="inset"></code><br />&target; <br />&LeftTeeArrow; </td></tr>
 </tbody>
 </table>
-
-
-
-
-
-<a style="text-decoration:none" href="#" title="">
-<a style="text-decoration:none" href="#" title="">
 <a style="text-decoration:none" href="#" title="">
 
-bufwinnr(<a style="text-decoration:none" href="#" title="">buffer_expression)
-作用:得到一个缓冲区的窗口号
-参数:
-buffer_expression:与bufname功能函数的参数相同
-返回值:整数.与缓冲区相匹配的第一窗口的标号.或是有错误或是没有匹配的窗口时返回-1
-byte2line(<a style="text-decoration:none" href="#" title="">byte_index)
-作用:将字节索引转换为行号
-参数:byte_index    在当前缓冲区的字符索引
-返回值:整数.包含由byte_index所指定的字符的行号或是byte_index超出范围时返回-1
-char2nr(<a style="text-decoration:none" href="#" title="">character)
-作用:将字符转换成相应的数字
-参数:
-character:转换单一的字符.如果指定了一个长的字符串,只使用第一个字符.
-返回值:整数.与字符相对应的数字标号.例如:char2nr("A")的值为65(即其相对应的ASCII码)
-col(<a style="text-decoration:none" href="#" title="">location)
-作用:返回指定位置的列号
-参数:
-location:标记的描述(如"x)或是"."得到当前光标所在处的列号
-返回值:整数.返回标记或是光标的所在的列号.当有错误发生时则返回0
-confirm({<a style="text-decoration:none" href="#" title="">message},{<a style="text-decoration:none" href="#" title="">choice_list},[<a style="text-decoration:none" href="#" title="">default],[<a style="text-decoration:none" href="#" title="">type])
-作用:显示一个对话框可以使得用户一系列的选择并返回用户的选择.
-参数:
-{message}在对话框中显示的提示信息.
-{choice_list}包含选择列表的字符串.每一个新行("n")来分隔每一个选择.用&来表明加速字符.
-[default]表明默认选择的索引.第一个按钮为#1.如果没有指定这个参数,则第一个按钮为默认的.
-[type]要显示的对话框的类型.可用的选择如下"Error","Question","Info","Warning","Generic".默认情况下"Generic"
-返回值:整数.选择的数字(从1开始).如果用户按<ESC>或是CTRL-C来退出则返回0
-如下面的一些例子:
-echo confirm("Choose one","&Onen&Twon&Three",2,"Error")
-echo confirm("Choose one","&Onen&Twon&Three",1,"Question")
-echo confirm("Choose one","&Onen&Twon&Three",0,"Warning")
-echo confirm("Choose one","&Onen&Twon&Three",0,"Info")
-echo confirm("Choose one","&Onen&Twon&Three",0,"Generic")
-delete({<a style="text-decoration:none" href="#" title="">file_name})
-作用:删除文件
-参数:
-{file_name}要删除的文件名
-返回值:整数.0表明文件已被删除,非0则表示错误.
-did_filetype()
-作用:检测FileType事件是否发生.这个命令在用自动命令时显得更为有用.
-返回值:整数.如果自动命令正在执行并且至少有一个事件已发生则返回非0,否则返回0
-escape({<a style="text-decoration:none" href="#" title="">string},{<a style="text-decoration:none" href="#" title="">character_list})
-作用:将{string}字符串的字符转换成转义字符.{character_list}则为要进行转义的字符列表.
-返回值:字符串
-例如下面的命令:
-:echo escape("This is a 'test'"," '")
-其执行结果为:
-This is a 'test'
-exsits({<a style="text-decoration:none" href="#" title="">string})
-作用:检测由{string}所指定的内容是否存在.
-参数:
-{string}要检测的内容.这个可以用来指定一个选项('&autoindent'),环境变量('$VIMRUNTIME'),基本的函数名('*escape')或者是一个简单的变量('var_name')(注:在这里我们要指定定这个引号标记,因为我们是在字符串中传递这些值)
-返回值:整数.如果存在则返回1,否则返回0
-expand({<a style="text-decoration:none" href="#" title="">string},[<a style="text-decoration:none" href="#" title="">flag])
-作用:返回与{string}匹配的文件列表.这个字符串可以包含通配符或是其他的描述.在这里我们要注意的是'suffixes'选项和'wildignore'选项可以影响扩展如何实现.如果一个特殊的单词例如'<cfile>'被扩展,并不会显示更深一些的扩展.如果光标位于字符串'~/.vimrc'上,'expand('<cfile>')的结果为'~/.vimrc'.如果我们要得到全名,我们需要扩展两次.所以'expand(expand('<cfile>'))将会返回'/home/oualline/.vimrc'.选项'wildignore'和'suffixes'将会起作用,除非指定了一个非0的[flag]
-返回值:字符列表.由新行分隔的与{string}相匹配的文件名列表.如果没有匹配的,则会返回回空字符串.
-filereadable({<a style="text-decoration:none" href="#" title="">file_name})
-作用:检测一个文件是否可读
-参数:要检测的文件名
-返回值:整数.如果这个文件存在并可读则会返回非0值.0则表明这个文件不存在或是这个文件不可读.
-fnamemodify({<a style="text-decoration:none" href="#" title="">file_name},{<a style="text-decoration:none" href="#" title="">modifiers})
-作用:对{file_name}执行{modifiers}并返回结果.
-参数:
-{file_name}文件名
-{modifiers}修改标记,如":r:h"
-返回值:字符串.被修改的文件名
-getcwd()
-作用:得到当前的工作目录
-返回值:字符串.当前的工作目录
-getftime(<a style="text-decoration:none" href="#" title="">file_name})
-作用:得到一个文件的修改时间
-参数:
-{file_name}    要检测的文件名
-近回值:整数.文件的修改时间,若发生错误则返回-1
-getline({line_number})
-作用:从当前的编辑缓冲区中取出一行
-参数:
-{line_number}    要得到的行号或是"."表明光标所在的行
-返回值:字符串.一行文本.如果{line_number}超出范围则会返回空字符串
-getwinposx()getwinposy()
-作用:返回GUI窗口的x或是y坐标
-返回值:整数.以像素表示的GUI窗口的x或是y坐标.如果这些信息不可得则返回-1.
-glob({<a style="text-decoration:none" href="#" title="">file_name})
-作用:在文件名中扩展通配符并返回文件列表.
-参数:
-{file_name}
-表明要匹配文件名类型的字符串.我们还可以使用由反引号(`)构成的外部命令.如下面的例子:glob("`find . -name '*.c' -print'")
-返回值:字符串.由<NL>分隔的匹配的文件列表.如果没有匹配的则会返回空串
-has({<a style="text-decoration:none" href="#" title="">feature})
-作用:检测某一个特征已被安装
-参数:
-{feature}    包含特征名的字符串
-返回值:整数标记.如果这个特征已被编译则要返回1,否则返回0
-histadd({<a style="text-decoration:none" href="#" title="">history},{<a style="text-decoration:none" href="#" title="">command})
-作用:在一个历史列表加入某一个内容
-参数:
-{history}    要用到的历史名.如下:
-"cmd"    ":"    命令历史
-"search" "/"    查找历史
-"expr"    "="    表达式历史
-"input"    "@"    输入历史
-返回值:成功则为1,错误为0
-histdel({<a style="text-decoration:none" href="#" title="">history},[<a style="text-decoration:none" href="#" title="">pattern])
-作用:从历史中移除命令
-参数:
-{history}    要用到的历史列表
-[pattern]
-定义要移除的内容的表达式.如果没有指定类型,将会从历史中移除所有的内容.
-histget({<a style="text-decoration:none" href="#" title="">history},[<a style="text-decoration:none" href="#" title="">index])
-作用:从历史记录中得到某一内容
-参数:
-{history}    要用到的历史列表
-[index]
-要得到的内容索引.最新的输入为-1,次新的为-2,依次类推.最后一个输入的为1,次后输入的为2,依次类推.如果没有指定索引,将后返回最后一个输入的命令.
-返回值:字符串.历史记录中指定的命令,如果有错误发生时则会返回空串
-histnr({<a style="text-decoration:none" href="#" title="">history})
-作用:返回指定历史列表中的当前输入的标号
-参数:
-{history}    要检测的历史
-返回值:整数.在这个历史列表中的最后一个内容.如果有错误则返回-1
-hlexists({<a style="text-decoration:none" href="#" title="">name})
-作用:检测一个语法加亮组是否存在
-参数:
-{name}    要检测的组名
-返回值:整数标记.若存在则为非0,否则为0
-hlID({<a style="text-decoration:none" href="#" title="">name})
-作用:指定语法加亮组的名,返回ID号
-参数:
-{name}    语法加亮组的名
-返回值:整数.ID号
-hostname()
-作用:得到电脑的主机名
-返回值:字符串.电脑的主机名
-input({prompt})
-作用:问一个问题并会得到答案
-参数:
-{prompt}    要显示的提示
-返回值:字符串.与用户输入相一致的内容
-isdirectory({<a style="text-decoration:none" href="#" title="">file_name})
-作用:检测{file_name}是否为一个目录
-参数:要检测的内容名
-返回值:整数标记.如果是为目录则为1,如果不是目录或不存在则返回0
-libcall({<a style="text-decoration:none" href="#" title="">dll_name},{<a style="text-decoration:none" href="#" title="">function},{<a style="text-decoration:none" href="#" title="">argument})
-作用:在DLL文件中调用函数(只在Windows系统中使用)
-参数:
-{dll_name}    共享库的文件名,在其中定义了{function}
-{function}    函数名
-{argument}
-单一参数.如果这个参数为一个整数,他就会作为整数传递.如果是字符串,就会以"char*"传递.
-返回值:字符串.返回函数.
-line({<a style="text-decoration:none" href="#" title="">position})
-作用:指定一个标记或是其他的位置指示,返回行号
-参数:
-{position}    位置标记.可以是一个标记,'x,当前光标所在处".",或是文件尾"$"
-返回值:整数.行号.如果没有标记或是其他的错误,则会返回0
-line2byte({<a style="text-decoration:none" href="#" title="">line_number})
-作用:将行号转换成字符索引
-参数:
-{line_number}
-要转换的行号.这个可以是一个标记('x),当前光标处('.')或者是缓冲区的最后一行('$')
-返回值:整数.由1开始的行中第一个字符的索引.如果有错误发生则会返回-1
-localtime()
-作用:以UNIX格式返回当前时间
-返回值:整数.
-maparg({<a style="text-decoration:none" href="#" title="">name},[mode])
-作用:返回映射到哪一个键
-参数:
-{name}    {lhs}映射名
-[mode]    字符映射的模式.默认为""
-返回值:字符串.映射结果字符串.如果没有映射返回空串
-mapcheck({<a style="text-decoration:none" href="#" title="">name},[mode])
-作用:检测一个映射是否存在
-参数:
-{name}    {lhs}映射名
-[mode]    字符映射的模式,默认为""
-返回值:字符串.返回匹配{name}的任何映射.这个函数与maparg函数有一些不同.前者会在映射中查找相冲突的名字.例如如果我们有一个映射"ax",他就会转换为"axx"
-例如下面的一些例子:
-:map ax test
-:echo maparg("ax")
-test
-:echo maparg("axx")
-
-:echo mapcheck("ax")
-test
-:echo mapcheck("axx")
-test
-match({<a style="text-decoration:none" href="#" title="">string},{pattern})
-作用:检测{string}是否与{pattern}相匹配.如果要设置了'ignorecase'就会使得编辑忽略大小的情况.
-参数:
-{string}    要检测的字符串
-{pattern}    要检测的类型
-返回值:整数.{string}中{pattern}出现的第一个字符索引.第一个字符为0.如果没有相匹配的就会返回-1.
+	
 matchend({<a style="text-decoration:none" href="#" title="">string},{<a style="text-decoration:none" href="#" title="">pattern})
 作用:与match函数相类似,所不同的是他会返回{pattern}后的字符索引.
 matchstr({<a style="text-decoration:none" href="#" title="">string},{<a style="text-decoration:none" href="#" title="">pattern})
@@ -279,12 +119,12 @@ Th
 {start}我们要选取的字符串的开始地址
 {length}我们要选取的字符串的长度
 返回值:字符串.我们要选取的子串
-strtrans({<a style="text-decoration:none" href="#" title="">string})
+strtrans({<a style="text-decoration:none" href="#" title="">string</a>})
 作用:将字符串不可打印的字符转换成可以打印的字符
 参数:
 {string}    包含不要打印字符的字符串
 返回值:字符串.不可打印字符的结果子.例如CTRL-A就会转换为^A.
-substitute({string},{pattern},{replace},{flag})
+substitute({<a style="text-decoration:none" href="#" title="">string},{<a style="text-decoration:none" href="#" title="">pattern},{<a style="text-decoration:none" href="#" title="">replace},{<a style="text-decoration:none" href="#" title="">flag})
 作用:在字符串,将第一个与{pattern}匹配的字符替换成{replace}.这个命令与Vim的编辑命令相同
 参数:
 {string}    要替换的字符串

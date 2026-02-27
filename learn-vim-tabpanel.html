@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 标签页面板(Tabpanel)</title>
+</head>
+<body>
+	<h1>VIM学习笔记 标签页面板(Tabpanel)</h1>
+	<p>在<a href="https://github.com/vim/vim/commit/be5bd4d6292fddcc103091407792730aaa48cc48">patch 9.1.1391</a>中，Vim引入了新的UI元素标签页面板（<a href="https://vimhelp.org/tabpage.txt.html#tabpanel">tabpanel</a>），是在窗口边上显示标签页标签的垂直侧边栏。</p>
+
+	<h2 class="article"><a id="opt-showtabpanel">显示/隐藏标签页面板</a></h2>
+	<p>通过设置showtabpanel选项，可以选择显示或隐藏标签页面板。默认情况下，showtabpanel缺省值为0，将不显示标签页面板。</p>
+	<p>使用以下命令，将始终显示标签页面板：</p>
+	<p style="text-indent:2em"><code class="inset">:set showtabpanel=2</code></p>
+	<p>使用以下命令，将在至少有两个标签页时才会显示标签页面板：</p>
+	<p style="text-indent:2em"><code class="inset">:set showtabpanel=1</code></p>
+	<p>使用以下命令，将关闭标签页面板：</p>
+	<p style="text-indent:2em"><code class="inset">:set showtabpanel=0</code></p>
+
+	<h2 class="article"><a id="opt-tabpanelopt">标签页面板选项</a></h2>
+	<p>通过设置tabpanelopt选项，可以定义标签页面板的其它选项：</p>
+	<ul>
+		<li>align，决定标签页面板显示在窗口的左侧或右侧；</li>
+		<li>columns，指定标签页面板的宽度；</li>
+		<li>vert，指定标签页面板和窗口显示部分间是否显示垂直分割符。</li>
+	</ul>
+	<p>使用以下命令，将在屏幕左侧显示宽度为15的标签页面板：</p>
+	<p style="text-indent:2em"><code class="inset">:set tabpanelopt=vert,align:left,columns:15</code></p>
+	<p>通过设置fillchars选项，可以定义标签页面板的垂直分隔符：</p>
+	<p style="text-indent:2em"><code class="inset">:set fillchars+=tpl_vert:\|</code></p>
+
+	<h2 class="article"><a id="tpl-highlight">标签面板配色方案</a></h2>
+	<p>默认情况下，gVim使用GUI风格的配色方案：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/guioptions-e.png" title="guioptions+e"><img src="https://yyq123.github.io/learn-vim/images/guioptions-e.png" alt="guioptions+e" /></a></p>
+	<p>使用以下命令，可以设置gVim的<a href="http://yyq123.github.io/learn-vim/learn-vi-15-Tabs.html" title="Tabs">标签页</a>（tabline）和标签面板（tabpanel）都使用现有的<a href="https://tinyurl.com/vim-ColorScheme" title="Color Scheme">配色方案</a>：</p>
+	<p style="text-indent:2em"><code class="inset">:set guioptions-=e</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/guioptions--e.png.png" title="guioptions-e"><img src="https://yyq123.github.io/learn-vim/images/guioptions--e.png" alt="guioptions-e" /></a></p>
+	<p>将以下代码添加到vimrc启动文件中，可以进一步定制标签页和标签面板的配色：</p>
+	<pre class="block">hi TabLine      guifg=#c5c8c6 guibg=#303030 gui=none ctermfg=254 ctermbg=236 cterm=none
+hi TabLineSel   guifg=#c5c8c6 guibg=#1d1f21 gui=bold ctermfg=254 ctermbg=236 cterm=bold
+hi TabLineFill  guifg=#c5c8c6 guibg=#303030 gui=none ctermfg=254 ctermbg=236 cterm=none
+hi VertSplit	guifg=#3a3a3a guibg=#1d1f21 gui=none ctermfg=254 ctermbg=236 cterm=none</pre>
+	<p>由于Tabpanel相关高亮组已经默认链接至Tabline，所以只需要定义Tabline相关高亮组即可：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/tabpanel_highlight_group_link.png" title="tabpanel_highlight_group_link"><img src="https://yyq123.github.io/learn-vim/images/tabpanel_highlight_group_link.png" alt="tabpanel_highlight_group_link" /></a></p>
+	<h2 class="article"><a id=""></a></h2>
+	<p></p>
+	<a href="#" title=""></a>
+
+	<p></p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+
+	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
+
+	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
+
+	<pre class="block">
+	</pre>
+
+	<ul>
+		<li><p class="item"><br /></p></li>
+		<li><p class="item"><a href="#" title=""></a><br /></p></li>
+	</ul>
+
+	<span style="font-weight:bold; color:#4169E1; margin-left:0.2em">&#65311;</span>
+
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
+		<caption style="margin:0.5em; font-weight:bold">选项列表</caption>
+		<thead>
+		<tr><th style="white-space: nowrap">选项</th><th>描述</th><th>帮助信息</th></tr>
+		</thead>
+		<tbody>
+		<tr><td><code class="inset">!</code></td><td>如果包含，表示。例如，。</td><td style="white-space: nowrap"><code class="inset">:help viminfo-!</code></td></tr>
+		</tbody>
+	</table>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tbody>
+		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
+		<tr><td><code class="inset">:</code></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		</tbody>
+	</table>
+&ldquo;&rdquo;
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
+
+</body>
+</html>
