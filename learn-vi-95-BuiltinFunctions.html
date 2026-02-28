@@ -61,8 +61,26 @@
 	<tr><td><code class="inset">maparg({<a style="text-decoration:none" href="#" title="映射名">name</a>},[<a style="text-decoration:none" href="#" title="映射的模式">mode</a>])</code><br />&target; 返回指定映射的内容。只查找名字和{name}完全一致的映射。<br />&LeftTeeArrow; 返回映射结果字符串，如果没有映射则返回空串</td></tr>
 	<tr><td><code class="inset">mapcheck({<a style="text-decoration:none" href="#" title="映射名">name</a>},[<a style="text-decoration:none" href="#" title="映射的模式">mode</a>])</code><br />&target; 检测指定映射是否存在。 查找名字和{name}部分匹配的映射。<br />&LeftTeeArrow; 返回匹配{name}的任何映射</td></tr>
 	<tr><td><code class="inset">match({<a style="text-decoration:none" href="#" title="要检测的字符串">string</a>},{<a style="text-decoration:none" href="#" title="匹配模式">pattern</a>})</code><br />&target; 检测{string}是否与{pattern}相匹配<br />&LeftTeeArrow; 返回{string}中{pattern}出现的第一个字符索引。第一个字符为0。如果没有匹配则返回-1。</td></tr>
-	<tr><td><code class="inset"></code><br />&target; <br />&LeftTeeArrow; </td></tr>
-	<tr><td><code class="inset"></code><br />&target; <br />&LeftTeeArrow; </td></tr>
+	<tr><td><code class="inset">matchend({<a style="text-decoration:none" href="#" title="要检测的字符串">string</a>},{<a style="text-decoration:none" href="#" title="匹配模式">pattern</a>})</code><br />&target; 和match()相同，但返回匹配之后的第一个字符的位置<br />&LeftTeeArrow; </td></tr>
+	<tr><td><code class="inset">matchstr({<a style="text-decoration:none" href="#" title="要检测的字符串">string</a>},{<a style="text-decoration:none" href="#" title="匹配模式">pattern</a>})</code><br />&target; 和 match() 相同，但返回匹配的字符串<br />&LeftTeeArrow; 返回{string}中匹配的部分字符串。如果没有匹配，则返回空串。</td></tr>
+	<tr><td><code class="inset">nr2char({<a style="text-decoration:none" href="#" title="字符的ASCII码值">number</a>})</code><br />&target; 将数值转换成字符<br />&LeftTeeArrow; 返回单个字符组成的字符串</td></tr>
+	<tr><td><code class="inset">rename({<a style="text-decoration:none" href="#" title="已存在的文件名">from</a>},{<a style="text-decoration:none" href="#" title="目标文件名">to</a>})</code><br />&target; 重命名文件<br />&LeftTeeArrow; 如果成功返回0，否则返回非0</td></tr>
+	<tr><td><code class="inset">setline({<a style="text-decoration:none" href="#" title="要改变的行号">lnum</a>},{<a style="text-decoration:none" href="#" title="指定的文本">text</a>})</code><br />&target; 设置当前缓冲区第{lnum}行的内容为{text}<br />&LeftTeeArrow; 如果成功，返回FALSE。如果失败返回TRUE。</td></tr>
+	<tr><td><code class="inset">strftime({<a style="text-decoration:none" href="#" title="时间格式">format</a>},[<a style="text-decoration:none" href="#" title="指定的时间">time</a>])</code><br />&target; 返回经过{format}字符串的格式转换的日期和时间<br />&LeftTeeArrow; 返回字符串</td></tr>
+	<tr><td><code class="inset">strlen({<a style="text-decoration:none" href="#" title="需要计算长度的字符串">string</a>})</code><br />&target; 计算字符串的长度<br />&LeftTeeArrow; 返回字符串长度的数值</td></tr>
+	<tr><td><code class="inset">strpart({<a style="text-decoration:none" href="#" title="字符串">string</a>},{<a style="text-decoration:none" href="#" title="开始位置">start</a>},{<a style="text-decoration:none" href="#" title="长度">length</a>})</code><br />&target; 返回由{start}开始的长度为{length}的子串<br />&LeftTeeArrow; 返回子串，出错时返回空串。</td></tr>
+	<tr><td><code class="inset">strtrans({<a style="text-decoration:none" href="#" title="字符串">string</a>})</code><br />&target; 将字符串中不可显示的字符转换成可以打印的字符<br />&LeftTeeArrow; 返回字符串</td></tr>
+<tr><td><code class="inset">substitute({<a style="text-decoration:none" href="#" title="需要替换的字符串">string</a>},{<a style="text-decoration:none" href="#" title="替换模式">pattern</a>},{<a style="text-decoration:none" href="#" title="替换成为的文本">replace</a>},{<a style="text-decoration:none" href="#" title="如果没有指定，将只替换第一个出现的匹配处；&#10;如果为g，将会替换全部">flag</a>})</code><br />&target; 替换字符串<br />&LeftTeeArrow; 返回替换后的字符串</td></tr>
+	<tr><td><code class="inset">synID({<a style="text-decoration:none" href="#" title="行">line</a>},{<a style="text-decoration:none" href="#" title="列">column</a>},{<a style="text-decoration:none" href="#" title="如果为TRUE ，透明的项目被简约为它们实际显露的项目。这可以用于你想知道实际使用的颜色的情形。&#10;如果为FALSE ，返回透明的项目本身。这可用于想知道实际有效的语法项目的情形 (比如，在括号内部)。">trans</a>})</code><br />&target; 返回由{line}和{column}所指定的语法ID<br />&LeftTeeArrow; 返回语法ID</td></tr>
+	<tr><td><code class="inset">synIDattr({<a style="text-decoration:none" href="#" title="语法描述的标号">sytnax_id</a>},{<a style="text-decoration:none" href="#" title="标记名：&#10;name，语法内容名&#10;fg，前景色&#10;bg，后景色&#10;fg#，以#RRGGBB格式的前景色&#10;bg#，以#RRGGBB格式的后景色&#10;bold，如果内容为粗体则为1&#10;italic，如果内容为斜体则为1&#10;reverse，如果内容反转则为1&#10;inverse，与上面内容相同&#10;underline，如果内容为下划线则为1">attribute</a>},[<a style="text-decoration:none" href="#" title="终端标记，可以是gui,cterm,term">mode</a>])</code><br />&target; 得到语法颜色元素的属性<br />&LeftTeeArrow; 返回字符串</td></tr>
+	<tr><td><code class="inset">synIDtrans({<a style="text-decoration:none" href="#" title="语法元素的ID">syntax_id</a>})</code><br />&target; 返回转换的语法ID<br />&LeftTeeArrow; 返回转换的语法ID</td></tr>
+	<tr><td><code class="inset">system({<a style="text-decoration:none" href="#" title="要执行的命令">command</a>})</code><br />&target; 执行外部命令并输出<br />&LeftTeeArrow; 返回命令的执行结果</td></tr>
+	<tr><td><code class="inset">tempname()</code><br />&target; 产生一个临时文件名<br />&LeftTeeArrow; 返回临时文件名</td></tr>
+	<tr><td><code class="inset">visualmode()</code><br />&target; 返回最近使用的可视模式<br />&LeftTeeArrow; 返回字符串，标识最近使用的可视模式</td></tr>
+	<tr><td><code class="inset">virtcol({<a style="text-decoration:none" href="#" title="位置">location</a>})</code><br />&target; 得到给定位置的列号<br />&LeftTeeArrow; 返回列号</td></tr>
+	<tr><td><code class="inset">winbufnr({<a style="text-decoration:none" href="#" title="窗口号，0为当前窗口">number</a>})</code><br />&target; 得到窗口相关联的缓冲区号<br />&LeftTeeArrow; 返回缓冲区号，若有错则为-1</td></tr>
+	<tr><td><code class="inset">winheight({<a style="text-decoration:none" href="#" title="窗口号，0为当前窗口">number</a>})</code><br />&target; 得到窗口高度<br />&LeftTeeArrow; 返回以行数表示的窗口高度；若有错,则为-1</td></tr>
+	<tr><td><code class="inset">winnr()</code><br />&target; 得到当前窗口号<br />&LeftTeeArrow; 返回当前窗口号</td></tr>
 	<tr><td><code class="inset"></code><br />&target; <br />&LeftTeeArrow; </td></tr>
 	<tr><td><code class="inset"></code><br />&target; <br />&LeftTeeArrow; </td></tr>
 	<tr><td><code class="inset"></code><br />&target; <br />&LeftTeeArrow; </td></tr>
@@ -71,125 +89,7 @@
 </table>
 <a style="text-decoration:none" href="#" title="">
 
-	
-matchend({<a style="text-decoration:none" href="#" title="">string},{<a style="text-decoration:none" href="#" title="">pattern})
-作用:与match函数相类似,所不同的是他会返回{pattern}后的字符索引.
-matchstr({<a style="text-decoration:none" href="#" title="">string},{<a style="text-decoration:none" href="#" title="">pattern})
-作用:与match函数相类似,只是他会返回匹配的字符串
-参数:
-{string}    要检测的字符串
-{pattern}    要检测的类型
-返回值:字符串.{string}中匹配的部分.如果没有匹配就会返回空串
-nr2char({<a style="text-decoration:none" href="#" title="">number})
-作用:将数转换成字符
-参数:字符的ASCII码值.
-返回值:长度为1的字符串.与数字相对应的字符
-rename({<a style="text-decoration:none" href="#" title="">from},{<a style="text-decoration:none" href="#" title="">to})
-作用:重命名一个文件.
-参数:
-{from}    存在的文件名
-{to}    要重命名为的文件名
-返回值:整数标记.如果成功则为0,否则为非0
-setline({<a style="text-decoration:none" href="#" title="">line_number},{<a style="text-decoration:none" href="#" title="">line})
-作用:用{line}的字符串内容替换{line_number}行的内容.
-参数:
-{line_number}    要改变的行号
-{line}        替换行的文本
-返回值:整数标记.如果没有错误则为0,否则为非0
-strftime({<a style="text-decoration:none" href="#" title="">format},[<a style="text-decoration:none" href="#" title="">time])
-作用:通过{format}返回时间格式.在字符串可以放置的转换字符决定于我们系统的strftime函数.
-参数:字符串.包含时间格式化的时间字符串
-strlen({string})
-作用:计算字符串的长度
-参数:
-{string}    我们要计算长度的字符串
-返回值:整数.字符串的长度
-strpart({<a style="text-decoration:none" href="#" title="">string,{<a style="text-decoration:none" href="#" title="">start},{<a style="text-decoration:none" href="#" title="">length})
-作用:返回由{start}开始的长度为{length}的子串
-例如:
-:echo strpart("This is a test",0,4)
-This
-:echo strpart("This is a test",5,2)
-is
-如果{start}和{length}所指定的为不存在的字符,就会忽略这种情况.例如下面的命令从第一个字符的左边开始.
-:echo strpart("This is a test",-2,4)
-Th
-参数:
-{string}我们要从中查找的字符串
-{start}我们要选取的字符串的开始地址
-{length}我们要选取的字符串的长度
-返回值:字符串.我们要选取的子串
-strtrans({<a style="text-decoration:none" href="#" title="">string</a>})
-作用:将字符串不可打印的字符转换成可以打印的字符
-参数:
-{string}    包含不要打印字符的字符串
-返回值:字符串.不可打印字符的结果子.例如CTRL-A就会转换为^A.
-substitute({<a style="text-decoration:none" href="#" title="">string},{<a style="text-decoration:none" href="#" title="">pattern},{<a style="text-decoration:none" href="#" title="">replace},{<a style="text-decoration:none" href="#" title="">flag})
-作用:在字符串,将第一个与{pattern}匹配的字符替换成{replace}.这个命令与Vim的编辑命令相同
-参数:
-{string}    要替换的字符串
-{pattern}    用来指定替换部分的字符串
-{replace}    要替换成为的文本
-{flag}
-如果没有指定只是替换第一个出现的,如果为g,就会可以替换全部的情况.
-返回值:字符串.替换后的字符串
-synID({<a style="text-decoration:none" href="#" title="">line},{<a style="text-decoration:none" href="#" title="">column},{<a style="text-decoration:none" href="#" title="">transparent_flag})
-作用:返回由{line}和{column}所指定的语法ID.
-参数:
-{line},{column}    内容所在的位置
-{transparent_flag}If non-0, transparent items are reduced to the items they reveal
-返回值:语法ID.
-synIDattr({<a style="text-decoration:none" href="#" title="">sytnax_id},{<a style="text-decoration:none" href="#" title="">attribute},[<a style="text-decoration:none" href="#" title="">mode])
-作用:得到语法颜色元素的标记
-参数:
-{sytnax_id}    语法描述的标号.
-{attribute}    标记名.可有和的标记名如下:
-"name"    语法内容名
-"fg"    前景色
-"bg"    后景色
-"fg#"    以#RRGGBB格式的前景色
-"bg#"    以#RRGGBB格式的后景色
-"bold"    如果内容为粗体则为1
-"italic"如果内容为斜体则为1
-"reverse"如果内容反转则为1
-"inverse"与上面内容相同
-"underline"如果内容为下划线则为1
-[mode]
-要得到哪种终端标记.这个可以是"gui","cterm","term".默认的终端是我们当前用的.
-返回值:字符串.标记值.
-synIDtrans({<a style="text-decoration:none" href="#" title="">syntax_id})
-作用:返回转换的语法ID
-参数:
-{syntax_id}    语法元素的ID
-返回值:整数,转换的语法ID.
-system({<a style="text-decoration:none" href="#" title="">command})
-作用:执行外部命令并输出.选项'shell'和'shelldir'可以用于这个函数
-参数:
-{command}    要执行的命令.
-返回值:字符串.输出命令的执行结果.
-tempname()
-作用:产生一个临时文件名
-返回值:字符串.用为临时文件的文件名.
-visualmode()
-作用:得到最后的可视化模式
-返回值:字符串.作为命令字符串得到最后一个可视化模式.这个可以是v,V,或是CTRL-V
-virtcol({<a style="text-decoration:none" href="#" title="">location})
-作用:得到给定位置的列号.
-参数:位置可以是."(光标处),'a(标记a),或者是$"(文件最后处)
-返回值:整数.
-winbufnr({<a style="text-decoration:none" href="#" title="">number})
-作用:得到窗口内缓冲区的标号.
-参数:
-{number}    窗口标号.0为当前窗口.
-返回值:整数.缓冲区标号.若有错则为-1.
-winheight({<a style="text-decoration:none" href="#" title="">number})
-作用:得到窗口高度.
-参数:
-{number}    窗口标号.0为当前窗口.
-返回值:整数.以行数表示的窗口高度.若有错,则为-1
-winnr()
-作用:得到当前窗口号.
-返回值:整数.当前窗口标号.最上的窗口为#1
+
 
 	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">启用/禁用</p>
 	<p></p>
